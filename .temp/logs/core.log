@@ -1,0 +1,86 @@
+[17-Apr-2021 18:35:02 Europe/Berlin] PHP Fatal error:  Uncaught InvalidArgumentException: Nombre de usuario ó contraseña invalidos. in C:\xampp\htdocs\SimpleChat\libs\database\SDB.php:17
+Stack trace:
+#0 C:\xampp\htdocs\SimpleChat\libs\database\DB.php(14): HS\libs\database\SDB::Connect(Array)
+#1 C:\xampp\htdocs\SimpleChat\app\controller\core\LoginController.php(33): HS\libs\database\DB->__construct(Array)
+#2 [internal function]: HS\app\controller\core\LoginController->Login()
+#3 C:\xampp\htdocs\SimpleChat\libs\core\Route.php(129): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\SimpleChat\libs\core\Route.php(47): HS\libs\core\Route::CallView('LoginController...', Array, true)
+#5 C:\xampp\htdocs\SimpleChat\libs\core\Route.php(26): HS\libs\core\Route::Run('/Login.json', 'LoginController...', Array, Array, true)
+#6 C:\xampp\htdocs\SimpleChat\config\routes\core.php(22): HS\libs\core\Route::Post('/Login.json', 'LoginController...', Array, true)
+#7 C:\xampp\htdocs\SimpleChat\libs\helper\PHPUtil.php(13): require('C:\\xampp\\htdocs...')
+#8 C:\xampp\htdocs\SimpleCh in C:\xampp\htdocs\SimpleChat\libs\database\SDB.php on line 17
+[17-Apr-2021 18:35:02 Europe/Berlin] PHP Stack trace:
+[17-Apr-2021 18:35:02 Europe/Berlin] PHP   1. {main}() C:\xampp\htdocs\SimpleChat\public\index.php:0
+[17-Apr-2021 18:35:02 Europe/Berlin] PHP   2. require() C:\xampp\htdocs\SimpleChat\public\index.php:34
+[17-Apr-2021 18:35:02 Europe/Berlin] PHP   3. HS\libs\helper\PHPUtil::Require($path = 'C:\\xampp\\htdocs\\SimpleChat/config/routes', $files = [0 => 'core.php', 1 => 'web.php']) C:\xampp\htdocs\SimpleChat\app\init.php:27
+[17-Apr-2021 18:35:02 Europe/Berlin] PHP   4. require() C:\xampp\htdocs\SimpleChat\libs\helper\PHPUtil.php:13
+[17-Apr-2021 18:35:02 Europe/Berlin] PHP   5. HS\libs\core\Route::Post($route_url = '/Login.json', $url_or_call = 'LoginController#Login', $conditions = [], $exitAfterMatch = TRUE) C:\xampp\htdocs\SimpleChat\config\routes\core.php:22
+[17-Apr-2021 18:35:02 Europe/Berlin] PHP   6. HS\libs\core\Route::Run($route_url = '/Login.json', $url_or_call = 'LoginController#Login', $request_methods = [0 => 'POST'], $conditions = [], $exitAfter = TRUE) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:26
+[17-Apr-2021 18:35:02 Europe/Berlin] PHP   7. HS\libs\core\Route::CallView($callback = 'LoginController#Login', $args = [], $exitAfter = TRUE) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:47
+[17-Apr-2021 18:35:02 Europe/Berlin] PHP   8. call_user_func_array:{C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129}($function_name = [0 => class HS\app\controller\core\LoginController {  }, 1 => 'Login'], $parameters = []) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129
+[17-Apr-2021 18:35:02 Europe/Berlin] PHP   9. HS\app\controller\core\LoginController->Login() C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129
+[17-Apr-2021 18:35:02 Europe/Berlin] PHP  10. HS\libs\database\DB->__construct($account = ['user' => 'root', 'pass' => '']) C:\xampp\htdocs\SimpleChat\app\controller\core\LoginController.php:33
+[17-Apr-2021 18:35:02 Europe/Berlin] PHP  11. HS\libs\database\SDB::Connect($account = ['user' => 'root', 'pass' => '']) C:\xampp\htdocs\SimpleChat\libs\database\DB.php:14
+[17-Apr-2021 18:35:31 Europe/Berlin] PHP Fatal error:  Uncaught InvalidArgumentException: Nombre de usuario ó contraseña invalidos. in C:\xampp\htdocs\SimpleChat\libs\database\SDB.php:17
+Stack trace:
+#0 C:\xampp\htdocs\SimpleChat\libs\database\DB.php(14): HS\libs\database\SDB::Connect(Array)
+#1 C:\xampp\htdocs\SimpleChat\app\controller\core\LoginController.php(33): HS\libs\database\DB->__construct(Array)
+#2 [internal function]: HS\app\controller\core\LoginController->Login()
+#3 C:\xampp\htdocs\SimpleChat\libs\core\Route.php(129): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\SimpleChat\libs\core\Route.php(47): HS\libs\core\Route::CallView('LoginController...', Array, true)
+#5 C:\xampp\htdocs\SimpleChat\libs\core\Route.php(26): HS\libs\core\Route::Run('/Login.json', 'LoginController...', Array, Array, true)
+#6 C:\xampp\htdocs\SimpleChat\config\routes\core.php(22): HS\libs\core\Route::Post('/Login.json', 'LoginController...', Array, true)
+#7 C:\xampp\htdocs\SimpleChat\libs\helper\PHPUtil.php(13): require('C:\\xampp\\htdocs...')
+#8 C:\xampp\htdocs\SimpleCh in C:\xampp\htdocs\SimpleChat\libs\database\SDB.php on line 17
+[17-Apr-2021 18:38:41 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\SimpleChat\libs\database\SDB.php on line 86
+[17-Apr-2021 18:38:41 Europe/Berlin] PHP Stack trace:
+[17-Apr-2021 18:38:41 Europe/Berlin] PHP   1. {main}() C:\xampp\htdocs\SimpleChat\public\index.php:0
+[17-Apr-2021 18:38:41 Europe/Berlin] PHP   2. require() C:\xampp\htdocs\SimpleChat\public\index.php:34
+[17-Apr-2021 18:38:41 Europe/Berlin] PHP   3. HS\libs\helper\PHPUtil::Require($path = 'C:\\xampp\\htdocs\\SimpleChat/config/routes', $files = [0 => 'core.php', 1 => 'web.php']) C:\xampp\htdocs\SimpleChat\app\init.php:27
+[17-Apr-2021 18:38:41 Europe/Berlin] PHP   4. require() C:\xampp\htdocs\SimpleChat\libs\helper\PHPUtil.php:13
+[17-Apr-2021 18:38:41 Europe/Berlin] PHP   5. HS\libs\core\Route::Post($route_url = '/Login.json', $url_or_call = 'LoginController#Login', $conditions = [], $exitAfterMatch = TRUE) C:\xampp\htdocs\SimpleChat\config\routes\core.php:22
+[17-Apr-2021 18:38:41 Europe/Berlin] PHP   6. HS\libs\core\Route::Run($route_url = '/Login.json', $url_or_call = 'LoginController#Login', $request_methods = [0 => 'POST'], $conditions = [], $exitAfter = TRUE) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:26
+[17-Apr-2021 18:38:41 Europe/Berlin] PHP   7. HS\libs\core\Route::CallView($callback = 'LoginController#Login', $args = [], $exitAfter = TRUE) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:47
+[17-Apr-2021 18:38:41 Europe/Berlin] PHP   8. call_user_func_array:{C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129}($function_name = [0 => class HS\app\controller\core\LoginController {  }, 1 => 'Login'], $parameters = []) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129
+[17-Apr-2021 18:38:41 Europe/Berlin] PHP   9. HS\app\controller\core\LoginController->Login() C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129
+[17-Apr-2021 18:38:41 Europe/Berlin] PHP  10. HS\libs\database\DB->SelectOnly($sentence = 'select pass from users where user_name = ?', $param = [1 => 'erdu']) C:\xampp\htdocs\SimpleChat\app\controller\core\LoginController.php:34
+[17-Apr-2021 18:38:41 Europe/Berlin] PHP  11. HS\libs\database\SDB::SelectOnly($PDO = class PDO {  }, $sentence = 'select pass from users where user_name = ?', $param = [1 => 'erdu']) C:\xampp\htdocs\SimpleChat\libs\database\DB.php:33
+[17-Apr-2021 18:39:45 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\SimpleChat\libs\database\SDB.php on line 86
+[17-Apr-2021 18:39:45 Europe/Berlin] PHP Stack trace:
+[17-Apr-2021 18:39:45 Europe/Berlin] PHP   1. {main}() C:\xampp\htdocs\SimpleChat\public\index.php:0
+[17-Apr-2021 18:39:45 Europe/Berlin] PHP   2. require() C:\xampp\htdocs\SimpleChat\public\index.php:34
+[17-Apr-2021 18:39:45 Europe/Berlin] PHP   3. HS\libs\helper\PHPUtil::Require($path = 'C:\\xampp\\htdocs\\SimpleChat/config/routes', $files = [0 => 'core.php', 1 => 'web.php']) C:\xampp\htdocs\SimpleChat\app\init.php:27
+[17-Apr-2021 18:39:45 Europe/Berlin] PHP   4. require() C:\xampp\htdocs\SimpleChat\libs\helper\PHPUtil.php:13
+[17-Apr-2021 18:39:45 Europe/Berlin] PHP   5. HS\libs\core\Route::Post($route_url = '/Login.json', $url_or_call = 'LoginController#Login', $conditions = [], $exitAfterMatch = TRUE) C:\xampp\htdocs\SimpleChat\config\routes\core.php:22
+[17-Apr-2021 18:39:45 Europe/Berlin] PHP   6. HS\libs\core\Route::Run($route_url = '/Login.json', $url_or_call = 'LoginController#Login', $request_methods = [0 => 'POST'], $conditions = [], $exitAfter = TRUE) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:26
+[17-Apr-2021 18:39:45 Europe/Berlin] PHP   7. HS\libs\core\Route::CallView($callback = 'LoginController#Login', $args = [], $exitAfter = TRUE) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:47
+[17-Apr-2021 18:39:45 Europe/Berlin] PHP   8. call_user_func_array:{C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129}($function_name = [0 => class HS\app\controller\core\LoginController {  }, 1 => 'Login'], $parameters = []) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129
+[17-Apr-2021 18:39:45 Europe/Berlin] PHP   9. HS\app\controller\core\LoginController->Login() C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129
+[17-Apr-2021 18:39:45 Europe/Berlin] PHP  10. HS\libs\database\DB->SelectOnly($sentence = 'select pass from users where user_name = ?', $param = [1 => 'erdu']) C:\xampp\htdocs\SimpleChat\app\controller\core\LoginController.php:34
+[17-Apr-2021 18:39:45 Europe/Berlin] PHP  11. HS\libs\database\SDB::SelectOnly($PDO = class PDO {  }, $sentence = 'select pass from users where user_name = ?', $param = [1 => 'erdu']) C:\xampp\htdocs\SimpleChat\libs\database\DB.php:33
+[17-Apr-2021 18:39:54 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\SimpleChat\libs\database\SDB.php on line 86
+[17-Apr-2021 18:39:54 Europe/Berlin] PHP Stack trace:
+[17-Apr-2021 18:39:54 Europe/Berlin] PHP   1. {main}() C:\xampp\htdocs\SimpleChat\public\index.php:0
+[17-Apr-2021 18:39:54 Europe/Berlin] PHP   2. require() C:\xampp\htdocs\SimpleChat\public\index.php:34
+[17-Apr-2021 18:39:54 Europe/Berlin] PHP   3. HS\libs\helper\PHPUtil::Require($path = 'C:\\xampp\\htdocs\\SimpleChat/config/routes', $files = [0 => 'core.php', 1 => 'web.php']) C:\xampp\htdocs\SimpleChat\app\init.php:27
+[17-Apr-2021 18:39:54 Europe/Berlin] PHP   4. require() C:\xampp\htdocs\SimpleChat\libs\helper\PHPUtil.php:13
+[17-Apr-2021 18:39:54 Europe/Berlin] PHP   5. HS\libs\core\Route::Post($route_url = '/Login.json', $url_or_call = 'LoginController#Login', $conditions = [], $exitAfterMatch = TRUE) C:\xampp\htdocs\SimpleChat\config\routes\core.php:22
+[17-Apr-2021 18:39:54 Europe/Berlin] PHP   6. HS\libs\core\Route::Run($route_url = '/Login.json', $url_or_call = 'LoginController#Login', $request_methods = [0 => 'POST'], $conditions = [], $exitAfter = TRUE) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:26
+[17-Apr-2021 18:39:54 Europe/Berlin] PHP   7. HS\libs\core\Route::CallView($callback = 'LoginController#Login', $args = [], $exitAfter = TRUE) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:47
+[17-Apr-2021 18:39:54 Europe/Berlin] PHP   8. call_user_func_array:{C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129}($function_name = [0 => class HS\app\controller\core\LoginController {  }, 1 => 'Login'], $parameters = []) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129
+[17-Apr-2021 18:39:54 Europe/Berlin] PHP   9. HS\app\controller\core\LoginController->Login() C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129
+[17-Apr-2021 18:39:54 Europe/Berlin] PHP  10. HS\libs\database\DB->SelectOnly($sentence = 'select pass from users where user_name = ?', $param = [1 => 'erdu']) C:\xampp\htdocs\SimpleChat\app\controller\core\LoginController.php:34
+[17-Apr-2021 18:39:54 Europe/Berlin] PHP  11. HS\libs\database\SDB::SelectOnly($PDO = class PDO {  }, $sentence = 'select pass from users where user_name = ?', $param = [1 => 'erdu']) C:\xampp\htdocs\SimpleChat\libs\database\DB.php:33
+[17-Apr-2021 18:40:40 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\SimpleChat\libs\database\SDB.php on line 86
+[17-Apr-2021 18:40:40 Europe/Berlin] PHP Stack trace:
+[17-Apr-2021 18:40:40 Europe/Berlin] PHP   1. {main}() C:\xampp\htdocs\SimpleChat\public\index.php:0
+[17-Apr-2021 18:40:40 Europe/Berlin] PHP   2. require() C:\xampp\htdocs\SimpleChat\public\index.php:34
+[17-Apr-2021 18:40:40 Europe/Berlin] PHP   3. HS\libs\helper\PHPUtil::Require($path = 'C:\\xampp\\htdocs\\SimpleChat/config/routes', $files = [0 => 'core.php', 1 => 'web.php']) C:\xampp\htdocs\SimpleChat\app\init.php:27
+[17-Apr-2021 18:40:40 Europe/Berlin] PHP   4. require() C:\xampp\htdocs\SimpleChat\libs\helper\PHPUtil.php:13
+[17-Apr-2021 18:40:40 Europe/Berlin] PHP   5. HS\libs\core\Route::Post($route_url = '/Login.json', $url_or_call = 'LoginController#Login', $conditions = [], $exitAfterMatch = TRUE) C:\xampp\htdocs\SimpleChat\config\routes\core.php:22
+[17-Apr-2021 18:40:40 Europe/Berlin] PHP   6. HS\libs\core\Route::Run($route_url = '/Login.json', $url_or_call = 'LoginController#Login', $request_methods = [0 => 'POST'], $conditions = [], $exitAfter = TRUE) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:26
+[17-Apr-2021 18:40:40 Europe/Berlin] PHP   7. HS\libs\core\Route::CallView($callback = 'LoginController#Login', $args = [], $exitAfter = TRUE) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:47
+[17-Apr-2021 18:40:40 Europe/Berlin] PHP   8. call_user_func_array:{C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129}($function_name = [0 => class HS\app\controller\core\LoginController {  }, 1 => 'Login'], $parameters = []) C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129
+[17-Apr-2021 18:40:40 Europe/Berlin] PHP   9. HS\app\controller\core\LoginController->Login() C:\xampp\htdocs\SimpleChat\libs\core\Route.php:129
+[17-Apr-2021 18:40:40 Europe/Berlin] PHP  10. HS\libs\database\DB->SelectOnly($sentence = 'select pass from users where user_name = ?', $param = [1 => 'erdu']) C:\xampp\htdocs\SimpleChat\app\controller\core\LoginController.php:34
+[17-Apr-2021 18:40:40 Europe/Berlin] PHP  11. HS\libs\database\SDB::SelectOnly($PDO = class PDO {  }, $sentence = 'select pass from users where user_name = ?', $param = [1 => 'erdu']) C:\xampp\htdocs\SimpleChat\libs\database\DB.php:33

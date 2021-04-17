@@ -13,7 +13,7 @@ class SDB
 {
     public static function Connect(array $account): PDO
     {
-        if (!empty($account['user']) || !empty($account['pass']))
+        if (empty($account['user']) /*|| empty($account['pass'])*/)
             throw new InvalidArgumentException("Nombre de usuario ó contraseña invalidos.");
 
         //Cadena de conexion.
@@ -79,11 +79,11 @@ class SDB
     }
 
     public static function SelectOnly(PDO $PDO, string $sentence, array $param = null){
-        $result = self::Select($PDO, $sentence, $param);
+        $result = self::SelectAll($PDO, $sentence, $param);
 
         if (count($result) === 1)
             if (count($result[0]) === 1)
-                return $result[0][0];
+                return array_values($result[0])[0];
             else
                 return $result[0];
         else

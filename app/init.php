@@ -16,9 +16,10 @@ require APP_PATH . "/app/init/Log.php";
 
 #Configuración.
 PHPUtil::Require(APP_PATH . "/config", [
-    'general.php',
+    'db.php',
     'scss.php',
-    'session.php'
+    'session.php',
+    'general.php'
 ]);
 
 #Rutas.
