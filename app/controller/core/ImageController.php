@@ -1,6 +1,10 @@
 <?php
 namespace HS\app\controller\core;
 
+use HS\config\APP_DIR;
+use HS\libs\core\http\HttpResponse;
+use HS\libs\graphic\Image;
+use HS\libs\graphic\ImageException;
 use HS\libs\helper\MimeType;
 use HS\libs\io\Path;
 
