@@ -14,4 +14,4 @@ Route::Get("/Logout", 'LoginController#Logout', [], true);
 Route::All('{all*}', 'LoginController#IfNotLoginRedirect', [], false);
 
 #Pagina de inicio.
-Route::Get("/", "/phpinfo.php", [], true);
+Route::Get("/", "/app/view/index.php", [], true);

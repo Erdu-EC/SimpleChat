@@ -1,6 +1,6 @@
 <?php namespace HS\app\view\template; ?>
 
-<nav class="navbar navbar-dark bg-primary fixed-top navbar-expand-lg">
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <img src="/files/icon/icono.png?w=30" alt="Logo" class="d-inline-block valign-middle"

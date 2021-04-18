@@ -32,8 +32,6 @@ if (Session::IsLogin())
         <script type="text/javascript" src="/files/js/LoginPage.js"></script>
     </head>
     <body>
-    <header><?php //require 'template/Header.php' ?></header>
-
     <main class="container-fluid">
         <div class="row">
             <div class="col-sm-3"></div>
