@@ -47,7 +47,7 @@ class Route
         if (empty($varsName) && $request_url == $route_url) self::CallView($url_or_call, [], $exitAfter);
 
         //Establecer regex generico para obtener luego los valores de las variable.
-        $route_url = preg_replace(["#\{\w+}#", '#\{\w+\\\\\*}#'], ["([^/]+)", "(.+)"], Regex::Escape($route_url, ['{', '}'])); //Palabras o numeros
+        $route_url = preg_replace(["#\{\w+}#", '#\{\w+\\\\\+}#', '#\{\w+\\\\\*}#'], ["([^/]+)", "(.+)", "(.*)"], Regex::Escape($route_url, ['{', '}'])); //Palabras o numeros
 
         //Comprobar si la URL actual tiene la misma estructura que la ruta y obteniendo valores de variables.
         if (preg_match("#^$route_url$#", $request_url, $varsValue)) {

@@ -17,6 +17,3 @@ $cond_image = [/*'type' => [['icon']], */'filename' => Regex::EndWith('.png', '.
 Route::Get('/files/{type}/{filename}', 'ImageController#Get', $cond_image , true);
 Route::Get('/files/{type}/{filename}?{get}', 'ImageController#Get', $cond_image, true);
 unset($cond_image);
-
-#Login Routes
-Route::Post('/Login.json', 'LoginController#Login', [], true);

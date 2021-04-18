@@ -2,8 +2,16 @@
 
 namespace HS\config\routes;
 
+use HS\libs\core\http\HttpResponse;
 use HS\libs\core\Route;
 
-Route::Get("/", "/phpinfo.php", [], true);
-
+#Login Routes
 Route::Get("/Login", '/app/view/Login.php', [], true);
+Route::Post('/Login.json', 'LoginController#Login', [], true);
+Route::Get("/Logout", 'LoginController#Logout', [], true);
+
+#Redirección a Login.
+Route::All('{all*}', 'LoginController#IfNotLoginRedirect', [], false);
+
+#Pagina de inicio.
+Route::Get("/", "/phpinfo.php", [], true);

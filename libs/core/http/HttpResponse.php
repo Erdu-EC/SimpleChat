@@ -16,4 +16,8 @@ class HttpResponse
     public static function Set($value){
         header($value);
     }
+
+    public static function Redirect(string $url){
+        header("Location: $url");
+    }
 }

@@ -4,9 +4,10 @@
 namespace HS\libs\core;
 
 
+use HS\libs\collection\Collection;
 use const HS\config\APP_SESSION_NAME;
 
-class Session extends \ArrayObject
+class Session extends Collection
 {
     public function __construct()
     {
@@ -14,7 +15,7 @@ class Session extends \ArrayObject
             session_name(APP_SESSION_NAME);
             session_start();
         }
-        parent::__construct($_SESSION, self::STD_PROP_LIST || self::ARRAY_AS_PROPS);
+        parent::__construct($_SESSION);
     }
 
     public function __destruct(){
@@ -46,5 +47,18 @@ class Session extends \ArrayObject
 
         //Destruyendo la sesion
         session_destroy();
+    }
+
+    //Login.
+    public static function SetLogin(int $id, string $name){
+        $session = new Session();
+        $session->user_id = $id;
+        $session->user_name = $name;
+        unset($session);
+    }
+
+    public static function IsLogin(){
+        $session = new Session();
+        return isset($session->user_id) && isset($session->user_name);
     }
 }

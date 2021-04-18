@@ -2,7 +2,13 @@
 
 namespace HS\app\view;
 
+use HS\libs\core\http\HttpResponse;
+use HS\libs\core\Session;
 use const HS\config\APP_NAME;
+
+//Si la sesion ya esta iniciada redireccionar a pantalla de inicio.
+if (Session::IsLogin())
+    HttpResponse::Redirect('/');
 
 ?>
 

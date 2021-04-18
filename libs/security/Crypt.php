@@ -23,14 +23,14 @@ class Crypt
      * Verifica si es necesario regenerar un hash, y si es asi genera uno nuevo.
      * @param string $text Texto a partir del cual se generara el nuevo hash, si es necesario hacerlo.
      * @param string $source_hash Hash que se verificara.
-     * @return |stringfalse|null
-     * Devuelve un nuevo hash si se ha determinado que <var>$source_hash</var> ya no es valido, si no, devuelve <var>$source_hash</var>.
+     * @return string|false
+     * Devuelve un nuevo hash si se ha determinado que <var>$source_hash</var> ya no es valido, si no, devuelve false.
      */
     public static function ReHash(string $text, string $source_hash){
         if (password_needs_rehash($source_hash, PASSWORD_DEFAULT, ['cost' => self::cost])) {
             return self::Hash($text);
         } else
-            return $source_hash;
+            return false;
     }
 
     /**
