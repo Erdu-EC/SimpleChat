@@ -37,7 +37,7 @@ use const HS\config\APP_NAME;
                         <div class="card-header bg-primary text-white">
                             <h4 class="m-0"><?= 'Bienvenido a ' . APP_NAME ?></h4>
                         </div>
-                        <div class="card-body p-0 pb-3">
+                        <form id="user_form" class="card-body p-0 pb-3">
                             <div id="action_alert" class="alert p-1" style="border-radius: 0">
                             </div>
 
@@ -47,7 +47,7 @@ use const HS\config\APP_NAME;
                                         person
                                     </label>
                                 </div>
-                                <input id="user_name" type="text" placeholder="Nombre de usuario" class="form-control">
+                                <input id="user_name" type="text" class="form-control" placeholder="Nombre de usuario" minlength="4" maxlength="30" required>
                             </div>
 
                             <div class="input-group mb-3 ps-5 pe-5">
@@ -55,14 +55,14 @@ use const HS\config\APP_NAME;
                                     <label class="input-group-text text-secondary material-icons"
                                            for="user_pass">lock</label>
                                 </div>
-                                <input id="user_pass" type="password" placeholder="Contraseña" class="form-control">
+                                <input id="user_pass" type="password" class="form-control" placeholder="Contraseña" minlength="8" maxlength="60" required>
                             </div>
 
-                            <button id="bt_submit" class="btn btn-primary d-inline-flex">
+                            <button type="submit" class="btn btn-primary d-inline-flex">
                                 <span class="material-icons me-2">vpn_key</span>
                                 Acceder
                             </button>
-                        </div>
+                        </form>
                         <div class="card-footer text-muted">
                             <?= "Copyright 2021, Todos los derechos reservados" ?>
                         </div>
