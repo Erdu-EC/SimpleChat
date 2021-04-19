@@ -1,4 +1,6 @@
-<?php namespace HS\app\view\template; ?>
+<?php namespace HS\app\view\template;
+
+use HS\libs\core\Session; ?>
 
 <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
     <div class="container-fluid">
@@ -12,7 +14,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Mensajes</a>
                 </li>
@@ -31,6 +33,20 @@
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>-->
+            </ul>
+            <ul class="navbar-nav m-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbar-username"
+                       data-bs-toggle="dropdown">
+                        <i class="material-icons">person</i>
+                        <span><?= (new Session())->user_name ?></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg-end">
+                        <a id="bt-close-session" class="dropdown-item" href="/Logout">
+                            Cerrar sesión
+                        </a>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
