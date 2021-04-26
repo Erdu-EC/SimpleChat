@@ -51,7 +51,8 @@ if (Session::IsLogin())
                                         person
                                     </label>
                                 </div>
-                                <input id="user_name" type="text" class="form-control" placeholder="Nombre de usuario" minlength="4" maxlength="30" required>
+                                <input id="user_name" type="text" class="form-control" autocomplete="username"
+                                       placeholder="Nombre de usuario" minlength="4" maxlength="30" required>
                             </div>
 
                             <div class="input-group mb-3 ps-5 pe-5">
@@ -59,13 +60,16 @@ if (Session::IsLogin())
                                     <label class="input-group-text text-secondary material-icons"
                                            for="user_pass">lock</label>
                                 </div>
-                                <input id="user_pass" type="password" class="form-control" placeholder="Contraseña" minlength="8" maxlength="60" required>
+                                <input id="user_pass" type="password" class="form-control" autocomplete="current-password"
+                                       placeholder="Contraseña" minlength="8" maxlength="60" required>
                             </div>
 
                             <button type="submit" class="btn btn-primary d-inline-flex">
                                 <span class="material-icons me-2">vpn_key</span>
                                 Acceder
                             </button>
+
+                            <a class="d-block text-primary mt-3" href="/Register">¿No tienes una cuenta? Registrate</a>
                         </form>
                         <div class="card-footer text-muted">
                             <?= "Copyright 2021, Todos los derechos reservados" ?>

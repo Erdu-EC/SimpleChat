@@ -2,14 +2,13 @@
 
 namespace HS\app\controller\core;
 
-
 use HS\config\DBAccount;
 use HS\libs\core\http\HttpResponse;
 use HS\libs\core\Session;
 use HS\libs\database\DB;
-use HS\libs\database\SDB;
 use HS\libs\helper\MimeType;
 use HS\libs\security\Crypt;
+use PDOException;
 
 class LoginController
 {
@@ -41,7 +40,7 @@ class LoginController
             $user_id = $row['id'] ?? null;
             $hashed_pass = $row['pass'] ?? null;
             unset($row);
-        }catch (\PDOException $ex){
+        }catch (PDOException $ex){
             die(json_encode(false));
         }
 
@@ -51,7 +50,7 @@ class LoginController
             if (is_string($hashed_pass = Crypt::ReHash($pass, $hashed_pass))){
                 try{
                     $db->Execute('UPDATE users SET pass = ? WHERE user_name = ?', [1 => $hashed_pass, 2 => $user]);
-                }catch (\PDOException $ex){
+                }catch (PDOException $ex){
                 }
             }
 
@@ -74,12 +73,14 @@ class LoginController
         (new Session())->Kill();
 
         //Redireccionando.
-        HttpResponse::Redirect('/Login');
+        $this->IfNotLoginRedirect();
     }
 
     public function IfNotLoginRedirect() : void{
-        if (!Session::IsLogin())
+        if (!Session::IsLogin()){
             //Redireccionando.
             HttpResponse::Redirect('/Login');
+            die;
+        }
     }
 }

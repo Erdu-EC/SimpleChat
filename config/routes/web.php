@@ -2,11 +2,12 @@
 
 namespace HS\config\routes;
 
-use HS\libs\core\http\HttpResponse;
 use HS\libs\core\Route;
 
-#Login Routes
+#Login and Register Routes
 Route::Get("/Login", '/app/view/Login.php', [], true);
+Route::Get("/Register", '/app/view/Register.php', [], true);
+
 Route::Post('/Login.json', 'LoginController#Login', [], true);
 Route::Get("/Logout", 'LoginController#Logout', [], true);
 
