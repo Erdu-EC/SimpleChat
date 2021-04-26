@@ -20,6 +20,8 @@ use const HS\config\APP_NAME;
             height: 100%
         }
     </style>
+
+    <script type="text/javascript" src="/files/js/LoginRegisterPage.js"></script>
 </head>
 <body>
 <main class="container-fluid">
@@ -31,13 +33,13 @@ use const HS\config\APP_NAME;
                     <div class="card-header bg-primary text-white">
                         <h4 class="m-0"><?= APP_NAME ?>: Nuevo usuario</h4>
                     </div>
-                    <form id="user_form" class="card-body p-0 pb-3">
+                    <form id="register_form" class="card-body p-0 pb-3">
                         <div id="action_alert" class="alert p-1" style="border-radius: 0">
                         </div>
 
-                        <div class="row  ps-5 pe-5">
+                        <div class="row ps-5 pe-5 mb-3">
                             <div class="col-6">
-                                <div class="input-group mb-3">
+                                <div class="input-group">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text text-secondary" for="first_name">
                                             Nombres
@@ -47,7 +49,7 @@ use const HS\config\APP_NAME;
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="input-group mb-3">
+                                <div class="input-group">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text text-secondary" for="last_name">
                                             Apellidos
@@ -58,31 +60,41 @@ use const HS\config\APP_NAME;
                             </div>
                         </div>
 
-                        <div class="input-group mb-3 ps-5 pe-5">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text text-secondary" for="user_name">
-                                    Usuario
-                                </label>
+                        <div class="row ps-5 pe-5 mb-3">
+                            <div class="col">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text text-secondary" for="user_name">
+                                            Usuario
+                                        </label>
+                                    </div>
+                                    <input id="user_name" type="text" class="form-control" autocomplete="username"
+                                           minlength="4" maxlength="30" required>
+                                </div>
                             </div>
-                            <input id="user_name" type="text" class="form-control" autocomplete="username"
-                                   minlength="4" maxlength="30" required>
                         </div>
 
-                        <div class="input-group mb-3 ps-5 pe-5">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text text-secondary"
-                                       for="user_pass">Contraseña</label>
+                        <div class="row ps-5 pe-5 mb-3">
+                            <div class="col">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text text-secondary"
+                                               for="user_pass">Contraseña</label>
+                                    </div>
+                                    <input id="user_pass" type="password" class="form-control" autocomplete="new-password"
+                                           placeholder="Ingrese su contraseña" minlength="8" maxlength="60" required>
+                                    <input id="user_pass_repeat" type="password" class="form-control" autocomplete="new-password"
+                                           placeholder="Repita la contraseña" minlength="8" maxlength="60" required>
+                                </div>
                             </div>
-                            <input id="user_pass" type="password" class="form-control" autocomplete="current-password"
-                                   minlength="8" maxlength="60" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary d-inline-flex">
-                            <span class="material-icons me-2">vpn_key</span>
-                            Acceder
+                            <span class="material-icons me-2">add_circle</span>
+                            Registrarse
                         </button>
 
-                        <a class="d-block text-primary mt-3" href="/Register">¿No tienes una cuenta? Registrate</a>
+                        <a class="d-block text-primary mt-3" href="/Login">¿Ya tienes una cuenta? Inicia Sesión</a>
                     </form>
                     <div class="card-footer text-muted">
                         <?= "Copyright 2021, Todos los derechos reservados" ?>

@@ -29,7 +29,7 @@ if (Session::IsLogin())
             }
         </style>
 
-        <script type="text/javascript" src="/files/js/LoginPage.js"></script>
+        <script type="text/javascript" src="/files/js/LoginRegisterPage.js"></script>
     </head>
     <body>
     <main class="container-fluid">
