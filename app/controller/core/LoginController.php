@@ -130,7 +130,7 @@ class LoginController
 
         //Desconectando base de datos.
         unset($db);
-
+        
         //Devolviendo respuesta.
         die(json_encode(false));
     }
