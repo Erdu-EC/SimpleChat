@@ -9,6 +9,7 @@ Route::Get("/Login", '/app/view/Login.php', [], true);
 Route::Get("/Register", '/app/view/Register.php', [], true);
 
 Route::Post('/action/user/Login', 'LoginController#Login', [], true);
+Route::Post('/action/user/Register', 'LoginController#Register', [], true);
 Route::Get("/Logout", 'LoginController#Logout', [], true);
 
 #Redirección a Login.

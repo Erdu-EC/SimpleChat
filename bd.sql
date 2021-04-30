@@ -4,7 +4,7 @@ USE simplechat;
 
 CREATE TABLE users
 (
-    id        int primary key,
+    id        int primary key auto_increment,
     user_name varchar(30)  not null unique,
     pass      varchar(120) not null,
     first_name    varchar(250) not null,
