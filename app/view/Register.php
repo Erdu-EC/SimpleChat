@@ -1,7 +1,10 @@
 <?php
 
+use HS\libs\core\Session;
+use HS\libs\core\http\HttpResponse;
 use const HS\config\APP_NAME;
 
+if (Session::IsLogin()) HttpResponse::Redirect('/');
 ?>
 
 <!doctype html>
@@ -81,10 +84,13 @@ use const HS\config\APP_NAME;
                                         <label class="input-group-text text-secondary"
                                                for="user_pass">Contraseña</label>
                                     </div>
-                                    <input id="user_pass" type="password" class="form-control" autocomplete="new-password"
+                                    <input id="user_pass" type="password" class="form-control"
+                                           autocomplete="new-password"
                                            placeholder="Ingrese su contraseña" minlength="8" maxlength="60" required>
-                                    <input id="user_pass_repeat" type="password" class="form-control" autocomplete="new-password"
-                                           placeholder="Repita la contraseña" minlength="8" maxlength="60" required>
+                                    <label for="user_pass_repeat" class="d-none"></label>
+                                    <input id="user_pass_repeat" type="password" class="form-control"
+                                                                                 autocomplete="new-password"
+                                                                                 placeholder="Repita la contraseña" minlength="8" maxlength="60" required>
                                 </div>
                             </div>
                         </div>

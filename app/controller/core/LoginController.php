@@ -40,8 +40,10 @@ class LoginController
         //Obteniendo contraseña almacenada en BD para el usuario especificado.
         try {
             $db = new DB(DBAccount::Root);
-            $row = $db->SelectOnly('SELECT id, pass FROM users WHERE user_name = ?', [1 => $user]);
+            $row = $db->SelectOnly('SELECT id, pass, first_name, last_name FROM users WHERE user_name = ?', [1 => $user]);
             $user_id = $row['id'] ?? null;
+            $user_first = $row['first_name'] ?? null;
+            $user_last = $row['last_name'] ?? null;
             $hashed_pass = $row['pass'] ?? null;
             unset($row);
         } catch (PDOException $ex) {
@@ -59,7 +61,11 @@ class LoginController
             }
 
             //Estableciendo datos de sesion.
-            Session::SetLogin($user_id, $user);
+            Session::SetLogin(
+                $user_id,
+                $user,
+                preg_split('# +#', $user_first)[0] . " " . preg_split('# +#', $user_last)[0]
+            );
 
             //Devolviendo respuesta.
             die(json_encode(true));
@@ -104,34 +110,44 @@ class LoginController
         //Estableciendo tipo de respuesta.
         HttpResponse::SetContentType(MimeType::Json);
 
-        //Si una sesion ya estaba iniciada, no realizar registro.
-        if (Session::IsLogin()) die(json_encode(false));
+        //Comprobaciones.
+        if (Session::IsLogin())
+            die(json_encode([false, 0])); //Sesion iniciada, no realizar registro.
+        else if (strlen($user) < self::USER_NAME_LENGTH['min'] || strlen($user) > self::USER_NAME_LENGTH['max'])
+            die(json_encode([false, 1])); //Nombre de usuario, no valido.
+        else if (strlen($pass) < self::PASS_LENGTH['min'] || strlen($pass) > self::PASS_LENGTH['max'])
+            die(json_encode([false, 2])); //Contraseña no valida.
 
-        //Comprobando largo.
-        if (strlen($user) < self::USER_NAME_LENGTH['min'] || strlen($user) > self::USER_NAME_LENGTH['max'] ||
-            strlen($pass) < self::PASS_LENGTH['min'] || strlen($pass) > self::PASS_LENGTH['max'])
-            die(json_encode(false));
-
-        //Verificando que el nombre de usuario no exista.
         try {
+            //Estableciendo conexión con BD.
             $db = new DB(DBAccount::Root);
+
+            //Verificando que el nombre de usuario no exista.
             $row = $db->SelectOnly('SELECT id FROM users WHERE user_name = ?', [1 => $user]);
 
             //Realizando registro.
             if (is_null($row)) {
-                $db->Execute('INSERT INTO users(user_name, pass, first_name, last_name) VALUES (?, ?, ?, ?)',
-                    [1 => $user, 2 => $pass, 3 => $first_name, 4 => $last_name]);
-                //echo "Usuario no existe";
-            } else
-                die(json_encode(false));
-        } catch (PDOException $ex) {
-            die(json_encode(false));
-        }
+                //Generando clave hash.
+                if (($pass = Crypt::Hash($pass)) === false)
+                    die(json_encode([false, 3]));
 
-        //Desconectando base de datos.
-        unset($db);
-        
-        //Devolviendo respuesta.
-        die(json_encode(false));
+                //Insertando registro.
+                $db->Execute('INSERT INTO users(user_name, pass, first_name, last_name) VALUES (:user, :pass, :first, :last)', [
+                    'user' => $user,
+                    'pass' => $pass,
+                    'first' => $first_name,
+                    'last' => $last_name
+                ]);
+
+                //Desconectando base de datos.
+                unset($db);
+
+                //Devolviendo respuesta.
+                die(json_encode([true]));
+            } else
+                die(json_encode([false, 4]));
+        } catch (PDOException $ex) {
+            die(json_encode([false, 5]));
+        }
     }
 }

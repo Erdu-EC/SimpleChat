@@ -39,7 +39,7 @@ use HS\libs\core\Session; ?>
                     <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbar-username"
                        data-bs-toggle="dropdown">
                         <i class="material-icons">person</i>
-                        <span><?= (new Session())->user_name ?></span>
+                        <span><?= (new Session())->user_shortname; ?></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg-end">
                         <a id="bt-close-session" class="dropdown-item" href="/Logout">
