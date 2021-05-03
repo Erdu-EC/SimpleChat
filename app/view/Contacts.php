@@ -11,7 +11,7 @@ use const HS\config\APP_NAME;
 <head>
     <?php require 'template/Head.php' ?>
 
-    <title><?= APP_NAME ?>: Inicio</title>
+    <title><?= APP_NAME ?>: Contactos</title>
 
     <link rel="stylesheet" href="/files/css/chat.css">
 </head>
@@ -24,19 +24,29 @@ use const HS\config\APP_NAME;
             <div class="card h-100">
                 <div class="card-header">
                     <h5 class="d-flex align-items-center mb-0 user-select-none">
-                        <i class="material-icons me-2">email</i>
-                        <span>Conversaciones</span>
+                        <i class="material-icons me-2">person</i>
+                        <span>Contactos</span>
                     </h5>
                 </div>
                 <div class="card-body">
-                    <div class="row border-bottom">
-                        <div class="col">
-                            <button class="btn btn-outline-primary">Nueva</button>
+                    <div class="row">
+                        <div class="col border-bottom pb-3 mb-3">
+                            <div class="input-group">
+                                <input type="search" class="form-control" placeholder="Buscar contactos actuales o nuevos">
+                                <button class="btn btn-outline-primary input-group-text material-icons">search</button>
+                            </div>
                         </div>
-                        <div class="col"></div>
                     </div>
-                    <h6 class="card-subtitle text-secondary">Las conversaciónes con tus contactos apareceran en esta
-                        lista.</h6>
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="text-secondary">
+                                Tu lista de contactos esta vacia.
+                                <br/><br/>
+                                ¡Busca nuevos contactos y agregalos!
+                            </h6>
+                        </div>
+                    </div>
+
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">An item</li>
                         <li class="list-group-item">A second item</li>
@@ -86,3 +96,5 @@ use const HS\config\APP_NAME;
 </main>
 </body>
 </html>
+
+

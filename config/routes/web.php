@@ -18,3 +18,5 @@ Route::All('{all*}', 'LoginController#IfNotLoginRedirect', [], false);
 #Pagina de inicio.
 Route::Get("/", "/app/view/index.php", [], true);
 
+#Paginas de usuario.
+Route::Get('/{user}/Contacts', '/app/view/Contacts.php', [], true);
