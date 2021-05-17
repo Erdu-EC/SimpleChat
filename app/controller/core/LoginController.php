@@ -60,6 +60,12 @@ class LoginController
                 }
             }
 
+            //Estableciendo datos de sesion en BD.
+            if ($db->ExecuteTransaction(function () use ($db, $user, &$conn_id) {
+                    $conn_id = $db->SelectOnly('SELECT user_set_login(:user, :device)', ['user' => $user, 'device' => $_SERVER['HTTP_USER_AGENT']]);
+            }) === false)
+                die(json_encode(false));
+
             //Estableciendo datos de sesion.
             Session::SetLogin(
                 $user_id,
@@ -132,7 +138,7 @@ class LoginController
                     die(json_encode([false, 3]));
 
                 //Insertando registro.
-                $db->Execute('INSERT INTO users(user_name, pass, first_name, last_name) VALUES (:user, :pass, :first, :last)', [
+                $db->Execute('INSERT INTO users(user_name, pass, first_name, last_name, create_at) VALUES (:user, :pass, :first, :last, NOW())', [
                     'user' => $user,
                     'pass' => $pass,
                     'first' => $first_name,

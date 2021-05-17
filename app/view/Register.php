@@ -64,6 +64,34 @@ if (Session::IsLogin()) HttpResponse::Redirect('/');
                         </div>
 
                         <div class="row ps-5 pe-5 mb-3">
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text text-secondary" for="gender">
+                                            Genero
+                                        </label>
+                                    </div>
+                                    <select class="form-select" id="gender">
+                                        <option selected>Seleccione...</option>
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Femenino</option>
+                                        <option value="O">Otros</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text text-secondary" for="birth_date">
+                                            Fecha de nacimiento
+                                        </label>
+                                    </div>
+                                    <input id="birth_date" type="date" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row ps-5 pe-5 mb-3">
                             <div class="col">
                                 <div class="input-group">
                                     <div class="input-group-prepend">

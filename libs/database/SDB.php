@@ -58,6 +58,7 @@ class SDB
             $PDO->commit();
             return true;
         } catch (PDOException $ex) {
+            echo $ex;
             $PDO->rollBack();
             return false;
         }
