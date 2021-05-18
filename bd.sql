@@ -101,8 +101,9 @@ END;
 CREATE PROCEDURE user_set_logout(in USER_ID int, in CONNECTION_ID int)
 BEGIN
     UPDATE connections SET logout_date = NOW() WHERE id = CONNECTION_ID and id_user = USER_ID;
+    UPDATE users SET last_connection = NOW() WHERE id = USER_ID;
 
     IF NOT EXISTS (SELECT id FROM connections WHERE logout_date IS NULL) THEN
-        UPDATE users SET state = 'I', last_connection = NOW() WHERE id = USER_ID;
+        UPDATE users SET state = 'I' WHERE id = USER_ID;
     END IF;
 END;

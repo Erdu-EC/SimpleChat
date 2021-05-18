@@ -28,9 +28,7 @@ class LoginController
         HttpResponse::SetContentType(MimeType::Json);
 
         //Si la sesion ya estaba iniciada.
-        if (Session::IsLogin())
-            //Devolviendo respuesta.
-            die(json_encode(true));
+        if (Session::IsLogin()) die(json_encode(true));
 
         //Comprobando largo.
         if (strlen($user) < self::USER_NAME_LENGTH['min'] || strlen($user) > self::USER_NAME_LENGTH['max'] ||
@@ -39,6 +37,7 @@ class LoginController
 
         //Obteniendo contraseña almacenada en BD para el usuario especificado.
         try {
+            //TODO: Asignar un usuario con permisos restringidos en BD.
             $db = new DB(DBAccount::Root);
             $row = $db->SelectOnly('SELECT id, pass, first_name, last_name FROM users WHERE user_name = ?', [1 => $user]);
             $user_id = $row['id'] ?? null;
@@ -55,20 +54,24 @@ class LoginController
             //Regenerando contraseña si es necesario (No importa si falla).
             if (is_string($hashed_pass = Crypt::ReHash($pass, $hashed_pass))) {
                 try {
-                    $db->Execute('UPDATE users SET pass = ? WHERE user_name = ?', [1 => $hashed_pass, 2 => $user]);
+                    $db->Execute('UPDATE users SET pass = :pass WHERE user_name = :user', [
+                        'pass' => $hashed_pass, 'user' => $user
+                    ]);
                 } catch (PDOException $ex) {
                 }
             }
 
             //Estableciendo datos de sesion en BD.
             if ($db->ExecuteTransaction(function () use ($db, $user, &$conn_id) {
-                    $conn_id = $db->SelectOnly('SELECT user_set_login(:user, :device)', ['user' => $user, 'device' => $_SERVER['HTTP_USER_AGENT']]);
-            }) === false)
-                die(json_encode(false));
+                    $conn_id = $db->SelectOnly('SELECT user_set_login(:user, :device)', [
+                        'user' => $user, 'device' => $_SERVER['HTTP_USER_AGENT']
+                    ]);
+                }) === false) die(json_encode(false));
 
             //Estableciendo datos de sesion.
             Session::SetLogin(
                 $user_id,
+                $conn_id,
                 $user,
                 preg_split('# +#', $user_first)[0] . " " . preg_split('# +#', $user_last)[0]
             );
@@ -86,8 +89,26 @@ class LoginController
 
     public function Logout(): void
     {
+        //Abriendo sesion.
+        $session = new Session();
+
+        //Estableciendo datos de cierre de sesion en BD.
+        try{
+
+            //TODO: Establecer cuenta con permisos restringidos en BD.
+            $db = new DB(DBAccount::Root);
+            $db->ExecuteTransaction([
+                ['CALL user_set_logout(:user_id, :conn_id)', [
+                    'user_id' => $session->user_id, 'conn_id' => $session->user_cid
+                ]]
+            ]);
+        }catch(PDOException $ex){
+            die(json_encode(false));
+        }
+
         //Eliminando sesion.
-        (new Session())->Kill();
+        $session->Kill();
+        unset($session);
 
         //Redireccionando.
         $this->IfNotLoginRedirect();

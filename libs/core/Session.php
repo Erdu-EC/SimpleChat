@@ -50,9 +50,10 @@ class Session extends Collection
     }
 
     //Login.
-    public static function SetLogin(int $id, string $user_name, string $shortname){
+    public static function SetLogin(int $id, int $cid, string $user_name, string $shortname){
         $session = new Session();
         $session->user_id = $id;
+        $session->user_cid = $cid;
         $session->user_name = $user_name;
         $session->user_shortname = $shortname;
         unset($session);
