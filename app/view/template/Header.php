@@ -19,7 +19,7 @@ use HS\libs\core\Session; ?>
                     <a class="nav-link active" aria-current="page" href="#">Mensajes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contactos</a>
+                    <a class="nav-link" href="/Contacts">Contactos</a>
                 </li>
 
                 <!--<li class="nav-item dropdown">

@@ -23,14 +23,15 @@ CREATE TABLE users
     KEY idx_user_name (user_name)
 ) engine = InnoDB;
 
-CREATE TABLE connections(
-                            id INT AUTO_INCREMENT,
-                            id_user INT,
-                            device TEXT,
-                            login_date datetime,
-                            logout_date datetime DEFAULT NULL,
-                            PRIMARY KEY (id),
-                            FOREIGN KEY (id_user) REFERENCES users(id)
+CREATE TABLE connections
+(
+    id          INT AUTO_INCREMENT,
+    id_user     INT,
+    device      TEXT,
+    login_date  datetime,
+    logout_date datetime DEFAULT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_user) REFERENCES users (id)
 );
 
 CREATE TABLE invitations
@@ -83,9 +84,12 @@ create table permissions
 
 #Datos de prueba.
 INSERT INTO users
-VALUES (0, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa', 'E', 'C', NOW(), 'M', NULL, 'A',
+VALUES (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa', 'E', 'C', NOW(), 'M', NULL, 'A',
         NOW(), NOW()); #12345678
 
+INSERT INTO users
+VALUES (2, 'test', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', null, null, null,
+        null, '2021-05-18 11:09:55', null);
 
 #Funciones Y procedimientos.
 CREATE FUNCTION user_set_login(name varchar(30), device_desc TEXT) RETURNS INT
@@ -93,7 +97,7 @@ BEGIN
     DECLARE USER_ID int DEFAULT (select id from users WHERE user_name = name);
 
     UPDATE users SET state = 'A', last_connection = NOW() WHERE id = USER_ID;
-    INSERT INTO connections(id_user, device, login_date) VALUES(USER_ID, device_desc, NOW());
+    INSERT INTO connections(id_user, device, login_date) VALUES (USER_ID, device_desc, NOW());
 
     RETURN LAST_INSERT_ID();
 END;
@@ -103,7 +107,7 @@ BEGIN
     UPDATE connections SET logout_date = NOW() WHERE id = CONNECTION_ID and id_user = USER_ID;
     UPDATE users SET last_connection = NOW() WHERE id = USER_ID;
 
-    IF NOT EXISTS (SELECT id FROM connections WHERE logout_date IS NULL) THEN
+    IF NOT EXISTS(SELECT id FROM connections WHERE logout_date IS NULL) THEN
         UPDATE users SET state = 'I' WHERE id = USER_ID;
     END IF;
 END;
