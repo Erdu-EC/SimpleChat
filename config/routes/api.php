@@ -8,4 +8,4 @@ use HS\libs\core\Route;
 
 
 #Contacts
-Route::Get('/api/users/all', 'UserController#GetAll', [], true);
+Route::Get('/action/users/all', 'UserController#GetAll', [], true);

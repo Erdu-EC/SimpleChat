@@ -14,6 +14,7 @@ use const HS\config\APP_NAME;
     <title><?= APP_NAME ?>: Contactos</title>
 
     <link rel="stylesheet" href="/files/css/chat.css">
+    <script type="application/javascript" src="/files/js/Contacts.js"></script>
 </head>
 <body class="d-flex flex-column">
 <header><?php require 'template/Header.php' ?></header>
@@ -39,18 +40,13 @@ use const HS\config\APP_NAME;
                     </div>
                     <div class="row">
                         <div class="col">
-                            <h6 class="text-secondary">
-                                Tu lista de contactos esta vacia.
-                                <br/><br/>
-                                ¡Busca nuevos contactos y agregalos!
+                           <h6 id="alert-contacts-list" class="text-secondary">
+                               Cargando contactos...
                             </h6>
                         </div>
                     </div>
 
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
+                    <ul id="contacts-list" class="list-group list-group-flush">
                     </ul>
                 </div>
             </div>
