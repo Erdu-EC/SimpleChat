@@ -2,6 +2,8 @@ DROP DATABASE IF EXISTS simplechat;
 CREATE DATABASE simplechat;
 USE simplechat;
 
+#SET GLOBAL log_bin_trust_function_creators = 1;
+
 CREATE TABLE users
 (
     id              int auto_increment,
@@ -92,7 +94,7 @@ VALUES (2, 'test', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS
         null, '2021-05-18 11:09:55', null);
 
 #Funciones Y procedimientos.
-CREATE FUNCTION user_set_login(name varchar(30), device_desc TEXT) RETURNS INT
+CREATE FUNCTION user_set_login(name varchar(30), device_desc TEXT) RETURNS INT MODIFIES SQL DATA
 BEGIN
     DECLARE USER_ID int DEFAULT (select id from users WHERE user_name = name);
 
