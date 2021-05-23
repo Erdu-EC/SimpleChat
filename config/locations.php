@@ -11,7 +11,8 @@ class APP_DIR
     const CACHE = self::TEMP . "/cache";
     const IMAGE_CACHE = self::CACHE . '/img';
     const IMAGE = [
-        'icon' => '/files/icon'
+        'icon' => '/files/icon',
+        'upload/profile' => '/upload/profile'
     ];
 
 }

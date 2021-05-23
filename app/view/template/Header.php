@@ -19,27 +19,19 @@ use HS\libs\core\Session; ?>
                     <a class="nav-link active" aria-current="page" href="#">Mensajes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/Contacts">Contactos</a>
+                    <a class="nav-link" href="#">Contactos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Chats</a>
                 </li>
 
-                <!--<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown link
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>-->
             </ul>
             <ul class="navbar-nav m-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbar-username"
                        data-bs-toggle="dropdown">
                         <i class="material-icons">person</i>
-                        <span><?= (new Session())->user_shortname; ?></span>
+                        <span><?= (new Session())->user_name ?></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg-end">
                         <a id="bt-close-session" class="dropdown-item" href="/Logout">

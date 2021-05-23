@@ -2,10 +2,17 @@
 
 namespace HS\config\routes;
 
+use HS\libs\core\http\HttpResponse;
 use HS\libs\core\Route;
+
+#Login Routes
+Route::Get("/Login", '/app/view/Login.php', [], true);
+Route::Post('/Login.json', 'LoginController#Login', [], true);
+Route::Get("/Logout", 'LoginController#Logout', [], true);
+Route::Get("/chat", '/app/view/chats.php', [], true);
+Route::Get("/contactos", '/app/view/contactos.php', [], true);
+#Redirección a Login.
+Route::All('{all*}', 'LoginController#IfNotLoginRedirect', [], false);
 
 #Pagina de inicio.
 Route::Get("/", "/app/view/index.php", [], true);
-
-#Paginas de usuario.
-Route::Get('/Contacts', '/app/view/Contacts.php', [], true);

@@ -19,11 +19,7 @@ class DB
         return SDB::Execute($this->PDO, $sentence, $param);
     }
 
-    /**
-     * @param callable|array $actions
-     * @return bool
-     */
-    public function ExecuteTransaction($actions): bool
+    public function ExecuteTransaction(callable $actions): bool
     {
         return SDB::ExecuteTransaction($this->PDO, $actions);
     }

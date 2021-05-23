@@ -35,4 +35,5 @@ namespace {
 
     #Si no se encontro una ruta valida.
     header('HTTP/1.0 404 Not Found');
+
 }

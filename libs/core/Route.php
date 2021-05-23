@@ -126,9 +126,7 @@ class Route
                 }
 
                 //Llamando metodo de la clase encontrada.
-                $result = call_user_func_array([$class, $parts[2]], $args);
-                if (is_string($result))
-                    echo $result;
+                call_user_func_array([$class, $parts[2]], $args);
                 //$class->{$parts[2]}($args);
             }
         }else

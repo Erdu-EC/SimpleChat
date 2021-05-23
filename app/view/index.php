@@ -17,7 +17,7 @@ use const HS\config\APP_NAME;
 </head>
 <body class="d-flex flex-column">
 <header><?php require 'template/Header.php' ?></header>
-
+<!--
 <main class="container-fluid d-flex flex-grow-1">
     <div class="row pt-2 pb-3 ps-4 pe-4 d-flex flex-grow-1">
         <div class="col-4">
@@ -66,23 +66,22 @@ use const HS\config\APP_NAME;
                         <div class="popover-body">And here's some amazing content. It's very engaging. Right?</div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col">
-                            <div class="input-group">
+                <div class="card-footer row">
+                    <div class="col">
+                        <div class="input-group">
                             <textarea class="form-control border-primary" rows="2"
                                       placeholder="Escriba un mensaje..."></textarea>
-                                <button class="btn btn-outline-primary d-flex align-items-center input-group-text">
-                                    <b>Enviar</b>
-                                    <i class="material-icons ms-2">send</i>
-                                </button>
-                            </div>
+                            <button class="btn btn-outline-primary d-flex align-items-center input-group-text">
+                                <b>Enviar</b>
+                                <i class="material-icons ms-2">send</i>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</main>
+
+</main -->
 </body>
 </html>
