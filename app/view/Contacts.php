@@ -14,6 +14,7 @@ use const HS\config\APP_NAME;
     <title><?= APP_NAME ?>: Contactos</title>
 
     <link rel="stylesheet" href="/files/css/chat.css">
+    <link rel="stylesheet" href="/files/css/contacts.css">
     <script type="application/javascript" src="/files/js/Contacts.js"></script>
 </head>
 <body class="d-flex flex-column">
@@ -33,8 +34,8 @@ use const HS\config\APP_NAME;
                     <div class="row">
                         <div class="col border-bottom pb-3 mb-3">
                             <div class="input-group">
-                                <input type="search" class="form-control" placeholder="Buscar contactos actuales o nuevos">
-                                <button class="btn btn-outline-primary input-group-text material-icons">search</button>
+                                <label for="user-search-box" class="input-group-text material-icons text-primary">search</label>
+                                <input id="user-search-box" type="search" class="form-control" placeholder="Buscar contactos actuales o nuevos">
                             </div>
                         </div>
                     </div>
@@ -47,6 +48,7 @@ use const HS\config\APP_NAME;
                     </div>
 
                     <ul id="contacts-list" class="list-group list-group-flush">
+
                     </ul>
                 </div>
             </div>

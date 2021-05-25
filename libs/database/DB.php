@@ -2,6 +2,7 @@
 
 namespace HS\libs\database;
 
+use PDO;
 use PDOException;
 use PDOStatement;
 
@@ -9,9 +10,14 @@ class DB
 {
     private $PDO;
 
-    public function __construct(array $account)
+    public function __construct($account)
     {
-        $this->PDO = SDB::Connect($account);
+        if (is_array($account))
+            $this->PDO = SDB::Connect($account);
+        elseif (is_a($account, PDO::class))
+            $this->PDO = $account;
+        else
+            throw new \InvalidArgumentException("Parametro no valido para establecer una conexión.");
     }
 
     public function Execute(string $sentence, array $param = null): ?PDOStatement

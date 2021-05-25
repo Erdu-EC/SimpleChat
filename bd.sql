@@ -84,14 +84,6 @@ create table permissions
     FOREIGN KEY (id) REFERENCES users (id)
 );
 
-#Datos de prueba.
-INSERT INTO users
-VALUES (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa', 'E', 'C', NOW(), 'M', NULL, 'A',
-        NOW(), NOW()); #12345678
-
-INSERT INTO users
-VALUES (2, 'test', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', null, null, null,
-        null, '2021-05-18 11:09:55', null);
 
 #Funciones Y procedimientos.
 CREATE FUNCTION user_set_login(name varchar(30), device_desc TEXT) RETURNS INT MODIFIES SQL DATA
@@ -113,3 +105,15 @@ BEGIN
         UPDATE users SET state = 'I' WHERE id = USER_ID;
     END IF;
 END;
+
+#Datos de prueba.
+INSERT INTO users
+VALUES (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa', 'E', 'C', NOW(), 'M', NULL, 'A',
+        NOW(), NOW()), #12345678
+        (2, 'test', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', null, null, null,
+        null, '2021-05-18 11:09:55', null),,
+        (3, 'test2', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', null, null, null,
+        null, '2021-05-18 11:09:55', null);
+
+INSERT INTO invitations VALUES (5, 1, 3, now(), now(), true, now())
+INSERT INTO contacts VALUES(1, 3, 5);

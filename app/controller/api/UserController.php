@@ -19,6 +19,7 @@ class UserController extends Controller
 
         //Obteniendo datos.
         $data = (new UserModel(DBAccount::Root))->GetAll([
+            UserModel::C_ID,
             UserModel::C_NICK
         ]);
 

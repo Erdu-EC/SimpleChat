@@ -14,8 +14,8 @@ Route::Get('/files/scss/{filename}.scss', 'SCSSController#GetSCSS', [], true);
 $cond_image = [/*'type' => [['icon']], */'filename' => Regex::EndWith('.png', '.bmp', '.gif', '.jpg', '.jpeg'),
     'get' => '#^(?:[w|h]=\d+(?:\.\d+)?)(?:&[w|h]=\d+(?:\.\d+)?)?$#'
 ];
-Route::Get('/files/{type}/{filename}', 'ImageController#Get', $cond_image , true);
-Route::Get('/files/{type}/{filename}?{get}', 'ImageController#Get', $cond_image, true);
+Route::Get('/files/{type*}/{filename}', 'ImageController#Get', $cond_image , true);
+Route::Get('/files/{type*}/{filename}?{get}', 'ImageController#Get', $cond_image, true);
 unset($cond_image);
 
 #Login and Register Routes
