@@ -3,6 +3,7 @@ $(document).ready(refresh_contact_list);
 $(document).on('input', '#user-search-box', function (){
     if ($(this).val().length > 3){
         console.log("Buscando...")
+        //#user-search-result
     }
 })
 
@@ -27,8 +28,8 @@ function refresh_contact_list(){
                 for (let i = 0; i < json.length; i++){
                     const item = $('<li>', {
                         class: 'list-group-item contact-item ps-0 pe-0',
-                        html: GetContactItem(json[i].first_name, json[i].last_name, json[i].last_connection),
-                    }).attr("data-id", json[i].id).appendTo(list);
+                        html: GetContactItem(json[i][1], json[i][2], json[i][3]),
+                    }).attr("data-id", json[i][0]).appendTo(list);
                 }
             }
         }

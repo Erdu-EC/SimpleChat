@@ -4,6 +4,7 @@
 namespace HS\app\model;
 
 
+use HS\libs\core\Session;
 use HS\libs\database\DB;
 
 class UserModel extends DB
@@ -24,6 +25,18 @@ class UserModel extends DB
         try{
             $fields = is_null($fields) ? '*' : implode(',', array_intersect($fields, self::ALLOW_READ_VALUES));
             return self::SelectAll("select $fields from users");
+        }catch (\PDOException $ex){
+            return null;
+        }
+    }
+
+    public function SearchUserOrContact($fields){
+        try{
+            $fields = is_null($fields) ? '*' : implode(',', array_intersect($fields, self::ALLOW_READ_VALUES));
+            return self::SelectAll("select $fields, if(id in (select contact_id from contacts where user_id = :uid), true, false) as isContact from users where id != :uid2", [
+                'uid' => (new Session())->user_id,
+                'uid2' => (new Session())->user_id
+            ]);
         }catch (\PDOException $ex){
             return null;
         }
