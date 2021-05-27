@@ -9,5 +9,5 @@ use HS\libs\core\Route;
 
 #Contacts
 Route::Get('/action/users/all', 'UserController#GetAll', [], true);
-Route::Get('/action/users/search', 'UserController#SearchUserOrContact', [], true);
+Route::Post('/action/users/search', 'UserController#SearchUserOrContact', [], true);
 Route::Get('/action/users/contacts', 'ContactController#GetAll', [], true);

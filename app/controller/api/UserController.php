@@ -26,12 +26,12 @@ class UserController extends Controller
         //Devolviendo.
         echo json_encode($data);
     }
-    public function SearchUserOrContact(){
+    public function SearchUserOrContact(string $text){
         //Estableciendo tipo de respuesta.
         HttpResponse::SetContentType(MimeType::Json);
 
         //Obteniendo datos.
-        $data = (new UserModel(DBAccount::Root))->SearchUserOrContact([
+        $data = (new UserModel(DBAccount::Root))->SearchUserOrContact($text, [
             UserModel::C_ID,
             UserModel::C_NICK
         ]);
