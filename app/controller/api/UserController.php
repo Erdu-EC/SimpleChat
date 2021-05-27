@@ -6,6 +6,7 @@ namespace HS\app\controller\api;
 
 use HS\app\model\UserModel;
 use HS\config\DBAccount;
+use HS\libs\collection\ArrayUtils;
 use HS\libs\core\Controller;
 use HS\libs\core\http\HttpResponse;
 use HS\libs\helper\MimeType;
@@ -26,7 +27,11 @@ class UserController extends Controller
         //Devolviendo.
         echo json_encode($data);
     }
-    public function SearchUserOrContact(string $text){
+    public function SearchUserOrContact(){
+        //Obteniendo parametros post.
+        $_POST = ArrayUtils::Trim($_POST, false);
+        $text = empty($_POST['t']) ? (string)$_POST['t'] : die(json_encode(null));
+
         //Estableciendo tipo de respuesta.
         HttpResponse::SetContentType(MimeType::Json);
 

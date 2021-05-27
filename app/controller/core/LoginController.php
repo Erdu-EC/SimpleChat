@@ -3,6 +3,7 @@
 namespace HS\app\controller\core;
 
 use HS\config\DBAccount;
+use HS\libs\collection\ArrayUtils;
 use HS\libs\core\http\HttpResponse;
 use HS\libs\core\Session;
 use HS\libs\database\DB;
@@ -18,9 +19,7 @@ class LoginController
     public function Login(): void
     {
         //Obteniendo parametros post.
-        array_filter($_POST, function ($val) {
-            return trim($val);
-        });
+        $_POST = ArrayUtils::Trim($_POST, false);
         $user = empty($_POST['u']) ? null : (string)$_POST['u'];
         $pass = empty($_POST['p']) ? null : (string)$_POST['p'];
 

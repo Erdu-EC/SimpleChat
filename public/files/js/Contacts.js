@@ -2,7 +2,21 @@ $(document).ready(refresh_contact_list);
 
 $(document).on('input', '#user-search-box', function (){
     if ($(this).val().length > 3){
-        console.log("Buscando...")
+        $.ajax('/action/users/search', {
+            method: 'post',
+            dataType: 'json',
+            mimeType: 'application/json',
+            data: { text: $(this).val() },
+            beforeSend: () => Alert(ALERT_NORMAL, "Cargando..."),
+            error: () => Alert(ALERT_ERROR, "No fue posible iniciar sesion."),
+            success: function (json) {
+                if (json === true) {
+                    Alert(ALERT_SUCCESS, 'Sesion iniciada.');
+                    window.location = "/";
+                } else
+                    Alert(ALERT_ERROR, 'Usuario o contraseña incorrecta.');
+            }
+        });
         //#user-search-result
     }
 })
