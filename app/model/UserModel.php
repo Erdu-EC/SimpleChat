@@ -33,11 +33,11 @@ class UserModel extends DB
     public function SearchUserOrContact(string $text, array $fields){
         try{
             $fields = is_null($fields) ? '*' : implode(',', array_intersect($fields, self::ALLOW_READ_VALUES));
-            return self::SelectAll("select $fields, if(id in (select contact_id from contacts where user_id = :uid), true, false) as isContact from users where id != :uid2 and user_name like :text or first_name + ' ' + last_name like :text1", [
+            return self::SelectAll("select $fields, if(id in (select contact_id from contacts where user_id = :uid), true, false) as isContact from users where id != :uid2 and (user_name like :text or CONCAT(first_name, ' ', last_name) like :text1)", [
                 'uid' => (new Session())->user_id,
                 'uid2' => (new Session())->user_id,
-                'text' => $text,
-                'text1' => $text
+                'text' => "$text%",
+                'text1' => "$text%"
             ]);
         }catch (\PDOException $ex){
             return null;

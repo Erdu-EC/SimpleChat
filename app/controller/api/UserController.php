@@ -30,7 +30,7 @@ class UserController extends Controller
     public function SearchUserOrContact(){
         //Obteniendo parametros post.
         $_POST = ArrayUtils::Trim($_POST, false);
-        $text = empty($_POST['t']) ? (string)$_POST['t'] : die(json_encode(null));
+        $text = !empty($_POST['text']) ? (string)$_POST['text'] : die(json_encode(null));
 
         //Estableciendo tipo de respuesta.
         HttpResponse::SetContentType(MimeType::Json);
@@ -38,7 +38,8 @@ class UserController extends Controller
         //Obteniendo datos.
         $data = (new UserModel(DBAccount::Root))->SearchUserOrContact($text, [
             UserModel::C_ID,
-            UserModel::C_NICK
+            UserModel::C_NICK,
+            UserModel::C_FNAME
         ]);
 
         //Devolviendo.

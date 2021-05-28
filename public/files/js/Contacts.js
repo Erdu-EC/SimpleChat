@@ -1,20 +1,21 @@
 $(document).ready(refresh_contact_list);
 
 $(document).on('input', '#user-search-box', function (){
+    const alert_contact = $('#alert-contacts-list');
+
     if ($(this).val().length > 3){
         $.ajax('/action/users/search', {
             method: 'post',
             dataType: 'json',
             mimeType: 'application/json',
             data: { text: $(this).val() },
-            beforeSend: () => Alert(ALERT_NORMAL, "Cargando..."),
-            error: () => Alert(ALERT_ERROR, "No fue posible iniciar sesion."),
+            beforeSend: () => alert_contact.text("Buscando..."),
+            error: () => alert_contact.text("No fue realizar la busqueda."),
             success: function (json) {
                 if (json === true) {
-                    Alert(ALERT_SUCCESS, 'Sesion iniciada.');
-                    window.location = "/";
+                    alert_contact.text('Sesion iniciada.');
                 } else
-                    Alert(ALERT_ERROR, 'Usuario o contraseña incorrecta.');
+                    alert_contact.text('Usuario o contraseña incorrecta.');
             }
         });
         //#user-search-result
