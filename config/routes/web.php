@@ -11,6 +11,8 @@ Route::Post('/Login.json', 'LoginController#Login', [], true);
 Route::Get("/Logout", 'LoginController#Logout', [], true);
 Route::Get("/chat", '/app/view/chats.php', [], true);
 Route::Get("/contactos", '/app/view/contactos.php', [], true);
+Route::Get("/temp", '/app/view/chat.php', [], true);
+Route::Get("/conversacion", '/app/view/conversacion.php', [], true);
 #Redirección a Login.
 Route::All('{all*}', 'LoginController#IfNotLoginRedirect', [], false);
 

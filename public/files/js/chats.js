@@ -1,3 +1,5 @@
+
+
 (function($) {
     "use strict";
 
@@ -77,14 +79,80 @@ function newMessage() {
     if($.trim(message) == '') {
         return false;
     }
-    $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+    $('<li class="sent"><img src="/files/upload/profile/mikeross.png?w=40&h=40" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
     $('.message-input input').val(null);
     $('.contact.active .preview').html('<span>You: </span>' + message);
-    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
-};
+     $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 300);
+ };
 
 $(".expand-button").click(function() {
     $("#profile").toggleClass("expanded");
   //  $("#contacts").toggleClass("expanded");
 });
-    //# sourceURL=pen.js
+
+
+//activar uno de los elementos del menu lateral (seccion actual)
+$('#LateralMenu li').on('click', function(){
+    $('li.active').removeClass('active');
+    $(this).addClass('active');
+});
+
+
+
+//llamar elementos contactos
+$("#seccion-contactos").click(function(){
+    $(location).prop('href', '/contactos')
+    /* $("#frame").empty();
+
+     $.ajax({
+         method: "GET",
+         url: "/contactos"
+     }).done(function(data) {
+         $("#frame").append(data);
+     });
+ */
+});
+/*
+/*llamar elementos chat*/
+$("#seccion-conversaciones").click(function(){
+    $(location).prop('href', '/chat')
+    /* $("#frame").empty();
+
+     $.ajax({
+         method: "GET",
+         url: "/temp"
+     }).done(function(data) {
+         $("#frame").html(data);
+     });
+ */
+});
+/*
+$(document).ready(function(){
+    //al cargarse la pagina primero se muestran
+    setTimeout(
+        function (){
+            $.ajax({
+                method: "GET",
+                url: "/temp"
+            }).done(function(data) {
+                $("#frame").append(data);
+            })
+                .fail(function() {
+                    alert.lo("Algo salió mal")});}
+        ,
+        100);
+
+});
+//cuando se de click sobre cualquier contacto se llama a la conversacion que corresponde
+
+$("li.contact").click(function(){
+    $.ajax({
+        method: "GET",
+        url: "/conversacion"
+    }).done(function(data) {
+        $("#frame").appendChild(data);
+    })
+        .fail(function() {
+            alert("Algo salió mal");});
+
+});*/

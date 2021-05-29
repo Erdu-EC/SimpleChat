@@ -8,9 +8,13 @@ use const HS\config\APP_NAME;
 <html lang="es">
 <head>
     <?php require 'template/Head.php' ?>
+    <?php
+    header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+    header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
+    ?>
     <title><?= APP_NAME ?>: Chats</title>
     <link rel="stylesheet" href="/files/scss/chat.scss">
-
+    <meta http-equiv="Expires" content="0">
 </head>
 <body class="sb-nav-fixed">
 
@@ -20,7 +24,7 @@ use const HS\config\APP_NAME;
         <img src="/files/icon/menu.png" alt="" class="" id="icono-sidebarToggle">
     </button>
     <a class="navbar-brand " href="index.php" >
-        <img src="/files/icon/logo.png" alt="" id="logo-home" class="img img-fluid">
+        <img src="/files/icon/logo-2.png" alt="" id="logo-home" class="img img-fluid">
     </a>
 
 
@@ -29,95 +33,64 @@ use const HS\config\APP_NAME;
 
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
-        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+       <nav class="sb-sidenav " >
             <div id="profile">
                 <div class="wrap">
                     <img id="profile-img" src="/files/upload/profile/mikeross.png?w=100&h=100" class="online" alt="" />
 
-                    <div class="accordion accordion-flush" id="accordionPanels">
+                    <div class="accordion accordion-flush">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="flush-headingOne">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                  Mike Ross
+                                    Mike Ross
                                 </button>
                             </h2>
+
                             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
                                     <a class="nav-link btn" >
-                                       Cerrar sesión
-                                    </a>
-                                    <a class="nav-link btn" >
-
+                                        Cerrar sesión
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
-
-                            <div id="flush-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample" aria-expanded="true">
-                                <div class="accordion-body">
-                                    <div class="sb-sidenav-menu">
-                                        <div class="nav">
-                                            <a class="nav-link btn" >
-                                                <img src="/files/icon/conversaciones-2.png?w=40&h=40" alt="" class="img-fluid">
-                                                <div class="sb-sidenav-menu-heading"> Conversaciones</div>
-                                            </a>
-                                            <hr class="dropdown-divider">
-                                            <a class="nav-link link-contactos btn" href="/contactos">
-                                                <img src="/files/icon/contactos-1.png?w=40&h=40" alt="" class="img-fluid link-contactos">
-                                                <div class="sb-sidenav-menu-heading link-contactos"> Contactos</div>
-                                            </a>
-                                            <hr class="dropdown-divider">
-                                            <button class="nav-link btn" href="index.html" >
-                                                <img src="/files/icon/nosotros-1.png?w=40&h=40" alt="" class="img-fluid">
-                                                <div class="sb-sidenav-menu-heading">Acerca de nosotros</div>
-                                            </button>
-                                            <hr class="dropdown-divider">
-                                            <button class="nav-link btn" href="index.html">
-                                                <img src="/files/icon/acuerdos-1.png?w=40&h=40" alt="" class="img-fluid">
-                                                <div class="sb-sidenav-menu-heading">Términos y condiciones de uso</div>
-                                            </button>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                        <div class="accordion-item">
-
-                            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
-                                <div class="accordion-body ">
-                                    <div class="sb-sidenav-footer">
-                                        <div class="small">SimpleChat</div>
-                                        Start Bootstrap
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
             </div>
-            <!--
-            <div class="sb-sidenav-menu">
-                <div class="nav">
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-sidenav-menu-heading"> Conversaciones</div>
-                    </a>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-sidenav-menu-heading">Acerca de nosotros</div>
-                    </a>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-sidenav-menu-heading">Politicas y condiciones de uso</div>
-                    </a>
-
+           <ul class="nav flex-column nav-pills " id="LateralMenu">
+               <li class="nav-item active">
+                   <div class="nav-link" id="seccion-conversaciones">
+                       <img src="/files/icon/conversaciones-2.png?w=40&h=40" alt="" class="img-fluid">
+                       Conversaciones
+                   </div>
+               </li>
+               <li class="nav-item">
+                   <div class="nav-link align-middle" id="seccion-contactos">
+                       <img src="/files/icon/contactos-1.png?w=40&h=40" alt="" class="img-fluid link-contactos">
+                       Contactos
+                   </div>
+               </li>
+               <li class="nav-item">
+                   <div class="nav-link" href="index.html">
+                       <img src="/files/icon/nosotros-1.png?w=40&h=40" alt="" class="img-fluid">
+                       Acerca de nosotros
+                   </div>
+               </li>
+               <li class="nav-item">
+                   <div class="nav-link" href="index.html">
+                       <img src="/files/icon/acuerdos-1.png?w=40&h=40" alt="" class="img-fluid">
+                       Términos y condiciones de uso
+                   </div>
+               </li>
+           </ul>
+                <div class="sb-sidenav-footer">
+                    <div class="small">SimpleChat</div>
+                    Start Bootstrap
                 </div>
-            </div>
-            <div class="sb-sidenav-footer">
-                <div class="small">SimpleChat</div>
-                Start Bootstrap
-            </div> -->
+
         </nav>
+
+
     </div>
 
 <div id="layoutSidenav_content">
