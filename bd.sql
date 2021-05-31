@@ -22,7 +22,8 @@ CREATE TABLE users
     last_connection datetime,
 
     PRIMARY KEY (id),
-    KEY idx_user_name (user_name)
+    KEY idx_user_name (user_name),
+    FULLTEXT idx_user_search(user_name, first_name, last_name)
 ) engine = InnoDB;
 
 CREATE TABLE connections
@@ -106,14 +107,19 @@ BEGIN
     END IF;
 END;
 
+CREATE FUNCTION user_is_contact(USERID int, CONTACTID int) RETURNS BOOLEAN
+BEGIN
+    RETURN if(CONTACTID IN (SELECT contact_id FROM contacts WHERE user_id = USERID), true, false);
+END;
+
 #Datos de prueba.
 INSERT INTO users
 VALUES (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa', 'E', 'C', NOW(), 'M', NULL, 'A',
         NOW(), NOW()), #12345678
-        (2, 'test', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', null, null, null,
-        null, '2021-05-18 11:09:55', null),,
-        (3, 'test2', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', null, null, null,
+       (2, 'test', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', null, null, null,
+        null, '2021-05-18 11:09:55', null),
+       (3, 'test2', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', null, null, null,
         null, '2021-05-18 11:09:55', null);
 
-INSERT INTO invitations VALUES (5, 1, 3, now(), now(), true, now())
+INSERT INTO invitations VALUES (5, 1, 3, now(), now(), true, now());
 INSERT INTO contacts VALUES(1, 3, 5);

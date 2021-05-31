@@ -39,7 +39,8 @@ class UserController extends Controller
         $data = (new UserModel(DBAccount::Root))->SearchUserOrContact($text, [
             UserModel::C_ID,
             UserModel::C_NICK,
-            UserModel::C_FNAME
+            UserModel::C_FNAME,
+            UserModel::C_LNAME
         ]);
 
         //Devolviendo.

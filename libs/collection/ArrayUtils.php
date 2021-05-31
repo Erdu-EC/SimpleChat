@@ -19,7 +19,7 @@ class ArrayUtils
         return $data;
     }
 
-    public static function GetIndexedValues(array $data, bool $recursive){
+    public static function GetIndexedValues(array $data, bool $recursive = true){
         $data = array_values($data);
 
         if ($recursive){

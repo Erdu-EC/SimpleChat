@@ -1,7 +1,8 @@
 $(document).ready(refresh_contact_list);
 
 $(document).on('input', '#user-search-box', function (){
-    const alert_contact = $('#alert-contacts-list');
+    const alert_contact = $('#alert-search-status');
+    const result_list = $('#user-search-result');
 
     if ($(this).val().length > 3){
         $.ajax('/action/users/search', {
@@ -10,15 +11,28 @@ $(document).on('input', '#user-search-box', function (){
             mimeType: 'application/json',
             data: { text: $(this).val() },
             beforeSend: () => alert_contact.text("Buscando..."),
-            error: () => alert_contact.text("No fue realizar la busqueda."),
+            error: () => alert_contact.text("No fue posible realizar la busqueda."),
             success: function (json) {
-                if (json === true) {
-                    alert_contact.text('Sesion iniciada.');
-                } else
-                    alert_contact.text('Usuario o contraseña incorrecta.');
+                alert_contact.html('');
+                result_list.html('');
+
+                if (json === null)
+                    alert_contact.text('No fue posible realizar la busqueda.');
+                else if (json.length === 0)
+                    alert_contact.text('No hay coincidencias.');
+                else{
+                    alert_contact.text(`Se ha encontrado ${json.length} coincidencias.`);
+
+                    for (let i = 0; i < json.length; i++){
+                        const row = json[i];
+                        result_list.append(GetSearchItem(row[2], row[3], row[1], row[4]));
+                    }
+                }
             }
         });
-        //#user-search-result
+    }else{
+        alert_contact.html('');
+        result_list.html('');
     }
 })
 
@@ -50,6 +64,27 @@ function refresh_contact_list(){
         }
     });
 }
+
+const GetSearchItem = (first_name, last_name, last_conn, isContact) => `<div class="card mb-2 contact-item"">
+                            <div class="row g-0">
+                            <div class="col-md-3 p-1">
+                                <img src="/files/profile/0_erdu.png" class="img-fluid" alt="profile">
+                            </div>
+                            <div class="col-md-9 align-self-center">
+                                <div class="card-body p-2">
+                                    <h6 class="card-title">${first_name} ${last_name}</h6>
+                                    <p class="card-text flex-row" style="font-size: .8rem;">
+                                        <small class="text-muted">
+                                            ${(isContact) ?
+                                                '<i class="material-icons" style="vertical-align: middle">person</i><span>Mi contacto</span>'
+                                                : ''
+                                            }
+                                        </small>
+                                        <button class="btn btn-outline-primary">Enviar mensaje</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>`
 
 const GetContactItem = (first_name, last_name, last_conn) => `<div class="card mb-2 contact-item"">
                             <div class="row g-0">

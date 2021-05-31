@@ -4,6 +4,7 @@
 namespace HS\app\model;
 
 
+use HS\libs\collection\ArrayUtils;
 use HS\libs\core\Session;
 use HS\libs\database\DB;
 
@@ -24,7 +25,7 @@ class UserModel extends DB
     public function GetAll(array $fields = null){
         try{
             $fields = is_null($fields) ? '*' : implode(',', array_intersect($fields, self::ALLOW_READ_VALUES));
-            return self::SelectAll("select $fields from users");
+            return ArrayUtils::GetIndexedValues(self::SelectAll("select $fields from users"));
         }catch (\PDOException $ex){
             return null;
         }
@@ -33,12 +34,11 @@ class UserModel extends DB
     public function SearchUserOrContact(string $text, array $fields){
         try{
             $fields = is_null($fields) ? '*' : implode(',', array_intersect($fields, self::ALLOW_READ_VALUES));
-            return self::SelectAll("select $fields, if(id in (select contact_id from contacts where user_id = :uid), true, false) as isContact from users where id != :uid2 and (user_name like :text or CONCAT(first_name, ' ', last_name) like :text1)", [
+            return ArrayUtils::GetIndexedValues(self::SelectAll("select $fields, user_is_contact(:uid, id) as isContact from users where id != :uid2 and (MATCH (user_name, first_name, last_name) AGAINST(:text IN BOOLEAN MODE)) order by isContact desc, first_name, last_name", [
                 'uid' => (new Session())->user_id,
                 'uid2' => (new Session())->user_id,
-                'text' => "$text%",
-                'text1' => "$text%"
-            ]);
+                'text' => "$text*"
+            ]));
         }catch (\PDOException $ex){
             return null;
         }

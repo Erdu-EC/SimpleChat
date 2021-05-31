@@ -37,6 +37,8 @@ use const HS\config\APP_NAME;
                                 <label for="user-search-box" class="input-group-text material-icons text-primary">search</label>
                                 <input id="user-search-box" type="search" class="form-control" placeholder="Buscar contactos actuales o nuevos">
                             </div>
+                            <small id="alert-search-status" class="text-secondary mt-3">
+                            </small>
                             <div id="user-search-result">
 
                             </div>
