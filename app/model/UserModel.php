@@ -18,28 +18,38 @@ class UserModel extends DB
 
     public const ALLOW_READ_VALUES = [self::C_ID, self::C_NICK, self::C_FNAME, self::C_LNAME, self::C_LAST_CONN];
 
-    public function __construct(array $account) {
+    public function __construct(array $account)
+    {
         parent::__construct($account);
     }
 
-    public function GetAll(array $fields = null){
-        try{
+    public function GetAll(array $fields = null)
+    {
+        try {
             $fields = is_null($fields) ? '*' : implode(',', array_intersect($fields, self::ALLOW_READ_VALUES));
             return ArrayUtils::GetIndexedValues(self::SelectAll("select $fields from users"));
-        }catch (\PDOException $ex){
+        } catch (\PDOException $ex) {
             return null;
         }
     }
 
-    public function SearchUserOrContact(string $text, array $fields){
-        try{
+    public function SearchUserOrContact(string $text, array $fields)
+    {
+        try {
+            //Obteniendo id del usuario actual.
+            $user_id = (new Session())->user_id;
+
+            //Filtrando campos validos en la consulta.
             $fields = is_null($fields) ? '*' : implode(',', array_intersect($fields, self::ALLOW_READ_VALUES));
-            return ArrayUtils::GetIndexedValues(self::SelectAll("select $fields, user_is_contact(:uid, id) as isContact from users where id != :uid2 and (MATCH (user_name, first_name, last_name) AGAINST(:text IN BOOLEAN MODE)) order by isContact desc, first_name, last_name", [
-                'uid' => (new Session())->user_id,
-                'uid2' => (new Session())->user_id,
-                'text' => "$text*"
-            ]));
-        }catch (\PDOException $ex){
+
+            //Ejecutando consulta y devolviendo valores.
+            return ArrayUtils::GetIndexedValues(
+                self::SelectAll("select $fields, user_is_contact(:uid, id) as isContact from users where id != :uid2 and (MATCH (user_name, first_name, last_name) AGAINST(:text IN BOOLEAN MODE)) order by isContact desc, first_name, last_name", [
+                    'uid' => $user_id,
+                    'uid2' => $user_id,
+                    'text' => "$text*"
+                ]));
+        } catch (\PDOException $ex) {
             return null;
         }
     }

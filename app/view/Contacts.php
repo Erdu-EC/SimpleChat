@@ -59,11 +59,11 @@ use const HS\config\APP_NAME;
             </div>
         </div>
         <div class="col">
-            <div class="card h-100">
+            <div id="chat-container" class="card h-100">
                 <div class="card-header">
                     <h5 class="d-flex align-items-center mb-0 user-select-none">
                         <i class="material-icons me-2">person</i>
-                        <span>Nombre</span>
+                        <b>Nombre</b>
                         <span class="badge alert-success border-3 ms-2">Activo</span>
                     </h5>
                 </div>

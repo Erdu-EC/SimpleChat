@@ -45,7 +45,7 @@ CREATE TABLE invitations
     send_date            datetime,
     rcv_date             datetime,
     accepted             boolean,
-    accepted_reject_date datetime,
+    action_date datetime,
 
     PRIMARY KEY (id),
     FOREIGN KEY (id_source) REFERENCES users (id),

@@ -36,6 +36,10 @@ $(document).on('input', '#user-search-box', function (){
     }
 })
 
+$(document).on('click', '.contact-item', function (){
+
+})
+
 function refresh_contact_list(){
     const alert_contact = $('#alert-contacts-list');
 
@@ -65,26 +69,25 @@ function refresh_contact_list(){
     });
 }
 
-const GetSearchItem = (first_name, last_name, last_conn, isContact) => `<div class="card mb-2 contact-item"">
+const GetSearchItem = (first_name, last_name, last_conn, isContact) => `<div class="card mb-2 contact-item" style="cursor: pointer;">
                             <div class="row g-0">
-                            <div class="col-md-3 p-1">
-                                <img src="/files/profile/0_erdu.png" class="img-fluid" alt="profile">
-                            </div>
-                            <div class="col-md-9 align-self-center">
-                                <div class="card-body p-2">
-                                    <h6 class="card-title">${first_name} ${last_name}</h6>
-                                    <p class="card-text flex-row" style="font-size: .8rem;">
-                                        <small class="text-muted">
-                                            ${(isContact) ?
-                                                '<i class="material-icons" style="vertical-align: middle">person</i><span>Mi contacto</span>'
-                                                : ''
-                                            }
-                                        </small>
-                                        <button class="btn btn-outline-primary">Enviar mensaje</button>
-                                    </p>
+                                <div class="col-md-3 p-1">
+                                    <img src="/files/profile/0_erdu.png" class="img-fluid" alt="profile">
                                 </div>
-                            </div>
-                        </div>`
+                                <div class="col-md-9 align-self-center">
+                                    <div class="card-body p-2">
+                                        <h6 class="card-title">${first_name} ${last_name}</h6>
+                                        <p class="card-text flex-row" style="font-size: .8rem;">
+                                            <small class="text-muted">
+                                                ${(isContact) ?
+                                                    '<i class="material-icons" style="vertical-align: middle">person</i><span>Mi contacto</span>'
+                                                    : ''
+                                                }
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>`
 
 const GetContactItem = (first_name, last_name, last_conn) => `<div class="card mb-2 contact-item"">
                             <div class="row g-0">
