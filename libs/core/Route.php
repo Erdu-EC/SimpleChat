@@ -3,6 +3,7 @@
 namespace HS\libs\core;
 
 use Error;
+use HS\config\APP_DIR;
 use HS\libs\helper\FQN;
 use HS\libs\helper\Regex;
 use HS\libs\helper\Text;
@@ -13,16 +14,16 @@ use const HS\APP_URL;
 
 class Route
 {
-    public static function All(string $route_url, $url_or_call, array $conditions, bool $exitAfterMatch)
+    public static function All(string $route_url, $url_or_call, array $conditions = [], bool $exitAfterMatch = true)
     {
         self::Run($route_url, $url_or_call, ['GET', 'POST'], $conditions, $exitAfterMatch);
     }
 
-    public static function Get(string $route_url, $url_or_call, array $conditions, bool $exitAfterMatch){
+    public static function Get(string $route_url, $url_or_call, array $conditions = [], bool $exitAfterMatch = true){
         self::Run($route_url, $url_or_call, ['GET'], $conditions, $exitAfterMatch);
     }
 
-    public static function Post(string $route_url, $url_or_call, array $conditions, bool $exitAfterMatch){
+    public static function Post(string $route_url, $url_or_call, array $conditions = [], bool $exitAfterMatch = true){
         self::Run($route_url, $url_or_call, ['POST'], $conditions, $exitAfterMatch);
     }
 
@@ -111,7 +112,7 @@ class Route
             if (!preg_match("/^(.+)#(.+)$/", $callback, $parts)) {
                 define(__NAMESPACE__ . "\URL_VARS", $args);
                 /** @noinspection PhpIncludeInspection */
-                require Path::ToAbsolute($callback); //Ruta de un archivo.
+                require Path::Combine(APP_DIR::VIEW, $callback); //Ruta de un archivo.
             } else {
                 try {
                     //Instanciando clase de forma normal.

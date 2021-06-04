@@ -1,11 +1,19 @@
 <?php
 
-namespace HS\config\routes;
+    namespace HS\config\routes;
 
-use HS\libs\core\Route;
+    use HS\app\model\UserModel;
+    use HS\libs\core\Route;
 
-#Pagina de inicio.
-Route::Get("/", "/app/view/index.php", [], true);
+    #Pagina de inicio.
+    Route::Get("/", "index.php");
 
-#Paginas de usuario.
-Route::Get('/Contacts', '/app/view/Contacts.php', [], true);
+    #Paginas de usuario.
+    Route::Get('/Contacts', 'Contacts.php');
+
+    #Paginas parciales.
+    Route::Get('/Chats/{contact_name}/', 'ChatViewController#Index', [
+        'contact_name' => function (string $user) {
+            return UserModel::IsValidUserName($user);
+        }
+    ]);

@@ -49,21 +49,21 @@ class SDB
             return $sentence->rowCount(); //Devuelve filas afectadas.*/
     }
 
-    public static function ExecuteTransaction(PDO $PDO, $actions): bool
+    public static function ExecuteTransaction(PDO $PDO, callable $actions): bool
     {
         $PDO->beginTransaction();
 
         try {
             if (is_callable($actions))
                 $actions();
-            else if (is_array($actions)){
+            /*else if (is_array($actions)){
                 foreach ($actions as $row){
                     if (!is_array($row) || count($row) != 2)
                         throw new \InvalidArgumentException();
 
                     self::Execute($PDO, $row[0], $row[1]);
                 }
-            }else
+            }*/else
                 throw new \InvalidArgumentException();
 
             $PDO->commit();

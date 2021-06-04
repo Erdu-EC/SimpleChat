@@ -25,8 +25,9 @@ class UserController extends Controller
         ]);
 
         //Devolviendo.
-        echo json_encode($data);
+        return json_encode(ArrayUtils::GetIndexedValues($data));;
     }
+
     public function SearchUserOrContact(){
         //Obteniendo parametros post.
         $_POST = ArrayUtils::Trim($_POST, false);
@@ -44,6 +45,6 @@ class UserController extends Controller
         ]);
 
         //Devolviendo.
-        echo json_encode($data);
+        return json_encode(ArrayUtils::GetIndexedValues($data));
     }
 }

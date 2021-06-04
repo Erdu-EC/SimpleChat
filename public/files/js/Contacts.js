@@ -69,7 +69,7 @@ function refresh_contact_list(){
     });
 }
 
-const GetSearchItem = (first_name, last_name, last_conn, isContact) => `<div class="card mb-2 contact-item" style="cursor: pointer;">
+const GetSearchItem = (first_name, last_name, last_conn, isContact) => `<div class="card mb-2 contact-item shadow" style="cursor: pointer;">
                             <div class="row g-0">
                                 <div class="col-md-3 p-1">
                                     <img src="/files/profile/0_erdu.png" class="img-fluid" alt="profile">
