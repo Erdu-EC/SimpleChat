@@ -14,7 +14,7 @@ class SDB
     public static function Connect(array $account): PDO
     {
         if (empty($account['user']) /*|| empty($account['pass'])*/)
-            throw new InvalidArgumentException("Nombre de usuario ó contraseña invalidos.");
+            throw new InvalidArgumentException("Nombre de usuario ó contraseña inválidos.");
 
         //Cadena de conexion.
         $dsn = sprintf("mysql: host=%s;dbname=%s;charset=utf8", APP_DB_HOST, APP_DB_NAME);
@@ -54,22 +54,10 @@ class SDB
         $PDO->beginTransaction();
 
         try {
-            if (is_callable($actions))
-                $actions();
-            /*else if (is_array($actions)){
-                foreach ($actions as $row){
-                    if (!is_array($row) || count($row) != 2)
-                        throw new \InvalidArgumentException();
-
-                    self::Execute($PDO, $row[0], $row[1]);
-                }
-            }*/else
-                throw new \InvalidArgumentException();
-
+            $actions();
             $PDO->commit();
             return true;
         } catch (PDOException $ex) {
-            echo $ex;
             $PDO->rollBack();
             return false;
         }

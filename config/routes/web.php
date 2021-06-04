@@ -1,19 +1,20 @@
 <?php
 
-    namespace HS\config\routes;
+namespace HS\config\routes;
 
-    use HS\app\model\UserModel;
-    use HS\libs\core\Route;
+use HS\libs\core\http\HttpResponse;
+use HS\libs\core\Route;
 
-    #Pagina de inicio.
-    Route::Get("/", "index.php");
+#Login Routes
+Route::Get("/Login", '/app/view/Login.php', [], true);
+Route::Post('/Login.json', 'LoginController#Login', [], true);
+Route::Get("/Logout", 'LoginController#Logout', [], true);
+Route::Get("/chat", '/app/view/chats.php', [], true);
+Route::Get("/contactos", '/app/view/contactos.php', [], true);
+Route::Get("/temp", '/app/view/chat.php', [], true);
+Route::Get("/conversacion", '/app/view/conversacion.php', [], true);
+#Redirección a Login.
+Route::All('{all*}', 'LoginController#IfNotLoginRedirect', [], false);
 
-    #Paginas de usuario.
-    Route::Get('/Contacts', 'Contacts.php');
-
-    #Paginas parciales.
-    Route::Get('/Chats/{contact_name}/', 'ChatViewController#Index', [
-        'contact_name' => function (string $user) {
-            return UserModel::IsValidUserName($user);
-        }
-    ]);
+#Pagina de inicio.
+Route::Get("/", "/app/view/index.php", [], true);

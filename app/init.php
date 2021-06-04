@@ -25,7 +25,6 @@ PHPUtil::Require(APP_PATH . "/config", [
 #Rutas.
 PHPUtil::Require(APP_PATH . "/config/routes", [
     'core.php',
-    'api.php',
     'web.php'
 ]);
 
