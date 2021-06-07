@@ -25,7 +25,7 @@ use const HS\config\APP_NAME;
     <button class="btn nav-item" id="sidebarToggle">
         <img src="/files/icon/menu.png" alt="" class="" id="icono-sidebarToggle">
     </button>
-    <a class="navbar-brand " href="" >
+    <a class="navbar-brand " href="/" >
         <img src="/files/icon/logo-2.png" alt="" id="logo-home" class="img img-fluid">
 
     </a>
@@ -40,17 +40,17 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
 -->
 <div id="panelTodosContactos">
     <div id="sidepanelTodosContactos">
+        <div class="titulo-cab no-seleccionable">
         <h1>Nuevo chat</h1>
-        <div id="ocultar"><span class="material-icons">
-arrow_back
-</span>
+        <div id="ocultar"><span class="material-icons">arrow_back_ios_new
+</span></div>
         </div>
          <div id="buscar-contacto">
             <label for="inputBuscarConversacion" class="material-icons">search</i></label>
             <input name="inputBuscarConversacion" type="text" placeholder="Buscar" maxlength="100"/>
         </div>
         <div id="listaTodosContactos">
-            <ul id="listacontactos">
+            <ul id="listacontactos" class="no-seleccionable">
                 <li class="item-contacto">
                     <div class="card  align-content-between">
                         <div class="row">
@@ -234,10 +234,10 @@ arrow_back
     <div id="layoutSidenav_nav">
         <nav class="sb-sidenav " >
             <div id="profile">
-                <div class="wrap">
+                <div class="wrap no-seleccionable">
                     <img id="profile-img" src="/files/upload/profile/mikeross.png?w=100&h=100" class="online" alt="" />
 
-                    <div class="accordion accordion-flush">
+                    <div class="accordion accordion-flush ">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="flush-headingOne">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -256,7 +256,7 @@ arrow_back
                     </div>
 
                 </div>
-                <ul class="nav flex-column nav-pills " id="LateralMenu">
+                <ul class="nav flex-column nav-pills no-seleccionable" id="LateralMenu">
                     <li class="nav-item active">
                         <div class="nav-link" id="seccion-conversaciones">
                             <img src="/files/icon/conversaciones-1.png?w=40&h=40" alt="" class="img-fluid">
@@ -303,7 +303,7 @@ arrow_back
                              <input name="inputBuscarConversacion" type="text" placeholder="Buscar Conversación..." />
                          </div>
                          <div id="contacts">
-                             <ul>
+                             <ul class="no-seleccionable">
                                  <li class="contact">
                                      <div class="wrap">
                                          <span class="contact-status online"></span>
@@ -411,16 +411,28 @@ arrow_back
                              <button id="agregar-contacto"><img src="/files/icon/agregar-contacto.png" alt="" id="icon-agregar-contacto"><span>Agregar contacto</span></button>
                          </div>
                      </div>
-                     <div class="content" id="contenido">
-                         <div class="contact-profile">
+                     <section class="content" id="contenido">
+                         <section class="contact-profile no-seleccionable">
                              <img src="/files/upload/profile/harveyspecter.png?w=100&h=100" alt="" />
                              <p>Harvey Specter</p>
-                             <div class="social-media">
-                                 <i class="fa fa-facebook" aria-hidden="true"></i>
-                                 <i class="fa fa-twitter" aria-hidden="true"></i>
-                                 <i class="fa fa-instagram" aria-hidden="true"></i>
+                             <div class="opciones-contacto">
+                                 <div class="btn-agregar-contacto" title="Agregar a contactos"><span class="material-icons">person_add</span>
+                                 Agregar contacto
+                                 </div>
+                                 <hr class="separador-vertical">
+                                 <div class="btn-bloquear-contacto" title="Bloquear">
+                                     <span class="material-icons">block</span>
+                                     Bloquear
+
+                                 </div>
                              </div>
-                         </div>
+                             <div class="icon-info-contacto" title="Información del contacto">
+                                 <span class="material-icons">info
+    </span>
+                             </div>
+
+
+                         </section>
                          <div class="messages">
                              <ul id="lista-mensajes">
 

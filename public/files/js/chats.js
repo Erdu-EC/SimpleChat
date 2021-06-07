@@ -127,12 +127,23 @@ $("#seccion-conversaciones").click(function(){
  */
 });
 $("#ocultar").click(function (){
-    $("#panelTodosContactos").hide();
+
+    $("#panelTodosContactos").animate({
+        margin: "=0 auto 0 -600px"
+    }, {
+        duration: 500,
+        queue: false
+    });
 });
 
 $("#nuevo-chat").click(function () {
-    $("#panelTodosContactos").show();
-});
+    $("#panelTodosContactos").animate({
+        margin: "=0 auto 0 0"
+    }, {
+        duration: 500,
+        queue: false
+    });
+    });
 
 
 /*
