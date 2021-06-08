@@ -292,10 +292,10 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
 
     </div>
 
-     <div id="layoutSidenav_content">
-         <main class="container-fluid">
+     <div id="layoutSidenav_content" >
+         <main class="container-fluid" >
              <div class="row">
-                 <div id="frame" >
+                 <article id="frame">
                      <div id="sidepanel">
 
                          <div id="search">
@@ -473,17 +473,48 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                          <div class="message-input">
                              <div class="wrap">
                                  <input type="text" placeholder="Escribe un mensage aquí..." />
-                                 <button class=" btn"><i class="fa fa-paper-plane" aria-hidden="true"></i><span class="material-icons me-2">send</span></button>
+                                 <button class=" btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
                              </div>
                          </div>
+                     </section>
+
+                     <div class="" id="panelInfoContacto">
+                         <div class="card">
+                             <div class="row">
+                                 <div class="col-6 contact-info-img align-content-end" >
+                                     <img src="/files/upload/profile/harveyspecter.png" alt="" class="img-fluid foto-perfil">
+                                 </div>
+                                 <div class="col-6 contact-info-primaria align-content-start">
+                                     <h4>Harvey Specter</h4>
+                                     <h5>Abogado</h5>
+                                 </div>
+                                 <div class="col-6 contact-info-redes align-content-end">
+                                     <h6>Nombre completo: </h6>
+                                     <h7>Email: </h7>
+                                     <h7>Teléfono:</h7>
+                                     <h7>País:</h7>
+
+                                 </div>
+                                 <div class="col-6 contact-info-secundaria align-content-start"></div>
+
+                             </div>
+
+                         </div>
+
+
                      </div>
 
+                 </article>
 
-                       </div>
+
 
              </div>
+
          </main>
      </div>
+
+
+
  </div>
  <script type="text/javascript" src="/files/js/chats.js"></script>
  </body>

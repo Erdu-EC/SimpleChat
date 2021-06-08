@@ -115,7 +115,7 @@ $("#seccion-contactos").click(function(){
 /*
 /*llamar elementos chat*/
 $("#seccion-conversaciones").click(function(){
-    $(location).prop('href', '/index')
+    $(location).prop('href', '/')
     /* $("#frame").empty();
 
      $.ajax({
@@ -134,6 +134,16 @@ $("#ocultar").click(function (){
         duration: 500,
         queue: false
     });
+    $("#frame #contenido").removeClass("desp-izq-1");
+    if($( window ).width()> 735){
+    if ($("body").hasClass("prev-inactivo")){
+        $("body").removeClass("prev-inactivo");
+    }
+    else{
+        $("body").toggleClass("sb-sidenav-toggled");
+
+    }
+   }
 });
 
 $("#nuevo-chat").click(function () {
@@ -143,9 +153,40 @@ $("#nuevo-chat").click(function () {
         duration: 500,
         queue: false
     });
+    if($( window ).width()> 735){
+        $("#frame #contenido").addClass("desp-izq-1");
+    if ($("body").hasClass("sb-sidenav-toggled")){
+        $("body").addClass("prev-inactivo");
+    }else{
+        $("body").toggleClass("sb-sidenav-toggled");
+
+    }
+    }
     });
 
 
+$("#btn-enviar-mensaje").click(function() {
+
+    message = $(".message-input input").val();
+    console.log(message);
+    if($.trim(message) == '') {
+        return false;
+    }
+    $('<li class="sent"><img src="/files/upload/profile/mikeross.png?w=40&h=40" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+    $('.message-input input').val(null);
+    $('.contact.active .preview').html('<span>You: </span>' + message);
+    $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 300);
+});
+$(".wrap input").bind("keyup keydown change",function () {
+    console.log('activado')
+    message = $(".wrap input").val();
+    if ($.trim(message) == '') {
+        $("#btn-enviar-mensaje").removeClass("activar")
+    }
+    else{
+        $("#btn-enviar-mensaje").addClass("activar")
+    }
+});
 /*
 $(document).ready(function(){
     //al cargarse la pagina primero se muestran

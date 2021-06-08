@@ -67,8 +67,6 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica N
 .container-md,
 .container-sm {
   width: 100%;
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
   margin-right: auto;
   margin-left: auto;
 }
@@ -505,7 +503,7 @@ body::-webkit-scrollbar{
   min-height: 300px;
   background: #E6EAEA;
   background-image:url("/files/icon/fondo-1.png");
-padding-right: 0;
+  padding-right: 0;
 }
 
 @media screen and (max-width: 360px) {
@@ -525,6 +523,7 @@ padding-right: 0;
   color: #f5f5f5;
   overflow: hidden;
   position: relative;
+  border: 1px solid blue;
 }
 @media screen and (max-width: 735px) {
   #frame #sidepanel {
@@ -606,7 +605,6 @@ margin-top: 0px;
   #expanded {
   display: block;
   line-height: initial !important;
-   border: 1px solid orange;
 }
 #profile .wrap #expanded label {
   float: left;
@@ -1229,23 +1227,14 @@ Fin de contactos
   }
 }
 #frame .content {
-  float: right;
-  width: 60%;
+  width: auto;
   height: 100%;
   overflow: hidden;
   position: relative;
+  transition-property: padding-left, padding-right;
+  transition-duration: 500ms;
 }
-@media screen and (max-width: 735px) {
-  #frame .content {
-    width: calc(100% - 58px);
-    min-width: 300px !important;
-  }
-}
-@media screen and (min-width: 900px) {
-  #frame .content {
-    width: calc(100% - 340px);
-  }
-}
+
 #frame .content .contact-profile {
   width: 100%;
   height: 60px;
@@ -1253,7 +1242,7 @@ Fin de contactos
   background: #f2f2f2;
   display: flex;
   margin: 0;
-
+float: left;
 }
 #frame .content .contact-profile img {
   width: 40px;
@@ -1375,19 +1364,12 @@ border-radius: 50%;
 
 #frame .content .messages {
   width: 100%;
-  height: auto;
-  min-height: calc(100% - 120px);
-  max-height: calc(100% - 120px);
+  height: calc(100% - 120px);
   overflow-y: scroll;
   overflow-x: hidden;
   margin-left: 0px;
+}
 
-}
-@media screen and (max-width: 735px) {
-  #frame .content .messages {
-    max-height: calc(100% - 120px);
-  }
-}
 #frame .content .messages::-webkit-scrollbar {
   width: 10px;
 
@@ -1453,74 +1435,48 @@ border-radius: 50%;
   }
 }
 #frame .content .message-input {
-  position: absolute;
-  bottom: 0;
+  position: relative;
+height: 100%;
   width: 100%;
-  z-index: 99;
-  margin-bottom: 5px;
+  background: #f2f2f2;
+  padding: 8px 10px 8px 30px;
 }
 #frame .content .message-input .wrap {
-  position: relative;
-  padding-bottom: 5px;
+  display: flex;
 }
 #frame .content .message-input .wrap input {
+  flex-grow: 1;
   font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
   float: left;
   border: 1px solid #bebebf;
-  width: calc(100% - 90px);
-  height: 40px;
-  padding: 10px 32px 10px 8px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  border-radius: 20px 0 0 20px ;
+  padding-left: 20px;
 }
-@media screen and (max-width: 735px) {
-  #frame .content .message-input .wrap input {
-    padding: 10px 32px 10px 8px;
-  }
+#frame .content .message-input .wrap input:focus{
+  outline: 0;
 }
-#frame .content .message-input .wrap input:focus {
-  outline: none;
-}
+
 #frame .content .message-input .wrap .attachment {
-  position: absolute;
-  right: 60px;
-  z-index: 4;
-  margin-top: 10px;
+
   font-size: 1.1em;
   color: #435f7a;
   opacity: .5;
   cursor: pointer;
 }
-@media screen and (max-width: 735px) {
-  #frame .content .message-input .wrap .attachment {
-    margin-top: 17px;
-    right: 65px;
-  }
-}
 #frame .content .message-input .wrap .attachment:hover {
   opacity: 1;
 }
 #frame .content .message-input .wrap button {
-  float: right;
-  border: none;
-  width: 90px;
-  height: 40px;
-  padding: 12px 0;
-  cursor: pointer;
+width: 80px;
   background: #288795;
   color: #f5f5f5;
-  border-radius:0px ;
+  border-radius: 0 20px 20px 0 ;
 }
-@media screen and (max-width: 735px) {
-  #frame .content .message-input .wrap button {
-    padding: 10px 20px 30px 20px;
-  }
-}
-#frame .content .message-input .wrap button:hover {
+#frame .content .message-input .wrap button.activar {
   background: #435f7a;
 }
-#frame .content .message-input .wrap button:focus {
-  outline: none;
-}
+
 #layoutSidenav_content{
   padding: 0px;
 }
@@ -1545,7 +1501,7 @@ max-height: 420px;
 */
 
 ul#LateralMenu li{
-  padding: 0.75rem  0 0.75rem 5px ;
+  padding: 0.4rem  0 0.4rem 5px ;
   width: 100%;
 }
 
@@ -1566,7 +1522,7 @@ ul#LateralMenu li div{
   padding-rigth: 10px;
   font-family: "Roboto";
   text-align: left;
-  margin-top: 13px;
+  margin-top: 5px;
   margin-bottom: 13px;
   max-height: 40px;
 
@@ -1581,3 +1537,41 @@ ul#LateralMenu li div img{
 .accordion-header button {
   background-color: white;
 }
+/*
+##############################################
+Contenedor laterial de informacion de contacto
+##############################################
+*/
+
+@media screen and (min-width: 768px){
+  #frame #contenido.desp-izq-1{
+    padding-left: 70px ;
+
+  }
+
+}
+
+#panelInfoContacto{
+  margin-top: 60px;
+  height: 100%;
+  width: 450px;
+  position: relative;
+  float: right;
+  display: inline-block;
+}
+.foto-perfil{
+  border-radius: 50%;
+}
+@media screen and (max-width: 765px){
+  #panelInfoContacto{
+z-index: 2000;
+    margin-left: auto;
+  }
+
+}
+
+/*
+Fin de div lateral derecho de informacion de contacto
+
+##############################################
+*/
