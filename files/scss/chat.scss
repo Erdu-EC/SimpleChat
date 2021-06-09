@@ -504,6 +504,7 @@ body::-webkit-scrollbar{
   background: #E6EAEA;
   background-image:url("/files/icon/fondo-1.png");
   padding-right: 0;
+ display: flex;
 }
 
 @media screen and (max-width: 360px) {
@@ -523,7 +524,7 @@ body::-webkit-scrollbar{
   color: #f5f5f5;
   overflow: hidden;
   position: relative;
-  border: 1px solid blue;
+  display: inline;
 }
 @media screen and (max-width: 735px) {
   #frame #sidepanel {
@@ -1233,6 +1234,7 @@ Fin de contactos
   position: relative;
   transition-property: padding-left, padding-right;
   transition-duration: 500ms;
+ float: left;
 }
 
 #frame .content .contact-profile {
@@ -1544,32 +1546,61 @@ Contenedor laterial de informacion de contacto
 */
 
 @media screen and (min-width: 768px){
-  #frame #contenido.desp-izq-1{
+  #frame #contenido.desp-izq{
     padding-left: 70px ;
-
   }
-
+}
+#frame #contenido.desp-der{
+width: calc (100% - 400px);
+}
+#frame #panelInfoContacto.mostrar{
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-left: 1px solid #bebebf;
 }
 
-#panelInfoContacto{
-  margin-top: 60px;
+#frame #panelInfoContacto {
+  display: none;
   height: 100%;
-  width: 450px;
-  position: relative;
-  float: right;
-  display: inline-block;
+  min-width: 400px;
+}
+@media screen and (max-width: 576px){
+  #frame #panelInfoContacto.mostrar{
+    min-width: 500px;
+  }
 }
 .foto-perfil{
   border-radius: 50%;
 }
 @media screen and (max-width: 765px){
   #panelInfoContacto{
-z-index: 2000;
-    margin-left: auto;
+z-index: 1000;
+
   }
 
 }
+#panelInfoContacto #btn-cerrar-contacto{
+ position: relative;
+  height: 60px;
+  width: 60px;
+  color: black;
+  font-size: 40px;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 20px;
+  background: none;
+  border: none;
+}
+#panelInfoContacto #btn-cerrar-contacto:hover {
+  background: #267cb5;
+  color: white;
+}
 
+.ocultar {
+  display: none;
+  visibility: hidden;
+}
 /*
 Fin de div lateral derecho de informacion de contacto
 

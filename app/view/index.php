@@ -292,11 +292,11 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
 
     </div>
 
-     <div id="layoutSidenav_content" >
-         <main class="container-fluid" >
-             <div class="row">
-                 <article id="frame">
-                     <div id="sidepanel">
+    <div id="layoutSidenav_content">
+        <main class="container-fluid">
+            <div class="row">
+                <div id="frame">
+                    <div id="sidepanel">
 
                          <div id="search">
                              <label for="inputBuscarConversacion" class="material-icons">search</i></label>
@@ -416,7 +416,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                              <img src="/files/upload/profile/harveyspecter.png?w=100&h=100" alt="" />
                              <p>Harvey Specter</p>
                              <div class="opciones-contacto">
-                                 <div class="btn-agregar-contacto" title="Agregar a contactos"><span class="material-icons">person_add</span>
+                                 <div class="btn-agregar-contacto" title="Agregar a contactos" ><span class="material-icons">person_add</span>
                                  Agregar contacto
                                  </div>
                                  <hr class="separador-vertical">
@@ -426,11 +426,9 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
 
                                  </div>
                              </div>
-                             <div class="icon-info-contacto" title="Información del contacto">
-                                 <span class="material-icons">info
-    </span>
+                             <div class="icon-info-contacto" title="Información del contacto" id="btn-info-contacto">
+                                 <span class="material-icons">info</span>
                              </div>
-
 
                          </section>
                          <div class="messages">
@@ -478,7 +476,8 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                          </div>
                      </section>
 
-                     <div class="" id="panelInfoContacto">
+                     <section class="" id="panelInfoContacto">
+                         <button id="btn-cerrar-contacto"><span class="material-icons">close</span></button>
                          <div class="card">
                              <div class="row">
                                  <div class="col-6 contact-info-img align-content-end" >
@@ -501,8 +500,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
 
                          </div>
 
-
-                     </div>
+                     </section>
 
                  </article>
 

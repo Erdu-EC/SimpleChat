@@ -134,7 +134,7 @@ $("#ocultar").click(function (){
         duration: 500,
         queue: false
     });
-    $("#frame #contenido").removeClass("desp-izq-1");
+    $("#frame #contenido").removeClass("desp-izq");
     if($( window ).width()> 735){
     if ($("body").hasClass("prev-inactivo")){
         $("body").removeClass("prev-inactivo");
@@ -154,7 +154,7 @@ $("#nuevo-chat").click(function () {
         queue: false
     });
     if($( window ).width()> 735){
-        $("#frame #contenido").addClass("desp-izq-1");
+        $("#frame #contenido").addClass("desp-izq");
     if ($("body").hasClass("sb-sidenav-toggled")){
         $("body").addClass("prev-inactivo");
     }else{
@@ -187,6 +187,23 @@ $(".wrap input").bind("keyup keydown change",function () {
         $("#btn-enviar-mensaje").addClass("activar")
     }
 });
+
+    $("#btn-info-contacto").click(function (){
+        $("#frame #contenido").addClass("desp-der");
+        $("#frame #panelInfoContacto").addClass("mostrar");
+        $("#btn-info-contacto").addClass("ocultar");
+    });
+$("#btn-cerrar-contacto").click(function (){
+    $("#frame #contenido").removeClass("desp-der");
+    $("#frame #panelInfoContacto").removeClass("mostrar");
+    $("#btn-info-contacto").removeClass("ocultar");
+});
+    //detectar tamanos de pantalla y las acciones
+    $(window).on('resize', function(){
+        var win = $(this);
+    if (win.width() < 765) { $("body").addClass("sb-sidenav-toggled")}
+    });
+
 /*
 $(document).ready(function(){
     //al cargarse la pagina primero se muestran
