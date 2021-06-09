@@ -7,9 +7,12 @@
     use HS\libs\collection\ArrayUtils;
     use HS\libs\core\Model;
     use HS\libs\core\Session;
+    use HS\libs\core\TModel;
 
     class UserModel extends Model
     {
+        use TModel;
+
         const USER_NAME_LENGTH = ['min' => 4, 'max' => 30];
         const PASS_LENGTH = ['min' => 8, 'max' => 60];
 
@@ -19,16 +22,8 @@
         const C_LNAME = 'last_name';
         const C_LAST_CONN = 'last_connection';
 
-        //Especificando que campos son de lectura y escritura.
-        protected function GetAllowedReadFields(): array
-        {
-            return [self::C_ID, self::C_NICK, self::C_FNAME, self::C_LNAME, self::C_LAST_CONN];
-        }
-
-        protected function GetAllowedWriteFields(): array
-        {
-            // TODO: Implement GetAllowedWriteFields() method.
-            throw new \BadFunctionCallException();
+        public static function _st_init(){
+            self::$ALLOW_READ_VALUES = [self::C_ID, self::C_NICK, self::C_FNAME, self::C_LNAME, self::C_LAST_CONN];
         }
 
         //Metodos para obtener datos.

@@ -7,18 +7,18 @@ namespace HS\app\model;
 use HS\libs\collection\ArrayUtils;
 use HS\libs\core\Model;
 use HS\libs\core\Session;
-use HS\libs\database\DB;
+use HS\libs\core\TModel;
 
 class ContactModel extends Model
 {
+    use TModel;
+
     const C_UID = 'user_id';
     const C_CID = 'contact_id';
     const C_IID = 'invitation_id';
 
-    public function __construct(array $account) {
-        parent::__construct($account);
-
-        ContactModel::$ALLOW_READ_VALUES = [self::C_UID, self::C_CID, self::C_IID];
+    public static function _st_init(){
+        self::$ALLOW_READ_VALUES = [self::C_UID, self::C_CID, self::C_IID];
     }
 
     public function GetAll($user_contact_fields = null){

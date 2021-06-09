@@ -13,6 +13,9 @@ require_once APP_PATH . "\libs\io\Path.php";
 #Registrando como función para autoincludes.
 spl_autoload_register(function (string $class) {
     ClassLoader::Import($class);
+
+    if (method_exists($class, '_st_init'))
+        $class::_st_init();
 });
 
 class ClassLoader
@@ -24,7 +27,7 @@ class ClassLoader
         foreach (func_get_args() as $path) {
             if (!is_string($path))
                 throw new InvalidArgumentException("Se esperaba una cadena especificando un directorio para buscar clases.");
-            else if (strpos($path, APP_PATH, 0) !== 0)
+            else if (strpos($path, APP_PATH) !== 0)
                 throw new InvalidArgumentException('No se permite directorios ubicados fuera de la aplicación.');
             else if (!is_dir($path))
                 throw new InvalidArgumentException('La ruta especificada no existe o no es un directorio.');
@@ -37,13 +40,13 @@ class ClassLoader
     {
         //Si la clase pertenece al espacio de nombres principal,
         //tratar de incluir resolviendo directamente su ruta.
-        if (strpos($class, APP_NAMESPACE . "\\", 0) === 0){
+        if (strpos($class, APP_NAMESPACE . "\\") === 0){
             $fileClass = substr_replace($class, APP_PATH, 0, strlen(APP_NAMESPACE));
             $fileClass = Path::Fix("$fileClass.php");
 
             //Si el directorio de la clase esta en la lista y existe el archivo de la clase.
             foreach (self::$List as $directory){
-                if (strpos($fileClass, $directory, 0) === 0){
+                if (strpos($fileClass, $directory) === 0){
                     if (file_exists($fileClass)) {
                         /** @noinspection PhpIncludeInspection */
                         require_once $fileClass;

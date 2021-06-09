@@ -19,8 +19,8 @@ Route::Get('/files/{type*}/{filename}?{get}', 'ImageController#Get', $cond_image
 unset($cond_image);
 
 #Login and Register Routes
-Route::Get("/Login", '/app/view/Login.php', [], true);
-Route::Get("/Register", '/app/view/Register.php', [], true);
+Route::Get("/Login", 'Login.php', [], true);
+Route::Get("/Register", 'Register.php', [], true);
 
 Route::Post('/action/user/Login', 'LoginController#Login', [], true);
 Route::Post('/action/user/Register', 'LoginController#Register', [], true);
