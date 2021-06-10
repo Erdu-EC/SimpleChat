@@ -178,7 +178,7 @@ class Collection implements ArrayAccess, Iterator, \Countable
      */
     public function offsetGet($offset)
     {
-        if ((is_int($offset) || is_string($offset)) && isset($this->items[$offset]))
+        if ((is_int($offset) || is_string($offset)) && (isset($this->items[$offset]) || is_null($this->items[$offset])))
             return $this->items[$offset];
         else
             throw new CollectionException("La clave \"$offset\" no existe dentro de la Colección.", CollectionException::UNDEFINED_OFFSET);

@@ -28,7 +28,6 @@
 
             //Tratando datos.
             $data = new Collection();
-            $user = new Collection($user_data);
 
             //Determinando nombre completo.
             $data->full_name = $user_data->first_name . $user_data->last_name;
@@ -45,7 +44,7 @@
                     $data->state = 'Inactivo';
                     break;
                 default:
-                    $data->state = 'Desconocido';
+                    $data->state = '';
             }
 
             //Destruyendo variables.

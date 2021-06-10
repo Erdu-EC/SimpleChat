@@ -23,6 +23,9 @@ class Image
         unset($this->Handle);
     }
 
+    /**
+     * @throws ImageException
+     */
     public static function FromFile(string $path) : Image{
         //Verificando que la imagen exista.
         if (!file_exists($path) || empty(Path::GetFileName($path) || empty(Path::GetExtension($path))))
@@ -64,7 +67,11 @@ class Image
         return $height;
     }
 
-    public function GetThumbnail(int $width, int $height, string $cacheDir){
+    /**
+     * @throws ImageException
+     */
+    public function GetThumbnail(int $width, int $height, string $cacheDir): Image
+    {
         //Verificando si se necesita miniatura
         if ($width <= 0 && $height <= 0)
             throw new ImageException($this->FileName, ImageException::THUMB_NOTNEEDED);
@@ -116,6 +123,9 @@ class Image
         return $image;
     }
 
+    /**
+     * @throws ImageException
+     */
     private function SaveTo(string $dest_dir, bool $overwrite){
         //Creando directorio temporal si no existiera.
         if (!is_dir($dest_dir) && !file_exists($dest_dir)){
