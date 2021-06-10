@@ -1179,7 +1179,6 @@ Fin de contactos
 }
 #icon-nuevo-chat{
   width: 30px;
-  margin-left: -30px;
 }
 #icon-agregar-contacto{
   width: 30px;
@@ -1452,7 +1451,7 @@ height: 100%;
   float: left;
   border: 1px solid #bebebf;
   font-size: 0.85rem;
-  border-radius: 20px 0 0 20px ;
+ border-radius: 20px 0 0 20px ;
   padding-left: 20px;
 }
 #frame .content .message-input .wrap input:focus{
@@ -1473,6 +1472,7 @@ height: 100%;
 width: 80px;
   background: #288795;
   color: #f5f5f5;
+  border-radius: 0;
   border-radius: 0 20px 20px 0 ;
 }
 #frame .content .message-input .wrap button.activar {
@@ -1556,18 +1556,22 @@ width: calc (100% - 400px);
 #frame #panelInfoContacto.mostrar{
   display: flex;
   flex-direction: column;
-  background: white;
+  background: #f2f2f2;
   border-left: 1px solid #bebebf;
+
 }
 
 #frame #panelInfoContacto {
   display: none;
-  height: 100%;
+  height: calc( 100% - 5px);
   min-width: 400px;
+  overflow-y: scroll;
+
 }
 @media screen and (max-width: 576px){
   #frame #panelInfoContacto.mostrar{
     min-width: 500px;
+    padding-right: 10px;
   }
 }
 .foto-perfil{
@@ -1587,7 +1591,6 @@ z-index: 1000;
   color: black;
   font-size: 40px;
   justify-content: center;
-  text-align: center;
   margin-bottom: 20px;
   background: none;
   border: none;
@@ -1600,6 +1603,63 @@ z-index: 1000;
 .ocultar {
   display: none;
   visibility: hidden;
+}
+#panelInfoContacto .card{
+
+  margin: 0 0 0 0;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  /*box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;*/
+  border-radius: 0;
+  width: 100%;
+  padding: 30px 20px 40px 20px;
+
+ }
+#panelInfoContacto .perfil {
+  align-content: center;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  vertical-align: middle;
+  margin-top: -20px;
+}
+#panelInfoContacto .card img:hover{
+
+}
+
+#panelInfoContacto .card img {
+  width:100px;
+  height: 100px;
+
+}
+#panelInfoContacto .card .card-body small{
+  text-align: right;
+  width: 100%;
+  color: #a9a9a9;
+}
+#panelInfoContacto  .contacto-extra {
+  width: 100%;
+  padding: 20px 20px 40px 20px;
+}
+
+#panelInfoContacto  .contacto-extra .item-contacto-extra{
+  border-bottom: 1px solid #a9a9a9;
+  margin-top: 20px;
+  text-align: left;
+
+}
+#panelInfoContacto .contacto-extra .item-contacto-extra h6{
+
+  font-family: "Roboto";
+  font-size: 0.85rem;
+  color: #529dfe;/*#a9a9a9;*/
+
+}
+
+#panelInfoContacto .contacto-extra .item-contacto-extra span{
+  font-size: 0.95rem;
+  font-style: normal;
+  color: #000000;
 }
 /*
 Fin de div lateral derecho de informacion de contacto

@@ -478,6 +478,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
 
                      <section class="" id="panelInfoContacto">
                          <button id="btn-cerrar-contacto"><span class="material-icons">close</span></button>
+                        <!--
                          <div class="card">
                              <div class="row">
                                  <div class="col-6 contact-info-img align-content-end" >
@@ -499,7 +500,34 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                              </div>
 
                          </div>
+-->
+                         <div class="card perfil">
+                             <img src="/files/upload/profile/harveyspecter.png" alt="" class="img-fluid foto-perfil">
 
+                             <div class="card-body">
+                                 <h5>Harvey Specter</h5>
+                                 <h6>Abogado</h6>
+                                 <small>últ. conex. 18 de may 2021 a la(s) 4:05 p.m.</small>
+                             </div>
+                             <div class="contacto-redes">
+
+                             </div>
+
+                         </div>
+                         <div class=" card contacto-extra">
+                             <div class="item-contacto-extra">
+                                 <h6 class="campo">Correo</h6>
+                                 <span class="valor">harveyspecter@email.com</span>
+                             </div>
+                             <div class="item-contacto-extra">
+                                 <h6>Teléfono</h6>
+                                 <span>(EEUU) 6231 445</span>
+                             </div>
+                             <div class="item-contacto-extra">
+                                 <h6>Fecha de nacimiento</h6>
+                                 <span>12 de junio de 1970</span>
+                             </div>
+                         </div>
                      </section>
 
                  </article>
