@@ -5,6 +5,7 @@
     use HS\config\DBAccount;
     use HS\libs\collection\Collection;
     use HS\libs\core\Controller;
+    use HS\libs\core\Session;
     use PDOException;
 
     class ChatViewController extends Controller
@@ -12,6 +13,7 @@
         public function Index(string $user_name)
         {
             try {
+                //Obteniendo datos de usuario consultado.
                 $user = new UserModel(DBAccount::Root);
                 $user_data = $user->GetOne($user_name, [
                     UserModel::C_ID,
@@ -20,6 +22,11 @@
                     UserModel::C_LNAME,
                     UserModel::C_STATE
                 ]);
+
+                //Verificando si es un contacto del usuario actual.
+                $user_data->is_contact = $user->HasContact((new Session())->user_id, $user_data->id);
+
+                //Cerrando conexión BD.
                 unset($user);
             } catch (PDOException $ex) {
                 //TODO: Devolver una vista que muestre un error.
@@ -28,24 +35,9 @@
 
             //Tratando datos.
             $data = new Collection();
-
-            //Determinando nombre completo.
             $data->full_name = $user_data->first_name . $user_data->last_name;
-
-            //Determinando estado del contacto.
-            switch ($user_data->state){
-                case UserModel::V_STATE_ACTIVE:
-                    $data->state = 'Activo';
-                    break;
-                case UserModel::V_STATE_BUSY:
-                    $data->state = 'Ocupado';
-                    break;
-                case UserModel::V_STATE_INACTIVE:
-                    $data->state = 'Inactivo';
-                    break;
-                default:
-                    $data->state = '';
-            }
+            $data->state = UserModel::GetStringUserState($user_data->state ?? '');
+            $data->is_contact = $user_data->is_contact;
 
             //Destruyendo variables.
             unset($user_data);

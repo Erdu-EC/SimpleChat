@@ -10,12 +10,19 @@
 
 <div class="card h-100">
     <div class="card-header">
-        <h5 class="d-flex align-items-center mb-0 user-select-none">
-            <i class="material-icons me-2">person</i>
-            <b><?= $_VIEW->full_name ?></b>
-            <span class="badge alert-success border-3 ms-2  <?= empty($_VIEW->state) ? 'd-none' : '' ?>">
-                <?= $_VIEW->state ?>
-            </span>
+        <h5 class="row d-flex align-items-center mb-0 user-select-none">
+                <div class="col-8">
+                    <i class="material-icons me-2">person</i>
+                    <b><?= $_VIEW->full_name ?></b>
+                    <span class="badge alert-success border-3 ms-2  <?= empty($_VIEW->state) ? 'd-none' : '' ?>">
+                        <?= $_VIEW->state ?>
+                    </span>
+                </div>
+                <?php if (is_null($_VIEW->is_contact) || !$_VIEW->is_contact) :?>
+                    <div class="col-4 text-end">
+                        <button class="btn btn-outline-primary">Agregar contacto</button>
+                    </div>
+                <?php endif;?>
         </h5>
     </div>
     <div class="card-body">

@@ -53,19 +53,16 @@
             }
         }
 
-        public function SearchUserOrContact(string $text, array $fields): ?Collection
+        public function SearchUserOrContact(int $current_user, string $text, array $fields): ?Collection
         {
             try {
-                //Obteniendo id del usuario actual.
-                $user_id = (new Session())->user_id;
-
                 //Filtrando campos validos en la consulta.
                 $fields = self::FilterAllowedFields($fields, '*');
 
                 //Ejecutando consulta y devolviendo valores.
                 return self::SelectAll("select $fields, user_is_contact(:uid, id) as isContact from users where id != :uid2 and (MATCH (user_name, first_name, last_name) AGAINST(:text IN BOOLEAN MODE)) order by isContact desc, first_name, last_name", [
-                    'uid' => $user_id,
-                    'uid2' => $user_id,
+                    'uid' => $current_user,
+                    'uid2' => $current_user,
                     'text' => "$text*"
                 ]);
             } catch (\PDOException $ex) {
@@ -73,7 +70,25 @@
             }
         }
 
+        //Metodos para obtener determinados datos.
+        public function HasContact(int $user, int $contact){
+            return (new ContactModel($this->PDO))->IsContactOfUser($user, $contact);
+        }
+
         //Metodos estaticos publicos
+        public static function GetStringUserState(string $user_state): string{
+            switch ($user_state){
+                case UserModel::V_STATE_ACTIVE:
+                    return 'Activo';
+                case UserModel::V_STATE_BUSY:
+                    return  'Ocupado';
+                case UserModel::V_STATE_INACTIVE:
+                    return  'Inactivo';
+                default:
+                    return  '';
+            }
+        }
+
         public static function IsValidUserName(string $user): bool
         {
             return strlen($user) >= self::USER_NAME_LENGTH['min'] && strlen($user) <= self::USER_NAME_LENGTH['max'];

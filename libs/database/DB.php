@@ -9,7 +9,7 @@ use PDOStatement;
 
 class DB
 {
-    private $PDO;
+    protected $PDO;
 
     public function __construct($account)
     {

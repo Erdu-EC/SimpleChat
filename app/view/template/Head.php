@@ -16,6 +16,7 @@ namespace HS\app\view\template;
 
 <script type="text/javascript" src="/files/bootstrap/bootstrap.bundle.min.js" async></script>
 <script type="text/javascript" src="/files/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/files/js/Utils.js"></script>
 
 <style>
     body {

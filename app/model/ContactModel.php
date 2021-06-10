@@ -31,4 +31,15 @@
                 return null;
             }
         }
+
+        public function IsContactOfUser(int $user_id, int $contact):?bool{
+            try {
+                return self::SelectOnly('select user_is_contact(:user, :contact)', [
+                    'user' => $user_id,
+                    'contact' => $contact
+                ]);
+            }catch (\PDOException $x){
+                return null;
+            }
+        }
     }

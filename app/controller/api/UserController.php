@@ -9,6 +9,7 @@ use HS\config\DBAccount;
 use HS\libs\collection\ArrayUtils;
 use HS\libs\core\Controller;
 use HS\libs\core\http\HttpResponse;
+use HS\libs\core\Session;
 use HS\libs\helper\MimeType;
 
 class UserController extends Controller
@@ -36,9 +37,11 @@ class UserController extends Controller
         //Estableciendo tipo de respuesta.
         HttpResponse::SetContentType(MimeType::Json);
 
+        //Obteniendo id del usuario actual.
+        $user_id = (new Session())->user_id;
+
         //Obteniendo datos.
-        $data = (new UserModel(DBAccount::Root))->SearchUserOrContact($text, [
-            UserModel::C_ID,
+        $data = (new UserModel(DBAccount::Root))->SearchUserOrContact($user_id, $text, [
             UserModel::C_NICK,
             UserModel::C_FNAME,
             UserModel::C_LNAME
