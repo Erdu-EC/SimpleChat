@@ -5,6 +5,7 @@ namespace HS\app\controller\api;
 use HS\app\model\ContactModel;
 use HS\app\model\UserModel;
 use HS\config\DBAccount;
+use HS\libs\collection\ArrayUtils;
 use HS\libs\core\http\HttpResponse;
 use HS\libs\helper\MimeType;
 
@@ -24,6 +25,6 @@ class ContactController
         ]);
 
         //Devolviendo.
-        echo json_encode($data);
+        echo json_encode(ArrayUtils::GetIndexedValues($data));
     }
 }

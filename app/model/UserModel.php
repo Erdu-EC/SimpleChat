@@ -1,10 +1,7 @@
 <?php
 
-
     namespace HS\app\model;
 
-
-    use HS\libs\collection\ArrayUtils;
     use HS\libs\core\Model;
     use HS\libs\core\Session;
     use HS\libs\core\TModel;
@@ -22,7 +19,8 @@
         const C_LNAME = 'last_name';
         const C_LAST_CONN = 'last_connection';
 
-        public static function _st_init(){
+        public static function _st_init()
+        {
             self::$ALLOW_READ_VALUES = [self::C_ID, self::C_NICK, self::C_FNAME, self::C_LNAME, self::C_LAST_CONN];
         }
 
