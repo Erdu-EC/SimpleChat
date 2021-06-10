@@ -2,6 +2,7 @@
 
     namespace HS\app\model;
 
+    use HS\libs\collection\Collection;
     use HS\libs\core\Model;
     use HS\libs\core\Session;
     use HS\libs\core\TModel;
@@ -18,6 +19,11 @@
         const C_FNAME = 'first_name';
         const C_LNAME = 'last_name';
         const C_LAST_CONN = 'last_connection';
+        const C_STATE = 'state';
+
+        const V_STATE_ACTIVE = 'A';
+        const V_STATE_BUSY = 'O';
+        const V_STATE_INACTIVE = 'I';
 
         public static function _st_init()
         {
@@ -25,7 +31,7 @@
         }
 
         //Metodos para obtener datos.
-        public function GetOne(string $user_name, array $fields = null): ?array
+        public function GetOne(string $user_name, array $fields = null): ?Collection
         {
             try {
                 $fields = self::FilterAllowedFields($fields, '*');
@@ -37,7 +43,7 @@
             }
         }
 
-        public function GetAll(array $fields = null): ?array
+        public function GetAll(array $fields = null): ?Collection
         {
             try {
                 $fields = self::FilterAllowedFields($fields, '*');
@@ -47,7 +53,7 @@
             }
         }
 
-        public function SearchUserOrContact(string $text, array $fields)
+        public function SearchUserOrContact(string $text, array $fields): ?Collection
         {
             try {
                 //Obteniendo id del usuario actual.
@@ -73,7 +79,7 @@
             return strlen($user) >= self::USER_NAME_LENGTH['min'] && strlen($user) <= self::USER_NAME_LENGTH['max'];
         }
 
-        public static function IsValidPass(string $pass)
+        public static function IsValidPass(string $pass): bool
         {
             return strlen($pass) >= UserModel::PASS_LENGTH['min'] && strlen($pass) <= UserModel::PASS_LENGTH['max'];
         }

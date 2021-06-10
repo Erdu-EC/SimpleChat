@@ -18,13 +18,13 @@ class ContactController
 
         //Obteniendo datos.
         $data = (new ContactModel(DBAccount::Root))->GetAll([
-            UserModel::C_ID,
+            UserModel::C_NICK,
             UserModel::C_FNAME,
             UserModel::C_LNAME,
             UserModel::C_LAST_CONN
         ]);
 
         //Devolviendo.
-        echo json_encode(ArrayUtils::GetIndexedValues($data));
+        echo json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));
     }
 }

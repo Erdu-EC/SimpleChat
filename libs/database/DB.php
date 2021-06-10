@@ -2,6 +2,7 @@
 
 namespace HS\libs\database;
 
+use HS\libs\collection\Collection;
 use PDO;
 use PDOException;
 use PDOStatement;
@@ -34,13 +35,15 @@ class DB
         return SDB::ExecuteTransaction($this->PDO, $actions);
     }
 
-    public function SelectAll(string $sentence, array $param = NULL) : ?array
+    public function SelectAll(string $sentence, array $param = NULL) : ?Collection
     {
-       return SDB::SelectAll($this->PDO, $sentence, $param);
+        $items = SDB::SelectAll($this->PDO, $sentence, $param);
+        return is_null($items) ? null : new Collection($items);
     }
 
     public function SelectOnly(string $sentence, array $param = NULL){
-        return SDB::SelectOnly($this->PDO, $sentence, $param);
+        $items = SDB::SelectOnly($this->PDO, $sentence, $param);
+        return is_null($items) ? null : (is_array($items) ? new Collection($items) : $items);
     }
 
     public function __destruct()

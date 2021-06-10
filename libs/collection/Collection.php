@@ -7,7 +7,7 @@ namespace HS\libs\collection;
 use ArrayAccess;
 use Iterator;
 
-class Collection implements ArrayAccess, Iterator
+class Collection implements ArrayAccess, Iterator, \Countable
 {
     protected $items;
 
@@ -27,8 +27,17 @@ class Collection implements ArrayAccess, Iterator
             throw new CollectionException('Tipo de dato no apto para ser una colección.', CollectionException::INVALID_COLLECTION);
     }
 
-    #Modificar elementos de la coleccion.
+    #Obtener el array de todos los elementos de la coleccion.
 
+    /**
+     * @return array Devuelve una copia del array interno de la colección.
+     */
+    public function GetInnerArray(): array
+    {
+        return $this->items;
+    }
+
+    #Modificar elementos de la coleccion.
     /**
      * Añade un elemento a la coleccion.<br/><br/>
      * Si <var>$value</var> es un array, lo convierte a <var>Collection</var> antes de almacenarlo.
@@ -140,7 +149,7 @@ class Collection implements ArrayAccess, Iterator
         return $this[$name];
     }
 
-    public function __set($name, $value) : void
+    public function __set($name, $value): void
     {
         $this[$name] = $value;
     }
@@ -150,13 +159,13 @@ class Collection implements ArrayAccess, Iterator
         return isset($this[$name]);
     }
 
-    public function __unset($name) : void
+    public function __unset($name): void
     {
         unset($this[$name]);
     }
 
     #Implementacion de la interfaz "ArrayAccess".
-    public function offsetExists($offset) : bool
+    public function offsetExists($offset): bool
     {
         return isset($this->items[$offset]);
     }
@@ -215,6 +224,12 @@ class Collection implements ArrayAccess, Iterator
         reset($this->items);
     }
 
+    #Implementacion de la interfaz "Countable".
+    public function count()
+    {
+        return \count($this->items);
+    }
+
     #Metodos publicos estaticos.
     public function IsCollection($object): bool
     {
@@ -222,6 +237,7 @@ class Collection implements ArrayAccess, Iterator
     }
 
     #Metodos privados y estaticos.
+
     /**
      * Obtiene el valor real a almacenar dentro de la coleccion.
      * @param mixed $value

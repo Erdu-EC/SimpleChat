@@ -25,7 +25,7 @@ class UserController extends Controller
         ]);
 
         //Devolviendo.
-        return json_encode(ArrayUtils::GetIndexedValues($data));;
+        return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));;
     }
 
     public function SearchUserOrContact(){
@@ -45,6 +45,6 @@ class UserController extends Controller
         ]);
 
         //Devolviendo.
-        return json_encode(ArrayUtils::GetIndexedValues($data));
+        return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));
     }
 }

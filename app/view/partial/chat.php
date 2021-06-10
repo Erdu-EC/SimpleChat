@@ -1,11 +1,21 @@
-<?php namespace HS\app\view; ?>
+<?php
+    /*TODO: APLICAR PERMISOS PARA LA SEGURIDAD DE LA INFORMACION MOSTRADA.*/
+
+    namespace HS\app\view;
+
+    use HS\libs\collection\Collection;
+
+    /** @var Collection $_VIEW */
+?>
 
 <div class="card h-100">
     <div class="card-header">
         <h5 class="d-flex align-items-center mb-0 user-select-none">
             <i class="material-icons me-2">person</i>
-            <b><?= _VIEW->first_name .  _VIEW->last_name?></b>
-            <span class="badge alert-success border-3 ms-2">Activo</span>
+            <b><?= $_VIEW->full_name ?></b>
+            <span class="badge alert-success border-3 ms-2">
+                <?= $_VIEW->state ?>
+            </span>
         </h5>
     </div>
     <div class="card-body">

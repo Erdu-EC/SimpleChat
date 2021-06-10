@@ -13,7 +13,7 @@
 
     #Paginas parciales.
     Route::Get('/Chats/{contact_name}/', 'ChatViewController#Index', [
-        'contact_name' => function (string $user) {
+        'contact_name' => function (string $user): bool {
             return UserModel::IsValidUserName($user);
         }
     ]);

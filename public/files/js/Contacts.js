@@ -1,4 +1,5 @@
 $(document).ready(refresh_contact_list);
+//$(document).ready(() => $('#chat-container').load('/Chats/'));
 
 $(document).on('input', '#user-search-box', function (){
     const alert_contact = $('#alert-search-status');
@@ -37,7 +38,7 @@ $(document).on('input', '#user-search-box', function (){
 })
 
 $(document).on('click', '.contact-item', function (){
-
+    $('#chat-container').load(`/Chats/${$(this).attr('data-usuario')}`)
 })
 
 function refresh_contact_list(){
@@ -60,9 +61,9 @@ function refresh_contact_list(){
 
                 for (let i = 0; i < json.length; i++){
                     const item = $('<li>', {
-                        class: 'list-group-item contact-item ps-0 pe-0',
-                        html: GetContactItem(json[i][1], json[i][2], json[i][3]),
-                    }).attr("data-id", json[i][0]).appendTo(list);
+                        class: 'list-group-item ps-0 pe-0',
+                        html: GetContactItem(json[i][0], json[i][1], json[i][2], json[i][3]),
+                    }).appendTo(list);
                 }
             }
         }
@@ -89,7 +90,7 @@ const GetSearchItem = (first_name, last_name, last_conn, isContact) => `<div cla
                                 </div>
                             </div>`
 
-const GetContactItem = (first_name, last_name, last_conn) => `<div class="card mb-2 contact-item"">
+const GetContactItem = (user_name, first_name, last_name, last_conn) => `<div class="card mb-2 contact-item" data-usuario="${user_name}">
                             <div class="row g-0">
                             <div class="col-md-3 p-1">
                                 <img src="/files/profile/0_erdu.png" class="img-fluid" alt="profile">

@@ -13,7 +13,7 @@ class SDB
 {
     public static function Connect(array $account): PDO
     {
-        if (empty($account['user']) /*|| empty($account['pass'])*/)
+        if (empty($account['user']) || is_null($account['pass'])/*|| empty($account['pass'])*/)
             throw new InvalidArgumentException("Nombre de usuario ó contraseña invalidos.");
 
         //Cadena de conexion.
@@ -63,7 +63,8 @@ class SDB
 
                     self::Execute($PDO, $row[0], $row[1]);
                 }
-            }*/else
+            }*/
+            else
                 throw new \InvalidArgumentException();
 
             $PDO->commit();
