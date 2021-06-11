@@ -14,7 +14,6 @@ use const HS\config\APP_NAME;
     <title><?= APP_NAME ?>: Contactos</title>
 
     <link rel="stylesheet" href="/files/css/chat.css">
-    <link rel="stylesheet" href="/files/css/contacts.css">
     <script type="application/javascript" src="/files/js/Contacts.js"></script>
 </head>
 <body class="d-flex flex-column">
@@ -34,31 +33,31 @@ use const HS\config\APP_NAME;
                     <div class="row">
                         <div class="col border-bottom pb-3 mb-3">
                             <div class="input-group">
-                                <label for="user-search-box" class="input-group-text material-icons text-primary">search</label>
-                                <input id="user-search-box" type="search" class="form-control" placeholder="Buscar contactos actuales o nuevos">
+                                <label for="cuadro-busqueda-usuario" class="input-group-text material-icons text-primary">search</label>
+                                <input id="cuadro-busqueda-usuario" type="search" class="form-control" placeholder="Buscar contactos actuales o nuevos">
                             </div>
-                            <small id="alert-search-status" class="text-secondary mt-3">
+                            <small id="alerta-busqueda-usuario" class="text-secondary mt-3">
                             </small>
-                            <div id="user-search-result">
+                            <div id="lista-resultados-busqueda">
 
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                           <h6 id="alert-contacts-list" class="text-secondary">
+                           <h6 id="alerta-lista-contactos" class="text-secondary">
                                Cargando contactos...
                             </h6>
                         </div>
                     </div>
 
-                    <ul id="contacts-list" class="list-group list-group-flush">
+                    <ul id="lista-contactos" class="list-group list-group-flush">
 
                     </ul>
                 </div>
             </div>
         </div>
-        <div id="chat-container" class="col">
+        <div id="espacio-de-chat" class="col">
             <!-- AQUI SE CARGARA EL HISTORIAL DE CHAT DEL CONTACTO -->
         </div>
     </div>

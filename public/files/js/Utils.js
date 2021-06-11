@@ -6,7 +6,7 @@ function Icon_Circle_Load(width = '1rem', height = '1rem', width_view = 52, heig
     </svg>`;
 }
 
-function GetHtmlCircleLoadContainer(width, height, clase = '') {
+function ObtenerContenedorHtmlDeAnimacionDeCarga(width, height, clase = '') {
     return `<div class="container text-center d-flex flex-column flex-grow-1 h-100 justify-content-center ${clase}">
                 <div class="row flex-grow-1">
                     <div class="col-12 align-self-end">

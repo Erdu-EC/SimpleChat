@@ -1,107 +1,102 @@
-$(document).ready(refresh_contact_list);
-//$(document).ready(() => $('#chat-container').load('/Chats/'));
+$(document).ready(actualizar_lista_contactos);
 
-$(document).on('input', '#user-search-box', function () {
-    const alert_contact = $('#alert-search-status');
-    const result_list = $('#user-search-result');
+$(document).on('input', '#cuadro-busqueda-usuario', function () {
+    const alerta = $('#alerta-busqueda-usuario').html('');
+    const lista_resultados = $('#lista-resultados-busqueda').html('');
 
     if ($(this).val().length > 3) {
         $.ajax('/action/users/search', {
-            method: 'post',
-            dataType: 'json',
-            mimeType: 'application/json',
+            method: 'post', dataType: 'json', mimeType: 'application/json',
             data: {text: $(this).val()},
-            beforeSend: () => alert_contact.text("Buscando..."),
-            error: () => alert_contact.text("No fue posible realizar la busqueda."),
+            beforeSend: () => alerta.text("Buscando..."),
+            error: () => alerta.text("No fue posible realizar la busqueda."),
             success: function (json) {
-                alert_contact.html('');
-                result_list.html('');
-
                 if (json === null)
-                    alert_contact.text('No fue posible realizar la busqueda.');
+                    alerta.text('No fue posible realizar la busqueda.');
                 else if (json.length === 0)
-                    alert_contact.text('No hay coincidencias.');
+                    alerta.text('No hay coincidencias.');
                 else {
-                    alert_contact.text(`Se ha encontrado ${json.length} coincidencias.`);
+                    alerta.text(`Se ha encontrado ${json.length} coincidencias.`);
 
-                    for (let i = 0; i < json.length; i++) {
-                        const row = json[i];
-                        result_list.append(GetSearchItem(row[0], row[1], row[2], row[3]));
-                    }
+                    json.forEach((registro) =>
+                        lista_resultados.append(ObtenerElementoContactoBuscado(registro[0], registro[1], registro[2], registro[3]))
+                    );
                 }
             }
         });
-    } else {
-        alert_contact.html('');
-        result_list.html('');
     }
-})
+});
 
-$(document).on('click', '.contact-item', function () {
-    $('#chat-container').html(GetHtmlCircleLoadContainer('4.5em', '4.5em', 'text-primary'))
-        .load(`/Chats/${$(this).attr('data-usuario')}`);
-})
+$(document).on('click', '.elemento-contacto', function () {
+    $('#espacio-de-chat').html(
+        ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
+    ).load(`/Chats/${$(this).attr('data-usuario')}`);
+});
 
-function refresh_contact_list() {
-    const alert_contact = $('#alert-contacts-list');
+$(document).on('click', '.btn-agregar-contacto', function () {
+
+});
+
+function actualizar_lista_contactos() {
+    const alerta = $('#alerta-lista-contactos');
 
     $.ajax('/action/users/contacts', {
-        method: 'get',
-        dataType: 'json',
-        mimeType: 'application/json',
-        error: () => alert_contact.text('No fue posible cargar la lista de contactos.'),
+        method: 'get', dataType: 'json', mimeType: 'application/json',
+        error: () => alerta.text('No fue posible cargar la lista de contactos.'),
         success: function (json) {
             if (json === null)
-                alert_contact.text('No fue posible cargar la lista de contactos.');
+                alerta.text('No fue posible cargar la lista de contactos.');
             else if (json.length === 0)
-                alert_contact.html('Tu lista de contactos esta vacia.<br/><br/>¡Busca nuevos contactos y agregalos!');
+                alerta.html('Tu lista de contactos esta vacia.<br/><br/>¡Busca nuevos contactos y agregalos!');
             else {
-                alert_contact.text('¡Busca nuevos contactos y agregalos!')
+                alerta.html('Tienes ' + json.length + ' contacto(s)<br/><br/><small class="text-secondary">¡Busca nuevos contactos y agregalos!</small>')
 
-                const list = $('#contacts-list').html('');
-
-                for (let i = 0; i < json.length; i++) {
-                    const item = $('<li>', {
+                json.forEach((registro) => {
+                    $('<li>', {
                         class: 'list-group-item ps-0 pe-0',
-                        html: GetContactItem(json[i][0], json[i][1], json[i][2], json[i][3]),
-                    }).appendTo(list);
-                }
+                        html: ObtenerElementoContacto(registro[0], registro[1], registro[2], registro[3]),
+                    }).appendTo($('#lista-contactos').html(''));
+                });
             }
         }
     });
 }
 
-const GetSearchItem = (user_name, first_name, last_name, isContact) => `<div class="card mb-2 contact-item shadow" style="cursor: pointer;" data-usuario="${user_name}">
-                            <div class="row g-0">
-                                <div class="col-md-3 p-1">
-                                    <img src="/files/profile/0_erdu.png" class="img-fluid" alt="profile">
-                                </div>
-                                <div class="col-md-9 align-self-center">
-                                    <div class="card-body p-2">
-                                        <h6 class="card-title">${first_name} ${last_name}</h6>
-                                        <p class="card-text flex-row" style="font-size: .8rem;">
-                                            <small class="text-muted">
-                                                ${(isContact) ? '<i class="material-icons" style="vertical-align: middle">person</i><span>Mi contacto</span>' : ''}
-                                            </small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>`
+const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, esContacto) =>
+    `<div class="card mb-2 shadow elemento-contacto" style="cursor: pointer;" data-usuario="${usuario}">
+        <div class="row g-0">
+            <div class="col-md-3 p-1">
+                <img src="/files/profile/0_erdu.png" class="img-fluid" alt="profile">
+            </div>
+            <div class="col-md-9 align-self-center">
+                <div class="card-body p-2">
+                    <h6 class="card-title">${nombres} ${apellidos}</h6>
+                    <p class="card-text flex-row" style="font-size: .8rem;">
+                        <small class="text-muted">
+                            ${(esContacto) ? '<i class="material-icons" style="vertical-align: middle">person</i><span>Mi contacto</span>' : ''}
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>`
 
-const GetContactItem = (user_name, first_name, last_name, last_conn) => `<div class="card mb-2 contact-item" data-usuario="${user_name}">
-                            <div class="row g-0">
-                            <div class="col-md-3 p-1">
-                                <img src="/files/profile/0_erdu.png" class="img-fluid" alt="profile">
-                            </div>
-                            <div class="col-md-9 align-self-center">
-                                <div class="card-body p-2">
-                                    <h6 class="card-title">${first_name} ${last_name}</h6>
-                                    <p class="card-text" style="font-size: .8rem;"><small class="text-muted">${(last_conn !== undefined) ? GetTimeAgo(last_conn) : ''}</small></p>
-                                </div>
-                            </div>
-                        </div>`;
+const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion) =>
+    `<div class="card mb-2 elemento-contacto" data-usuario="${usuario}">
+        <div class="row g-0">
+            <div class="col-md-3 p-1">
+                <img src="/files/profile/0_erdu.png" class="img-fluid" alt="Foto de perfil">
+            </div>
+            <div class="col-md-9 align-self-center">
+                <div class="card-body p-2">
+                    <h6 class="card-title">${nombres} ${apellidos}</h6>
+                    <p class="card-text" style="font-size: .8rem;"><small class="text-muted">${(ultima_conexion !== undefined) ? ObtenerTiempoUltimaConexion(ultima_conexion) : ''}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>`;
 
-function GetTimeAgo(last_conn) {
-    const date = new Date(last_conn);
-    return 'Activo el ' + date.toLocaleDateString() + " a las " + date.toLocaleTimeString();
+function ObtenerTiempoUltimaConexion(fecha_hora) {
+    const fecha = new Date(fecha_hora);
+    return 'Activo el ' + fecha.toLocaleDateString() + " a las " + fecha.toLocaleTimeString();
 }

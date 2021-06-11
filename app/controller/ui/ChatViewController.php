@@ -35,6 +35,7 @@
 
             //Tratando datos.
             $data = new Collection();
+            $data->id = $user_data->id;
             $data->full_name = $user_data->first_name . $user_data->last_name;
             $data->state = UserModel::GetStringUserState($user_data->state ?? '');
             $data->is_contact = $user_data->is_contact;
