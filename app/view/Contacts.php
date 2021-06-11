@@ -38,9 +38,9 @@ use const HS\config\APP_NAME;
                             </div>
                             <small id="alerta-busqueda-usuario" class="text-secondary mt-3">
                             </small>
-                            <div id="lista-resultados-busqueda">
+                            <ul id="lista-resultados-busqueda" class="list-group list-group-flush">
 
-                            </div>
+                            </ul>
                         </div>
                     </div>
                     <div class="row">

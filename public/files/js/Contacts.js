@@ -18,9 +18,12 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
                 else {
                     alerta.text(`Se ha encontrado ${json.length} coincidencias.`);
 
-                    json.forEach((registro) =>
-                        lista_resultados.append(ObtenerElementoContactoBuscado(registro[0], registro[1], registro[2], registro[3]))
-                    );
+                    json.forEach((registro) => {
+                        $('<li>', {
+                            class: 'list-group-item border-0 ps-0 pe-0',
+                            html: ObtenerElementoContactoBuscado(registro[0], registro[1], registro[2], registro[3]),
+                        }).appendTo(lista_resultados);
+                    });
                 }
             }
         });
@@ -38,7 +41,8 @@ $(document).on('click', '.btn-agregar-contacto', function () {
 });
 
 function actualizar_lista_contactos() {
-    const alerta = $('#alerta-lista-contactos');
+    const alerta = $('#alerta-lista-contactos').html('');
+    const lista_contactos = $('#lista-contactos').html('');
 
     $.ajax('/action/users/contacts', {
         method: 'get', dataType: 'json', mimeType: 'application/json',
@@ -55,7 +59,7 @@ function actualizar_lista_contactos() {
                     $('<li>', {
                         class: 'list-group-item ps-0 pe-0',
                         html: ObtenerElementoContacto(registro[0], registro[1], registro[2], registro[3]),
-                    }).appendTo($('#lista-contactos').html(''));
+                    }).appendTo(lista_contactos);
                 });
             }
         }
@@ -63,7 +67,7 @@ function actualizar_lista_contactos() {
 }
 
 const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, esContacto) =>
-    `<div class="card mb-2 shadow elemento-contacto" style="cursor: pointer;" data-usuario="${usuario}">
+    `<div class="card mb-0 shadow elemento-contacto" style="cursor: pointer;" data-usuario="${usuario}">
         <div class="row g-0">
             <div class="col-md-3 p-1">
                 <img src="/files/profile/0_erdu.png" class="img-fluid" alt="profile">
