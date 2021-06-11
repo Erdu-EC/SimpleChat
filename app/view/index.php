@@ -413,8 +413,11 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                      </div>
                      <section class="content" id="contenido">
                          <section class="contact-profile no-seleccionable">
-                             <img src="/files/upload/profile/harveyspecter.png?w=100&h=100" alt="" />
-                             <p>Harvey Specter</p>
+
+                                 <img src="/files/upload/profile/harveyspecter.png?w=100&h=100" alt="" />
+
+                                 <span class="nombre-chat">Harvey Specter</span>
+                             <span class="ult-conex">últ. conex. 18 de may 2021 a la(s) 4:05 p.m.</span>
                              <div class="opciones-contacto">
                                  <div class="btn-agregar-contacto" title="Agregar a contactos" ><span class="material-icons">person_add</span>
                                  Agregar contacto
@@ -435,7 +438,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                              <ul id="lista-mensajes">
 
                                  <li class="sent">
-                                     <img src="/files/upload/profile/mikeross.png?w=100&h=100" alt="" />
+                                     <img src="/files/upload/profile/mikeross.png" alt="" />
                                      <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
                                  </li>
                                  <li class="replies">
@@ -478,56 +481,41 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
 
                      <section class="" id="panelInfoContacto">
                          <button id="btn-cerrar-contacto"><span class="material-icons">close</span></button>
-                        <!--
-                         <div class="card">
-                             <div class="row">
-                                 <div class="col-6 contact-info-img align-content-end" >
-                                     <img src="/files/upload/profile/harveyspecter.png" alt="" class="img-fluid foto-perfil">
-                                 </div>
-                                 <div class="col-6 contact-info-primaria align-content-start">
-                                     <h4>Harvey Specter</h4>
-                                     <h5>Abogado</h5>
-                                 </div>
-                                 <div class="col-6 contact-info-redes align-content-end">
-                                     <h6>Nombre completo: </h6>
-                                     <h7>Email: </h7>
-                                     <h7>Teléfono:</h7>
-                                     <h7>País:</h7>
+<div class="contenedor-perfil">
+    <div class="card perfil">
+        <img src="/files/upload/profile/harveyspecter.png" alt="" class="img-fluid foto-perfil away">
 
-                                 </div>
-                                 <div class="col-6 contact-info-secundaria align-content-start"></div>
+        <div class="card-body">
+            <h5>Harvey Specter</h5>
+            <h6>Abogado</h6>
+            <small>últ. conex. 18 de may 2021 a la(s) 4:05 p.m.</small>
+        </div>
+        <div class="contacto-redes">
 
-                             </div>
+        </div>
 
-                         </div>
--->
-                         <div class="card perfil">
-                             <img src="/files/upload/profile/harveyspecter.png" alt="" class="img-fluid foto-perfil">
+    </div>
+    <div class=" card contacto-extra">
+        <div class="item-contacto-extra">
+            <h6 class="campo">Correo</h6>
+            <span class="valor">harveyspecter@email.com</span>
+        </div>
+        <div class="item-contacto-extra">
+            <h6>Teléfono</h6>
+            <span>(EEUU) 6231 445</span>
+        </div>
+        <div class="item-contacto-extra">
+            <h6>Fecha de nacimiento</h6>
+            <span>12 de junio de 1970</span>
+        </div>
+        <div class="item-contacto-extra">
+            <h6>Sexo</h6>
+            <span>Masculino</span>
+        </div>
+    </div>
 
-                             <div class="card-body">
-                                 <h5>Harvey Specter</h5>
-                                 <h6>Abogado</h6>
-                                 <small>últ. conex. 18 de may 2021 a la(s) 4:05 p.m.</small>
-                             </div>
-                             <div class="contacto-redes">
+</div>
 
-                             </div>
-
-                         </div>
-                         <div class=" card contacto-extra">
-                             <div class="item-contacto-extra">
-                                 <h6 class="campo">Correo</h6>
-                                 <span class="valor">harveyspecter@email.com</span>
-                             </div>
-                             <div class="item-contacto-extra">
-                                 <h6>Teléfono</h6>
-                                 <span>(EEUU) 6231 445</span>
-                             </div>
-                             <div class="item-contacto-extra">
-                                 <h6>Fecha de nacimiento</h6>
-                                 <span>12 de junio de 1970</span>
-                             </div>
-                         </div>
                      </section>
 
                  </article>
