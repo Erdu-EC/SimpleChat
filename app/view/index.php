@@ -295,7 +295,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
     <div id="layoutSidenav_content">
         <main class="container-fluid">
             <div class="row">
-                <div id="frame">
+                <article id="frame">
                     <div id="sidepanel">
 
                          <div id="search">
@@ -400,7 +400,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                          <img src="/files/upload/profile/jonathansidwell.png?w=100&h=100" alt="" />
                                          <div class="meta">
                                              <p class="name">Jonathan Sidwell</p>
-                                             <p class="preview"><span>You:</span> That's bullshit. This deal is solid.</p>
+                                             <p class="preview"><span>Tu:</span> That's bullshit. This deal is solid.</p>
                                          </div>
                                      </div>
                                  </li>
@@ -416,8 +416,14 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
 
                                  <img src="/files/upload/profile/harveyspecter.png?w=100&h=100" alt="" />
 
-                                 <span class="nombre-chat">Harvey Specter</span>
-                             <span class="ult-conex">últ. conex. 18 de may 2021 a la(s) 4:05 p.m.</span>
+
+                            <div class="chat-conexion">
+                                <span class="nombre-chat">Harvey Specter</span>
+                                <span class="ult-conex">últ. conex. 18 de may 2021 a la(s) 4:05 p.m.</span>
+
+                            </div>
+
+
                              <div class="opciones-contacto">
                                  <div class="btn-agregar-contacto" title="Agregar a contactos" ><span class="material-icons">person_add</span>
                                  Agregar contacto
@@ -478,58 +484,53 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                              </div>
                          </div>
                      </section>
+                    <section class="" id="panelInfoContacto">
+                        <button id="btn-cerrar-contacto"><span class="material-icons">close</span></button>
+                        <div class="contenedor-perfil">
+                            <div class="card perfil">
+                                <img src="/files/upload/profile/harveyspecter.png" alt="" class="img-fluid foto-perfil away">
 
-                     <section class="" id="panelInfoContacto">
-                         <button id="btn-cerrar-contacto"><span class="material-icons">close</span></button>
-<div class="contenedor-perfil">
-    <div class="card perfil">
-        <img src="/files/upload/profile/harveyspecter.png" alt="" class="img-fluid foto-perfil away">
+                                <div class="card-body">
+                                    <h5>Harvey Specter</h5>
+                                    <h6>Abogado</h6>
+                                    <small>últ. conex. 18 de may 2021 a la(s) 4:05 p.m.</small>
+                                </div>
+                                <div class="contacto-redes">
 
-        <div class="card-body">
-            <h5>Harvey Specter</h5>
-            <h6>Abogado</h6>
-            <small>últ. conex. 18 de may 2021 a la(s) 4:05 p.m.</small>
-        </div>
-        <div class="contacto-redes">
+                                </div>
 
-        </div>
+                            </div>
+                            <div class=" card contacto-extra">
+                                <div class="item-contacto-extra">
+                                    <h6 class="campo">Correo</h6>
+                                    <span class="valor">harveyspecter@email.com</span>
+                                </div>
+                                <div class="item-contacto-extra">
+                                    <h6>Teléfono</h6>
+                                    <span>(EEUU) 6231 445</span>
+                                </div>
+                                <div class="item-contacto-extra">
+                                    <h6>Fecha de nacimiento</h6>
+                                    <span>12 de junio de 1970</span>
+                                </div>
+                                <div class="item-contacto-extra">
+                                    <h6>Sexo</h6>
+                                    <span>Masculino</span>
+                                </div>
+                            </div>
 
-    </div>
-    <div class=" card contacto-extra">
-        <div class="item-contacto-extra">
-            <h6 class="campo">Correo</h6>
-            <span class="valor">harveyspecter@email.com</span>
-        </div>
-        <div class="item-contacto-extra">
-            <h6>Teléfono</h6>
-            <span>(EEUU) 6231 445</span>
-        </div>
-        <div class="item-contacto-extra">
-            <h6>Fecha de nacimiento</h6>
-            <span>12 de junio de 1970</span>
-        </div>
-        <div class="item-contacto-extra">
-            <h6>Sexo</h6>
-            <span>Masculino</span>
-        </div>
-    </div>
+                        </div>
 
-</div>
-
-                     </section>
-
-                 </article>
-
-
+                    </section>
+                </article>
 
              </div>
 
-         </main>
+
+        </main>
      </div>
-
-
-
  </div>
+
  <script type="text/javascript" src="/files/js/chats.js"></script>
  </body>
  </html>
