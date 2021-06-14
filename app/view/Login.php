@@ -21,9 +21,9 @@ if (Session::IsLogin())
     </head>
     <body>
     <main class="container-fluid" style="background-image: url("")">
-    <img src="/files/img/archivos/fondo-login.svg" alt="" class="imagen-contenedor">
-       <section class="row" id="poster-login">
+    <img alt="" class="imagen-contenedor">
 
+    <section class="row" id="poster-login">
 
            <div class="col-sm-7 col-md-7">
                 <img src="/files/img/img-01.jpg" alt="" class="img-fluid">
