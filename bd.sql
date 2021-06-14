@@ -107,9 +107,17 @@ BEGIN
     END IF;
 END;
 
-CREATE FUNCTION user_is_contact(USERID int, CONTACTID int) RETURNS BOOLEAN
+CREATE FUNCTION user_is_contact(USERID int, CONTACTID int) RETURNS BOOLEAN READS SQL DATA
 BEGIN
     RETURN if(CONTACTID IN (SELECT contact_id FROM contacts WHERE user_id = USERID), true, false);
+END;
+
+#Procedimientos para contactos.
+CREATE FUNCTION user_AddContact(own int, contact  int) RETURNS INT MODIFIES SQL DATA
+BEGIN
+    insert into contacts(user_id, contact_id) values (own, contact);
+
+    RETURN LAST_INSERT_ID();
 END;
 
 #Datos de prueba.

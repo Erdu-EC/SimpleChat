@@ -37,7 +37,32 @@ $(document).on('click', '.elemento-contacto', function () {
 });
 
 $(document).on('click', '.btn-agregar-contacto', function () {
+    const boton = $(this);
 
+    $.ajax('/action/contacts/add', {
+        method: 'post', dataType: 'json', mimeType: 'application/json',
+        data: {
+            contact: $('#espacio-de-chat > div').attr('data-usuario')
+        },
+        beforeSend: () => {
+            boton.attr('disabled', '').text('Agregando...');
+        },
+        error: () => {
+            MostrarModal('Error', 'Ha ocurrido un error al intentar agregar al contacto, intentelo de nuevo.', function (){
+                boton.attr('disabled', null).text('Agregar contacto');
+            })
+        },
+        success: function (json) {
+            if (json === true) {
+                boton.remove();
+                actualizar_lista_contactos();
+            } else{
+                MostrarModal('Error', 'Ha ocurrido un error al intentar agregar al contacto, intentelo de nuevo.', function (){
+                    boton.attr('disabled', null).text('Agregar contacto');
+                })
+            }
+        }
+    });
 });
 
 function actualizar_lista_contactos() {
@@ -46,6 +71,7 @@ function actualizar_lista_contactos() {
 
     $.ajax('/action/users/contacts', {
         method: 'get', dataType: 'json', mimeType: 'application/json',
+        beforeSend: () => lista_contactos.html(ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')),
         error: () => alerta.text('No fue posible cargar la lista de contactos.'),
         success: function (json) {
             if (json === null)
@@ -54,6 +80,8 @@ function actualizar_lista_contactos() {
                 alerta.html('Tu lista de contactos esta vacia.<br/><br/>¡Busca nuevos contactos y agregalos!');
             else {
                 alerta.html('Tienes ' + json.length + ' contacto(s)<br/><br/><small class="text-secondary">¡Busca nuevos contactos y agregalos!</small>')
+
+                $('#lista-contactos').html('')
 
                 json.forEach((registro) => {
                     $('<li>', {
@@ -86,7 +114,7 @@ const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, esContacto)
     </div>`
 
 const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion) =>
-    `<div class="card mb-2 elemento-contacto" data-usuario="${usuario}">
+    `<div class="card mb-2 elemento-contacto" style="cursor: pointer;" data-usuario="${usuario}">
         <div class="row g-0">
             <div class="col-md-3 p-1">
                 <img src="/files/profile/0_erdu.png" class="img-fluid" alt="Foto de perfil">

@@ -22,5 +22,27 @@ function ObtenerContenedorHtmlDeAnimacionDeCarga(width, height, clase = '') {
     `
 }
 
+function MostrarModal(titulo, contenido, evento_cierre) {
+    const elemento = $('<div>', {
+        class: 'modal',
+        tabIndex: '-1',
+        html: `
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">${titulo}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>${contenido}</p>
+                    </div>
+                </div>
+            </div>`
+    }).bind('hidden.bs.modal', evento_cierre);
 
+    //Instanciando modal.
+    new bootstrap.Modal(elemento[0], {
+        keyboard: false
+    }).show();
+}
 

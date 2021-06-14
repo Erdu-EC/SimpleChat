@@ -8,7 +8,7 @@
     /** @var Collection $_VIEW */
 ?>
 
-<div class="card h-100" data-usuario-id="<?= $_VIEW->id ?>">
+<div class="card h-100" data-usuario="<?= $_VIEW->id ?>">
     <div class="card-header">
         <h5 class="row d-flex align-items-center mb-0 user-select-none">
             <div class="col-8">

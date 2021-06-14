@@ -7,6 +7,7 @@ use HS\app\model\UserModel;
 use HS\config\DBAccount;
 use HS\libs\collection\ArrayUtils;
 use HS\libs\core\http\HttpResponse;
+use HS\libs\core\Session;
 use HS\libs\helper\MimeType;
 
 class ContactController
@@ -26,5 +27,23 @@ class ContactController
 
         //Devolviendo.
         echo json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));
+    }
+
+    public function AddContact(){
+        //Estableciendo tipo de respuesta.
+        HttpResponse::SetContentType(MimeType::Json);
+
+        //Obteniendo parametros post.
+        $_POST = ArrayUtils::Trim($_POST, false);
+        $contact_id = !empty($_POST['contact']) ? (int)$_POST['contact'] : die(json_encode(null));
+
+        //Obteniendo usuario actual.
+        $user_id = (new Session())->user_id;
+
+        //Realizando acción.
+        if ((new ContactModel(DBAccount::Root))->AddContact($user_id, $contact_id))
+            die(json_encode(true));
+        else
+            die(json_encode(false));
     }
 }

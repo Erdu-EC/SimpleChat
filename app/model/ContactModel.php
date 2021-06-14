@@ -32,6 +32,17 @@
             }
         }
 
+        public function AddContact(int $user_id, int $contact_id) : bool{
+            try{
+                return !is_null($this->Execute('SELECT user_AddContact(:user, :contact)', [
+                    'user' => $user_id,
+                    'contact' => $contact_id
+                ]));
+            }catch (\PDOException $x){
+                return false;
+            }
+        }
+
         public function IsContactOfUser(int $user_id, int $contact):?bool{
             try {
                 return self::SelectOnly('select user_is_contact(:user, :contact)', [
