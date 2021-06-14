@@ -16,6 +16,8 @@ use const HS\config\APP_NAME;
     ?>
     <title><?= APP_NAME ?>: Chats</title>
     <link rel="stylesheet" href="/files/scss/chat.scss">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+          rel="stylesheet">
     <meta http-equiv="Expires" content="0">
 </head>
 <body class="sb-nav-fixed">
@@ -237,18 +239,20 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                 <div class="wrap no-seleccionable">
                     <img id="profile-img" src="/files/upload/profile/mikeross.png?w=100&h=100" class="online" alt="" />
 
-                    <div class="accordion accordion-flush ">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                    Mike Ross
-                                </button>
-                            </h2>
+                            <button class="accordion-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" id="btn-sesion">
+                                <span class="material-icons izquierda">account_circle</span>
+                                Mike Ross
+                                <span class="material-icons  derecha">arrow_drop_down</span>
+                            </button>
 
                             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
-                                    <a class="nav-link btn" href="/Logout">
+                                    <a class="nav-link" href="/Logout">
+                                        <span class="material-icons icono-centrado">logout</span>
                                         Cerrar sesión
+
                                     </a>
                                 </div>
                             </div>

@@ -18,3 +18,5 @@ Route::All('{all*}', 'LoginController#IfNotLoginRedirect', [], false);
 
 #Pagina de inicio.
 Route::Get("/", "/app/view/index.php", [], true);
+
+
