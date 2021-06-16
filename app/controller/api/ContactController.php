@@ -37,11 +37,8 @@ class ContactController
         $_POST = ArrayUtils::Trim($_POST, false);
         $contact_id = !empty($_POST['contact']) ? (int)$_POST['contact'] : die(json_encode(null));
 
-        //Obteniendo usuario actual.
-        $user_id = (new Session())->user_id;
-
         //Realizando acción.
-        if ((new ContactModel(DBAccount::Root))->AddContact($user_id, $contact_id))
+        if ((new ContactModel(DBAccount::Root))->AddContact((new Session())->user_id, $contact_id))
             die(json_encode(true));
         else
             die(json_encode(false));

@@ -2,6 +2,7 @@
 
     namespace HS\app\model;
 
+    use HS\libs\collection\Collection;
     use HS\libs\core\Model;
     use HS\libs\core\Session;
     use HS\libs\core\TModel;
@@ -19,7 +20,7 @@
             self::$ALLOW_READ_VALUES = [self::C_UID, self::C_CID, self::C_IID];
         }
 
-        public function GetAll($user_contact_fields = null)
+        public function GetAll($user_contact_fields = null): ?Collection
         {
             try {
                 $allow_values = array_merge(UserModel::$ALLOW_READ_VALUES, ContactModel::$ALLOW_READ_VALUES);
