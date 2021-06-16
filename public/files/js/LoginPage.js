@@ -1,4 +1,5 @@
-$(document).on('submit', "#user_form", null, function (event){
+
+$("#user_form").submit(function (e){
     const user = $("#user_name").val();
     const pass = $("#user_pass").val();
     const action_alert = $("#action_alert");
@@ -39,4 +40,10 @@ $(document).on('input', '#user_pass', null, function (event){
         input.setCustomValidity("La contraseña debe tener un minimo de 8 caracteres y un maximo de 60.");
     else
         input.setCustomValidity('');
+});
+
+
+$("#btn-navbar-toggler").click(function (){
+    $("ul.nav-lista").toggleClass("inactivo");
+
 });
