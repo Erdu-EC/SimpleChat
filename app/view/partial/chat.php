@@ -8,7 +8,7 @@
     /** @var Collection $_VIEW */
 ?>
 
-<div class="card h-100" data-usuario="<?= $_VIEW->id ?>">
+<div class="card h-100 mh-100" data-usuario="<?= $_VIEW->id ?>">
     <div class="card-header">
         <h5 class="row d-flex align-items-center mb-0 user-select-none">
             <div class="col-8">
@@ -29,7 +29,7 @@
         </h5>
     </div>
     <div class="card-body">
-        <div class="popover bs-popover-end" style="position: relative; max-width: none">
+        <!--<div class="popover bs-popover-end" style="position: relative; max-width: none">
             <div class="popover-arrow" style="position: absolute; transform: translate(0px, 47px);"></div>
             <h3 class="popover-header">Popover title</h3>
             <div class="popover-body">And here's some amazing content. It's very engaging. Right?</div>
@@ -38,14 +38,14 @@
             <div class="popover-arrow" style="position: absolute; transform: translate(0px, 47px);"></div>
             <h3 class="popover-header">Popover title</h3>
             <div class="popover-body">And here's some amazing content. It's very engaging. Right?</div>
-        </div>
+        </div>-->
     </div>
     <div class="card-footer">
         <div class="row">
             <div class="col">
-                <div class="input-group">
-                            <textarea class="form-control border-primary" rows="2"
-                                      placeholder="Escriba un mensaje..."></textarea>
+                <div id="espacio-de-escritura" class="input-group">
+                    <textarea class="form-control border-primary" rows="2"
+                              placeholder="Escriba un mensaje..."></textarea>
                     <button class="btn btn-outline-primary d-flex align-items-center input-group-text">
                         <b>Enviar</b>
                         <i class="material-icons ms-2">send</i>

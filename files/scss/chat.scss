@@ -4,3 +4,7 @@
 .card-body > .popover:last-child{
   margin-bottom: 0;
 }
+
+#espacio-de-chat .popover{
+  z-index: auto;
+}

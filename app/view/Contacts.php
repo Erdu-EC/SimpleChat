@@ -15,12 +15,13 @@ use const HS\config\APP_NAME;
 
     <link rel="stylesheet" href="/files/css/chat.css">
     <script type="application/javascript" src="/files/js/Contacts.js"></script>
+    <script type="application/javascript" src="/files/js/Chat.js"></script>
 </head>
 <body class="d-flex flex-column">
 <header><?php require 'template/Header.php' ?></header>
 
-<main class="container-fluid d-flex flex-grow-1">
-    <div class="row pt-2 pb-3 ps-4 pe-4 d-flex flex-grow-1">
+<main class="container-fluid h-100 mh-100 overflow-hidden d-flex">
+    <div class="row pt-2 pb-3 ps-4 pe-4 flex-grow-1">
         <div class="col-4">
             <div class="card h-100">
                 <div class="card-header">
@@ -57,7 +58,7 @@ use const HS\config\APP_NAME;
                 </div>
             </div>
         </div>
-        <div id="espacio-de-chat" class="col">
+        <div id="espacio-de-chat" class="col-8">
             <!-- AQUI SE CARGARA EL HISTORIAL DE CHAT DEL CONTACTO -->
         </div>
     </div>

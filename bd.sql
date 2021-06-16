@@ -120,6 +120,19 @@ BEGIN
     RETURN LAST_INSERT_ID();
 END;
 
+#Procedimientos para mensajes.
+CREATE FUNCTION user_SendMessage(source int, dest int, msg text) RETURNS INT MODIFIES SQL DATA
+BEGIN
+    IF NOT EXISTS(SELECT * FROM contacts WHERE user_id = source and contact_id = dest)
+           AND NOT EXISTS(SELECT accepted FROM invitations WHERE id_source = source and id_dest = dest) THEN
+        INSERT INTO invitations(id_source, id_dest, send_date) VALUES (source, dest, NOW());
+    END IF;
+
+    INSERT INTO message(id_source, id_dest, send_date, content) VALUES (source, dest, NOW(), msg);
+
+    RETURN LAST_INSERT_ID();
+END;
+
 #Datos de prueba.
 INSERT INTO users
 VALUES (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa', 'E', 'C', NOW(), 'M', NULL, 'A',
@@ -129,5 +142,4 @@ VALUES (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa
        (3, 'test2', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', null, null, null,
         null, '2021-05-18 11:09:55', null);
 
-INSERT INTO invitations VALUES (5, 1, 3, now(), now(), true, now());
-INSERT INTO contacts VALUES(1, 3, 5);
+INSERT INTO contacts VALUES(1, 3, null);

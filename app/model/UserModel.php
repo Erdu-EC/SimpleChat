@@ -75,6 +75,11 @@
             return (new ContactModel($this->PDO))->IsContactOfUser($user, $contact);
         }
 
+        //Metodos para mensajes.
+        public function SendMessage(int $user_id, int $contact_id, string $text) : bool{
+            return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $text);
+        }
+
         //Metodos estaticos publicos
         public static function GetStringUserState(string $user_state): string{
             switch ($user_state){

@@ -6,11 +6,12 @@ use HS\app\model\ContactModel;
 use HS\app\model\UserModel;
 use HS\config\DBAccount;
 use HS\libs\collection\ArrayUtils;
+use HS\libs\core\Controller;
 use HS\libs\core\http\HttpResponse;
 use HS\libs\core\Session;
 use HS\libs\helper\MimeType;
 
-class ContactController
+class ContactController extends Controller
 {
     public function GetAll(){
         //TODO: Aplicar restriccion con permisos de usuario en la app.
