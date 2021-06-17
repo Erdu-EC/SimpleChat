@@ -27,17 +27,15 @@ if (Session::IsLogin())
     <header class="">
         <nav class="menu-navegacion">
             <button class="navbar-toggler" id="btn-navbar-toggler">
-    <span class="material-icons">
-menu
-</span>
+    <span class="material-icons">menu</span>
             </button>
-            <ul class="nav-lista">
+            <ul class="nav-lista inactivo">
                 <li class="nav-list-item">
 
-                    <a href="#" class="nav-link"> <span class="material-icons">login</span>Acceder</a>
+                    <a href="/Login" class="nav-link activo"> <span class="material-icons">login</span>Acceder</a>
                 </li>
                 <li class="nav-list-item">
-                    <a href="#" class="nav-link"><span class="material-icons">
+                    <a href="/" class="nav-link"><span class="material-icons">
 add
 </span>Resgistrarse</a>
                 </li>
