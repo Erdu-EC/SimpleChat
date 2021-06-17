@@ -41,7 +41,7 @@ add
                 </li>
                 <li class="nav-list-item">
                     <a href="#" class="nav-link">
-                        <span class="material-icons">gavel</span>Terminos y condiciones</a>
+                        <span class="material-icons">gavel</span>Términos y condiciones</a>
                 </li>
                 <li class="nav-list-item">
                     <a href="#" class="nav-link"><span class="material-icons">

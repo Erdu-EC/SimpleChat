@@ -159,11 +159,16 @@ a.nav-link {
  animation-name: fadeInUp;
  -webkit-animation-name: fadeInUp;
 }
-@media screen and (max-width: 1050px){
+@media screen and (max-width: 1050px) and (min-width: 735px){
   .nav-lista li.nav-list-item{
     margin-left: 10px;
   }
-
+  .nav-lista li{
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+    max-width: 140px;
+  }
 }
 nav button.navbar-toggler{
   border: none;
