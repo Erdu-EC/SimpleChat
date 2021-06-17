@@ -20,7 +20,6 @@ function cargar_conversaciones() {
             else {
                 alerta.html('Tienes ' + json.length + ' conversacion(es)<br/><br/><small class="text-secondary">¡Busca un contacto y haz más!</small>')
 
-                console.log(json);
                 lista_conversaciones.html('');
 
                 json.forEach((registro) => {

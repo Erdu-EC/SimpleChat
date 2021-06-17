@@ -32,34 +32,7 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
 
 $(document).on('click', '.elemento-contacto', CargarEspacioDeChat);
 
-$(document).on('click', '.btn-agregar-contacto', function () {
-    const boton = $(this);
 
-    $.ajax('/action/contacts/add', {
-        method: 'post', dataType: 'json', mimeType: 'application/json',
-        data: {
-            contact: $('#espacio-de-chat > div').attr('data-usuario')
-        },
-        beforeSend: () => {
-            boton.attr('disabled', '').text('Agregando...');
-        },
-        error: () => {
-            MostrarModal('Error', 'Ha ocurrido un error al intentar agregar al contacto, intentelo de nuevo.', function (){
-                boton.attr('disabled', null).text('Agregar contacto');
-            })
-        },
-        success: function (json) {
-            if (json === true) {
-                boton.remove();
-                actualizar_lista_contactos();
-            } else{
-                MostrarModal('Error', 'Ha ocurrido un error al intentar agregar al contacto, intentelo de nuevo.', function (){
-                    boton.attr('disabled', null).text('Agregar contacto');
-                })
-            }
-        }
-    });
-});
 
 function actualizar_lista_contactos() {
     const alerta = $('#alerta-lista-contactos').html('');

@@ -120,15 +120,25 @@ CREATE FUNCTION user_AddContact(own int, contact int) RETURNS INT
 BEGIN
     insert into contacts(user_id, contact_id) values (own, contact);
 
+    #Si existen invitaciones de mensajes, aceptarlas.
+    UPDATE invitations SET accepted = true, action_date = NOW(), rcv_date = if (rcv_date is null, NOW(), rcv_date)
+        WHERE id_dest = own and id_source = contact;
+
     RETURN LAST_INSERT_ID();
+END;
+
+#Procedimientos para invitaciones.
+CREATE FUNCTION user_HasInvitation(USER_ID int, CONTACT_ID int) RETURNS BOOLEAN
+BEGIN
+    RETURN EXISTS(SELECT * FROM invitations where id_dest = USER_ID AND id_source = CONTACT_ID and accepted IS NULL);
 END;
 
 #Procedimientos para mensajes.
 CREATE FUNCTION user_SendMessage(source int, dest int, msg text) RETURNS INT
     MODIFIES SQL DATA
 BEGIN
-    IF NOT EXISTS(SELECT * FROM contacts WHERE user_id = source and contact_id = dest)
-        AND NOT EXISTS(SELECT accepted FROM invitations WHERE id_source = source and id_dest = dest) THEN
+    IF NOT EXISTS(SELECT * FROM contacts WHERE user_id = dest and contact_id = source) #Si no existo en sus contactos.
+        AND NOT EXISTS(SELECT * FROM invitations WHERE id_source = source and id_dest = dest) THEN #Y no existe ninguna solicitud mia.
         INSERT INTO invitations(id_source, id_dest, send_date) VALUES (source, dest, NOW());
     END IF;
 
@@ -143,7 +153,7 @@ BEGIN
     SELECT if(id_source != USER_ID, su.user_name, du.user_name)   as contact_id,
            if(id_source != USER_ID, su.first_name, du.first_name) as first_name,
            if(id_source != USER_ID, su.last_name, du.last_name)   as last_name,
-           id_source = USER_ID as isMyMessage,
+           id_source = USER_ID                                    as isMyMessage,
            message.id,
            message.content
     FROM message
@@ -156,6 +166,12 @@ BEGIN
                           and id_dest in (su.id, du.id)
                         order by id desc
                         limit 1);
+END;
+
+#Obtener una conversación completa.
+CREATE PROCEDURE user_GetConversationWithContact(in USER_ID int, in CONTACT_ID int)
+BEGIN
+    select id from message where id_source in (USER_ID, CONTACT_ID) and id_dest in (USER_ID, CONTACT_ID);
 END;
 
 #Datos de prueba.

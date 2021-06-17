@@ -1,6 +1,7 @@
 <?php
     namespace HS\app\controller\ui;
 
+    use HS\app\model\InvitationModel;
     use HS\app\model\UserModel;
     use HS\config\DBAccount;
     use HS\libs\collection\Collection;
@@ -26,6 +27,9 @@
                 //Verificando si es un contacto del usuario actual.
                 $user_data->is_contact = $user->HasContact((new Session())->user_id, $user_data->id);
 
+                //Verificando si existe invitación.
+                $user_data->has_invitation = (new InvitationModel(DBAccount::Root))->HasInvitation((new Session())->user_id, $user_data->id);
+
                 //Cerrando conexión BD.
                 unset($user);
             } catch (PDOException $ex) {
@@ -39,6 +43,7 @@
             $data->full_name = $user_data->first_name . ' ' . $user_data->last_name;
             $data->state = UserModel::GetStringUserState($user_data->state ?? '');
             $data->is_contact = $user_data->is_contact;
+            $data->has_invitation = $user_data->has_invitation;
 
             //Destruyendo variables.
             unset($user_data);

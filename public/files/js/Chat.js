@@ -33,15 +33,49 @@ function CargarEspacioDeChat(){
     ).load(`/Chats/${$(this).attr('data-usuario')}`);
 }
 
-function ObtenerElementoMensaje(mensaje) {
-    return `
+function AgregarContacto(obj, func){
+
+}
+
+$(document).on('click', '.btn-agregar-contacto', function () {
+    const boton = $(this);
+
+    $.ajax('/action/contacts/add', {
+        method: 'post', dataType: 'json', mimeType: 'application/json',
+        data: {
+            contact: $('#espacio-de-chat > div').attr('data-usuario')
+        },
+        beforeSend: () => {
+            boton.attr('disabled', '').text('Agregando...');
+        },
+        error: () => {
+            MostrarModal('Error', 'Ha ocurrido un error al intentar agregar al contacto, intentelo de nuevo.', function (){
+                boton.attr('disabled', null).text('Agregar contacto');
+            })
+        },
+        success: function (json) {
+            if (json === true) {
+                boton.remove();
+                $('#mensaje-invitacion').remove();
+
+                if (typeof actualizar_lista_contactos === 'function')
+                    actualizar_lista_contactos();
+            } else{
+                MostrarModal('Error', 'Ha ocurrido un error al intentar agregar al contacto, intentelo de nuevo.', function (){
+                    boton.attr('disabled', null).text('Agregar contacto');
+                })
+            }
+        }
+    });
+});
+
+const ObtenerElementoMensaje = mensaje => `
         <div class="popover bs-popover-end" style="position: relative; max-width: none">
             <div class="popover-arrow" style="position: absolute; transform: translate(0px, 17px);"></div>
             <h3 class="popover-header">Enviando...</h3>
             <div class="popover-body">${mensaje}</div>
         </div>
     `;
-}
 
 function ObtenerElementoMensajeContacto(mensaje) {
 
