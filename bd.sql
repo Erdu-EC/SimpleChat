@@ -111,7 +111,7 @@ END;
 CREATE FUNCTION user_is_contact(USERID int, CONTACTID int) RETURNS BOOLEAN
     READS SQL DATA
 BEGIN
-    RETURN if(CONTACTID IN (SELECT contact_id FROM contacts WHERE user_id = USERID), true, false);
+    RETURN EXISTS(SELECT * FROM contacts WHERE user_id = USERID and contact_id = CONTACTID);
 END;
 
 #Procedimientos para contactos.
@@ -137,7 +137,7 @@ END;
 CREATE FUNCTION user_SendMessage(source int, dest int, msg text) RETURNS INT
     MODIFIES SQL DATA
 BEGIN
-    IF NOT EXISTS(SELECT * FROM contacts WHERE user_id = dest and contact_id = source) #Si no existo en sus contactos.
+    IF NOT (SELECT user_is_contact(dest, source)) #Si no soy uno de sus contactos.
         AND NOT EXISTS(SELECT * FROM invitations WHERE id_source = source and id_dest = dest) THEN #Y no existe ninguna solicitud mia.
         INSERT INTO invitations(id_source, id_dest, send_date) VALUES (source, dest, NOW());
     END IF;
