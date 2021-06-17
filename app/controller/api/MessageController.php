@@ -2,6 +2,7 @@
 
     namespace HS\app\controller\api;
 
+    use HS\app\model\MessageModel;
     use HS\app\model\UserModel;
     use HS\config\DBAccount;
     use HS\libs\collection\ArrayUtils;
@@ -32,5 +33,16 @@
         //TODO: Aplicar seguridad para que no se puedan leer mensajes que no son tuyos.
         public function Receive(){
 
+        }
+
+        public function GetConversations(){
+            //Estableciendo tipo de respuesta.
+            HttpResponse::SetContentType(MimeType::Json);
+
+            //Obteniendo conversaciónes desde BD.
+            $data = (new MessageModel(DBAccount::Root))->GetConversations((new Session())->user_id);
+
+            //Devolviendo datos.
+            return json_encode($data->GetInnerArray());
         }
     }

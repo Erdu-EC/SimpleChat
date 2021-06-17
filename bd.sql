@@ -23,7 +23,7 @@ CREATE TABLE users
 
     PRIMARY KEY (id),
     KEY idx_user_name (user_name),
-    FULLTEXT idx_user_search(user_name, first_name, last_name)
+    FULLTEXT idx_user_search (user_name, first_name, last_name)
 ) engine = InnoDB;
 
 CREATE TABLE connections
@@ -39,12 +39,12 @@ CREATE TABLE connections
 
 CREATE TABLE invitations
 (
-    id                   INT AUTO_INCREMENT,
-    id_source            INT,
-    id_dest              INT,
-    send_date            datetime,
-    rcv_date             datetime,
-    accepted             boolean,
+    id          INT AUTO_INCREMENT,
+    id_source   INT,
+    id_dest     INT,
+    send_date   datetime,
+    rcv_date    datetime,
+    accepted    boolean,
     action_date datetime,
 
     PRIMARY KEY (id),
@@ -87,7 +87,8 @@ create table permissions
 
 
 #Funciones Y procedimientos.
-CREATE FUNCTION user_set_login(name varchar(30), device_desc TEXT) RETURNS INT MODIFIES SQL DATA
+CREATE FUNCTION user_set_login(name varchar(30), device_desc TEXT) RETURNS INT
+    MODIFIES SQL DATA
 BEGIN
     DECLARE USER_ID int DEFAULT (select id from users WHERE user_name = name);
 
@@ -107,13 +108,15 @@ BEGIN
     END IF;
 END;
 
-CREATE FUNCTION user_is_contact(USERID int, CONTACTID int) RETURNS BOOLEAN READS SQL DATA
+CREATE FUNCTION user_is_contact(USERID int, CONTACTID int) RETURNS BOOLEAN
+    READS SQL DATA
 BEGIN
     RETURN if(CONTACTID IN (SELECT contact_id FROM contacts WHERE user_id = USERID), true, false);
 END;
 
 #Procedimientos para contactos.
-CREATE FUNCTION user_AddContact(own int, contact  int) RETURNS INT MODIFIES SQL DATA
+CREATE FUNCTION user_AddContact(own int, contact int) RETURNS INT
+    MODIFIES SQL DATA
 BEGIN
     insert into contacts(user_id, contact_id) values (own, contact);
 
@@ -121,16 +124,40 @@ BEGIN
 END;
 
 #Procedimientos para mensajes.
-CREATE FUNCTION user_SendMessage(source int, dest int, msg text) RETURNS INT MODIFIES SQL DATA
+CREATE FUNCTION user_SendMessage(source int, dest int, msg text) RETURNS INT
+    MODIFIES SQL DATA
 BEGIN
     IF NOT EXISTS(SELECT * FROM contacts WHERE user_id = source and contact_id = dest)
-           AND NOT EXISTS(SELECT accepted FROM invitations WHERE id_source = source and id_dest = dest) THEN
+        AND NOT EXISTS(SELECT accepted FROM invitations WHERE id_source = source and id_dest = dest) THEN
         INSERT INTO invitations(id_source, id_dest, send_date) VALUES (source, dest, NOW());
     END IF;
 
     INSERT INTO message(id_source, id_dest, send_date, content) VALUES (source, dest, NOW(), msg);
 
     RETURN LAST_INSERT_ID();
+END;
+
+#Obtener las conversaciones.
+CREATE PROCEDURE user_GetConversations(IN USER_ID int)
+BEGIN
+    SELECT id_source,
+           su.first_name,
+           su.last_name,
+           id_dest,
+           du.first_name,
+           du.last_name,
+           message.id,
+           message.content
+    FROM message
+             inner join users su on id_source = su.id
+             inner join users du on id_dest = du.id
+    WHERE USER_ID IN (su.id, du.id)
+      and message.id = (select id
+                        from message
+                        where id_source in (su.id, du.id)
+                          and id_dest in (su.id, du.id)
+                        order by id desc
+                        limit 1);
 END;
 
 #Datos de prueba.
@@ -142,4 +169,5 @@ VALUES (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa
        (3, 'test2', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', null, null, null,
         null, '2021-05-18 11:09:55', null);
 
-INSERT INTO contacts VALUES(1, 3, null);
+INSERT INTO contacts
+VALUES (1, 3, null);

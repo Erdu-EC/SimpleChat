@@ -76,8 +76,10 @@ function actualizar_lista_contactos() {
         success: function (json) {
             if (json === null)
                 alerta.text('No fue posible cargar la lista de contactos.');
-            else if (json.length === 0)
+            else if (json.length === 0){
+                lista_contactos.html('');
                 alerta.html('Tu lista de contactos esta vacia.<br/><br/>¡Busca nuevos contactos y agregalos!');
+            }
             else {
                 alerta.html('Tienes ' + json.length + ' contacto(s)<br/><br/><small class="text-secondary">¡Busca nuevos contactos y agregalos!</small>')
 

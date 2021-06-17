@@ -29,6 +29,13 @@
         </h5>
     </div>
     <div class="card-body">
+        <div class="row border-bottom">
+            <div class="col-10">Alguien que no esta en tus contactos te ha enviado un mensaje, ¿Quieres aceptarlo? </div>
+            <div class="col-2">
+                <button class="btn btn-outline-primary">Si</button>
+                <button class="btn btn-outline-secondary">No</button>
+            </div>
+        </div>
         <!--<div class="popover bs-popover-end" style="position: relative; max-width: none">
             <div class="popover-arrow" style="position: absolute; transform: translate(0px, 47px);"></div>
             <h3 class="popover-header">Popover title</h3>

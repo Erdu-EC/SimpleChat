@@ -4,6 +4,7 @@
     namespace HS\app\model;
 
 
+    use HS\libs\collection\Collection;
     use HS\libs\core\Model;
 
     class MessageModel extends Model
@@ -18,6 +19,16 @@
                 ]));
             } catch (\PDOException $ex) {
                 return false;
+            }
+        }
+
+        public function GetConversations(int $user_id) : ?Collection{
+            try {
+                return $this->SelectAll('CALL user_GetConversations(:user_id)', [
+                    'user_id' => $user_id
+                ]);
+            }catch (\PDOException $ex){
+                return null;
             }
         }
     }

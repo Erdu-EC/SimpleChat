@@ -16,7 +16,7 @@ use HS\libs\core\Session; ?>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Mensajes</a>
+                    <a class="nav-link active" aria-current="page" href="/">Mensajes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/Contacts">Contactos</a>
