@@ -21,7 +21,6 @@ body header{
   display: flex;
  position: absolute;
  z-index: 5;
-
 }
 nav.menu-navegacion {
  margin: 0px;
@@ -31,7 +30,9 @@ nav.menu-navegacion {
  position: relative;
  z-index: 10;
  display: flex;
-  background-color: rgba(231,231,231,0.5)
+  background: #2B364F;
+  background-color: rgba(43,54,79,0.8);
+ /* background-color: rgba(231,231,231,0.5);*/
 }
 nav button.navbar-toggler{
  display: none;
@@ -50,6 +51,7 @@ nav.menu-navegacion ul.nav-lista {
  display: inline-block;
  line-height: 40px;
  margin-left: 30px;
+  color: #ffffff;
 }
 .nav-lista li.nav-list-item a span.material-icons{
 
@@ -67,7 +69,7 @@ a.nav-link {
  font-weight: 500;
  cursor: pointer;
  position: relative;
- color: #404040;
+  color: #ffffff;
 }
 
 @keyframes FadeIn {
@@ -157,61 +159,56 @@ a.nav-link {
  animation-name: fadeInUp;
  -webkit-animation-name: fadeInUp;
 }
+@media screen and (max-width: 1050px){
+  .nav-lista li.nav-list-item{
+    margin-left: 10px;
+  }
 
+}
+nav button.navbar-toggler{
+  display: none;
+}
 @media screen and (max-width: 735px){
+ body header{
+    margin-top: 0px;
+  }
  nav.menu-navegacion{
   flex-direction: column;
-display: none;
+   background: none;
  }
  nav.menu-navegacion ul.nav-lista{
   flex-direction: column;
   width: 100%;
    padding: 0px;
-   border: 1px solid blue;
+   display: none;
+ }
 
- }
- nav button.navbar-toggler{
-  display: inline-flex;
-
-  height: auto;
-  width: auto;
-align-items: start;
- }
- nav button.navbar-toggler span{
-  font-size: 36px;
- }
   .nav-lista li.nav-list-item{
     text-align: left;
-    border: 1px solid red;
     margin: 0px;
-    background-color: #bebebf;
+    background: #456380;
   }
+  nav button.navbar-toggler {
+    display: inline-flex;
+    height: auto;
+    width: auto;
+    align-items: start;
+    background: #456380;
+    border-radius: 0px;
 }
 
 
-  @keyframes FadeOut {
-    0% {
-      opacity: 0;
-      -webkit-transition-duration: 0.8s;
-      transition-duration: 0.8s;
-      -webkit-transform: translateY(0);
-      -ms-transform: translateY(0);
-      transform: translateY(0);
-
-    }
-
-
-    100% {
-      opacity: 1;
-      -webkit-transform: translateY(-10px);
-      -ms-transform: translateY(-10px);
-      transform: translateY(-10px);
-      pointer-events: auto;
-      display: none;
-    }
+  nav button.navbar-toggler span{
+    font-size: 36px;
+    color: #ffffff;
   }
-ul.inactivo li.nav-list-item{
-    animation: FadeOut 1s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+nav button.navbar-toggler:hover{
+
+  box-shadow: none;
+}
+nav.menu-navegacion ul.activo{
+  display: flex;
 }
 
 
@@ -229,7 +226,7 @@ margin-left: auto;
   text-align: center;
   padding: 30px 32px 60px;
   width: 370px;
-  background: rgba(50,67,64,0.6);
+  background: rgba(0,0,0,0.65);
   box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
   border-radius: 0px;
 }

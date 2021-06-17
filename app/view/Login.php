@@ -32,7 +32,7 @@ menu
 </span>
             </button>
             <ul class="nav-lista">
-                <li class="nav-list-item active">
+                <li class="nav-list-item">
 
                     <a href="#" class="nav-link"> <span class="material-icons">login</span>Acceder</a>
                 </li>

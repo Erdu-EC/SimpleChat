@@ -44,6 +44,6 @@ $(document).on('input', '#user_pass', null, function (event){
 
 
 $("#btn-navbar-toggler").click(function (){
-    $("ul.nav-lista").toggleClass("inactivo");
+    $("nav.menu-navegacion ul.nav-lista").toggleClass("activo");
 
 });
