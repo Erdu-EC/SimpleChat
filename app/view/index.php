@@ -14,6 +14,9 @@ use const HS\config\APP_NAME;
     <title><?= APP_NAME ?>: Inicio</title>
 
     <link rel="stylesheet" href="/files/css/chat.css">
+
+    <script type="text/javascript" src="/files/js/Chat.js"></script>
+    <script type="text/javascript" src="/files/js/Conversations.js"></script>
 </head>
 <body class="d-flex flex-column">
 <header><?php require 'template/Header.php' ?></header>

@@ -140,12 +140,10 @@ END;
 #Obtener las conversaciones.
 CREATE PROCEDURE user_GetConversations(IN USER_ID int)
 BEGIN
-    SELECT id_source,
-           su.first_name,
-           su.last_name,
-           id_dest,
-           du.first_name,
-           du.last_name,
+    SELECT if(id_source != USER_ID, su.user_name, du.user_name)   as contact_id,
+           if(id_source != USER_ID, su.first_name, du.first_name) as first_name,
+           if(id_source != USER_ID, su.last_name, du.last_name)   as last_name,
+           id_source = USER_ID as isMyMessage,
            message.id,
            message.content
     FROM message

@@ -43,6 +43,6 @@
             $data = (new MessageModel(DBAccount::Root))->GetConversations((new Session())->user_id);
 
             //Devolviendo datos.
-            return json_encode($data->GetInnerArray());
+            return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));
         }
     }

@@ -30,11 +30,7 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
     }
 });
 
-$(document).on('click', '.elemento-contacto', function () {
-    $('#espacio-de-chat').html(
-        ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
-    ).load(`/Chats/${$(this).attr('data-usuario')}`);
-});
+$(document).on('click', '.elemento-contacto', CargarEspacioDeChat);
 
 $(document).on('click', '.btn-agregar-contacto', function () {
     const boton = $(this);
@@ -83,7 +79,7 @@ function actualizar_lista_contactos() {
             else {
                 alerta.html('Tienes ' + json.length + ' contacto(s)<br/><br/><small class="text-secondary">¡Busca nuevos contactos y agregalos!</small>')
 
-                $('#lista-contactos').html('')
+                lista_contactos.html('')
 
                 json.forEach((registro) => {
                     $('<li>', {

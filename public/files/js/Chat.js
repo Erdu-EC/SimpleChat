@@ -27,6 +27,12 @@ $(document).on('click', '#espacio-de-escritura button', function () {
     //console.log(text);
 })
 
+function CargarEspacioDeChat(){
+    $('#espacio-de-chat').html(
+        ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
+    ).load(`/Chats/${$(this).attr('data-usuario')}`);
+}
+
 function ObtenerElementoMensaje(mensaje) {
     return `
         <div class="popover bs-popover-end" style="position: relative; max-width: none">
