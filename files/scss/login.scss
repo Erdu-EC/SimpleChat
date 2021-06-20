@@ -301,16 +301,22 @@ form .input-group input{
   flex-grow: 1;
 }
 
-.recuperar-clave{
+.recuperar-clave, .crear-cuenta{
   text-align: center;
   margin: 10px 0;
 }
-.recuperar-clave a{
+
+.recuperar-clave a ,  .crear-cuenta a{
   color: white;
   text-decoration: none;
   font-family: 'Poppins',sans-serif;
+  font-weight: bold;
 }
-.recuperar-clave:hover a{
+.crear-cuenta {
+  font-family: 'Poppins',sans-serif;
+color: #ffffff;
+}
+.recuperar-clave:hover a, .crear-cuenta a:hover {
   text-decoration: underline;
 }
 .input-group input[type="submit"]{

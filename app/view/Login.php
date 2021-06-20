@@ -22,6 +22,7 @@ if (Session::IsLogin())
         header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
         header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
         ?>
+
     </head>
     <body>
     <header class="">
@@ -35,7 +36,7 @@ if (Session::IsLogin())
                     <a href="/Login" class="nav-link activo"> <span class="material-icons">login</span>Acceder</a>
                 </li>
                 <li class="nav-list-item">
-                    <a href="/" class="nav-link"><span class="material-icons">
+                    <a href="/Register" class="nav-link"><span class="material-icons">
 add
 </span>Resgistrarse</a>
                 </li>
@@ -82,6 +83,9 @@ support_agent</span>
                          </div>
                          <div class="recuperar-clave">
                              <a href="">¿Ha olvidado su contraseña?</a>
+                         </div>
+                         <div class="crear-cuenta">
+                         ¿Todavía no tienes una cuenta Deezer? <a href="/Register">Regístrate</a>
                          </div>
 <div class="input-group">
         <input type="submit" value="Acceder" id="acceder">
