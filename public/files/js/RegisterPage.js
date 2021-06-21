@@ -2,6 +2,28 @@
 $(document).ready(function () {
    $("input[type=date]").val("");
 });
+$(".input-group input#birth_date").focus(function (){
+    $(this).css("color","#868580");
+    var elemento =  $(this).parent().parent();
+    elemento.addClass("activo");
+    elemento.removeClass("error");
+    $(this).removeClass("error");
+});
+$(".input-group input#birth_date").blur(function () {
+    var elemento =  $(this).parent().parent();
+
+    if($(this).val()==""){
+        elemento.removeClass("activo");
+        elemento.addClass("error");
+        $(this).addClass("error");
+        $(this).css("color","transparent");
+    }else
+    {
+        $(this).addClass("valorado");
+        $(".input-group input#birth_date").css("color","#171a1d");
+    }
+
+});
 
 $(".item-form .input-group input").focus(function () {
 var elemento =  $(this).parent().parent();
@@ -17,6 +39,9 @@ $(".item-form .input-group input").blur(function () {
         elemento.removeClass("activo");
         elemento.addClass("error");
        $(this).addClass("error");
+    }else
+    {
+        $(this).addClass("valorado");
     }
 
 });
@@ -37,8 +62,33 @@ $(".item-form .input-group #gender").blur(function () {
 
 });
 /*Fin de acciones de FrontEnd*/
+$("button#registrar").click(function (e) {
 
-$(document).on('submit', "#user_form", null, function () {
+    $.ajax('/action/user/Login', {
+        method: 'post',
+        dataType: 'json',
+        mimeType: 'application/json',
+        data: {
+            u: $("#user_name").val(),
+            p: $("#user_pass").val()
+        },
+        beforeSend: () => Alert(ALERT_NORMAL, "Cargando..."),
+        error: () => Alert(ALERT_ERROR, "No fue posible iniciar sesion."),
+        success: function (json) {
+            if (json === true) {
+                Alert(ALERT_SUCCESS, 'Sesion iniciada.');
+                window.location = "/";
+            } else
+                Alert(ALERT_ERROR, 'Usuario o contraseña incorrecta.');
+        }
+    });
+
+    return false;
+});
+
+/*
+$(document).on('submit', "#user_form", null, function (e) {
+    e.preventDefault();
     $.ajax('/action/user/Login', {
         method: 'post',
         dataType: 'json',
@@ -123,3 +173,4 @@ $(document).on('input', '#user_pass_repeat', null, function () {
         this.setCustomValidity('');
 });
 
+*/

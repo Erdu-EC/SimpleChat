@@ -109,12 +109,12 @@ face
                 </div>
                 <div class="col-6">
                    <div class="item-form">
-                       <span class="etiqueta-input">Fecha de nacimiento</span>
+                       <span class="etiqueta-input" id="etiquetaCumple">Fecha de nacimiento</span>
                        <div class="input-group">
                            <label class="" for="birth_date">
                               <span class="material-icons">cake</span>
                            </label>
-                           <input id="birth_date" type="date" class="" required placeholder=" " <?php echo 'max="',date('Y-m-d'),'"';?>>
+                           <input id="birth_date" type="date" class=""  default="2013-05-21" required placeholder="2013-05-21" <?php echo 'max="',date('Y-m-d'),'"';?>>
                        </div>
                    </div>
                 </div>
@@ -150,7 +150,7 @@ face
                 <div class="item-form">
 
                     <div class="input-group">
-                        <button type="submit" class="">
+                        <button type="submit" class="" id="registrar">
                             Registrarse
                         </button>
                     </div>

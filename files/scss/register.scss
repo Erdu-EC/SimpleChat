@@ -15,9 +15,7 @@ background: none;
   background-attachment: fixed;
   background-position: center;
   overflow-y: scroll;
-
   overflow-x: hidden;
-
 }
 .container-fluid main.main::-webkit-scrollbar {
   width: 0;               /* width of the entire scrollbar */
@@ -270,8 +268,6 @@ Estilos para el formulario de registro
   margin-top: 20px;
   text-align: center;
   padding: 30px 32px 60px;
-  width: 100%;
-
   background: rgba(0,0,0,0.65);
   border-radius: 0px;
   font-family: 'Poppins',sans-serif;
@@ -303,20 +299,31 @@ Estilos para el formulario de registro
   text-align: left;
   align-content: start;
   align-items: start;
-  width: auto;
   height: auto;
   position: absolute;
   z-index: 5;
   margin-left:40px ;
-  margin-top: 10px;
+  margin-top: 14px;
   -webkit-transition: all .3s ease;
   -o-transition: all .3s ease;
   transition: all .3s ease;
+
+
 }
+@media screen and (max-width: 576px){
+  span#etiquetaCumple {
+    max-width: 120px;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+  }
+}
+
 div.activo span.etiqueta-input {
 margin-top:-20px;
   color: #ffffff;
   font-size: 12px;
+
 }
 div.activo .input-group input {
   border-bottom: 3px solid #303F9F;
@@ -341,6 +348,9 @@ div.error span.etiqueta-input  {
   margin-top: auto;
   margin-bottom: auto;
   color: #868580;
+
+  font-size: 20px;
+
 }
 
 .item-form .input-group input, .item-form .input-group select{
@@ -351,41 +361,21 @@ border-radius: 0px;
   height: 100%;
   width: 100%;
   background: transparent;
-  padding-left: 40px;
+  margin: 0px;
+  padding: 8px 10px 0 40px;
   z-index: 6;
 }
-.item-form .input-group input-internal-autofill-selected {
-  background: none;
+.item-form .input-group input[type=date]{
+  color: transparent;
 }
-@-webkit-keyframes autofill {
-  0%,100% {
-    background: transparent;
-  }
-}
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-  border: none;
-  border-bottom: 3px solid #303F9F;
-  -webkit-box-shadow: transparent;
-  -webkit-background-image: none;
-  -webkit-animation-name: autofill;
-  -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
-  -webkit-animation-name: autofill;
-  -webkit-animation-fill-mode: both;
+.item-form .input-group input.valorado {
+  color: #171a1d;
 }
 
 .item-form .input-group label{
   height: 100%;
   border-radius: 0px;
   background: #ffffff;
-
   display: flex;
   padding-left: 10px;
   position: absolute;
