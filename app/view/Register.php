@@ -64,7 +64,7 @@ support_agent</span>
         <div class="card">
             <div class="card-header">
                 <img src="/files/icon/logo.png" alt="">
-                <?= 'Bienvenido al formulario de registro de' . APP_NAME ?>
+                <?= 'Bienvenido al formulario de registro de ' . APP_NAME ?>
             </div>
             <form id="register_form" method="post">
             <div class="row">
@@ -75,7 +75,7 @@ support_agent</span>
                             <label for="first_name"><span class="material-icons">
 face
 </span></label>
-                            <input id="first_name" type="text" class="form-control" placeholder="Escriba su(s) nombre(s)" required>
+                            <input id="first_name" type="text" class="form-control"  required>
 
                         </div>
                     </div>
@@ -98,7 +98,7 @@ face
                                 <span class="material-icons">wc</span>
                             </label>
                             <select class="form-select" id="gender">
-                                <option selected>Seleccione...</option>
+                                <option selected disabled></option>
                                 <option value="M">Masculino</option>
                                 <option value="F">Femenino</option>
                                 <option value="O">Otro</option>
@@ -114,7 +114,7 @@ face
                            <label class="" for="birth_date">
                               <span class="material-icons">cake</span>
                            </label>
-                           <input id="birth_date" type="date" class="form-control" required>
+                           <input id="birth_date" type="date" class="" required placeholder=" " <?php echo 'max="',date('Y-m-d'),'"';?>>
                        </div>
                    </div>
                 </div>
@@ -136,7 +136,7 @@ face
                        <label class="" for="user_pass"><span class="material-icons">lock</span></label>
                        <input id="user_pass" type="password" class="form-control"
                               autocomplete="new-password"
-                              placeholder="Ingrese su contraseña" minlength="8" maxlength="60" required>
+                               minlength="8" maxlength="60" required>
                    </div>
                </div>
                <div class="item-form">
@@ -144,7 +144,7 @@ face
                    <div class="input-group">
                        <label for="user_pass_repeat" ><span class="material-icons">lock</span></label>
                        <input id="user_pass_repeat" type="password" class="form-control"   autocomplete="new-password"
-                              placeholder="Repita la contraseña" minlength="8" maxlength="60" required>
+                               minlength="8" maxlength="60" required>
                    </div>
                </div>
                 <div class="item-form">
@@ -157,8 +157,10 @@ face
 
                 </div>
 
+<div class="acceder-cuenta">
+    ¿Ya tienes una cuenta? <a class="" href="/Login">Inicia Sesión</a>
+</div>
 
-            <a class="d-block text-primary mt-3" href="/Login">¿Ya tienes una cuenta? Inicia Sesión</a>
             </form>
         </div>
 

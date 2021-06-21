@@ -8,6 +8,8 @@ use HS\libs\core\Route;
 #Login Routes
 Route::Get("/Login", '/app/view/Login.php', [], true);
 Route::Post('/Login.json', 'LoginController#Login', [], true);
+Route::Get("/Register", '/app/view/Register.php', [], true);
+Route::Post('/action/user/Register', 'LoginController#Register', [], true);
 Route::Get("/Logout", 'LoginController#Logout', [], true);
 Route::Get("/chat", '/app/view/chats.php', [], true);
 Route::Get("/contactos", '/app/view/contactos.php', [], true);

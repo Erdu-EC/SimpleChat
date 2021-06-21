@@ -1,13 +1,41 @@
 /*Acciones de FrontEnd*/
-
-$(".item-form .input-group input").onfocus(function () {
-    var label = $('label[for="' + $(this).attr('id') + '"]');
-    label.style( "border-bottom: 3px solid #303F9F;");
-
-
+$(document).ready(function () {
+   $("input[type=date]").val("");
 });
 
+$(".item-form .input-group input").focus(function () {
+var elemento =  $(this).parent().parent();
+elemento.addClass("activo");
+    elemento.removeClass("error");
+    $(this).removeClass("error");
+});
 
+$(".item-form .input-group input").blur(function () {
+    var elemento =  $(this).parent().parent();
+
+    if($(this).val()==""){
+        elemento.removeClass("activo");
+        elemento.addClass("error");
+       $(this).addClass("error");
+    }
+
+});
+$(".item-form .input-group #gender").click(function () {
+    var elemento =  $(this).parent().parent();
+    elemento.addClass("activo");
+    elemento.removeClass("error");
+    $(this).removeClass("error");
+});
+$(".item-form .input-group #gender").blur(function () {
+    var elemento =  $(this).parent().parent();
+
+    if($(this).val()==""){
+        elemento.removeClass("activo");
+        elemento.addClass("error");
+        $(this).addClass("error");
+    }
+
+});
 /*Fin de acciones de FrontEnd*/
 
 $(document).on('submit', "#user_form", null, function () {

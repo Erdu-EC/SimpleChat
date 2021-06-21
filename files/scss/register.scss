@@ -299,18 +299,42 @@ Estilos para el formulario de registro
   align-items: start;
 }
 .item-form span.etiqueta-input {
-  color: #ffffff;
+  color: #868580;
   text-align: left;
   align-content: start;
   align-items: start;
-  width: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  z-index: 5;
+  margin-left:40px ;
+  margin-top: 10px;
+  -webkit-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+div.activo span.etiqueta-input {
+margin-top:-20px;
+  color: #ffffff;
+  font-size: 12px;
+}
+div.activo .input-group input {
+  border-bottom: 3px solid #303F9F;
+}
+
+div.error span.etiqueta-input  {
+  color: #D32F2F;
+}
+.item-form .input-group input.error{
+  border-bottom: 2px solid #D32F2F;
 }
 .item-form .input-group{
   height: 45px;
   width: 100%;
   display: flex;
   border-radius: 0px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  background: #ffffff;
 
 }
 .item-form .input-group span.material-icons{
@@ -325,10 +349,36 @@ Estilos para el formulario de registro
   outline: none;
 border-radius: 0px;
   height: 100%;
+  width: 100%;
+  background: transparent;
+  padding-left: 40px;
+  z-index: 6;
 }
-
-.item-form .input-group input[type="text"]:focus, .item-form .input-group input[type="password"]:focus{
+.item-form .input-group input-internal-autofill-selected {
+  background: none;
+}
+@-webkit-keyframes autofill {
+  0%,100% {
+    background: transparent;
+  }
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
   border-bottom: 3px solid #303F9F;
+  -webkit-box-shadow: transparent;
+  -webkit-background-image: none;
+  -webkit-animation-name: autofill;
+  -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
 }
 
 .item-form .input-group label{
@@ -338,6 +388,7 @@ border-radius: 0px;
 
   display: flex;
   padding-left: 10px;
+  position: absolute;
 }
 .item-form .input-group button[type=submit]{
   width: 100%;
@@ -354,8 +405,19 @@ border-radius: 0px;
   background: #006aa9;
   border: 1px solid #006aa9;
 }
+.acceder-cuenta{
+  font-family: 'Poppins',sans-serif;
+  color: #ffffff;
+}
+.acceder-cuenta a{
 
-
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+}
+.acceder-cuenta a:hover{
+  text-decoration: underline;
+}
 /*-------------------------------------------------------------
 Fin de estilos para el formulario de registro
 ------------------------------------------------------*/
