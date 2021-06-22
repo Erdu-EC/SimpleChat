@@ -10,7 +10,7 @@ use HS\libs\io\Path;
 
 class ImageController
 {
-    public static function Get(string $type, string $filename)
+    public static function Get(string $type, string $filename) : void
     {
         /*TODO Limitar quien puede acceder a las fotos de perfil, con permisos de BD.*/
 
@@ -18,14 +18,8 @@ class ImageController
         $THUMB_WIDTH = isset($_GET['w']) ? intval($_GET['w']) : 0;
         $THUMB_HEIGHT = isset($_GET['h']) ? intval($_GET['h']) : 0;
 
-        //Si no es un tipo de imagen valido...
-        if (!isset(APP_DIR::IMAGE[$type])) {
-            HttpResponse::Set(HttpResponse::_404_NOTFOUND);
-            die;
-        }
-
         //Localizando el tipo de imagen y obteniendo ruta.
-        $path = Path::ToAbsolute(Path::Combine(APP_DIR::IMAGE[$type], $filename));
+        $path = self::GetPathOfType($type, $filename);
 
         //Abriendo imagen original
         try {
@@ -56,7 +50,22 @@ class ImageController
         unset($thumb);
     }
 
-    public static function GetOriginal(string $type, string $filename){
+    public static function GetOriginal(string $type, string $filename) : void{
+        //Localizando el tipo de imagen y obteniendo ruta.
+        $path = self::GetPathOfType($type, $filename);
 
+        //Escribiendo en buffer de salida.
+        die(file_get_contents($filename, false));
+    }
+
+    private static function GetPathOfType(string $type, string $filename) : ?string{
+        //Si no es un tipo de imagen valido...
+        if (!isset(APP_DIR::IMAGE[$type])) {
+            HttpResponse::Set(HttpResponse::_404_NOTFOUND);
+            die;
+        }
+
+        //Localizando el tipo de imagen y obteniendo ruta.
+        return Path::ToAbsolute(Path::Combine(APP_DIR::IMAGE[$type], $filename));
     }
 }
