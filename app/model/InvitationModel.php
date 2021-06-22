@@ -3,6 +3,7 @@
     namespace HS\app\model;
 
     use HS\libs\core\Model;
+    use PDOException;
 
     class InvitationModel extends Model
     {
@@ -12,7 +13,7 @@
                     'user' => $user_id,
                     'contact' => $contact_id
                 ]);
-            }catch (\PDOException $ex){
+            }catch (PDOException $ex){
                 return false;
             }
         }

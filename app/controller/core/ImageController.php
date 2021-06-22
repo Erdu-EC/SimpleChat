@@ -12,8 +12,7 @@ class ImageController
 {
     public static function Get(string $type, string $filename)
     {
-        /*TODO Limitar quien puede acceder a las fotos de perfil, con permisos de BD.
-        */
+        /*TODO Limitar quien puede acceder a las fotos de perfil, con permisos de BD.*/
 
         //Obteniendo parámetros proporcionados por GET.
         $THUMB_WIDTH = isset($_GET['w']) ? intval($_GET['w']) : 0;
@@ -55,5 +54,9 @@ class ImageController
         //Cerrando recursos
         unset($image);
         unset($thumb);
+    }
+
+    public static function GetOriginal(string $type, string $filename){
+
     }
 }

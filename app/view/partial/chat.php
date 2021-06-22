@@ -29,7 +29,7 @@
         </h5>
     </div>
     <div class="card-body">
-        <?php if (is_null($_VIEW->has_invitation) || $_VIEW->has_invitation): ?>
+        <?php if (!is_null($_VIEW->has_invitation) && $_VIEW->has_invitation): ?>
             <div id="mensaje-invitacion" class="row border-bottom">
                 <div class="col-10">Alguien que no esta en tus contactos te ha enviado un mensaje, ¿Quieres aceptarlo?
                 </div>

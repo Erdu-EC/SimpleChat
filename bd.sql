@@ -137,13 +137,18 @@ END;
 CREATE FUNCTION user_SendMessage(source int, dest int, msg text) RETURNS INT
     MODIFIES SQL DATA
 BEGIN
-    IF NOT (SELECT user_is_contact(dest, source)) #Si no soy uno de sus contactos.
-        AND NOT EXISTS(SELECT * FROM invitations WHERE id_source = source and id_dest = dest) THEN #Y no existe ninguna solicitud mia.
-        INSERT INTO invitations(id_source, id_dest, send_date) VALUES (source, dest, NOW());
+    #Si usuario no pertenece a los contactos del destinario
+    #Y no existe ninguna solicitud aceptada o pendiente.
+    IF NOT (SELECT user_is_contact(dest, source))
+        AND NOT EXISTS(SELECT * FROM invitations WHERE id_source = source and id_dest = dest and accepted in (true, NULL)) THEN
+            #Insertar invitacion.
+            INSERT INTO invitations(id_source, id_dest, send_date) VALUES (source, dest, NOW());
     END IF;
 
+    #Insertar mensaje en cualquier caso.
     INSERT INTO message(id_source, id_dest, send_date, content) VALUES (source, dest, NOW(), msg);
 
+    #Devolver ID del mensaje.
     RETURN LAST_INSERT_ID();
 END;
 
