@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS simplechat;
 CREATE DATABASE simplechat;
 USE simplechat;
 
-#SET GLOBAL log_bin_trust_function_creators = 1;
+SET GLOBAL log_bin_trust_function_creators = 1;
 
 CREATE TABLE users
 (
@@ -56,11 +56,11 @@ CREATE TABLE contacts
 (
     user_id       INT,
     contact_id    INT,
-    invitation_id INT,
+    blocked       boolean default false,
+    register_date datetime,
     PRIMARY KEY (user_id, contact_id),
     FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (contact_id) REFERENCES users (id),
-    FOREIGN KEY (invitation_id) REFERENCES invitations (id)
+    FOREIGN KEY (contact_id) REFERENCES users (id)
 );
 
 CREATE TABLE message
@@ -118,11 +118,18 @@ END;
 CREATE FUNCTION user_AddContact(own int, contact int) RETURNS INT
     MODIFIES SQL DATA
 BEGIN
-    insert into contacts(user_id, contact_id) values (own, contact);
+    #Insertar nuevo contacto.
+    insert into contacts(user_id, contact_id, register_date) values (own, contact, NOW());
 
-    #Si existen invitaciones de mensajes, aceptarlas.
-    UPDATE invitations SET accepted = true, action_date = NOW(), rcv_date = if (rcv_date is null, NOW(), rcv_date)
-        WHERE id_dest = own and id_source = contact;
+    #Si existen invitaciones de mensajes pendientes, aceptarlas.
+    UPDATE invitations
+    SET accepted    = true,
+        action_date = NOW(),
+        rcv_date    = if(rcv_date is null, NOW(), rcv_date)
+    WHERE id_dest = own
+      and id_source = contact
+      and accepted is NULL
+      and id = (select max(id) from invitations where id_dest = own and id_source = contact);
 
     RETURN LAST_INSERT_ID();
 END;
@@ -133,6 +140,11 @@ BEGIN
     RETURN EXISTS(SELECT * FROM invitations where id_dest = USER_ID AND id_source = CONTACT_ID and accepted IS NULL);
 END;
 
+CREATE PROCEDURE user_GetLastInvitationSend(in USER_ID int, in CONTACT_ID int)
+BEGIN
+    SELECT * FROM invitations WHERE id_dest = CONTACT_ID AND id_source = USER_ID order by id desc limit 1;
+END;
+
 #Procedimientos para mensajes.
 CREATE FUNCTION user_SendMessage(source int, dest int, msg text) RETURNS INT
     MODIFIES SQL DATA
@@ -140,9 +152,13 @@ BEGIN
     #Si usuario no pertenece a los contactos del destinario
     #Y no existe ninguna solicitud aceptada o pendiente.
     IF NOT (SELECT user_is_contact(dest, source))
-        AND NOT EXISTS(SELECT * FROM invitations WHERE id_source = source and id_dest = dest and accepted in (true, NULL)) THEN
-            #Insertar invitacion.
-            INSERT INTO invitations(id_source, id_dest, send_date) VALUES (source, dest, NOW());
+        AND NOT EXISTS(SELECT *
+                       FROM invitations
+                       WHERE id_source = source
+                         and id_dest = dest
+                         and (accepted = true or accepted IS NULL)) THEN
+        #Insertar invitacion.
+        INSERT INTO invitations(id_source, id_dest, send_date) VALUES (source, dest, NOW());
     END IF;
 
     #Insertar mensaje en cualquier caso.
@@ -189,4 +205,4 @@ VALUES (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa
         null, '2021-05-18 11:09:55', null);
 
 INSERT INTO contacts
-VALUES (1, 3, null);
+VALUES (1, 3, false, NOW());
