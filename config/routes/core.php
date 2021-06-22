@@ -2,6 +2,7 @@
 
     namespace HS\config\routes;
 
+    use HS\config\APP_DIR;
     use HS\libs\core\Route;
     use HS\libs\helper\Regex;
 
@@ -12,6 +13,7 @@
 
     #Image Routes
     $cond_image = [
+        'type' => call_user_func_array([Regex::class, 'InList'], array_keys(APP_DIR::IMAGE)),
         'filename' => Regex::EndWith('.png', '.bmp', '.gif', '.jpg', '.jpeg'),
         'get' => '#^(?:[w|h]=\d+(?:\.\d+)?)(?:&[w|h]=\d+(?:\.\d+)?)?$#'
     ];
