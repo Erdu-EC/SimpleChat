@@ -25,7 +25,7 @@ function cargar_conversaciones() {
                 json.forEach((registro) => {
                     $('<li>', {
                         class: 'list-group-item ps-0 pe-0',
-                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[5]),
+                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[6]),
                     }).appendTo(lista_conversaciones);
                 });
             }

@@ -85,6 +85,27 @@ create table permissions
     FOREIGN KEY (id) REFERENCES users (id)
 );
 
+CREATE OR REPLACE VIEW conversations AS
+SELECT id_source,
+       su.user_name    as s_nick,
+       su.first_name   as s_first_name,
+       su.last_name    as s_last_name,
+       id_dest,
+       du.user_name    as d_nick,
+       du.first_name   as d_first_name,
+       du.last_name    as d_last_name,
+       message.id      as msg_id,
+       message.content as msg_content
+FROM message
+         inner join users su on id_source = su.id
+         inner join users du on id_dest = du.id
+WHERE message.id = (select id
+                    from message
+                    where id_source in (su.id, du.id)
+                      and id_dest in (su.id, du.id)
+                    order by id desc
+                    limit 1);
+
 
 #Funciones Y procedimientos.
 CREATE FUNCTION user_set_login(name varchar(30), device_desc TEXT) RETURNS INT
@@ -125,25 +146,41 @@ BEGIN
     UPDATE invitations
     SET accepted    = true,
         action_date = NOW(),
-        rcv_date    = if(rcv_date is null, NOW(), rcv_date)
-    WHERE id_dest = own
-      and id_source = contact
-      and accepted is NULL
-      and id = (select max(id) from invitations where id_dest = own and id_source = contact);
+        rcv_date    = if(rcv_date is null, action_date, rcv_date)
+    WHERE id = (SELECT user_GetIdOfLastInvitationReceived(own, contact))
+      AND accepted is NULL;
 
     RETURN LAST_INSERT_ID();
 END;
 
 #Procedimientos para invitaciones.
+DELIMITER $
+
 CREATE FUNCTION user_HasInvitation(USER_ID int, CONTACT_ID int) RETURNS BOOLEAN
 BEGIN
     RETURN EXISTS(SELECT * FROM invitations where id_dest = USER_ID AND id_source = CONTACT_ID and accepted IS NULL);
-END;
+END $
 
 CREATE PROCEDURE user_GetLastInvitationSend(in USER_ID int, in CONTACT_ID int)
 BEGIN
     SELECT * FROM invitations WHERE id_dest = CONTACT_ID AND id_source = USER_ID order by id desc limit 1;
-END;
+END $
+
+CREATE FUNCTION user_GetIdOfLastInvitationReceived(USER_ID int, CONTACT_ID int) RETURNS INT
+    READS SQL DATA
+BEGIN
+    RETURN (SELECT max(id) FROM invitations WHERE id_dest = USER_ID AND id_source = CONTACT_ID);
+END $
+
+CREATE PROCEDURE user_ChangeInvitationState(in USER_ID int, in CONTACT_ID int, in accept boolean)
+BEGIN
+    #Cambiar estado de la ultima invitacion recibida por el usuario proveniente de ese contacto.
+    UPDATE invitations
+    SET accepted    = accept,
+        action_date = NOW(),
+        rcv_date    = IF(rcv_date IS NULL, action_date, rcv_date)
+    WHERE id = (SELECT user_GetIdOfLastInvitationReceived(USER_ID, CONTACT_ID));
+END $
 
 #Procedimientos para mensajes.
 CREATE FUNCTION user_SendMessage(source int, dest int, msg text) RETURNS INT
@@ -169,24 +206,25 @@ BEGIN
 END;
 
 #Obtener las conversaciones.
-CREATE PROCEDURE user_GetConversations(IN USER_ID int)
+CREATE OR REPLACE FUNCTION user_canReceiveMessage(USER_ID int, CONTACT_ID int) RETURNS BOOLEAN
 BEGIN
-    SELECT if(id_source != USER_ID, su.user_name, du.user_name)   as contact_id,
-           if(id_source != USER_ID, su.first_name, du.first_name) as first_name,
-           if(id_source != USER_ID, su.last_name, du.last_name)   as last_name,
-           id_source = USER_ID                                    as isMyMessage,
-           message.id,
-           message.content
-    FROM message
-             inner join users su on id_source = su.id
-             inner join users du on id_dest = du.id
-    WHERE USER_ID IN (su.id, du.id)
-      and message.id = (select id
-                        from message
-                        where id_source in (su.id, du.id)
-                          and id_dest in (su.id, du.id)
-                        order by id desc
-                        limit 1);
+    #Usuario puede recibir el mensaje de la otra parte, si son contactos o si ya ha aceptado la ultima invitacion que
+    #este le envio.
+    RETURN user_is_contact(USER_ID, CONTACT_ID) OR
+           (SELECT accepted FROM invitations WHERE id_dest = USER_ID AND id_source = CONTACT_ID order by id desc limit 1) = TRUE;
+END $
+
+CREATE OR REPLACE PROCEDURE user_GetConversations(IN USER_ID int)
+BEGIN
+    SELECT if(id_source != USER_ID, s_nick, d_nick)                                  as contact_id,
+           if(id_source != USER_ID, s_first_name, d_first_name)                      as first_name,
+           if(id_source != USER_ID, s_last_name, d_last_name)                        as last_name,
+           id_source = USER_ID                                                       as isMyMessage,
+           user_HasInvitation(USER_ID, if(id_source != USER_ID, id_source, id_dest)) as hasInvitation,
+           if (id_source = USER_ID or user_canReceiveMessage(USER_ID, if(id_source != USER_ID, id_source, id_dest)), msg_id, NULL),
+           if (id_source = USER_ID or user_canReceiveMessage(USER_ID, if(id_source != USER_ID, id_source, id_dest)), msg_content, NULL)
+    FROM conversations
+    WHERE USER_ID IN (id_source, id_dest);
 END;
 
 #Obtener una conversación completa.
@@ -194,6 +232,9 @@ CREATE PROCEDURE user_GetConversationWithContact(in USER_ID int, in CONTACT_ID i
 BEGIN
     select id from message where id_source in (USER_ID, CONTACT_ID) and id_dest in (USER_ID, CONTACT_ID);
 END;
+
+
+DELIMITER ;
 
 #Datos de prueba.
 INSERT INTO users
