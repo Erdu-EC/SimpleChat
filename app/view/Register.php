@@ -97,7 +97,7 @@ face
                                             <span class="material-icons">wc</span>
                                         </label>
                                         <select class="form-select" id="gender">
-                                            <option selected disabled></option>
+                                            <option selected disabled value=""></option>
                                             <option value="M">Masculino</option>
                                             <option value="F">Femenino</option>
                                             <option value="O">Otro</option>

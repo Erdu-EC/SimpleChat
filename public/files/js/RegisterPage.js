@@ -3,6 +3,15 @@ Accione para estilos de la página
 -----------------------------------------------*/
 $(document).ready(function () {
     $("input[type=date]").val("");
+
+    if($(".input-group input#birth_date").val()!=""){
+        elemento.addClass("activo");
+        elemento.removeClass("error");
+        $(this).removeClass("error");
+    }
+
+
+
 });
 $(".input-group input#birth_date").focus(function (){
     $(this).css("color","#868580");
@@ -47,21 +56,20 @@ $(".item-form .input-group input").blur(function () {
     }
 
 });
-$(".item-form .input-group #gender").click(function () {
+$(".item-form .input-group select#gender").click(function () {
     var elemento =  $(this).parent().parent();
     elemento.addClass("activo");
     elemento.removeClass("error");
     $(this).removeClass("error");
 });
-$(".item-form .input-group #gender").blur(function () {
+$(".item-form .input-group select#gender").blur(function () {
     var elemento =  $(this).parent().parent();
-
-    if($(this).val()==""){
+    if( $(this).val()==""){
         elemento.removeClass("activo");
         elemento.addClass("error");
         $(this).addClass("error");
     }
-
+alert(elemento.attr("class"));
 });
 /*-----------------------------------------------
 Fin accione para estilos de la página
@@ -71,7 +79,8 @@ Fin accione para estilos de la página
 Còdigo de acciones para enviar datos al servidor
 -----------------------------------------------*/
 
-$(document).on('submit', "#register_form", null, function () {
+$(document).on('submit', "#register_form", null, function (e) {
+
     $.ajax('/action/user/Register', {
         method: 'post',
         dataType: 'json',

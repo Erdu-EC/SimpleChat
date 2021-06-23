@@ -9,7 +9,7 @@ background: none;
 .container-fluid main.main{
   width: 100%;
   height: 100%;
-  background-image: url("/files/img/archivos/fondo-registro.svg");
+  background-image: url("/files/img/bg/fondo-registro.svg");
   background-position: left;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -333,6 +333,9 @@ div.error span.etiqueta-input  {
   color: #D32F2F;
 }
 .item-form .input-group input.error{
+  border-bottom: 2px solid #D32F2F;
+}
+.input-group select.error {
   border-bottom: 2px solid #D32F2F;
 }
 .item-form .input-group{
