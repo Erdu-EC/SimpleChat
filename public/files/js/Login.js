@@ -26,13 +26,6 @@ $("#user_form").submit(function (e){
     return false;
 });
 
-$(document).on('input', '#user_name', null, function (event){
-    const input = $('#user_name')[0];
-    if (input.validity.tooLong || input.validity.tooShort)
-        input.setCustomValidity("El nombre de usuario debe tener un minimo de 4 caracteres y un maximo de 30.");
-    else
-        input.setCustomValidity('');
-});
 
 $(document).on('input', '#user_pass', null, function (event){
     const input = $('#user_pass')[0];
