@@ -43,6 +43,7 @@ if (Session::IsLogin())
                         </div>
                         <form id="user_form" class="card-body p-0 pb-3">
                             <div id="action_alert" class="alert p-1" style="border-radius: 0">
+                                HOLA
                             </div>
 
                             <div class="input-group mb-3 ps-5 pe-5">
