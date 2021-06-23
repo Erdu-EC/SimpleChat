@@ -4,7 +4,7 @@ namespace HS\app\view\template;
 
 ?>
 
-<link rel="icon" href="/files/icon/icono.png?w=30" type="image/x-icon">
+<link rel="shortcut icon" href="/files/icon/icono.png">
 
 <meta charset="UTF-8">
 <meta name="viewport"
