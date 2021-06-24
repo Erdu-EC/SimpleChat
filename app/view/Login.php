@@ -34,24 +34,21 @@ if (Session::IsLogin())
                     <a href="/Login" class="nav-link activo"> <span class="material-icons">login</span>Acceder</a>
                 </li>
                 <li class="nav-list-item">
-                    <a href="/Register" class="nav-link"><span class="material-icons">
-add
-</span>Resgistrarse</a>
+                    <a href="/Register" class="nav-link"><span class="material-icons">add</span>Resgistrarse</a>
                 </li>
                 <li class="nav-list-item">
                     <a href="#" class="nav-link">
                         <span class="material-icons">gavel</span>Términos y condiciones</a>
                 </li>
                 <li class="nav-list-item">
-                    <a href="#" class="nav-link"><span class="material-icons">
-people_outline
-</span>Sobre Nosotros</a>
+                    <a href="#" class="nav-link">
+                        <span class="material-icons">people_outline</span>Sobre Nosotros
+                    </a>
                 </li>
                 <li class="nav-list-item">
                     <a href="#" class="nav-link">
-                        <span class="material-icons"><span class="material-icons-outlined">
-support_agent</span>
-</span>Contacto</a>
+                        <span class="material-icons"><span class="material-icons-outlined">support_agent</span></span>Contacto
+                    </a>
                 </li>
 
 

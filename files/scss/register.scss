@@ -325,7 +325,7 @@ margin-top:-20px;
   font-size: 12px;
 
 }
-div.activo .input-group input {
+div.activo .input-group input, div.activo .input-group select#gender {
   border-bottom: 3px solid #303F9F;
 }
 
@@ -335,9 +335,11 @@ div.error span.etiqueta-input  {
 .item-form .input-group input.error{
   border-bottom: 2px solid #D32F2F;
 }
-.input-group select.error {
+.input-group select#gender.error {
   border-bottom: 2px solid #D32F2F;
 }
+
+
 .item-form .input-group{
   height: 45px;
   width: 100%;

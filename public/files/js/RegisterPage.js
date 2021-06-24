@@ -64,12 +64,13 @@ $(".item-form .input-group select#gender").click(function () {
 });
 $(".item-form .input-group select#gender").blur(function () {
     var elemento =  $(this).parent().parent();
-    if( $(this).val()==""){
-        elemento.removeClass("activo");
-        elemento.addClass("error");
-        $(this).addClass("error");
-    }
-alert(elemento.attr("class"));
+if($("select#gender option:selected").text() == ""){
+
+    elemento.removeClass("activo");
+    elemento.addClass("error");
+    $("select#gender").addClass("error");
+}
+
 });
 /*-----------------------------------------------
 Fin accione para estilos de la página
