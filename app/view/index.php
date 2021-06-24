@@ -18,7 +18,7 @@ use const HS\config\APP_NAME;
     <script type="text/javascript" src="/files/js/Chat.js"></script>
     <script type="text/javascript" src="/files/js/Conversations.js"></script>
 </head>
-<body class="d-flex flex-column">
+<body class="d-flex flex-column sb-nav-fixed">
 <header><?php require 'template/Header.php' ?></header>
 
 <main class="container-fluid d-flex flex-grow-1">
