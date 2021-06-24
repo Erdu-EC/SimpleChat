@@ -230,7 +230,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
         <nav class="sb-sidenav " >
             <div id="profile">
                 <div class="wrap no-seleccionable">
-                    <img id="profile-img" src="/files/upload/profile/mikeross.png?w=100&h=100" class="online" alt="" />
+                    <img id="profile-img" src="/upload/profile/mikeross.png?w=100&h=100" class="online" alt="" />
 
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item">
