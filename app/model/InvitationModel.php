@@ -7,13 +7,27 @@
 
     class InvitationModel extends Model
     {
-        public function HasInvitation(int $user_id, int $contact_id) : ?bool{
+        public function HasInvitation(int $user_id, int $contact_id): ?bool
+        {
             try {
                 return $this->SelectOnly('SELECT user_HasInvitation(:user, :contact)', [
                     'user' => $user_id,
                     'contact' => $contact_id
                 ]);
-            }catch (PDOException $ex){
+            } catch (PDOException $ex) {
+                return false;
+            }
+        }
+
+        public function ChangeStateOfLastInvitation(int $user_id, int $contact_id, bool $accept): bool
+        {
+            try {
+                return !is_null($this->Execute('CALL user_ChangeInvitationState(:UID, :CID, :state)', [
+                    'UID' => $user_id,
+                    'CID' => $contact_id,
+                    'state' => $accept
+                ]));
+            } catch (PDOException $ex) {
                 return false;
             }
         }

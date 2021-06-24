@@ -136,19 +136,14 @@ BEGIN
 END;
 
 #Procedimientos para contactos.
-CREATE FUNCTION user_AddContact(own int, contact int) RETURNS INT
+CREATE OR REPLACE FUNCTION user_AddContact(own int, contact int) RETURNS INT
     MODIFIES SQL DATA
 BEGIN
     #Insertar nuevo contacto.
     insert into contacts(user_id, contact_id, register_date) values (own, contact, NOW());
 
     #Si existen invitaciones de mensajes pendientes, aceptarlas.
-    UPDATE invitations
-    SET accepted    = true,
-        action_date = NOW(),
-        rcv_date    = if(rcv_date is null, action_date, rcv_date)
-    WHERE id = (SELECT user_GetIdOfLastInvitationReceived(own, contact))
-      AND accepted is NULL;
+    CALL user_ChangeInvitationState(own, contact, true);
 
     RETURN LAST_INSERT_ID();
 END;
@@ -172,14 +167,15 @@ BEGIN
     RETURN (SELECT max(id) FROM invitations WHERE id_dest = USER_ID AND id_source = CONTACT_ID);
 END $
 
-CREATE PROCEDURE user_ChangeInvitationState(in USER_ID int, in CONTACT_ID int, in accept boolean)
+CREATE OR REPLACE PROCEDURE user_ChangeInvitationState(in USER_ID int, in CONTACT_ID int, in accept boolean)
 BEGIN
     #Cambiar estado de la ultima invitacion recibida por el usuario proveniente de ese contacto.
     UPDATE invitations
     SET accepted    = accept,
         action_date = NOW(),
         rcv_date    = IF(rcv_date IS NULL, action_date, rcv_date)
-    WHERE id = (SELECT user_GetIdOfLastInvitationReceived(USER_ID, CONTACT_ID));
+    WHERE id = (SELECT user_GetIdOfLastInvitationReceived(USER_ID, CONTACT_ID))
+      AND accepted is NULL;
 END $
 
 #Procedimientos para mensajes.
@@ -188,7 +184,7 @@ CREATE FUNCTION user_SendMessage(source int, dest int, msg text) RETURNS INT
 BEGIN
     #Si usuario no pertenece a los contactos del destinario
     #Y no existe ninguna solicitud aceptada o pendiente.
-    IF NOT (SELECT user_is_contact(dest, source))
+    IF NOT user_is_contact(dest, source)
         AND NOT EXISTS(SELECT *
                        FROM invitations
                        WHERE id_source = source
@@ -211,7 +207,12 @@ BEGIN
     #Usuario puede recibir el mensaje de la otra parte, si son contactos o si ya ha aceptado la ultima invitacion que
     #este le envio.
     RETURN user_is_contact(USER_ID, CONTACT_ID) OR
-           (SELECT accepted FROM invitations WHERE id_dest = USER_ID AND id_source = CONTACT_ID order by id desc limit 1) = TRUE;
+           (SELECT accepted
+            FROM invitations
+            WHERE id_dest = USER_ID
+              AND id_source = CONTACT_ID
+            order by id desc
+            limit 1) = TRUE;
 END $
 
 CREATE OR REPLACE PROCEDURE user_GetConversations(IN USER_ID int)
@@ -221,8 +222,10 @@ BEGIN
            if(id_source != USER_ID, s_last_name, d_last_name)                        as last_name,
            id_source = USER_ID                                                       as isMyMessage,
            user_HasInvitation(USER_ID, if(id_source != USER_ID, id_source, id_dest)) as hasInvitation,
-           if (id_source = USER_ID or user_canReceiveMessage(USER_ID, if(id_source != USER_ID, id_source, id_dest)), msg_id, NULL),
-           if (id_source = USER_ID or user_canReceiveMessage(USER_ID, if(id_source != USER_ID, id_source, id_dest)), msg_content, NULL)
+           if(id_source = USER_ID or user_canReceiveMessage(USER_ID, if(id_source != USER_ID, id_source, id_dest)),
+              msg_id, NULL),
+           if(id_source = USER_ID or user_canReceiveMessage(USER_ID, if(id_source != USER_ID, id_source, id_dest)),
+              msg_content, NULL)
     FROM conversations
     WHERE USER_ID IN (id_source, id_dest);
 END;

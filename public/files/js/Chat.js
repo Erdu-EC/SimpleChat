@@ -1,3 +1,32 @@
+$(document).on('click', '#mensaje-invitacion button', function (){
+    const boton_si = $('#mensaje-invitacion button:first');
+    const boton_no = $('#mensaje-invitacion button:last');
+
+    $.ajax('/action/invitation/accept', {
+        method: 'post', dataType: 'json', mimeType: 'application/json',
+        data: {
+            contact: $('#espacio-de-chat > div').attr('data-usuario'),
+            accept: $(this).is(boton_si)
+        },
+        beforeSend: () => {
+            boton_si.attr('disabled', '');
+            boton_no.attr('disabled', '');
+        },
+        error: () => {
+            boton_si.attr('disabled', null);
+            boton_no.attr('disabled', null);
+        },
+        success: function (json) {
+            if (json)
+                $('#mensaje-invitacion').remove();
+            else{
+                boton_si.attr('disabled', null);
+                boton_no.attr('disabled', null);
+            }
+        }
+    });
+})
+
 $(document).on('click', '#espacio-de-escritura button', function () {
     const textarea = $('#espacio-de-escritura textarea');
     const texto = textarea.val().trim();
@@ -31,10 +60,6 @@ function CargarEspacioDeChat(){
     $('#espacio-de-chat').html(
         ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
     ).load(`/Chats/${$(this).attr('data-usuario')}`);
-}
-
-function AgregarContacto(obj, func){
-
 }
 
 $(document).on('click', '.btn-agregar-contacto', function () {

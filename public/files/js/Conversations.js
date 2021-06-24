@@ -13,11 +13,10 @@ function cargar_conversaciones() {
         success: function (json) {
             if (json === null)
                 alerta.text('No fue posible cargar las conversaciones.');
-            else if (json.length === 0){
+            else if (json.length === 0) {
                 lista_conversaciones.html('');
                 alerta.html('No tienes ninguna conversación.<br/><br/>¡Busca un contacto y haz una!');
-            }
-            else {
+            } else {
                 alerta.html('Tienes ' + json.length + ' conversacion(es)<br/><br/><small class="text-secondary">¡Busca un contacto y haz más!</small>')
 
                 lista_conversaciones.html('');
@@ -25,7 +24,7 @@ function cargar_conversaciones() {
                 json.forEach((registro) => {
                     $('<li>', {
                         class: 'list-group-item ps-0 pe-0',
-                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[6]),
+                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[4], registro[6]),
                     }).appendTo(lista_conversaciones);
                 });
             }
@@ -33,7 +32,7 @@ function cargar_conversaciones() {
     });
 }
 
-const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, contenido) =>
+const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, hay_invitacion, contenido) =>
     `<div class="card mb-2 elemento-conversacion" style="cursor: pointer;" data-usuario="${usuario_id}">
         <div class="row g-0">
             <div class="col-md-3 p-1">
@@ -42,7 +41,16 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, contenido) 
             <div class="col-md-9 align-self-center">
                 <div class="card-body p-2">
                     <h6 class="card-title">${nombres} ${apellidos}</h6>
-                    <p class="card-text" style="font-size: .8rem;"><small class="text-muted">${contenido}</small></p>
+                    <p class="card-text" style="font-size: .8rem;">
+                        <small class="text-muted">${
+        (contenido === null && hay_invitacion) ?
+            '<i>Tienes una invitacion.</i>' :
+            (contenido === null) ?
+                '<i>Has rechazado una invitación.</i>' :
+                contenido
+    }
+                        </small>
+                    </p>
                 </div>
             </div>
         </div>
