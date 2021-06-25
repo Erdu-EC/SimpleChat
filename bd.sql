@@ -17,7 +17,7 @@ CREATE TABLE users
 
     /*City, Country, Occupation*/
 
-    state           ENUM ('A', 'O', 'I'),
+    state           ENUM ('A', 'O', 'I'), #A - Activo, O - Ocupado, I - Inactivo
     create_at       datetime,
     last_connection datetime,
 
