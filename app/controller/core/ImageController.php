@@ -6,6 +6,7 @@ use HS\libs\core\http\HttpResponse;
 use HS\libs\graphic\Image;
 use HS\libs\graphic\ImageException;
 use HS\libs\helper\MimeType;
+use HS\libs\helper\Text;
 use HS\libs\io\Path;
 
 class ImageController
@@ -54,8 +55,11 @@ class ImageController
         //Localizando el tipo de imagen y obteniendo ruta.
         $path = self::GetPathOfType($type, $filename);
 
+        //Estableciendo tipo de imagen.
+        HttpResponse::SetContentType(Text::EndsWith($path, '.svg', true) ? MimeType::SVG : MimeType::OfFile($path));
+
         //Escribiendo en buffer de salida.
-        die(file_get_contents($filename, false));
+        die(file_get_contents($path, false));
     }
 
     private static function GetPathOfType(string $type, string $filename) : ?string{

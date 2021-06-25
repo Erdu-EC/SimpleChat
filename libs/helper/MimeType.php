@@ -12,6 +12,7 @@ class MimeType
     const HTML = 'text/html';
     const CSS = 'text/css';
     const Json = 'application/json';
+    const SVG = 'image/svg+xml';
 
     public static function OfFile(string $path) : string{
         if (!file_exists($path)) return self::Text;
