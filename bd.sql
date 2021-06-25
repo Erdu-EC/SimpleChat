@@ -12,7 +12,7 @@ CREATE TABLE users
     first_name      varchar(250) not null,
     last_name       varchar(250) not null,
     birth_date      date,
-    gender          enum ('M', 'F', 'O'),
+    gender          enum ('M', 'F', 'O', 'D'), #M - Masculino, F - Femenino, O - Otro, D - Sin especificar
     email           varchar(255),
 
     /*City, Country, Occupation*/
