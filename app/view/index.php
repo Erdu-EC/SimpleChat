@@ -94,7 +94,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                     <div class="card  align-content-between">
                         <div class="row">
                             <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/upload/profile/jessicapearson.png?w=90&h=90" alt="" class="online"/>
+                                <img src="/files/profile/jessicapearson.png?w=90&h=90" alt="" class="online"/>
                             </div>
                             <div class="col-8 ">
                                 <div class="card-body">
@@ -118,7 +118,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                     <div class="card  align-content-between">
                         <div class="row">
                             <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/upload/profile/haroldgunderson.png?w=90&h=90" alt="" class="online"/>
+                                <img src="/files/profile/haroldgunderson.png?w=90&h=90" alt="" class="online"/>
                             </div>
                             <div class="col-8 ">
                                 <div class="card-body">
@@ -142,7 +142,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                     <div class="card  align-content-between">
                         <div class="row">
                             <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/upload/profile/danielhardman.png?w=90&h=90" alt="" class="online"/>
+                                <img src="/files/profile/danielhardman.png?w=90&h=90" alt="" class="online"/>
                             </div>
                             <div class="col-8 ">
                                 <div class="card-body">
@@ -168,7 +168,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                     <div class="card">
                         <div class="row align-content-between">
                             <div class="col-4 perfil-contacto color-6">
-                                <img src="/files/upload/profile/katrinabennett.png?w=90&h=90" alt="" class="online"/>
+                                <img src="/files/profile/katrinabennett.png?w=90&h=90" alt="" class="online"/>
                             </div>
                             <div class="col-8">
                                 <div class="card-body">
@@ -193,7 +193,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                     <div class="card  align-content-between">
                         <div class="row">
                             <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/upload/profile/danielhardman.png?w=90&h=90" alt="" class="online"/>
+                                <img src="/files/profile/danielhardman.png?w=90&h=90" alt="" class="online"/>
                             </div>
                             <div class="col-8 ">
                                 <div class="card-body">
@@ -441,35 +441,35 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                             <ul id="lista-mensajes">
 
                                 <li class="sent">
-                                    <img src="/files/upload/profile/mikeross.png" alt="" />
+                                    <img src="/files/profile/mikeross.png" alt="" />
                                     <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
                                 </li>
                                 <li class="replies">
-                                    <img src="/files/upload/profile/harveyspecter.png?w=100&h=100" alt="" />
+                                    <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
                                     <p>When you're backed against the wall, break the god damn thing down.</p>
                                 </li>
                                 <li class="replies">
-                                    <img src="/files/upload/profile/harveyspecter.png?w=100&h=100" alt="" />
+                                    <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
                                     <p>Excuses don't win championships.</p>
                                 </li>
                                 <li class="sent">
-                                    <img src="/files/upload/profile/mikeross.png?w=100&h=100" alt="" />
+                                    <img src="/files/profile/mikeross.png?w=100&h=100" alt="" />
                                     <p>Oh yeah, did Michael Jordan tell you that?</p>
                                 </li>
                                 <li class="replies">
-                                    <img src="/files/upload/profile/harveyspecter.png?w=100&h=100" alt="" />
+                                    <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
                                     <p>No, I told him that.</p>
                                 </li>
                                 <li class="replies">
-                                    <img src="/files/upload/profile/harveyspecter.png?w=100&h=100" alt="" />
+                                    <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
                                     <p>What are your choices when someone puts a gun to your head?</p>
                                 </li>
                                 <li class="sent">
-                                    <img src="/files/upload/profile/mikeross.png" alt="" />
+                                    <img src="/files/profile/mikeross.png" alt="" />
                                     <p>What are you talking about? You do what they say or they shoot you.</p>
                                 </li>
                                 <li class="replies">
-                                    <img src="/files/upload/profile/harveyspecter.png" alt="" />
+                                    <img src="/files/profile/harveyspecter.png" alt="" />
                                     <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
                                 </li>
                             </ul>
@@ -485,7 +485,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                         <button id="btn-cerrar-contacto"><span class="material-icons">close</span></button>
                         <div class="contenedor-perfil">
                             <div class="card perfil">
-                                <img src="/files/upload/profile/harveyspecter.png" alt="" class="img-fluid foto-perfil away">
+                                <img src="/files/profile/harveyspecter.png" alt="" class="img-fluid foto-perfil away">
 
                                 <div class="card-body">
                                     <h5>Harvey Specter</h5>
@@ -562,6 +562,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
     </div>
 </main>
 -->
+<script type="text/javascript" src="/files/js/events.js"></script>
 <script type="text/javascript" src="/files/js/Chat.js"></script>
 <script type="text/javascript" src="/files/js/Conversations.js"></script>
 </body>

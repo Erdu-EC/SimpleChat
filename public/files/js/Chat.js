@@ -1,3 +1,13 @@
+/*--------------------------------------
+* Eventos JS de animaciones para el index-chat
+* --------------------------------------*/
+
+
+
+/*--------------------------------------
+* Fin de eventos JS de animaciones para el index-chat
+* --------------------------------------*/
+
 $(document).on('click', '#espacio-de-escritura button', function () {
     const textarea = $('#espacio-de-escritura textarea');
     const texto = textarea.val().trim();
