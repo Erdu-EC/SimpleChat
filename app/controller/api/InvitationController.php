@@ -21,7 +21,7 @@
             //Obteniendo parametros post.
             $_POST = ArrayUtils::Trim($_POST, false);
             $contact_id = !empty($_POST['contact']) ? (int)$_POST['contact'] : die(json_encode(null));
-            $state = !empty($_POST['accept']) ? trim($_POST['accept']) : die(json_encode(null));
+            $state = !empty($_POST['accept']) ? filter_var($_POST['accept'], FILTER_VALIDATE_BOOLEAN) : die(json_encode(null));
 
             //Aceptando invitacion.
             $result = (new InvitationModel(DBAccount::Root))->ChangeStateOfLastInvitation((new Session())->user_id, $contact_id, $state);
