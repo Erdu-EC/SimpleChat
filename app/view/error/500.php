@@ -10,7 +10,8 @@ use HS\libs\collection\Collection;
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
+    <?php require 'template/Head.php' ?>
+    <title><?= APP_NAME ?>: Inicio</title>
     <link href="css/styles.css" rel="stylesheet" />
 </head>
 <body>
