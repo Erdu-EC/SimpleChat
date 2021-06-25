@@ -34,7 +34,7 @@ class Text
 
     public static function EndsWith(string $text, string $find, bool $ignoreCase = false): bool
     {
-        return self::IndexOf($text, $find, $ignoreCase, strlen($text) - 1) === (strlen($text) - strlen($find));
+        return self::IndexOf($text, $find, $ignoreCase, strlen($text) - strlen($find)) === (strlen($text) - strlen($find));
     }
 
     #Modificar cadenas
