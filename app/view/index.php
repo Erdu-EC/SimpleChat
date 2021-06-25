@@ -52,7 +52,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                     <div class="card  align-content-between">
                         <div class="row">
                             <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/upload/profile/rachelzane.png?w=90&h=90" alt="" class="online"/>
+                                <img src="/files/profile/rachelzane.png?w=90&h=90" alt="" class="online"/>
                             </div>
                             <div class="col-8 ">
                                 <div class="card-body">
@@ -73,7 +73,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                     <div class="card  align-content-between">
                         <div class="row">
                             <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/upload/profile/donnapaulsen.png?w=90&h=90" alt="" class="online"/>
+                                <img src="/files/profile/donnapaulsen.png?w=90&h=90" alt="" class="online"/>
                             </div>
                             <div class="col-8 ">
                                 <div class="card-body">
@@ -230,7 +230,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
         <nav class="sb-sidenav " >
             <div id="profile">
                 <div class="wrap no-seleccionable">
-                    <img id="profile-img" src="/upload/profile/mikeross.png?w=100&h=100" class="online" alt="" />
+                    <img id="profile-img" src="/files/profile/mikeross.png?w=100&h=100" class="online" alt="" />
 
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item">
@@ -256,25 +256,25 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                 <ul class="nav flex-column nav-pills no-seleccionable" id="LateralMenu">
                     <li class="nav-item active">
                         <div class="nav-link" id="seccion-conversaciones">
-                            <img src="/files/img/icon/conversaciones.svg" alt="" class="img-fluid">
+                            <img src="/files/icon/conversaciones.svg" alt="" class="img-fluid">
                             Conversaciones
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="nav-link align-middle" id="seccion-contactos">
-                            <img src="/files/img/icon/contactos.svg" alt="" class="img-fluid link-contactos">
+                            <img src="/files/icon/contactos.svg" alt="" class="img-fluid link-contactos">
                             Contactos
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="nav-link" href="index.html">
-                            <img src="/files/img/icon/nosotros.svg" alt="" class="img-fluid">
+                            <img src="/files/icon/nosotros.svg" alt="" class="img-fluid">
                             Acerca de nosotros
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="nav-link" href="index.html">
-                            <img src="/files/icon/acuerdos.png?w=40&h=40" alt="" class="img-fluid">
+                            <img src="/files/icon/acuerdos.svg" alt="" class="img-fluid">
                             Términos y condiciones de uso
                         </div>
                     </li>
@@ -304,7 +304,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                 <li class="contact">
                                     <div class="wrap">
                                         <span class="contact-status online"></span>
-                                        <img src="/files/upload/profile/louislitt.png?w=100&h=100" alt="" />
+                                        <img src="/files/profile/louislitt.png?w=100&h=100" alt="" />
                                         <div class="meta">
                                             <p class="name">Louis Litt</p>
                                             <p class="preview">You just got LITT up, Mike.</p>
@@ -314,7 +314,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                 <li class="contact active">
                                     <div class="wrap">
                                         <span class="contact-status busy"></span>
-                                        <img src="/files/upload/profile/harveyspecter.png?w=100&h=100" alt="" />
+                                        <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
                                         <div class="meta">
                                             <p class="name">Harvey Specter</p>
                                             <p class="preview">Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
@@ -324,7 +324,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                 <li class="contact">
                                     <div class="wrap">
                                         <span class="contact-status away"></span>
-                                        <img src="/files/upload/profile/rachelzane.png?w=100&h=100" alt="" />
+                                        <img src="/files/profile/rachelzane.png?w=100&h=100" alt="" />
                                         <div class="meta">
                                             <p class="name">Rachel Zane</p>
                                             <p class="preview">I was thinking that we could have chicken tonight, sounds good?</p>
@@ -334,7 +334,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                 <li class="contact">
                                     <div class="wrap">
                                         <span class="contact-status online"></span>
-                                        <img src="/files/upload/profile/donnapaulsen.png?w=100&h=100" alt="" />
+                                        <img src="/files/profile/donnapaulsen.png?w=100&h=100" alt="" />
                                         <div class="meta">
                                             <p class="name">Donna Paulsen</p>
                                             <p class="preview">Mike, I know everything! I'm Donna..</p>
@@ -344,7 +344,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                 <li class="contact">
                                     <div class="wrap">
                                         <span class="contact-status busy"></span>
-                                        <img src="/files/upload/profile/jessicapearson.png?w=100&h=100" alt="" />
+                                        <img src="/files/profile/jessicapearson.png?w=100&h=100" alt="" />
                                         <div class="meta">
                                             <p class="name">Jessica Pearson</p>
                                             <p class="preview">Have you finished the draft on the Hinsenburg deal?</p>
@@ -354,7 +354,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                 <li class="contact">
                                     <div class="wrap">
                                         <span class="contact-status"></span>
-                                        <img src="/files/upload/profile/haroldgunderson.png?w=100&h=100" alt="" />
+                                        <img src="/files/profile/haroldgunderson.png?w=100&h=100" alt="" />
                                         <div class="meta">
                                             <p class="name">Harold Gunderson</p>
                                             <p class="preview">Thanks Mike! :)</p>
@@ -364,7 +364,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                 <li class="contact">
                                     <div class="wrap">
                                         <span class="contact-status"></span>
-                                        <img src="/files/upload/profile/danielhardman.png?w=100&h=100" alt="" />
+                                        <img src="/files/profile/danielhardman.png?w=100&h=100" alt="" />
                                         <div class="meta">
                                             <p class="name">Daniel Hardman</p>
                                             <p class="preview">We'll meet again, Mike. Tell Jessica I said 'Hi'.</p>
@@ -374,7 +374,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                 <li class="contact">
                                     <div class="wrap">
                                         <span class="contact-status busy"></span>
-                                        <img src="/files/upload/profile/katrinabennett.png?w=100&h=100" alt="" />
+                                        <img src="/files/profile/katrinabennett.png?w=100&h=100" alt="" />
                                         <div class="meta">
                                             <p class="name">Katrina Bennett</p>
                                             <p class="preview">I've sent you the files for the Garrett trial.</p>
@@ -384,7 +384,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                 <li class="contact">
                                     <div class="wrap">
                                         <span class="contact-status"></span>
-                                        <img src="/files/upload/profile/charlesforstman.png?w=100&h=100" alt="" />
+                                        <img src="/files/profile/charlesforstman.png?w=100&h=100" alt="" />
                                         <div class="meta">
                                             <p class="name">Charles Forstman</p>
                                             <p class="preview">Mike, this isn't over.</p>
@@ -394,7 +394,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                 <li class="contact">
                                     <div class="wrap">
                                         <span class="contact-status"></span>
-                                        <img src="/files/upload/profile/jonathansidwell.png?w=100&h=100" alt="" />
+                                        <img src="/files/profile/jonathansidwell.png?w=100&h=100" alt="" />
                                         <div class="meta">
                                             <p class="name">Jonathan Sidwell</p>
                                             <p class="preview"><span>Tu:</span> That's bullshit. This deal is solid.</p>
@@ -404,14 +404,14 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                             </ul>
                         </div>
                         <div id="bottom-bar">
-                            <button id="nuevo-chat"><img src="/files/img/icon/nuevo-chat.svg" alt="" id="icon-nuevo-chat" class="img-fluid"> <span>Nuevo chat</span></button>
-                            <button id="agregar-contacto"><img src="/files/img/icon/agregar-contacto-1.svg" alt="" id="icon-agregar-contacto"><span>Agregar contacto</span></button>
+                            <button id="nuevo-chat"><img src="/files/icon/nuevo-chat.svg" alt="" id="icon-nuevo-chat" class="img-fluid"> <span>Nuevo chat</span></button>
+                            <button id="agregar-contacto"><img src="/files/icon/agregar-contacto.svg" alt="" id="icon-agregar-contacto"><span>Agregar contacto</span></button>
                         </div>
                     </div>
                     <section class="content" id="contenido">
                         <section class="contact-profile no-seleccionable">
 
-                            <img src="/files/upload/profile/harveyspecter.png?w=100&h=100" alt="" />
+                            <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
 
 
                             <div class="chat-conexion">
