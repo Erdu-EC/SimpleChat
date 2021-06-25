@@ -28,18 +28,7 @@ $("#btn-sesion").click(function (){
     $("#btn-sesion").toggleClass("btn-activo");
 });
 
-function newMessage() {
-    message = $(".message-input input").val();
-    if($.trim(message) == '') {
-        return false;
-    }
-    $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
-    $('.message-input input').val(null);
-    $('.contact.active .preview').html('<span>You: </span>' + message);
-    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
-};
-
-$('.submit').click(function() {
+$('.submit').on('click',function() {
     newMessage();
 });
 
@@ -55,10 +44,16 @@ function newMessage() {
     if($.trim(message) == '') {
         return false;
     }
-    $('<li class="sent"><img src="/files/upload/profile/mikeross.png?w=40&h=40" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
-    $('.message-input input').val(null);
+if($('.messages ul#lista-mensajes').children().last().attr("class")== "enviado"){
+    $('<li class="enviado"><p>' + message + '</p></li>').appendTo($('.messages ul'));
+}
+else {
+    $('<li class="enviado"><img src="/files/profile/mikeross.png?w=40&h=40" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+}
+$('.message-input input').val(null);
     $('.contact.active .preview').html('<span>You: </span>' + message);
     $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 300);
+
 };
 
 $(".expand-button").click(function() {
@@ -77,30 +72,12 @@ $('#LateralMenu li').on('click', function(){
 
 //llamar elementos contactos
 $("#seccion-contactos").click(function(){
-    $(location).prop('href', '/contactos')
-    /* $("#frame").empty();
-
-     $.ajax({
-         method: "GET",
-         url: "/contactos"
-     }).done(function(data) {
-         $("#frame").append(data);
-     });
- */
+    $(location).prop('href', '/Contacts')
 });
 /*
 /*llamar elementos chat*/
 $("#seccion-conversaciones").click(function(){
     $(location).prop('href', '/')
-    /* $("#frame").empty();
-
-     $.ajax({
-         method: "GET",
-         url: "/temp"
-     }).done(function(data) {
-         $("#frame").html(data);
-     });
- */
 });
 $("#ocultar").click(function (){
 
@@ -178,34 +155,8 @@ $("#btn-cerrar-contacto").click(function (){
 });
 //detectar tamanos de pantalla y las acciones
 
+$("div#contacts ul#lista-conversaciones").on("click","li.contact",function () {
 
-/*
-$(document).ready(function(){
-    //al cargarse la pagina primero se muestran
-    setTimeout(
-        function (){
-            $.ajax({
-                method: "GET",
-                url: "/temp"
-            }).done(function(data) {
-                $("#frame").append(data);
-            })
-                .fail(function() {
-                    alert.lo("Algo salió mal")});}
-        ,
-        100);
-
+    $('div#contacts ul#lista-conversaciones li.active').removeClass('active');
+    $(this).addClass("active");
 });
-//cuando se de click sobre cualquier contacto se llama a la conversacion que corresponde
-
-$("li.contact").click(function(){
-    $.ajax({
-        method: "GET",
-        url: "/conversacion"
-    }).done(function(data) {
-        $("#frame").appendChild(data);
-    })
-        .fail(function() {
-            alert("Algo salió mal");});
-
-});*/

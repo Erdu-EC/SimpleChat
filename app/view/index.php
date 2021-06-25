@@ -48,6 +48,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
         </div>
         <div id="listaTodosContactos">
             <ul id="listacontactos" class="no-seleccionable">
+
                 <li class="item-contacto">
                     <div class="card  align-content-between">
                         <div class="row">
@@ -215,7 +216,6 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                         </div>
                     </div>
                 </li>
-
             </ul>
 
 
@@ -300,107 +300,109 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                             <input name="inputBuscarConversacion" type="text" placeholder="Buscar Conversación..." />
                         </div>
                         <div id="contacts">
-                            <ul class="no-seleccionable">
-                                <li class="contact">
-                                    <div class="wrap">
-                                        <span class="contact-status online"></span>
-                                        <img src="/files/profile/louislitt.png?w=100&h=100" alt="" />
-                                        <div class="meta">
-                                            <p class="name">Louis Litt</p>
-                                            <p class="preview">You just got LITT up, Mike.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="contact active">
-                                    <div class="wrap">
-                                        <span class="contact-status busy"></span>
-                                        <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
-                                        <div class="meta">
-                                            <p class="name">Harvey Specter</p>
-                                            <p class="preview">Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="contact">
-                                    <div class="wrap">
-                                        <span class="contact-status away"></span>
-                                        <img src="/files/profile/rachelzane.png?w=100&h=100" alt="" />
-                                        <div class="meta">
-                                            <p class="name">Rachel Zane</p>
-                                            <p class="preview">I was thinking that we could have chicken tonight, sounds good?</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="contact">
-                                    <div class="wrap">
-                                        <span class="contact-status online"></span>
-                                        <img src="/files/profile/donnapaulsen.png?w=100&h=100" alt="" />
-                                        <div class="meta">
-                                            <p class="name">Donna Paulsen</p>
-                                            <p class="preview">Mike, I know everything! I'm Donna..</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="contact">
-                                    <div class="wrap">
-                                        <span class="contact-status busy"></span>
-                                        <img src="/files/profile/jessicapearson.png?w=100&h=100" alt="" />
-                                        <div class="meta">
-                                            <p class="name">Jessica Pearson</p>
-                                            <p class="preview">Have you finished the draft on the Hinsenburg deal?</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="contact">
-                                    <div class="wrap">
-                                        <span class="contact-status"></span>
-                                        <img src="/files/profile/haroldgunderson.png?w=100&h=100" alt="" />
-                                        <div class="meta">
-                                            <p class="name">Harold Gunderson</p>
-                                            <p class="preview">Thanks Mike! :)</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="contact">
-                                    <div class="wrap">
-                                        <span class="contact-status"></span>
-                                        <img src="/files/profile/danielhardman.png?w=100&h=100" alt="" />
-                                        <div class="meta">
-                                            <p class="name">Daniel Hardman</p>
-                                            <p class="preview">We'll meet again, Mike. Tell Jessica I said 'Hi'.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="contact">
-                                    <div class="wrap">
-                                        <span class="contact-status busy"></span>
-                                        <img src="/files/profile/katrinabennett.png?w=100&h=100" alt="" />
-                                        <div class="meta">
-                                            <p class="name">Katrina Bennett</p>
-                                            <p class="preview">I've sent you the files for the Garrett trial.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="contact">
-                                    <div class="wrap">
-                                        <span class="contact-status"></span>
-                                        <img src="/files/profile/charlesforstman.png?w=100&h=100" alt="" />
-                                        <div class="meta">
-                                            <p class="name">Charles Forstman</p>
-                                            <p class="preview">Mike, this isn't over.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="contact">
-                                    <div class="wrap">
-                                        <span class="contact-status"></span>
-                                        <img src="/files/profile/jonathansidwell.png?w=100&h=100" alt="" />
-                                        <div class="meta">
-                                            <p class="name">Jonathan Sidwell</p>
-                                            <p class="preview"><span>Tu:</span> That's bullshit. This deal is solid.</p>
-                                        </div>
-                                    </div>
-                                </li>
+                            <ul class="no-seleccionable" id="lista-conversaciones">
+                                <!--
+                               <li class="contact">
+                                   <div class="wrap">
+                                       <span class="contact-status online"></span>
+                                       <img src="/files/profile/louislitt.png?w=100&h=100" alt="" />
+                                       <div class="meta">
+                                           <p class="name">Louis Litt</p>
+                                           <p class="preview">You just got LITT up, Mike.</p>
+                                       </div>
+                                   </div>
+                               </li>
+                               <li class="contact active">
+                                   <div class="wrap">
+                                       <span class="contact-status busy"></span>
+                                       <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
+                                       <div class="meta">
+                                           <p class="name">Harvey Specter</p>
+                                           <p class="preview">Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
+                                       </div>
+                                   </div>
+                               </li>
+                               <li class="contact">
+                                   <div class="wrap">
+                                       <span class="contact-status away"></span>
+                                       <img src="/files/profile/rachelzane.png?w=100&h=100" alt="" />
+                                       <div class="meta">
+                                           <p class="name">Rachel Zane</p>
+                                           <p class="preview">I was thinking that we could have chicken tonight, sounds good?</p>
+                                       </div>
+                                   </div>
+                               </li>
+                               <li class="contact">
+                                   <div class="wrap">
+                                       <span class="contact-status online"></span>
+                                       <img src="/files/profile/donnapaulsen.png?w=100&h=100" alt="" />
+                                       <div class="meta">
+                                           <p class="name">Donna Paulsen</p>
+                                           <p class="preview">Mike, I know everything! I'm Donna..</p>
+                                       </div>
+                                   </div>
+                               </li>
+                               <li class="contact">
+                                   <div class="wrap">
+                                       <span class="contact-status busy"></span>
+                                       <img src="/files/profile/jessicapearson.png?w=100&h=100" alt="" />
+                                       <div class="meta">
+                                           <p class="name">Jessica Pearson</p>
+                                           <p class="preview">Have you finished the draft on the Hinsenburg deal?</p>
+                                       </div>
+                                   </div>
+                               </li>
+                               <li class="contact">
+                                   <div class="wrap">
+                                       <span class="contact-status"></span>
+                                       <img src="/files/profile/haroldgunderson.png?w=100&h=100" alt="" />
+                                       <div class="meta">
+                                           <p class="name">Harold Gunderson</p>
+                                           <p class="preview">Thanks Mike! :)</p>
+                                       </div>
+                                   </div>
+                               </li>
+                               <li class="contact">
+                                   <div class="wrap">
+                                       <span class="contact-status"></span>
+                                       <img src="/files/profile/danielhardman.png?w=100&h=100" alt="" />
+                                       <div class="meta">
+                                           <p class="name">Daniel Hardman</p>
+                                           <p class="preview">We'll meet again, Mike. Tell Jessica I said 'Hi'.</p>
+                                       </div>
+                                   </div>
+                               </li>
+                               <li class="contact">
+                                   <div class="wrap">
+                                       <span class="contact-status busy"></span>
+                                       <img src="/files/profile/katrinabennett.png?w=100&h=100" alt="" />
+                                       <div class="meta">
+                                           <p class="name">Katrina Bennett</p>
+                                           <p class="preview">I've sent you the files for the Garrett trial.</p>
+                                       </div>
+                                   </div>
+                               </li>
+                               <li class="contact">
+                                   <div class="wrap">
+                                       <span class="contact-status"></span>
+                                       <img src="/files/profile/charlesforstman.png?w=100&h=100" alt="" />
+                                       <div class="meta">
+                                           <p class="name">Charles Forstman</p>
+                                           <p class="preview">Mike, this isn't over.</p>
+                                       </div>
+                                   </div>
+                               </li>
+                               <li class="contact">
+                                   <div class="wrap">
+                                       <span class="contact-status"></span>
+                                       <img src="/files/profile/jonathansidwell.png?w=100&h=100" alt="" />
+                                       <div class="meta">
+                                           <p class="name">Jonathan Sidwell</p>
+                                           <p class="preview"><span>Tu:</span> That's bullshit. This deal is solid.</p>
+                                       </div>
+                                   </div>
+                               </li>
+                               -->
                             </ul>
                         </div>
                         <div id="bottom-bar">
@@ -440,38 +442,42 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                         <div class="messages">
                             <ul id="lista-mensajes">
 
-                                <li class="sent">
-                                    <img src="/files/profile/mikeross.png" alt="" />
-                                    <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
-                                </li>
-                                <li class="replies">
-                                    <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
-                                    <p>When you're backed against the wall, break the god damn thing down.</p>
-                                </li>
-                                <li class="replies">
-                                    <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
-                                    <p>Excuses don't win championships.</p>
-                                </li>
-                                <li class="sent">
-                                    <img src="/files/profile/mikeross.png?w=100&h=100" alt="" />
-                                    <p>Oh yeah, did Michael Jordan tell you that?</p>
-                                </li>
-                                <li class="replies">
-                                    <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
-                                    <p>No, I told him that.</p>
-                                </li>
-                                <li class="replies">
-                                    <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
-                                    <p>What are your choices when someone puts a gun to your head?</p>
-                                </li>
-                                <li class="sent">
-                                    <img src="/files/profile/mikeross.png" alt="" />
-                                    <p>What are you talking about? You do what they say or they shoot you.</p>
-                                </li>
-                                <li class="replies">
-                                    <img src="/files/profile/harveyspecter.png" alt="" />
-                                    <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
-                                </li>
+                                                                <li class="enviado">
+                                                                    <img src="/files/profile/mikeross.png" alt="" />
+                                                                    <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
+                                                                </li>
+
+                                                              <li class="recibido">
+                                                                  <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
+                                                                  <p>When you're backed against the wall, break the god damn thing down.</p>
+                                                              </li>
+                                                              <li class="recibido">
+                                                                  <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
+                                                                  <p>Excuses don't win championships.</p>
+                                                              </li>
+                                <!--
+                                                              <li class="enviado">
+                                                                  <img src="/files/profile/mikeross.png?w=100&h=100" alt="" />
+                                                                  <p>Oh yeah, did Michael Jordan tell you that?</p>
+                                                              </li>
+                                                              <li class="recibido">
+                                                                  <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
+                                                                  <p>No, I told him that.</p>
+                                                              </li>
+                                                              <li class="recibido">
+                                                                  <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
+                                                                  <p>What are your choices when someone puts a gun to your head?</p>
+                                                              </li>
+                                                              <li class="enviado">
+                                                                  <img src="/files/profile/mikeross.png" alt="" />
+                                                                  <p>What are you talking about? You do what they say or they shoot you.</p>
+                                                              </li>
+                                                              <li class="recibido">
+                                                                  <img src="/files/profile/harveyspecter.png" alt="" />
+                                                                  <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
+                                                              </li>
+
+                                                                  -->
                             </ul>
                         </div>
                         <div class="message-input">
@@ -565,5 +571,6 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
 <script type="text/javascript" src="/files/js/events.js"></script>
 <script type="text/javascript" src="/files/js/Chat.js"></script>
 <script type="text/javascript" src="/files/js/Conversations.js"></script>
+
 </body>
 </html>

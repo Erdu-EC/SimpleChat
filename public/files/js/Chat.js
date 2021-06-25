@@ -4,12 +4,8 @@
 
 
 
-/*--------------------------------------
-* Fin de eventos JS de animaciones para el index-chat
-* --------------------------------------*/
-
 $(document).on('click', '#espacio-de-escritura button', function () {
-    const textarea = $('#espacio-de-escritura textarea');
+    const textarea = $('textarea');
     const texto = textarea.val().trim();
     textarea.val('');
 
@@ -35,7 +31,7 @@ $(document).on('click', '#espacio-de-escritura button', function () {
 
 
     //console.log(text);
-})
+});
 
 function CargarEspacioDeChat(){
     $('#espacio-de-chat').html(

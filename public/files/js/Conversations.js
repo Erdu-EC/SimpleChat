@@ -24,7 +24,7 @@ function cargar_conversaciones() {
 
                 json.forEach((registro) => {
                     $('<li>', {
-                        class: 'list-group-item ps-0 pe-0',
+                        class: 'contact',
                         html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[5]),
                     }).appendTo(lista_conversaciones);
                 });
@@ -34,16 +34,11 @@ function cargar_conversaciones() {
 }
 
 const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, contenido) =>
-    `<div class="card mb-2 elemento-conversacion" style="cursor: pointer;" data-usuario="${usuario_id}">
-        <div class="row g-0">
-            <div class="col-md-3 p-1">
-                <img src="/files/profile/0_erdu.png" class="img-fluid" alt="Foto de perfil">
-            </div>
-            <div class="col-md-9 align-self-center">
-                <div class="card-body p-2">
-                    <h6 class="card-title">${nombres} ${apellidos}</h6>
-                    <p class="card-text" style="font-size: .8rem;"><small class="text-muted">${contenido}</small></p>
-                </div>
-            </div>
-        </div>
-    </div>`;
+    `<div class="wrap" data-usuario="${usuario_id}">
+                                       <span class="contact-status online"></span>
+                                       <img src="/files/profile/0_erdu.png?w=100&h=100" alt="" />
+                                       <div class="meta">
+                                           <p class="name">${nombres} ${apellidos}</p>
+                                           <p class="preview">${contenido}</p>
+                                       </div>
+                                   </div>`;
