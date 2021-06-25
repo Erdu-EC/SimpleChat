@@ -23,7 +23,7 @@ use const HS\config\APP_NAME;
         <img src="/files/icon/menu.png" alt="" class="" id="icono-sidebarToggle">
     </button>
     <a class="navbar-brand " href="/" >
-        <img src="/files/icon/logo-2.png" alt="" id="logo-home" class="img img-fluid">
+        <img src="/files/icon/logo.png" alt="" id="logo-home" class="img img-fluid">
 
     </a>
 
