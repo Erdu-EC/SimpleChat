@@ -446,7 +446,7 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                                                     <img src="/files/profile/mikeross.png" alt="" />
                                                                     <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
                                                                 </li>
-
+                                <!--
                                                               <li class="recibido">
                                                                   <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
                                                                   <p>When you're backed against the wall, break the god damn thing down.</p>
@@ -455,7 +455,6 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                                                   <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
                                                                   <p>Excuses don't win championships.</p>
                                                               </li>
-                                <!--
                                                               <li class="enviado">
                                                                   <img src="/files/profile/mikeross.png?w=100&h=100" alt="" />
                                                                   <p>Oh yeah, did Michael Jordan tell you that?</p>

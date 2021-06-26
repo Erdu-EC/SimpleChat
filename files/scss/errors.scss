@@ -1,0 +1,85 @@
+body {
+  font-family: 'Montserrat',sans-serif;
+  background: #fcfcfc;
+}
+
+.container {
+  width: 60%;
+  margin: 30px auto 0;
+  padding: 30px 20px 50px;
+  border: 1px solid #b3b3b3;
+  box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #fff;
+  height: auto;
+}
+@media screen and (max-width: 765px){
+  .container {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 576px){
+  .container {
+    width: 90%;
+  }
+}
+.container .logo {
+  height: 40px;
+  width: auto;
+  margin-right: auto;
+}
+
+a.regresar span.material-icons {
+  border: none;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  padding: 0;
+  margin-right: 10px;
+
+}
+.container #mensaje {
+
+}
+.container #mensaje img.img-error {
+  width: 300px;
+  height: auto;
+}
+.container #mensaje p {
+  padding: 0px;
+  display: flex;
+  height: auto;
+  line-height: normal;
+}
+.container #mensaje span.titulo{
+  font-size: 25px;
+  color: #2B364F;
+  width: 100%;
+  text-align: center;
+  align-content: center;
+  display: block;
+}
+.container #mensaje a {
+
+ text-decoration: none;
+  color: #288795;
+  display: inline-block;
+  text-align: center;
+  align-items: center;
+  align-items: center;
+  vertical-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.container #mensaje a:hover {
+text-decoration: underline;
+}
+.container #mensaje a span.material-icons {
+  text-align: center;
+  align-items: center;
+  align-items: center;
+  vertical-align: center;
+  display: inline-block;
+  height: auto;
+  padding: 0px;
+  margin: 0px 10px 0px 0px;
+  vertical-align: middle;
+}
