@@ -1,42 +1,37 @@
-<!DOCTYPE html> <html lang=&quot;es&quot;>
-<head>
-    <meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; />
-    <meta name=&quot;description&quot; content=&quot;Esta Tienda está desarrollada con PrestaShop&quot; />         <style>             ::-moz-selection {background: #b3d4fc; text-shadow: none;}             ::selection {background: #b3d4fc; text-shadow: none;}
-        html {padding: 30px 10px;
-            font-size: 16px;
-            line-height: 1.4;
-            color: #737373; background: #f0f0f0;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;}
-        html,
-        input {font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
-        body {max-width:700px;
-            _width:  700px; padding: 30px 20px 50px;
-            border: 1px solid #b3b3b3;
-            border-radius: 4px;
-            margin: 0 auto;
-            box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #fff;
-            background: #fcfcfc;}
+<?php
 
-        h1 {margin: 0 10px; font-size: 50px; text-align: center;}
-        h1 span {color: #bbb;}
-        h2 {color: #D35780;
-            margin: 0 10px;
-            font-size: 40px;
-            text-align: center;}
-        h2 span {color: #bbb;font-size: 80px;}
-        h3 {margin: 1.5em 0 0.5em;}
-        p {margin: 1em 0;}
-        ul {padding: 0 0 0 40px;margin: 1em 0;}
-        .container {max-width: 380px;_width: 480px;margin: 0 auto;}
-        input::-moz-focus-inner {padding: 0;border: 0;}
-    </style>
+namespace HS\app\view;
+
+use const HS\config\APP_NAME;
+use HS\libs\collection\Collection;
+
+?>
+
+<!doctype html>
+<html lang="es">
+<head>
+    <?php require __DIR__ . '/../template/Head.php' ?>
+    <title><?= APP_NAME ?>: Inicio</title>
+    <link href="/files/scss/errors.scss" rel="stylesheet" />
 </head>
 <body>
-<div class=&quot;container&quot;>
-    <h2><span>500</span>Error interno del servidor</h2>
-    <p>¡Vaya! Algo salió mal.<br /><br />Trata de volver a cargar esta página o no dudes en contactar con nosotros si el problema persiste.</p>
-</div>
+
+<main>
+    <div class="container">
+        <img src="/files/icon/logo-bk.png?h=40" alt="Aquí va el logo de la aplicación web SimpleChat" class="logo">
+        <div class="text-center" id="mensaje">
+            <img src="/files/bg/error-400.svg" alt="" class="img-error">
+            <span class="titulo">Solicitud a Simplechat incorrecta</span>
+            <p> <br/><br/>
+                El servidor no pudo interpretar la solicitud dada una sintaxis inválida.
+            </p>
+            <a href="/" class="regresar">
+                <span class="material-icons">arrow_back</span>
+                Ir a Inicio
+            </a>
+        </div>
+
+    </div>
+</main>
 </body>
 </html>
-
