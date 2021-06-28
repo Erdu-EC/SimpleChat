@@ -4,6 +4,7 @@
     namespace HS\app\view;
 
     use HS\libs\collection\Collection;
+    use HS\libs\core\Session;
 
     /** @var Collection $_VIEW */
 ?>
@@ -39,16 +40,31 @@
                 </div>
             </div>
         <?php endif; ?>
-        <!--<div class="popover bs-popover-end" style="position: relative; max-width: none">
-            <div class="popover-arrow" style="position: absolute; transform: translate(0px, 47px);"></div>
-            <h3 class="popover-header">Popover title</h3>
-            <div class="popover-body">And here's some amazing content. It's very engaging. Right?</div>
-        </div>
-        <div class="popover bs-popover-start" style="position: relative; max-width: none">
-            <div class="popover-arrow" style="position: absolute; transform: translate(0px, 47px);"></div>
-            <h3 class="popover-header">Popover title</h3>
-            <div class="popover-body">And here's some amazing content. It's very engaging. Right?</div>
-        </div>-->
+
+        <?php
+            if (!is_null($_VIEW->messages)):
+                foreach ($_VIEW->messages as $msg):
+                    if ($msg->id_source === (new Session())->user_id): ?>
+                        <div class="popover bs-popover-end" style="position: relative; max-width: none">
+                            <div class="popover-arrow"
+                                 style="position: absolute; transform: translate(0px, 17px);"></div>
+                            <!--<h3 class="popover-header">Popover title</h3>-->
+                            <div class="popover-body"><?= $msg->content ?></div>
+                        </div>
+                    <?php else: ?>
+                        <div class="popover bs-popover-start" style="position: relative; max-width: none">
+                            <div class="popover-arrow"
+                                 style="position: absolute; transform: translate(0px, 47px);"></div>
+                            <!--<h3 class="popover-header">Popover title</h3>-->
+                            <div class="popover-body"><?= $msg->content ?></div>
+                        </div>
+                    <?php endif;
+                endforeach;
+            endif;
+
+        ?>
+
+
     </div>
     <div class="card-footer">
         <div class="row">

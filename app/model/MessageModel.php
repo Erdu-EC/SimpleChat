@@ -32,7 +32,14 @@
             }
         }
 
-        public function GetMyMessages(){
-
+        public function GetMessages(int $user_id, int $contact_id) : ?Collection{
+            try{
+                return $this->SelectAll('CALL user_GetConversationWithContact(:user, :contact)', [
+                    'user' => $user_id,
+                    'contact' => $contact_id
+                ]);
+            }catch (\PDOException $ex){
+                return null;
+            }
         }
     }

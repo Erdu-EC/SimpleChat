@@ -109,7 +109,7 @@ class Collection implements ArrayAccess, Iterator, \Countable
      */
     public function GetItem($key)
     {
-        return $this[$key];
+        return self::GetValue($this[$key]);
     }
 
     /**
@@ -119,7 +119,7 @@ class Collection implements ArrayAccess, Iterator, \Countable
      */
     public function First()
     {
-        return empty($this->items) ? null : $this[array_key_first($this->items)];
+        return empty($this->items) ? null : self::GetValue($this[array_key_first($this->items)]);
     }
 
     /**
@@ -129,7 +129,7 @@ class Collection implements ArrayAccess, Iterator, \Countable
      */
     public function Last()
     {
-        return empty($this->items) ? null : $this[array_key_last($this->items)];
+        return empty($this->items) ? null : self::GetValue($this[array_key_last($this->items)]);
     }
 
     #Estado de la coleccion.
@@ -146,7 +146,7 @@ class Collection implements ArrayAccess, Iterator, \Countable
     #Implementacion de los metodos magicos para utilizar dinamicamente elementos del array.
     public function __get($name)
     {
-        return $this[$name];
+        return self::GetValue($this[$name]);
     }
 
     public function __set($name, $value): void
@@ -179,7 +179,7 @@ class Collection implements ArrayAccess, Iterator, \Countable
     public function offsetGet($offset)
     {
         if ((is_int($offset) || is_string($offset)) && (isset($this->items[$offset]) || is_null($this->items[$offset])))
-            return $this->items[$offset];
+            return self::GetValue($this->items[$offset]);
         else
             throw new CollectionException("La clave \"$offset\" no existe dentro de la Colección.", CollectionException::UNDEFINED_OFFSET);
     }
@@ -200,7 +200,7 @@ class Collection implements ArrayAccess, Iterator, \Countable
     #Implementacion de la interfaz "Iterator".
     public function current()
     {
-        return current($this->items);
+        return self::GetValue(current($this->items));
     }
 
     public function next()

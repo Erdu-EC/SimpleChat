@@ -17,7 +17,7 @@ CREATE TABLE users
 
     /*City, Country, Occupation*/
 
-    state           ENUM ('A', 'O', 'I'), #A - Activo, O - Ocupado, I - Inactivo
+    state           ENUM ('A', 'O', 'I'),      #A - Activo, O - Ocupado, I - Inactivo
     create_at       datetime,
     last_connection datetime,
 
@@ -231,9 +231,33 @@ BEGIN
 END;
 
 #Obtener una conversación completa.
-CREATE PROCEDURE user_GetConversationWithContact(in USER_ID int, in CONTACT_ID int)
+CREATE OR REPLACE PROCEDURE user_GetConversationWithContact(in USER_ID int, in CONTACT_ID int)
 BEGIN
-    select id from message where id_source in (USER_ID, CONTACT_ID) and id_dest in (USER_ID, CONTACT_ID);
+    select *
+    from (
+             select *
+             from message
+             where id_source = USER_ID
+               AND id_dest = CONTACT_ID
+
+             UNION
+
+             select *
+             from message
+             where id_source = CONTACT_ID
+               AND id_dest = USER_ID
+               and (send_date >= (select register_date
+                                  from contacts c
+                                  where c.user_id = USER_ID
+                                    and c.contact_id = CONTACT_ID)
+                 or send_date >= (SELECT i.send_date
+                                  FROM invitations i
+                                  WHERE i.id_source = CONTACT_ID
+                                    AND i.id_dest = USER_ID
+                                    AND i.accepted))
+         ) as A
+    order by send_date;
+    #select id from message where id_source in (USER_ID, CONTACT_ID) and id_dest in (USER_ID, CONTACT_ID);
 END;
 
 
