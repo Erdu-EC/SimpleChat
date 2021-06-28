@@ -7,6 +7,8 @@
     use HS\libs\core\Session;
 
     /** @var Collection $_VIEW */
+
+    $SESSION = new Session();
 ?>
 
 <div class="card h-100 mh-100" data-usuario="<?= $_VIEW->id ?>">
@@ -44,7 +46,7 @@
         <?php
             if (!is_null($_VIEW->messages)):
                 foreach ($_VIEW->messages as $msg):
-                    if ($msg->id_source === (new Session())->user_id): ?>
+                    if ($msg->id_source === $SESSION->user_id): ?>
                         <div class="popover bs-popover-end" style="position: relative; max-width: none">
                             <div class="popover-arrow"
                                  style="position: absolute; transform: translate(0px, 17px);"></div>

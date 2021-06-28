@@ -256,7 +256,7 @@ BEGIN
                                     AND i.id_dest = USER_ID
                                     AND i.accepted))
          ) as A
-    order by send_date;
+    order by send_date, id;
     #select id from message where id_source in (USER_ID, CONTACT_ID) and id_dest in (USER_ID, CONTACT_ID);
 END;
 
@@ -264,13 +264,48 @@ END;
 DELIMITER ;
 
 #Datos de prueba.
-INSERT INTO users
-VALUES (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa', 'E', 'C', NOW(), 'M', NULL, 'A',
-        NOW(), NOW()), #12345678
-       (2, 'test', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', null, null, null,
-        null, '2021-05-18 11:09:55', null),
-       (3, 'test2', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', null, null, null,
-        null, '2021-05-18 11:09:55', null);
+insert into users (id, user_name, pass, first_name, last_name, birth_date, gender, email, state, create_at,
+                   last_connection)
+values (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa', 'E', 'C', now(), 'M', null, null,
+        now(), null),
+       (2, 'test', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', now(), 'M', null,
+        null, now(), null),
+       (3, 'test2', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', now(), 'M', null,
+        null, now(), null),
+       (4, 'louislitt', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Louis', 'Marlowe Litt',
+        '1970-05-20', 'M', 'louislitt@email.com', null, now(), null),
+       (5, 'rachelzane', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Rachel Elizabeth', 'Zane',
+        '1985-04-30', 'F', 'rachelzane@email.com', null, now(), null),
+       (6, 'mikeross', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Michael James', 'Ross',
+        '1981-04-04', 'M', 'mikeross@email.com', null, now(), null),
+       (7, 'harveyspecter', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Harvey Reginald',
+        'Specter', '1970-06-12', 'M', 'harveyspecter@email.com', 'I', now(), null);
 
-INSERT INTO contacts
-VALUES (1, 3, false, NOW());
+INSERT INTO contacts(user_id, contact_id, register_date)
+VALUES (6, 4, now()),
+       (4, 6, now()),
+       (6, 5, now());
+
+INSERT INTO invitations(ID_SOURCE, ID_DEST, SEND_DATE, RCV_DATE, ACCEPTED, ACTION_DATE)
+VALUES (7, 6, now(), now(), true, now()),
+       (6, 7, now(), now(), true, now());
+
+INSERT INTO message(id_source, id_dest, send_date, rcv_date, read_date, content)
+VALUES (4, 6, now(), now(), now(), 'Acabas de levantar a LITT, Mike.'),
+       (5, 6, now(), now(), now(), 'Estaba pensando que podríamos comer pollo esta noche, ¿suena bien?'),
+       (6, 7, now(), now(), now(),
+        '¡¿Cómo diablos se supone que voy a hacer que un jurado te crea cuando ni siquiera estoy seguro de que lo crea ?!'),
+       (7, 6, now(), now(), now(),
+        'Cuando estés contra la pared, derriba esa maldita cosa.'),
+       (7, 6, now(), now(), now(),
+        'Las excusas no ganan campeonatos.'),
+       (6, 7, now(), now(), now(),
+        'Oh, sí, ¿Michael Jordan te dijo eso?'),
+       (7, 6, now(), now(), now(),
+        'No, le dije eso.'),
+       (7, 6, now(), now(), now(),
+        '¿Cuáles son sus opciones cuando alguien le apunta con un arma a la cabeza?'),
+       (6, 7, now(), now(), now(),
+        '¿De qué estás hablando? Haz lo que te dicen o te disparan.'),
+       (7, 6, now(), now(), now(),
+        'Equivocado. Coges el arma o sacas una más grande. O llama a su farol. O haces una de las ciento cuarenta y seis cosas más.');
