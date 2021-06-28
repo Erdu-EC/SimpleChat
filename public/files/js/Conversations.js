@@ -1,6 +1,5 @@
 $(document).ready(cargar_conversaciones);
 
-$(document).on('click', '.elemento-conversacion', CargarEspacioDeChat);
 
 function cargar_conversaciones() {
     const alerta = $('#alerta-conversaciones').html('');
@@ -42,3 +41,5 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, contenido) 
                                            <p class="preview">${contenido}</p>
                                        </div>
                                    </div>`;
+
+$(document).on('click', '.elemento-conversacion', CargarEspacioDeChat);

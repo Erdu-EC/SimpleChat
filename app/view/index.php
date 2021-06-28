@@ -411,9 +411,26 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                         </div>
                     </div>
                     <section class="content" id="contenido">
+                        <div class="temporal">
+                            <div class="cuerpo-temporal align-self-center">
+                                <img src="/files/img/bg/fondo-tmp.svg" alt="" class="align-self-center">
+                               <span class="bienvenida">Bienvenido(a) a <?= APP_NAME ?></span>
+                                <p>Conéctate a SimpleChat desde cualquier dispositivo a través del navegador web de tu preferencia.</p>
+                                <hr>
+                                <div class="iconos-dispositivos">
+                                    <span class="material-icons">desktop_windows</span>
+                                    <span class="material-icons">laptop</span>
+                                    <span class="material-icons">tablet_android</span>
+                                    <span class="material-icons">tablet</span>
+                                    <span class="material-icons">smartphone</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--
                         <section class="contact-profile no-seleccionable">
 
-                            <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
+                            <img src="/files/profile/harveyspecter.png?w=40&h=40" alt="" />
 
 
                             <div class="chat-conexion">
@@ -443,10 +460,9 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                             <ul id="lista-mensajes">
 
                                                                 <li class="enviado">
-                                                                    <img src="/files/profile/mikeross.png" alt="" />
+                                                                    <img src="/files/profile/mikeross.png?w=40&h=40" alt="" />
                                                                     <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
                                                                 </li>
-                                <!--
                                                               <li class="recibido">
                                                                   <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
                                                                   <p>When you're backed against the wall, break the god damn thing down.</p>
@@ -476,7 +492,6 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                                                   <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
                                                               </li>
 
-                                                                  -->
                             </ul>
                         </div>
                         <div class="message-input">
@@ -485,6 +500,8 @@ El siguiente DIV se muestra con los contactos cada vez que se vaya a iniciar una
                                 <button class=" btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
                             </div>
                         </div>
+                        -->
+
                     </section>
                     <section class="" id="panelInfoContacto">
                         <button id="btn-cerrar-contacto"><span class="material-icons">close</span></button>

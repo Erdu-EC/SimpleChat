@@ -20,7 +20,7 @@ use HS\libs\collection\Collection;
         <img src="/files/icon/logo-bk.png?h=40" alt="Aquí va el logo de la aplicación web SimpleChat" class="logo">
                 <div class="text-center" id="mensaje">
                     <img src="/files/bg/error-404.svg" alt="" class="img-error">
-                    <span class="titulo">¡Vaya! Algo salió mal en Simplechat</span>
+                    <span class="titulo">El recurso no está disponible en Simplechat</span>
                     <p> <br/><br/>
                         Trata de volver a cargar esta página o no dudes en contactar con nosotros si el problema persiste.
                     </p>
