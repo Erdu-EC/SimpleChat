@@ -9,6 +9,7 @@ body .container-fluid{
     background-size: cover;
     background-color: none;
     padding-top: 76px;
+    overflow-y: scroll;
 }
 
 /*#####################################################
@@ -30,6 +31,7 @@ nav.menu-navegacion {
     z-index: 10;
     display: flex;
     background: #f2f2f2;
+
     /* background-color: rgba(43,54,79,0.8);*/
     /* background-color: rgba(231,231,231,0.5);*/
 }
@@ -37,10 +39,10 @@ nav.menu-navegacion {
 nav.menu-navegacion ul.nav-lista {
     margin: 0px;
     margin-left: auto;
+    margin-right: 30px;
     padding: 0;
     list-style: none;
     text-align: right;
-
     display: flex;
 }
 
@@ -70,6 +72,13 @@ a.nav-link {
     position: relative;
     color: #000000;
 }
+.nav-list-item a.nav-link:hover {
+
+        border-bottom: 2px solid #2d96c8 ;
+        transition-property: border-bottom-color;
+        transition-duration: 0s;
+}
+
 .nav-list-item a.activo {
 
     margin-top: 6px;
@@ -82,6 +91,7 @@ a.nav-link {
 .nav-list-item a.activo:hover{
     color: #ffffff;
     background:#03608a;
+    border: none;
 }
 
 @keyframes FadeIn {
@@ -274,6 +284,18 @@ Estilos del formulario de login
 .card .card-header img{
     margin-bottom: 20px;
 }
+.card .error-acceso {
+    width: 100%;
+    background: #fe447d;
+    color: #ffffff;
+    font-size: 0.75rem;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+}
+.card .error-acceso span.material-icons {
+
+}
 form .input-group{
     position: relative;
     height: 45px;
@@ -301,9 +323,14 @@ form .input-group input{
     flex-grow: 1;
 }
 
-.recuperar-clave, .crear-cuenta{
-    text-align: center;
-    margin: 10px 0;
+.recuperar-clave
+{ text-align: left;
+    margin: 20px 0 10px;
+
+}
+.crear-cuenta{
+    text-align: left;
+    margin: 20px 0 10px;
 }
 
 .recuperar-clave a ,  .crear-cuenta a{
@@ -311,6 +338,7 @@ form .input-group input{
     text-decoration: none;
     font-family: 'Poppins',sans-serif;
     font-weight: bold;
+    font-size: 0.90rem;
 }
 .crear-cuenta {
     font-family: 'Poppins',sans-serif;

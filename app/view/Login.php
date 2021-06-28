@@ -67,6 +67,9 @@ if (Session::IsLogin())
                         <img src="/files/icon/logo.png" alt="">
                         <?= 'Bienvenido a ' . APP_NAME ?>
                     </div>
+
+
+
                     <form id="user_form">
                         <div class="input-group">
                             <label for="usuario"><span class="material-icons">person</span></label>
@@ -77,10 +80,10 @@ if (Session::IsLogin())
                             <input type="password" id="user_pass"  placeholder="Introduzca su contraseña" minlength="8" maxlength="60" required>
                         </div>
                         <div class="recuperar-clave">
-                            <a href="">¿Ha olvidado su contraseña?</a>
+                            <a href="">¿Has olvidado tu contraseña?</a>
                         </div>
                         <div class="crear-cuenta">
-                            ¿Todavía no tienes una cuenta Deezer? <a href="/Register">Regístrate</a>
+                           <a href="/Register">Regístrate en SimpleChat</a>
                         </div>
                         <div class="input-group">
                             <input type="submit" value="Acceder" id="acceder">

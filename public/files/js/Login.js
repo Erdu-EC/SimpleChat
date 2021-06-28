@@ -8,13 +8,30 @@ $(document).on('submit', "#user_form", null, function () {
             p: $("#user_pass").val()
         },
         //beforeSend: () => Alert(ALERT_NORMAL, "Cargando..."),
-        //error: () => Alert(ALERT_ERROR, "No fue posible iniciar sesion."),
+        error: function () {3
+            if (!$("#error-solicitud").length) {
+                 $("#user_form").before(' <div class="error-acceso" id="error-solicitud"> <span class="material-icons">error</span><span> Se ha producido un fallo con tu solicitud. Por favor, inténtalo de nuevo.</span></div>');
+            };
+            $("#user_pass").val("");
+        },
         success: function (json) {
             if (json === true) {
                 //Alert(ALERT_SUCCESS, 'Sesion iniciada.');
                 window.location = "/";
-            }/* else
-                Alert(ALERT_ERROR, 'Usuario o contraseña incorrecta.');*/
+            }
+            else
+            {
+                if($(".card #error-solicitud").length){
+                    $(".card #error-solicitud").remove();
+                }
+                if (!$("#error-inicioSesion").length) {
+
+                    $(".card .card-header").after('<div class="error-acceso" id="error-inicioSesion"><span>Nombre de usuario o contraseña incorrectos.</span></div>');
+                }
+                $("#user_pass").val("");
+            }
+
+
         }
     });
 

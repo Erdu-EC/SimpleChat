@@ -49,11 +49,13 @@ nav.menu-navegacion {
 nav.menu-navegacion ul.nav-lista {
   margin: 0px;
   margin-left: auto;
+  margin-right: 30px;
   padding: 0;
   list-style: none;
   text-align: right;
 
   display: flex;
+
 }
 
 .nav-lista li.nav-list-item {
@@ -82,6 +84,13 @@ a.nav-link {
   position: relative;
   color: #000000;
 }
+.nav-list-item a.nav-link:hover {
+
+  border-bottom: 2px solid #2d96c8 ;
+  transition-property: border-bottom-color;
+  transition-duration: 0s;
+}
+
 .nav-list-item a.activo {
 
   margin-top: 6px;
@@ -94,6 +103,7 @@ a.nav-link {
 .nav-list-item a.activo:hover{
   color: #ffffff;
   background:#03608a;
+  border:none;
 }
 
 @keyframes FadeIn {
