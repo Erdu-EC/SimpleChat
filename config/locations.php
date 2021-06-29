@@ -13,6 +13,7 @@ class APP_DIR
     const IMAGE_CACHE = self::CACHE . '/img';
     const IMAGE = [
         'icon' => '/files/icon',
+        'bg' => '/files/bg',
         'profile' => '/upload/profile'
     ];
 
