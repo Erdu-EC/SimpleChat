@@ -85,7 +85,7 @@ create table permissions
     FOREIGN KEY (id) REFERENCES users (id)
 );
 
-CREATE OR REPLACE VIEW conversations AS
+CREATE VIEW conversations AS
 SELECT id_source,
        su.user_name                  as s_nick,
        su.first_name                 as s_first_name,
@@ -108,6 +108,16 @@ WHERE message.id = (select id
                       and id_dest in (su.id, du.id)
                     order by id desc
                     limit 1);
+
+CREATE VIEW message_readable AS
+select m.*
+from message m
+         inner join users su on m.id_source = su.id
+         inner join users du on m.id_dest = du.id
+         left join invitations i on i.id_source = su.id and i.id_dest = du.id and accepted
+         left join contacts c on c.user_id = su.id and c.contact_id = du.id
+where m.send_date >= i.send_date
+   or m.send_date >= c.register_date;
 
 
 #Funciones Y procedimientos.
@@ -139,7 +149,7 @@ BEGIN
 END;
 
 #Procedimientos para contactos.
-CREATE OR REPLACE FUNCTION user_AddContact(own int, contact int) RETURNS INT
+CREATE FUNCTION user_AddContact(own int, contact int) RETURNS INT
     MODIFIES SQL DATA
 BEGIN
     #Insertar nuevo contacto.
@@ -170,7 +180,7 @@ BEGIN
     RETURN (SELECT max(id) FROM invitations WHERE id_dest = USER_ID AND id_source = CONTACT_ID);
 END $
 
-CREATE OR REPLACE PROCEDURE user_ChangeInvitationState(in USER_ID int, in CONTACT_ID int, in accept boolean)
+CREATE PROCEDURE user_ChangeInvitationState(in USER_ID int, in CONTACT_ID int, in accept boolean)
 BEGIN
     #Cambiar estado de la ultima invitacion recibida por el usuario proveniente de ese contacto.
     UPDATE invitations
@@ -205,7 +215,7 @@ BEGIN
 END;
 
 #Obtener las conversaciones.
-CREATE OR REPLACE FUNCTION user_canReceiveMessage(USER_ID int, CONTACT_ID int) RETURNS BOOLEAN
+CREATE FUNCTION user_canReceiveMessage(USER_ID int, CONTACT_ID int) RETURNS BOOLEAN
 BEGIN
     #Usuario puede recibir el mensaje de la otra parte, si son contactos o si ya ha aceptado la ultima invitacion que
     #este le envio.
@@ -218,7 +228,7 @@ BEGIN
             limit 1) = TRUE;
 END $
 
-CREATE OR REPLACE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
+CREATE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
 BEGIN
     SELECT if(id_source != USER_ID, s_nick, d_nick)                                  as contact_id,
            if(id_source != USER_ID, s_first_name, d_first_name)                      as first_name,
@@ -236,7 +246,7 @@ BEGIN
 END;
 
 #Obtener una conversación completa.
-CREATE OR REPLACE PROCEDURE user_GetConversationWithContact(in USER_ID int, in CONTACT_ID int)
+CREATE PROCEDURE user_GetConversationWithContact(in USER_ID int, in CONTACT_ID int)
 BEGIN
     select *
     from (
@@ -256,17 +266,7 @@ BEGIN
     order by send_date, id;
 END;
 
-CREATE OR REPLACE VIEW message_readable AS
-select m.*
-from message m
-         inner join users su on m.id_source = su.id
-         inner join users du on m.id_dest = du.id
-         left join invitations i on i.id_source = su.id and i.id_dest = du.id and accepted
-         left join contacts c on c.user_id = su.id and c.contact_id = du.id
-where m.send_date >= i.send_date
-   or m.send_date >= c.register_date;
-
-CREATE OR REPLACE PROCEDURE user_GetUnreadMessages(in USER_ID int)
+CREATE PROCEDURE user_GetUnreadMessages(in USER_ID int)
 BEGIN
     select * from message_readable where id_dest = USER_ID and rcv_date is null;
 END $
