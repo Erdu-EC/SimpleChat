@@ -109,6 +109,7 @@ WHERE message.id = (select id
                     order by id desc
                     limit 1);
 
+
 CREATE VIEW message_readable AS
 select m.*
 from message m
@@ -215,33 +216,20 @@ BEGIN
 END;
 
 #Obtener las conversaciones.
-CREATE FUNCTION user_canReceiveMessage(USER_ID int, CONTACT_ID int) RETURNS BOOLEAN
+CREATE OR REPLACE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
 BEGIN
-    #Usuario puede recibir el mensaje de la otra parte, si son contactos o si ya ha aceptado la ultima invitacion que
-    #este le envio.
-    RETURN user_is_contact(USER_ID, CONTACT_ID) OR
-           (SELECT accepted
-            FROM invitations
-            WHERE id_dest = USER_ID
-              AND id_source = CONTACT_ID
-            order by id desc
-            limit 1) = TRUE;
-END $
-
-CREATE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
-BEGIN
-    SELECT if(id_source != USER_ID, s_nick, d_nick)                                  as contact_id,
-           if(id_source != USER_ID, s_first_name, d_first_name)                      as first_name,
-           if(id_source != USER_ID, s_last_name, d_last_name)                        as last_name,
-           id_source = USER_ID                                                       as isMyMessage,
-           user_HasInvitation(USER_ID, if(id_source != USER_ID, id_source, id_dest)) as hasInvitation,
-           if(id_source = USER_ID or user_canReceiveMessage(USER_ID, if(id_source != USER_ID, id_source, id_dest)),
-              msg_id, NULL),
-           if(id_source = USER_ID or user_canReceiveMessage(USER_ID, if(id_source != USER_ID, id_source, id_dest)),
-              msg_content, NULL)
-    FROM conversations
-    WHERE USER_ID IN (id_source, id_dest)
-      AND (if(CONTACT_ID IS NULL, TRUE, CONTACT_ID IN (id_source, id_dest)))
+    SELECT if(c.id_source != USER_ID, s_nick, d_nick)                                      as contact_id,
+           if(c.id_source != USER_ID, s_first_name, d_first_name)                          as first_name,
+           if(c.id_source != USER_ID, s_last_name, d_last_name)                            as last_name,
+           c.id_source = USER_ID                                                           as isMyMessage,
+           user_HasInvitation(USER_ID, if(c.id_source != USER_ID, c.id_source, c.id_dest)) as hasInvitation,
+           if(c.id_source = USER_ID, m.id, mr.id)                                          as msg_id,
+           if(c.id_source = USER_ID, m.content, mr.content)                                as msg_content
+    FROM conversations c
+             left outer join message_readable mr on mr.id = msg_id
+             left outer join message m on m.id = msg_id and c.id_source = USER_ID
+    WHERE USER_ID IN (c.id_source, c.id_dest)
+      AND (if(CONTACT_ID IS NULL, TRUE, CONTACT_ID IN (c.id_source, c.id_dest)))
     order by msg_send_date desc, msg_id desc;
 END;
 
@@ -261,7 +249,6 @@ BEGIN
              from message_readable
              where id_source = CONTACT_ID
                AND id_dest = USER_ID
-
          ) as A
     order by send_date, id;
 END;
