@@ -225,7 +225,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
 
 <!--
-<header><?php require 'template/Header.php' ?></header>
+<header><php require 'template/Header.php' ?></header>
 
 <main class="container-fluid d-flex flex-grow-1">
     <div class="row pt-2 pb-3 ps-4 pe-4 d-flex flex-grow-1">
