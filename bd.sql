@@ -87,15 +87,18 @@ create table permissions
 
 CREATE OR REPLACE VIEW conversations AS
 SELECT id_source,
-       su.user_name    as s_nick,
-       su.first_name   as s_first_name,
-       su.last_name    as s_last_name,
+       su.user_name                  as s_nick,
+       su.first_name                 as s_first_name,
+       su.last_name                  as s_last_name,
        id_dest,
-       du.user_name    as d_nick,
-       du.first_name   as d_first_name,
-       du.last_name    as d_last_name,
-       message.id      as msg_id,
-       message.content as msg_content
+       du.user_name                  as d_nick,
+       du.first_name                 as d_first_name,
+       du.last_name                  as d_last_name,
+       message.id                    as msg_id,
+       message.content               as msg_content,
+       message.rcv_date IS NOT NULL  as msg_received,
+       message.read_date IS NOT NULL as msg_readed,
+       message.send_date             as msg_send_date
 FROM message
          inner join users su on id_source = su.id
          inner join users du on id_dest = du.id
@@ -215,7 +218,7 @@ BEGIN
             limit 1) = TRUE;
 END $
 
-CREATE OR REPLACE PROCEDURE user_GetConversations(IN USER_ID int)
+CREATE OR REPLACE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
 BEGIN
     SELECT if(id_source != USER_ID, s_nick, d_nick)                                  as contact_id,
            if(id_source != USER_ID, s_first_name, d_first_name)                      as first_name,
@@ -227,7 +230,9 @@ BEGIN
            if(id_source = USER_ID or user_canReceiveMessage(USER_ID, if(id_source != USER_ID, id_source, id_dest)),
               msg_content, NULL)
     FROM conversations
-    WHERE USER_ID IN (id_source, id_dest);
+    WHERE USER_ID IN (id_source, id_dest)
+      AND (if(CONTACT_ID IS NULL, TRUE, CONTACT_ID IN (id_source, id_dest)))
+    order by msg_send_date desc, msg_id desc;
 END;
 
 #Obtener una conversación completa.
@@ -243,22 +248,28 @@ BEGIN
              UNION
 
              select *
-             from message
+             from message_readable
              where id_source = CONTACT_ID
                AND id_dest = USER_ID
-               and (send_date >= (select register_date
-                                  from contacts c
-                                  where c.user_id = USER_ID
-                                    and c.contact_id = CONTACT_ID)
-                 or send_date >= (SELECT i.send_date
-                                  FROM invitations i
-                                  WHERE i.id_source = CONTACT_ID
-                                    AND i.id_dest = USER_ID
-                                    AND i.accepted))
+
          ) as A
     order by send_date, id;
-    #select id from message where id_source in (USER_ID, CONTACT_ID) and id_dest in (USER_ID, CONTACT_ID);
 END;
+
+CREATE OR REPLACE VIEW message_readable AS
+select m.*
+from message m
+         inner join users su on m.id_source = su.id
+         inner join users du on m.id_dest = du.id
+         left join invitations i on i.id_source = su.id and i.id_dest = du.id and accepted
+         left join contacts c on c.user_id = su.id and c.contact_id = du.id
+where m.send_date >= i.send_date
+   or m.send_date >= c.register_date;
+
+CREATE OR REPLACE PROCEDURE user_GetUnreadMessages(in USER_ID int)
+BEGIN
+    select * from message_readable where id_dest = USER_ID and rcv_date is null;
+END $
 
 
 DELIMITER ;
@@ -284,7 +295,8 @@ values (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa
 INSERT INTO contacts(user_id, contact_id, register_date)
 VALUES (6, 4, now()),
        (4, 6, now()),
-       (6, 5, now());
+       (6, 5, now()),
+       (5, 6, now());
 
 INSERT INTO invitations(ID_SOURCE, ID_DEST, SEND_DATE, RCV_DATE, ACCEPTED, ACTION_DATE)
 VALUES (7, 6, now(), now(), true, now()),

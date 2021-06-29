@@ -24,8 +24,19 @@
 
         public function GetConversations(int $user_id) : ?Collection{
             try {
-                return $this->SelectAll('CALL user_GetConversations(:user_id)', [
+                return $this->SelectAll('CALL user_GetConversations(:user_id, NULL)', [
                     'user_id' => $user_id
+                ]);
+            }catch (\PDOException $ex){
+                return null;
+            }
+        }
+
+        public function GetOneConversation(int $user_id, int $contact_id){
+            try {
+                return $this->SelectOnly('CALL user_GetConversations(:user_id, :contact_id)', [
+                    'user_id' => $user_id,
+                    'contact_id' => $contact_id
                 ]);
             }catch (\PDOException $ex){
                 return null;
