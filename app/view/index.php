@@ -5,7 +5,7 @@
     use HS\libs\core\Session;
     use const HS\config\APP_NAME;
 
-    $SESSION = new Session();
+    $SESSION_USER_SHORTNAME = (new Session())->user_shortname;
 ?>
 
 <!doctype html>
@@ -235,7 +235,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                     data-bs-target="#flush-collapseOne" aria-expanded="false"
                                     aria-controls="flush-collapseOne" id="btn-sesion">
                                 <span class="material-icons izquierda">account_circle</span>
-                                <?= $SESSION->user_shortname; ?>
+                                <?= $SESSION_USER_SHORTNAME ?>
                                 <span class="material-icons  derecha">arrow_drop_down</span>
                             </button>
 
