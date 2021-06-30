@@ -50,6 +50,7 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, hay_invitac
             (contenido === null)?
                 '<i>Has rechazado una invitación.</i>' :
                 contenido
-    }</p>
+    }
+            </p>
         </div>
     </div>`;

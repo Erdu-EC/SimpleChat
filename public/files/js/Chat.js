@@ -45,7 +45,7 @@ $(document).on('click', '#espacio-de-escritura .wrap button', function () {
             error: () => mensaje.find('.popover-header').text("Error al enviar."),
             success: function (json) {
                 if (json)
-                    setTimeout(function () {mensaje.find('.enviando').remove()} ,500);
+                    setTimeout(function () {mensaje.find('.enviando').remove()} ,150);
 
                 else
                     mensaje.find('.popover-header').text("Error al enviar.");

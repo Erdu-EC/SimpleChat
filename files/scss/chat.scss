@@ -956,15 +956,10 @@ Fin de contactos
 }
 #frame #sidepanel #contacts ul li.contact {
   position: relative;
-  padding: 10px 0 15px 0;
   font-size: 0.9em;
   cursor: pointer;
-  margin-bottom: 8px;
-}
-@media screen and (max-width: 735px) {
-  #frame #sidepanel #contacts ul li.contact {
-    padding: 0px 0 46px 8px;
-  }
+  padding: 0;
+
 }
 #frame #sidepanel #contacts ul li.contact:hover {
   background: #32465a;
@@ -977,24 +972,34 @@ Fin de contactos
   border: 2px solid #32465a !important;
 }
 #frame #sidepanel #contacts ul li.contact .wrap {
-  width: 88%;
-  margin: 0 auto;
+  width: 100%;
+  height: auto;
   position: relative;
+  padding: 10px 10px 10px 15px;
+}
+#frame #sidepanel #contacts ul li.contact .wrap img{
+  width: 40px;
+  height: 40px;
 }
 @media screen and (max-width: 735px) {
+  #frame #sidepanel #contacts ul li{
+    padding: 0;
+  }
   #frame #sidepanel #contacts ul li.contact .wrap {
-    width: 100%;
+    padding: 0;
+    margin: 0px;
+    height: 60px;
   }
 }
 #frame #sidepanel #contacts ul li.contact .wrap span {
   position: absolute;
   left: 0;
-  margin: -2px 0 0 -2px;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   border: 2px solid #2c3e50;
   background: #95a5a6;
+  margin-left: 15px;
 }
 #frame #sidepanel #contacts ul li.contact .wrap span.online {
   background: #2ecc71;
@@ -1009,28 +1014,29 @@ Fin de contactos
   width: 40px;
   border-radius: 50%;
   float: left;
-  margin-right: 10px;
+  position: absolute;
 }
 @media screen and (max-width: 735px) {
   #frame #sidepanel #contacts ul li.contact .wrap img {
     margin-right: 0px;
   }
+  #frame #sidepanel #contacts ul li.contact .wrap img {
+    position: relative;
+  }
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta {
-  padding: 5px 0 0 0;
-}
-@media screen and (max-width: 735px) {
-  #frame #sidepanel #contacts ul li.contact .wrap .meta {
-    display: none;
-  }
+  padding: 0px;
+  margin: 0px;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta .name {
   font-weight: 600;
+  margin:0 0 0 40px;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta .preview {
-  margin: 5px 0 0 0;
-  padding: 0 0 1px;
-  font-weight: 400;
+   font-weight: 400;
+  width: 100%;
+  margin: 20px 10px 0 0;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1039,15 +1045,7 @@ Fin de contactos
   -webkit-transition: 1s all ease;
   transition: 1s all ease;
 }
-#frame #sidepanel #contacts ul li.contact .wrap .meta .preview span {
-  position: initial;
-  border-radius: initial;
-  background: none;
-  border: none;
-  padding: 0 2px 0 0;
-  margin: 0 0 0 1px;
-  opacity: .5;
-}
+
 #frame #sidepanel #bottom-bar {
   position: absolute;
   width: 100%;
