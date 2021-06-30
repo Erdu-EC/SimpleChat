@@ -90,24 +90,12 @@
                         <li class="enviado">
                             <img src="/files/profile/mikeross.png?w=40&h=40" alt="" />
                             <p><?= $msg->content ?></p>
-                            <!--
-                        <div class="popover bs-popover-end" style="position: relative; max-width: none">
-                            <div class="popover-arrow"
-                                 style="position: absolute; transform: translate(0px, 17px);"></div>
-                            <div class="popover-body"><?= $msg->content ?></div>
-                        </div>
-    -->
                         </li>
 
                     <?php else: ?>
             <li class="recibido">
                 <img src="/files/profile/harveyspecter.png?w=40&h=40" alt="" />
                 <p><?= $msg->content ?></p>
-                <!--               <div class="popover bs-popover-start" style="position: relative; max-width: none">
-                            <div class="popover-arrow"
-                                 style="position: absolute; transform: translate(0px, 47px);"></div>
-                            <div class="popover-body"><?= $msg->content ?></div>
-                        </div>-->
             </li>
                  <?php endif;
                 endforeach;
@@ -115,40 +103,6 @@
 
         ?>
 
-            <!--
-                                            <li class="enviado">
-                                                <img src="/files/profile/mikeross.png?w=40&h=40" alt="" />
-                                                <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
-                                            </li>
-                                            <li class="recibido">
-                                                <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
-                                                <p>When you're backed against the wall, break the god damn thing down.</p>
-                                            </li>
-                                            <li class="recibido">
-                                                <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
-                                                <p>Excuses don't win championships.</p>
-                                            </li>
-                                            <li class="enviado">
-                                                <img src="/files/profile/mikeross.png?w=100&h=100" alt="" />
-                                                <p>Oh yeah, did Michael Jordan tell you that?</p>
-                                            </li>
-                                            <li class="recibido">
-                                                <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
-                                                <p>No, I told him that.</p>
-                                            </li>
-                                            <li class="recibido">
-                                                <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
-                                                <p>What are your choices when someone puts a gun to your head?</p>
-                                            </li>
-                                            <li class="enviado">
-                                                <img src="/files/profile/mikeross.png" alt="" />
-                                                <p>What are you talking about? You do what they say or they shoot you.</p>
-                                            </li>
-                                            <li class="recibido">
-                                                <img src="/files/profile/harveyspecter.png" alt="" />
-                                                <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
-                                            </li>
-             -->
         </ul>
     </div>
 

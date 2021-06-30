@@ -223,7 +223,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         <div class="accordion-item">
                             <button class="accordion-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" id="btn-sesion">
                                 <span class="material-icons izquierda">account_circle</span>
-                                Mike Ross
+                                <?= (new Session())->user_shortname; ?>
                                 <span class="material-icons  derecha">arrow_drop_down</span>
                             </button>
 
@@ -399,6 +399,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                     </div>
                     <section class="content" id="espacio-de-chat">
                         <div class="temporal">
+
                             <div class="cuerpo-temporal align-self-center">
                                 <img src="/files/img/bg/fondo-tmp.svg" alt="" class="align-self-center">
                                 <span class="bienvenida">Bienvenido(a) a <?= APP_NAME ?></span>
