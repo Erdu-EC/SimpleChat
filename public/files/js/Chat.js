@@ -45,7 +45,8 @@ $(document).on('click', '#espacio-de-escritura .wrap button', function () {
             error: () => mensaje.find('.popover-header').text("Error al enviar."),
             success: function (json) {
                 if (json)
-                    mensaje.find('.popover-header').remove();
+                    setTimeout(function () {mensaje.find('.enviando').remove()} ,500);
+
                 else
                     mensaje.find('.popover-header').text("Error al enviar.");
             }
@@ -99,9 +100,12 @@ $(document).on('click', '.btn-agregar-contacto', function () {
 
 const ObtenerElementoMensaje = mensaje => `
 <li class="enviado">
-            <h3 class="popover-header">Enviando...</h3>
             <img src="/files/profile/mikeross.png?w=40&h=40" alt="" />
             <p> ${mensaje}</p>
+            <div class="extra-mensaje">
+                                <div class="enviando">
+                                </div>
+            </div>
     </li>`;
 
 function ObtenerElementoMensajeContacto(mensaje) {

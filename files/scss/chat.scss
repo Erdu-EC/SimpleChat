@@ -1300,45 +1300,14 @@ hr.separador-vertical{
   padding: 30px 30px 100px 50px;
   height: 100%;
   width: 100%;
-  border: 1px solid red;
 }
 #frame .content .messages ul li {
   display: inline-block;
-  clear: both;
-  float: left;
   width: 100%;
   font-size: 1em;
+  margin-bottom: 15px;
 }
-#frame .content .messages ul li:nth-last-child(1) {
-  margin-bottom: 20px;
-}
-#frame .content .messages ul li.enviado img {
-  float: right;
-  margin: 1px 0 0 10px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-#frame .content .messages ul li.enviado p {
-  float: right;
-  background: #435f7a;
-  color: white;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  overflow-wrap: break-word;
-}
-#frame .content .messages ul li.recibido img {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  margin: 1px 10px 0 0;
-}
-#frame .content .messages ul li.recibido p {
-  background: #ffffff;
-  color: black;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
-}
 #frame .content .messages ul li img {
   width: 40px;
   border-radius: 50%;
@@ -1350,10 +1319,33 @@ hr.separador-vertical{
   border-radius: 20px;
   width: auto;
   max-width: calc(70% - 50px);
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
+  min-width: 50px;
+  margin:0px;
 }
+#frame .content .messages ul li:nth-last-child(1) {
+  margin-bottom: 20px;
+}
+#frame .content .messages ul li.enviado img {
+  float: right;
+  margin-left: 10px;
+}
+#frame .content .messages ul li.enviado p {
+  float: right;
+  background: #435f7a;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  overflow-wrap: break-word;
+}
+#frame .content .messages ul li.recibido img {
+  margin-right: 10px;
+}
+#frame .content .messages ul li.recibido p {
+  background: #ffffff;
+  color: black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+}
+
 @media screen and (max-width: 576px) {
 
   #frame .content .messages ul li p {
@@ -1364,6 +1356,43 @@ hr.separador-vertical{
     padding: 30px 30px 100px 10px;
   }
 }
+
+.messages ul li.enviado .extra-mensaje {
+  margin-top: 5px;
+  float: right;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: flex-end;
+  align-content: end;
+  justify-content: end;
+  align-self: flex-end;
+  padding-right: 60px;
+}
+
+.messages ul li.enviado .extra-mensaje .enviando {
+  margin-left: auto;
+  width: 15px;
+  height: 15px;
+  border: 3px solid #666;
+  border-top: 3px solid #eee;
+  border-radius: 50%;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*---- Fin de estilos de mensajes enviados y recibidos */
+
+
+
 #frame .content .message-input {
   position: relative;
   height: 100%;
