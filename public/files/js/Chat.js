@@ -27,8 +27,8 @@ $(document).on('click', '#mensaje-invitacion button', function (){
     });
 })
 
-$(document).on('click', '#espacio-de-escritura button', function () {
-    const textarea = $('#espacio-de-escritura textarea');
+$(document).on('click', '#espacio-de-escritura .wrap button', function () {
+    const textarea = $('#espacio-de-escritura .wrap input');
     const texto = textarea.val().trim();
     textarea.val('');
 
@@ -41,7 +41,7 @@ $(document).on('click', '#espacio-de-escritura button', function () {
                 contact: $('#espacio-de-chat > div').attr('data-usuario'),
                 text: texto
             },
-            beforeSend: () => $('#espacio-de-chat .card-body').append(mensaje),
+            beforeSend: () => $('#espacio-de-chat .messages #lista-mensajes').append(mensaje),
             error: () => mensaje.find('.popover-header').text("Error al enviar."),
             success: function (json) {
                 if (json)
@@ -50,16 +50,19 @@ $(document).on('click', '#espacio-de-escritura button', function () {
                     mensaje.find('.popover-header').text("Error al enviar.");
             }
         });
+        $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 300);
     }
 
-
-    //console.log(text);
 })
 
 function CargarEspacioDeChat(){
     $('#espacio-de-chat').html(
         ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
     ).load(`/Chats/${$(this).attr('data-usuario')}`);
+    //Se elimina la imagen de bienvenida
+    $("#espacio-de-chat .temporal").remove();
+    //se muestra el div de mensajes
+    $("#espacio-de-chat .messages").show();
 }
 
 $(document).on('click', '.btn-agregar-contacto', function () {
@@ -95,12 +98,11 @@ $(document).on('click', '.btn-agregar-contacto', function () {
 });
 
 const ObtenerElementoMensaje = mensaje => `
-        <div class="popover bs-popover-end" style="position: relative; max-width: none">
-            <div class="popover-arrow" style="position: absolute; transform: translate(0px, 17px);"></div>
+<li class="enviado">
             <h3 class="popover-header">Enviando...</h3>
-            <div class="popover-body">${mensaje}</div>
-        </div>
-    `;
+            <img src="/files/profile/mikeross.png?w=40&h=40" alt="" />
+            <p> ${mensaje}</p>
+    </li>`;
 
 function ObtenerElementoMensajeContacto(mensaje) {
 

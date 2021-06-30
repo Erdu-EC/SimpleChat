@@ -1296,10 +1296,11 @@ hr.separador-vertical{
   height: 20px;
   background-color: rgba(0, 0, 0, 0.3);
 }
-#frame .content .messages ul#lista-mensajes{
+#frame .content .messages ul#espacio-de-chat{
   padding: 30px 30px 100px 50px;
   height: 100%;
   width: 100%;
+  border: 1px solid red;
 }
 #frame .content .messages ul li {
   display: inline-block;
@@ -1359,7 +1360,7 @@ hr.separador-vertical{
     max-width: calc(85% - 50px);
     height: auto;
   }
-  #frame .content .messages #lista-mensajes{
+  #frame .content .messages #espacio-de-chat{
     padding: 30px 30px 100px 10px;
   }
 }
@@ -1463,7 +1464,7 @@ Contenedor laterial de informacion de contacto
 */
 
 @media screen and (min-width: 735px ){
-  #frame #contenido.desp-der{
+  #frame #espacio-de-chat.desp-der{
 
   }
 
@@ -1472,7 +1473,7 @@ Contenedor laterial de informacion de contacto
   #frame #panelInfoContacto.mostrar{
     margin-left: -400px;
   }
-  #frame .content .messages #lista-mensajes{
+  #frame .content .messages #espacio-de-chat{
     padding:20px;
   }
 }
