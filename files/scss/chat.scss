@@ -713,16 +713,17 @@ box-sizing: border-box;
 Lista de contactos
 ---------------------------------------------------*/
 /*si la pantalla es pequena entonces se asigna mas espacio a los contactos*/
-#listaTodosContactos #lista-contactos {
+#listaTodosContactos #lista-contactos, #lista-contactos-buscar {
   padding: 0;
   list-style: none;
 }
-#listaTodosContactos #lista-contactos li{
+
+#listaTodosContactos #lista-contactos li , #lista-contactos-buscar li{
   margin: 0 0 1px 0;
   border: none;
 }
 
-#listaTodosContactos #lista-contactos li .card{
+#listaTodosContactos #lista-contactos li .card, #lista-contactos-buscar li .card{
   margin-right: 0px;
   color: black;
   border-radius: 0px;
@@ -732,13 +733,13 @@ Lista de contactos
 
 }
 
-#listaTodosContactos #lista-contactos li .card .row{
+#listaTodosContactos #lista-contactos li .card .row, #lista-contactos-buscar li .card .row{
 
   vertical-align: center;
   margin: 0px;
   height: 100%;
 }
-#listaTodosContactos #lista-contactos li .card .row div.perfil-contacto {
+#listaTodosContactos #lista-contactos li .card .row div.perfil-contacto, #lista-contactos-buscar li .card .row div.perfil-contacto {
 
   align-content: center;
   text-align: center;
@@ -758,14 +759,14 @@ Lista de contactos
   background: rgba(49,27,146,0.5);
 }
 
-#listaTodosContactos #lista-contactos li .card .row div .card-body{
+#listaTodosContactos #lista-contactos li .card .row div .card-body, #lista-contactos-buscar li .card .row div .card-body {
 
   height: 100%;
   text-align: left;
   padding: 0px 20px 0 0;
 
 }
-#listaTodosContactos #lista-contactos li .card .row div .card-body h5{
+#listaTodosContactos #lista-contactos li .card .row div .card-body h5, #lista-contactos-buscar li .card .row div .card-body h5 {
   width: calc(100% - 50px);
   max-height: 1.5rem;
   padding-top: 5px;
@@ -775,36 +776,12 @@ Lista de contactos
   margin:0;
   font-size: 1rem;
 }
-#listaTodosContactos #lista-contactos li .card:hover{
+#listaTodosContactos #lista-contactos li .card:hover, #lista-contactos-buscar li .card:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
   z-index: 99;
   background: rgba(135, 206,250, 0.2);
 }
-/*
-.card .row div.color-2{
-  background: #4527a0;
-  background: rgba(69,39,160,0.5);
-}
-.card .row div.color-3{
-background:#512da8;
-  background: rgba(81,45,168,0.5);
-
-}
-.card .row div.color-4{
-  background:#5e35b1;
-}
-
-.card .row div.color-5{
-  background:#7e57c2;
-}
-.card .row div.color-6{
-  background:#9575cd;
-}
-h5{
-  font-family: Roboto;
-}
-*/
-#lista-contactos .item-contacto .card .btn-mas{
+#lista-contactos .item-contacto .card .btn-mas, #lista-contactos-buscar .item-contacto .card .btn-mas {
   position: relative;
   height: 20px;
   width: 20px;
@@ -828,7 +805,7 @@ h5{
 
 }
 
-#lista-contactos .item-contacto .card .btn-mas .mas:hover, .card .btn-mas span.active{
+#lista-contactos .item-contacto .card .btn-mas .mas:hover, .card .btn-mas span.active, #lista-contactos-buscar .item-contacto .card .btn-mas .mas:hover {
   background-color: #007bff;
   color: white;
 }
@@ -837,7 +814,7 @@ h5{
 
 
 @media screen and (max-width: 576px){
-  #lista-contactos .item-contacto .card {
+  #lista-contactos .item-contacto .card, #lista-contactos-buscar .item-contacto .card {
     height: 90px;
     padding: 0px;
   }
@@ -845,7 +822,7 @@ h5{
   .card .btn-mas {
     left: 90%;
   }
-  #listaTodosContactos #lista-contactos li .card .row div .card-body h5{
+  #listaTodosContactos #lista-contactos li .card .row div .card-body h5, #lista-contactos-buscar li .card .row div .card-body h5 {
     margin-bottom: 0;
   }
   .card div .card-body .btn-opciones{

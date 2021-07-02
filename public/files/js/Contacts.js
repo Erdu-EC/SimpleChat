@@ -1,23 +1,50 @@
-$("#seccion-contactos").on("click", function()
-{
+$("#seccion-contactos").on("click", function() {
 $("#sidepanelTodosContactos .titulo-cab h1").html("Contactos");
     Contactos();
     actualizar_lista_contactos();
 });
+
+
 $("#nuevo-chat").on("click", function() {
     $("#sidepanelTodosContactos .titulo-cab h1").html("Nuevo Chat");
     Contactos();
         actualizar_lista_contactos();
 });
+//agregar boton de borrar texto en cuadro de busqueda de contactos
+$(document).on("keyup change", "#cuadro-busqueda-usuario",function () {
+    message = $("#cuadro-busqueda-usuario").val();
+    if ($.trim(message) == '') {
+        $("#buscar-contacto .borrar").remove();
+        $('#lista-contactos').show();
+    }
+    else{
+        if (!$("#buscar-contacto .borrar").length){
+            $("#cuadro-busqueda-usuario").after(' <div class="borrar"><span class="material-icons"> close</span></div>');
+        }
 
+    }
+});
+$(document).on("click",'#buscar-contacto .borrar', function () {
+    $("#cuadro-busqueda-usuario").val("");
+    $('#lista-contactos-buscar').empty();
+    $('#lista-contactos').show();
+});
+
+///////
 $(document).on('input', '#cuadro-busqueda-usuario', function () {
     //const alerta = $('#alerta-busqueda-usuario').html('');
-    const lista_resultados = $('#lista-contactos').html('');
+
+
+
+    const lista_resultados = $('#lista-contactos-buscar').html('');
     var entrada = $("#cuadro-busqueda-usuario").val();
-if(entrada == ''){
-    actualizar_lista_contactos();
+
+if ($.trim(message) == ''){
+    $('#lista-contactos').show();
     return;
 }
+    $('#lista-contactos').hide();
+
     if ($(this).val().length > 3) {
         $.ajax('/action/users/search', {
             method: 'post', dataType: 'json', mimeType: 'application/json',
@@ -56,7 +83,9 @@ $(document).on('click', '.elemento-contacto', CargarEspacioDeChat);
 
 
 function actualizar_lista_contactos() {
-    const alerta = $('#alerta-lista-contactos').html('');
+   // const alerta = $('#alerta-lista-contactos').html('');
+
+
     const lista_contactos = $('#lista-contactos').html('');
 
     $.ajax('/action/users/contacts', {
@@ -64,14 +93,14 @@ function actualizar_lista_contactos() {
         beforeSend: () => lista_contactos.html(ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')),
         error: () => {},//alerta.text('No fue posible cargar la lista de contactos.'),
         success: function (json) {
-            if (json === null)
-                alerta.text('No fue posible cargar la lista de contactos.');
+            if (json === null){}
+                //alerta.text('No fue posible cargar la lista de contactos.');
             else if (json.length === 0){
                 lista_contactos.html('');
-                alerta.html('Tu lista de contactos esta vacia.<br/><br/>¡Busca nuevos contactos y agregalos!');
+                //alerta.html('Tu lista de contactos esta vacia.<br/><br/>¡Busca nuevos contactos y agregalos!');
             }
             else {
-                alerta.html('Tienes ' + json.length + ' contacto(s)<br/><br/><small class="text-secondary">¡Busca nuevos contactos y agregalos!</small>')
+               // alerta.html('Tienes ' + json.length + ' contacto(s)<br/><br/><small class="text-secondary">¡Busca nuevos contactos y agregalos!</small>')
 
                 lista_contactos.html('')
 
