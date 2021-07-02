@@ -17,7 +17,8 @@ $("#sidebarToggle").on("click", function(e) {
     $("body").toggleClass("sb-sidenav-toggled");
 });
 
-$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+$(".messages").animate({
+    scrollTop: $(document).height() }, "fast");
 
 $("#profile-img").click(function() {
     $("#status-options").toggleClass("active");
@@ -68,16 +69,13 @@ $('#LateralMenu li').on('click', function(){
 
 
 
-//llamar elementos contactos
-$("#seccion-contactos").click(function(){
-    $(location).prop('href', '/Contacts')
-});
 /*
 /*llamar elementos chat*/
-$("#seccion-conversaciones").click(function(){
-    $(location).prop('href', '/')
-});
-$("#ocultar").click(function (){
+
+$("#ocultar").click(function () {
+    CerrarContactos();
+})
+function CerrarContactos(){
 
     $("#panelTodosContactos").animate({
         margin: "=0 auto 0 -600px"
@@ -91,9 +89,10 @@ $("#ocultar").click(function (){
             $("body").removeClass("sb-sidenav-toggled");
         }
     }
-});
+};
 
-$("#nuevo-chat").click(function () {
+
+function Contactos () {
     $("#panelTodosContactos").animate({
         margin: "=0 auto 0 0"
     }, {
@@ -105,8 +104,9 @@ $("#nuevo-chat").click(function () {
             $("body").addClass("prev-inactivo");
         }
         $("body").addClass("sb-sidenav-toggled");
-    }}
-);
+    }
+        $("#frame #espacio-de-chat").addClass("expandido")
+};
 
 
 $("#espacio-de-escritura .wrap input").on("keyup keydown change",function () {

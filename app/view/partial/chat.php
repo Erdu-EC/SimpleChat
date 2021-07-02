@@ -10,28 +10,7 @@
 
     $SESSION = new Session();
 ?>
-<!--
-<div class="card-header">
-    <h5 class="row d-flex align-items-center mb-0 user-select-none">
-        <div class="col-8">
-            <i class="material-icons me-2">person</i>
-            <b><?= $_VIEW->full_name ?></b>
 
-            <?php if (!empty($_VIEW->state)) : ?>
-                <span class="badge alert-success border-3 ms-2">
-                        <?= $_VIEW->state ?>
-                    </span>
-            <?php endif; ?>
-        </div>
-        <?php if (is_null($_VIEW->is_contact) || !$_VIEW->is_contact) : ?>
-            <div class="col-4 text-end">
-                <button class="btn btn-outline-primary btn-agregar-contacto">Agregar contacto</button>
-            </div>
-        <?php endif; ?>
-    </h5>
-</div>
--->
-<!-- Chat actual y ultima conexión-->
 <section class="contact-profile no-seleccionable">
     <img src="/files/profile/harveyspecter.png?w=40&h=40" alt="" />
     <div class="chat-conexion">

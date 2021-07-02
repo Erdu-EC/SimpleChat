@@ -80,10 +80,6 @@ function CargarEspacioDeChat(){
     $('#espacio-de-chat').html(
         ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
     ).load(`/Chats/${$(this).attr('data-usuario')}`);
-    //Se elimina la imagen de bienvenida
-    $("#espacio-de-chat .temporal").remove();
-    //se muestra el div de mensajes
-    $("#espacio-de-chat .messages").show();
 }
 
 $(document).on('click', '.btn-agregar-contacto', function () {
@@ -105,7 +101,7 @@ $(document).on('click', '.btn-agregar-contacto', function () {
         success: function (json) {
             if (json === true) {
                 boton.remove();
-                $('#mensaje-invitacion').remove();
+                $('.opciones-contacto').remove();
 
                 if (typeof actualizar_lista_contactos === 'function')
                     actualizar_lista_contactos();

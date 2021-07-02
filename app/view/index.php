@@ -8,7 +8,6 @@ use const HS\config\APP_NAME;
 $SESSION_USER_SHORTNAME = (new Session())->user_shortname;
 
 ?>
-
 <!doctype html>
 <html lang="es">
 <head>
@@ -33,179 +32,181 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
             </div>
         </div>
         <div id="buscar-contacto">
-            <label for="inputBuscarConversacion" class="material-icons">search</i></label>
-            <input name="inputBuscarConversacion" type="text" placeholder="Buscar" maxlength="100"/>
+            <label for="cuadro-busqueda-usuario" class="material-icons">search</i></label>
+            <input id="cuadro-busqueda-usuario" type="text" placeholder="Buscar" maxlength="100"/>
         </div>
         <div id="listaTodosContactos">
-            <ul id="listacontactos" class="no-seleccionable">
+            <ul id="lista-contactos" class="no-seleccionable">
+                <!--
+                                <li class="item-contacto">
+                                    <div class="card  align-content-betwe`en">
+                                        <div class="row">
+                                            <div class="col-4 perfil-contacto color-5">
+                                                <img src="/files/profile/rachelzane.png?w=90&h=90" alt="" class="online"/>
+                                            </div>
+                                            <div class="col-8 ">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Rachel Zane</h5>
+                                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>rachelzane</p>
+                                                    <div class="btn-opciones">
 
-                <li class="item-contacto">
-                    <div class="card  align-content-between">
-                        <div class="row">
-                            <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/profile/rachelzane.png?w=90&h=90" alt="" class="online"/>
-                            </div>
-                            <div class="col-8 ">
-                                <div class="card-body">
-                                    <h5 class="card-title">Rachel Zane</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>rachelzane</p>
-                                    <div class="btn-opciones">
+                                                        <span class="material-icons mensaje">person_add_alt</span>
+                                                        <span class="material-icons eliminar">delete</span>
+                                                    </div>
+                                                </div>
 
-                                        <span class="material-icons mensaje">message</span>
-                                        <span class="material-icons eliminar">delete</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                </li>
+                                <li class="item-contacto">
+                                    <div class="card  align-content-between">
+                                        <div class="row">
+                                            <div class="col-4 perfil-contacto color-5">
+                                                <img src="/files/profile/donnapaulsen.png?w=90&h=90" alt="" class="online"/>
+                                            </div>
+                                            <div class="col-8 ">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Donna Paulsen</h5>
+                                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>donnapaulsen</p>
+                                                    <div class="btn-opciones">
 
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-contacto">
-                    <div class="card  align-content-between">
-                        <div class="row">
-                            <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/profile/donnapaulsen.png?w=90&h=90" alt="" class="online"/>
-                            </div>
-                            <div class="col-8 ">
-                                <div class="card-body">
-                                    <h5 class="card-title">Donna Paulsen</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>donnapaulsen</p>
-                                    <div class="btn-opciones">
+                                                        <span class="material-icons mensaje">message</span>
+                                                        <span class="material-icons eliminar">delete</span>
+                                                    </div>
+                                                </div>
 
-                                        <span class="material-icons mensaje">message</span>
-                                        <span class="material-icons eliminar">delete</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                </li>
 
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-contacto">
-                    <div class="card  align-content-between">
-                        <div class="row">
-                            <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/profile/jessicapearson.png?w=90&h=90" alt="" class="online"/>
-                            </div>
-                            <div class="col-8 ">
-                                <div class="card-body">
-                                    <h5 class="card-title">Jessica Pearson</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>jessicapearson</p>
-                                    <div class="btn-opciones">
+                                <li class="item-contacto">
+                                    <div class="card  align-content-between">
+                                        <div class="row">
+                                            <div class="col-4 perfil-contacto color-5">
+                                                <img src="/files/profile/jessicapearson.png?w=90&h=90" alt="" class="online"/>
+                                            </div>
+                                            <div class="col-8 ">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Jessica Pearson</h5>
+                                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>jessicapearson</p>
+                                                    <div class="btn-opciones">
 
-                                        <span class="material-icons mensaje">message</span>
-                                        <span class="material-icons eliminar">delete</span>
+                                                        <span class="material-icons mensaje">message</span>
+                                                        <span class="material-icons eliminar">delete</span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="btn-mas">
+                                            <span class="material-icons align-baseline mas">chevron_right</span>
+                                        </div>
                                     </div>
-                                </div>
+                                </li>
+                                <li class="item-contacto">
+                                    <div class="card  align-content-between">
+                                        <div class="row">
+                                            <div class="col-4 perfil-contacto color-5">
+                                                <img src="/files/profile/haroldgunderson.png?w=90&h=90" alt="" class="online"/>
+                                            </div>
+                                            <div class="col-8 ">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Harold Gunderson Harold Gunderson</h5>
+                                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>haroldgundersonharoldgunderson</p>
+                                                    <div class="btn-opciones">
 
-                            </div>
-                        </div>
-                        <div class="btn-mas">
-                            <span class="material-icons align-baseline mas">chevron_right</span>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-contacto">
-                    <div class="card  align-content-between">
-                        <div class="row">
-                            <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/profile/haroldgunderson.png?w=90&h=90" alt="" class="online"/>
-                            </div>
-                            <div class="col-8 ">
-                                <div class="card-body">
-                                    <h5 class="card-title">Harold Gunderson Harold Gunderson</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>haroldgundersonharoldgunderson</p>
-                                    <div class="btn-opciones">
+                                                        <span class="material-icons mensaje">message</span>
+                                                        <span class="material-icons eliminar">delete</span>
+                                                    </div>
+                                                </div>
 
-                                        <span class="material-icons mensaje">message</span>
-                                        <span class="material-icons eliminar">delete</span>
+                                            </div>
+                                        </div>
+                                        <div class="btn-mas">
+                                            <span class="material-icons align-baseline mas">chevron_right</span>
+                                        </div>
                                     </div>
-                                </div>
+                                </li>
+                                <li class="item-contacto">
+                                    <div class="card  align-content-between">
+                                        <div class="row">
+                                            <div class="col-4 perfil-contacto color-5">
+                                                <img src="/files/profile/danielhardman.png?w=90&h=90" alt="" class="online"/>
+                                            </div>
+                                            <div class="col-8 ">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Daniel Hardman</h5>
 
-                            </div>
-                        </div>
-                        <div class="btn-mas">
-                            <span class="material-icons align-baseline mas">chevron_right</span>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-contacto">
-                    <div class="card  align-content-between">
-                        <div class="row">
-                            <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/profile/danielhardman.png?w=90&h=90" alt="" class="online"/>
-                            </div>
-                            <div class="col-8 ">
-                                <div class="card-body">
-                                    <h5 class="card-title">Daniel Hardman</h5>
+                                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>danielhardman</p>
+                                                    <div class="btn-opciones">
 
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>danielhardman</p>
-                                    <div class="btn-opciones">
+                                                        <span class="material-icons mensaje">message</span>
+                                                        <span class="material-icons eliminar">delete</span>
+                                                    </div>
 
-                                        <span class="material-icons mensaje">message</span>
-                                        <span class="material-icons eliminar">delete</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="btn-mas">
+                                            <span class="material-icons align-baseline mas">chevron_right</span>
+                                        </div>
                                     </div>
+                                </li>
+                                <li class="item-contacto">
+                                    <div class="card">
+                                        <div class="row align-content-between">
+                                            <div class="col-4 perfil-contacto color-6">
+                                                <img src="/files/profile/katrinabennett.png?w=90&h=90" alt="" class="online"/>
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Katrina Bennett</h5>
 
-                                </div>
+                                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>katrinabennett</p>
+                                                    <div class="btn-opciones">
 
-                            </div>
-                        </div>
-                        <div class="btn-mas">
-                            <span class="material-icons align-baseline mas">chevron_right</span>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-contacto">
-                    <div class="card">
-                        <div class="row align-content-between">
-                            <div class="col-4 perfil-contacto color-6">
-                                <img src="/files/profile/katrinabennett.png?w=90&h=90" alt="" class="online"/>
-                            </div>
-                            <div class="col-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Katrina Bennett</h5>
+                                                        <span class="material-icons mensaje">message</span>
+                                                        <span class="material-icons eliminar">delete</span>
+                                                    </div>
 
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>katrinabennett</p>
-                                    <div class="btn-opciones">
-
-                                        <span class="material-icons mensaje">message</span>
-                                        <span class="material-icons eliminar">delete</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-mas">
+                                            <span class="material-icons align-baseline mas ">chevron_right</span>
+                                        </div>
                                     </div>
+                                </li>
+                                <li class="item-contacto">
+                                    <div class="card  align-content-between">
+                                        <div class="row">
+                                            <div class="col-4 perfil-contacto color-5">
+                                                <img src="/files/profile/danielhardman.png?w=90&h=90" alt="" class="online"/>
+                                            </div>
+                                            <div class="col-8 ">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Daniel Hardman</h5>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="btn-mas">
-                            <span class="material-icons align-baseline mas ">chevron_right</span>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-contacto">
-                    <div class="card  align-content-between">
-                        <div class="row">
-                            <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/profile/danielhardman.png?w=90&h=90" alt="" class="online"/>
-                            </div>
-                            <div class="col-8 ">
-                                <div class="card-body">
-                                    <h5 class="card-title">Daniel Hardman</h5>
+                                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>danielhardman</p>
+                                                    <div class="btn-opciones">
 
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>danielhardman</p>
-                                    <div class="btn-opciones">
+                                                        <span class="material-icons mensaje">message</span>
+                                                        <span class="material-icons eliminar">delete</span>
+                                                    </div>
 
-                                        <span class="material-icons mensaje">message</span>
-                                        <span class="material-icons eliminar">delete</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="btn-mas">
+                                            <span class="material-icons align-baseline mas">chevron_right</span>
+                                        </div>
                                     </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="btn-mas">
-                            <span class="material-icons align-baseline mas">chevron_right</span>
-                        </div>
-                    </div>
-                </li>
+                                </li>
+                                -->
             </ul>
 
 
@@ -301,96 +302,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                        </div>
                                    </div>
                                </li>
-                               <li class="contact active">
-                                   <div class="wrap">
-                                       <span class="contact-status busy"></span>
-                                       <img src="/files/profile/harveyspecter.png?w=100&h=100" alt="" />
-                                       <div class="meta">
-                                           <p class="name">Harvey Specter</p>
-                                           <p class="preview">Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
-                                       </div>
-                                   </div>
-                               </li>
-                               <li class="contact">
-                                   <div class="wrap">
-                                       <span class="contact-status away"></span>
-                                       <img src="/files/profile/rachelzane.png?w=100&h=100" alt="" />
-                                       <div class="meta">
-                                           <p class="name">Rachel Zane</p>
-                                           <p class="preview">I was thinking that we could have chicken tonight, sounds good?</p>
-                                       </div>
-                                   </div>
-                               </li>
-                               <li class="contact">
-                                   <div class="wrap">
-                                       <span class="contact-status online"></span>
-                                       <img src="/files/profile/donnapaulsen.png?w=100&h=100" alt="" />
-                                       <div class="meta">
-                                           <p class="name">Donna Paulsen</p>
-                                           <p class="preview">Mike, I know everything! I'm Donna..</p>
-                                       </div>
-                                   </div>
-                               </li>
-                               <li class="contact">
-                                   <div class="wrap">
-                                       <span class="contact-status busy"></span>
-                                       <img src="/files/profile/jessicapearson.png?w=100&h=100" alt="" />
-                                       <div class="meta">
-                                           <p class="name">Jessica Pearson</p>
-                                           <p class="preview">Have you finished the draft on the Hinsenburg deal?</p>
-                                       </div>
-                                   </div>
-                               </li>
-                               <li class="contact">
-                                   <div class="wrap">
-                                       <span class="contact-status"></span>
-                                       <img src="/files/profile/haroldgunderson.png?w=100&h=100" alt="" />
-                                       <div class="meta">
-                                           <p class="name">Harold Gunderson</p>
-                                           <p class="preview">Thanks Mike! :)</p>
-                                       </div>
-                                   </div>
-                               </li>
-                               <li class="contact">
-                                   <div class="wrap">
-                                       <span class="contact-status"></span>
-                                       <img src="/files/profile/danielhardman.png?w=100&h=100" alt="" />
-                                       <div class="meta">
-                                           <p class="name">Daniel Hardman</p>
-                                           <p class="preview">We'll meet again, Mike. Tell Jessica I said 'Hi'.</p>
-                                       </div>
-                                   </div>
-                               </li>
-                               <li class="contact">
-                                   <div class="wrap">
-                                       <span class="contact-status busy"></span>
-                                       <img src="/files/profile/katrinabennett.png?w=100&h=100" alt="" />
-                                       <div class="meta">
-                                           <p class="name">Katrina Bennett</p>
-                                           <p class="preview">I've sent you the files for the Garrett trial.</p>
-                                       </div>
-                                   </div>
-                               </li>
-                               <li class="contact">
-                                   <div class="wrap">
-                                       <span class="contact-status"></span>
-                                       <img src="/files/profile/charlesforstman.png?w=100&h=100" alt="" />
-                                       <div class="meta">
-                                           <p class="name">Charles Forstman</p>
-                                           <p class="preview">Mike, this isn't over.</p>
-                                       </div>
-                                   </div>
-                               </li>
-                               <li class="contact">
-                                   <div class="wrap">
-                                       <span class="contact-status"></span>
-                                       <img src="/files/profile/jonathansidwell.png?w=100&h=100" alt="" />
-                                       <div class="meta">
-                                           <p class="name">Jonathan Sidwell</p>
-                                           <p class="preview"><span>Tu:</span> That's bullshit. This deal is solid.</p>
-                                       </div>
-                                   </div>
-                               </li>
+
                                -->
                             </ul>
                         </div>
@@ -470,46 +382,10 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     </div>
 </div>
 
-
-
-<!--
-<header><php require 'template/Header.php' ?></header>
-
-<main class="container-fluid d-flex flex-grow-1">
-    <div class="row pt-2 pb-3 ps-4 pe-4 d-flex flex-grow-1">
-        <div class="col-4">
-            <div class="card h-100">
-                <div class="card-header">
-                    <h5 class="d-flex align-items-center mb-0 user-select-none">
-                        <i class="material-icons me-2">email</i>
-                        <span>Conversaciones</span>
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <h6 id="alerta-conversaciones" class="text-secondary">
-                                Cargando conversaciones...
-                            </h6>
-                        </div>
-                    </div>
-
-                    <ul id="lista-conversaciones" class="list-group list-group-flush">
-                       Las conversaciónes con tus contactos apareceran en esta
-                        lista.-->
-<!--
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div id="espacio-de-chat" class="col-8"> -->
-            <!-- AQUI SE CARGARA EL HISTORIAL DE CHAT DEL CONTACTO
-        </div>
-    </div>
--->
 <script type="text/javascript" src="/files/js/events.js"></script>
 <script type="text/javascript" src="/files/js/Chat.js"></script>
 <script type="text/javascript" src="/files/js/Conversations.js"></script>
+<script type="application/javascript" src="/files/js/Contacts.js"></script>
 </main>
 </body>
 </html>
