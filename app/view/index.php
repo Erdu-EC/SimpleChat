@@ -34,6 +34,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
         <div id="buscar-contacto">
             <label for="cuadro-busqueda-usuario" class="material-icons">search</i></label>
             <input id="cuadro-busqueda-usuario" type="text" placeholder="Buscar" maxlength="100"/>
+
         </div>
         <div id="listaTodosContactos">
             <ul id="lista-contactos" class="no-seleccionable">

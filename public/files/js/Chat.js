@@ -9,10 +9,14 @@ $(document).on("keydown", "#espacio-de-escritura",function(e) {
 $(document).on("keyup change", "#espacio-de-escritura",function () {
     message = $("#espacio-de-escritura .wrap input").val();
     if ($.trim(message) == '') {
-        $("#btn-enviar-mensaje").removeClass("activar")
+        $("#btn-enviar-mensaje").removeClass("activar");
+        $("#buscar-contacto .borrar").remove();
+
     }
     else{
-        $("#btn-enviar-mensaje").addClass("activar")
+        $("#btn-enviar-mensaje").addClass("activar");
+        $("#cuadro-busqueda-usuario").after(' <div class="borrar"><span class="material-icons"> close</span></div>');
+
     }
 });
 $(document).on('click', '#mensaje-invitacion button',function () {

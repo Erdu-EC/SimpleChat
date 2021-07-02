@@ -144,3 +144,21 @@ $("div#contacts ul#lista-conversaciones").on("click","li.contact",function () {
     $(this).addClass("active");
 
 });
+
+//agregar boton de borrar texto en cuadro de busqueda de contactos
+$(document).on("keyup change", "#cuadro-busqueda-usuario",function () {
+    message = $("#cuadro-busqueda-usuario").val();
+    if ($.trim(message) == '') {
+        $("#buscar-contacto .borrar").remove();
+
+    }
+    else{
+        if (!$("#buscar-contacto .borrar").length){
+            $("#cuadro-busqueda-usuario").after(' <div class="borrar"><span class="material-icons"> close</span></div>');
+        }
+
+    }
+});
+$(document).on("click",'#buscar-contacto .borrar', function () {
+    $("#cuadro-busqueda-usuario").val("");
+});

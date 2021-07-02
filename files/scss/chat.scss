@@ -616,16 +616,17 @@ Barra de contactos desplegable
 }
 #panelTodosContactos #sidepanelTodosContactos #buscar-contacto input {
   font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
-  padding: 10px 0 10px 40px;
+  padding: 10px 40px 10px 40px;
   width: 100%;
   color: black;
   border: none;
   border-radius: 50px;
   border: 1px solid #e7e8e9;
 }
+
 #panelTodosContactos #sidepanelTodosContactos #buscar-contacto input:focus {
   outline: none;
-  border-bottom: 2px solid blue;
+  border-bottom: 2px solid #0c63e4;
 
 }
 #panelTodosContactos #sidepanelTodosContactos #buscar-contacto input::-webkit-input-placeholder {
@@ -651,6 +652,28 @@ Barra de contactos desplegable
 
 }
 
+#buscar-contacto .borrar {
+  color: black;
+  position: absolute;
+  display:inline;
+  z-index: 2010;
+  margin-left: -40px;
+  height: 46px;
+box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+#buscar-contacto .borrar:hover {
+
+  color: #0c63e4;
+
+}
+
+#buscar-contacto .borrar span {
+  padding: 10px 5px;
+  display: flex;
+}
 
 #sidepanelTodosContactos #listaTodosContactos {
   margin-top:20px;
@@ -831,8 +854,12 @@ h5{
     width: 100%;
   }
 }
-.btn-mas .material-icons{
+.material-icons{
   border: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .item-contacto .card div .card-body .btn-opciones{
