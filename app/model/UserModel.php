@@ -20,6 +20,7 @@
         const C_LNAME = 'last_name';
         const C_LAST_CONN = 'last_connection';
         const C_STATE = 'state';
+        const C_PROFILE_IMG = 'profile_img';
 
         const V_STATE_ACTIVE = 'A';
         const V_STATE_BUSY = 'O';
@@ -27,7 +28,7 @@
 
         public static function _st_init()
         {
-            self::$ALLOW_READ_VALUES = [self::C_ID, self::C_NICK, self::C_FNAME, self::C_LNAME, self::C_LAST_CONN, self::C_STATE];
+            self::$ALLOW_READ_VALUES = [self::C_ID, self::C_NICK, self::C_FNAME, self::C_LNAME, self::C_LAST_CONN, self::C_STATE, self::C_PROFILE_IMG];
         }
 
         //Metodos para obtener datos.

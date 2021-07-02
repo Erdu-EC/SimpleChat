@@ -15,7 +15,12 @@
     <div class="card-header">
         <h5 class="row d-flex align-items-center mb-0 user-select-none">
             <div class="col-8">
-                <i class="material-icons me-2">person</i>
+                <?php if (!empty($_VIEW->profile_img)) : ?>
+                    <img src="<?= $_VIEW->profile_img ?>" alt="">
+                <?php else: ?>
+                    <i class="material-icons me-2">person</i>
+                <?php endif; ?>
+
                 <b><?= $_VIEW->full_name ?></b>
 
                 <?php if (!empty($_VIEW->state)) : ?>

@@ -22,10 +22,10 @@
                 $user = new UserModel(DBAccount::Root);
                 $user_data = $user->GetOne($user_name, [
                     UserModel::C_ID,
-                    UserModel::C_NICK,
                     UserModel::C_FNAME,
                     UserModel::C_LNAME,
-                    UserModel::C_STATE
+                    UserModel::C_STATE,
+                    UserModel::C_PROFILE_IMG
                 ]);
 
                 //Verificando si es un contacto del usuario actual.
@@ -52,6 +52,7 @@
             $data->is_contact = $user_data->is_contact;
             $data->has_invitation = $user_data->has_invitation;
             $data->messages = $user_data->messages;
+            $data->profile_img = $user_data->profile_img;
 
             //Destruyendo variables.
             unset($user_data);

@@ -21,6 +21,8 @@ CREATE TABLE users
     create_at       datetime,
     last_connection datetime,
 
+    profile_img     text,
+
     PRIMARY KEY (id),
     KEY idx_user_name (user_name),
     FULLTEXT idx_user_search (user_name, first_name, last_name)
