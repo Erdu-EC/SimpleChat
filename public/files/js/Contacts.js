@@ -34,8 +34,6 @@ $(document).on("click",'#buscar-contacto .borrar', function () {
 $(document).on('input', '#cuadro-busqueda-usuario', function () {
     //const alerta = $('#alerta-busqueda-usuario').html('');
 
-
-
     const lista_resultados = $('#lista-contactos-buscar').html('');
     var entrada = $("#cuadro-busqueda-usuario").val();
 
