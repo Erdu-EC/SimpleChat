@@ -16,7 +16,7 @@
         <h5 class="row d-flex align-items-center mb-0 user-select-none">
             <div class="col-8">
                 <?php if (!empty($_VIEW->profile_img)) : ?>
-                    <img src="<?= $_VIEW->profile_img ?>" alt="">
+                    <img src="/files/profile/<?= $_VIEW->profile_img ?>?h=40" alt="">
                 <?php else: ?>
                     <i class="material-icons me-2">person</i>
                 <?php endif; ?>

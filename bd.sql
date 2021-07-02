@@ -265,10 +265,13 @@ DELIMITER ;
 
 #Datos de prueba.
 insert into users (id, user_name, pass, first_name, last_name, birth_date, gender, email, state, create_at,
-                   last_connection)
+                   last_connection, profile_img)
 values (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa', 'E', 'C', now(), 'M', null, null,
-        now(), null),
-       (2, 'test', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', now(), 'M', null,
+        now(), null, '0_erdu.png');
+
+insert into users (id, user_name, pass, first_name, last_name, birth_date, gender, email, state, create_at,
+                   last_connection)
+values (2, 'test', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', now(), 'M', null,
         null, now(), null),
        (3, 'test2', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', now(), 'M', null,
         null, now(), null),
