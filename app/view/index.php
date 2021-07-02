@@ -1,11 +1,12 @@
 <?php
 
-    namespace HS\app\view;
+namespace HS\app\view;
 
-    use HS\libs\core\Session;
-    use const HS\config\APP_NAME;
+use HS\libs\core\Session;
+use const HS\config\APP_NAME;
 
-    $SESSION_USER_SHORTNAME = (new Session())->user_shortname;
+$SESSION_USER_SHORTNAME = (new Session())->user_shortname;
+
 ?>
 
 <!doctype html>
@@ -47,8 +48,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <div class="col-8 ">
                                 <div class="card-body">
                                     <h5 class="card-title">Rachel Zane</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>rachelzane
-                                    </p>
+                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>rachelzane</p>
                                     <div class="btn-opciones">
 
                                         <span class="material-icons mensaje">message</span>
@@ -69,10 +69,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <div class="col-8 ">
                                 <div class="card-body">
                                     <h5 class="card-title">Donna Paulsen</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>donnapaulsen
-                                    </p>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>donnapaulsen
-                                    </p>
+                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>donnapaulsen</p>
                                     <div class="btn-opciones">
 
                                         <span class="material-icons mensaje">message</span>
@@ -93,8 +90,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <div class="col-8 ">
                                 <div class="card-body">
                                     <h5 class="card-title">Jessica Pearson</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>jessicapearson
-                                    </p>
+                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>jessicapearson</p>
                                     <div class="btn-opciones">
 
                                         <span class="material-icons mensaje">message</span>
@@ -118,8 +114,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <div class="col-8 ">
                                 <div class="card-body">
                                     <h5 class="card-title">Harold Gunderson Harold Gunderson</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>haroldgundersonharoldgunderson
-                                    </p>
+                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>haroldgundersonharoldgunderson</p>
                                     <div class="btn-opciones">
 
                                         <span class="material-icons mensaje">message</span>
@@ -144,8 +139,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                 <div class="card-body">
                                     <h5 class="card-title">Daniel Hardman</h5>
 
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>danielhardman
-                                    </p>
+                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>danielhardman</p>
                                     <div class="btn-opciones">
 
                                         <span class="material-icons mensaje">message</span>
@@ -171,8 +165,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                 <div class="card-body">
                                     <h5 class="card-title">Katrina Bennett</h5>
 
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>katrinabennett
-                                    </p>
+                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>katrinabennett</p>
                                     <div class="btn-opciones">
 
                                         <span class="material-icons mensaje">message</span>
@@ -197,8 +190,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                 <div class="card-body">
                                     <h5 class="card-title">Daniel Hardman</h5>
 
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>danielhardman
-                                    </p>
+                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>danielhardman</p>
                                     <div class="btn-opciones">
 
                                         <span class="material-icons mensaje">message</span>
@@ -224,23 +216,20 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 <!--Fin del contenedor de los contactos para nuevo chat -->
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
-        <nav class="sb-sidenav ">
+        <nav class="sb-sidenav " >
             <div id="profile">
                 <div class="wrap no-seleccionable">
-                    <img id="profile-img" src="/files/profile/mikeross.png?w=100&h=100" class="online" alt=""/>
+                    <img id="profile-img" src="/files/profile/mikeross.png?w=100&h=100" class="online" alt="" />
 
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item">
-                            <button class="accordion-header collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                    aria-controls="flush-collapseOne" id="btn-sesion">
+                            <button class="accordion-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" id="btn-sesion">
                                 <span class="material-icons izquierda">account_circle</span>
                                 <?= $SESSION_USER_SHORTNAME ?>
                                 <span class="material-icons  derecha">arrow_drop_down</span>
                             </button>
 
-                            <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                 aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
                                     <a class="nav-link" href="/Logout">
                                         <span class="material-icons icono-centrado">logout</span>
@@ -297,7 +286,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
                         <div id="search">
                             <label for="inputBuscarConversacion" class="material-icons">search</i></label>
-                            <input name="inputBuscarConversacion" type="text" placeholder="Buscar Conversación..."/>
+                            <input name="inputBuscarConversacion" type="text" placeholder="Buscar Conversación..." />
                         </div>
                         <div id="contacts">
                             <ul class="no-seleccionable" id="lista-conversaciones">
@@ -406,11 +395,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             </ul>
                         </div>
                         <div id="bottom-bar">
-                            <button id="nuevo-chat"><img src="/files/icon/nuevo-chat.svg" alt="" id="icon-nuevo-chat"
-                                                         class="img-fluid"> <span>Nuevo chat</span></button>
-                            <button id="agregar-contacto"><img src="/files/icon/agregar-contacto.svg" alt=""
-                                                               id="icon-agregar-contacto"><span>Agregar contacto</span>
-                            </button>
+                            <button id="nuevo-chat"><img src="/files/icon/nuevo-chat.svg" alt="" id="icon-nuevo-chat" class="img-fluid"> <span>Nuevo chat</span></button>
+                            <button id="agregar-contacto"><img src="/files/icon/agregar-contacto.svg" alt="" id="icon-agregar-contacto"><span>Agregar contacto</span></button>
                         </div>
                     </div>
                     <section class="content" id="espacio-de-chat">
@@ -419,8 +405,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <div class="cuerpo-temporal align-self-center">
                                 <img src="/files/img/bg/fondo-tmp.svg" alt="" class="align-self-center">
                                 <span class="bienvenida">Bienvenido(a) a <?= APP_NAME ?></span>
-                                <p>Conéctate a SimpleChat desde cualquier dispositivo a través del navegador web de tu
-                                    preferencia.</p>
+                                <p>Conéctate a SimpleChat desde cualquier dispositivo a través del navegador web de tu preferencia.</p>
                                 <hr>
                                 <div class="iconos-dispositivos">
                                     <span class="material-icons">desktop_windows</span>
@@ -434,9 +419,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
                         <!-- -->
 
-                        <div class="messages">
 
-                        </div>
 
 
                     </section>
@@ -488,6 +471,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 </div>
 
 
+
 <!--
 <header><php require 'template/Header.php' ?></header>
 
@@ -519,9 +503,9 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
             </div>
         </div>
         <div id="espacio-de-chat" class="col-8"> -->
-<!-- AQUI SE CARGARA EL HISTORIAL DE CHAT DEL CONTACTO
-</div>
-</div>
+            <!-- AQUI SE CARGARA EL HISTORIAL DE CHAT DEL CONTACTO
+        </div>
+    </div>
 -->
 <script type="text/javascript" src="/files/js/events.js"></script>
 <script type="text/javascript" src="/files/js/Chat.js"></script>

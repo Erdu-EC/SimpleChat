@@ -1,5 +1,6 @@
 $(document).on("load", function () {
     $("#espacio-de-chat .messages").hide();
+
 });
 
 
@@ -38,12 +39,7 @@ $('.submit').on('click',function() {
     newMessage();
 });
 
-$(window).on('keydown', function(e) {
-    if (e.which == 13) {
-        newMessage();
-        return false;
-    }
-});
+
 
 function newMessage() {
     message = $(".message-input input").val();

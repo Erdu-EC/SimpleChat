@@ -63,13 +63,10 @@
     <div class="icon-info-contacto" title="Información del contacto" id="btn-info-contacto">
         <span class="material-icons">info</span>
     </div>
-
 </section>
 
 <div class="messages" data-usuario="<?= $_VIEW->id ?>">
 
-
-    <div class="card-body">
         <ul id="lista-mensajes">
         <?php if (!is_null($_VIEW->has_invitation) && $_VIEW->has_invitation): ?>
             <div id="mensaje-invitacion" class="row border-bottom">
@@ -104,17 +101,15 @@
                  <?php endif;
                 endforeach;
             endif;
-
+echo '<script> $("#espacio-de-chat .messages").animate({ scrollTop: $(".messages").prop("scrollHeight")}, 300); </script>';
         ?>
 
         </ul>
-    </div>
-
 
 </div>
 <div class="message-input" id="espacio-de-escritura">
     <div class="wrap">
-        <input type="text" placeholder="Escribe un mensage aquí..." />
+        <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..." />
         <button class=" btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
     </div>
 </div>

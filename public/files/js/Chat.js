@@ -1,4 +1,21 @@
-$(document).on('click', '#mensaje-invitacion button', function (){
+
+$(document).on("keydown", "#espacio-de-escritura",function(e) {
+    if(e.which == 13 ){
+        EnviarMensaje();
+        return false;
+    }
+});
+
+$(document).on("keyup change", "#espacio-de-escritura",function () {
+    message = $("#espacio-de-escritura .wrap input").val();
+    if ($.trim(message) == '') {
+        $("#btn-enviar-mensaje").removeClass("activar")
+    }
+    else{
+        $("#btn-enviar-mensaje").addClass("activar")
+    }
+});
+$(document).on('click', '#mensaje-invitacion button',function () {
     const boton_si = $('#mensaje-invitacion button:first');
     const boton_no = $('#mensaje-invitacion button:last');
 
@@ -25,9 +42,12 @@ $(document).on('click', '#mensaje-invitacion button', function (){
             }
         }
     });
-})
+});
 
-$(document).on('click', '#espacio-de-escritura .wrap button', function () {
+$(document).on('click', '#espacio-de-escritura .wrap button',function (){
+    EnviarMensaje()
+});
+function EnviarMensaje() {
     const textarea = $('#espacio-de-escritura .wrap input');
     const texto = textarea.val().trim();
     textarea.val('');
@@ -54,7 +74,7 @@ $(document).on('click', '#espacio-de-escritura .wrap button', function () {
         $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 300);
     }
 
-})
+};
 
 function CargarEspacioDeChat(){
     $('#espacio-de-chat').html(

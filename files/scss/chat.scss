@@ -1085,6 +1085,9 @@ Fin de contactos
   #icon-agregar-contacto{
     margin-left: auto;
   }
+  #frame #sidepanel #contacts ul li.contact .wrap .meta {
+   display: none;
+  }
 }
 #frame #sidepanel #bottom-bar button:focus {
   outline: none;
@@ -1294,7 +1297,7 @@ hr.separador-vertical{
   height: 20px;
   background-color: rgba(0, 0, 0, 0.3);
 }
-#frame .content .messages ul#espacio-de-chat{
+#frame .content .messages ul#lista-mensajes {
   padding: 30px 30px 100px 50px;
   height: 100%;
   width: 100%;
@@ -1350,8 +1353,8 @@ hr.separador-vertical{
     max-width: calc(85% - 50px);
     height: auto;
   }
-  #frame .content .messages #espacio-de-chat{
-    padding: 30px 30px 100px 10px;
+  #frame .content .messages ul#lista-mensajes {
+    padding: 30px 20px 100px 20px;
   }
 }
 
@@ -1431,7 +1434,7 @@ hr.separador-vertical{
   border-radius: 0;
   border-radius: 0 20px 20px 0 ;
 }
-#frame .content .message-input .wrap button.activar {
+#frame .content #espacio-de-escritura .wrap button.activar {
   background: #435f7a;
 }
 
