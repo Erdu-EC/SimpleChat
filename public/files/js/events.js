@@ -4,17 +4,18 @@ $(document).on("load", function () {
 });
 
 
-
+/*
 $(document).ready(function (){
     if($(window).width()<735){
         $("body").addClass("sb-sidenav-toggled");
     }
 
 
-});
+});*/
 $("#sidebarToggle").on("click", function(e) {
     e.preventDefault();
     $("body").toggleClass("sb-sidenav-toggled");
+    $("#mi-perfil-sidepanel").toggleClass("no-visible");
 });
 
 $(".messages").animate({
@@ -23,6 +24,7 @@ $(".messages").animate({
 $("#profile-img").click(function() {
     $("#status-options").toggleClass("active");
 });
+/*
 $(window).resize(function (){
     if($(window).width()<935){
         $("body").addClass("sb-sidenav-toggled");
@@ -31,7 +33,7 @@ $(window).resize(function (){
         $("body").removeClass("sb-sidenav-toggled");
     }
 });
-
+*/
 $("#btn-sesion").click(function (){
     $("#btn-sesion").toggleClass("btn-activo");
 });
@@ -63,10 +65,14 @@ $(".expand-button").click(function() {
 
 //activar uno de los elementos del menu lateral (seccion actual)
 $('#LateralMenu li').on('click', function(){
-    $('li.active').removeClass('active');
+    $('#LateralMenu li.active').removeClass('active');
     $(this).addClass('active');
 });
 
+function ConversacionActiva (){
+    $('#LateralMenu li.active').removeClass('active');
+    $('#LateralMenu li:first').addClass('active');
+}
 
 
 /*
@@ -74,6 +80,7 @@ $('#LateralMenu li').on('click', function(){
 
 $("#ocultar").click(function () {
     CerrarContactos();
+    ConversacionActiva();
 })
 function CerrarContactos(){
 

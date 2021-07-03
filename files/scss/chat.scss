@@ -311,15 +311,25 @@ Estilos de title
   height: 60px;
 }
 
-
 #sidebarToggle{
   background: #32465a;
   height: 40px;
   width: 48px;
   margin-top: 0;
-  margin-left: 15px;
+  margin-left: 10px;
   border-radius: 3px;
+  color: #9a9da0;
+  outline: none;
+  border: none;
+  box-shadow: none;
 }
+
+#sidebarToggle:hover, #sidebarToggle.activo {
+  color:#ffffff ;
+}
+
+#sidebarToggle
+
 @media (max-width: 576px) {
   #sidebarToggle{
     margin-left: 5px;
@@ -904,6 +914,37 @@ Fin de contactos
 /*#####################################*/
 /*-------------------------------------------------*/
 /*Barra de contactos y mensajes*/
+#sidepanel #mi-perfil-sidepanel.no-visible {
+  display: none;
+}
+
+#sidepanel .img-perfil {
+
+display: flex;
+  align-content: center;
+  align-items: center;
+  color: #9a9da0;
+  padding: 0px;
+  width: 100%;
+padding: 10px 0;
+
+}
+#sidepanel .img-perfil:hover{
+  color: #ffffff;
+}
+
+#sidepanel .img-perfil img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 1px solid green;
+  margin-left: 15px;
+  margin-right: 20px;
+}
+#sidepanel .img-perfil span {
+  margin-left: auto;
+}
+
 #frame #sidepanel #search {
   border-top: 1px solid #32465a;
   border-bottom: 1px solid #32465a;

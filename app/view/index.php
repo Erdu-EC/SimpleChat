@@ -16,7 +16,7 @@ $SESSION_USER_SHORTNAME = (new Session())->user_shortname;
     <title><?= APP_NAME ?>: Inicio</title>
     <link rel="stylesheet" href="/files/scss/chat.scss">
 </head>
-<body class="d-flex flex-column sb-nav-fixed">
+<body class="d-flex flex-column sb-nav-fixed sb-sidenav-toggled">
 <!-- Barra superior -->
 <header><?php require 'template/Header.php' ?></header>
 <!-- Fin de barra superior -->
@@ -28,7 +28,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     <div id="sidepanelTodosContactos">
         <div class="titulo-cab no-seleccionable">
             <h1>Nuevo chat</h1>
-            <div id="ocultar"><span class="material-icons">arrow_back_ios_new</span>
+            <div id="ocultar"><span class="material-icons">arrow_back</span>
             </div>
         </div>
         <div id="buscar-contacto">
@@ -126,6 +126,14 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                 <article id="frame">
                     <div id="sidepanel">
 
+                        <div class="img-perfil" id="mi-perfil-sidepanel">
+                            <img src="/files/profile/mikeross.png?w=50&h=50" alt="" />
+                            <div class="meta">
+                                <?= $SESSION_USER_SHORTNAME ?>
+                            </div>
+
+                            <span class="material-icons-outlined">arrow_drop_down</span>
+                        </div>
                         <div id="search">
                             <label for="inputBuscarConversacion" class="material-icons">search</i></label>
                             <input name="inputBuscarConversacion" type="text" placeholder="Buscar Conversación..." />
