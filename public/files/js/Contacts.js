@@ -21,13 +21,14 @@ $(document).on("keyup change", "#cuadro-busqueda-usuario",function () {
         if (!$("#buscar-contacto .borrar").length){
             $("#cuadro-busqueda-usuario").after(' <div class="borrar"><span class="material-icons"> close</span></div>');
         }
-
     }
 });
+
 $(document).on("click",'#buscar-contacto .borrar', function () {
     $("#cuadro-busqueda-usuario").val("");
     $('#lista-contactos-buscar').empty();
     $('#lista-contactos').show();
+    $("#buscar-contacto .borrar").remove();
 });
 
 ///////
@@ -37,7 +38,7 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
     const lista_resultados = $('#lista-contactos-buscar').html('');
     var entrada = $("#cuadro-busqueda-usuario").val();
 
-if ($.trim(message) == ''){
+if ($.trim(entrada) == ''){
     $('#lista-contactos').show();
     return;
 }
@@ -123,7 +124,7 @@ const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, esContacto)
                             <div class="col-8 ">
                                 <div class="card-body">
                                     <h5 class="card-title">${nombres} ${apellidos}</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>rachelzane</p>
+                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>${usuario}</p>
                                     <div class="btn-opciones">
                                     ${(esContacto) ? '<span class="material-icons eliminar">delete</span>' : '<span class="material-icons agregar">person_add_alt</span>'}
                         
@@ -166,7 +167,7 @@ const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion) =
                             <div class="col-8 ">
                                 <div class="card-body">
                                     <h5 class="card-title">${nombres} ${apellidos}</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>rachelzane</p>
+                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>${usuario}</p>
                                     <div class="btn-opciones">
                                     <span class="actividad">${(ultima_conexion !== undefined) ? ObtenerTiempoUltimaConexion(ultima_conexion) : ''}</span>
 

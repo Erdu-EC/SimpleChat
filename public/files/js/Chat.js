@@ -75,7 +75,7 @@ function EnviarMensaje() {
                     mensaje.find('.popover-header').text("Error al enviar.");
             }
         });
-        $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 300);
+        $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")});
     }
 
 };

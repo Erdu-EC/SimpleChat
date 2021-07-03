@@ -81,25 +81,31 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                 <ul class="nav flex-column nav-pills no-seleccionable" id="LateralMenu">
                     <li class="nav-item active">
                         <div class="nav-link" id="seccion-conversaciones">
-                            <img src="/files/icon/conversaciones.svg" alt="" class="img-fluid">
-                            Conversaciones
+                            <i class="far fa-comments icon-nav-link"></i>
+                           <!--  <img src="/files/icon/conversaciones.svg" alt="" class="img-fluid">-->
+                          <span>Conversaciones</span>
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="nav-link align-middle" id="seccion-contactos">
-                            <img src="/files/icon/contactos.svg" alt="" class="img-fluid link-contactos">
-                            Contactos
+                            <i class="far fa-address-book icon-nav-link"></i> <!--
+                            <img src="/files/icon/contactos.svg" alt="" class="img-fluid link-contactos">-->
+                           <span>Contactos</span>
+
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="nav-link" href="index.html">
-                            <img src="/files/icon/nosotros.svg" alt="" class="img-fluid">
+                            <i class="fas fa-users icon-nav-link"></i>
+                            <!-- <img src="/files/icon/nosotros.svg" alt="" class="img-fluid"> -->
                             Acerca de nosotros
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="nav-link" href="index.html">
-                            <img src="/files/icon/acuerdos.svg" alt="" class="img-fluid">
+                            <i class="fas fa-file-contract icon-nav-link"></i>
+                            <!--
+                            <img src="/files/icon/acuerdos.svg" alt="" class="img-fluid">       -->
                             Términos y condiciones de uso
                         </div>
                     </li>

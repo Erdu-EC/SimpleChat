@@ -1471,31 +1471,32 @@ hr.separador-vertical{
 }
 
 ul#LateralMenu li{
-  padding: 0.4rem  0 0.4rem 5px ;
   width: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 
 ul#LateralMenu li:hover {
   background: #32465a;
-  border-right: 5px solid #435f7a;
 }
 ul#LateralMenu li.active{
   background: #32465a;
-  border-right: 5px solid #435f7a;
+
 }
-
-ul#LateralMenu li div{
+ul#LateralMenu li div.nav-link:hover{
+  color: #ffffff;
+}
+ul#LateralMenu li.active div.nav-link {
+  color: #ffffff;
+}
+ul#LateralMenu li div.nav-link {
   display: flex;
-  align-items: center;
-  position: relative;
-  padding-left: 0;
-  padding-rigth: 10px;
   font-family: "Roboto";
-  text-align: left;
-  margin-top: 5px;
-  margin-bottom: 13px;
-  max-height: 40px;
-
+ padding-left: 10px;
+  align-content: center ;
+  align-items: center;
+  height: 70px;
+  color: #9a9da0;
 }
 
 ul#LateralMenu li div img{
@@ -1503,6 +1504,19 @@ ul#LateralMenu li div img{
   width: 30px;
   margin-right: 5px;
 }
+ul#LateralMenu li div.nav-link .icon-nav-link {
+  font-size: 20px;
+  min-width: 30px;
+  max-width: 30px;
+  height: 35px;
+  display: flex;
+  text-align: center;
+  vertical-align: center;
+  align-items: center;
+align-content: center;
+align-self: center
+}
+
 
 .accordion-header button {
   background-color: white;
