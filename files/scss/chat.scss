@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Signalist";
+  src: url("/files/font/Net-Signalist-W00-Signalist.ttf");
+}
+
 @charset "UTF-8";
 
 .material-icons{
@@ -289,8 +294,7 @@ body {
 .sb-sidenav .sb-sidenav-footer {
   padding: 0.75rem;
   flex-shrink: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
+  font-family: "Signalist"
 }
 
 /*
