@@ -79,7 +79,7 @@ function EnviarMensaje() {
                     var act = new Date();
                     var hora_envio='';
                     if (act.getHours() < 12 )
-                       hora_envio= act.getHours() + ':'+ act.getMinutes()+ ' a.m.';
+                       hora_envio= act.getHours() + ':'+ act.getMinutes + ' a.m.';
 
                     else
                         hora_envio =  (act.getHours()-12) + ':'+ act.getMinutes() + ' p.m.';
@@ -90,7 +90,6 @@ function EnviarMensaje() {
                     mensaje.find('.popover-header').text("Error al enviar.");
             }
         });
-        $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")});
     }
 
 };

@@ -78,7 +78,7 @@
                  <?php endif;
                 endforeach;
             endif;
-echo '<script> $("#espacio-de-chat .messages").animate({ scrollTop: $(".messages").prop("scrollHeight")}, 300); </script>';
+echo '<script> $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight")); </script>';
         ?>
 
         </ul>

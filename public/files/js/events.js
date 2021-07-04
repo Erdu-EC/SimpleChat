@@ -18,8 +18,6 @@ $("#sidebarToggle").on("click", function(e) {
     $("#mi-perfil-sidepanel").toggleClass("no-visible");
 });
 
-$(".messages").animate({
-    scrollTop: $(document).height() }, "fast");
 
 $("#profile-img").click(function() {
     $("#status-options").toggleClass("active");
@@ -42,7 +40,7 @@ $('.submit').on('click',function() {
     newMessage();
 });
 
-
+/*
 
 function newMessage() {
     message = $(".message-input input").val();
@@ -55,7 +53,7 @@ $('.message-input input').val(null);
     $('.contact.active .preview').html('<span>You: </span>' + message);
     $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 300);
 
-};
+};*/
 
 $(".expand-button").click(function() {
     $("#profile").toggleClass("expanded");
