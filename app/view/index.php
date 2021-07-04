@@ -110,12 +110,12 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </div>
                     </li>
                 </ul>
-                <div class="sb-sidenav-footer">
-                    <div class="small">SimpleChat</div>
-                    Start Bootstrap
-                </div>
 
         </nav>
+        <div class="sb-sidenav-footer">
+
+            SimpleChat
+        </div>
 
 
     </div>
@@ -126,13 +126,13 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                 <article id="frame">
                     <div id="sidepanel">
 
-                        <div class="img-perfil" id="mi-perfil-sidepanel">
+                        <div class="img-perfil no-seleccionable" id="mi-perfil-sidepanel">
                             <img src="/files/profile/mikeross.png?w=50&h=50" alt="" />
-                            <div class="meta">
+                            <div class="usuario-perfil">
                                 <?= $SESSION_USER_SHORTNAME ?>
                             </div>
 
-                            <span class="material-icons-outlined">arrow_drop_down</span>
+                            <span class="material-icons">arrow_drop_down</span>
                         </div>
                         <div id="search">
                             <label for="inputBuscarConversacion" class="material-icons">search</i></label>

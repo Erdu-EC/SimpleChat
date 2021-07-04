@@ -8,7 +8,7 @@ use HS\libs\core\Session; ?>
 
     <button class="btn nav-item" id="sidebarToggle">
         <span class="material-icons">
-more_vert
+menu
 </span>
        <!-- <img src="/files/icon/menu.png" alt="" class="" id="icono-sidebarToggle">-->
     </button>

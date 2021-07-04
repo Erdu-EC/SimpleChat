@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Signalist";
-  src: url("/files/font/Net-Signalist-W00-Signalist.ttf");
+  src: url("/files/iconfont/Net-Signalist-W00-Signalist.ttf");
 }
 
 @charset "UTF-8";
@@ -237,10 +237,7 @@ body {
   height: 100vh;
   transition: transform 0.15s ease-in-out;
 }
-.sb-nav-fixed #layoutSidenav #layoutSidenav_nav .sb-sidenav {
 
-  padding-top: 60px;
-}
 .sb-nav-fixed #layoutSidenav #layoutSidenav_content {
   padding-left: 225px;
   top: 60px;
@@ -280,10 +277,22 @@ body {
 
 
 .sb-sidenav {
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: calc(100% - 140px);
   flex-wrap: nowrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+.sb-sidenav::-webkit-scrollbar {
+  display: none;
+}
+
+.sb-sidenav::-moz-scrollbar {
+  display: none;
+
 }
 .accordion-body{
   padding-left: 0.1rem;
@@ -291,12 +300,14 @@ body {
 }
 
 
-.sb-sidenav .sb-sidenav-footer {
-  padding: 0.75rem;
-  flex-shrink: 0;
-  font-family: "Signalist"
+#layoutSidenav_nav .sb-sidenav-footer {
+  padding-left: 20px;
+  font-size: 3rem;
+  font-family: "Signalist";
 }
-
+#layoutSidenav_nav .sb-sidenav-footer small {
+  font-family: SimpleChat;
+}
 /*
 ***********************************************
 Estilos de title
@@ -693,6 +704,7 @@ box-sizing: border-box;
   margin-top:20px;
   overflow-y: scroll;
   overflow-x: hidden;
+  scrollbar-width: none;
   margin-bottom: 10px;
   height: calc(100vh - 160px);
   padding: 0;
@@ -928,7 +940,6 @@ display: flex;
   align-content: center;
   align-items: center;
   color: #9a9da0;
-  padding: 0px;
   width: 100%;
 padding: 10px 0;
 
@@ -945,9 +956,25 @@ padding: 10px 0;
   margin-left: 15px;
   margin-right: 20px;
 }
+
 #sidepanel .img-perfil span {
   margin-left: auto;
+  display: flex;
 }
+ @media screen and (max-width: 735px){
+   #sidepanel #mi-perfil-sidepanel {
+     justify-items: center;
+   }
+
+   #sidepanel #mi-perfil-sidepanel img {
+     margin: 0px;
+   };
+   #sidepanel #mi-perfil-sidepanel span {
+     margin-left:-30px;
+   }
+ }
+
+
 
 #frame #sidepanel #search {
   border-top: 1px solid #32465a;
@@ -997,6 +1024,7 @@ padding: 10px 0;
   height: calc(100% - 110px);
   overflow-y: scroll;
   overflow-x: hidden;
+  scrollbar-width: none;
   margin-botton:0px;
 }
 @media screen and (max-width: 735px) {
@@ -1336,9 +1364,7 @@ hr.separador-vertical{
   margin-left: 14px;
   cursor: pointer;
 }
-#frame .content .contact-profile .social-media i:nth-last-child(1) {
-  margin-right: 20px;
-}
+
 #frame .content .contact-profile .social-media i:hover {
   color: #435f7a;
 }
@@ -1348,7 +1374,7 @@ hr.separador-vertical{
   height: calc(100% - 120px);
   overflow-y: scroll;
   overflow-x: hidden;
-  margin-left: 0px;
+  margin: 0px;
   padding: 0;
 }
 
@@ -1363,10 +1389,13 @@ hr.separador-vertical{
   background-color: rgba(0, 0, 0, 0.3);
 }
 #frame .content .messages ul#lista-mensajes {
-  padding: 30px 30px 100px 50px;
-  height: 100%;
+  padding: 30px 30px 0px 50px;
+  height: auto;
   width: 100%;
+  margin: 0px;
 }
+
+
 #frame .content .messages ul li {
   display: inline-block;
   width: 100%;
@@ -1388,9 +1417,7 @@ hr.separador-vertical{
   min-width: 50px;
   margin:0px;
 }
-#frame .content .messages ul li:nth-last-child(1) {
-  margin-bottom: 20px;
-}
+
 #frame .content .messages ul li.enviado img {
   float: right;
   margin-left: 10px;
@@ -1433,15 +1460,14 @@ hr.separador-vertical{
   align-content: end;
   justify-content: end;
   align-self: flex-end;
-  padding-right: 60px;
 }
 
 .messages ul li.enviado .extra-mensaje .enviando {
   margin-left: auto;
-  width: 15px;
-  height: 15px;
-  border: 3px solid #666;
-  border-top: 3px solid #eee;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #666;
+  border-top: 2px solid #eee;
   border-radius: 50%;
   animation: rotation 1s linear infinite;
 }
@@ -1454,6 +1480,14 @@ hr.separador-vertical{
     transform: rotate(360deg);
   }
 }
+
+.messages ul li.enviado .extra-mensaje .extra {
+color: #8e8e8f;
+  display: flex;
+  margin-left: auto;
+  font-size: 14px;
+}
+
 
 /*---- Fin de estilos de mensajes enviados y recibidos */
 

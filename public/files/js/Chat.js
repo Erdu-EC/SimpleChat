@@ -66,11 +66,26 @@ function EnviarMensaje() {
                 text: texto
             },
             beforeSend: () => $('#espacio-de-chat .messages #lista-mensajes').append(mensaje),
-            error: () => mensaje.find('.popover-header').text("Error al enviar."),
+            error: () => {
+               setTimeout(function () {
+                   mensaje.find('.extra-mensaje').empty();
+                   mensaje.find('.extra-mensaje').append(' <div class="extra"><i class="far fa-clock"></i></div>');
+               },150)
+            },
             success: function (json) {
-                if (json)
-                    setTimeout(function () {mensaje.find('.enviando').remove()} ,150);
 
+                if (json) {
+                    mensaje.find('.extra-mensaje').empty();
+                    var act = new Date();
+                    var hora_envio='';
+                    if (act.getHours() < 12 )
+                       hora_envio= act.getHours() + ':'+ act.getMinutes()+ ' a.m.';
+
+                    else
+                        hora_envio =  (act.getHours()-12) + ':'+ act.getMinutes() + ' p.m.';
+                    mensaje.find('.extra-mensaje').append(' <div class="extra"><span>'+hora_envio+'</span></div>');
+
+                }
                 else
                     mensaje.find('.popover-header').text("Error al enviar.");
             }
@@ -79,7 +94,7 @@ function EnviarMensaje() {
     }
 
 };
-
+//Agregar contacto
 function CargarEspacioDeChat(){
     $('#espacio-de-chat').html(
         ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
@@ -125,6 +140,7 @@ const ObtenerElementoMensaje = mensaje => `
             <div class="extra-mensaje">
                                 <div class="enviando">
                                 </div>
+                               
             </div>
     </li>`;
 

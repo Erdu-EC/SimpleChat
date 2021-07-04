@@ -67,8 +67,6 @@
                             <img src="/files/profile/mikeross.png?w=40&h=40" alt="" />
                             <p><?= $msg->content ?></p>
                             <div class="extra-mensaje">
-
-
                             </div>
                         </li>
 
