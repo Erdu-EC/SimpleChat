@@ -947,6 +947,7 @@ Fin de contactos
 display: flex;
   align-content: center;
   align-items: center;
+  flex-direction: row;
   color: #9a9da0;
   width: 100%;
 padding: 10px 0;
@@ -960,26 +961,47 @@ padding: 10px 0;
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  border: 1px solid green;
   margin-left: 15px;
   margin-right: 20px;
 }
 
-#sidepanel .img-perfil span {
+#sidepanel .img-perfil div.usuario-perfil-opciones {
+  display: inline;
   margin-left: auto;
-  display: flex;
 }
  @media screen and (max-width: 735px){
    #sidepanel #mi-perfil-sidepanel {
-     justify-items: center;
+     position: relative;
+     display: flex;
+     flex-direction: column-reverse;
+     width: 100%;
+     align-items: center;
+     align-content: center;
+     text-align: center;
+     justify-content: center;
    }
 
    #sidepanel #mi-perfil-sidepanel img {
      margin: 0px;
+     position: relative;
+
    };
-   #sidepanel #mi-perfil-sidepanel span {
-     margin-left:-30px;
+   #sidepanel #mi-perfil-sidepanel .usuario-perfil-opciones {
+width: 100%;
+     text-align: end;
+     justify-content: right;
    }
+   #sidepanel #mi-perfil-sidepanel .usuario-perfil-opciones span {
+     margin: 0px;
+     position: absolute;
+     left: 35px;
+     top: -5px;
+     z-index: 500;
+   }
+   #sidepanel #mi-perfil-sidepanel .usuario-perfil {
+     display: none;
+   }
+
  }
 
 
@@ -1082,16 +1104,7 @@ padding: 10px 0;
   width: 40px;
   height: 40px;
 }
-@media screen and (max-width: 735px) {
-  #frame #sidepanel #contacts ul li{
-    padding: 0;
-  }
-  #frame #sidepanel #contacts ul li.contact .wrap {
-    padding: 0;
-    margin: 0px;
-    height: 60px;
-  }
-}
+
 #frame #sidepanel #contacts ul li.contact .wrap span {
   position: absolute;
   left: 0;
@@ -1102,28 +1115,12 @@ padding: 10px 0;
   background: #95a5a6;
   margin-left: 15px;
 }
-#frame #sidepanel #contacts ul li.contact .wrap span.online {
-  background: #2ecc71;
-}
-#frame #sidepanel #contacts ul li.contact .wrap span.away {
-  background: #f1c40f;
-}
-#frame #sidepanel #contacts ul li.contact .wrap span.busy {
-  background: #e74c3c;
-}
+
 #frame #sidepanel #contacts ul li.contact .wrap img {
   width: 40px;
   border-radius: 50%;
   float: left;
-  position: absolute;
-}
-@media screen and (max-width: 735px) {
-  #frame #sidepanel #contacts ul li.contact .wrap img {
-    margin-right: 0px;
-  }
-  #frame #sidepanel #contacts ul li.contact .wrap img {
-    position: relative;
-  }
+  position: relative;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta {
   padding: 0px;
@@ -1145,6 +1142,34 @@ padding: 10px 0;
   -o-transition: 1s all ease;
   -webkit-transition: 1s all ease;
   transition: 1s all ease;
+}
+@media screen and (max-width: 735px) {
+  #frame #sidepanel #contacts ul li{
+    padding: 0;
+  }
+  #frame #sidepanel #contacts ul li.contact .wrap {
+    padding: 0;
+    margin: 0px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+  }
+  #frame #sidepanel #contacts ul li.contact .wrap .contact-status{
+    margin-left: 10px;
+
+  }
+  #frame #sidepanel #contacts ul li.contact .wrap .meta{
+    display: none;
+  }
+}
+#frame #sidepanel #contacts ul li.contact .wrap span.online {
+  background: #2ecc71;
+}
+#frame #sidepanel #contacts ul li.contact .wrap span.away {
+  background: #f1c40f;
+}
+#frame #sidepanel #contacts ul li.contact .wrap span.busy {
+  background: #e74c3c;
 }
 
 #frame #sidepanel #bottom-bar {
@@ -1185,9 +1210,6 @@ padding: 10px 0;
   }
   #icon-agregar-contacto{
     margin-left: auto;
-  }
-  #frame #sidepanel #contacts ul li.contact .wrap .meta {
-   display: none;
   }
 }
 #frame #sidepanel #bottom-bar button:focus {

@@ -132,7 +132,10 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                 <?= $SESSION_USER_SHORTNAME ?>
                             </div>
 
-                            <span class="material-icons">arrow_drop_down</span>
+<div class="usuario-perfil-opciones">
+    <span class="material-icons">arrow_drop_down</span>
+</div>
+
                         </div>
                         <div id="search">
                             <label for="inputBuscarConversacion" class="material-icons">search</i></label>
