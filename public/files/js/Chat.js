@@ -78,12 +78,18 @@ function EnviarMensaje() {
                     mensaje.find('.extra-mensaje').empty();
                     var act = new Date();
                     var hora_envio='';
-                    if (act.getHours() < 12 )
-                       hora_envio= act.getHours() + ':'+ act.getMinutes + ' a.m.';
+                    if (act.getHours() < 13 ) {
+                        hora_envio = act.getHours() + ':' + act.getMinutes() + ' a.m.';
+                    }
+                    else{
+                        hora_envio =  (act.getHours()-12) + ':'+ act.getMinutes() + ' p.m.';}
+                    mensaje.find('.extra-mensaje').append(' <div class="extra"><span>'+hora_envio+'</span></div> <div class="extra icon"><span class="material-icons">done</span></div> ');
+                    /*Estados de un mensaje enviado
+                 enviado: <div class="extra icon"><span class="material-icons">done</span></div>
+                 entregado:<div class="extra icon"><i class="far fa-check-circle"></i></div>
+                 visto: <div class="extra icon"><i class="fas fa-check-circle"></i></div>
 
-                    else
-                        hora_envio =  (act.getHours()-12) + ':'+ act.getMinutes() + ' p.m.';
-                    mensaje.find('.extra-mensaje').append(' <div class="extra"><span>'+hora_envio+'</span></div>');
+                    * */
 
                 }
                 else
@@ -92,7 +98,9 @@ function EnviarMensaje() {
         });
     }
 
-};
+
+   $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+        };
 //Agregar contacto
 function CargarEspacioDeChat(){
     $('#espacio-de-chat').html(

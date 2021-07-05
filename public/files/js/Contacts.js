@@ -8,7 +8,7 @@ $("#sidepanelTodosContactos .titulo-cab h1").html("Contactos");
 $("#nuevo-chat").on("click", function() {
     $("#sidepanelTodosContactos .titulo-cab h1").html("Nuevo Chat");
     Contactos();
-        actualizar_lista_contactos();
+    actualizar_lista_contactos();
 });
 //agregar boton de borrar texto en cuadro de busqueda de contactos
 $(document).on("keyup change", "#cuadro-busqueda-usuario",function () {

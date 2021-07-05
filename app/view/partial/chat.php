@@ -14,7 +14,7 @@
 <section class="contact-profile no-seleccionable">
     <img src="/files/profile/harveyspecter.png?w=40&h=40" alt="" />
     <div class="chat-conexion">
-        <span class="nombre-chat"><?= $_VIEW->full_name ?></span>
+        <span class="nombre-chat"> <?= $_VIEW->full_name ?></span>
         <?php if (!empty($_VIEW->state)) : ?>
             <span class="ult-conex">
                         <?= $_VIEW->state ?>
@@ -45,10 +45,20 @@
 </section>
 
 <div class="messages" data-usuario="<?= $_VIEW->id ?>">
-
-        <ul id="lista-mensajes">
-        <?php if (!is_null($_VIEW->has_invitation) && $_VIEW->has_invitation): ?>
+    <?php if (!is_null($_VIEW->has_invitation) && $_VIEW->has_invitation): ?>
+        <div class="notificacion">
             <div id="mensaje-invitacion" class="row border-bottom">
+                <p><?= $_VIEW->full_name ?> no está en tus contactos y te ha enviado un mensaje, ¿Quieres aceptarlo?
+                </p>
+                <div class="botones">
+                    <button class="btn btn-si"> <span class="material-icons">done</span>Si</button>
+                    <button class="btn btn-no"><span class="material-icons">close</span>No</button>
+                </div>
+            </div>
+        </div>
+<!--
+
+<div id="mensaje-invitacion" class="row border-bottom">
                 <div class="col-10">Alguien que no esta en tus contactos te ha enviado un mensaje, ¿Quieres aceptarlo?
                 </div>
                 <div class="col-2">
@@ -56,7 +66,12 @@
                     <button class="btn btn-outline-secondary">No</button>
                 </div>
             </div>
-        <?php endif; ?>
+-->
+
+    <?php endif; ?>
+
+        <ul id="lista-mensajes">
+
 
         <?php
             if (!is_null($_VIEW->messages)):
