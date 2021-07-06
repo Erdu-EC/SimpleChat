@@ -114,7 +114,22 @@ function actualizar_lista_contactos() {
     });
 }
 
-const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, esContacto) =>
+const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, esContacto) =>`
+<div class="elemento-contacto">
+
+                            <div class="img-perfil-contacto">
+                                
+                            </div>
+                                <div class="cuerpo-perfil-contacto">
+                                    <h5 class="card-title">Daniel Hardman</h5>
+
+                                    <p class="nombre-usuario">
+                                        <span class="material-icons icon-usuario">person</span>danielhardman</p>
+                                </div>
+                    </div>
+`;
+
+/*
     `
  <div class="card  align-content-between elemento-contacto" data-usuario="${usuario}">
                         <div class="row">
@@ -135,7 +150,7 @@ const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, esContacto)
                             </div>
                         </div>
                     </div>
-`
+`*/
 /*
 <div class="card mb-0 shadow elemento-contacto" style="cursor: pointer;" data-usuario="${usuario}">
         <div class="row g-0">
@@ -158,8 +173,27 @@ const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, esContacto)
 
 
 * */
-const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion) =>
-    `<div class="card  align-content-between elemento-contacto" data-usuario="${usuario}">
+const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion) => `
+<div class="elemento-contacto">
+
+                            <div class="img-perfil-contacto">
+                                <img src="/files/profile/danielhardman.png?w=60&h=60" alt="" class="online"/>
+                            </div>
+                                <div class="cuerpo-perfil-contacto">
+                                    <span class="nombre-contacto">${nombres} ${apellidos}</span>
+
+                                    <div class="nombre-usuario">
+                                        <span class="material-icons icon-usuario">person</span>
+${usuario}
+                                        </div>
+                                        <di class="ult-conexion-contacto">
+                                        <i class="far fa-clock"></i>
+${(ultima_conexion !== undefined) ? ObtenerTiempoUltimaConexion(ultima_conexion) : ''}
+                                    </di>
+                                </div>
+                    </div>
+`;
+ /*   `<div class="card  align-content-between elemento-contacto" data-usuario="${usuario}">
                         <div class="row">
                             <div class="col-4 perfil-contacto color-5">
                                 <img src="/files/profile/rachelzane.png?w=90&h=90" alt="" class="online"/>
@@ -178,7 +212,7 @@ const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion) =
                         </div>
                     </div>
 
-`;
+`;*/
 /*<div class="card mb-2 elemento-contacto" style="cursor: pointer;" data-usuario="${usuario}">
         <div class="row g-0">
             <div class="col-md-3 p-1">
@@ -195,5 +229,30 @@ const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion) =
 
 function ObtenerTiempoUltimaConexion(fecha_hora) {
     const fecha = new Date(fecha_hora);
-    return 'Activo el ' + fecha.toLocaleDateString() + " a las " + fecha.toLocaleTimeString();
+    var fecha_actual= new Date();
+    var ult_conex = 'últ. conex.';
+
+    if (fecha_hora==null){
+        return ult_conex= 'Inactivo';
+    }
+
+    if (fecha.getDate() - fecha_actual.getDate() ==0){
+        ult_conex += ' Hoy'}
+    else if (fecha.getDate() - fecha_actual.getDate() ==1)
+    {
+        ult_conex += ' Ayer'}
+    else {
+        ult_conex += ' ' + fecha.toLocaleDateString();//fecha.getDay()+'/'+fecha.getMonth()+ '/'+fecha.getFullYear();
+    }
+
+    ult_conex += ' a l(as) ';
+
+    if (fecha.getHours() < 13 ) {
+        ult_conex += fecha.getHours() + ':' + fecha.getMinutes() + ' a.m.';
+    }
+    else{
+        ult_conex += (fecha.getHours()-12) + ':'+ fecha.getMinutes() + ' p.m.';}
+
+
+    return ult_conex;
 }

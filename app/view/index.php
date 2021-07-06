@@ -39,7 +39,29 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
         </div>
         <div id="listaTodosContactos">
             <ul id="lista-contactos" class="no-seleccionable">
+                <li class="item-contacto">
+                    <div class="elemento-contacto">
 
+                            <div class="img-perfil-contacto">
+                                <img src="/files/upload/profile/danielhardman.png?w=90&h=90" alt="" class="online"/>
+                            </div>
+                                <div class="cuerpo-perfil-contacto">
+                                    <span class="nombre-contacto">Daniel Hardman</span>
+
+                                    <div class="nombre-usuario">
+                                        <span class="material-icons icon-usuario">person</span>danielhardman</div>
+                                    <di class="ult-conexion-contacto">
+                                        <i class="far fa-clock"></i>
+Ult. conex. Ayer a la(s) 7:40 p.m
+                                    </di>
+                                 <!--   <div class="btn-opciones">
+                                        <span class="material-icons mensaje">message</span>
+                                        <span class="material-icons eliminar">delete</span>
+                                    </div>
+-->
+                                </div>
+                    </div>
+                </li>
             </ul>
             <ul id="lista-contactos-buscar" class="no-seleccionable">
 
