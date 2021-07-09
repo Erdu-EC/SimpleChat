@@ -3,8 +3,10 @@
 
     namespace HS\app\view;
 
+    use HS\config\APP_URL;
     use HS\libs\collection\Collection;
     use HS\libs\core\Session;
+    use HS\libs\io\Url;
 
     /** @var Collection $_VIEW */
 
@@ -13,7 +15,7 @@
 
 <section class="contact-profile no-seleccionable">
     <?php if (!empty($_VIEW->profile_img)) : ?>
-        <img src="/files/profile/<?= $_VIEW->profile_img ?>?w=40&h=40" alt="">
+        <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=40&h=40" alt="">
     <?php else: ?>
         <i class="material-icons" style="font-size: 2.5rem">person</i>
     <?php endif; ?>

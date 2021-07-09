@@ -3,6 +3,7 @@
     namespace HS\app\controller\core;
 
     use HS\app\model\UserModel;
+    use HS\config\APP_URL;
     use HS\config\DBAccount;
     use HS\libs\collection\ArrayUtils;
     use HS\libs\core\http\HttpResponse;
@@ -35,10 +36,11 @@
             try {
                 //TODO: Asignar un usuario con permisos restringidos en BD.
                 $db = new DB(DBAccount::Root);
-                $row = $db->SelectOnly('SELECT id, pass, first_name, last_name FROM users WHERE user_name = ?', [1 => $user]);
+                $row = $db->SelectOnly('SELECT id, pass, first_name, last_name, profile_img FROM users WHERE user_name = ?', [1 => $user]);
                 $user_id = $row['id'] ?? null;
                 $user_first = $row['first_name'] ?? null;
                 $user_last = $row['last_name'] ?? null;
+                $user_profile_img = $row['profile_img'] ?? null;
                 $hashed_pass = $row['pass'] ?? null;
                 unset($row);
             } catch (PDOException $ex) {
@@ -69,7 +71,8 @@
                     $user_id,
                     $conn_id,
                     $user,
-                    preg_split('# +#', $user_first)[0] . " " . preg_split('# +#', $user_last)[0]
+                    preg_split('# +#', $user_first)[0] . " " . preg_split('# +#', $user_last)[0],
+                    !is_null($user_profile_img) ? APP_URL::OfImageProfile($user_profile_img) : ''
                 );
 
                 //Devolviendo respuesta.

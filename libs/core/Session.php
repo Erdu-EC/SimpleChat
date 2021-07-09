@@ -54,13 +54,14 @@
         }
 
         //Login.
-        public static function SetLogin(int $id, int $cid, string $user_name, string $shortname)
+        public static function SetLogin(int $id, int $cid, string $user_name, string $shortname, string $url_profile_img)
         {
             $session = new Session();
             $session->user_id = $id;
             $session->user_cid = $cid;
             $session->user_name = $user_name;
             $session->user_shortname = $shortname;
+            $session->user_profile_img = $url_profile_img;
             unset($session);
         }
 

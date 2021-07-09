@@ -1,44 +1,32 @@
 $(document).on('submit', "#user_form", null, function () {
-       $.ajax('/action/user/Login', {
+    const card_err_solicitud = $("#error-solicitud");
+    const card_err_iniciosesion = $("#error-inicioSesion");
+
+    $.ajax('/action/user/Login', {
         method: 'post',
         dataType: 'json',
         mimeType: 'application/json',
         data: {
-            u: $("#user_name").val(),
-            p: $("#user_pass").val()
+            u: $("#user_name").val().trim(),
+            p: $("#user_pass").val().trim()
         },
-        //beforeSend: () => Alert(ALERT_NORMAL, "Cargando..."),
+        beforeSend: () => {
+            card_err_solicitud.remove();
+            card_err_iniciosesion.remove();
+        },
         error: function () {
-            if (!$("#error-solicitud").length) {
-                 $("#user_form").before(' <div class="error-acceso" id="error-solicitud"> <span class="material-icons">error</span><span> Se ha producido un fallo con tu solicitud. Por favor, inténtalo de nuevo.</span></div>');
-            };
+            $("#user_form").before(' <div class="error-acceso" id="error-solicitud"> <span class="material-icons">error</span><span> Se ha producido un fallo con tu solicitud. Por favor, inténtalo de nuevo.</span></div>');
             $("#user_pass").val("");
         },
         success: function (json) {
             if (json === true) {
-                if($(".card #error-solicitud").length){
-                    $(".card #error-solicitud").remove();
-                }
-                if($(".card #error-inicioSesion").length){
-                    $(".card #error-inicioSesion").remove();
-                }
-              $("#user_form").before('<div id="iniciando-sesion"><div id="cargando"></div><span>Iniciando sesión</span></div>');
+                $("#user_form").before('<div id="iniciando-sesion"><div id="cargando"></div><span>Iniciando sesión</span></div>');
 
                 window.location = "/";
-            }
-            else
-            {
-                if($(".card #error-solicitud").length){
-                    $(".card #error-solicitud").remove();
-                }
-                if (!$("#error-inicioSesion").length) {
-
-                    $(".card .card-header").after('<div class="error-acceso" id="error-inicioSesion"><span>Nombre de usuario o contraseña incorrectos.</span></div>');
-                }
+            } else {
+                $("#user_form").after('<div class="error-acceso" id="error-inicioSesion"><span>Nombre de usuario o contraseña incorrectos.</span></div>');
                 $("#user_pass").val("");
             }
-
-
         }
     });
 
@@ -54,7 +42,7 @@ $(document).on('input', '#user_pass', null, function () {
 });
 
 
-$("#btn-navbar-toggler").click(function (){
-    $("nav.menu-navegacion ul.nav-lista").toggleClass("activo");
-    $("nav.menu-navegacion ul.nav-lista").toggleClass("inactivo");
+//FRONTEND
+$("#btn-navbar-toggler").click(function () {
+    $("nav.menu-navegacion ul.nav-lista").toggleClass("activo").toggleClass("inactivo");
 });

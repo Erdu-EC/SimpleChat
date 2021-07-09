@@ -2,6 +2,7 @@
 
 namespace HS\config;
 
+use HS\libs\io\Path;
 use const HS\APP_PATH;
 
 class APP_DIR
@@ -16,5 +17,12 @@ class APP_DIR
         'bg' => '/files/bg',
         'profile' => '/upload/profile'
     ];
+}
 
+class APP_URL {
+    const IMG_PROFILE = '/files/profile';
+
+    public static function OfImageProfile(string $file_img){
+        return Path::Combine(self::IMG_PROFILE, $file_img);
+    }
 }

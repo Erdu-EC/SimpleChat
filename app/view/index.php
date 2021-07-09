@@ -5,8 +5,10 @@ namespace HS\app\view;
 use HS\libs\core\Session;
 use const HS\config\APP_NAME;
 
-$SESSION_USER_SHORTNAME = (new Session())->user_shortname;
-
+$SESSION = new Session();
+$SESSION_USER_SHORTNAME = $SESSION->user_shortname;
+$SESSION_USER_PROFILE_IMG = $SESSION->user_profile_img;
+unset($SESSION);
 ?>
 <!doctype html>
 <html lang="es">
@@ -55,7 +57,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
         <nav class="sb-sidenav " >
             <div id="profile">
                 <div class="wrap no-seleccionable">
-                    <img id="profile-img" src="/files/profile/mikeross.png?w=100&h=100" class="online" alt="" />
+                    <img id="profile-img" src="<?= $SESSION_USER_PROFILE_IMG ?>?w=100&h=100" class="online" alt="" />
 
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item">
@@ -127,7 +129,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                     <div id="sidepanel">
 
                         <div class="img-perfil no-seleccionable" id="mi-perfil-sidepanel">
-                            <img src="/files/profile/mikeross.png?w=50&h=50" alt="" />
+                            <img src="<?= $SESSION_USER_PROFILE_IMG ?>?w=50&h=50" alt="" />
                             <div class="usuario-perfil">
                                 <?= $SESSION_USER_SHORTNAME ?>
                             </div>
