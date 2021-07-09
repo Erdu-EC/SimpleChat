@@ -1,25 +1,24 @@
-
-$(document).on("keydown", "#espacio-de-escritura",function(e) {
-    if(e.which == 13 ){
+$(document).on("keydown", "#espacio-de-escritura", function (e) {
+    if (e.which == 13) {
         EnviarMensaje();
         return false;
     }
 });
 
-$(document).on("keyup change", "#espacio-de-escritura",function () {
+$(document).on("keyup change", "#espacio-de-escritura", function () {
     message = $("#espacio-de-escritura .wrap input").val();
     if ($.trim(message) == '') {
         $("#btn-enviar-mensaje").removeClass("activar");
         $("#buscar-contacto .borrar").remove();
 
-    }
-    else{
+    } else {
         $("#btn-enviar-mensaje").addClass("activar");
         $("#cuadro-busqueda-usuario").after(' <div class="borrar"><span class="material-icons"> close</span></div>');
 
     }
 });
-$(document).on('click', '#mensaje-invitacion button',function () {
+
+$(document).on('click', '#mensaje-invitacion button', function () {
     const boton_si = $('#mensaje-invitacion button:first');
     const boton_no = $('#mensaje-invitacion button:last');
 
@@ -40,7 +39,7 @@ $(document).on('click', '#mensaje-invitacion button',function () {
         success: function (json) {
             if (json)
                 $('#mensaje-invitacion').remove();
-            else{
+            else {
                 boton_si.attr('disabled', null);
                 boton_no.attr('disabled', null);
             }
@@ -48,9 +47,10 @@ $(document).on('click', '#mensaje-invitacion button',function () {
     });
 });
 
-$(document).on('click', '#espacio-de-escritura .wrap button',function (){
+$(document).on('click', '#espacio-de-escritura .wrap button', function () {
     EnviarMensaje()
 });
+
 function EnviarMensaje() {
     const textarea = $('#espacio-de-escritura .wrap input');
     const texto = textarea.val().trim();
@@ -67,23 +67,21 @@ function EnviarMensaje() {
             },
             beforeSend: () => $('#espacio-de-chat .messages #lista-mensajes').append(mensaje),
             error: () => {
-               setTimeout(function () {
-                   mensaje.find('.extra-mensaje').empty();
-                   mensaje.find('.extra-mensaje').append(' <div class="extra"><i class="far fa-clock"></i></div>');
-               },150)
+                setTimeout(function () {
+                    mensaje.find('.extra-mensaje').empty().append(' <div class="extra"><i class="far fa-clock"></i></div>');
+                }, 150)
             },
             success: function (json) {
-
                 if (json) {
-                    mensaje.find('.extra-mensaje').empty();
                     var act = new Date();
-                    var hora_envio='';
-                    if (act.getHours() < 13 ) {
+                    var hora_envio = '';
+                    if (act.getHours() < 13)
                         hora_envio = act.getHours() + ':' + act.getMinutes() + ' a.m.';
-                    }
-                    else{
-                        hora_envio =  (act.getHours()-12) + ':'+ act.getMinutes() + ' p.m.';}
-                    mensaje.find('.extra-mensaje').append(' <div class="extra"><span>'+hora_envio+'</span></div> <div class="extra icon"><span class="material-icons">done</span></div> ');
+                    else
+                        hora_envio = (act.getHours() - 12) + ':' + act.getMinutes() + ' p.m.';
+
+                    mensaje.find('.extra-mensaje').empty().append('<div class="extra"><span>' + hora_envio + '</span></div> <div class="extra icon"><span class="material-icons">done</span></div> ');
+
                     /*Estados de un mensaje enviado
                  enviado: <div class="extra icon"><span class="material-icons">done</span></div>
                  entregado:<div class="extra icon"><i class="far fa-check-circle"></i></div>
@@ -91,18 +89,17 @@ function EnviarMensaje() {
 
                     * */
 
-                }
-                else
+                } else
                     mensaje.find('.popover-header').text("Error al enviar.");
             }
         });
     }
 
+    $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+}
 
-   $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
-        };
 //Agregar contacto
-function CargarEspacioDeChat(){
+function CargarEspacioDeChat() {
     $('#espacio-de-chat').html(
         ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
     ).load(`/Chats/${$(this).attr('data-usuario')}`);
@@ -120,7 +117,7 @@ $(document).on('click', '.btn-agregar-contacto', function () {
             boton.attr('disabled', '').text('Agregando...');
         },
         error: () => {
-            MostrarModal('Error', 'Ha ocurrido un error al intentar agregar al contacto, intentelo de nuevo.', function (){
+            MostrarModal('Error', 'Ha ocurrido un error al intentar agregar al contacto, intentelo de nuevo.', function () {
                 boton.attr('disabled', null).text('Agregar contacto');
             })
         },
@@ -131,8 +128,8 @@ $(document).on('click', '.btn-agregar-contacto', function () {
 
                 if (typeof actualizar_lista_contactos === 'function')
                     actualizar_lista_contactos();
-            } else{
-                MostrarModal('Error', 'Ha ocurrido un error al intentar agregar al contacto, intentelo de nuevo.', function (){
+            } else {
+                MostrarModal('Error', 'Ha ocurrido un error al intentar agregar al contacto, intentelo de nuevo.', function () {
                     boton.attr('disabled', null).text('Agregar contacto');
                 })
             }

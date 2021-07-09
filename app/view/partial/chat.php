@@ -81,6 +81,8 @@
 
 
         <?php
+            $last_date = null;
+
             if (!is_null($_VIEW->messages)):
                 foreach ($_VIEW->messages as $msg):
                     if ($msg->id_source === $SESSION->user_id): ?>
@@ -89,6 +91,22 @@
                             <img src="<?= $SESSION->user_profile_img ?>?w=40&h=40" alt=""/>
                             <p><?= $msg->content ?></p>
                             <div class="extra-mensaje">
+                                <?php if (!is_null($msg->read_date)): ?>
+                                    <div class="extra">
+                                        <span><?= $msg->read_date ?></span>
+                                    </div>
+                                    <div class="extra icon"><i class="fas fa-check-circle"></i></div>
+                                <?php elseif (!is_null($msg->rcv_date)): ?>
+                                    <div class="extra">
+                                        <span><?= $msg->rcv_date ?></span>
+                                    </div>
+                                    <div class="extra icon"><i class="far fa-check-circle"></i></div>
+                                <?php else: ?>
+                                    <div class="extra">
+                                        <span><?= $msg->send_date ?></span>
+                                    </div>
+                                    <div class="extra icon"><i class="fas fa-check-circle"></i></div>
+                                <?php endif; ?>
                             </div>
                         </li>
 
