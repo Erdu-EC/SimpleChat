@@ -4,6 +4,7 @@
 
     use HS\app\model\MessageModel;
     use HS\app\model\UserModel;
+    use HS\config\APP_URL;
     use HS\config\DBAccount;
     use HS\libs\collection\ArrayUtils;
     use HS\libs\core\Controller;
@@ -14,7 +15,8 @@
     class MessageController extends Controller
     {
 
-        public function Send(){
+        public function Send()
+        {
             //Estableciendo tipo de respuesta.
             HttpResponse::SetContentType(MimeType::Json);
 
@@ -31,20 +33,28 @@
         }
 
         //TODO: Aplicar seguridad para que no se puedan leer mensajes que no son tuyos.
-        public function GetMyMessages(){
+        public function GetMyMessages()
+        {
 
         }
 
-        public function Receive(){
+        public function Receive()
+        {
 
         }
 
-        public function GetConversations(){
+        public function GetConversations()
+        {
             //Estableciendo tipo de respuesta.
             HttpResponse::SetContentType(MimeType::Json);
 
             //Obteniendo conversaciónes desde BD.
             $data = (new MessageModel(DBAccount::Root))->GetConversations((new Session())->user_id);
+
+            //Modificando valores.
+            for($i = 0; $i < count($data); $i++){
+                $data[$i]->profile_img = APP_URL::OfImageProfile($data[$i]->profile_img);
+            }
 
             //Devolviendo datos.
             return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));

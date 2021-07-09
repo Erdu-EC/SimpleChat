@@ -1,7 +1,4 @@
 $(document).on('submit', "#user_form", null, function () {
-    const card_err_solicitud = $("#error-solicitud");
-    const card_err_iniciosesion = $("#error-inicioSesion");
-
     $.ajax('/action/user/Login', {
         method: 'post',
         dataType: 'json',
@@ -11,8 +8,8 @@ $(document).on('submit', "#user_form", null, function () {
             p: $("#user_pass").val().trim()
         },
         beforeSend: () => {
-            card_err_solicitud.remove();
-            card_err_iniciosesion.remove();
+            $("#error-solicitud").remove();
+            $("#error-inicioSesion").remove();
         },
         error: function () {
             $("#user_form").before(' <div class="error-acceso" id="error-solicitud"> <span class="material-icons">error</span><span> Se ha producido un fallo con tu solicitud. Por favor, inténtalo de nuevo.</span></div>');
@@ -24,7 +21,7 @@ $(document).on('submit', "#user_form", null, function () {
 
                 window.location = "/";
             } else {
-                $("#user_form").after('<div class="error-acceso" id="error-inicioSesion"><span>Nombre de usuario o contraseña incorrectos.</span></div>');
+                $("#user_form").before('<div class="error-acceso" id="error-inicioSesion"><span>Nombre de usuario o contraseña incorrectos.</span></div>');
                 $("#user_pass").val("");
             }
         }

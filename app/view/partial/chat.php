@@ -86,7 +86,7 @@
                     if ($msg->id_source === $SESSION->user_id): ?>
 
                         <li class="enviado">
-                            <img src="/files/profile/mikeross.png?w=40&h=40" alt=""/>
+                            <img src="<?= $SESSION->user_profile_img ?>?w=40&h=40" alt=""/>
                             <p><?= $msg->content ?></p>
                             <div class="extra-mensaje">
                             </div>
@@ -94,7 +94,7 @@
 
                     <?php else: ?>
                         <li class="recibido">
-                            <img src="/files/profile/harveyspecter.png?w=40&h=40" alt=""/>
+                            <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=40&h=40" alt=""/>
                             <p><?= $msg->content ?></p>
                         </li>
                     <?php endif;

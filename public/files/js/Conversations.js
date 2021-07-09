@@ -26,7 +26,7 @@ function cargar_conversaciones() {
                 json.forEach((registro) => {
                     $('<li>', {
                         class: 'contact',
-                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[4], registro[6]),
+                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[3], registro[5], registro[7]),
                     }).appendTo(lista_conversaciones);
                 });
             }
@@ -34,20 +34,16 @@ function cargar_conversaciones() {
     });
 }
 
-
-
-
-
-const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, hay_invitacion, contenido) =>
+const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, hay_invitacion, contenido) =>
     `<div class="wrap elemento-conversacion" data-usuario="${usuario_id}">
         <span class="contact-status online"></span>
-        <img src="/files/profile/0_erdu.png?w=100&h=100" alt="" />
+        <img src="${foto_perfil}?w=100&h=100" alt="" />
         <div class="meta">
             <p class="name">${nombres} ${apellidos}</p>
             <p class="preview">${
-        (contenido === null && hay_invitacion)?
+        (contenido === null && hay_invitacion) ?
             '<i>Tienes una invitacion.</i>' :
-            (contenido === null)?
+            (contenido === null) ?
                 '<i>Has rechazado una invitación.</i>' :
                 contenido
     }

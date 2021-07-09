@@ -17,13 +17,13 @@
     {
         public function Login(): void
         {
-            //Obteniendo parametros post.
-            $_POST = ArrayUtils::Trim($_POST, false);
-            $user = empty($_POST['u']) ? null : (string)$_POST['u'];
-            $pass = empty($_POST['p']) ? null : (string)$_POST['p'];
-
             //Estableciendo tipo de respuesta.
             HttpResponse::SetContentType(MimeType::Json);
+
+            //Obteniendo parametros post.
+            $_POST = ArrayUtils::Trim($_POST, false);
+            $user = !empty($_POST['u']) ? (string)$_POST['u'] : die(json_encode(false));
+            $pass = !empty($_POST['p']) ? (string)$_POST['p'] : die(json_encode(false));
 
             //Si la sesion ya estaba iniciada.
             if (Session::IsLogin()) die(json_encode(true));

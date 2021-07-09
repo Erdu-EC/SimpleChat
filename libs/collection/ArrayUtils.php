@@ -24,7 +24,7 @@ class ArrayUtils
 
         if ($recursive){
             foreach ($data as &$row){
-                $row = array_values($row);
+                $row = array_values(Collection::IsCollection($row) ? $row->GetInnerArray() : $row);
             }
         }
 

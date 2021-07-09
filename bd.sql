@@ -92,10 +92,12 @@ SELECT id_source,
        su.user_name                  as s_nick,
        su.first_name                 as s_first_name,
        su.last_name                  as s_last_name,
+       su.profile_img                as s_profile_img,
        id_dest,
        du.user_name                  as d_nick,
        du.first_name                 as d_first_name,
        du.last_name                  as d_last_name,
+       du.profile_img                as d_profile_img,
        message.id                    as msg_id,
        message.content               as msg_content,
        message.rcv_date IS NOT NULL  as msg_received,
@@ -218,11 +220,12 @@ BEGIN
 END;
 
 #Obtener las conversaciones.
-CREATE OR REPLACE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
+CREATE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
 BEGIN
     SELECT if(c.id_source != USER_ID, s_nick, d_nick)                                      as contact_id,
            if(c.id_source != USER_ID, s_first_name, d_first_name)                          as first_name,
            if(c.id_source != USER_ID, s_last_name, d_last_name)                            as last_name,
+           if(c.id_source != USER_ID, s_profile_img, d_profile_img)                        as profile_img,
            c.id_source = USER_ID                                                           as isMyMessage,
            user_HasInvitation(USER_ID, if(c.id_source != USER_ID, c.id_source, c.id_dest)) as hasInvitation,
            if(c.id_source = USER_ID, m.id, mr.id)                                          as msg_id,
