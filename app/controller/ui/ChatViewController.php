@@ -58,6 +58,6 @@
             unset($user_data);
 
             //Llamando vista.
-            $this->View('partial\chat.php', $data);
+            $this->View('partial/chat.php', $data);
         }
     }

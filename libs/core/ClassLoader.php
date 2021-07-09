@@ -72,7 +72,7 @@ class ClassLoader
         foreach (new DirectoryIterator($dir) as $fileinfo) {
             if (!$fileinfo->isDot()) {
                 if ($fileinfo->isDir())
-                    self::Search($class, "$dir\\{$fileinfo->getFilename()}");
+                    self::Search($class, "$dir/{$fileinfo->getFilename()}");
                 else if ($fileinfo->getFilename() == $file) {
                     /** @noinspection PhpIncludeInspection */
                     require_once $fileinfo->getPathname();
