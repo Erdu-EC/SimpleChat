@@ -1,4 +1,25 @@
-$(document).on('click', '#mensaje-invitacion button', function (){
+
+$(document).on("keydown", "#espacio-de-escritura",function(e) {
+    if(e.which == 13 ){
+        EnviarMensaje();
+        return false;
+    }
+});
+
+$(document).on("keyup change", "#espacio-de-escritura",function () {
+    message = $("#espacio-de-escritura .wrap input").val();
+    if ($.trim(message) == '') {
+        $("#btn-enviar-mensaje").removeClass("activar");
+        $("#buscar-contacto .borrar").remove();
+
+    }
+    else{
+        $("#btn-enviar-mensaje").addClass("activar");
+        $("#cuadro-busqueda-usuario").after(' <div class="borrar"><span class="material-icons"> close</span></div>');
+
+    }
+});
+$(document).on('click', '#mensaje-invitacion button',function () {
     const boton_si = $('#mensaje-invitacion button:first');
     const boton_no = $('#mensaje-invitacion button:last');
 
@@ -25,10 +46,13 @@ $(document).on('click', '#mensaje-invitacion button', function (){
             }
         }
     });
-})
+});
 
-$(document).on('click', '#espacio-de-escritura button', function () {
-    const textarea = $('#espacio-de-escritura textarea');
+$(document).on('click', '#espacio-de-escritura .wrap button',function (){
+    EnviarMensaje()
+});
+function EnviarMensaje() {
+    const textarea = $('#espacio-de-escritura .wrap input');
     const texto = textarea.val().trim();
     textarea.val('');
 
@@ -41,11 +65,33 @@ $(document).on('click', '#espacio-de-escritura button', function () {
                 contact: $('#espacio-de-chat > div').attr('data-usuario'),
                 text: texto
             },
-            beforeSend: () => $('#espacio-de-chat .card-body').append(mensaje),
-            error: () => mensaje.find('.popover-header').text("Error al enviar."),
+            beforeSend: () => $('#espacio-de-chat .messages #lista-mensajes').append(mensaje),
+            error: () => {
+               setTimeout(function () {
+                   mensaje.find('.extra-mensaje').empty();
+                   mensaje.find('.extra-mensaje').append(' <div class="extra"><i class="far fa-clock"></i></div>');
+               },150)
+            },
             success: function (json) {
-                if (json)
-                    mensaje.find('.popover-header').remove();
+
+                if (json) {
+                    mensaje.find('.extra-mensaje').empty();
+                    var act = new Date();
+                    var hora_envio='';
+                    if (act.getHours() < 13 ) {
+                        hora_envio = act.getHours() + ':' + act.getMinutes() + ' a.m.';
+                    }
+                    else{
+                        hora_envio =  (act.getHours()-12) + ':'+ act.getMinutes() + ' p.m.';}
+                    mensaje.find('.extra-mensaje').append(' <div class="extra"><span>'+hora_envio+'</span></div> <div class="extra icon"><span class="material-icons">done</span></div> ');
+                    /*Estados de un mensaje enviado
+                 enviado: <div class="extra icon"><span class="material-icons">done</span></div>
+                 entregado:<div class="extra icon"><i class="far fa-check-circle"></i></div>
+                 visto: <div class="extra icon"><i class="fas fa-check-circle"></i></div>
+
+                    * */
+
+                }
                 else
                     mensaje.find('.popover-header').text("Error al enviar.");
             }
@@ -53,9 +99,9 @@ $(document).on('click', '#espacio-de-escritura button', function () {
     }
 
 
-    //console.log(text);
-})
-
+   $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+        };
+//Agregar contacto
 function CargarEspacioDeChat(){
     $('#espacio-de-chat').html(
         ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
@@ -81,7 +127,7 @@ $(document).on('click', '.btn-agregar-contacto', function () {
         success: function (json) {
             if (json === true) {
                 boton.remove();
-                $('#mensaje-invitacion').remove();
+                $('.opciones-contacto').remove();
 
                 if (typeof actualizar_lista_contactos === 'function')
                     actualizar_lista_contactos();
@@ -95,12 +141,15 @@ $(document).on('click', '.btn-agregar-contacto', function () {
 });
 
 const ObtenerElementoMensaje = mensaje => `
-        <div class="popover bs-popover-end" style="position: relative; max-width: none">
-            <div class="popover-arrow" style="position: absolute; transform: translate(0px, 17px);"></div>
-            <h3 class="popover-header">Enviando...</h3>
-            <div class="popover-body">${mensaje}</div>
-        </div>
-    `;
+<li class="enviado">
+            <img src="/files/profile/mikeross.png?w=40&h=40" alt="" />
+            <p> ${mensaje}</p>
+            <div class="extra-mensaje">
+                                <div class="enviando">
+                                </div>
+                               
+            </div>
+    </li>`;
 
 function ObtenerElementoMensajeContacto(mensaje) {
 

@@ -11,34 +11,59 @@
     $SESSION = new Session();
 ?>
 
-<div class="card h-100 mh-100" data-usuario="<?= $_VIEW->id ?>">
-    <div class="card-header">
-        <h5 class="row d-flex align-items-center mb-0 user-select-none">
-            <div class="col-8">
-                <?php if (!empty($_VIEW->profile_img)) : ?>
-                    <img src="/files/profile/<?= $_VIEW->profile_img ?>?h=40" alt="">
-                <?php else: ?>
-                    <i class="material-icons me-2">person</i>
-                <?php endif; ?>
+<section class="contact-profile no-seleccionable">
+    <?php if (!empty($_VIEW->profile_img)) : ?>
+        <img src="/files/profile/<?= $_VIEW->profile_img ?>?w=40&h=40" alt="">
+    <?php else: ?>
+        <i class="material-icons me-2" style="height: 40px; width: 40px">person</i>
+    <?php endif; ?>
 
-                <b><?= $_VIEW->full_name ?></b>
-
-                <?php if (!empty($_VIEW->state)) : ?>
-                    <span class="badge alert-success border-3 ms-2">
+    <div class="chat-conexion">
+        <span class="nombre-chat"> <?= $_VIEW->full_name ?></span>
+        <?php if (!empty($_VIEW->state)) : ?>
+            <span class="ult-conex">
                         <?= $_VIEW->state ?>
                     </span>
-                <?php endif; ?>
-            </div>
-            <?php if (is_null($_VIEW->is_contact) || !$_VIEW->is_contact) : ?>
-                <div class="col-4 text-end">
-                    <button class="btn btn-outline-primary btn-agregar-contacto">Agregar contacto</button>
-                </div>
-            <?php endif; ?>
-        </h5>
+        <?php endif; ?>
+<!--
+        <span class="ult-conex">últ. conex. 18 de may 2021 a la(s) 4:05 p.m.</span>
+-->
     </div>
-    <div class="card-body">
-        <?php if (!is_null($_VIEW->has_invitation) && $_VIEW->has_invitation): ?>
+    <?php if (is_null($_VIEW->is_contact) || !$_VIEW->is_contact) : ?>
+
+        <div class="opciones-contacto">
+            <div class="btn-agregar-contacto" title="Agregar a contactos" ><span class="material-icons">person_add</span>
+                Agregar contacto
+            </div>
+            <hr class="separador-vertical">
+            <div class="btn-bloquear-contacto" title="Bloquear">
+                <span class="material-icons">block</span>
+                Bloquear
+
+            </div>
+        </div>
+
+        <?php endif; ?>
+    <div class="icon-info-contacto" title="Información del contacto" id="btn-info-contacto">
+        <span class="material-icons">info</span>
+    </div>
+</section>
+
+<div class="messages" data-usuario="<?= $_VIEW->id ?>">
+    <?php if (!is_null($_VIEW->has_invitation) && $_VIEW->has_invitation): ?>
+        <div class="notificacion">
             <div id="mensaje-invitacion" class="row border-bottom">
+                <p><?= $_VIEW->full_name ?> no está en tus contactos y te ha enviado un mensaje, ¿Quieres aceptarlo?
+                </p>
+                <div class="botones">
+                    <button class="btn btn-si"> <span class="material-icons">done</span>Si</button>
+                    <button class="btn btn-no"><span class="material-icons">close</span>No</button>
+                </div>
+            </div>
+        </div>
+<!--
+
+<div id="mensaje-invitacion" class="row border-bottom">
                 <div class="col-10">Alguien que no esta en tus contactos te ha enviado un mensaje, ¿Quieres aceptarlo?
                 </div>
                 <div class="col-2">
@@ -46,45 +71,42 @@
                     <button class="btn btn-outline-secondary">No</button>
                 </div>
             </div>
-        <?php endif; ?>
+-->
+
+    <?php endif; ?>
+
+        <ul id="lista-mensajes">
+
 
         <?php
             if (!is_null($_VIEW->messages)):
                 foreach ($_VIEW->messages as $msg):
                     if ($msg->id_source === $SESSION->user_id): ?>
-                        <div class="popover bs-popover-end" style="position: relative; max-width: none">
-                            <div class="popover-arrow"
-                                 style="position: absolute; transform: translate(0px, 17px);"></div>
-                            <!--<h3 class="popover-header">Popover title</h3>-->
-                            <div class="popover-body"><?= $msg->content ?></div>
-                        </div>
+
+                        <li class="enviado">
+                            <img src="/files/profile/mikeross.png?w=40&h=40" alt="" />
+                            <p><?= $msg->content ?></p>
+                            <div class="extra-mensaje">
+                            </div>
+                        </li>
+
                     <?php else: ?>
-                        <div class="popover bs-popover-start" style="position: relative; max-width: none">
-                            <div class="popover-arrow"
-                                 style="position: absolute; transform: translate(0px, 47px);"></div>
-                            <!--<h3 class="popover-header">Popover title</h3>-->
-                            <div class="popover-body"><?= $msg->content ?></div>
-                        </div>
-                    <?php endif;
+            <li class="recibido">
+                <img src="/files/profile/harveyspecter.png?w=40&h=40" alt="" />
+                <p><?= $msg->content ?></p>
+            </li>
+                 <?php endif;
                 endforeach;
             endif;
-
+echo '<script> $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight")); </script>';
         ?>
 
+        </ul>
 
-    </div>
-    <div class="card-footer">
-        <div class="row">
-            <div class="col">
-                <div id="espacio-de-escritura" class="input-group">
-                    <textarea class="form-control border-primary" rows="2"
-                              placeholder="Escriba un mensaje..."></textarea>
-                    <button class="btn btn-outline-primary d-flex align-items-center input-group-text">
-                        <b>Enviar</b>
-                        <i class="material-icons ms-2">send</i>
-                    </button>
-                </div>
-            </div>
-        </div>
+</div>
+<div class="message-input" id="espacio-de-escritura">
+    <div class="wrap">
+        <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..." />
+        <button class=" btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
     </div>
 </div>

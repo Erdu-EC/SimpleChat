@@ -34,3 +34,8 @@
 
     #Redirección a Login.
     Route::All('{all*}', 'LoginController#IfNotLoginRedirect', [], false);
+
+    #rutas temporales
+    Route::Get("/500", '/error/500.php', [], true);
+    Route::Get("/400", '/error/400.php', [], true);
+    Route::Get("/404", '/error/404.php', [], true);
