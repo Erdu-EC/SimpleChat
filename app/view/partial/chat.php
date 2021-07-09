@@ -15,24 +15,24 @@
     <?php if (!empty($_VIEW->profile_img)) : ?>
         <img src="/files/profile/<?= $_VIEW->profile_img ?>?w=40&h=40" alt="">
     <?php else: ?>
-        <i class="material-icons me-2" style="height: 40px; width: 40px">person</i>
+        <i class="material-icons" style="font-size: 2.5rem">person</i>
     <?php endif; ?>
 
     <div class="chat-conexion">
         <span class="nombre-chat"> <?= $_VIEW->full_name ?></span>
         <?php if (!empty($_VIEW->state)) : ?>
             <span class="ult-conex">
-                        <?= $_VIEW->state ?>
-                    </span>
+                <?= $_VIEW->state ?>
+            </span>
         <?php endif; ?>
-<!--
-        <span class="ult-conex">últ. conex. 18 de may 2021 a la(s) 4:05 p.m.</span>
--->
+        <!--
+                <span class="ult-conex">últ. conex. 18 de may 2021 a la(s) 4:05 p.m.</span>
+        -->
     </div>
     <?php if (is_null($_VIEW->is_contact) || !$_VIEW->is_contact) : ?>
 
         <div class="opciones-contacto">
-            <div class="btn-agregar-contacto" title="Agregar a contactos" ><span class="material-icons">person_add</span>
+            <div class="btn-agregar-contacto" title="Agregar a contactos"><span class="material-icons">person_add</span>
                 Agregar contacto
             </div>
             <hr class="separador-vertical">
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <?php endif; ?>
+    <?php endif; ?>
     <div class="icon-info-contacto" title="Información del contacto" id="btn-info-contacto">
         <span class="material-icons">info</span>
     </div>
@@ -56,26 +56,26 @@
                 <p><?= $_VIEW->full_name ?> no está en tus contactos y te ha enviado un mensaje, ¿Quieres aceptarlo?
                 </p>
                 <div class="botones">
-                    <button class="btn btn-si"> <span class="material-icons">done</span>Si</button>
+                    <button class="btn btn-si"><span class="material-icons">done</span>Si</button>
                     <button class="btn btn-no"><span class="material-icons">close</span>No</button>
                 </div>
             </div>
         </div>
-<!--
+        <!--
 
-<div id="mensaje-invitacion" class="row border-bottom">
-                <div class="col-10">Alguien que no esta en tus contactos te ha enviado un mensaje, ¿Quieres aceptarlo?
-                </div>
-                <div class="col-2">
-                    <button class="btn btn-outline-primary">Si</button>
-                    <button class="btn btn-outline-secondary">No</button>
-                </div>
-            </div>
--->
+        <div id="mensaje-invitacion" class="row border-bottom">
+                        <div class="col-10">Alguien que no esta en tus contactos te ha enviado un mensaje, ¿Quieres aceptarlo?
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-outline-primary">Si</button>
+                            <button class="btn btn-outline-secondary">No</button>
+                        </div>
+                    </div>
+        -->
 
     <?php endif; ?>
 
-        <ul id="lista-mensajes">
+    <ul id="lista-mensajes">
 
 
         <?php
@@ -84,29 +84,30 @@
                     if ($msg->id_source === $SESSION->user_id): ?>
 
                         <li class="enviado">
-                            <img src="/files/profile/mikeross.png?w=40&h=40" alt="" />
+                            <img src="/files/profile/mikeross.png?w=40&h=40" alt=""/>
                             <p><?= $msg->content ?></p>
                             <div class="extra-mensaje">
                             </div>
                         </li>
 
                     <?php else: ?>
-            <li class="recibido">
-                <img src="/files/profile/harveyspecter.png?w=40&h=40" alt="" />
-                <p><?= $msg->content ?></p>
-            </li>
-                 <?php endif;
+                        <li class="recibido">
+                            <img src="/files/profile/harveyspecter.png?w=40&h=40" alt=""/>
+                            <p><?= $msg->content ?></p>
+                        </li>
+                    <?php endif;
                 endforeach;
             endif;
-echo '<script> $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight")); </script>';
         ?>
 
-        </ul>
+        <script> $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight")); </script>
+    </ul>
 
 </div>
 <div class="message-input" id="espacio-de-escritura">
     <div class="wrap">
-        <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..." />
+        <label for="contenido-mensaje" style="display: none"></label>
+        <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..."/>
         <button class=" btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
     </div>
 </div>

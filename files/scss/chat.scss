@@ -1,9 +1,11 @@
+@charset "UTF-8";
+
 @font-face {
   font-family: "Signalist";
   src: url("/files/iconfont/Net-Signalist-W00-Signalist.ttf");
 }
 
-@charset "UTF-8";
+
 
 .material-icons{
   vert-align: middle;
@@ -262,7 +264,7 @@ body {
 }
 .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content{
   transition: transform 0.15s ease-in-out;
-  padding: 0px;
+  padding: 0;
   transition-property: padding-left, padding-left;
 }
 @media screen and (max-width: 935px){
@@ -311,10 +313,10 @@ body {
 #layoutSidenav_nav .sb-sidenav-footer {
   padding-left: 20px;
   font-size: 3rem;
-  font-family: "Signalist";
+  font-family: "Signalist", sans-serif;
 }
 #layoutSidenav_nav .sb-sidenav-footer small {
-  font-family: SimpleChat;
+  font-family: SimpleChat, sans-serif;
 }
 /*
 ***********************************************
@@ -428,7 +430,7 @@ body::-webkit-scrollbar{
 }
 
 #profile .wrap {
-  line-height: 60px;
+  /*line-height: 60px;*/
   overflow: hidden;
   -moz-transition: 0.3s height ease;
   -o-transition: 0.3s height ease;
@@ -456,7 +458,7 @@ body::-webkit-scrollbar{
 }
 #profile .wrap #ajustes-cuenta{
 
-  margin-top: 0px;
+  margin-top: 0;
   background-image:url("/files/icon/configuracion.png");
   width: 80px;
   height: 80px;
@@ -533,15 +535,15 @@ img.busy {
   justify-content: center;
   align-items: center;
   display: flex;
-  margin: 0px;
-  padding:0px;
+  margin: 0;
+  padding:0;
 }
 
 .accordion-body {background: #2B364F;
 
   padding:0;}
 .accordion-body .nav-link{
-  padding: 15px 0px 15px 25px;
+  padding: 15px 0 15px 25px;
   display: flex;
   link: none;
   color: white;
@@ -564,7 +566,7 @@ Barra de contactos desplegable
   width: 500px;
 }
 #panelTodosContactos {
-  margin:0px auto 0 -600px;
+  margin:0 auto 0 -600px;
 border-right: 1px solid #288795;
   z-index: 2000;
   position: absolute;
@@ -601,7 +603,7 @@ border-right: 1px solid #288795;
   font-family: "proxima-nova", "Source Sans Pro", sans-serif;
   text-align: left;
   font-size:1.5rem;
-  margin: 0px 10px;
+  margin: 0 10px;
   float: left;
   display: flex;
   vertical-align: center;
@@ -638,7 +640,7 @@ border-right: 1px solid #288795;
   border-radius: 20px;
   margin: 20px 5px 0;
   font-weight: 300;
-  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  box-shadow: rgba(33, 35, 38, 0.1) 0 10px 10px -10px;
 
 }
 #panelTodosContactos #sidepanelTodosContactos #buscar-contacto label {
@@ -652,7 +654,7 @@ border-right: 1px solid #288795;
   padding: 10px 40px 10px 40px;
   width: 100%;
   color: black;
-  border: none;
+  /*border: none;*/
   border-radius: 50px;
   border: 1px solid #e7e8e9;
 }
@@ -758,10 +760,10 @@ Lista de contactos
 }
 
 #listaTodosContactos #lista-contactos li .card, #lista-contactos-buscar li .card{
-  margin-right: 0px;
+  margin-right: 0;
   color: black;
-  border-radius: 0px;
-  padding: 0px;
+  border-radius: 0;
+  padding: 0;
   height: 75px;
   border: none;
 
@@ -770,7 +772,7 @@ Lista de contactos
 #listaTodosContactos #lista-contactos li .card .row, #lista-contactos-buscar li .card .row{
 
   vertical-align: center;
-  margin: 0px;
+  margin: 0;
   height: 100%;
 }
 #listaTodosContactos #lista-contactos li .card .row div.perfil-contacto, #lista-contactos-buscar li .card .row div.perfil-contacto {
@@ -797,7 +799,7 @@ Lista de contactos
 
   height: 100%;
   text-align: left;
-  padding: 0px 20px 0 0;
+  padding: 0 20px 0 0;
 
 }
 #listaTodosContactos #lista-contactos li .card .row div .card-body h5, #lista-contactos-buscar li .card .row div .card-body h5 {
@@ -850,7 +852,7 @@ Lista de contactos
 @media screen and (max-width: 576px){
   #lista-contactos .item-contacto .card, #lista-contactos-buscar .item-contacto .card {
     height: 90px;
-    padding: 0px;
+    padding: 0;
   }
 
   .card .btn-mas {
@@ -916,7 +918,7 @@ Lista de contactos
   text-overflow: ellipsis;
   text-align: justify;
   overflow: hidden;
-  margin: 0px;
+  margin: 0;
 
 }
 .item-contacto .card .card-body p span.usuario{
@@ -982,7 +984,7 @@ padding: 10px 0;
    }
 
    #sidepanel #mi-perfil-sidepanel img {
-     margin: 0px;
+     margin: 0;
      position: relative;
 
    };
@@ -992,7 +994,7 @@ width: 100%;
      justify-content: right;
    }
    #sidepanel #mi-perfil-sidepanel .usuario-perfil-opciones span {
-     margin: 0px;
+     margin: 0;
      position: absolute;
      left: 35px;
      top: -5px;
@@ -1055,7 +1057,7 @@ width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-width: none;
-  margin-botton:0px;
+  margin-bottom: 0px;
 }
 @media screen and (max-width: 735px) {
   #frame #sidepanel #contacts {
@@ -1123,8 +1125,8 @@ width: 100%;
   position: relative;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta .name {
   font-weight: 600;
@@ -1149,7 +1151,7 @@ width: 100%;
   }
   #frame #sidepanel #contacts ul li.contact .wrap {
     padding: 0;
-    margin: 0px;
+    margin: 0;
     height: 60px;
     display: flex;
     justify-content: center;
@@ -1176,7 +1178,7 @@ width: 100%;
   position: absolute;
   width: 100%;
   bottom: 0;
-  margin-top: 0px;
+  margin-top: 0;
 
 }
 
@@ -1202,7 +1204,7 @@ width: 100%;
   #frame #sidepanel #bottom-bar button {
     float: none;
     width: 100%;
-    padding: 0px;
+    padding: 0;
   }
   #icon-nuevo-chat{
     width: 30px;
@@ -1263,7 +1265,7 @@ width: 100%;
   margin: 0;
   float: left;
 }
-#frame .content .contact-profile img {
+#frame .content .contact-profile img, #frame .content .contact-profile i.material-icons {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -1292,7 +1294,7 @@ width: 100%;
 #frame .content .contact-profile .chat-conexion span.ult-conex{
   height: 20px;
   padding: 0;
-  width: 100%;
+  /*width: 100%;*/
   margin: -10px 0 0;
   font-size: 0.65rem;
   display: block;
@@ -1304,7 +1306,7 @@ width: 100%;
   display: flex;
   justify-content: space-between;
   color: black;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   background-color: rgba(40, 135, 139, 0.55);
 
 }
@@ -1343,7 +1345,7 @@ hr.separador-vertical{
 }
 @media screen and (max-width: 576px){
   #frame .content .contact-profile .opciones-contacto div {
-    font-size: 0px;
+    font-size: 0;
     margin:0;
     align-content: center;
     justify-content: center;
@@ -1406,7 +1408,7 @@ hr.separador-vertical{
   overflow-x: hidden;
   scrollbar-width: none;
 
-  margin: 0px;
+  margin: 0;
   padding: 0;
 }
 /*
@@ -1424,16 +1426,16 @@ Solicitud de chat
 }
 #mensaje-invitacion {
 
-  margin: 0px;
+  margin: 0;
   background: #ffffff;
   color:#000000;
   max-width: 400px;
   z-index: 100;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
   text-align: left;
 }
 #mensaje-invitacion p {
-  margin: 0px;
+  margin: 0;
 }
 
 #mensaje-invitacion .botones
@@ -1451,8 +1453,8 @@ Solicitud de chat
   padding: 10px;
   align-items: center;
   text-align: center;
-  border-radius: 0;
-  border: none;
+  /*border-radius: 0;
+  border: none;*/
   box-shadow: none;
   outline: none;
   border: 1px solid #d3d3d3;
@@ -1491,10 +1493,10 @@ Fin de solicitud de chat
   background-color: rgba(0, 0, 0, 0.3);
 }
 #frame .content .messages ul#lista-mensajes {
-  padding: 30px 30px 0px 50px;
+  padding: 30px 30px 0 50px;
   height: auto;
   width: 100%;
-  margin: 0px;
+  margin: 0;
 }
 
 
@@ -1517,7 +1519,7 @@ Fin de solicitud de chat
   width: auto;
   max-width: calc(70% - 50px);
   min-width: 50px;
-  margin:0px;
+  margin:0;
 }
 
 #frame .content .messages ul li.enviado img {
@@ -1537,7 +1539,7 @@ Fin de solicitud de chat
 #frame .content .messages ul li.recibido p {
   background: #ffffff;
   color: black;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
 }
 
@@ -1593,7 +1595,7 @@ color: #8e8e8f;
   align-self: center;
 }
 .messages ul li.enviado .extra-mensaje .icon {
-  margin: 0px 0 0 5px;
+  margin: 0 0 0 5px;
 }
 .messages ul li.enviado .extra-mensaje .icon span{
   display: flex;
@@ -1649,7 +1651,7 @@ color: #8e8e8f;
   width: 80px;
   background: #288795;
   color: #f5f5f5;
-  border-radius: 0;
+  /*border-radius: 0;*/
   border-radius: 0 20px 20px 0 ;
 }
 #frame .content #espacio-de-escritura .wrap button.activar {
@@ -1658,11 +1660,11 @@ color: #8e8e8f;
 
 
 .container-fluid{
-  padding: 0px;
+  padding: 0;
 }
 
 #contacts ul{
-  padding-left: 0px;
+  padding-left: 0;
 }
 #contacts ul li{
   list-style:none;
@@ -1670,8 +1672,8 @@ color: #8e8e8f;
 
 ul#LateralMenu li{
   width: 100%;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 ul#LateralMenu li:hover {
@@ -1689,7 +1691,7 @@ ul#LateralMenu li.active div.nav-link {
 }
 ul#LateralMenu li div.nav-link {
   display: flex;
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
  padding-left: 10px;
   align-content: center ;
   align-items: center;
@@ -1819,7 +1821,7 @@ Contenedor laterial de informacion de contacto
 #panelInfoContacto .contenedor-perfil .card{
 
   margin: 0 0 0 0;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 2px 8px;
   /*box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;*/
   border-radius: 0;
   width: 100%;
