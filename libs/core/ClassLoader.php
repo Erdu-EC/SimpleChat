@@ -8,7 +8,7 @@ use InvalidArgumentException;
 use const HS\APP_NAMESPACE;
 use const HS\APP_PATH;
 
-require_once APP_PATH . "\libs\io\Path.php";
+require_once APP_PATH . "/libs/io/Path.php";
 
 #Registrando como función para autoincludes.
 spl_autoload_register(function (string $class) {
