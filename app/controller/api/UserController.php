@@ -5,6 +5,7 @@ namespace HS\app\controller\api;
 
 
 use HS\app\model\UserModel;
+use HS\config\APP_URL;
 use HS\config\DBAccount;
 use HS\libs\collection\ArrayUtils;
 use HS\libs\core\Controller;
@@ -44,8 +45,13 @@ class UserController extends Controller
         $data = (new UserModel(DBAccount::Root))->SearchUserOrContact($user_id, $text, [
             UserModel::C_NICK,
             UserModel::C_FNAME,
-            UserModel::C_LNAME
+            UserModel::C_LNAME,
+            UserModel::C_PROFILE_IMG
         ]);
+
+        //Modificando datos.
+        for($i = 0; $i < count($data); $i++)
+            $data[$i]->profile_img = APP_URL::OfImageProfile($data[$i]->profile_img);
 
         //Devolviendo.
         return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));

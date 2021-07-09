@@ -68,7 +68,7 @@ if ($.trim(entrada) == ''){
                     json.forEach((registro) => {
                         $('<li>', {
                             class: 'item-contacto',
-                            html: ObtenerElementoContactoBuscado(registro[0], registro[1], registro[2], registro[3]),
+                            html: ObtenerElementoContactoBuscado(registro[0], registro[1], registro[2], registro[3], registro[4]),
                         }).appendTo(lista_resultados);
                     });
                 }
@@ -106,7 +106,7 @@ function actualizar_lista_contactos() {
                 json.forEach((registro) => {
                     $('<li>', {
                         class: 'item-contacto',
-                        html: ObtenerElementoContacto(registro[0], registro[1], registro[2], registro[3]),
+                        html: ObtenerElementoContacto(registro[0], registro[1], registro[2], registro[3], registro[4]),
                     }).appendTo(lista_contactos);
                 });
             }
@@ -114,12 +114,12 @@ function actualizar_lista_contactos() {
     });
 }
 
-const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, esContacto) =>
+const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, foto_perfil, esContacto) =>
     `
  <div class="card  align-content-between elemento-contacto" data-usuario="${usuario}">
                         <div class="row">
                             <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/profile/rachelzane.png?w=90&h=90" alt="" class="online"/>
+                                <img src="${foto_perfil}?w=90&h=90" alt="" class="online"/>
                             </div>
                             <div class="col-8 ">
                                 <div class="card-body">
@@ -158,11 +158,11 @@ const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, esContacto)
 
 
 * */
-const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion) =>
+const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion, foto_perfil) =>
     `<div class="card  align-content-between elemento-contacto" data-usuario="${usuario}">
                         <div class="row">
                             <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/profile/rachelzane.png?w=90&h=90" alt="" class="online"/>
+                                <img src="${foto_perfil}?w=90&h=90" alt="" class="online"/>
                             </div>
                             <div class="col-8 ">
                                 <div class="card-body">

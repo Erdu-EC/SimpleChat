@@ -52,9 +52,8 @@
             $data = (new MessageModel(DBAccount::Root))->GetConversations((new Session())->user_id);
 
             //Modificando valores.
-            for($i = 0; $i < count($data); $i++){
+            for($i = 0; $i < count($data); $i++)
                 $data[$i]->profile_img = APP_URL::OfImageProfile($data[$i]->profile_img);
-            }
 
             //Devolviendo datos.
             return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));

@@ -4,6 +4,7 @@ namespace HS\app\controller\api;
 
 use HS\app\model\ContactModel;
 use HS\app\model\UserModel;
+use HS\config\APP_URL;
 use HS\config\DBAccount;
 use HS\libs\collection\ArrayUtils;
 use HS\libs\core\Controller;
@@ -23,8 +24,13 @@ class ContactController extends Controller
             UserModel::C_NICK,
             UserModel::C_FNAME,
             UserModel::C_LNAME,
-            UserModel::C_LAST_CONN
+            UserModel::C_LAST_CONN,
+            UserModel::C_PROFILE_IMG
         ]);
+
+        //Modificando datos.
+        for($i = 0; $i < count($data); $i++)
+            $data[$i]->profile_img = APP_URL::OfImageProfile($data[$i]->profile_img);
 
         //Devolviendo.
         echo json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));
