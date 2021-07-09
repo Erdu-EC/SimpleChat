@@ -43,7 +43,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                     <div class="elemento-contacto">
 
                             <div class="img-perfil-contacto">
-                                <img src="/files/upload/profile/danielhardman.png?w=90&h=90" alt="" class="online"/>
+                                <img src="/files/profile/danielhardman.png?w=90&h=90" alt="" class="online"/>
                             </div>
                                 <div class="cuerpo-perfil-contacto">
                                     <span class="nombre-contacto">Daniel Hardman</span>

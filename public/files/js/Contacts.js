@@ -115,42 +115,23 @@ function actualizar_lista_contactos() {
 }
 
 const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, esContacto) =>`
-<div class="elemento-contacto">
+<div class="elemento-contacto " data-usuario="${usuario}">
 
                             <div class="img-perfil-contacto">
-                                
+                                <img src="/files/profile/danielhardman.png?w=60&h=60" alt="" class="online"/>
                             </div>
                                 <div class="cuerpo-perfil-contacto">
-                                    <h5 class="card-title">Daniel Hardman</h5>
+                                    <span class="nombre-contacto">${nombres} ${apellidos}</span>
 
-                                    <p class="nombre-usuario">
-                                        <span class="material-icons icon-usuario">person</span>danielhardman</p>
+                                    <div class="nombre-usuario">
+                                        <span class="material-icons icon-usuario">person</span>
+${usuario}
+                                        </div>
                                 </div>
                     </div>
 `;
 
-/*
-    `
- <div class="card  align-content-between elemento-contacto" data-usuario="${usuario}">
-                        <div class="row">
-                            <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/profile/rachelzane.png?w=90&h=90" alt="" class="online"/>
-                            </div>
-                            <div class="col-8 ">
-                                <div class="card-body">
-                                    <h5 class="card-title">${nombres} ${apellidos}</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>${usuario}</p>
-                                    <div class="btn-opciones">
-                                    ${(esContacto) ? '<span class="material-icons eliminar">delete</span>' : '<span class="material-icons agregar">person_add_alt</span>'}
-                        
-                                        
-                                    </div>
-                                </div>
 
-                            </div>
-                        </div>
-                    </div>
-`*/
 /*
 <div class="card mb-0 shadow elemento-contacto" style="cursor: pointer;" data-usuario="${usuario}">
         <div class="row g-0">
@@ -193,26 +174,7 @@ ${(ultima_conexion !== undefined) ? ObtenerTiempoUltimaConexion(ultima_conexion)
                                 </div>
                     </div>
 `;
- /*   `<div class="card  align-content-between elemento-contacto" data-usuario="${usuario}">
-                        <div class="row">
-                            <div class="col-4 perfil-contacto color-5">
-                                <img src="/files/profile/rachelzane.png?w=90&h=90" alt="" class="online"/>
-                            </div>
-                            <div class="col-8 ">
-                                <div class="card-body">
-                                    <h5 class="card-title">${nombres} ${apellidos}</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>${usuario}</p>
-                                    <div class="btn-opciones">
-                                    <span class="actividad">${(ultima_conexion !== undefined) ? ObtenerTiempoUltimaConexion(ultima_conexion) : ''}</span>
 
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-`;*/
 /*<div class="card mb-2 elemento-contacto" style="cursor: pointer;" data-usuario="${usuario}">
         <div class="row g-0">
             <div class="col-md-3 p-1">
@@ -236,13 +198,13 @@ function ObtenerTiempoUltimaConexion(fecha_hora) {
         return ult_conex= 'Inactivo';
     }
 
-    if (fecha.getDate() - fecha_actual.getDate() ==0){
-        ult_conex += ' Hoy'}
-    else if (fecha.getDate() - fecha_actual.getDate() ==1)
+    if (fecha.getDate() == fecha_actual.getDate()){
+        ult_conex += ' hoy'}
+    else if (fecha_actual.getDate()-fecha.getDate() == 1 )
     {
-        ult_conex += ' Ayer'}
+        ult_conex += ' ayer'}
     else {
-        ult_conex += ' ' + fecha.toLocaleDateString();//fecha.getDay()+'/'+fecha.getMonth()+ '/'+fecha.getFullYear();
+        ult_conex += ' ' + fecha.toLocaleDateString();
     }
 
     ult_conex += ' a l(as) ';

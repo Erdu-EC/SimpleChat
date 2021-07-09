@@ -822,6 +822,7 @@ font-size: 14px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+
 }
 .elemento-contacto .cuerpo-perfil-contacto div span.material-icons {
   font-size: 15px;
@@ -846,184 +847,6 @@ font-size: 14px;
 .elemento-contacto .cuerpo-perfil-contacto .ult-conexion-contacto i {
   font-size: 11px;
 }
-  /*
-  #listaTodosContactos #lista-contactos li .card, #lista-contactos-buscar li .card{
-    margin-right: 0px;
-    color: black;
-    border-radius: 0px;
-    padding: 0px;
-    height: 75px;
-    border: 1px solid red;
-
-  }
-
-  #listaTodosContactos #lista-contactos li .card .row, #lista-contactos-buscar li .card .row{
-
-    vertical-align: center;
-    margin: 0px;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-  }
-  #listaTodosContactos #lista-contactos li .card .row div.perfil-contacto, #lista-contactos-buscar li .card .row div.perfil-contacto {
-  display: flex;
-    align-content: center;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    vertical-align: middle;
-    width: 90px;
-  }
-
-  .card .row div.perfil-contacto img{
-
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-  }
-  .card .row div.color-1{
-    background: rgba(49,27,146,0.5);
-  }
-
-  #listaTodosContactos #lista-contactos li .card .row div .card-body, #lista-contactos-buscar li .card .row div .card-body {
-  display: flex;
-    flex-direction: column;
-    height: 100%;
-    text-align: left;
-    padding: 0px 20px 0 0;
-
-  }
-  #listaTodosContactos #lista-contactos li .card .row div .card-body h5, #lista-contactos-buscar li .card .row div .card-body h5 {
-    width: calc(100% - 50px);
-    max-height: 1.5rem;
-    padding-top: 5px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    margin:0;
-    font-size: 1rem;
-    font-weight: 450;
-  }
-  #listaTodosContactos #lista-contactos li .card:hover, #lista-contactos-buscar li .card:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-    z-index: 99;
-    background: rgba(135, 206,250, 0.2);
-  }
-  #lista-contactos .item-contacto .card .btn-mas, #lista-contactos-buscar .item-contacto .card .btn-mas {
-    position: relative;
-    height: 20px;
-    width: 20px;
-    float: right;
-    margin-right: 5px;
-    align-content: end;
-    z-index: 20;
-    top:calc(-50% - 10px);
-    left: 93%;
-    display: flex;
-  }
-  .card .btn-mas .mas{
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    align-content: center;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-
-  }
-
-  #lista-contactos .item-contacto .card .btn-mas .mas:hover, .card .btn-mas span.active, #lista-contactos-buscar .item-contacto .card .btn-mas .mas:hover {
-    background-color: #007bff;
-    color: white;
-  }
-
-
-
-
-  @media screen and (max-width: 576px){
-    #lista-contactos .item-contacto .card, #lista-contactos-buscar .item-contacto .card {
-      height: 90px;
-      padding: 0px;
-    }
-
-    .card .btn-mas {
-      left: 90%;
-    }
-    #listaTodosContactos #lista-contactos li .card .row div .card-body h5, #lista-contactos-buscar li .card .row div .card-body h5 {
-      margin-bottom: 0;
-    }
-    .card div .card-body .btn-opciones{
-      display: inline-block;
-      width: 100%;
-    }
-  }
-  .material-icons{
-    border: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  .item-contacto .card div .card-body .btn-opciones{
-    margin-top: 5px;
-    text-align: center;
-  }
-
-  .item-contacto .card div .card-body .btn-opciones span{
-    font-size:20px;
-    display: inline;
-    margin-bottom: 5px;
-    color: #32465a;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  .item-contacto .card div .card-body .btn-opciones span.actividad{
-    font-size: 0.7rem;
-  }
-  .item-contacto .card div .card-body .btn-opciones span.eliminar:hover, .card div .card-body .btn-opciones span.eliminar:focus {
-
-    color: #dc3545;
-    border:1px solid  #dc3545;
-    background: none;
-  }
-  .item-contacto .card div .card-body .btn-opciones span.mensaje:hover,  .card div .card-body .btn-opciones span.mensaje:focus{
-
-    border:1px solid  #28a745;
-    background: none;
-    color: #28a745;
-  }
-  .item-contacto .card div .card-body .btn-opciones span.agregar:hover,  .card div .card-body .btn-opciones span.agregar:focus{
-
-    border:1px solid  #6264a7;
-    background: none;
-    color: #6264a7;
-  }
-  .item-contacto .card .card-body p{
-    font-size: 1rem;
-    width: calc(100% - 30px);
-    height: 20px;
-    color: grey;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-align: justify;
-    overflow: hidden;
-    margin: 0px;
-
-  }
-  .item-contacto .card .card-body p span.usuario{
-    width: 20px;
-    font-size: 1.2rem;
-    align-content: center;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    vertical-align: middle;
-    margin-right: 5px;
-
-  }*/
 /*-------------------------------------------------
 Fin de contactos
 -------------------------------------------------*/
@@ -1057,6 +880,10 @@ padding: 10px 0;
   border-radius: 50%;
   margin-left: 15px;
   margin-right: 20px;
+}
+#sidepanel #mi-perfil-sidepanel .usuario-perfil {
+  color: #ffffff;
+  font-weight: 500;
 }
 
 #sidepanel .img-perfil div.usuario-perfil-opciones {
