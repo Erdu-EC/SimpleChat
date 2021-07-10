@@ -15,12 +15,15 @@ namespace HS {
     define(__NAMESPACE__ . '\APP_URL', pathinfo($_SERVER['PHP_SELF'], PATHINFO_DIRNAME));
 
     /**Permiso a nivel de usuario para archivos y carpetas que crea la aplicación.*/
-    const APP_FILE_MODE = '0007';
+    const APP_FILE_MODE = 0770;
+    const APP_FILE_MODE_UMASK = 0002;
 }
 
 namespace {
 
     use const HS\APP_DEBUG;
+    use const HS\APP_FILE_MODE;
+    use const HS\APP_FILE_MODE_UMASK;
     use const HS\APP_PATH;
 
     #Advertencias y reportes de errores.
@@ -29,6 +32,9 @@ namespace {
 
     #Limitando acceso a ficheros del servidor.
     ini_set('open_basedir', APP_PATH);
+
+    #Estableciendo mascara de permisos.
+    umask(APP_FILE_MODE_UMASK);
 
     #Iniciando aplicación.
     require '../app/init.php';
