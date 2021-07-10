@@ -5,6 +5,9 @@ USER=$(whoami)
 
 cd ..
 
+#Eliminando directorios y ficheros temporales del proyecto.
+sudo rm -r ${SERVER_DIR}/.temp
+
 #Establiendo grupo propietario y añadiendo usuario al grupo.
 sudo chgrp -R www-data ${SERVER_DIR}
 sudo usermod -a -G www-data ${USER}
