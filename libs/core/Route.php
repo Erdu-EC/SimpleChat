@@ -2,7 +2,6 @@
 
     namespace HS\libs\core;
 
-    use Error;
     use HS\config\APP_DIR;
     use HS\libs\helper\FQN;
     use HS\libs\helper\Regex;
@@ -42,6 +41,9 @@
             //Eliminando la parte raiz de la RequestUrl.
             if (Text::StartWith($request_url, APP_URL))
                 $request_url = substr($request_url, strlen(APP_URL));
+
+            if (Text::StartWith($route_url, APP_URL))
+                $route_url = substr($route_url, strlen(APP_URL));
 
             //Extrayendo nombres de variables de la ruta. Ej: {Var1} ó {Var1*}
             preg_match_all('#\{(\w+|\w+\*)}#', $route_url, $varsName);
