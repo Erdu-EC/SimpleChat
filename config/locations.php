@@ -22,7 +22,8 @@ class APP_DIR
 class APP_URL {
     const IMG_PROFILE = '/files/profile';
 
-    public static function OfImageProfile(string $file_img){
-        return Path::Combine(self::IMG_PROFILE, $file_img);
+    public static function OfImageProfile(?string $file_img): string
+    {
+        return !is_null($file_img) ? Path::Combine(self::IMG_PROFILE, $file_img) : '';
     }
 }

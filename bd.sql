@@ -153,7 +153,6 @@ BEGIN
     RETURN EXISTS(SELECT * FROM contacts WHERE user_id = USERID and contact_id = CONTACTID);
 END;
 
-
 #Procedimientos para contactos.
 CREATE FUNCTION user_AddContact(own int, contact int) RETURNS INT
     MODIFIES SQL DATA
