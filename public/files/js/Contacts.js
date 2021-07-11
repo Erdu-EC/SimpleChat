@@ -116,26 +116,21 @@ function actualizar_lista_contactos() {
 
 const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, foto_perfil, esContacto) =>
     `
- <div class="card  align-content-between elemento-contacto" data-usuario="${usuario}">
-                        <div class="row">
-                            <div class="col-4 perfil-contacto color-5">
-                                <img src="${foto_perfil}?w=90&h=90" alt="" class="online"/>
-                            </div>
-                            <div class="col-8 ">
-                                <div class="card-body">
-                                    <h5 class="card-title">${nombres} ${apellidos}</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>${usuario}</p>
-                                    <div class="btn-opciones">
-                                    ${(esContacto) ? '<span class="material-icons eliminar">delete</span>' : '<span class="material-icons agregar">person_add_alt</span>'}
-                        
-                                        
-                                    </div>
-                                </div>
+<div class="elemento-contacto " data-usuario="${usuario}">
 
+                            <div class="img-perfil-contacto">
+                                <img src="${foto_perfil}?w=60&h=60" alt="" class="online"/>
                             </div>
-                        </div>
+                                <div class="cuerpo-perfil-contacto">
+                                    <span class="nombre-contacto">${nombres} ${apellidos}</span>
+
+                                    <div class="nombre-usuario">
+                                        <span class="material-icons icon-usuario">person</span>
+${usuario}
+                                        </div>
+                                </div>
                     </div>
-`
+`;
 /*
 <div class="card mb-0 shadow elemento-contacto" style="cursor: pointer;" data-usuario="${usuario}">
         <div class="row g-0">
@@ -159,39 +154,27 @@ const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, foto_perfil
 
 * */
 const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion, foto_perfil) =>
-    `<div class="card  align-content-between elemento-contacto" data-usuario="${usuario}">
-                        <div class="row">
-                            <div class="col-4 perfil-contacto color-5">
-                                <img src="${foto_perfil}?w=90&h=90" alt="" class="online"/>
-                            </div>
-                            <div class="col-8 ">
-                                <div class="card-body">
-                                    <h5 class="card-title">${nombres} ${apellidos}</h5>
-                                    <p class="cont-usuario"><span class="material-icons usuario">person</span>${usuario}</p>
-                                    <div class="btn-opciones">
-                                    <span class="actividad">${(ultima_conexion !== undefined) ? ObtenerTiempoUltimaConexion(ultima_conexion) : ''}</span>
+    `
+<div class="elemento-contacto" data-usuario="${usuario}">
 
-                                    </div>
+                            <div class="img-perfil-contacto">
+                                <img src="${foto_perfil}?w=60&h=60" alt="" class="online"/>
+                            </div>
+                                <div class="cuerpo-perfil-contacto">
+                                    <span class="nombre-contacto">${nombres} ${apellidos}</span>
+
+                                    <div class="nombre-usuario">
+                                        <span class="material-icons icon-usuario">person</span>
+${usuario}
+                                        </div>
+                                        <di class="ult-conexion-contacto">
+                                        <i class="far fa-clock"></i>
+${(ultima_conexion !== undefined) ? ObtenerTiempoUltimaConexion(ultima_conexion) : ''}
+                                    </di>
                                 </div>
-
-                            </div>
-                        </div>
                     </div>
-
 `;
-/*<div class="card mb-2 elemento-contacto" style="cursor: pointer;" data-usuario="${usuario}">
-        <div class="row g-0">
-            <div class="col-md-3 p-1">
-                <img src="/files/profile/0_erdu.png" class="img-fluid" alt="Foto de perfil">
-            </div>
-            <div class="col-md-9 align-self-center">
-                <div class="card-body p-2">
-                    <h6 class="card-title">${nombres} ${apellidos}</h6>
-                    <p class="card-text" style="font-size: .8rem;"><small class="text-muted">${(ultima_conexion !== undefined) ? ObtenerTiempoUltimaConexion(ultima_conexion) : ''}</small></p>
-                </div>
-            </div>
-        </div>
-    </div>*/
+
 
 function ObtenerTiempoUltimaConexion(fecha_hora) {
     const fecha = new Date(fecha_hora);
