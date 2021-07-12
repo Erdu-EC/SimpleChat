@@ -125,6 +125,8 @@ where m.send_date >= i.send_date
    or m.send_date >= c.register_date;
 
 
+DELIMITER $
+
 #Funciones Y procedimientos.
 CREATE FUNCTION user_set_login(name varchar(30), device_desc TEXT) RETURNS INT
     MODIFIES SQL DATA
@@ -135,7 +137,7 @@ BEGIN
     INSERT INTO connections(id_user, device, login_date) VALUES (USER_ID, device_desc, NOW());
 
     RETURN LAST_INSERT_ID();
-END;
+END $
 
 CREATE PROCEDURE user_set_logout(in USER_ID int, in CONNECTION_ID int)
 BEGIN
@@ -145,13 +147,13 @@ BEGIN
     IF NOT EXISTS(SELECT id FROM connections WHERE logout_date IS NULL) THEN
         UPDATE users SET state = 'I' WHERE id = USER_ID;
     END IF;
-END;
+END $
 
 CREATE FUNCTION user_is_contact(USERID int, CONTACTID int) RETURNS BOOLEAN
     READS SQL DATA
 BEGIN
     RETURN EXISTS(SELECT * FROM contacts WHERE user_id = USERID and contact_id = CONTACTID);
-END;
+END $
 
 #Procedimientos para contactos.
 CREATE FUNCTION user_AddContact(own int, contact int) RETURNS INT
@@ -164,24 +166,24 @@ BEGIN
     CALL user_ChangeInvitationState(own, contact, true);
 
     RETURN LAST_INSERT_ID();
-END;
+END $
 
 #Procedimientos para invitaciones.
 CREATE FUNCTION user_HasInvitation(USER_ID int, CONTACT_ID int) RETURNS BOOLEAN
 BEGIN
     RETURN EXISTS(SELECT * FROM invitations where id_dest = USER_ID AND id_source = CONTACT_ID and accepted IS NULL);
-END;
+END $
 
 CREATE PROCEDURE user_GetLastInvitationSend(in USER_ID int, in CONTACT_ID int)
 BEGIN
     SELECT * FROM invitations WHERE id_dest = CONTACT_ID AND id_source = USER_ID order by id desc limit 1;
-END;
+END $
 
 CREATE FUNCTION user_GetIdOfLastInvitationReceived(USER_ID int, CONTACT_ID int) RETURNS INT
     READS SQL DATA
 BEGIN
     RETURN (SELECT max(id) FROM invitations WHERE id_dest = USER_ID AND id_source = CONTACT_ID);
-END;
+END $
 
 CREATE PROCEDURE user_ChangeInvitationState(in USER_ID int, in CONTACT_ID int, in accept boolean)
 BEGIN
@@ -192,7 +194,7 @@ BEGIN
         rcv_date    = IF(rcv_date IS NULL, action_date, rcv_date)
     WHERE id = (SELECT user_GetIdOfLastInvitationReceived(USER_ID, CONTACT_ID))
       AND accepted is NULL;
-END ;
+END $
 
 #Procedimientos para mensajes.
 CREATE FUNCTION user_SendMessage(source int, dest int, msg text) RETURNS INT
@@ -215,7 +217,7 @@ BEGIN
 
     #Devolver ID del mensaje.
     RETURN LAST_INSERT_ID();
-END;
+END $
 
 #Obtener las conversaciones.
 CREATE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
@@ -234,7 +236,7 @@ BEGIN
     WHERE USER_ID IN (c.id_source, c.id_dest)
       AND (if(CONTACT_ID IS NULL, TRUE, CONTACT_ID IN (c.id_source, c.id_dest)))
     order by msg_send_date desc, msg_id desc;
-END;
+END $
 
 #Obtener una conversación completa.
 CREATE PROCEDURE user_GetConversationWithContact(in USER_ID int, in CONTACT_ID int)
@@ -254,12 +256,14 @@ BEGIN
                AND id_dest = USER_ID
          ) as A
     order by send_date, id;
-END;
+END $
 
 CREATE PROCEDURE user_GetUnreadMessages(in USER_ID int)
 BEGIN
     select * from message_readable where id_dest = USER_ID and rcv_date is null;
-END;
+END $
+
+DELIMITER ;
 
 #Datos de prueba.
 insert into users (id, user_name, pass, first_name, last_name, birth_date, gender, email, state, create_at,

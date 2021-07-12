@@ -11,4 +11,21 @@
 #Configurando base de datos.
 #sudo mysql -u root -e "update mysql.user set plugin = 'mysql_native_password' where User = 'root'"
 #service mysql restart
+#mysql -u root < bd.sql
 
+#Copiando los ficheros de la aplicación al servidor.
+sudo rm -r /var/www/SimpleChat
+sudo cp -r $(pwd) /var/www/SimpleChat
+
+#Configurando host virtual.
+sudo rm /etc/apache2/sites-available/SimpleChat.com.conf
+sudo cp SimpleChat.com.conf /etc/apache2/sites-available/SimpleChat.com.conf
+
+#Habilitando host virtual.
+#sudo a2ensite SimpleChat.com.conf
+#sudo service apache2 restart
+
+#Estableciendo permisos en el servidor.
+cd /var/www/SimpleChat
+sudo chmod u+x webpermissions.sh
+$(pwd)/webpermissions.sh

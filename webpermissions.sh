@@ -1,5 +1,3 @@
-#!/bin/bash
-
 SERVER_DIR=$(pwd)
 USER=$(whoami)
 
@@ -20,12 +18,14 @@ sudo find ${SERVER_DIR} -type f -exec chmod 740 {} \;
 #Propietario de los ficheros.
 sudo chown -R ${USER} ${SERVER_DIR}
 
-#Habilitando modulos.
-sudo a2enmod rewrite
-
 #Instalando modulos.
 sudo apt-get install php-gd -y
-sudo apt-get install php-mysql -y
+sudo apt-get install php7.4-mysql -y
+
+#Habilitando modulos.
+sudo a2enmod rewrite
+sudo a2enmod php7.4
+echo "extension=pdo_mysql" | sudo tee -a /etc/php/7.4/apache2/php.ini
 
 #Reiniciando servidor.
 sudo service apache2 restart
