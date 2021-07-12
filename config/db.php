@@ -7,5 +7,5 @@ const APP_DB_NAME = 'simplechat';
 const APP_DB_HOST = 'localhost';
 
 class DBAccount{
-    const Root = ['user' => 'simplechat', 'pass' => 'simplechat'];
+    const Root = ['user' => 'root', 'pass' => 'Admin123'];
 }
