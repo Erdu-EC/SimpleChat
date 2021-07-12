@@ -167,23 +167,21 @@ BEGIN
 END;
 
 #Procedimientos para invitaciones.
-DELIMITER $
-
 CREATE FUNCTION user_HasInvitation(USER_ID int, CONTACT_ID int) RETURNS BOOLEAN
 BEGIN
     RETURN EXISTS(SELECT * FROM invitations where id_dest = USER_ID AND id_source = CONTACT_ID and accepted IS NULL);
-END $
+END;
 
 CREATE PROCEDURE user_GetLastInvitationSend(in USER_ID int, in CONTACT_ID int)
 BEGIN
     SELECT * FROM invitations WHERE id_dest = CONTACT_ID AND id_source = USER_ID order by id desc limit 1;
-END $
+END;
 
 CREATE FUNCTION user_GetIdOfLastInvitationReceived(USER_ID int, CONTACT_ID int) RETURNS INT
     READS SQL DATA
 BEGIN
     RETURN (SELECT max(id) FROM invitations WHERE id_dest = USER_ID AND id_source = CONTACT_ID);
-END $
+END;
 
 CREATE PROCEDURE user_ChangeInvitationState(in USER_ID int, in CONTACT_ID int, in accept boolean)
 BEGIN
@@ -194,7 +192,7 @@ BEGIN
         rcv_date    = IF(rcv_date IS NULL, action_date, rcv_date)
     WHERE id = (SELECT user_GetIdOfLastInvitationReceived(USER_ID, CONTACT_ID))
       AND accepted is NULL;
-END $
+END ;
 
 #Procedimientos para mensajes.
 CREATE FUNCTION user_SendMessage(source int, dest int, msg text) RETURNS INT
@@ -261,10 +259,7 @@ END;
 CREATE PROCEDURE user_GetUnreadMessages(in USER_ID int)
 BEGIN
     select * from message_readable where id_dest = USER_ID and rcv_date is null;
-END $
-
-
-DELIMITER ;
+END;
 
 #Datos de prueba.
 insert into users (id, user_name, pass, first_name, last_name, birth_date, gender, email, state, create_at,
