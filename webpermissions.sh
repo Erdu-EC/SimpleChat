@@ -19,7 +19,7 @@ sudo find ${SERVER_DIR} -type f -exec chmod 740 {} \;
 sudo chown -R ${USER} ${SERVER_DIR}
 
 #Instalando modulos.
-sudo apt-get install php-gd -y
+sudo apt-get install php7.4-gd -y
 sudo apt-get install php7.4-mysql -y
 
 #Habilitando modulos.

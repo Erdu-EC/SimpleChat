@@ -10,7 +10,7 @@
 
 #Configurando base de datos.
 sudo mysql -u root -e "update mysql.user set plugin = 'mysql_native_password' where User = 'root'"
-service mysql restart
+sudo service mysql restart
 mysql -u root < bd.sql
 
 #Copiando los ficheros de la aplicación al servidor.
