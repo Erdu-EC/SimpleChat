@@ -146,6 +146,9 @@ face
                                            minlength="8" maxlength="60" required>
                                 </div>
                             </div>
+                            <div id="contenedor-mensajes">
+
+                            </div>
                             <div class="item-form">
 
                                 <div class="input-group">
@@ -155,6 +158,12 @@ face
                                 </div>
 
                             </div>
+                        </div>
+
+
+
+
+
 
                             <div class="acceder-cuenta">
                                 ¿Ya tienes una cuenta? <a class="" href="/Login">Inicia Sesión</a>
