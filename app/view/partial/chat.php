@@ -63,17 +63,7 @@
                 </div>
             </div>
         </div>
-        <!--
 
-        <div id="mensaje-invitacion" class="row border-bottom">
-                        <div class="col-10">Alguien que no esta en tus contactos te ha enviado un mensaje, ¿Quieres aceptarlo?
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-outline-primary">Si</button>
-                            <button class="btn btn-outline-secondary">No</button>
-                        </div>
-                    </div>
-        -->
 
     <?php endif; ?>
 
@@ -89,7 +79,9 @@
 
                         <li class="enviado">
                             <img src="<?= $SESSION->user_profile_img ?>?w=40&h=40" alt=""/>
-                            <p><?= $msg->content ?></p>
+                            <div class="dir"></div>
+                            <div class="cont-msj">  <p><?= $msg->content ?></p> </div>
+
                             <div class="extra-mensaje">
                                 <?php if (!is_null($msg->read_date)): ?>
                                     <div class="extra">
@@ -103,7 +95,7 @@
                                     <div class="extra icon"><i class="far fa-check-circle"></i></div>
                                 <?php else: ?>
                                     <div class="extra">
-                                        <span><script>ObtenerHoraMensaje(<?= $msg->send_date ?>);</script></span>
+                                        <span><script>ObtenerHoraMensaje("<?= $msg->send_date ?>");</script></span>
                                     </div>
                                     <div class="extra icon"><i class="fas fa-check-circle"></i></div>
                                 <?php endif; ?>
@@ -113,7 +105,8 @@
                     <?php else: ?>
                         <li class="recibido">
                             <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=40&h=40" alt=""/>
-                            <p><?= $msg->content ?></p>
+                            <div class="dir"></div>
+                            <div class="cont-msj"> <p><?= $msg->content ?></p></div>
                         </li>
                     <?php endif;
                 endforeach;

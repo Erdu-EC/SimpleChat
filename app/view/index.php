@@ -129,7 +129,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                     <div id="sidepanel">
 
                         <div class="img-perfil no-seleccionable" id="mi-perfil-sidepanel">
-                            <img src="<?= $SESSION_USER_PROFILE_IMG ?>?w=50&h=50" alt="" />
+                            <img src="<?= $SESSION_USER_PROFILE_IMG?>?w=100&h=100" alt="" />
                             <div class="usuario-perfil">
                                 <?= $SESSION_USER_SHORTNAME ?>
                             </div>

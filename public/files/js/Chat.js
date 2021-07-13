@@ -140,7 +140,8 @@ $(document).on('click', '.btn-agregar-contacto', function () {
 const ObtenerElementoMensaje = mensaje => `
 <li class="enviado">
             <img src="/files/profile/mikeross.png?w=40&h=40" alt="" />
-            <p> ${mensaje}</p>
+            <div class="dir"></div>
+            <div class="cont-msj"><p> ${mensaje}</p> </div>
             <div class="extra-mensaje">
                                 <div class="enviando">
                                 </div>
@@ -152,9 +153,9 @@ function ObtenerElementoMensajeContacto(mensaje) {
 
 }
 
-function ObtenerHoraMensaje(hora) {
+function ObtenerHoraMensaje( hora) {
     var act = new Date(hora);
-    console.log(act.getDate());
+    console.log(act);
   /*  var hora_envio='';
     if (act.getHours() < 13 ) {
         hora_envio = act.getHours() + ':' + act.getMinutes() + ' a.m.';

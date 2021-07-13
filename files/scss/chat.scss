@@ -903,13 +903,13 @@ Fin de contactos
 
 #sidepanel .img-perfil {
 
-display: flex;
+  display: flex;
   align-content: center;
   align-items: center;
   flex-direction: row;
   color: #9a9da0;
   width: 100%;
-padding: 10px 0;
+  padding: 10px 0;
 
 }
 #sidepanel .img-perfil:hover{
@@ -923,45 +923,49 @@ padding: 10px 0;
   margin-left: 15px;
   margin-right: 20px;
 }
+#sidepanel #mi-perfil-sidepanel .usuario-perfil {
+  color: #ffffff;
+  font-weight: 500;
+}
 
 #sidepanel .img-perfil div.usuario-perfil-opciones {
   display: inline;
   margin-left: auto;
 }
- @media screen and (max-width: 735px){
-   #sidepanel #mi-perfil-sidepanel {
-     position: relative;
-     display: flex;
-     flex-direction: column-reverse;
-     width: 100%;
-     align-items: center;
-     align-content: center;
-     text-align: center;
-     justify-content: center;
-   }
+@media screen and (max-width: 735px){
+  #sidepanel #mi-perfil-sidepanel {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+  }
 
-   #sidepanel #mi-perfil-sidepanel img {
-     margin: 0;
-     position: relative;
+  #sidepanel #mi-perfil-sidepanel img {
+    margin: 0px;
+    position: relative;
 
-   };
-   #sidepanel #mi-perfil-sidepanel .usuario-perfil-opciones {
-width: 100%;
-     text-align: end;
-     justify-content: right;
-   }
-   #sidepanel #mi-perfil-sidepanel .usuario-perfil-opciones span {
-     margin: 0;
-     position: absolute;
-     left: 35px;
-     top: -5px;
-     z-index: 500;
-   }
-   #sidepanel #mi-perfil-sidepanel .usuario-perfil {
-     display: none;
-   }
+  };
+  #sidepanel #mi-perfil-sidepanel .usuario-perfil-opciones {
+    width: 100%;
+    text-align: end;
+    justify-content: right;
+  }
+  #sidepanel #mi-perfil-sidepanel .usuario-perfil-opciones span {
+    margin: 0px;
+    position: absolute;
+    left: 35px;
+    top: -5px;
+    z-index: 500;
+  }
+  #sidepanel #mi-perfil-sidepanel .usuario-perfil {
+    display: none;
+  }
 
- }
+}
 
 
 
@@ -1014,7 +1018,7 @@ width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-width: none;
-  margin-bottom: 0px;
+  margin-botton:0px;
 }
 @media screen and (max-width: 735px) {
   #frame #sidepanel #contacts {
@@ -1048,11 +1052,8 @@ width: 100%;
 }
 #frame #sidepanel #contacts ul li.contact.active {
   background: #32465a;
-  border-right: 5px solid #435f7a;
 }
-#frame #sidepanel #contacts ul li.contact.active span.contact-status {
-  border: 2px solid #32465a !important;
-}
+
 #frame #sidepanel #contacts ul li.contact .wrap {
   width: 100%;
   height: auto;
@@ -1064,15 +1065,15 @@ width: 100%;
   height: 40px;
 }
 
-#frame #sidepanel #contacts ul li.contact .wrap span {
+#frame #sidepanel #contacts ul li.contact .wrap span.contact-status {
   position: absolute;
-  left: 0;
-  width: 10px;
-  height: 10px;
+  z-index: 100;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  border: 2px solid #2c3e50;
   background: #95a5a6;
-  margin-left: 15px;
+  margin-leftt: -30px;
+
 }
 
 #frame #sidepanel #contacts ul li.contact .wrap img {
@@ -1082,15 +1083,15 @@ width: 100%;
   position: relative;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta {
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta .name {
   font-weight: 600;
   margin:10px 0 0 50px;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta .preview {
-   font-weight: 400;
+  font-weight: 400;
   width: 100%;
   margin: 10px 10px 0 0;
 
@@ -1108,15 +1109,17 @@ width: 100%;
   }
   #frame #sidepanel #contacts ul li.contact .wrap {
     padding: 0;
-    margin: 0;
+    margin: 0px;
     height: 60px;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
-  #frame #sidepanel #contacts ul li.contact .wrap .contact-status{
-    margin-left: 10px;
+  #frame #sidepanel #contacts ul li.contact .wrap span.contact-status {
+    margin-left: -30px;
+    top: 8px;
+  }
 
-  }
   #frame #sidepanel #contacts ul li.contact .wrap .meta{
     display: none;
   }
@@ -1460,7 +1463,7 @@ Fin de solicitud de chat
 #frame .content .messages ul li {
   display: inline-block;
   width: 100%;
-  font-size: 1em;
+  font-size: 0.9rem;
   margin-bottom: 15px;
 }
 
@@ -1469,40 +1472,68 @@ Fin de solicitud de chat
   border-radius: 50%;
   float: left;
 }
-#frame .content .messages ul li p {
+#frame .content .messages ul li .cont-msj {
   display: inline-block;
-  padding: 10px 10px;
-  border-radius: 20px;
+  padding: 8px 15px;
   width: auto;
   max-width: calc(70% - 50px);
   min-width: 50px;
   margin:0;
+  overflow-wrap: break-word;
+}
+#frame .content .messages ul li .cont-msj p {
+
+  padding: 0px;
+  margin: 0px;
 }
 
 #frame .content .messages ul li.enviado img {
   float: right;
   margin-left: 10px;
+
 }
-#frame .content .messages ul li.enviado p {
+#frame .content .messages ul li.enviado .cont-msj {
   float: right;
   background: #435f7a;
   color: white;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  overflow-wrap: break-word;
+  border-radius:10px 0px 10px 10px ;
 }
+
+#frame .content .messages ul li.enviado .dir{
+
+  border-left:5px solid #435f7a;
+  border-bottom:7px solid transparent;
+
+  font-size:0px;
+  line-height:0px;
+  float: right;
+  display: inline;
+  z-index: 2000;
+
+}
+
 #frame .content .messages ul li.recibido img {
   margin-right: 10px;
 }
-#frame .content .messages ul li.recibido p {
+#frame .content .messages ul li.recibido .cont-msj {
   background: #ffffff;
   color: black;
-  box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-
+  box-shadow: rgba(50, 50, 93, 0.25) -3px 2px 5px 0px, rgba(0, 0, 0, 0.3) -3px 1px 3px 0px;
+  border-radius:0px 10px 10px 10px ;
+  z-index: 1;
 }
+#frame .content .messages ul li.recibido .dir {
 
+  border-left:9px solid transparent;
+  border-top:10px solid rgba(50, 50, 93, 0.25);
+  float: left;
+  display: inline;
+  z-index: 2;
+}
 @media screen and (max-width: 576px) {
 
-  #frame .content .messages ul li p {
+  #frame .content .messages ul li .cont-msj {
     max-width: calc(85% - 50px);
     height: auto;
   }
