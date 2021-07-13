@@ -58,8 +58,8 @@ support_agent</span>
 <section class="container-fluid">
     <main class="main">
         <div class="row">
-            <div class="d-sm-none d-md-block col-md-2 col-lg-3"></div>
-            <div class="col-sm-12 col-md-8 col-lg-6">
+            <div class="d-sm-none d-md-block col-md-3 col-lg-4"></div>
+            <div class="col-sm-12 col-md-7 col-lg-5">
                 <div class="card">
                     <div class="card-header">
                         <img src="/files/icon/logo.png" alt="">

@@ -103,7 +103,7 @@
                                     <div class="extra icon"><i class="far fa-check-circle"></i></div>
                                 <?php else: ?>
                                     <div class="extra">
-                                        <span><?= $msg->send_date ?></span>
+                                        <span><script>ObtenerHoraMensaje(<?= $msg->send_date ?>);</script></span>
                                     </div>
                                     <div class="extra icon"><i class="fas fa-check-circle"></i></div>
                                 <?php endif; ?>

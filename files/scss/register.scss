@@ -285,9 +285,8 @@ Estilos para el formulario de registro
 .card .card-header img{
   display: block;
   margin-bottom: 20px;
-  align-content: center;
-  align-items: center;
-  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 .card .card-header{
   color: white;
@@ -297,6 +296,11 @@ Estilos para el formulario de registro
   font-family: 'Montserrat',sans-serif;
   background: none;
   border: none;
+  width: 100%;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+
 }
 .item-form{
   width: 100%;

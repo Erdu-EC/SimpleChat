@@ -353,11 +353,52 @@ Estilos de title
   color:#ffffff ;
 }
 
-#sidebarToggle
+.indicador-mensajes {
+  margin-right: auto;
+  margin-left: 50px;
+display: flex;
+  color: #cbcbcc;
+}
+.indicador-mensajes:hover {
+  color: #ffffff;
+}
+
+.indicador-mensajes i{
+  font-size: 25px;
+
+}
+.indicador-mensajes:hover .num-mensajes{
+  background: #f12526;
+}
+.indicador-mensajes .num-mensajes {
+display: flex;
+  background: #b92326;/*#f12526;*/
+  font-size: 10px;
+  border-radius:50% ;
+  width: 13px;
+  height: 13px;
+  justify-content: center;
+  align-items: center;
+
+
+  margin-left: -5px;
+  font-weight: 700;
+  padding: 0;
+}
+.indicador-mensajes .num-mensajes span  {
+  white-space: nowrap;
+  overflow: hidden;
+  horiz-align: center;
+  display: block;
+}
 
 @media (max-width: 576px) {
   #sidebarToggle{
     margin-left: 5px;
+  }
+  .indicador-mensajes {
+    margin-right: auto;
+    margin-left: 50px;
   }
 }
 #icono-sidebarToggle{
@@ -367,7 +408,6 @@ Estilos de title
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
   margin-right: 5px;
-  margin-left: auto;
   font-size: 1.25rem;
   line-height: inherit;
   white-space: nowrap;

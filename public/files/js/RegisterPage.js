@@ -90,7 +90,10 @@ $(document).on('submit', "#register_form", null, function (e) {
             u: $("#user_name").val(),
             p: $("#user_pass").val(),
             fn: $("#first_name").val(),
-            ln: $("#last_name").val()
+            ln: $("#last_name").val(),
+            gen: $("#gender").val(),
+            birth: $("#birth_date").val()
+
         },
         beforeSend: () => Alert(ALERT_NORMAL, "Cargando..."),
         error: () => Alert(ALERT_ERROR, "No fue posible realizar el registro."),

@@ -151,3 +151,17 @@ const ObtenerElementoMensaje = mensaje => `
 function ObtenerElementoMensajeContacto(mensaje) {
 
 }
+
+function ObtenerHoraMensaje(hora) {
+    var act = new Date(hora);
+    console.log(act.getDate());
+  /*  var hora_envio='';
+    if (act.getHours() < 13 ) {
+        hora_envio = act.getHours() + ':' + act.getMinutes() + ' a.m.';
+    }
+    else{
+        hora_envio =  (act.getHours()-12) + ':'+ act.getMinutes() + ' p.m.';}
+    mensaje.find('.extra-mensaje').append(' <div class="extra"><span>'+hora_envio+'</span></div> <div class="extra icon"><span class="material-icons">done</span></div> ');
+*/
+
+}

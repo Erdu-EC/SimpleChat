@@ -12,6 +12,12 @@ menu
 </span>
        <!-- <img src="/files/icon/menu.png" alt="" class="" id="icono-sidebarToggle">-->
     </button>
+<div class="indicador-mensajes">
+    <i class="fas fa-envelope"></i>
+<div class="num-mensajes">  <span>1</span></div>
+
+</div>
+
 
     <a class="navbar-brand " href="/" >
         <img src="/files/icon/logo.png" alt="" id="logo-home" class="img img-fluid">

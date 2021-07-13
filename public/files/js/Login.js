@@ -33,7 +33,7 @@ $(document).on('submit', "#user_form", null, function () {
 
 $(document).on('input', '#user_pass', null, function () {
     if (this.validity.tooLong || this.validity.tooShort)
-        this.setCustomValidity("La contraseña debe tener un minimo de 8 caracteres y un maximo de 60.");
+        this.setCustomValidity("La contraseña debe tener un mínimo de 8 caracteres y un maximo de 60.");
     else
         this.setCustomValidity('');
 });
