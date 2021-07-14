@@ -240,6 +240,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 <script type="text/javascript" src="/files/js/Chat.js"></script>
 <script type="text/javascript" src="/files/js/Conversations.js"></script>
 <script type="application/javascript" src="/files/js/Contacts.js"></script>
+<script type="text/javascript" src="/files/js/Chat-bg.js"></script>
 </main>
 </body>
 </html>
