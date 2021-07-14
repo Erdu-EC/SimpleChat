@@ -1468,7 +1468,8 @@ Fin de solicitud de chat
 }
 
 #frame .content .messages ul li img {
-  width: 40px;
+  width: 37px;
+  height: 37px;
   border-radius: 50%;
   float: left;
 }
@@ -1497,14 +1498,15 @@ Fin de solicitud de chat
   background: #435f7a;
   color: white;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  border-radius:10px 0px 10px 10px ;
+  border-radius:10px ;
 }
 
 #frame .content .messages ul li.enviado .dir{
 
   border-left:5px solid #435f7a;
-  border-bottom:7px solid transparent;
-
+  border-bottom:4px solid transparent;
+  border-top:4px solid transparent;
+  margin-top: 15px;
   font-size:0px;
   line-height:0px;
   float: right;
@@ -1516,20 +1518,23 @@ Fin de solicitud de chat
 #frame .content .messages ul li.recibido img {
   margin-right: 10px;
 }
+
 #frame .content .messages ul li.recibido .cont-msj {
   background: #ffffff;
   color: black;
-  box-shadow: rgba(50, 50, 93, 0.25) -3px 2px 5px 0px, rgba(0, 0, 0, 0.3) -3px 1px 3px 0px;
-  border-radius:0px 10px 10px 10px ;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  border-radius:10px ;
   z-index: 1;
 }
 #frame .content .messages ul li.recibido .dir {
 
-  border-left:9px solid transparent;
-  border-top:10px solid rgba(50, 50, 93, 0.25);
+  border-right:5px solid rgba(50, 50, 93, 0.25);
+  border-top:4px solid transparent;
+  border-bottom:4px solid transparent;
   float: left;
   display: inline;
   z-index: 2;
+  margin-top: 15px;
 }
 @media screen and (max-width: 576px) {
 
