@@ -89,20 +89,20 @@ create table permissions
 
 CREATE VIEW conversations AS
 SELECT id_source,
-       su.user_name                  as s_nick,
-       su.first_name                 as s_first_name,
-       su.last_name                  as s_last_name,
-       su.profile_img                as s_profile_img,
+       su.user_name      as s_nick,
+       su.first_name     as s_first_name,
+       su.last_name      as s_last_name,
+       su.profile_img    as s_profile_img,
        id_dest,
-       du.user_name                  as d_nick,
-       du.first_name                 as d_first_name,
-       du.last_name                  as d_last_name,
-       du.profile_img                as d_profile_img,
-       message.id                    as msg_id,
-       message.content               as msg_content,
-       message.rcv_date IS NOT NULL  as msg_received,
-       message.read_date IS NOT NULL as msg_readed,
-       message.send_date             as msg_send_date
+       du.user_name      as d_nick,
+       du.first_name     as d_first_name,
+       du.last_name      as d_last_name,
+       du.profile_img    as d_profile_img,
+       message.id        as msg_id,
+       message.content   as msg_content,
+       message.rcv_date  as msg_received,
+       message.read_date as msg_readed,
+       message.send_date as msg_send_date
 FROM message
          inner join users su on id_source = su.id
          inner join users du on id_dest = du.id
@@ -229,7 +229,10 @@ BEGIN
            c.id_source = USER_ID                                                           as isMyMessage,
            user_HasInvitation(USER_ID, if(c.id_source != USER_ID, c.id_source, c.id_dest)) as hasInvitation,
            if(c.id_source = USER_ID, m.id, mr.id)                                          as msg_id,
-           if(c.id_source = USER_ID, m.content, mr.content)                                as msg_content
+           if(c.id_source = USER_ID, m.content, mr.content)                                as msg_content,
+           if(c.id_source = USER_ID, m.send_date, mr.send_date)                            as msg_send,
+           if(c.id_source = USER_ID, m.rcv_date, mr.rcv_date)                              as msg_rcv,
+           if(c.id_source = USER_ID, m.read_date, mr.read_date)                            as msg_read
     FROM conversations c
              left outer join message_readable mr on mr.id = msg_id
              left outer join message m on m.id = msg_id and c.id_source = USER_ID
@@ -260,7 +263,11 @@ END $
 
 CREATE PROCEDURE user_GetUnreceiveMessages(in USER_ID int)
 BEGIN
-    select u.id, u.first_name, u.last_name, mr.content, mr.send_date from message_readable mr inner join users u on id_source = u.id where id_dest = USER_ID and rcv_date is null;
+    select u.id, u.first_name, u.last_name, mr.content, mr.send_date
+    from message_readable mr
+             inner join users u on id_source = u.id
+    where id_dest = USER_ID
+      and rcv_date is null;
 END $
 
 DELIMITER ;
