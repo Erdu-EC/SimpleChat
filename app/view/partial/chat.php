@@ -134,6 +134,12 @@ return $hora;
 
 </div>
 <div class="message-input" id="espacio-de-escritura">
+    <div class="utiles">
+        <div class="emojis">
+<span class="material-icons">sentiment_satisfied_alt</span>
+        </div>
+
+    </div>
     <div class="wrap">
         <label for="contenido-mensaje" style="display: none"></label>
         <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..."/>
