@@ -135,8 +135,19 @@ return $hora;
 </div>
 <div class="message-input" id="espacio-de-escritura">
     <div class="utiles">
-        <div class="emojis">
-<span class="material-icons">sentiment_satisfied_alt</span>
+        <div class="emojis" >
+<span class="material-icons" id="btn-emojis">sentiment_satisfied_alt</span>
+            <div class="contenedor-emojis inactivo" id="cuadro-emojis">
+                <section class="tab-emoji">
+                    <div class="opc-tab-emoji"><i class="far fa-smile"></i></div>
+                    <div class="opc-tab-emoji"><i class="fas fa-hippo"></i></div>
+                    <div class="opc-tab-emoji"><i class="fas fa-apple-alt"></i></div>
+                    <div class="opc-tab-emoji"><i class="fas fa-car"></i></div>
+                    <div class="opc-tab-emoji"><i class="fas fa-futbol"></i></div>
+                    <div class="opc-tab-emoji"><i class="far fa-lightbulb"></i></div>
+                    <div class="opc-tab-emoji"><i class="far fa-flag"></i></div>
+                </section>
+            </div>
         </div>
 
     </div>

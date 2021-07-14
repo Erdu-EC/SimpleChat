@@ -189,6 +189,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
 
                     </section>
+
                     <section class="" id="panelInfoContacto">
                         <button id="btn-cerrar-contacto"><span class="material-icons">close</span></button>
                         <div class="contenedor-perfil">

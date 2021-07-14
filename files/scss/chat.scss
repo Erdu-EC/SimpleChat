@@ -1663,6 +1663,53 @@ width: auto;
 
   font-size: 25px;
 }
+/* ***
+*** Estilos del cuadro de emojis
+*** */
+.message-input .utiles .emojis #cuadro-emojis.inactivo {
+  display: none;
+}
+.message-input .utiles .emojis .contenedor-emojis {
+
+  position: absolute;
+  width: 26.25rem !important;
+  height: 26.25rem;
+  background: #ffffff;
+  float: top;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  top: -27rem;
+  left: 1rem;
+  border-radius: 10px;
+}
+
+#cuadro-emojis .tab-emoji {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  color: #51585e;
+
+padding:5px 10px;
+  border-bottom: 1px solid #2B364F;
+}
+#cuadro-emojis .tab-emoji .opc-tab-emoji{
+
+  display: flex;
+  font-size: 20px;
+
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+width: 35px;
+  height: 35px;
+}
+#cuadro-emojis .tab-emoji .opc-tab-emoji:hover {
+  border-radius: 50%;
+background: #f5f5f5;;
+}
+  /* ***
+  ***  Fin Estilos del cuadro de emojis
+  *** */
 
 #frame .content .message-input .wrap {
   display: flex;
