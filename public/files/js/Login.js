@@ -15,6 +15,7 @@ $(document).on('submit', "#user_form", null, function () {
             u: $("#user_name").val().trim(),
             p: $("#user_pass").val().trim()
         },
+        beforeSend: () => $('#user_form input[type="submit"]').attr('disabled', ''),
         error: () => mostrar_error('Se ha producido un fallo con tu solicitud. Por favor, inténtalo de nuevo.'),
         success: function (json) {
             if (json === true) {
@@ -24,6 +25,8 @@ $(document).on('submit', "#user_form", null, function () {
                 window.location = "/";
             } else
                 mostrar_error('Nombre de usuario o contraseña incorrectos.');
+
+            $('#user_form input[type="submit"]').attr('disabled', null);
         }
     });
 

@@ -43,7 +43,17 @@
             }
         }
 
-        public function GetMessages(int $user_id, int $contact_id) : ?Collection{
+        public function GetUnreceivedMessages(int $user_id){
+            try{
+                return $this->SelectAll('CALL user_GetUnreceiveMessages(:user)', [
+                    'user' => $user_id
+                ]);
+            }catch (\PDOException $ex){
+                return null;
+            }
+        }
+
+        public function GetMessagesWithContact(int $user_id, int $contact_id) : ?Collection{
             try{
                 return $this->SelectAll('CALL user_GetConversationWithContact(:user, :contact)', [
                     'user' => $user_id,

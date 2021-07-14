@@ -46,6 +46,10 @@ class DB
         return is_null($items) ? null : (is_array($items) ? new Collection($items) : $items);
     }
 
+    public function GetPDO(){
+        return $this->PDO;
+    }
+
     public function __destruct()
     {
         unset($this->PDO);

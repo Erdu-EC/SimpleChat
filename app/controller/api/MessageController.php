@@ -33,9 +33,9 @@
         }
 
         //TODO: Aplicar seguridad para que no se puedan leer mensajes que no son tuyos.
-        public function GetMyMessages()
+        public function GetUnreceivedMessages()
         {
-
+            
         }
 
         public function Receive()

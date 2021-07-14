@@ -7,9 +7,9 @@
     use HS\libs\helper\Regex;
 
     #SCSS Routes
-    Route::Get('/files/css/{filename}.css', 'SCSSController#Get', [], true);
-    Route::Get('/files/css/{filename}.css.map', 'SCSSController#GetMap', [], true);
-    Route::Get('/files/scss/{filename}.scss', 'SCSSController#GetSCSS', [], true);
+    Route::Get('/files/css/{filename}.css', 'SCSSController#Get');
+    Route::Get('/files/css/{filename}.css.map', 'SCSSController#GetMap');
+    Route::Get('/files/scss/{filename}.scss', 'SCSSController#GetSCSS');
 
     #Image Routes
     $cond_image = [
@@ -17,25 +17,25 @@
         'filename' => Regex::EndWith('.png', '.bmp', '.gif', '.jpg', '.jpeg'),
         'get' => '#^(?:[w|h]=\d+(?:\.\d+)?)(?:&[w|h]=\d+(?:\.\d+)?)?$#'
     ];
-    Route::Get('/files/{type*}/{filename}', 'ImageController#Get', $cond_image, true);
-    Route::Get('/files/{type*}/{filename}?{get}', 'ImageController#Get', $cond_image, true);
+    Route::Get('/files/{type*}/{filename}', 'ImageController#Get', $cond_image);
+    Route::Get('/files/{type*}/{filename}?{get}', 'ImageController#Get', $cond_image);
     Route::Get('/files/{type*}/{filename}', 'ImageController#GetOriginal', [
         'filename' => Regex::EndWith('.svg')
     ]);
     unset($cond_image);
 
     #Login and Register Routes
-    Route::Get("/Login", 'Login.php', [], true);
-    Route::Get("/Register", 'Register.php', [], true);
+    Route::Get("/Login", 'Login.php');
+    Route::Get("/Register", 'Register.php');
 
-    Route::Post('/action/user/Login', 'LoginController#Login', [], true);
-    Route::Post('/action/user/Register', 'LoginController#Register', [], true);
-    Route::Get("/Logout", 'LoginController#Logout', [], true);
+    Route::Post('/action/user/Login', 'LoginController#Login');
+    Route::Post('/action/user/Register', 'LoginController#Register');
+    Route::Get("/Logout", 'LoginController#Logout');
 
     #Redirección a Login.
     Route::All('{all*}', 'LoginController#IfNotLoginRedirect', [], false);
 
     #rutas temporales
-    Route::Get("/500", '/error/500.php', [], true);
-    Route::Get("/400", '/error/400.php', [], true);
-    Route::Get("/404", '/error/404.php', [], true);
+    Route::Get("/500", '/error/500.php');
+    Route::Get("/400", '/error/400.php');
+    Route::Get("/404", '/error/404.php');

@@ -82,6 +82,9 @@
             //Desconectando base de datos.
             unset($db);
 
+            //Timeout, si la contraseña era incorrecta.
+            sleep(2);
+
             //Devolviendo respuesta.
             die(json_encode(false));
         }

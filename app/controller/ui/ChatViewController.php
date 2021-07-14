@@ -35,7 +35,7 @@
                 $user_data->has_invitation = (new InvitationModel(DBAccount::Root))->HasInvitation($user_id, $user_data->id);
 
                 //Obteniendo todos los mensajes.
-                $user_data->messages = (new MessageModel(DBAccount::Root))->GetMessages($user_id, $user_data->id);
+                $user_data->messages = (new MessageModel(DBAccount::Root))->GetMessagesWithContact($user_id, $user_data->id);
 
                 //Cerrando conexión BD.
                 unset($user);

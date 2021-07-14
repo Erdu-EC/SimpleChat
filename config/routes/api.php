@@ -16,3 +16,6 @@
 
     #Invitations.
     Route::Post('/action/invitation/accept', 'InvitationController#ChangeStateOfLast');
+
+    #Messages and Invitations Instants.
+    Route::Get('/action/users/MIInstant', 'Instant#GetUnreceivedMessagesAndInvitations');
