@@ -1,4 +1,4 @@
-$(document).ready(() => setTimeout(ObtenerMensajes, 2000))
+$(document).ready(() => setTimeout(ObtenerMensajes, 1000))
 
 function ObtenerMensajes(){
     $.ajax('/action/conversations', {

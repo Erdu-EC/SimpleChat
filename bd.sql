@@ -258,9 +258,9 @@ BEGIN
     order by send_date, id;
 END $
 
-CREATE PROCEDURE user_GetUnreadMessages(in USER_ID int)
+CREATE PROCEDURE user_GetUnreceiveMessages(in USER_ID int)
 BEGIN
-    select * from message_readable where id_dest = USER_ID and rcv_date is null;
+    select u.id, u.first_name, u.last_name, mr.content, mr.send_date from message_readable mr inner join users u on id_source = u.id where id_dest = USER_ID and rcv_date is null;
 END $
 
 DELIMITER ;

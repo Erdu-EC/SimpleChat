@@ -56,21 +56,12 @@ class SDB
         try {
             if (is_callable($actions))
                 $actions();
-            /*else if (is_array($actions)){
-                foreach ($actions as $row){
-                    if (!is_array($row) || count($row) != 2)
-                        throw new \InvalidArgumentException();
-
-                    self::Execute($PDO, $row[0], $row[1]);
-                }
-            }*/
             else
                 throw new \InvalidArgumentException();
 
             $PDO->commit();
             return true;
         } catch (PDOException $ex) {
-            echo $ex;
             $PDO->rollBack();
             return false;
         }
