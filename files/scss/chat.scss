@@ -1547,18 +1547,30 @@ Fin de solicitud de chat
   }
 }
 
-.messages ul li.enviado .extra-mensaje {
+.messages ul li .extra-mensaje {
   margin-top: 5px;
-  float: right;
+
   display: flex;
   flex-direction: row;
   width: 100%;
+
+}
+.messages ul li.recibido .extra-mensaje {
+  float: left;
+  align-items: flex-start;
+
+  align-content: start;
+  justify-content: start;
+  align-self: flex-start;
+}
+
+.messages ul li.enviado .extra-mensaje {
+  float: right;
   align-items: flex-end;
   align-content: end;
   justify-content: end;
   align-self: flex-end;
 }
-
 .messages ul li.enviado .extra-mensaje .enviando {
   margin-left: auto;
   width: 14px;
@@ -1578,15 +1590,20 @@ Fin de solicitud de chat
   }
 }
 
-.messages ul li.enviado .extra-mensaje .extra {
+.messages ul li .extra-mensaje .extra {
 color: #8e8e8f;
   display: flex;
-  margin-left: auto;
+
   font-size: 12px;
   align-content: center;
   align-items: center;
   align-self: center;
 }
+.messages ul li.enviado .extra-mensaje .extra
+{
+  margin-left: auto;
+}
+
 .messages ul li.enviado .extra-mensaje .icon {
   margin: 0 0 0 5px;
 }
@@ -1602,6 +1619,8 @@ color: #8e8e8f;
 .messages ul li.enviado .extra-mensaje .icon i.fas{
   color:#288795;
 }
+
+
 
 /*---- Fin de estilos de mensajes enviados y recibidos */
 

@@ -76,9 +76,9 @@ function EnviarMensaje() {
                     var act = new Date();
                     var hora_envio = '';
                     if (act.getHours() < 13)
-                        hora_envio = act.getHours() + ':' + act.getMinutes() + ' a.m.';
+                        hora_envio = act.getHours() + ':' + act.getMinutes() + ' am';
                     else
-                        hora_envio = (act.getHours() - 12) + ':' + act.getMinutes() + ' p.m.';
+                        hora_envio = (act.getHours() - 12) + ':' + act.getMinutes() + ' pm';
 
                     mensaje.find('.extra-mensaje').empty().append('<div class="extra"><span>' + hora_envio + '</span></div> <div class="extra icon"><span class="material-icons">done</span></div> ');
 
@@ -155,14 +155,13 @@ function ObtenerElementoMensajeContacto(mensaje) {
 
 function ObtenerHoraMensaje( hora) {
     var act = new Date(hora);
-    console.log(act);
-  /*  var hora_envio='';
+    var hora_envio='';
     if (act.getHours() < 13 ) {
-        hora_envio = act.getHours() + ':' + act.getMinutes() + ' a.m.';
+        hora_envio = act.getHours() + ':' + act.getMinutes() + ' am';
     }
     else{
-        hora_envio =  (act.getHours()-12) + ':'+ act.getMinutes() + ' p.m.';}
-    mensaje.find('.extra-mensaje').append(' <div class="extra"><span>'+hora_envio+'</span></div> <div class="extra icon"><span class="material-icons">done</span></div> ');
-*/
-
+        hora_envio =  (act.getHours()-12) + ':';}
+        act.getMinutes()<10 ? hora_envio+= '0'+ act.getMinutes() +' pm':hora_envio+= act.getMinutes() + ' p.m.';
+console.log(hora_envio);
+return hora_envio;
 }

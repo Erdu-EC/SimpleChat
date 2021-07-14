@@ -11,13 +11,22 @@
     /** @var Collection $_VIEW */
 
     $SESSION = new Session();
+
+    function ObtenerHora ($fecha){
+$f = new \DateTime($fecha );
+$hora = date_format($f, 'h:i a');
+return $hora;
+    }
+
+
+
 ?>
 
 <section class="contact-profile no-seleccionable">
     <?php if (!empty($_VIEW->profile_img)) : ?>
         <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=40&h=40" alt="">
     <?php else: ?>
-        <i class="material-icons" style="font-size: 2.5rem">person</i>
+        <i class="material-icons" >person</i>
     <?php endif; ?>
 
     <div class="chat-conexion">
@@ -85,19 +94,19 @@
                             <div class="extra-mensaje">
                                 <?php if (!is_null($msg->read_date)): ?>
                                     <div class="extra">
-                                        <span><?= $msg->read_date ?></span>
+                                        <span><?= ObtenerHora($msg->read_date); ?></span>
                                     </div>
                                     <div class="extra icon"><i class="fas fa-check-circle"></i></div>
                                 <?php elseif (!is_null($msg->rcv_date)): ?>
                                     <div class="extra">
-                                        <span><?= $msg->rcv_date ?></span>
+                                        <span><?= ObtenerHora($msg->rcv_date); ?></span>
                                     </div>
                                     <div class="extra icon"><i class="far fa-check-circle"></i></div>
                                 <?php else: ?>
                                     <div class="extra">
-                                        <span><script>ObtenerHoraMensaje("<?= $msg->send_date ?>");</script></span>
+                                        <span><?= ObtenerHora($msg->send_date); ?></span>
                                     </div>
-                                    <div class="extra icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="extra icon"><i class="far fa-check-circle"></i></div>
                                 <?php endif; ?>
                             </div>
                         </li>
@@ -107,6 +116,13 @@
                             <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=37&h=37" alt=""/>
                             <div class="dir"></div>
                             <div class="cont-msj"> <p><?= $msg->content ?></p></div>
+                            <div class="extra-mensaje">
+                                <?php if (!is_null($msg->send_date)): ?>
+                                <div class="extra">
+                                    <span><?= ObtenerHora($msg->send_date); ?></span>
+                                </div>
+                                <?php endif; ?>
+                            </div>
                         </li>
                     <?php endif;
                 endforeach;
