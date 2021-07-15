@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS simplechat;
-CREATE DATABASE simplechat CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci; ;
+CREATE DATABASE simplechat CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;;
 USE simplechat;
 
 SET GLOBAL log_bin_trust_function_creators = 1;
@@ -263,18 +263,20 @@ END $
 
 CREATE OR REPLACE PROCEDURE user_GetUnreceiveMessages(in USER_ID int)
 BEGIN
-    select u.id, u.first_name, u.last_name, mr.content, mr.send_date
-    from message_readable mr
-             inner join users u on id_source = u.id
-    where id_dest = USER_ID
-      and rcv_date is null;
+    DECLARE STARTTIME DATETIME DEFAULT NOW();
 
     UPDATE message
-    set rcv_date = now()
+    set rcv_date = STARTTIME
     where id in (select id
                  from message_readable
                  where id_dest = USER_ID
                    and rcv_date is null);
+
+    select u.id, u.first_name, u.last_name, mr.content, mr.send_date
+    from message_readable mr
+             inner join users u on id_source = u.id
+    where id_dest = USER_ID
+      and rcv_date = STARTTIME;
 END $
 
 DELIMITER ;
