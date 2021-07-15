@@ -1,16 +1,13 @@
-function ObtenerMensajes(){
+function ObtenerMensajes() {
     const ajax = new XMLHttpRequest();
-    ajax.open('GET', '/action/users/MIInstant', true);
+    ajax.open('GET', '/action/users/MIInstant', false);
     ajax.setRequestHeader("Content-type", "application/json");
     ajax.onload = () => {
-        switch (ajax.status){
+        switch (ajax.status) {
             case 200:
-                console.log('json');
-                ajax.abort();
                 ObtenerMensajes();
                 break;
             case 500:
-                ajax.abort();
                 ObtenerMensajes();
                 break;
         }
