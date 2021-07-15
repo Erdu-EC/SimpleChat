@@ -136,6 +136,14 @@ $("div#contacts ul#lista-conversaciones").on("click","li.contact",function () {
 
 });
 
-$(document).on("click hover focus","#btn-emojis", function (){
-$("#cuadro-emojis").toggleClass("inactivo");
+$(document).on("click", "#btn-emojis", function () {
+    var button = $("#btn-emojis");
+    var msj = $("#contenido-mensaje");
+    var picker = new EmojiButton();
+    picker.on('emoji', emoji => {
+        msj.val (msj.val() + emoji);
+    });
+
+
+    picker.togglePicker(button);
 });

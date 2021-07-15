@@ -137,6 +137,7 @@ return $hora;
     <div class="utiles">
         <div class="emojis" >
 <span class="material-icons" id="btn-emojis">sentiment_satisfied_alt</span>
+            <!--
             <div class="contenedor-emojis inactivo" id="cuadro-emojis">
                 <section class="tab-emoji">
                     <div class="opc-tab-emoji"><i class="far fa-smile"></i></div>
@@ -147,7 +148,7 @@ return $hora;
                     <div class="opc-tab-emoji"><i class="far fa-lightbulb"></i></div>
                     <div class="opc-tab-emoji"><i class="far fa-flag"></i></div>
                 </section>
-            </div>
+            </div>-->
         </div>
 
     </div>
@@ -157,3 +158,4 @@ return $hora;
         <button class=" btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
     </div>
 </div>
+<script type="application/javascript" src="/files/js/emojis.min.js"></script>
