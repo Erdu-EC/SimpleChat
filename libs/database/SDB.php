@@ -6,6 +6,7 @@ use InvalidArgumentException;
 use PDO;
 use PDOException;
 use PDOStatement;
+use const HS\config\APP_DB_CHARSET;
 use const HS\config\APP_DB_HOST;
 use const HS\config\APP_DB_NAME;
 
@@ -17,7 +18,7 @@ class SDB
             throw new InvalidArgumentException("Nombre de usuario ó contraseña invalidos.");
 
         //Cadena de conexion.
-        $dsn = sprintf("mysql: host=%s;dbname=%s;charset=utf8", APP_DB_HOST, APP_DB_NAME);
+        $dsn = sprintf("mysql: host=%s;dbname=%s;charset=%s", APP_DB_HOST, APP_DB_NAME, APP_DB_CHARSET);
 
         //Devolviendo objeto de la conexión.
         return new PDO($dsn, $account['user'], $account['pass'], [
