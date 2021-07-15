@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS simplechat;
-CREATE DATABASE simplechat;
+CREATE DATABASE simplechat CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci; ;
 USE simplechat;
 
 SET GLOBAL log_bin_trust_function_creators = 1;
