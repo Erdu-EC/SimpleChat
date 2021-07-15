@@ -10,10 +10,14 @@
     use HS\libs\core\http\HttpResponse;
     use HS\libs\core\Session;
     use HS\libs\helper\MimeType;
+    use const HS\APP_DEBUG;
 
     class Instant
     {
         public function GetUnreceivedMessagesAndInvitations(){
+            //Deshabilitando siempre log de errores.
+            ini_set('display_errors', 0);
+
             //Obteniendo id del usuario actual.
             $session = new Session();
             $user_id = $session->user_id;
@@ -30,7 +34,7 @@
                     HttpResponse::SetContentType(MimeType::Json);
 
                     //Devolviendo mensajes no recibidos.
-                    die(json_encode(['messages' => $msg_data]));
+                    die(json_encode(['messages' => $msg_data->GetInnerArray()]));
                 }
 
                 unset($invitation_model);
