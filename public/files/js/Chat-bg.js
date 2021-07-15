@@ -6,9 +6,11 @@ function ObtenerMensajes(){
         switch (ajax.status){
             case 200:
                 console.log('json');
+                ajax.abort();
                 ObtenerMensajes();
                 break;
             case 500:
+                ajax.abort();
                 ObtenerMensajes();
                 break;
         }
