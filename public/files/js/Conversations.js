@@ -36,8 +36,11 @@ function cargar_conversaciones() {
 
 const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, hay_invitacion, contenido, enviado ) =>
     `<div class="wrap elemento-conversacion" data-usuario="${usuario_id}">
-        <span class="contact-status online"></span>
+<div class="conversacion-perfil">
+<span class="contact-status online"></span>
         <img src="${foto_perfil}?w=100&h=100" alt="" />
+</div>
+        
         <div class="meta">
             <p class="name">${nombres} ${apellidos}</p>
             <p class="preview">${
@@ -50,4 +53,7 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
     }
             </p>
         </div>
+        <div class="msj-pendientes">
+        <div class="num-msj-pendientes"><span>3</span></div>
+</div>
     </div>`;

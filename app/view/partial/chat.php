@@ -87,11 +87,11 @@ return $hora;
                     if ($msg->id_source === $SESSION->user_id): ?>
 
                         <li class="enviado">
-                            <img src="<?= $SESSION->user_profile_img ?>?w=37&h=37" alt=""/>
+                            <img src="<?= $SESSION->user_profile_img ?>?w=37&h=37" alt="" class="no-seleccionable"/>
                             <div class="dir"></div>
                             <div class="cont-msj">  <p><?= $msg->content ?></p> </div>
 
-                            <div class="extra-mensaje">
+                            <div class="extra-mensaje no-seleccionable">
                                 <?php if (!is_null($msg->read_date)): ?>
                                     <div class="extra">
                                         <span><?= ObtenerHora($msg->read_date); ?></span>
@@ -113,10 +113,10 @@ return $hora;
 
                     <?php else: ?>
                         <li class="recibido">
-                            <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=37&h=37" alt=""/>
+                            <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=37&h=37" alt="" class="no-seleccionable"/>
                             <div class="dir"></div>
                             <div class="cont-msj"> <p><?= $msg->content ?></p></div>
-                            <div class="extra-mensaje">
+                            <div class="extra-mensaje no-seleccionable">
                                 <?php if (!is_null($msg->send_date)): ?>
                                 <div class="extra">
                                     <span><?= ObtenerHora($msg->send_date); ?></span>
@@ -137,18 +137,7 @@ return $hora;
     <div class="utiles">
         <div class="emojis" >
 <span class="material-icons" id="btn-emojis">sentiment_satisfied_alt</span>
-            <!--
-            <div class="contenedor-emojis inactivo" id="cuadro-emojis">
-                <section class="tab-emoji">
-                    <div class="opc-tab-emoji"><i class="far fa-smile"></i></div>
-                    <div class="opc-tab-emoji"><i class="fas fa-hippo"></i></div>
-                    <div class="opc-tab-emoji"><i class="fas fa-apple-alt"></i></div>
-                    <div class="opc-tab-emoji"><i class="fas fa-car"></i></div>
-                    <div class="opc-tab-emoji"><i class="fas fa-futbol"></i></div>
-                    <div class="opc-tab-emoji"><i class="far fa-lightbulb"></i></div>
-                    <div class="opc-tab-emoji"><i class="far fa-flag"></i></div>
-                </section>
-            </div>-->
+
         </div>
 
     </div>

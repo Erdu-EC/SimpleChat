@@ -439,9 +439,9 @@ body::-webkit-scrollbar{
 }
 #frame #sidepanel {
   float: left;
-  min-width: 350px;
-  width: 400px;
-  max-width: 400px;
+  min-width: 380px;
+  width: 380px;
+  max-width: 380px;
   height: 100%;
   background: #2c3e50;
   padding:0;
@@ -1057,13 +1057,11 @@ Fin de contactos
 #frame #sidepanel #contacts ul li.contact .wrap {
   width: 100%;
   height: auto;
-  position: relative;
+  display: flex;
+  flex-direction: row;
   padding: 10px 10px 10px 15px;
 }
-#frame #sidepanel #contacts ul li.contact .wrap img{
-  width: 40px;
-  height: 40px;
-}
+
 
 #frame #sidepanel #contacts ul li.contact .wrap span.contact-status {
   position: absolute;
@@ -1075,16 +1073,27 @@ Fin de contactos
   margin-leftt: -30px;
 
 }
-
-#frame #sidepanel #contacts ul li.contact .wrap img {
+#frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil {
+  position: absolute;
+}
+#frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil img {
   width: 40px;
+  height: 40px;
   border-radius: 50%;
   float: left;
-  position: relative;
+  position: absolute;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta {
+flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   padding: 0px;
   margin: 0px;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta .name {
   font-weight: 600;
@@ -1092,34 +1101,72 @@ Fin de contactos
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta .preview {
   font-weight: 400;
-  width: 100%;
   margin: 10px 10px 0 0;
-
+  width: 100%;
+  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
-  -moz-transition: 1s all ease;
-  -o-transition: 1s all ease;
-  -webkit-transition: 1s all ease;
   transition: 1s all ease;
 }
+
+#frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes {
+float: right;
+
+  display: flex;
+  align-content: center;
+  align-items: center;
+position: relative;
+}
+#frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes {
+max-width: 40px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0px 5px;
+  background: #0ac630;
+  border-radius: 25px;
+  justify-content: center;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+#frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes span{
+
+  color: #ffffff;
+  font-weight: 500;
+
+}
+
 @media screen and (max-width: 735px) {
-  #frame #sidepanel #contacts ul li{
-    padding: 0;
-  }
   #frame #sidepanel #contacts ul li.contact .wrap {
     padding: 0;
     margin: 0px;
     height: 60px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+
+  #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil {
+    display: flex;
+    position: static;
+    padding: 0px;
+  }
+  /*
+  #frame #sidepanel #contacts ul li{
+    padding: 0;
+  }*/
+  /*
   #frame #sidepanel #contacts ul li.contact .wrap span.contact-status {
     margin-left: -30px;
     top: 8px;
   }
-
+*/
+  #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes img {
+    position: static;
+    border: 1px solid red;
+  }
   #frame #sidepanel #contacts ul li.contact .wrap .meta{
     display: none;
   }
