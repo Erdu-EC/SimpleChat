@@ -43,17 +43,18 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
         
         <div class="meta">
             <p class="name">${nombres} ${apellidos}</p>
-            <p class="preview">${
+            <div class="preview">${
         (contenido === null && hay_invitacion) ?
             '<i>Tienes una invitacion.</i>' :
             (contenido === null) ?
                 '<i>Has rechazado una invitación.</i>' :
-                (enviado) ? contenido : contenido
+                (enviado) ? '<span class="material-icons">done</span>' + contenido : contenido
                 
     }
-            </p>
+            </div>
         </div>
-        <div class="msj-pendientes">
-        <div class="num-msj-pendientes"><span>3</span></div>
+        <div class="msj-pendientes ">
+        <div class="num-msj-pendientes"><span>333</span></div>
 </div>
     </div>`;
+//<div class="num-msj-pendientes anterior"><span>n</span></div> -> para notificaciones vistas
