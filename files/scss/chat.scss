@@ -942,6 +942,7 @@ Fin de contactos
     align-content: center;
     text-align: center;
     justify-content: center;
+    border-bottom: 1px solid #a9a9a9;
   }
 
   #sidepanel #mi-perfil-sidepanel img {
@@ -1025,6 +1026,7 @@ Fin de contactos
     height: calc(100% - 130px);
     overflow-y: scroll;
     overflow-x: hidden;
+    margin-top: 10px;
   }
   #frame #sidepanel #contacts::-webkit-scrollbar {
     display: none;
@@ -1055,7 +1057,7 @@ Fin de contactos
 }
 
 #frame #sidepanel #contacts ul li.contact .wrap {
-  width: 100%;
+
   height: auto;
   display: flex;
   flex-direction: row;
@@ -1063,27 +1065,29 @@ Fin de contactos
 }
 
 
-#frame #sidepanel #contacts ul li.contact .wrap span.contact-status {
-  position: absolute;
-  z-index: 100;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #95a5a6;
-  margin-leftt: -30px;
 
-}
 #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil {
   position: absolute;
+}
+#frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil .contact-status {
+
+display: flex;
+  width:8px;
+  height: 8px;
+border-radius: 50%;
+  position: absolute;
+  z-index: 110;
+  left: -5px;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   float: left;
+  z-index: 100;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta {
-flex-grow: 1;
+
   display: flex;
   flex-direction: column;
   padding: 0px;
@@ -1092,7 +1096,8 @@ flex-grow: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-
+  width: calc (100% - 60px);
+  float: left;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta .name {
   font-weight: 600;
@@ -1120,19 +1125,37 @@ vertical-align: bottom;
 
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes {
 float: right;
-
+  width: 60px;
+  min-width: 60px;
   display: flex;
   align-content: center;
   align-items: center;
+  align-self: center;
 position: relative;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+#frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes {
+  flex-direction: column;
+  justify-self: center;
+  color:#a9a9a9 ;
+  margin-left: auto;
+}
+#frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .hora-ult-mesj {
+width: 100%;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes {
-max-width: 40px;
+
   min-width: 20px;
   height: 20px;
+  max-width: 40px;
   padding: 0px 5px;
   background: #0ac630;
   border-radius: 25px;
+  color: #ffffff;
+
   justify-content: center;
   text-align: center;
   text-overflow: ellipsis;
@@ -1144,7 +1167,7 @@ max-width: 40px;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes span{
 
-  color: #ffffff;
+
   font-weight: 500;
 
 }
@@ -1157,9 +1180,12 @@ max-width: 40px;
   #frame #sidepanel #contacts ul li.contact .wrap {
     padding: 0;
     margin: 0px;
-    height: 60px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    height: 70px;
   }
   #frame #sidepanel #contacts ul li.contact .wrap .meta {
     display: none;
@@ -1167,15 +1193,37 @@ max-width: 40px;
   #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil {
     position: relative;
   }
+  #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    flex-direction: row;
+    z-index: 120;
+
+  }
+  #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .hora-ult-mesj {
+    display: none;
+  }
+
+  #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes {
+    height: 15px;
+    min-width: 15px;
+    max-width: 25px;
+    font-size: 11px;
+  }
+  #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil .contact-status {
+
+  }
+
 }
 
-#frame #sidepanel #contacts ul li.contact .wrap span.online {
+#frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil span.online {
   background: #0ac630;
 }
-#frame #sidepanel #contacts ul li.contact .wrap span.away {
+#frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil span.away {
   background: #f1c40f;
 }
-#frame #sidepanel #contacts ul li.contact .wrap span.busy {
+#frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil span.busy {
   background: #e74c3c;
 }
 
