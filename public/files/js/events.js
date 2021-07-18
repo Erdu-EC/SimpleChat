@@ -22,6 +22,13 @@ $('.submit').on('click',function() {
     newMessage();
 });
 
+//cerrar sesion
+$(document).on("click", "#mi-perfil-sidepanel .usuario-perfil-opciones", function (){
+    $(this).toggleClass("activo");
+    $("#mi-perfil-sidepanel .opciones-sesion").toggleClass("inactivo");
+});
+
+
 /*
 
 function newMessage() {

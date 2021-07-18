@@ -449,6 +449,7 @@ body::-webkit-scrollbar{
   overflow: hidden;
   position: relative;
   display: inline;
+  z-index: 1000;
 }
 @media screen and (max-width: 735px) {
   #frame #sidepanel {
@@ -929,9 +930,80 @@ Fin de contactos
 }
 
 #sidepanel .img-perfil div.usuario-perfil-opciones {
-  display: inline;
+  display: inline-flex;
   margin-left: auto;
+
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  align-items: center;
+  align-self: center;
 }
+#sidepanel .img-perfil div.usuario-perfil-opciones.activo,.img-perfil div.usuario-perfil-opciones:hover  {
+  background: #32465a;
+  color: #ffffff;
+}
+#sidepanel .img-perfil div.usuario-perfil-opciones span {
+
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+#sidepanel .img-perfil .opciones-sesion {
+
+  width: 150px;
+  position: absolute;
+background: #ffffff;
+  right:1rem;
+  top: 4rem;
+  z-index: 1300;
+  border-radius: 5px;
+  color: #000000;
+}
+#sidepanel .img-perfil .opciones-sesion.inactivo {
+  display: none;
+}
+#sidepanel .img-perfil .opciones-sesion:hover{
+  color: #000000;
+
+}
+#sidepanel .img-perfil .opciones-sesion .cerrar-sesion {
+  border-radius: 5px;
+
+
+  width: 100%;
+}
+#sidepanel .img-perfil .opciones-sesion .cerrar-sesion:hover {
+  background: #f2f2f2;
+}
+#sidepanel .img-perfil .opciones-sesion .cerrar-sesion a {
+  text-decoration: none;
+  text-underline: none;
+  color: #dc3545;
+  vertical-align: center;
+  font-size: 15px;
+  display:flex;
+  align-items: center;
+  align-content: center;
+  padding: 5px 10px;
+  align-self: center;
+}
+#sidepanel .img-perfil .opciones-sesion .cerrar-sesion a p{
+
+  vertical-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+#sidepanel .img-perfil .opciones-sesion .cerrar-sesion a span {
+
+  font-size: 18px;
+  width: 25px;
+  display: inline-flex;
+  vertical-align: center;
+  color: #dc3545;
+}
+
+
 @media screen and (max-width: 735px){
   #sidepanel #mi-perfil-sidepanel {
     position: relative;
@@ -945,27 +1017,59 @@ Fin de contactos
     border-bottom: 1px solid #a9a9a9;
   }
 
-  #sidepanel #mi-perfil-sidepanel img {
-    margin: 0px;
-    position: relative;
 
-  };
-  #sidepanel #mi-perfil-sidepanel .usuario-perfil-opciones {
-    width: 100%;
-    text-align: end;
-    justify-content: right;
-  }
-  #sidepanel #mi-perfil-sidepanel .usuario-perfil-opciones span {
+
+  #sidepanel #mi-perfil-sidepanel .usuario-perfil-opciones span.material-icons {
     margin: 0px;
-    position: absolute;
-    left: 35px;
-    top: -5px;
-    z-index: 500;
+    display: flex;
   }
+
+
   #sidepanel #mi-perfil-sidepanel .usuario-perfil {
     display: none;
   }
 
+
+}
+
+@media screen and (max-width: 735px) {
+  #sidepanel .img-perfil .usuario-perfil-opciones {
+
+    position: absolute;
+    text-align: center;
+    align-self: center;
+    z-index: 500;
+    top:-15px;
+    right: -10px;
+
+  }
+  #sidepanel #mi-perfil-sidepanel img {
+    margin: 0px;
+    position: relative;
+
+  }
+  #sidepanel .img-perfil .opciones-sesion {
+    left:5px;
+    top: 4rem;
+    width: 50px;
+
+  }
+  #sidepanel .img-perfil .opciones-sesion .cerrar-sesion a{
+    padding: 10px 5px;
+
+
+    align-items: center;
+    align-content: center;
+  }
+  #sidepanel .img-perfil .opciones-sesion .cerrar-sesion a span{
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  #sidepanel .img-perfil .opciones-sesion .cerrar-sesion a p {
+    display: none;
+
+  }
 }
 
 
@@ -1144,6 +1248,8 @@ position: relative;
   margin-left: auto;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .hora-ult-mesj {
+  font-size: 11px;
+  font-weight: 700;
 width: 100%;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes {
@@ -1307,6 +1413,7 @@ width: 100%;
   transition-duration: 500ms;
   float: right;
   padding:0;
+  z-index: 100;
 }
 
 #frame .content .contact-profile {
@@ -1318,7 +1425,7 @@ width: 100%;
   margin: 0;
   float: left;
 }
-#frame .content .contact-profile img, #frame .content .contact-profile i.material-icons {
+#frame .content .contact-profile img, #frame .content .contact-profile .material-icons {
   width: 40px;
   height: 40px;
   border-radius: 50%;
