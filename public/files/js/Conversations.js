@@ -26,7 +26,8 @@ function cargar_conversaciones() {
                 json.forEach((registro) => {
                     $('<li>', {
                         class: 'contact',
-                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[3], registro[5], registro[7], registro[4]),
+                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[3], registro[5], registro[7], registro[4], registro[8]),
+
                     }).appendTo(lista_conversaciones);
                 });
             }
@@ -34,8 +35,9 @@ function cargar_conversaciones() {
     });
 }
 
-const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, hay_invitacion, contenido, enviado ) =>
-    `<div class="wrap elemento-conversacion" data-usuario="${usuario_id}">
+const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, hay_invitacion, contenido, enviado, ult_msj ) =>
+
+`<div class="wrap elemento-conversacion" data-usuario="${usuario_id}">
 <div class="conversacion-perfil">
 <span class="contact-status online"></span>
         <img src="${foto_perfil}?w=100&h=100" alt="" />
@@ -55,7 +57,7 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
         </div>
         <div class="msj-pendientes ">
         <div class="hora-ult-mesj">
-        11:40 am
+        ${Fecha_hora_ultima_Mensaje(ult_msj)}
 </div>
         <div class="num-msj-pendientes">
         
@@ -63,4 +65,40 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
         </div>
 </div>
     </div>`;
+
 //<div class="num-msj-pendientes anterior"><span>n</span></div> -> para notificaciones vistas
+
+
+function Fecha_hora_ultima_Mensaje( fecha_mensaje) {
+    var hoy = new Date();
+    var fecha_msj = new Date(fecha_mensaje);
+    var result= '';
+    if (((hoy - fecha_msj)/(1000*60*60*24)) <1){
+        var result= fecha_msj.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }).toLowerCase();
+console.log("La fecha es la misma");
+    }
+    else{
+
+        var diferencia =Math.trunc((hoy - fecha_msj)/(1000*60*60*24));
+        console.log("La diferencia es la "+ diferencia);
+        switch (diferencia){
+            case 1:{
+                result= 'Ayer';
+                break;
+            }
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+                dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado","Domingo"];
+                result= dias[fecha_msj.getDay()];
+                break;
+            default:
+                result = fecha_mensaje.toLocaleString();
+                break
+
+        }
+    }
+return result;
+}
