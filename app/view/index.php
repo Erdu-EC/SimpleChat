@@ -244,6 +244,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 </div>
 
 <script type="text/javascript" src="/files/js/events.js"></script>
+<script type="text/javascript" src="/files/js/notifications.js"></script>
 <script type="text/javascript" src="/files/js/Chat.js"></script>
 <script type="text/javascript" src="/files/js/Conversations.js"></script>
 <script type="application/javascript" src="/files/js/Contacts.js"></script>

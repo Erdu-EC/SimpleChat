@@ -73,32 +73,26 @@ function Fecha_hora_ultima_Mensaje( fecha_mensaje) {
     var hoy = new Date();
     var fecha_msj = new Date(fecha_mensaje);
     var result= '';
-    if (((hoy - fecha_msj)/(1000*60*60*24)) <1){
+    var diferencia = Math.trunc((hoy - fecha_msj)/(1000*60*60*24));
+    if (diferencia < 1){
         var result= fecha_msj.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }).toLowerCase();
-console.log("La fecha es la misma");
-    }
-    else{
 
-        var diferencia =Math.trunc((hoy - fecha_msj)/(1000*60*60*24));
-        console.log("La diferencia es la "+ diferencia);
-        switch (diferencia){
-            case 1:{
-                result= 'Ayer';
-                break;
-            }
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-                dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado","Domingo"];
+    }
+    else  if (diferencia == 1){
+        result= 'Ayer';
+    }
+    else if (diferencia < 7){
+         dias = ["Domingo","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
                 result= dias[fecha_msj.getDay()];
-                break;
-            default:
-                result = fecha_mensaje.toLocaleString();
-                break
-
-        }
     }
+    else if (hoy.getFullYear() == fecha_msj.getFullYear()){
+        console.log(hoy.getFullYear() +"----> anio mensaje =>"  +fecha_msj.getFullYear())
+        mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+       result = fecha_msj.getDate() +" de " + mes[fecha_msj.getMonth()];
+    }
+    else {
+        result = fecha_msj.getDate() + "/" + fecha_msj.getMonth()+"/"+fecha_msj.getFullYear();
+    }
+
 return result;
 }

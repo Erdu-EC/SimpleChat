@@ -1251,6 +1251,7 @@ position: relative;
   font-size: 11px;
   font-weight: 700;
 width: 100%;
+  text-align: right;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes {
 
@@ -1261,12 +1262,12 @@ width: 100%;
   background: #0ac630;
   border-radius: 25px;
   color: #ffffff;
-
   justify-content: center;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  margin-left: auto;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes.anterior {
   background: #a9a9a9;
@@ -1316,6 +1317,7 @@ width: 100%;
     min-width: 15px;
     max-width: 25px;
     font-size: 11px;
+    margin-left: 0;
   }
   #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil .contact-status {
 
