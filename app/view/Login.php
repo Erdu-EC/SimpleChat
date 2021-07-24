@@ -37,7 +37,7 @@ if (Session::IsLogin())
                     <a href="/Register" class="nav-link"><span class="material-icons">add</span>Resgistrarse</a>
                 </li>
                 <li class="nav-list-item">
-                    <a href="#" class="nav-link">
+                    <a href="/Privacy" class="nav-link">
                         <span class="material-icons">gavel</span>Términos y condiciones</a>
                 </li>
                 <li class="nav-list-item">

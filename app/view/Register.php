@@ -30,18 +30,16 @@ if (Session::IsLogin()) HttpResponse::Redirect('/');
                 <a href="/Login" class="nav-link "> <span class="material-icons">login</span>Acceder</a>
             </li>
             <li class="nav-list-item">
-                <a href="/Register" class="nav-link activo"><span class="material-icons">
-add
-</span>Resgistrarse</a>
+                <a href="/Register" class="nav-link activo"><span class="material-icons">add</span>Resgistrarse</a>
             </li>
             <li class="nav-list-item">
-                <a href="#" class="nav-link">
+                <a href="/Privacy" class="nav-link">
                     <span class="material-icons">gavel</span>Términos y condiciones</a>
             </li>
             <li class="nav-list-item">
-                <a href="#" class="nav-link"><span class="material-icons">
-people_outline
-</span>Sobre Nosotros</a>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">people_outline</span>Sobre Nosotros
+                </a>
             </li>
             <li class="nav-list-item">
                 <a href="#" class="nav-link">
@@ -71,9 +69,7 @@ support_agent</span>
                                 <div class="item-form">
                                     <span class="etiqueta-input">Nombres</span>
                                     <div class="input-group">
-                                        <label for="first_name"><span class="material-icons">
-face
-</span></label>
+                                        <label for="first_name"><span class="material-icons">face</span></label>
                                         <input id="first_name" type="text" class="form-control"  required>
 
                                     </div>
@@ -168,7 +164,7 @@ face
                             <div class="acceder-cuenta">
                                 ¿Ya tienes una cuenta? <a class="" href="/Login">Inicia Sesión</a>
                             </div>
-
+                            <button id="boton-modal">Presiones aqui</button>
                     </form>
                 </div>
 
@@ -180,6 +176,6 @@ face
 </section>
 
 <script type="text/javascript" src="/files/js/RegisterPage.js"></script>
-
+<script type="text/javascript" src="/files/sweetalert/sweetalert.min.js"></script>
 </body>
 </html>

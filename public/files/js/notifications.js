@@ -1,10 +1,11 @@
-$(document).on("load", function () {
-    //solicitando permiso para notificaciones
-    if (window.Notification && Notification.permission !== "granted") {
-        Notification.requestPermission(function (status) {
-            if (Notification.permission !== status) {
-                Notification.permission = status;
-            }
-        });
-    }
+$(document).ready(function () {
+ if (!Notification){
+     alert("La version actual de tu navegador no soporta las notificaciones de escritorio");
+     return;}
+     else{
+       if(Notification.permission !=="grant"){
+         Notification.requestPermission();
+       }
+     }
+
 });

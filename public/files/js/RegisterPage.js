@@ -101,8 +101,17 @@ $(document).on('submit', "#register_form", null, function (e) {
         error: () => Alert(ALERT_ERROR, "No fue posible realizar el registro."),
         success: function (json) {
             if (json[0] === true) {
-                Alert(ALERT_SUCCESS, 'Registro completado.');
-                window.location = "/Login";
+                swal({
+                    title: "Registro exitoso",
+                    text: "Usted ha sido registrado correctamente",
+                    icon: "success",
+                    confirmButtonText: "Ok"
+                }).then(
+                    function () {
+                        window.location = "/Login";
+                    }
+                );
+
             } else {
                 switch (json[1]) {
                     case 0:

@@ -86,13 +86,11 @@ function Fecha_hora_ultima_Mensaje( fecha_mensaje) {
                 result= dias[fecha_msj.getDay()];
     }
     else if (hoy.getFullYear() == fecha_msj.getFullYear()){
-        console.log(hoy.getFullYear() +"----> anio mensaje =>"  +fecha_msj.getFullYear())
         mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
        result = fecha_msj.getDate() +" de " + mes[fecha_msj.getMonth()];
     }
     else {
         result = fecha_msj.getDate() + "/" + fecha_msj.getMonth()+"/"+fecha_msj.getFullYear();
     }
-
 return result;
 }
