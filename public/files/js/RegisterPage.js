@@ -179,3 +179,7 @@ function Alert(code, msg) {
 /*----------------------------------------------------
 Fin de còdigo de acciones para enviar datos al servidor
 ------------------------------------------------------*/
+//FRONTEND
+$("#btn-navbar-toggler").click(function () {
+    $("nav.menu-navegacion ul.nav-lista").toggleClass("activo").toggleClass("inactivo");
+});

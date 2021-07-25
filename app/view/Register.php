@@ -164,7 +164,7 @@ support_agent</span>
                             <div class="acceder-cuenta">
                                 ¿Ya tienes una cuenta? <a class="" href="/Login">Inicia Sesión</a>
                             </div>
-                            <button id="boton-modal">Presiones aqui</button>
+
                     </form>
                 </div>
 

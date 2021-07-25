@@ -9,3 +9,8 @@ var elemento = '<a href="#seccion-'+(i+1)+'"><div class="elemento-indice color-'
 i= (i+1);
     });
 });
+
+//FRONTEND
+$("#btn-navbar-toggler").click(function () {
+    $("nav.menu-navegacion ul.nav-lista").toggleClass("activo").toggleClass("inactivo");
+});

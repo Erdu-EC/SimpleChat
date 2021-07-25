@@ -55,13 +55,14 @@ support_agent</span>
 
     <main class="main">
 <div class="row">
-    <div class="col-1"></div>
-    <div class="col-3">
+    <div class="col-1 "></div>
+    <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 lateral">
         <div id="indice">
+            <h3>Contenido</h3>
 
         </div>
     </div>
-    <div class="col-7">
+    <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7 central">
         <section class="contenido-politicas">
 <div class="tabla-contenido"></div>
             <div class="texto-politicas">

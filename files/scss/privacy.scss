@@ -15,8 +15,6 @@ body .container-fluid{
   background-position: left;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  overflow-y: hidden;
-  overflow-x: hidden;
 }
 .container-fluid main.main::-webkit-scrollbar {
   width: 0;               /* width of the entire scrollbar */
@@ -277,12 +275,25 @@ Fin de los estilos del navbar
   height: calc(100vh - 100px);
   width: 100%;
 
-
 }
+
 .contenido-politicas .texto-politicas{
   height: 100%;
   padding: 20px;
   overflow-y: scroll;
+}
+
+.texto-politicas::-webkit-scrollbar {
+width: 7px;
+ background: transparent;
+}
+.texto-politicas::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.lateral, .central {
+  padding: 0px;
 }
 
 #indice {
@@ -297,7 +308,9 @@ border-right: 1px solid #288795;
   width: 0;
   background: transparent;
 }
-
+#indice h3{
+  text-align: center;
+}
 #indice .elemento-indice{
   padding: 10px 20px;
   display: flex;
