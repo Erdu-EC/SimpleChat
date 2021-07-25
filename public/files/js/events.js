@@ -155,3 +155,7 @@ $(document).on("click", "#btn-emojis", function () {
 
     picker.togglePicker(button);
 });
+
+$("#seccion-politicas").click(function () {
+ $(location).attr("href","/Privacy");
+});

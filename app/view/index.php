@@ -104,7 +104,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </div>
                     </li>
                     <li class="nav-item">
-                        <div class="nav-link" href="index.html">
+                        <div class="nav-link" id="seccion-politicas">
                             <i class="fas fa-file-contract icon-nav-link"></i>
                             <!--
                             <img src="/files/icon/acuerdos.svg" alt="" class="img-fluid">       -->
