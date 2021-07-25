@@ -66,8 +66,9 @@ support_agent</span>
 <div class="tabla-contenido"></div>
             <div class="texto-politicas">
                 <h1>Términos y Condiciones de uso de Simplechat </h1>
-                <ol>
+                <ol class="lista-principal">
                     <li>
+
                         <h2>Introducción</h2>
 <p>
                         La privacidad de los visitantes de nuestro sitio web es muy importante y estamos comprometidos a protegerla. Esta política explica qué haremos con su información personal.
@@ -77,6 +78,7 @@ support_agent</span>
 
                     </li>
                     <li>
+
                     <h2> Créditos </h2>
 <p>
                         Este documento fue creado usando una plantilla de <a href="https://seqlegal.com">SEQ Legal</a> y modificada por
@@ -85,6 +87,7 @@ support_agent</span>
 
                     </li>
                     <li>
+
                         <h2>Recopilar información personal</h2>
 
 <p>
@@ -113,13 +116,13 @@ support_agent</span>
                             <li><p>Cualquier otra información personal que nos envíe.
                                 </p></li>
                         </ul>
-                       Antes de divulgarnos la información personal de otra persona, primero debe obtener el consentimiento de esa persona, tanto para la divulgación como para el procesamiento de esa información personal de acuerdo con esta política.
-
+                     <p>  Antes de divulgarnos la información personal de otra persona, primero debe obtener el consentimiento de esa persona, tanto para la divulgación como para el procesamiento de esa información personal de acuerdo con esta política.
+                     </p>
                     </li>
                     <li>
                         <h2>Usar su información personal</h2>
-                        La información personal que nos envíe a través de nuestro sitio web será usada con los fines especificados en esta política o en las páginas relevantes del sitio web. Podemos usar su información personal para los siguientes fines:
-
+                       <p> La información personal que nos envíe a través de nuestro sitio web será usada con los fines especificados en esta política o en las páginas relevantes del sitio web. Podemos usar su información personal para los siguientes fines:
+                       </p>
                         <ul>
                             <li>Administrar nuestro sitio web y negocio.</li>
                             <li>Personalizar nuestro sitio web para usted.</li>
@@ -177,7 +180,8 @@ support_agent</span>
 
                             </li>
                         </ul>
-                            Con excepción de lo establecido por la ley, no proporcionaremos su información personal a terceros.
+                      <span> Con excepción de lo establecido por la ley, no proporcionaremos su información personal a terceros.
+                   </span>
                     </li>
                     <li>
                         <h2>International data transfers</h2>
@@ -290,3 +294,5 @@ support_agent</span>
 <script type="application/javascript" src="/files/js/Privacy.js"></script>
 </body>
 </html>
+
+

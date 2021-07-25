@@ -267,7 +267,9 @@ nav button.navbar-toggler:focus{
 /*#####################################################
 Fin de los estilos del navbar
 #####################################################*/
-
+.col-3, .col-7 {
+ padding: 0px;
+}
 .contenido-politicas {
   font-family: sans-serif;
   margin-top: 10px;
@@ -283,3 +285,104 @@ Fin de los estilos del navbar
   overflow-y: scroll;
 }
 
+#indice {
+  margin-top: 10px;
+  background: #FFFFFF;
+  overflow-y: scroll;
+  height: calc(100vh - 100px);
+border-right: 1px solid #288795;
+  Font-family: MS Sans Serif, sans-serif;
+}
+#indice::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+#indice .elemento-indice{
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+height: 70px;
+}
+#indice .elemento-indice .icon{
+display: flex;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  align-self: center;
+  min-width: 30px;
+  width: 30px !important;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+#indice a {
+  text-decoration: none;
+  color: #000000;
+}
+#indice a .elemento-indice .icon span.material-icons {
+
+  font-size: 16px;
+}
+
+#indice .elemento-indice.color-1:hover, #indice .elemento-indice.color-1 .icon {
+  background: #186d90;
+  color: #FFFFFF;
+}
+#indice a .elemento-indice.color-1:hover .icon{
+  background: #FFFFFF;
+  color:  #186d90;
+}
+
+#indice a .elemento-indice.color-2:hover, #indice .elemento-indice.color-2 .icon {
+  background: #e97858;
+  color: #FFFFFF;
+}
+#indice a .elemento-indice.color-2:hover .icon {
+  color: #e97858;
+  background: #FFFFFF;
+}
+#indice a .elemento-indice.color-3:hover, #indice .elemento-indice.color-3 .icon {
+  background: #6ca086;
+  color: #FFFFFF;
+}
+#indice a .elemento-indice.color-3:hover .icon {
+  color: #6ca086;
+  background: #FFFFFF;
+}
+#indice a .elemento-indice.color-4:hover, #indice .elemento-indice.color-4 .icon{
+  background: #a4a4a4;
+  color: #FFFFFF;
+}
+#indice a .elemento-indice.color-4:hover .icon {
+  color: #a4a4a4;
+  background: #FFFFFF;
+}
+#indice a .elemento-indice.color-5:hover, #indice .elemento-indice.color-5 .icon{
+  background: #fac8a2;
+  color: #FFFFFF;
+}
+#indice .elemento-indice.color-5:hover .icon {
+  color: #fac8a2;
+  background: #FFFFFF;
+}
+
+/*
+Contenido de politicas
+*/
+h1 {
+  font-size: 34px;
+  Font-family: MS Sans Serif, sans-serif;
+}
+h2{
+  font-size: 30px;
+  Font-family: MS Sans Serif, sans-serif;
+}
+
+.lista-principal{
+  list-style: none;
+}
+/*
+Fin de contenido de politicas
+*/
