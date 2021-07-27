@@ -17,7 +17,35 @@ $f = new \DateTime($fecha );
 $hora = date_format($f, 'h:i a');
 return $hora;
     }
+function ObtenerFecha($fecha){
+    $fechaActual = date('Y-m-d');
+    $f= date_create($fecha);
+    $hoy = date_create($fechaActual);
+    $result = '';
+    $contador = date_diff($f, $hoy);
+    $dias= $contador->days;
 
+       if ($dias == 0){
+           return "Hoy" ;
+       }
+  else if ($dias == 1){
+         return "Ayer" ;
+     }
+     else if ($dias < 6){
+       $dias = array ('Lunes','Martes', 'Miércoles','Jueves', 'Viernes', 'Sábado', 'Domingo');
+       $result = $dias[(date('N', strtotime($f->format('Y-m-d'))) -1)] ;
+       return $result;
+   }
+     else if ( $contador->y == 0 )
+    {
+        $meses = array('Enero','Febrero','Marzo', 'Abril','Mayo','Junio', 'Julio', 'Agosto', 'Septiembre','Octubre','Noviembre','Diciembre');
+        $result= $meses[(date("n", strtotime($f->format('Y-m-d')))-1)] ;
+        $result = $f->format('d')." de ". $result;
+ return $result;}
+    else {
+         return $f->format("d-m-Y");
+     }
+}
 
 
 ?>
@@ -81,12 +109,26 @@ return $hora;
 
         <?php
             $last_date = null;
-
+$fecha_anterior = '';
             if (!is_null($_VIEW->messages)):
                 foreach ($_VIEW->messages as $msg):
-                    if ($msg->id_source === $SESSION->user_id): ?>
+                    if (!is_null($msg->send_date)){ ?>
 
-                        <li class="enviado">
+                        <?php
+                        $f= new \DateTime($msg->send_date);
+                        if($fecha_anterior == ''){
+                        $fecha_anterior = new \DateTime($msg->send_date);
+                        echo '<li class="marcador"><div class="marcador-fecha">'.ObtenerFecha($msg->send_date).'</div></li>';}
+                        else{
+                            if($fecha_anterior->format('Y-m-d') !== $f->format('Y-m-d') ){
+                                $fecha_anterior = new \DateTime($msg->send_date);
+                                echo '<li class="marcador"><div class="marcador-fecha">'.ObtenerFecha($msg->send_date).'</div></li>';
+                            }
+                        }
+                    } ?>
+                   <?php if ($msg->id_source === $SESSION->user_id): ?>
+         <li class="enviado">
+
                             <img src="<?= $SESSION->user_profile_img ?>?w=37&h=37" alt="" class="no-seleccionable"/>
                             <div class="dir"></div>
                             <div class="cont-msj">  <p><?= $msg->content ?></p> </div>
@@ -110,8 +152,8 @@ return $hora;
                                 <?php endif; ?>
                             </div>
                         </li>
-
                     <?php else: ?>
+
                         <li class="recibido">
                             <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=37&h=37" alt="" class="no-seleccionable"/>
                             <div class="dir"></div>
@@ -124,7 +166,9 @@ return $hora;
                                 <?php endif; ?>
                             </div>
                         </li>
+
                     <?php endif;
+
                 endforeach;
             endif;
         ?>
