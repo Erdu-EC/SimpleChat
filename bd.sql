@@ -263,6 +263,28 @@ END $
 
 CREATE OR REPLACE PROCEDURE user_GetUnreceiveMessages(in USER_ID int)
 BEGIN
+    CREATE TEMPORARY TABLE unrcv_messages
+    (
+        id int
+    ) ENGINE = MEMORY;
+
+    INSERT INTO unrcv_messages
+    SELECT id
+    from message_readable
+    where id_dest = USER_ID
+      and rcv_date is null;
+
+    UPDATE message
+    set rcv_date = NOW()
+    where id in (select id from unrcv_messages);
+
+    select u.id, u.first_name, u.last_name, mr.content, mr.send_date
+    from message_readable mr
+             inner join users u on id_source = u.id
+    where id_dest = USER_ID
+      and mr.id in (select id from unrcv_messages);
+
+    /*
     DECLARE STARTTIME DATETIME DEFAULT NOW();
 
     UPDATE message
@@ -276,7 +298,7 @@ BEGIN
     from message_readable mr
              inner join users u on id_source = u.id
     where id_dest = USER_ID
-      and rcv_date = STARTTIME;
+      and rcv_date = STARTTIME;*/
 END $
 
 DELIMITER ;
