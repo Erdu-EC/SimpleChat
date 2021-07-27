@@ -1,6 +1,8 @@
-if (window.Worker){
-    const chatWorker = new Worker('/files/js/Chat-bg.js');
-}
+$(document).ready(function () {
+    if (window.Worker) {
+        const chatWorker = new Worker('/files/js/Chat-bg.js');
+    }
+})
 
 $(document).on("keydown", "#espacio-de-escritura", function (e) {
     if (e.which == 13) {
