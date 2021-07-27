@@ -16,21 +16,19 @@
     {
         public function GetUnreceivedMessagesAndInvitations()
         {
-			ignore_user_abort(false);
+        	//Desactivando cache de salida HTML.
 			ob_end_clean();
 
         	//Desactivando cache del navegador.
 			HttpResponse::Set('Cache-Control: no-store');
 
             //Deshabilitando siempre log de errores.
-            //ini_set('display_errors', 0);
+            ini_set('display_errors', 0);
 
             //Obteniendo id del usuario actual.
             $session = new Session();
             $user_id = $session->user_id;
             unset($session);
-
-            session_write_close();
 
             while (true) {
                 //Consultando a la base de datos.
