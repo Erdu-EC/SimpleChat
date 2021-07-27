@@ -274,9 +274,7 @@ BEGIN
     where id_dest = USER_ID
       and rcv_date is null;
 
-    UPDATE message
-    set rcv_date = NOW()
-    where id in (select id from unrcv_messages);
+    UPDATE message set rcv_date = NOW() where id in (select id from unrcv_messages);
 
     select u.id, u.first_name, u.last_name, mr.content, mr.send_date
     from message_readable mr
