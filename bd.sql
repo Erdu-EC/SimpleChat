@@ -283,22 +283,6 @@ BEGIN
              inner join users u on id_source = u.id
     where id_dest = USER_ID
       and mr.id in (select id from unrcv_messages);
-
-    /*
-    DECLARE STARTTIME DATETIME DEFAULT NOW();
-
-    UPDATE message
-    set rcv_date = STARTTIME
-    where id in (select id
-                 from message_readable
-                 where id_dest = USER_ID
-                   and rcv_date is null);
-
-    select u.id, u.first_name, u.last_name, mr.content, mr.send_date
-    from message_readable mr
-             inner join users u on id_source = u.id
-    where id_dest = USER_ID
-      and rcv_date = STARTTIME;*/
 END $
 
 DELIMITER ;
