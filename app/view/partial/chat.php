@@ -3,26 +3,25 @@
 
 	namespace HS\app\view;
 
+	use DateTime;
+	use Exception;
 	use HS\config\APP_URL;
 	use HS\libs\collection\Collection;
 	use HS\libs\core\Session;
-	use HS\libs\io\Url;
 
 	/** @var Collection $_VIEW */
 
 	$SESSION = new Session();
 
+	/** @throws Exception */
 	function ObtenerHora($fecha) {
-		$f = new \DateTime($fecha);
-		$hora = date_format($f, 'h:i a');
-		return $hora;
+		return date_format(new DateTime($fecha), 'h:i a');
 	}
 
-	function ObtenerFecha($fecha) {
+	function ObtenerFecha($fecha): string {
 		$fechaActual = date('Y-m-d');
-		$f = date_create($fecha)->setTime(0,0,0,0);
+		$f = date_create($fecha)->setTime(0, 0);
 		$hoy = date_create($fechaActual);
-		$result = '';
 		$contador = date_diff($f, $hoy);
 		$dias = $contador->days;
 
@@ -32,13 +31,11 @@
 			return "Ayer";
 		} else if ($dias < 6) {
 			$dias = array('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo');
-			$result = $dias[(date('N', strtotime($f->format('Y-m-d'))) - 1)];
-			return $result;
+			return $dias[(date('N', strtotime($f->format('Y-m-d'))) - 1)];
 		} else if ($contador->y == 0) {
 			$meses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
 			$result = $meses[(date("n", strtotime($f->format('Y-m-d'))) - 1)];
-			$result = $f->format('d') . " de " . $result;
-			return $result;
+			return $f->format('d') . " de " . $result;
 		} else {
 			return $f->format("d-m-Y");
 		}
@@ -105,22 +102,16 @@
 
 
 		<?php
-			$last_date = null;
 			$fecha_anterior = '';
 			if (!is_null($_VIEW->messages)):
 				foreach ($_VIEW->messages as $msg):
 					if (!is_null($msg->send_date)) { ?>
 
 						<?php
-						$f = new \DateTime($msg->send_date);
-						if ($fecha_anterior == '') {
-							$fecha_anterior = new \DateTime($msg->send_date);
+						$f = new DateTime($msg->send_date);
+						if ($fecha_anterior == '' || ($fecha_anterior->format('Y-m-d') !== $f->format('Y-m-d'))) {
+							$fecha_anterior = new DateTime($msg->send_date);
 							echo '<li class="marcador"><div class="marcador-fecha">' . ObtenerFecha($msg->send_date) . '</div></li>';
-						} else {
-							if ($fecha_anterior->format('Y-m-d') !== $f->format('Y-m-d')) {
-								$fecha_anterior = new \DateTime($msg->send_date);
-								echo '<li class="marcador"><div class="marcador-fecha">' . ObtenerFecha($msg->send_date) . '</div></li>';
-							}
 						}
 					} ?>
 					<?php if ($msg->id_source === $SESSION->user_id): ?>
