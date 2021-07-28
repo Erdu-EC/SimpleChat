@@ -28,7 +28,7 @@ class UserController extends Controller
 		]);
 
 		//Devolviendo.
-		return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));;
+		return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray(), false));
 	}
 
     public function GetAll(){
