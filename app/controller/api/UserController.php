@@ -11,10 +11,26 @@ use HS\libs\collection\ArrayUtils;
 use HS\libs\core\Controller;
 use HS\libs\core\http\HttpResponse;
 use HS\libs\core\Session;
+use HS\libs\database\DB;
 use HS\libs\helper\MimeType;
 
 class UserController extends Controller
 {
+	public function GetOne(){
+		//TODO: Aplicar restriccion con permisos de usuario en la app.
+		//Estableciendo tipo de respuesta.
+		HttpResponse::SetContentType(MimeType::Json);
+
+		//Obteniendo datos.
+		$data = (new UserModel(DBAccount::Root))->GetOne((new Session())->user_name, [
+			UserModel::C_ID,
+			UserModel::C_NICK
+		]);
+
+		//Devolviendo.
+		return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));;
+	}
+
     public function GetAll(){
         //TODO: Aplicar restriccion con permisos de usuario en la app.
         //Estableciendo tipo de respuesta.
@@ -27,7 +43,7 @@ class UserController extends Controller
         ]);
 
         //Devolviendo.
-        return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));;
+        return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));
     }
 
     public function SearchUserOrContact(){

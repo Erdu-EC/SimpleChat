@@ -9,6 +9,7 @@
     Route::Post('/action/users/search', 'UserController#SearchUserOrContact');
     Route::Get('/action/users/contacts', 'ContactController#GetAll');
     Route::Post('/action/contacts/add', 'ContactController#AddContact');
+    Route::Get('/action/contacts/info', 'UserController#GetOne');
 
     #Conversations and Messages.
     Route::Post('/action/messages/send', 'MessageController#Send');
