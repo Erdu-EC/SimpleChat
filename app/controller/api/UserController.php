@@ -16,13 +16,17 @@ use HS\libs\helper\MimeType;
 
 class UserController extends Controller
 {
-	public function GetOne(){
+	public function GetOneById(){
 		//TODO: Aplicar restriccion con permisos de usuario en la app.
 		//Estableciendo tipo de respuesta.
 		HttpResponse::SetContentType(MimeType::Json);
 
+		//Obteniendo parametros post.
+		$_POST = ArrayUtils::Trim($_POST, false);
+		$contact = !empty($_POST['c']) ? (string)$_POST['c'] : die(json_encode(null));
+
 		//Obteniendo datos.
-		$data = (new UserModel(DBAccount::Root))->GetOne((new Session())->user_name, [
+		$data = (new UserModel(DBAccount::Root))->GetOneById($contact, [
 			UserModel::C_FNAME,
 			UserModel::C_LNAME,
 			UserModel::C_NICK,

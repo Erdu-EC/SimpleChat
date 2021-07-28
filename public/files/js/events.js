@@ -119,6 +119,7 @@ $("#espacio-de-escritura .wrap input").on("keyup keydown change",function () {
     }
 });
 
+//Panel de información de contactos.
 $(document).on("click","#btn-info-contacto",function (){
     $("#frame #espacio-de-chat").addClass("desp-der");
     $("#panelInfoContacto").addClass("mostrar");
@@ -127,6 +128,7 @@ $(document).on("click","#btn-info-contacto",function (){
         $('body').addClass(sb-sidenav-toggled);
     }
 });
+
 $(document).on("click","#btn-cerrar-contacto",function (){
     $("#frame #espacio-de-chat").removeClass("desp-der");
     $("#panelInfoContacto").removeClass("mostrar");
@@ -135,8 +137,8 @@ $(document).on("click","#btn-cerrar-contacto",function (){
         $('body').removeClass(sb-sidenav-toggled);
     }
 });
-//detectar tamanos de pantalla y las acciones
 
+//detectar tamanos de pantalla y las acciones
 $("div#contacts ul#lista-conversaciones").on("click","li.contact",function () {
 
     $('div#contacts ul#lista-conversaciones li.active').removeClass('active');
@@ -151,7 +153,6 @@ $(document).on("click", "#btn-emojis", function () {
     picker.on('emoji', emoji => {
         msj.val (msj.val() + emoji);
     });
-
 
     picker.togglePicker(button);
 });

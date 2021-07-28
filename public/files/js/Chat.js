@@ -111,7 +111,11 @@ function EnviarMensaje() {
 function CargarEspacioDeChat() {
     $('#espacio-de-chat').html(
         ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
-    ).load(`/Chats/${$(this).attr('data-usuario')}`);
+    ).load(`/Chats/${$(this).attr('data-usuario')}`, function (){
+        //Actualizar panel de información de contacto, si este esta abierto.
+        if ($('#panelInfoContacto').hasClass('mostrar'))
+            ActualizarInfoContacto();
+    });
 }
 
 $(document).on('click', '.btn-agregar-contacto', function () {

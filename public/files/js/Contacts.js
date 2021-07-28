@@ -1,30 +1,100 @@
-$("#seccion-contactos").on("click", function() {
-$("#sidepanelTodosContactos .titulo-cab h1").html("Contactos");
+//Panel de información de contacto.
+$(document).on('click', '#btn-info-contacto', ActualizarInfoContacto);
+
+$(document).on('click', '#btn-cerrar-contacto', function (){
+
+});
+
+function ActualizarInfoContacto(){
+    const contenedor = $('#panelInfoContacto .contenedor-perfil');
+    const usuario = $('#espacio-de-chat .messages').attr('data-usuario');
+
+    //Si ya se tiene la información de este usuario, no volverla a solicitar.
+    if (contenedor.attr('data-ult-contacto') === usuario)
+        return;
+
+    //Solicitando información.
+    $.ajax('/action/contacts/info', {
+        method: 'post', dataType: 'json', mimeType: 'application/json',
+        data: {
+            c: usuario
+        },
+        beforeSend: () => {
+            contenedor.hide().after(ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary'));
+        },
+        error: () => {
+            //console.log( "No fue posible realizar la busqueda."),//alerta.text("No fue posible realizar la busqueda."),
+        }, success: function (json) {
+            if (json === null || json.length === 0) {
+                // alerta.text('No fue posible obtener la información.');
+            } else {
+                //Guardando información del ultimo contacto obtenido.
+                contenedor.attr('data-ult-contacto', usuario);
+
+                //Rellenando datos.
+                const perfil = contenedor.find('.card.perfil');
+                perfil.find('img').attr('src', null).attr('src', new URL($('.contact-profile img').attr('src'), window.location.origin).pathname);
+                perfil.find('h5').text(json[0] + " " + json[1]);
+                perfil.find('h6').text("@" + json[2]);
+                perfil.find('small').text(json[3] ?? '');
+
+                const extra = contenedor.find('.card.contacto-extra');
+                extra.find('.tel span').text(' - ');
+                extra.find('.email span').text(json[4] ?? ' - ');
+                extra.find('.fn span').text(json[5] ?? ' - ');
+
+                let sexo = '';
+                switch (json[6]){
+                    case 'M':
+                        sexo = 'Masculino';
+                        break;
+                    case 'F':
+                        sexo = 'Femenino';
+                        break;
+                    case null:
+                        sexo = 'No especificado';
+                        break;
+                    default:
+                        sexo = 'Otro';
+                        break;
+                }
+
+                extra.find('.sexo span').text(sexo)
+                contenedor.show();
+            }
+
+            //Quitando contenedor de animación de carga.
+            $('#panelInfoContacto > div:last-child').remove();
+        }
+    });
+}
+
+$("#seccion-contactos").on("click", function () {
+    $("#sidepanelTodosContactos .titulo-cab h1").html("Contactos");
     Contactos();
     actualizar_lista_contactos();
 });
 
-
-$("#nuevo-chat").on("click", function() {
+$("#nuevo-chat").on("click", function () {
     $("#sidepanelTodosContactos .titulo-cab h1").html("Nuevo Chat");
     Contactos();
     actualizar_lista_contactos();
 });
+
 //agregar boton de borrar texto en cuadro de busqueda de contactos
-$(document).on("keyup change", "#cuadro-busqueda-usuario",function () {
-    message = $("#cuadro-busqueda-usuario").val();
-    if ($.trim(message) == '') {
+$(document).on("keyup change", "#cuadro-busqueda-usuario", function () {
+    const cuadro_busqueda = $("#cuadro-busqueda-usuario");
+
+    if ($.trim(cuadro_busqueda.val()) === '') {
         $("#buscar-contacto .borrar").remove();
         $('#lista-contactos').show();
-    }
-    else{
-        if (!$("#buscar-contacto .borrar").length){
-            $("#cuadro-busqueda-usuario").after(' <div class="borrar"><span class="material-icons"> close</span></div>');
-        }
+    } else {
+        if (!$("#buscar-contacto .borrar").length)
+            cuadro_busqueda.after(' <div class="borrar"><span class="material-icons">close</span></div>');
     }
 });
 
-$(document).on("click",'#buscar-contacto .borrar', function () {
+$(document).on("click", '#buscar-contacto .borrar', function () {
     $("#cuadro-busqueda-usuario").val("");
     $('#lista-contactos-buscar').empty();
     $('#lista-contactos').show();
@@ -33,37 +103,36 @@ $(document).on("click",'#buscar-contacto .borrar', function () {
 
 ///////
 $(document).on('input', '#cuadro-busqueda-usuario', function () {
-    //const alerta = $('#alerta-busqueda-usuario').html('');
-
     const lista_resultados = $('#lista-contactos-buscar').html('');
-    var entrada = $("#cuadro-busqueda-usuario").val();
+    const lista_contactos = $('#lista-contactos');
+    const entrada = $(this).val().trim();
 
-if ($.trim(entrada) == ''){
-    $('#lista-contactos').show();
-    return;
-}
-    $('#lista-contactos').hide();
+    if (entrada === '') {
+        lista_contactos.show();
+        return;
+    } else
+        lista_contactos.hide();
 
-    if ($(this).val().length > 3) {
+    if (entrada.length > 3) {
         $.ajax('/action/users/search', {
             method: 'post', dataType: 'json', mimeType: 'application/json',
             data: {
                 text: entrada
             },
-           beforeSend: () => {},// console.log("Buscando..."),//alerta.text("Buscando..."),
-            error: () => {}, //console.log( "No fue posible realizar la busqueda."),//alerta.text("No fue posible realizar la busqueda."),
-            success: function (json) {
-                if (json === null)
-                {
+            beforeSend: () => {
+                // console.log("Buscando..."),//alerta.text("Buscando..."),
+            },
+            error: () => {
+                //console.log( "No fue posible realizar la busqueda."),//alerta.text("No fue posible realizar la busqueda."),
+            }, success: function (json) {
+                if (json === null) {
                     //console.log("Se recibieron nulos");
-                } // alerta.text('No fue posible realizar la busqueda.');
-                else if (json.length === 0) {
+                    // alerta.text('No fue posible realizar la busqueda.');
+                } else if (json.length === 0) {
                     //alerta.text('No hay coincidencias.');
                     //console.log("Se recibieron nulos");
-                }
-                else {
-                   // console.log("Se se han recibido datos");
-                   // alerta.text(`Se ha encontrado ${json.length} coincidencias.`);
+                } else {
+                    lista_resultados.html('');
 
                     json.forEach((registro) => {
                         $('<li>', {
@@ -80,27 +149,22 @@ if ($.trim(entrada) == ''){
 $(document).on('click', '.elemento-contacto', CargarEspacioDeChat);
 
 
-
 function actualizar_lista_contactos() {
-   // const alerta = $('#alerta-lista-contactos').html('');
-
-
     const lista_contactos = $('#lista-contactos').html('');
 
     $.ajax('/action/users/contacts', {
         method: 'get', dataType: 'json', mimeType: 'application/json',
         beforeSend: () => lista_contactos.html(ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')),
-        error: () => {},//alerta.text('No fue posible cargar la lista de contactos.'),
+        error: () => {
+            //alerta.text('No fue posible cargar la lista de contactos.')
+        },
         success: function (json) {
-            if (json === null){}
+            if (json === null) {
                 //alerta.text('No fue posible cargar la lista de contactos.');
-            else if (json.length === 0){
+            } else if (json.length === 0) {
                 lista_contactos.html('');
                 //alerta.html('Tu lista de contactos esta vacia.<br/><br/>¡Busca nuevos contactos y agregalos!');
-            }
-            else {
-               // alerta.html('Tienes ' + json.length + ' contacto(s)<br/><br/><small class="text-secondary">¡Busca nuevos contactos y agregalos!</small>')
-
+            } else {
                 lista_contactos.html('')
 
                 json.forEach((registro) => {
@@ -128,31 +192,14 @@ const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, foto_perfil
                                         <span class="material-icons icon-usuario">person</span>
 ${usuario}
                                         </div>
+                                        
+                                        <!--<small class="text-muted">
+                            ${(esContacto) ? '<i class="material-icons" style="vertical-align: middle">person</i><span>Mi contacto</span>' : ''}
+                        </small>-->
                                 </div>
                     </div>
 `;
-/*
-<div class="card mb-0 shadow elemento-contacto" style="cursor: pointer;" data-usuario="${usuario}">
-        <div class="row g-0">
-            <div class="col-md-3 p-1">
-                <img src="/files/profile/0_erdu.png" class="img-fluid" alt="profile">
-            </div>
-            <div class="col-md-9 align-self-center">
-                <div class="card-body p-2">
-                    <h6 class="card-title">${nombres} ${apellidos}</h6>
-                    <p class="card-text flex-row" style="font-size: .8rem;">
-                        <small class="text-muted">
-                            ${(esContacto) ? '<i class="material-icons" style="vertical-align: middle">person</i><span>Mi contacto</span>' : ''}
-                        </small>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-
-
-* */
 const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion, foto_perfil) =>
     `
 <div class="elemento-contacto" data-usuario="${usuario}">
@@ -178,29 +225,28 @@ ${(ultima_conexion !== undefined) ? ObtenerTiempoUltimaConexion(ultima_conexion)
 
 function ObtenerTiempoUltimaConexion(fecha_hora) {
     const fecha = new Date(fecha_hora);
-    var fecha_actual= new Date();
+    var fecha_actual = new Date();
     var ult_conex = 'últ. conex.';
 
-    if (fecha_hora==null){
-        return ult_conex= 'Inactivo';
+    if (fecha_hora == null) {
+        return ult_conex = 'Inactivo';
     }
 
-    if (fecha.getDate() == fecha_actual.getDate()){
-        ult_conex += ' hoy'}
-    else if (fecha_actual.getDate()-fecha.getDate() == 1 )
-    {
-        ult_conex += ' ayer'}
-    else {
+    if (fecha.getDate() == fecha_actual.getDate()) {
+        ult_conex += ' hoy'
+    } else if (fecha_actual.getDate() - fecha.getDate() == 1) {
+        ult_conex += ' ayer'
+    } else {
         ult_conex += ' ' + fecha.toLocaleDateString();
     }
 
     ult_conex += ' a l(as) ';
 
-    if (fecha.getHours() < 13 ) {
+    if (fecha.getHours() < 13) {
         ult_conex += fecha.getHours() + ':' + fecha.getMinutes() + ' a.m.';
+    } else {
+        ult_conex += (fecha.getHours() - 12) + ':' + fecha.getMinutes() + ' p.m.';
     }
-    else{
-        ult_conex += (fecha.getHours()-12) + ':'+ fecha.getMinutes() + ' p.m.';}
 
 
     return ult_conex;

@@ -37,8 +37,19 @@
 		public function GetOne(string $user_name, array $fields = null): ?Collection {
 			try {
 				$fields = self::FilterAllowedFields($fields, '*');
-				return self::SelectOnly("select $fields from users where user_name = :name", [
-					'name' => $user_name
+				return self::SelectOnly("select $fields from users where user_name = :user", [
+					'user' => $user_name
+				]);
+			} catch (\PDOException $ex) {
+				return null;
+			}
+		}
+
+		public function GetOneById(int $user_id, array $fields = null): ?Collection {
+			try {
+				$fields = self::FilterAllowedFields($fields, '*');
+				return self::SelectOnly("select $fields from users where id = :uid", [
+					'uid' => $user_id
 				]);
 			} catch (\PDOException $ex) {
 				return null;
