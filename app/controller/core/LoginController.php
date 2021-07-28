@@ -132,7 +132,9 @@
             $pass = empty($_POST['p']) ? null : (string)$_POST['p'];
             $first_name = empty($_POST['fn']) ? null : (string)$_POST['fn'];
             $last_name = empty($_POST['ln']) ? null : (string)$_POST['ln'];
-
+// Recepcion de valores faltantes
+            $gender = empty($_POST['gen'])?null: (string) $_POST['gen'];
+            $birthday = empty($_POST['birth']) ? null : (string) $_POST['birth'];
             //Estableciendo tipo de respuesta.
             HttpResponse::SetContentType(MimeType::Json);
 
@@ -158,11 +160,13 @@
                         die(json_encode([false, 3]));
 
                     //Insertando registro.
-                    $db->Execute('INSERT INTO users(user_name, pass, first_name, last_name, create_at) VALUES (:user, :pass, :first, :last, NOW())', [
+                    $db->Execute('INSERT INTO users(user_name, pass, first_name, last_name,birth_date, gender,create_at) VALUES (:user, :pass, :first, :last, :birth, :gender, NOW())', [
                         'user' => $user,
                         'pass' => $pass,
                         'first' => $first_name,
-                        'last' => $last_name
+                        'last' => $last_name,
+                        'birth' => $birthday,
+                        'gender' => $gender
                     ]);
 
                     //Desconectando base de datos.

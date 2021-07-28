@@ -23,20 +23,20 @@ $(document).on('submit', "#user_form", null, function () {
                 $("#user_form").before('<div id="iniciando-sesion"><div id="cargando"></div><span>Iniciando sesión</span></div>');
 
                 window.location = "/";
-            } else
+            } else {
                 mostrar_error('Nombre de usuario o contraseña incorrectos.');
 
-            $('#user_form input[type="submit"]').attr('disabled', null);
+                $('#user_form input[type="submit"]').attr('disabled', null);
+            }
         }
     });
 
     return false;
 });
 
-
 $(document).on('input', '#user_pass', null, function () {
     if (this.validity.tooLong || this.validity.tooShort)
-        this.setCustomValidity("La contraseña debe tener un minimo de 8 caracteres y un maximo de 60.");
+        this.setCustomValidity("La contraseña debe tener un mínimo de 8 caracteres y un maximo de 60.");
     else
         this.setCustomValidity('');
 });

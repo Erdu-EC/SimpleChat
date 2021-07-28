@@ -178,5 +178,30 @@ ${(ultima_conexion !== undefined) ? ObtenerTiempoUltimaConexion(ultima_conexion)
 
 function ObtenerTiempoUltimaConexion(fecha_hora) {
     const fecha = new Date(fecha_hora);
-    return 'Activo el ' + fecha.toLocaleDateString() + " a las " + fecha.toLocaleTimeString();
+    var fecha_actual= new Date();
+    var ult_conex = 'últ. conex.';
+
+    if (fecha_hora==null){
+        return ult_conex= 'Inactivo';
+    }
+
+    if (fecha.getDate() == fecha_actual.getDate()){
+        ult_conex += ' hoy'}
+    else if (fecha_actual.getDate()-fecha.getDate() == 1 )
+    {
+        ult_conex += ' ayer'}
+    else {
+        ult_conex += ' ' + fecha.toLocaleDateString();
+    }
+
+    ult_conex += ' a l(as) ';
+
+    if (fecha.getHours() < 13 ) {
+        ult_conex += fecha.getHours() + ':' + fecha.getMinutes() + ' a.m.';
+    }
+    else{
+        ult_conex += (fecha.getHours()-12) + ':'+ fecha.getMinutes() + ' p.m.';}
+
+
+    return ult_conex;
 }

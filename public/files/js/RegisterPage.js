@@ -1,13 +1,15 @@
 /*-----------------------------------------------
 Accione para estilos de la página
 -----------------------------------------------*/
-$(document).ready(function () {
+$(document).on("ready",function () {
     $("input[type=date]").val("");
 
-    if($(".input-group input#birth_date").val()!=""){
+    if ($("#first_name").val()!="") {
+        var elemento =  $("#first_name").parent().parent();
         elemento.addClass("activo");
         elemento.removeClass("error");
         $(this).removeClass("error");
+        console.log("El input tiene datos");
     }
 
 
@@ -90,14 +92,26 @@ $(document).on('submit', "#register_form", null, function (e) {
             u: $("#user_name").val(),
             p: $("#user_pass").val(),
             fn: $("#first_name").val(),
-            ln: $("#last_name").val()
+            ln: $("#last_name").val(),
+            gen: $("#gender").val(),
+            birth: $("#birth_date").val()
+
         },
         beforeSend: () => Alert(ALERT_NORMAL, "Cargando..."),
         error: () => Alert(ALERT_ERROR, "No fue posible realizar el registro."),
         success: function (json) {
             if (json[0] === true) {
-                Alert(ALERT_SUCCESS, 'Registro completado.');
-                window.location = "/Login";
+                swal({
+                    title: "Registro exitoso",
+                    text: "Usted ha sido registrado correctamente",
+                    icon: "success",
+                    confirmButtonText: "Ok"
+                }).then(
+                    function () {
+                        window.location = "/Login";
+                    }
+                );
+
             } else {
                 switch (json[1]) {
                     case 0:
@@ -137,9 +151,9 @@ $(document).on('input', '#user_pass', null, function () {
 
 $(document).on('input', '#user_pass_repeat', null, function () {
     if ($("#user_pass").val() !== this.value)
-        this.setCustomValidity('La contraseña no coincide con la especificada anteriormente.');
+        $("#contenedor-mensajes").html('<div class="mensaje-error no-coincide"><span class="material-icons">error</span> Las contraseñas no coinciden </div>');
     else
-        this.setCustomValidity('');
+        $("#contenedor-mensajes .no-coincide").remove();
 });
 
 const ALERT_NORMAL = 1;
@@ -165,3 +179,7 @@ function Alert(code, msg) {
 /*----------------------------------------------------
 Fin de còdigo de acciones para enviar datos al servidor
 ------------------------------------------------------*/
+//FRONTEND
+$("#btn-navbar-toggler").click(function () {
+    $("nav.menu-navegacion ul.nav-lista").toggleClass("activo").toggleClass("inactivo");
+});

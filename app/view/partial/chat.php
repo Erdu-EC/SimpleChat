@@ -11,13 +11,50 @@
     /** @var Collection $_VIEW */
 
     $SESSION = new Session();
+
+    function ObtenerHora ($fecha){
+$f = new \DateTime($fecha );
+$hora = date_format($f, 'h:i a');
+return $hora;
+    }
+function ObtenerFecha($fecha){
+    $fechaActual = date('Y-m-d');
+    $f= date_create($fecha);
+    $hoy = date_create($fechaActual);
+    $result = '';
+    $contador = date_diff($f, $hoy);
+    $dias= $contador->days;
+
+       if ($dias == 0){
+           return "Hoy" ;
+       }
+  else if ($dias == 1){
+         return "Ayer" ;
+     }
+     else if ($dias < 6){
+       $dias = array ('Lunes','Martes', 'Miércoles','Jueves', 'Viernes', 'Sábado', 'Domingo');
+       $result = $dias[(date('N', strtotime($f->format('Y-m-d'))) -1)] ;
+       return $result;
+   }
+     else if ( $contador->y == 0 )
+    {
+        $meses = array('Enero','Febrero','Marzo', 'Abril','Mayo','Junio', 'Julio', 'Agosto', 'Septiembre','Octubre','Noviembre','Diciembre');
+        $result= $meses[(date("n", strtotime($f->format('Y-m-d')))-1)] ;
+        $result = $f->format('d')." de ". $result;
+ return $result;}
+    else {
+         return $f->format("d-m-Y");
+     }
+}
+
+
 ?>
 
 <section class="contact-profile no-seleccionable">
     <?php if (!empty($_VIEW->profile_img)) : ?>
         <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=40&h=40" alt="">
     <?php else: ?>
-        <i class="material-icons" style="font-size: 2.5rem">person</i>
+        <i class="material-icons" >person</i>
     <?php endif; ?>
 
     <div class="chat-conexion">
@@ -63,17 +100,7 @@
                 </div>
             </div>
         </div>
-        <!--
 
-        <div id="mensaje-invitacion" class="row border-bottom">
-                        <div class="col-10">Alguien que no esta en tus contactos te ha enviado un mensaje, ¿Quieres aceptarlo?
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-outline-primary">Si</button>
-                            <button class="btn btn-outline-secondary">No</button>
-                        </div>
-                    </div>
-        -->
 
     <?php endif; ?>
 
@@ -82,40 +109,66 @@
 
         <?php
             $last_date = null;
-
+$fecha_anterior = '';
             if (!is_null($_VIEW->messages)):
                 foreach ($_VIEW->messages as $msg):
-                    if ($msg->id_source === $SESSION->user_id): ?>
+                    if (!is_null($msg->send_date)){ ?>
 
-                        <li class="enviado">
-                            <img src="<?= $SESSION->user_profile_img ?>?w=40&h=40" alt=""/>
-                            <p><?= $msg->content ?></p>
-                            <div class="extra-mensaje">
+                        <?php
+                        $f= new \DateTime($msg->send_date);
+                        if($fecha_anterior == ''){
+                        $fecha_anterior = new \DateTime($msg->send_date);
+                        echo '<li class="marcador"><div class="marcador-fecha">'.ObtenerFecha($msg->send_date).'</div></li>';}
+                        else{
+                            if($fecha_anterior->format('Y-m-d') !== $f->format('Y-m-d') ){
+                                $fecha_anterior = new \DateTime($msg->send_date);
+                                echo '<li class="marcador"><div class="marcador-fecha">'.ObtenerFecha($msg->send_date).'</div></li>';
+                            }
+                        }
+                    } ?>
+                   <?php if ($msg->id_source === $SESSION->user_id): ?>
+         <li class="enviado">
+
+                            <img src="<?= $SESSION->user_profile_img ?>?w=37&h=37" alt="" class="no-seleccionable"/>
+                            <div class="dir"></div>
+                            <div class="cont-msj">  <p><?= $msg->content ?></p> </div>
+
+                            <div class="extra-mensaje no-seleccionable">
                                 <?php if (!is_null($msg->read_date)): ?>
                                     <div class="extra">
-                                        <span><?= $msg->read_date ?></span>
+                                        <span><?= ObtenerHora($msg->read_date); ?></span>
                                     </div>
                                     <div class="extra icon"><i class="fas fa-check-circle"></i></div>
                                 <?php elseif (!is_null($msg->rcv_date)): ?>
                                     <div class="extra">
-                                        <span><?= $msg->rcv_date ?></span>
+                                        <span><?= ObtenerHora($msg->rcv_date); ?></span>
                                     </div>
                                     <div class="extra icon"><i class="far fa-check-circle"></i></div>
                                 <?php else: ?>
                                     <div class="extra">
-                                        <span><?= $msg->send_date ?></span>
+                                        <span><?= ObtenerHora($msg->send_date); ?></span>
                                     </div>
-                                    <div class="extra icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="extra icon"><i class="far fa-check-circle"></i></div>
+                                <?php endif; ?>
+                            </div>
+                        </li>
+                    <?php else: ?>
+
+                        <li class="recibido">
+                            <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=37&h=37" alt="" class="no-seleccionable"/>
+                            <div class="dir"></div>
+                            <div class="cont-msj"> <p><?= $msg->content ?></p></div>
+                            <div class="extra-mensaje no-seleccionable">
+                                <?php if (!is_null($msg->send_date)): ?>
+                                <div class="extra">
+                                    <span><?= ObtenerHora($msg->send_date); ?></span>
+                                </div>
                                 <?php endif; ?>
                             </div>
                         </li>
 
-                    <?php else: ?>
-                        <li class="recibido">
-                            <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=40&h=40" alt=""/>
-                            <p><?= $msg->content ?></p>
-                        </li>
                     <?php endif;
+
                 endforeach;
             endif;
         ?>
@@ -125,9 +178,17 @@
 
 </div>
 <div class="message-input" id="espacio-de-escritura">
+    <div class="utiles">
+        <div class="emojis" >
+<span class="material-icons" id="btn-emojis">sentiment_satisfied_alt</span>
+
+        </div>
+
+    </div>
     <div class="wrap">
         <label for="contenido-mensaje" style="display: none"></label>
         <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..."/>
         <button class=" btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
     </div>
 </div>
+<script type="application/javascript" src="/files/js/emojis.min.js"></script>

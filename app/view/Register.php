@@ -30,18 +30,16 @@ if (Session::IsLogin()) HttpResponse::Redirect('/');
                 <a href="/Login" class="nav-link "> <span class="material-icons">login</span>Acceder</a>
             </li>
             <li class="nav-list-item">
-                <a href="/Register" class="nav-link activo"><span class="material-icons">
-add
-</span>Resgistrarse</a>
+                <a href="/Register" class="nav-link activo"><span class="material-icons">add</span>Resgistrarse</a>
             </li>
             <li class="nav-list-item">
-                <a href="#" class="nav-link">
+                <a href="/Privacy" class="nav-link">
                     <span class="material-icons">gavel</span>Términos y condiciones</a>
             </li>
             <li class="nav-list-item">
-                <a href="#" class="nav-link"><span class="material-icons">
-people_outline
-</span>Sobre Nosotros</a>
+                <a href="/About" class="nav-link">
+                    <span class="material-icons">people_outline</span>Sobre Nosotros
+                </a>
             </li>
             <li class="nav-list-item">
                 <a href="#" class="nav-link">
@@ -58,8 +56,8 @@ support_agent</span>
 <section class="container-fluid">
     <main class="main">
         <div class="row">
-            <div class="d-sm-none d-md-block col-md-2 col-lg-3"></div>
-            <div class="col-sm-12 col-md-8 col-lg-6">
+            <div class="d-sm-none d-md-block col-md-3 col-lg-4"></div>
+            <div class="col-sm-12 col-md-7 col-lg-5">
                 <div class="card">
                     <div class="card-header">
                         <img src="/files/icon/logo.png" alt="">
@@ -71,9 +69,7 @@ support_agent</span>
                                 <div class="item-form">
                                     <span class="etiqueta-input">Nombres</span>
                                     <div class="input-group">
-                                        <label for="first_name"><span class="material-icons">
-face
-</span></label>
+                                        <label for="first_name"><span class="material-icons">face</span></label>
                                         <input id="first_name" type="text" class="form-control"  required>
 
                                     </div>
@@ -146,6 +142,9 @@ face
                                            minlength="8" maxlength="60" required>
                                 </div>
                             </div>
+                            <div id="contenedor-mensajes">
+
+                            </div>
                             <div class="item-form">
 
                                 <div class="input-group">
@@ -155,6 +154,12 @@ face
                                 </div>
 
                             </div>
+                        </div>
+
+
+
+
+
 
                             <div class="acceder-cuenta">
                                 ¿Ya tienes una cuenta? <a class="" href="/Login">Inicia Sesión</a>
@@ -171,6 +176,6 @@ face
 </section>
 
 <script type="text/javascript" src="/files/js/RegisterPage.js"></script>
-
+<script type="text/javascript" src="/files/sweetalert/sweetalert.min.js"></script>
 </body>
 </html>

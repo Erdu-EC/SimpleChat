@@ -27,6 +27,8 @@
     #Login and Register Routes
     Route::Get("/Login", 'Login.php');
     Route::Get("/Register", 'Register.php');
+    Route::Get("/Privacy", 'Privacy.php');
+    Route::Get("/About", 'About.php');
 
     Route::Post('/action/user/Login', 'LoginController#Login');
     Route::Post('/action/user/Register', 'LoginController#Register');

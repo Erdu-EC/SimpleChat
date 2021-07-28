@@ -7,6 +7,7 @@ $("#sidebarToggle").on("click", function(e) {
     e.preventDefault();
     $("body").toggleClass("sb-sidenav-toggled");
     $("#mi-perfil-sidepanel").toggleClass("no-visible");
+    $(this).toggleClass("activo");
 });
 
 
@@ -20,6 +21,13 @@ $("#btn-sesion").click(function (){
 $('.submit').on('click',function() {
     newMessage();
 });
+
+//cerrar sesion
+$(document).on("click", "#mi-perfil-sidepanel .usuario-perfil-opciones", function (){
+    $(this).toggleClass("activo");
+    $("#mi-perfil-sidepanel .opciones-sesion").toggleClass("inactivo");
+});
+
 
 /*
 
@@ -111,7 +119,7 @@ $("#espacio-de-escritura .wrap input").on("keyup keydown change",function () {
     }
 });
 
-$("#btn-info-contacto").on("click",function (){
+$(document).on("click","#btn-info-contacto",function (){
     $("#frame #espacio-de-chat").addClass("desp-der");
     $("#panelInfoContacto").addClass("mostrar");
     $("#btn-info-contacto").addClass("ocultar");
@@ -119,7 +127,7 @@ $("#btn-info-contacto").on("click",function (){
         $('body').addClass(sb-sidenav-toggled);
     }
 });
-$("#btn-cerrar-contacto").on("click",function (){
+$(document).on("click","#btn-cerrar-contacto",function (){
     $("#frame #espacio-de-chat").removeClass("desp-der");
     $("#panelInfoContacto").removeClass("mostrar");
     $("#btn-info-contacto").removeClass("ocultar");
@@ -136,3 +144,18 @@ $("div#contacts ul#lista-conversaciones").on("click","li.contact",function () {
 
 });
 
+$(document).on("click", "#btn-emojis", function () {
+    var button = $("#btn-emojis");
+    var msj = $("#contenido-mensaje");
+    var picker = new EmojiButton();
+    picker.on('emoji', emoji => {
+        msj.val (msj.val() + emoji);
+    });
+
+
+    picker.togglePicker(button);
+});
+
+$("#seccion-politicas").click(function () {
+ $(location).attr("href","/Privacy");
+});

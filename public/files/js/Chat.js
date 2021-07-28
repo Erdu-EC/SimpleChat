@@ -82,9 +82,9 @@ function EnviarMensaje() {
                     var act = new Date();
                     var hora_envio = '';
                     if (act.getHours() < 13)
-                        hora_envio = act.getHours() + ':' + act.getMinutes() + ' a.m.';
+                        hora_envio = act.getHours() + ':' + act.getMinutes() + ' am';
                     else
-                        hora_envio = (act.getHours() - 12) + ':' + act.getMinutes() + ' p.m.';
+                        hora_envio = (act.getHours() - 12) + ':' + act.getMinutes() + ' pm';
 
                     mensaje.find('.extra-mensaje').empty().append('<div class="extra"><span>' + hora_envio + '</span></div> <div class="extra icon"><span class="material-icons">done</span></div> ');
 
@@ -146,7 +146,8 @@ $(document).on('click', '.btn-agregar-contacto', function () {
 const ObtenerElementoMensaje = mensaje => `
 <li class="enviado">
             <img src="/files/profile/mikeross.png?w=40&h=40" alt="" />
-            <p> ${mensaje}</p>
+            <div class="dir"></div>
+            <div class="cont-msj"><p> ${mensaje}</p> </div>
             <div class="extra-mensaje">
                                 <div class="enviando">
                                 </div>
@@ -156,4 +157,17 @@ const ObtenerElementoMensaje = mensaje => `
 
 function ObtenerElementoMensajeContacto(mensaje) {
 
+}
+
+function ObtenerHoraMensaje( hora) {
+    var act = new Date(hora);
+    var hora_envio='';
+    if (act.getHours() < 13 ) {
+        hora_envio = act.getHours() + ':' + act.getMinutes() + ' am';
+    }
+    else{
+        hora_envio =  (act.getHours()-12) + ':';}
+        act.getMinutes()<10 ? hora_envio+= '0'+ act.getMinutes() +' pm':hora_envio+= act.getMinutes() + ' p.m.';
+console.log(hora_envio);
+return hora_envio;
 }

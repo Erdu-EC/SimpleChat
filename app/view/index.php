@@ -104,7 +104,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </div>
                     </li>
                     <li class="nav-item">
-                        <div class="nav-link" href="index.html">
+                        <div class="nav-link" id="seccion-politicas">
                             <i class="fas fa-file-contract icon-nav-link"></i>
                             <!--
                             <img src="/files/icon/acuerdos.svg" alt="" class="img-fluid">       -->
@@ -129,15 +129,21 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                     <div id="sidepanel">
 
                         <div class="img-perfil no-seleccionable" id="mi-perfil-sidepanel">
-                            <img src="<?= $SESSION_USER_PROFILE_IMG ?>?w=50&h=50" alt="" />
+                            <img src="<?= $SESSION_USER_PROFILE_IMG?>?w=100&h=100" alt="" />
                             <div class="usuario-perfil">
                                 <?= $SESSION_USER_SHORTNAME ?>
                             </div>
 
 <div class="usuario-perfil-opciones">
-    <span class="material-icons">arrow_drop_down</span>
+    <span class="material-icons" title="">arrow_drop_down</span>
+</div>
+<div class="opciones-sesion inactivo">
+<div class="cerrar-sesion">
+
+    <a href="/Logout"> <span class="material-icons" title="Cerrar sesión">logout</span> <p>Cerrar sesión</p></a>
 </div>
 
+</div>
                         </div>
                         <div id="search">
                             <label for="inputBuscarConversacion" class="material-icons">search</i></label>
@@ -189,6 +195,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
 
                     </section>
+
                     <section class="" id="panelInfoContacto">
                         <button id="btn-cerrar-contacto"><span class="material-icons">close</span></button>
                         <div class="contenedor-perfil">
@@ -237,6 +244,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 </div>
 
 <script type="text/javascript" src="/files/js/events.js"></script>
+<script type="text/javascript" src="/files/js/notifications.js"></script>
 <script type="text/javascript" src="/files/js/Chat.js"></script>
 <script type="text/javascript" src="/files/js/Conversations.js"></script>
 <script type="application/javascript" src="/files/js/Contacts.js"></script>
