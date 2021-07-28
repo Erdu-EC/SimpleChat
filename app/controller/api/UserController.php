@@ -23,8 +23,13 @@ class UserController extends Controller
 
 		//Obteniendo datos.
 		$data = (new UserModel(DBAccount::Root))->GetOne((new Session())->user_name, [
-			UserModel::C_ID,
-			UserModel::C_NICK
+			UserModel::C_FNAME,
+			UserModel::C_LNAME,
+			UserModel::C_NICK,
+			UserModel::C_LAST_CONN,
+			UserModel::C_EMAIL,
+			UserModel::C_BIRTH,
+			UserModel::C_GENDER
 		]);
 
 		//Devolviendo.
