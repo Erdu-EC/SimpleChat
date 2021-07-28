@@ -119,7 +119,7 @@ $("#espacio-de-escritura .wrap input").on("keyup keydown change",function () {
     }
 });
 
-$("#btn-info-contacto").on("click",function (){
+$(document).on("click","#btn-info-contacto",function (){
     $("#frame #espacio-de-chat").addClass("desp-der");
     $("#panelInfoContacto").addClass("mostrar");
     $("#btn-info-contacto").addClass("ocultar");
@@ -127,7 +127,7 @@ $("#btn-info-contacto").on("click",function (){
         $('body').addClass(sb-sidenav-toggled);
     }
 });
-$("#btn-cerrar-contacto").on("click",function (){
+$(document).on("click","#btn-cerrar-contacto",function (){
     $("#frame #espacio-de-chat").removeClass("desp-der");
     $("#panelInfoContacto").removeClass("mostrar");
     $("#btn-info-contacto").removeClass("ocultar");
