@@ -10,9 +10,9 @@ function ObtenerMensajes() {
             case 200:
                 console.log(ajax.response);
                 break;
-            case 500:
+            /*case 500:
                 console.log('Sin respuesta.')
-                break;
+                break;*/
         }
     }
 }
