@@ -134,7 +134,7 @@ $(document).on("click","#btn-cerrar-contacto",function (){
     $("#panelInfoContacto").removeClass("mostrar");
     $("#btn-info-contacto").removeClass("ocultar");
     if($('#frame .content').width()< 400){
-        $('body').removeClass(sb-sidenav-toggled);
+        $('body').removeClass('sb-sidenav-toggled');
     }
 });
 
