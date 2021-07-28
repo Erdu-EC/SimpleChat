@@ -28,6 +28,7 @@
     Route::Get("/Login", 'Login.php', [], true);
     Route::Get("/Register", 'Register.php', [], true);
     Route::Get("/Privacy", 'Privacy.php', [], true);
+    Route::Get("/About", 'About.php', [], true);
 
     Route::Post('/action/user/Login', 'LoginController#Login', [], true);
     Route::Post('/action/user/Register', 'LoginController#Register', [], true);

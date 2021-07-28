@@ -37,7 +37,7 @@ if (Session::IsLogin()) HttpResponse::Redirect('/');
                     <span class="material-icons">gavel</span>Términos y condiciones</a>
             </li>
             <li class="nav-list-item">
-                <a href="#" class="nav-link">
+                <a href="/About" class="nav-link">
                     <span class="material-icons">people_outline</span>Sobre Nosotros
                 </a>
             </li>

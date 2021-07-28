@@ -1936,17 +1936,16 @@ body .wrapper {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
   bottom:10%;
-  left:380px;
+  left:400px;
   width: 400px;
   height: auto;
 }
 body .wrapper .emoji-picker{
-border: 1px solid red;
   width: 100%;
   height: auto;
 }
 
-body .wrapper .emoji-picker emoji-picker__preview {
+body .wrapper .emoji-picker .emoji-picker__preview {
   height: 60px;
 }
 .emoji-picker__emojis::-webkit-scrollbar {

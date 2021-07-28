@@ -46,7 +46,7 @@ if (Session::IsLogin())
                     </a>
                 </li>
                 <li class="nav-list-item">
-                    <a href="#" class="nav-link">
+                    <a href="/About" class="nav-link">
                         <span class="material-icons"><span class="material-icons-outlined">support_agent</span></span>Contacto
                     </a>
                 </li>
