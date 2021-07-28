@@ -8,7 +8,7 @@ function ObtenerMensajes() {
 
         switch (ajax.status) {
             case 200:
-                console.log(ajax.response);
+                self.postMessage(ajax.response);
                 break;
             /*case 500:
                 console.log('Sin respuesta.')

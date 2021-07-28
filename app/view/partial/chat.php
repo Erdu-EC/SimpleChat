@@ -180,4 +180,5 @@
         <button class=" btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
     </div>
 </div>
+
 <script type="application/javascript" src="/files/js/emojis.min.js"></script>
