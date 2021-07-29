@@ -125,7 +125,7 @@ $(document).on("click","#btn-info-contacto",function (){
     $("#panelInfoContacto").addClass("mostrar");
     $("#btn-info-contacto").addClass("ocultar");
     if($('#frame .content').width() < 400){
-        $('body').addClass(sb-sidenav-toggled);
+        $('body').addClass('sb-sidenav-toggled');
     }
 });
 
