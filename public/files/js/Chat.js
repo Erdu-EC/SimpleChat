@@ -1,12 +1,3 @@
-$(document).ready(function () {
-    if (window.Worker) {
-        const chatWorker = new Worker('/files/js/Chat-bg.js');
-        chatWorker.onmessage = ev => {
-            console.log(ev.data);
-        }
-    }
-})
-
 $(document).on("keydown", "#espacio-de-escritura", function (e) {
     if (e.which == 13) {
         EnviarMensaje();
@@ -162,9 +153,7 @@ const ObtenerElementoMensaje = mensaje => `
             </div>
     </li>`;
 
-function ObtenerElementoMensajeContacto(mensaje) {
 
-}
 
 function ObtenerHoraMensaje( hora) {
     var act = new Date(hora);

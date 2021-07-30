@@ -56,6 +56,17 @@ class Path
         }
     }
 
+	/**
+	 * @param string Varios parametros string.
+	 */
+	public static function CombineAll() : ?string{
+    	$fullpath = '';
+		foreach (func_get_args() as $path)
+			$fullpath = self::Combine($fullpath, $path);
+
+		return $fullpath;
+	}
+
     public static function ToAbsolute(string $path): string
     {
         $path = self::Fix($path);

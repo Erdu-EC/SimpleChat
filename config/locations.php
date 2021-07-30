@@ -9,6 +9,7 @@ class APP_DIR
 {
     const VIEW = APP_PATH . "/app/view";
     const TEMP = APP_PATH . "/.temp";
+
     const LOG = self::TEMP . "/logs";
     const CACHE = self::TEMP . "/cache";
     const IMAGE_CACHE = self::CACHE . '/img';
@@ -17,6 +18,8 @@ class APP_DIR
         'bg' => '/files/bg',
         'profile' => '/upload/profile'
     ];
+
+    const F_PREPROCESSED_JS = '/files/js';
 }
 
 class APP_URL {
