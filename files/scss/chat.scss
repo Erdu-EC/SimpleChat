@@ -1259,7 +1259,7 @@ width: 100%;
   height: 20px;
   max-width: 40px;
   padding: 0px 5px;
-  background: #0ac630;
+
   border-radius: 25px;
   color: #ffffff;
   justify-content: center;
@@ -1269,6 +1269,13 @@ width: 100%;
   overflow: hidden;
   margin-left: auto;
 }
+#frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes.online {
+  background: #0ac630;
+}
+#frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes.inactivo {
+  background: #f12526;
+}
+
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes.anterior {
   background: #a9a9a9;
 }

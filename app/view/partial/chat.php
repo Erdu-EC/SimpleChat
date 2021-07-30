@@ -182,4 +182,3 @@
     </div>
 </div>
 
-<script type="application/javascript" src="/files/js/emojis.min.js"></script>

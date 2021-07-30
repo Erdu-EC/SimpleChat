@@ -59,7 +59,7 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
         <div class="hora-ult-mesj">
         ${Fecha_hora_ultima_Mensaje(ult_msj)}
 </div>
-        <div class="num-msj-pendientes">
+        <div class="num-msj-pendientes online">
         
         <span>33</span>
         </div>

@@ -12,7 +12,7 @@ menu
 </span>
        <!-- <img src="/files/icon/menu.png" alt="" class="" id="icono-sidebarToggle">-->
     </button>
-<div class="indicador-mensajes">
+<div class="indicador-mensajes" id="icon-indicador-mensaje">
     <i class="fas fa-envelope"></i>
 <div class="num-mensajes">  <span>1</span></div>
 

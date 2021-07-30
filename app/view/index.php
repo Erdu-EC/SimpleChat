@@ -17,6 +17,7 @@ unset($SESSION);
 
     <title><?= APP_NAME ?>: Inicio</title>
     <link rel="stylesheet" href="/files/scss/chat.scss">
+    <link rel="stylesheet" href="/files/vanillatoasts/vanillatoasts.css">
 </head>
 <body class="d-flex flex-column sb-nav-fixed sb-sidenav-toggled">
 <!-- Barra superior -->
@@ -244,12 +245,14 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 </div>
 
 <script type="application/javascript" src="/files/js/MsgItems.js"></script>
-
+<script type="application/javascript" src="/files/js/emojis.min.js"></script>
 <script type="text/javascript" src="/files/js/events.js"></script>
 <script type="text/javascript" src="/files/js/notifications.js"></script>
 <script type="text/javascript" src="/files/js/Chat.js"></script>
 <script type="text/javascript" src="/files/js/Conversations.js"></script>
 <script type="application/javascript" src="/files/js/Contacts.js"></script>
 <script type="application/javascript" src="/files/js/Instant.js"></script>
+
+<script type="application/javascript" src="/files/vanillatoasts/vanillatoasts.js"></script>
 </body>
 </html>

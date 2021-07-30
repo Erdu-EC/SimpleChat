@@ -4,11 +4,12 @@
   right: 0;
   width: 320px;
   font-family: 'Helvetica';
+  z-index: 3000;
 }
 
 .vanillatoasts-toast {
   position: relative;
-  padding: 20px 17px;
+  padding: 10px 20px;
   margin: 20px;
   border-radius: 10px;
   background: #F5F5F5;
@@ -60,7 +61,7 @@
 
 /** toast types */
 .vanillatoasts-success {
-  border-bottom: 2px solid #51C625;
+  border-bottom: 2px solid #0ac630;
 }
 
 .vanillatoasts-warning {
