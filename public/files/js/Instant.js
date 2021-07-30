@@ -11,11 +11,19 @@ $(document).ready(function () {
 
 function TratarMensajes(mensajes) {
     mensajes.forEach(row => {
+        const nombre = row.first_name + " " + row.last_name;
+
         //Si el mensaje es para el contacto de la actual conversación abierta en el chat.
         if (row['id'].toString() === $('#espacio-de-chat .messages').attr('data-usuario')) {
-            const mensaje = $(ObtenerElementoMensajeContacto(ObtenerUrlImagen($('.contact-profile img')), row.content, row.send_date));
+            const foto = ObtenerUrlImagen($('.contact-profile img'));
+            const mensaje = $(ObtenerElementoMensajeContacto(foto, row.content, row.send_date));
             $('#lista-mensajes').append(mensaje);
             mensaje[0].scrollIntoView();
+
+            if (document.visibilityState && document.visibilityState !== "visible")
+                NotifiacionesEscritorio(row['id'], nombre, row.content, foto);
+        }else{
+            NotifiacionesEscritorio(row['id'], nombre, row.content, null);
         }
     })
 }
