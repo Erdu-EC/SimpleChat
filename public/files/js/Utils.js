@@ -46,3 +46,5 @@ function MostrarModal(titulo, contenido, evento_cierre) {
     }).show();
 }
 
+//Obtener Url de imagen.
+const ObtenerUrlImagen = elemento_img => new URL(elemento_img.attr('src'), window.location.origin).pathname;

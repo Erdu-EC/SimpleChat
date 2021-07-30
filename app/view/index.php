@@ -243,7 +243,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     </div>
 </div>
 
-<script type="application/javascript" src="/files/js/MsgItems.js"></script>
+<script type="application/javascript" src="/files/js/chat/MsgItems.js"></script>
 
 <script type="text/javascript" src="/files/js/events.js"></script>
 <script type="text/javascript" src="/files/js/notifications.js"></script>

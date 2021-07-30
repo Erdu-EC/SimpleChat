@@ -117,7 +117,7 @@
 					<?php if ($msg->id_source === $SESSION->user_id): ?>
                     <li class="enviado">
 
-                        <img src="<?= $SESSION->user_profile_img ?>?w=40&h=40" alt="Contacto" class="no-seleccionable"
+                        <img src="<?= $SESSION->user_profile_img ?>?w=40&h=40" alt="Yo" class="no-seleccionable"
                              width="37px" height="37px"/>
                         <div class="dir"></div>
                         <div class="cont-msj"><p><?= $msg->content ?></p></div>
@@ -144,7 +144,7 @@
 				<?php else: ?>
 
                     <li class="recibido">
-                        <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=40&h=40" alt="Yo"
+                        <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=40&h=40" alt="Contacto"
                              class="no-seleccionable" width="37px" height="37px"/>
                         <div class="dir"></div>
                         <div class="cont-msj"><p><?= $msg->content ?></p></div>

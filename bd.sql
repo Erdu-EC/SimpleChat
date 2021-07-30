@@ -280,7 +280,7 @@ BEGIN
     from message_readable mr
              inner join users u on id_source = u.id
     where id_dest = USER_ID
-      and mr.id in (select id from unrcv_messages);
+      and mr.id in (select id from unrcv_messages) order by mr.send_date, u.id;
 END $
 
 DELIMITER ;
