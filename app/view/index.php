@@ -71,7 +71,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
                                     <div class="item-accordion-body">
-                                        <button class="nav-link" >
+                                        <button class="nav-link" id="btn-configuraciones" >
                                            <span class="material-icons">settings</span>
                                             Configuraciones
 
@@ -267,5 +267,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 <script type="application/javascript" src="/files/js/Instant.js"></script>
 
 <script type="application/javascript" src="/files/vanillatoasts/vanillatoasts.js"></script>
+
+<!-- Script para el espacio de Configuraciones-->
+<script type="application/javascript" src="/files/js/Settings.js"></script>
 </body>
 </html>

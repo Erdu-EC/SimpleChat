@@ -17,3 +17,4 @@
             return UserModel::IsValidUserName($user);
         }
     ]);
+    Route::Get('/Settings', '/partial/settings.php');
