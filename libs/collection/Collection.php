@@ -32,9 +32,14 @@
         /**
          * @return array Devuelve una copia del array interno de la colección.
          */
-        public function GetInnerArray(): array
+        public function GetInnerArray(bool $recursive = false): array
         {
-            return $this->items;
+        	$items = $this->items;
+        	if ($recursive){
+        		foreach ($items as $key => $value)
+					$items[$key] = Collection::IsCollection($value) ? $value->GetInnerArray(true) : $value;
+			}
+            return $items;
         }
 
         #Modificar elementos de la coleccion.

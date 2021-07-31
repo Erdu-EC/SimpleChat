@@ -31,7 +31,7 @@ $(document).on("click", "#icon-indicador-mensaje", function () {
 });
 
 
-function NotifiacionesEscritorio(origen, titulo, mensaje, imagen) {
+function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
     var opciones = {
         body: mensaje,
         icon: imagen ?? "/files/icon/icono.png",
