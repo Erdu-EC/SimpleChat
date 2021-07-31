@@ -6,7 +6,8 @@
 
     use HS\app\model\InvitationModel;
     use HS\app\model\MessageModel;
-    use HS\config\DBAccount;
+	use HS\config\APP_URL;
+	use HS\config\DBAccount;
     use HS\libs\core\http\HttpResponse;
     use HS\libs\core\Session;
     use HS\libs\helper\MimeType;
@@ -16,9 +17,6 @@
     {
         public function GetUnreceivedMessagesAndInvitations()
         {
-        	//Desactivando cache de salida HTML.
-			ob_end_clean();
-
         	//Desactivando cache del navegador.
 			HttpResponse::Set('Cache-Control: no-store');
 
@@ -44,8 +42,14 @@
                     //Estableciendo tipo de respuesta.
                     HttpResponse::SetContentType(MimeType::Json);
 
+					//Modificando datos.
+					for($i = 0; $i < count($msg_data); $i++)
+						$msg_data[$i]->profile = APP_URL::OfImageProfile($msg_data[$i]->profile);
+
                     //Regresando datos.
-                    die(json_encode(['messages' => $msg_data->GetInnerArray()]));
+					echo json_encode(['messages' => $msg_data->GetInnerArray(true)]);
+					ob_flush();
+                    exit;
                 }
 
                 sleep(2);

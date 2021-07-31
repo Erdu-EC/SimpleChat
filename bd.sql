@@ -276,11 +276,12 @@ BEGIN
 
     UPDATE message set rcv_date = NOW() where id in (select id from unrcv_messages);
 
-    select u.id, u.first_name, u.last_name, mr.content, mr.send_date
+    select u.id, u.first_name, u.last_name, u.profile_img as profile, mr.content, mr.send_date
     from message_readable mr
              inner join users u on id_source = u.id
     where id_dest = USER_ID
-      and mr.id in (select id from unrcv_messages) order by mr.send_date, u.id;
+      and mr.id in (select id from unrcv_messages)
+    order by mr.send_date, u.id;
 END $
 
 DELIMITER ;
