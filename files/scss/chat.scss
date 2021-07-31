@@ -583,18 +583,21 @@ img.busy {
 .accordion-body {background: #2B364F;
 
   padding:0;}
-.accordion-body .nav-link{
+.accordion-body .item-accordion-body .nav-link{
   padding: 15px 0 15px 25px;
   display: flex;
   link: none;
   color: white;
-
+width: 100%;
 }
-.accordion-body .nav-link span{
+.accordion-body .item-accordion-body .nav-link span{
 
   padding-right: 10px;
 }
-
+.accordion-body .item-accordion-body .nav-link {
+  background: #2B364F;
+  border:none ;
+}
 
 /*fin de barra lateral izquierda*/
 /*#################################/*

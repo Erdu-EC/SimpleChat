@@ -70,11 +70,22 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
                             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
-                                    <a class="nav-link" href="/Logout">
-                                        <span class="material-icons icono-centrado">logout</span>
-                                        Cerrar sesión
+                                    <div class="item-accordion-body">
+                                        <button class="nav-link" >
+                                           <span class="material-icons">settings</span>
+                                            Configuraciones
 
-                                    </a>
+                                        </button>
+                                    </div>
+                                    <div class="item-accordion-body">
+                                        <a class="nav-link" href="/Logout">
+                                            <span class="material-icons icono-centrado">logout</span>
+                                            Cerrar sesión
+
+                                        </a>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -169,6 +180,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </div>
                         <div id="bottom-bar">
                             <button id="nuevo-chat"><img src="/files/icon/nuevo-chat.svg" alt="" id="icon-nuevo-chat" class="img-fluid"> <span>Nuevo chat</span></button>
+
                             <button id="agregar-contacto"><img src="/files/icon/agregar-contacto.svg" alt="" id="icon-agregar-contacto"><span>Agregar contacto</span></button>
                         </div>
                     </div>

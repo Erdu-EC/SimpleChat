@@ -124,18 +124,18 @@ $(document).on("click","#btn-info-contacto",function (){
     $("#frame #espacio-de-chat").addClass("desp-der");
     $("#panelInfoContacto").addClass("mostrar");
     $("#btn-info-contacto").addClass("ocultar");
-    if($('#frame .content').width() < 400){
+  /*  if($('#frame .content').width() < 400){
         $('body').addClass('sb-sidenav-toggled');
-    }
+    }*/
 });
 
 $(document).on("click","#btn-cerrar-contacto",function (){
     $("#frame #espacio-de-chat").removeClass("desp-der");
     $("#panelInfoContacto").removeClass("mostrar");
     $("#btn-info-contacto").removeClass("ocultar");
-    if($('#frame .content').width()< 400){
+  /*  if($('#frame .content').width()< 400){
         $('body').removeClass('sb-sidenav-toggled');
-    }
+    }*/
 });
 
 //detectar tamanos de pantalla y las acciones

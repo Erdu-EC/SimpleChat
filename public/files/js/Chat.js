@@ -73,13 +73,7 @@ function EnviarMensaje() {
             },
             success: function (json) {
                 if (json) {
-                    var act = new Date();
-                    var hora_envio = '';
-                    if (act.getHours() < 13)
-                        hora_envio = act.getHours() + ':' + act.getMinutes() + ' am';
-                    else
-                        hora_envio = (act.getHours() - 12) + ':' + act.getMinutes() + ' pm';
-
+                    var hora_envio = ObtenerHoraMensaje (new Date());
                     mensaje.find('.extra-mensaje').empty().append('<div class="extra"><span>' + hora_envio + '</span></div> <div class="extra icon"><span class="material-icons">done</span></div> ');
 
                     /*Estados de un mensaje enviado
@@ -159,11 +153,25 @@ function ObtenerHoraMensaje( hora) {
     var act = new Date(hora);
     var hora_envio='';
     if (act.getHours() < 13 ) {
-        hora_envio = act.getHours() + ':' + act.getMinutes() + ' am';
+        hora_envio += act.getHours() + ':';
+        hora_envio += (act.getMinutes()<10?'0':'') + act.getMinutes();
+        hora_envio += ' a.m.';
     }
     else{
-        hora_envio =  (act.getHours()-12) + ':';}
-        act.getMinutes()<10 ? hora_envio+= '0'+ act.getMinutes() +' pm':hora_envio+= act.getMinutes() + ' p.m.';
+
+        hora_envio += (act.getHours() - 12) + ':';
+        hora_envio += (act.getMinutes()<10?'0':'') + act.getMinutes();
+        hora_envio += ' p.m.';
+    }
 console.log(hora_envio);
+
 return hora_envio;
+}
+function ObtenerFecha(fecha){
+    if(fecha==null)
+        return "----";
+    var fecha_rec= new Date(fecha);
+var meses = ["En.", "Febr.", "Mzo.", "Abr.","May.","Jun.", "Jul.", "Agto.","Sept.","Oct.","Nov.","Dic."];
+var result = fecha_rec.getDate() +" "+ meses[fecha_rec.getMonth()] + " "+fecha_rec.getUTCFullYear();
+return result;
 }

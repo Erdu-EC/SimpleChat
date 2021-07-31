@@ -33,15 +33,15 @@ function ActualizarInfoContacto(){
 
                 //Rellenando datos.
                 const perfil = contenedor.find('.card.perfil');
-                perfil.find('img').attr('src', null).attr('src', ObtenerUrlImagen($('.contact-profile img')) + "?w=100");
+                                perfil.find('img').attr('src', null).attr('src', ObtenerUrlImagen($('.contact-profile img')) + "?w=100");
                 perfil.find('h5').text(json[0] + " " + json[1]);
                 perfil.find('h6').text("@" + json[2]);
-                perfil.find('small').text(json[3] ?? '');
+                perfil.find('small').text(ObtenerTiempoUltimaConexion(json[3]));
 
                 const extra = contenedor.find('.card.contacto-extra');
                 extra.find('.tel span').text(' - ');
                 extra.find('.email span').text(json[4] ?? ' - ');
-                extra.find('.fn span').text(json[5] ?? ' - ');
+                extra.find('.fn span').text(ObtenerFecha(json[5]));
 
                 let sexo = '';
                 switch (json[6]){
@@ -232,7 +232,7 @@ function ObtenerTiempoUltimaConexion(fecha_hora) {
         return ult_conex = 'Inactivo';
     }
 
-    if (fecha.getDate() == fecha_actual.getDate()) {
+    if (fecha_actual.getDate() - fecha.getDate() == 0) {
         ult_conex += ' hoy'
     } else if (fecha_actual.getDate() - fecha.getDate() == 1) {
         ult_conex += ' ayer'
@@ -243,11 +243,14 @@ function ObtenerTiempoUltimaConexion(fecha_hora) {
     ult_conex += ' a l(as) ';
 
     if (fecha.getHours() < 13) {
-        ult_conex += fecha.getHours() + ':' + fecha.getMinutes() + ' a.m.';
+        ult_conex += fecha.getHours() + ':';
+        ult_conex += (fecha.getMinutes()<10?'0':'') + fecha.getMinutes();
+        ult_conex += ' a.m.';
     } else {
-        ult_conex += (fecha.getHours() - 12) + ':' + fecha.getMinutes() + ' p.m.';
+        ult_conex += (fecha.getHours() - 12) + ':';
+         ult_conex += (fecha.getMinutes()<10?'0':'') + fecha.getMinutes();
+        ult_conex += ' p.m.';
     }
-
-
     return ult_conex;
+
 }
