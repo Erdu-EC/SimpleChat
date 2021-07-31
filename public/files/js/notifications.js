@@ -26,7 +26,7 @@ $(document).ready(function () {
 
 //codigo temporal para emular las notificaciones de escritorio
 $(document).on("click", "#icon-indicador-mensaje", function () {
-    NotifiacionesEscritorio("SimpleChat", "SimpleChat te ha enviado una notificiación", "/files/icon/icono.png");
+    NotificacionesEscritorio("SimpleChat", "SimpleChat te ha enviado una notificiación", "/files/icon/icono.png");
     MensajeNuevo("Harvey Specter", "/files/profile/harveyspecter.png", "Hola");
 });
 

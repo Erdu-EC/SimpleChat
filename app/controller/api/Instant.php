@@ -17,9 +17,6 @@
     {
         public function GetUnreceivedMessagesAndInvitations()
         {
-        	//Desactivando cache de salida HTML.
-			ob_end_clean();
-
         	//Desactivando cache del navegador.
 			HttpResponse::Set('Cache-Control: no-store');
 
@@ -50,7 +47,9 @@
 						$msg_data[$i]->profile = APP_URL::OfImageProfile($msg_data[$i]->profile);
 
                     //Regresando datos.
-                    die(json_encode(['messages' => $msg_data->GetInnerArray(true)]));
+					echo json_encode(['messages' => $msg_data->GetInnerArray(true)]);
+					ob_flush();
+                    exit;
                 }
 
                 sleep(2);
