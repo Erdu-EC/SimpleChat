@@ -34,7 +34,7 @@ $(document).on("click", "#icon-indicador-mensaje", function () {
 function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
     var opciones = {
         body: mensaje,
-        icon: imagen ?? "/files/icon/icono.png",
+        icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
         tag: origen,
         renotify: true
     }
@@ -42,10 +42,10 @@ function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
         new Notification(titulo, opciones);
     } else {
         VanillaToasts.create({
-            title: "SimpleChat",
-            text: "Texto de Notificacion",
+            title: titulo,
+            text: mensaje,
             type: "info",
-            icon: "/files/icon/icono.png",
+            icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
             timeout: 10000,
             close: true
         });
