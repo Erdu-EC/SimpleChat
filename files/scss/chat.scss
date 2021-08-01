@@ -2292,14 +2292,225 @@ font-size: 0.85rem;
 Estilos para las configuraciones del perfil
 ------------------------------------------------------*/
 .contenedor-info-cuenta {
-  margin-top: 40px;
-}
-.item-perfil {
-  height: 40px;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  background: #0c63e4;
-  margin-bottom: 20px;
+  height: 100%;
+  background: #FFFFFF;
+  overflow-y: scroll;
 }
+.contenedor-info-cuenta .row .card {
+margin-right: auto;
+  margin-left: auto;
+  width: 600px;
+  min-width: 400px;
+  display: block;
+  height: auto;
+}
+.contenedor-info-cuenta .row .card .titulo{
+  text-align: center;
+  font-family: Roboto;
+  font-size: 30px;
+  margin-bottom: 40px;
+  margin-left: auto;
+margin-right: auto;
+}
+ #btn-editar-perfil, #btn-guardar-perfil{
+
+  height: 50px;
+  width: 50px;
+  border-radius:50%;
+  position: absolute;
+
+  justify-content: center;
+
+  align-items: center;
+  color: #FFFFFF;
+   background: #3390ec;
+}
+#btn-guardar-perfil {
+  display: none;
+  top: 10px;
+  right: 70px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+#btn-guardar-perfil.activo{
+  display: flex;
+}
+
+#btn-editar-perfil {
+  display: flex;
+  top: 10px;
+  right: 10px;
+
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+
+ #btn-editar-perfil span.material-icons, #btn-guardar-perfil span.material-icons  {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+#btn-editar-perfil.activo{
+  background:#bebebf;
+}
+
+.item-perfil-cuenta, .item-cuenta{
+  height: 54px;
+  width: 100%;
+  background: #FFFFFF;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid #bebebf;
+  cursor: text;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.item-perfil-cuenta:focus, .item-cuenta.editable:hover{
+  border: 2px solid #0c63e4;
+}
+.item-perfil-cuenta .etiqueta-campo, .item-cuenta .etiqueta-campo {
+  position: absolute;
+  z-index: 1;
+  color: #bebebf;
+  font-weight: 600;
+}
+.item-perfil-cuenta .etiqueta-campo.contraida, .item-cuenta .etiqueta-campo.contraida {
+  margin-top: -48px;
+  font-size: 12px;
+  padding:0 5px ;
+  background: #FFFFFF;
+}
+.item-perfil-cuenta.editable {
+  border: 1px solid #5cb30b;
+}
+.item-perfil-cuenta .atributo-perfil,.item-cuenta .campo-cuenta  {
+display: inline;
+  width: 100%;
+  font-weight: 600;
+  z-index: 2;
+  background: transparent;
+}
+.item-perfil-cuenta.editable .atributo-perfil {
+  border-bottom: 2px solid #5cb30b;
+}
+
+.item-perfil-cuenta .atributo-perfil:focus, .item-cuenta .campo-cuenta:focus  {
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #0c63e4;
+}
+/*
+.item-perfil-cuenta .editar {
+
+  width: 40px;
+  height: 40px;
+  display: flex;
+
+  border-radius: 50%;
+  padding: 0px;
+}
+.item-perfil-cuenta .editar.activo{
+  color: #0c63e4;
+  background:#E6EAEA ;
+}
+
+
+.item-perfil-cuenta .editar span.material-icons {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+ */
+
+.item-perfil-cuenta:hover{
+  border: 1px solid #0c63e4;
+}
+.item-perfil-cuenta:hover .etiqueta-campo{
+  color: #0c63e4;
+}
+.img-perfil-cuenta {
+  height: auto;
+  width: auto;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.img-perfil-cuenta input {
+ display: none;
+}
+.img-perfil-cuenta .opciones {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: absolute;
+  background: transparent;
+  top:85px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+
+}
+.img-perfil-cuenta .opciones span.material-icons {
+font-size: 40px;
+}
+.img-perfil-cuenta .opciones:hover{
+  background: rgba(0,0,0,0.45);
+  color: #FFFFFF;
+}
+.img-perfil-cuenta #foto-perfil-cuenta {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  border: none;
+}
+.contenedor-info-cuenta .conf-acceso{
+  display: block;
+  margin-top: 20px;
+  padding-top: 30px;
+}
+.conf-acceso form .encabezado {
+  position: absolute;
+  background: #FFFFFF;
+  font-weight: 600;
+ color: #8e8e8f;
+  top:-20px;
+  padding: 10px;
+}
+.checkbox-cambio-clave {
+  display: flex;
+  align-items: center;
+  height: 60px;
+
+}
+#check-cambiar-clave {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
+#check-cambiar-clave {
+  background: #0c63e4;
+}
+.item-cuenta.editable .etiqueta-campo {
+  margin-top: -48px;
+  font-size: 12px;
+  padding:0 5px ;
+  background: #FFFFFF;
+}
+
+
 /*------------------------------------------------------
 Fin de estilos para las configuraciones del perfil
 ------------------------------------------------------*/
