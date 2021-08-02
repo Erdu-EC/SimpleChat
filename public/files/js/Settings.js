@@ -20,19 +20,30 @@ $(document).on("click", "#btn-editar-perfil", function () {
         }
     }
     $(this).toggleClass("activo");
-
-    $(this).hasClass("activo")? $("#btn-editar-perfil").html('<span class="material-icons" title="Cancelar">   close</span>'):$("#btn-editar-perfil").html('<span class="material-icons" title="Editar">edit</span>');
-
     var elemento= $(".item-perfil-cuenta .atributo-perfil");
     var padre= elemento.parent();
-    if(elemento.attr("readonly")){
-        padre.removeClass("editable");
+    if($(this).hasClass("activo")){
+        $("#btn-editar-perfil").html('<span class="material-icons" title="Cancelar">   close</span>')
+        $("#valor-genero").addClass("ocultar");
+        $("#genero").removeClass("ocultar");
+        $("#valor-fecha_nac").addClass("ocultar");
+        $("#fecha_nac").removeClass("ocultar");
+        padre.addClass("editable");
         elemento.removeAttr("readonly");
     }
-    else{
+    else
+    {
+        $("#btn-editar-perfil").html('<span class="material-icons" title="Editar">edit</span>');
+        $("#valor-genero").removeClass("ocultar");
+        $("#genero").addClass("ocultar");
+        $("#valor-fecha_nac").removeClass("ocultar");
+        $("#fecha_nac").addClass("ocultar");
+
         elemento.attr("readonly",true);
-        padre.addClass("editable");
+        padre.removeClass("editable");
+
     }
+
 });
 //Evento que se ejecuta al dar click en check para cambiar contrasena
 $(document).on("change", "#check-cambiar-clave", function () {

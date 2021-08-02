@@ -405,15 +405,14 @@ display: flex;
   width:100%;
 }
 .navbar-brand {
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
   margin-right: 5px;
-  font-size: 1.25rem;
-  line-height: inherit;
-  white-space: nowrap;
+
   float: right;
-  width: 225px;
-  padding-left: 5px;
+ padding: 0px;
+}
+.navbar-brand img {
+  height: 55px;
+  padding: 0px;
 }
 /*-------------------------------------------*/
 body::-webkit-scrollbar{
@@ -2396,17 +2395,18 @@ margin-right: auto;
   color: #bebebf;
   font-weight: 600;
 }
-.item-perfil-cuenta .etiqueta-campo.contraida, .item-cuenta .etiqueta-campo.contraida {
-  margin-top: -48px;
+.item-perfil-cuenta .etiqueta-campo.contraida, .item-cuenta.editable .etiqueta-campo{
+  margin-top: -54px;
+  margin-left: -10px;
   font-size: 12px;
-  padding:0 5px ;
+  padding:0 10px ;
   background: #FFFFFF;
 }
 .item-perfil-cuenta.editable {
   border: 1px solid #198754;
 }
 .item-perfil-cuenta .atributo-perfil,.item-cuenta .campo-cuenta  {
-display: inline;
+
   width: 100%;
   font-weight: 600;
   z-index: 2;
@@ -2422,6 +2422,9 @@ display: inline;
   border: none;
   outline: none;
   border-bottom: 2px solid #0c63e4;
+}
+.ocultar {
+  display: none;
 }
 /*
 .item-perfil-cuenta .editar {
@@ -2521,12 +2524,9 @@ font-size: 40px;
 .item-cuenta.editable {
   border: 1px solid #0c63e4;
 }
+
 .item-cuenta.editable .etiqueta-campo {
-  margin-top: -48px;
-  font-size: 12px;
-  padding:0 5px ;
-  background: #FFFFFF;
-  color: #0c63e4;
+   color: #0c63e4;
 }
 .item-cuenta.editable .campo-cuenta{
   border-bottom: 1px solid #0c63e4;

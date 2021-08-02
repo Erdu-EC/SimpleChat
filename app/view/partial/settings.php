@@ -42,7 +42,7 @@ photo_camera
                     <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7">
                         <div class="item-perfil-cuenta">
                             <span class="etiqueta-campo contraida">Nombres</span>
-                            <input type="text" id="nombres" class="atributo-perfil"  readonly minlength="1">
+                            <input type="text" id="nombres" class="atributo-perfil"  readonly minlength="1" value="Michael">
 
 
                         </div>
@@ -53,14 +53,24 @@ photo_camera
                         </div>
                         <div class="item-perfil-cuenta">
                             <span class="etiqueta-campo contraida">Fecha de Nacimiento</span>
-                            <input type="date" id="fecha_nac" class="atributo-perfil " value="16 de May. 1986" readonly>
+                            <div id="valor-fecha_nac" class="atributo-perfil">
+                                16 de May. 1986
+                            </div>
+                            <input type="date" id="fecha_nac" class="atributo-perfil ocultar" value="" readonly>
 
                         </div>
+
                         <div class="item-perfil-cuenta">
                             <span class="etiqueta-campo contraida">Género</span>
-                            <div id="genero" class="atributo-perfil ">
+                            <div id="valor-genero" class="atributo-perfil">
                                 Masculino
                             </div>
+                            <select name="genero" id="genero" class="atributo-perfil ocultar">
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                                <option value="O">Otro</option>
+                                <option value="D">Sin especificar</option>
+                            </select>
 
                         </div>
                     </div>
