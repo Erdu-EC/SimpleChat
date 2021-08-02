@@ -6,6 +6,12 @@ use HS\libs\core\Session;
 use const HS\config\APP_NAME;
 $SESSION = new Session();
 ?>
+<div class="guardar" id="btn-guardar-perfil" title="Guardar cambios">
+            <span class="material-icons">
+            save
+            </span>
+</div>
+
 <div class="contenedor-info-cuenta no-seleccionable">
     <div class="row">
         <div class="card">
@@ -13,11 +19,7 @@ $SESSION = new Session();
                 <span >Perfil</span>
             </div>
 
-            <div class="guardar" id="btn-guardar-perfil" title="Guardar cambios">
-            <span class="material-icons">
-            save
-            </span>
-            </div>
+
             <div class="editar" id="btn-editar-perfil" >
                 <span class="material-icons" title="Editar">edit</span>
             </div>
@@ -40,15 +42,24 @@ photo_camera
                     <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7">
                         <div class="item-perfil-cuenta">
                             <span class="etiqueta-campo contraida">Nombres</span>
-                            <div id="nombres" class="atributo-perfil">
-                                Michael James
-                            </div>
+                            <input type="text" id="nombres" class="atributo-perfil"  readonly minlength="1">
+
 
                         </div>
                         <div class="item-perfil-cuenta">
                             <span class="etiqueta-campo contraida">Apellidos</span>
-                            <div id="apellidos" class="atributo-perfil ">
-                                Ross
+                            <input type="text" id="apellidos" class="atributo-perfil " value="Ross" minlength="1" readonly>
+
+                        </div>
+                        <div class="item-perfil-cuenta">
+                            <span class="etiqueta-campo contraida">Fecha de Nacimiento</span>
+                            <input type="date" id="fecha_nac" class="atributo-perfil " value="16 de May. 1986" readonly>
+
+                        </div>
+                        <div class="item-perfil-cuenta">
+                            <span class="etiqueta-campo contraida">Género</span>
+                            <div id="genero" class="atributo-perfil ">
+                                Masculino
                             </div>
 
                         </div>
@@ -56,11 +67,6 @@ photo_camera
 
 
 
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="item-perfil-cuenta"></div>
-                        <div class="item-perfil-cuenta"></div></div>
                 </div>
             </form>
         </div>
@@ -83,27 +89,20 @@ photo_camera
                <div class="col-12">
                    <div class="item-cuenta">
                        <span class="etiqueta-campo ">Contraseña anterior</span>
-                       <div id="clave-ant" class="campo-cuenta">
-
-                       </div>
+                       <input type="password" id="clave-ant" class="campo-cuenta" readonly>
 
                    </div>
                </div>
                <div class="col-12">
                    <div class="item-cuenta">
                        <span class="etiqueta-campo ">Nueva contraseña</span>
-                       <div id="clave-nuev" class="campo-cuenta">
-
-                       </div>
-
+                       <input type="password" id="clave-nuev" class="campo-cuenta" readonly>
                    </div>
                </div>
                <div class="col-12">
                    <div class="item-cuenta">
                        <span class="etiqueta-campo ">Repita la nueva Contraseña</span>
-                       <div id="clave-nuev-rep" class="campo-cuenta">
-
-                       </div>
+                       <input type="password" id="clave-nuev-rep" class="campo-cuenta" readonly>
 
                    </div>
                </div>

@@ -2292,13 +2292,15 @@ font-size: 0.85rem;
 Estilos para las configuraciones del perfil
 ------------------------------------------------------*/
 .contenedor-info-cuenta {
-  padding-top: 40px;
+  padding-top: 10px;
+  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   background: #FFFFFF;
   overflow-y: scroll;
+  z-index: 1;
 }
 .contenedor-info-cuenta .row .card {
 margin-right: auto;
@@ -2328,22 +2330,24 @@ margin-right: auto;
   align-items: center;
   color: #FFFFFF;
    background: #3390ec;
+   z-index: 5;
+   cursor: pointer;
 }
+
 #btn-guardar-perfil {
   display: none;
-  top: 10px;
-  right: 70px;
+  right: 150px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 #btn-guardar-perfil.activo{
   display: flex;
+  bottom:50px;
 }
 
 #btn-editar-perfil {
   display: flex;
   top: 10px;
   right: 10px;
-
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 
@@ -2360,6 +2364,15 @@ margin-right: auto;
   background:#bebebf;
 }
 
+@media screen  and (max-width: 735px ){
+  #btn-editar-perfil{
+    right: 20px;
+  }
+  #btn-guardar-perfil{
+    right: 80px;
+  }
+}
+
 .item-perfil-cuenta, .item-cuenta{
   height: 54px;
   width: 100%;
@@ -2374,7 +2387,7 @@ margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
 }
-.item-perfil-cuenta:focus, .item-cuenta.editable:hover{
+.item-perfil-cuenta:focus{
   border: 2px solid #0c63e4;
 }
 .item-perfil-cuenta .etiqueta-campo, .item-cuenta .etiqueta-campo {
@@ -2390,7 +2403,7 @@ margin-right: auto;
   background: #FFFFFF;
 }
 .item-perfil-cuenta.editable {
-  border: 1px solid #5cb30b;
+  border: 1px solid #198754;
 }
 .item-perfil-cuenta .atributo-perfil,.item-cuenta .campo-cuenta  {
 display: inline;
@@ -2398,12 +2411,14 @@ display: inline;
   font-weight: 600;
   z-index: 2;
   background: transparent;
+  outline: none;
+  border: none;
 }
 .item-perfil-cuenta.editable .atributo-perfil {
-  border-bottom: 2px solid #5cb30b;
+  border-bottom: 2px solid #198754;
 }
 
-.item-perfil-cuenta .atributo-perfil:focus, .item-cuenta .campo-cuenta:focus  {
+.item-perfil-cuenta .atributo-perfil:focus {
   border: none;
   outline: none;
   border-bottom: 2px solid #0c63e4;
@@ -2503,11 +2518,18 @@ font-size: 40px;
 #check-cambiar-clave {
   background: #0c63e4;
 }
+.item-cuenta.editable {
+  border: 1px solid #0c63e4;
+}
 .item-cuenta.editable .etiqueta-campo {
   margin-top: -48px;
   font-size: 12px;
   padding:0 5px ;
   background: #FFFFFF;
+  color: #0c63e4;
+}
+.item-cuenta.editable .campo-cuenta{
+  border-bottom: 1px solid #0c63e4;
 }
 
 
