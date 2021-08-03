@@ -1935,7 +1935,7 @@ width: 35px;
 }
 #cuadro-emojis .tab-emoji .opc-tab-emoji:hover {
   border-radius: 50%;
-background: #f5f5f5;;
+background: #f5f5f5;
 }
 
 body .wrapper {
@@ -2372,6 +2372,103 @@ margin-right: auto;
   }
 }
 
+/*
+Foto de perfil y opciones
+*/
+
+.item-perfil-cuenta:hover{
+  border: 1px solid #0c63e4;
+}
+.item-perfil-cuenta:hover .etiqueta-campo{
+  color: #0c63e4;
+}
+.img-perfil-cuenta {
+  height: auto;
+  width: auto;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-self: center;
+  display: flex;
+  cursor: pointer;
+}
+.img-perfil-cuenta input {
+  display: none;
+}
+.img-perfil-cuenta .opciones {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: absolute;
+  background: transparent;
+  top:85px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+
+}
+.img-perfil-cuenta .opciones span.material-icons {
+  font-size: 40px;
+}
+.img-perfil-cuenta .opciones:hover{
+  background: rgba(0,0,0,0.45);
+  color: #FFFFFF;
+}
+.img-perfil-cuenta #foto-perfil-cuenta {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  border: none;
+}
+
+.img-perfil-cuenta .contenedor-opciones {
+  display: flex;
+  position: absolute;
+  z-index: 4000;
+  top:150px;
+  left: 180px;
+  background: #FFFFFF;
+ width: 160px;
+  padding: 10px 0;
+  border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.img-perfil-cuenta .contenedor-opciones ul{
+  list-style: none;
+padding: 0;
+  width: 100%;
+  margin: 0;
+}
+.img-perfil-cuenta .contenedor-opciones ul li {
+  padding:  10px 20px;
+
+}
+.img-perfil-cuenta .contenedor-opciones ul li:hover{
+  background: #f5f5f5;
+}
+
+
+.modal-fullscreen .modal-content{
+
+  background: transparent;
+}
+.modal-fullscreen .modal-content .modal-header {
+  color: #FFFFFF;
+  border: none;
+}
+.modal-fullscreen .modal-content .modal-header .btn-close {
+  color: #FFFFFF;
+}
+.modal-fullscreen .modal-content .modal-body {
+  justify-content: center;
+  display: flex;
+}
+  /*
+  Fin Foto de perfil y opciones
+  */
+
+
 .item-perfil-cuenta, .item-cuenta{
   height: 54px;
   width: 100%;
@@ -2452,48 +2549,6 @@ margin-right: auto;
 }
  */
 
-.item-perfil-cuenta:hover{
-  border: 1px solid #0c63e4;
-}
-.item-perfil-cuenta:hover .etiqueta-campo{
-  color: #0c63e4;
-}
-.img-perfil-cuenta {
-  height: auto;
-  width: auto;
-  margin-bottom: 20px;
-  justify-content: center;
-}
-.img-perfil-cuenta input {
- display: none;
-}
-.img-perfil-cuenta .opciones {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  position: absolute;
-  background: transparent;
-  top:85px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: transparent;
-
-}
-.img-perfil-cuenta .opciones span.material-icons {
-font-size: 40px;
-}
-.img-perfil-cuenta .opciones:hover{
-  background: rgba(0,0,0,0.45);
-  color: #FFFFFF;
-}
-.img-perfil-cuenta #foto-perfil-cuenta {
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
-  border: none;
-}
 .contenedor-info-cuenta .conf-acceso{
   display: block;
   margin-top: 20px;

@@ -268,7 +268,6 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
 <script type="application/javascript" src="/files/vanillatoasts/vanillatoasts.js"></script>
 
-<!-- Script para el espacio de Configuraciones-->
-<script type="application/javascript" src="/files/js/Settings.js"></script>
+
 </body>
 </html>

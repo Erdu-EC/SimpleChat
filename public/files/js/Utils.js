@@ -22,16 +22,16 @@ function ObtenerContenedorHtmlDeAnimacionDeCarga(width, height, clase = '') {
     `
 }
 
-function MostrarModal(titulo, contenido, evento_cierre) {
+function MostrarModal(titulo, contenido, evento_cierre, clases, color_boton="") {
     const elemento = $('<div>', {
-        class: 'modal',
+        class: 'modal ' ,
         tabIndex: '-1',
         html: `
-            <div class="modal-dialog">
+            <div class="modal-dialog ${clases}">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">${titulo}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close ${color_boton}" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <p>${contenido}</p>

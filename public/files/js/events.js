@@ -160,3 +160,15 @@ $(document).on("click", "#btn-emojis", function () {
 $("#seccion-politicas").click(function () {
  $(location).attr("href","/Privacy");
 });
+//configuraciones de cuenta
+$(document).on("click", "#btn-configuraciones", function () {
+    CargarEspacioConfiguraciones();
+});
+
+function CargarEspacioConfiguraciones(){
+    $("body").addClass("sb-sidenav-toggled");
+    $('#espacio-de-chat').html(
+        ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
+    ).load(`/Settings`);
+
+};

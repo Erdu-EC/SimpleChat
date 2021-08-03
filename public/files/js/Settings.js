@@ -1,14 +1,4 @@
-$(document).on("click", "#btn-configuraciones", function () {
-    CargarEspacioConfiguraciones();
-});
 
-function CargarEspacioConfiguraciones(){
-    $("body").addClass("sb-sidenav-toggled");
-    $('#espacio-de-chat').html(
-        ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
-    ).load(`/Settings`);
-
-};
 //Evento que se ejecuta al dar click sobre Editar informacion de perfil
 $(document).on("click", "#btn-editar-perfil", function () {
     if(!$("#btn-guardar-perfil").hasClass("activo")){
@@ -74,4 +64,34 @@ $(document).on("change", "#check-cambiar-clave", function () {
 $(document).on("click", ".item-cuenta.editable", function (){
     $(this).children("campo-cuenta").focus();
     console.log( $(this).children("campo-cuenta").className);
+});
+
+$(document).on("click", "#btn-opciones-perfil", function (e) {
+    $("#list-opciones").remove();
+    var posX = (e.pageX - $(this).parent().offset().left)+20;
+    var posY = (e.pageY - $(this).parent().offset().top)+80;
+           var caja = '<div class="contenedor-opciones" id="list-opciones"><ul> <li id="opc-ver-foto">Ver foto</li> <li id="opc-subir-foto">Subir foto</li></ul> </div>';
+
+        $(this).after(caja);
+    $("#list-opciones").css("left",posX);
+    $("#list-opciones").css("top",posY);
+
+});
+
+$(document).on("click",function(e) {
+
+    var container = $("#btn-opciones-perfil");
+
+    if (!container.is(e.target) && container.has(e.target).length === 0 && container.length) {
+        if ($("#list-opciones").length){   $("#list-opciones").remove();
+        }
+    }
+});
+
+$(document).on("click", "#opc-ver-foto", function (){
+    MostrarModal("Mike Ross", '<img src="/files/profile/louislitt.png" alt="" />',"", 'modal-fullscreen', "btn-close-white");
+});
+
+$(document).on('click',"#opc-subir-foto" ,function () {
+    $("#nueva-foto-perfil").trigger("click");
 });

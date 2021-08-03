@@ -28,12 +28,15 @@ $SESSION = new Session();
                     <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
                         <div class="img-perfil-cuenta">
                             <img id="foto-perfil-cuenta" src="/files/profile/mikeross.png?w=200&h=200" class="" alt="" />
-                            <div class="opciones">
-  <span class="material-icons">
-photo_camera
-</span>
+                            <div class="opciones" id="btn-opciones-perfil">
+                                  <span class="material-icons">
+                                photo_camera
+                                </span>
+
                             </div>
-                            <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png">
+
+
+                            <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" id="nueva-foto-perfil">
 
 
                         </div>
@@ -123,3 +126,5 @@ photo_camera
    </div>
 
 </div>
+<!-- Script para el espacio de Configuraciones-->
+<script type="application/javascript" src="/files/js/Settings.js"></script>
