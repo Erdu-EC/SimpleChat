@@ -2300,6 +2300,8 @@ Estilos para las configuraciones del perfil
   background: #FFFFFF;
   overflow-y: scroll;
   z-index: 1;
+
+
 }
 .contenedor-info-cuenta .row .card {
 margin-right: auto;
@@ -2312,10 +2314,11 @@ margin-right: auto;
 .contenedor-info-cuenta .row .card .titulo{
   text-align: center;
   font-family: Roboto;
-  font-size: 30px;
+  font-size: 25px;
   margin-bottom: 40px;
   margin-left: auto;
 margin-right: auto;
+  font-family: "proxima-nova", "Source Sans Pro", sans-serif;
 }
  #btn-editar-perfil, #btn-guardar-perfil{
 
@@ -2482,6 +2485,8 @@ padding: 0;
   align-content: center;
   padding-left: 20px;
   padding-right: 20px;
+  font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+  font-size: 14px;
 }
 .item-perfil-cuenta:focus{
   border: 2px solid #0c63e4;
@@ -2500,7 +2505,7 @@ padding: 0;
   background: #FFFFFF;
 }
 .item-perfil-cuenta.editable {
-  border: 1px solid #198754;
+  border: 1px solid #0c63e4;
 }
 .item-perfil-cuenta .atributo-perfil,.item-cuenta .campo-cuenta  {
 
@@ -2512,14 +2517,14 @@ padding: 0;
   border: none;
 }
 .item-perfil-cuenta.editable .atributo-perfil {
-  border-bottom: 2px solid #198754;
+  border-bottom: 2px solid #0c63e4;
 }
-
-.item-perfil-cuenta .atributo-perfil:focus {
+/*
+.item-perfil-cuenta.editable .atributo-perfil:focus {
   border: none;
   outline: none;
   border-bottom: 2px solid #0c63e4;
-}
+}*/
 .ocultar {
   display: none;
 }

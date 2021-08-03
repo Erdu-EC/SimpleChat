@@ -27,7 +27,7 @@ $SESSION = new Session();
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
                         <div class="img-perfil-cuenta">
-                            <img id="foto-perfil-cuenta" src="/files/profile/mikeross.png?w=200&h=200" class="" alt="" />
+                            <img id="foto-perfil-cuenta" src="/files/profile/mikeross.png?w=200&h=200" class="" alt="" data-fuente="/files/profile/mikeross.png"/>
                             <div class="opciones" id="btn-opciones-perfil">
                                   <span class="material-icons">
                                 photo_camera
@@ -59,7 +59,7 @@ $SESSION = new Session();
                             <div id="valor-fecha_nac" class="atributo-perfil">
                                 16 de May. 1986
                             </div>
-                            <input type="date" id="fecha_nac" class="atributo-perfil ocultar" value="" readonly>
+                            <input type="date" id="fecha_nac" class="atributo-perfil ocultar" value="" readonly <?php echo 'max="',date('Y-m-d'),'"';?>>
 
                         </div>
 

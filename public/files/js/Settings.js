@@ -89,9 +89,33 @@ $(document).on("click",function(e) {
 });
 
 $(document).on("click", "#opc-ver-foto", function (){
-    MostrarModal("Mike Ross", '<img src="/files/profile/louislitt.png" alt="" />',"", 'modal-fullscreen', "btn-close-white");
+    var imagen = $("#foto-perfil-cuenta").attr("data-fuente");
+    console.log(imagen);
+    MostrarModal("Mike Ross", '<img src="'+imagen+'" alt="" />',"", 'modal-fullscreen', "btn-close-white");
 });
 
 $(document).on('click',"#opc-subir-foto" ,function () {
     $("#nueva-foto-perfil").trigger("click");
+});
+$(document).on('change',"#nueva-foto-perfil" ,function () {
+        $imagenPrevisualizacion =  $("#foto-perfil-cuenta");
+
+        // Los archivos seleccionados, pueden ser muchos o uno
+        const archivos = document.getElementById('nueva-foto-perfil').files;
+
+        if (archivos.length != 0 ) {
+
+            let reader = new FileReader();
+            reader.readAsDataURL(archivos[0]);
+
+            reader.onload = function () {
+                $imagenPrevisualizacion.attr("src", reader.result);
+                console.log("estoy dentro");
+            };
+
+            return;
+        }
+
+
+
 });
