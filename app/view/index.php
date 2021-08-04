@@ -155,6 +155,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     <a href="/Logout"> <span class="material-icons" title="Cerrar sesión">logout</span> <p>Cerrar sesión</p></a>
 </div>
 
+
 </div>
                         </div>
                         <div id="search">
@@ -163,25 +164,13 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </div>
                         <div id="contacts">
                             <ul class="no-seleccionable" id="lista-conversaciones">
-                                <!--
-                               <li class="contact">
-                                   <div class="wrap">
-                                       <span class="contact-status online"></span>
-                                       <img src="/files/profile/louislitt.png?w=100&h=100" alt="" />
-                                       <div class="meta">
-                                           <p class="name">Louis Litt</p>
-                                           <p class="preview">You just got LITT up, Mike.</p>
-                                       </div>
-                                   </div>
-                               </li>
 
-                               -->
                             </ul>
                         </div>
                         <div id="bottom-bar">
                             <button id="nuevo-chat"><img src="/files/icon/nuevo-chat.svg" alt="" id="icon-nuevo-chat" class="img-fluid"> <span>Nuevo chat</span></button>
 
-                            <button id="agregar-contacto"><img src="/files/icon/agregar-contacto.svg" alt="" id="icon-agregar-contacto"><span>Agregar contacto</span></button>
+                            <!-- <button id="agregar-contacto"><img src="/files/icon/agregar-contacto.svg" alt="" id="icon-agregar-contacto"><span>Agregar contacto</span></button>-->
                         </div>
                     </div>
                     <section class="content" id="espacio-de-chat">

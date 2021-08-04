@@ -1355,7 +1355,7 @@ width: 100%;
 #frame #sidepanel #bottom-bar button {
   float: left;
   border: none;
-  width: 50%;
+  width: 100%;
   padding: 10px 0;
   background: #32465a;
   color: #f5f5f5;
@@ -1374,6 +1374,7 @@ width: 100%;
   #frame #sidepanel #bottom-bar button {
     float: none;
     width: 100%;
+    height: 60px;
     padding: 0;
   }
   #icon-nuevo-chat{
@@ -2487,7 +2488,7 @@ padding: 0;
   padding-right: 20px;
   font-family: "proxima-nova", "Source Sans Pro", sans-serif;
   font-size: 14px;
-}
+  }
 .item-perfil-cuenta:focus{
   border: 2px solid #0c63e4;
 }
@@ -2515,45 +2516,16 @@ padding: 0;
   background: transparent;
   outline: none;
   border: none;
+  color: rgba(0,0,0,0.6);
 }
 .item-perfil-cuenta.editable .atributo-perfil {
   border-bottom: 2px solid #0c63e4;
+  color: #000000;
 }
-/*
-.item-perfil-cuenta.editable .atributo-perfil:focus {
-  border: none;
-  outline: none;
-  border-bottom: 2px solid #0c63e4;
-}*/
+
 .ocultar {
   display: none;
 }
-/*
-.item-perfil-cuenta .editar {
-
-  width: 40px;
-  height: 40px;
-  display: flex;
-
-  border-radius: 50%;
-  padding: 0px;
-}
-.item-perfil-cuenta .editar.activo{
-  color: #0c63e4;
-  background:#E6EAEA ;
-}
-
-
-.item-perfil-cuenta .editar span.material-icons {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-}
- */
-
 .contenedor-info-cuenta .conf-acceso{
   display: block;
   margin-top: 20px;
@@ -2563,7 +2535,7 @@ padding: 0;
   position: absolute;
   background: #FFFFFF;
   font-weight: 600;
- color: #8e8e8f;
+ color: rgba(0,0,0,0.6);
   top:-20px;
   padding: 10px;
 }
@@ -2589,9 +2561,22 @@ padding: 0;
    color: #0c63e4;
 }
 .item-cuenta.editable .campo-cuenta{
-  border-bottom: 1px solid #0c63e4;
+  border-bottom: 2px solid #0c63e4;
+  color: #000000;
 }
+.error {
+  width: 100%;
+  background: #fe447d;
+  color: #ffffff;
+  font-size: 0.75rem;
+  padding: 10px;
+  margin-bottom: 20px;
+  display: flex;
 
+}
+#error-claves span.material-icons{
+  margin-right: 5px;
+}
 
 /*------------------------------------------------------
 Fin de estilos para las configuraciones del perfil

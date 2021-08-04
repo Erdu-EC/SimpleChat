@@ -57,13 +57,13 @@ $(document).on("change", "#check-cambiar-clave", function () {
             var padre = $(this).parent();
             elemento.attr("readonly",true).val("");
             padre.removeClass("editable");
-            console.log("El checkbox esta a false");
         });
+        $(".form-conf-acceso .row div .error").remove();
     }
 });
 $(document).on("click", ".item-cuenta.editable", function (){
     $(this).children("campo-cuenta").focus();
-    console.log( $(this).children("campo-cuenta").className);
+
 });
 
 $(document).on("click", "#btn-opciones-perfil", function (e) {
@@ -90,7 +90,6 @@ $(document).on("click",function(e) {
 
 $(document).on("click", "#opc-ver-foto", function (){
     var imagen = $("#foto-perfil-cuenta").attr("data-fuente");
-    console.log(imagen);
     MostrarModal("Mike Ross", '<img src="'+imagen+'" alt="" />',"", 'modal-fullscreen', "btn-close-white");
 });
 
@@ -99,8 +98,6 @@ $(document).on('click',"#opc-subir-foto" ,function () {
 });
 $(document).on('change',"#nueva-foto-perfil" ,function () {
         $imagenPrevisualizacion =  $("#foto-perfil-cuenta");
-
-        // Los archivos seleccionados, pueden ser muchos o uno
         const archivos = document.getElementById('nueva-foto-perfil').files;
 
         if (archivos.length != 0 ) {
@@ -110,12 +107,35 @@ $(document).on('change',"#nueva-foto-perfil" ,function () {
 
             reader.onload = function () {
                 $imagenPrevisualizacion.attr("src", reader.result);
-                console.log("estoy dentro");
             };
 
             return;
         }
-
-
-
 });
+
+
+$("#clave-nuev-rep").on("change",  function () {
+    if ($("#clave-nuev").val() != ""){
+        ClavesIguales();
+    }
+});
+$("#clave-nuev").on("change",  function () {
+    if ($("#clave-nuev-rep").val() != ""){
+        ClavesIguales();
+    }
+});
+function ClavesIguales() {
+    var clave = $("#clave-nuev");
+    var clave_rep = $("#clave-nuev-rep");
+
+    if(clave.val()!= clave_rep.val()){
+        if($("#error-claves").length == 0){
+        $("#cont-clave-nuev-rep").after(' <div class="error" id="error-claves"> <span class="material-icons">error</span><span>Las contraseñas ingresadas no coinciden</span></div>');
+   }
+        return false;
+    }else{
+        $("#error-claves").remove();
+
+        return true;
+    }
+}

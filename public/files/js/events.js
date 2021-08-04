@@ -28,25 +28,8 @@ $(document).on("click", "#mi-perfil-sidepanel .usuario-perfil-opciones", functio
     $("#mi-perfil-sidepanel .opciones-sesion").toggleClass("inactivo");
 });
 
-
-/*
-
-function newMessage() {
-    message = $(".message-input input").val();
-    if($.trim(message) == '') {
-        return false;
-    }
-    $('<li class="enviado"><img src="/files/profile/mikeross.png?w=40&h=40" alt="" /><p>' + message + '</p></li>').appendTo($('#'));
-
-$('.message-input input').val(null);
-    $('.contact.active .preview').html('<span>You: </span>' + message);
-    $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 300);
-
-};*/
-
 $(".expand-button").click(function() {
     $("#profile").toggleClass("expanded");
-    //  $("#contacts").toggleClass("expanded");
 });
 
 
@@ -162,11 +145,14 @@ $("#seccion-politicas").click(function () {
 });
 //configuraciones de cuenta
 $(document).on("click", "#btn-configuraciones", function () {
+    $('ul#lista-conversaciones li.active').removeClass('active');
     CargarEspacioConfiguraciones();
+
 });
 
 function CargarEspacioConfiguraciones(){
     $("body").addClass("sb-sidenav-toggled");
+    $("#mi-perfil-sidepanel").toggleClass("no-visible");
     $('#espacio-de-chat').html(
         ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
     ).load(`/Settings`);

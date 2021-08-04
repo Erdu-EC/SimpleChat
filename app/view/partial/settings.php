@@ -23,7 +23,7 @@ $SESSION = new Session();
             <div class="editar" id="btn-editar-perfil" >
                 <span class="material-icons" title="Editar">edit</span>
             </div>
-            <form action="">
+            <form action="" id="">
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
                         <div class="img-perfil-cuenta">
@@ -113,7 +113,7 @@ $SESSION = new Session();
                    </div>
                </div>
                <div class="col-12">
-                   <div class="item-cuenta">
+                   <div class="item-cuenta" id="cont-clave-nuev-rep">
                        <span class="etiqueta-campo ">Repita la nueva Contraseña</span>
                        <input type="password" id="clave-nuev-rep" class="campo-cuenta" readonly>
 

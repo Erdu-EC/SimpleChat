@@ -55,7 +55,7 @@ function EnviarMensaje() {
     const textarea = $('#espacio-de-escritura .wrap input');
     const texto = textarea.val().trim();
     textarea.val('');
-
+    $("#btn-enviar-mensaje").removeClass("activar");
     if (texto !== '') {
         const mensaje = $(ObtenerElementoMensaje(texto));
 
