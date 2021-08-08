@@ -1,12 +1,12 @@
+
+
 body .container-fluid{
   width: 100vw;
   height: 100vh;
-  background-image: url("/files/bg/fondo-acerca.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  padding-top: 76px;
+  padding-top: 60px;
   overflow-y: scroll;
+  background-image: url("/files/bg/fondo-about.svg");
+  background-size: cover;
 }
 
 /*#####################################################
@@ -28,9 +28,6 @@ nav.menu-navegacion {
   z-index: 10;
   display: flex;
   background: #f2f2f2;
-
-  /* background-color: rgba(43,54,79,0.8);*/
-  /* background-color: rgba(231,231,231,0.5);*/
 }
 
 nav.menu-navegacion ul.nav-lista {
@@ -63,7 +60,7 @@ a.nav-link {
   display: flex;
   text-decoration: none;
   font-size: 15px;
-  font-family: sans-serif;
+  font-family: 'Montserrat',sans-serif;
   font-weight: 500;
   cursor: pointer;
   position: relative;
@@ -253,4 +250,155 @@ nav button.navbar-toggler:focus{
 
 /*#####################################################
 Fin de los estilos del navbar
+#####################################################*/
+
+/*#####################################################
+Estilos del carrusel
+#####################################################*/
+.container-fluid .top-acerca {
+height: 580px;
+}
+#hacia-arriba {
+position: absolute;
+  display: none;
+  color: #FFFFFF;
+  font-size: 20px;
+  z-index: 100;
+background: rgba(0,0,0,0.25);
+  right: 3rem;
+  bottom: 6rem;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+padding: 0px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#hacia-arriba.visible{
+  display: flex;
+}
+#hacia-arriba:hover{
+  background: #6c757d;
+}
+
+#carouselExampleControls {
+  width: 100%;
+  height: 100%;
+}
+img.img-carousel {
+  height: 580px;
+  width: auto;
+  background-size: auto;
+}
+
+.acciones {
+ background: #f5f5f5;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  font-family: 'Montserrat',sans-serif;
+}
+.objetivos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #FFFFFF;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  margin-bottom: 20px;
+}
+.cuerpo-objetivos .title {
+ color: #0a58ca;
+margin: 0  0 20px 0;
+  font-size: 25px;
+  font-weight: 600;
+}
+.objetivos figure {
+  width: 100%;
+}
+@media screen and (max-width: 735px){
+  .objetivos {
+    flex-direction: row;
+
+  }
+  .objetivos figure {
+    width: 45%;
+    margin-right: 10px;
+  }
+  .cuerpo-objetivos {
+    width: 65%;
+  }
+}
+
+.bottom-acerca {
+  background:#FFFFFF ;
+  padding: 70px;
+  font-family: 'Montserrat',sans-serif;
+}
+@media screen and (max-width: 735px){
+  .bottom-acerca {
+    padding: 70px 50px;
+  }
+}
+article ul{
+  list-style: none;
+  padding: 0px;
+}
+
+article ul time {
+  color: #0a58ca;
+  font-size: 12px;
+}
+
+.lista-desarrolladores li .item-desarrollador {
+  display: flex;
+  flex-direction: row;
+}
+.lista-desarrolladores li .item-desarrollador figure {
+  margin-right: 10px;
+}
+
+
+ .seccion-ultimo, .seccion-benvenida, .seccion-desarrolladores {
+  font-family: 'Montserrat',sans-serif;
+   margin-bottom: 50px;
+   padding: 0px 50px;
+
+}
+.seccion-ultimo h2, .seccion-benvenida h2, .seccion-desarrolladores h2{
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 20px;
+  height: 60px;
+}
+@media screen and (max-width: 735px){
+  .seccion-ultimo, .seccion-benvenida, .seccion-desarrolladores{
+    padding: 0;
+  }
+}
+/*Seccion ultimas noticias*/
+
+.bottom-acerca .row article .separador-secciones {
+  width: 80%;
+  margin-bottom: 0px;
+  margin: auto auto 0px auto;
+}
+.bottom-acerca .row article p {
+  font-size: 14px;
+  text-align: justify;
+}
+.bottom-acerca p.subtitulo {
+  color: #6c757d;
+  font-size: 16px;
+  text-align: left;
+}
+
+/*Fin Seccion ultimas noticias*/
+/*#####################################################
+Fin de estilos del carrusel
 #####################################################*/

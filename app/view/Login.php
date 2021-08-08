@@ -41,12 +41,12 @@ if (Session::IsLogin())
                         <span class="material-icons">gavel</span>Términos y condiciones</a>
                 </li>
                 <li class="nav-list-item">
-                    <a href="#" class="nav-link">
+                    <a href="/About" class="nav-link">
                         <span class="material-icons">people_outline</span>Sobre Nosotros
                     </a>
                 </li>
                 <li class="nav-list-item">
-                    <a href="/About" class="nav-link">
+                    <a href="#" class="nav-link">
                         <span class="material-icons"><span class="material-icons-outlined">support_agent</span></span>Contacto
                     </a>
                 </li>

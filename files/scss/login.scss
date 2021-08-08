@@ -353,7 +353,8 @@ form .input-group input{
     outline: none;
     color: #222;
     font-size: 16px;
-    font-family: 'Poppins',sans-serif;
+
+    font-family: 'Montserrat',sans-serif;
     flex-grow: 1;
 }
 
@@ -370,12 +371,12 @@ form .input-group input{
 .recuperar-clave a ,  .crear-cuenta a{
     color: white;
     text-decoration: none;
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Montserrat',sans-serif;
     font-weight: bold;
     font-size: 0.90rem;
 }
 .crear-cuenta {
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Montserrat',sans-serif;
     color: #ffffff;
 }
 .recuperar-clave:hover a, .crear-cuenta a:hover {

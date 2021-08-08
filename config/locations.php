@@ -16,7 +16,8 @@ class APP_DIR
     const IMAGE = [
         'icon' => '/files/icon',
         'bg' => '/files/bg',
-        'profile' => '/upload/profile'
+        'profile' => '/upload/profile',
+        'photos' => '/files/photos'
     ];
 
     const F_PREPROCESSED_JS = '/files/js';
