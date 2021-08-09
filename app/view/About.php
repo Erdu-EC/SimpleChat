@@ -11,7 +11,7 @@ use const HS\config\APP_NAME;
 <head>
     <?php require 'template/Head.php' ?>
 
-    <title><?= APP_NAME ?>: Inició de sesión</title>
+    <title><?= APP_NAME ?>: Acerca de nosotros</title>
     <link rel="stylesheet" href="/files/scss/about.scss">
 </head>
 <body>
@@ -38,7 +38,7 @@ use const HS\config\APP_NAME;
                 </a>
             </li>
             <li class="nav-list-item">
-                <a href="/About" class="nav-link">
+                <a href="/Contact" class="nav-link">
                     <span class="material-icons"><span class="material-icons-outlined">support_agent</span></span>Contacto
                 </a>
             </li>
@@ -53,6 +53,7 @@ use const HS\config\APP_NAME;
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active align-content-center">
+                 <!-- la resolcion de las imagenes es de 4950 px X 2175 para mantener la proporcio a 330x145 px -->
                     <img src="/files/photos/photo-1.jpg" class="d-block img-carousel" alt="...">
                 </div>
                 <div class="carousel-item">
@@ -61,7 +62,9 @@ use const HS\config\APP_NAME;
                 <div class="carousel-item">
                     <img src="/files/photos/photo-3.jpg" class="d-block img-carousel" alt="...">
                 </div
+
             </div>
+            <div id="filtro"></div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -180,11 +183,23 @@ use const HS\config\APP_NAME;
            </article>
        </div>
    </section>
+    <div class="footer-acerca">
+<div class="redes-sociales">
+    <ul>
 
+        <li><a href="http://facebook.com" class="item-red-social"><i class="fab fa-facebook-square"></i></a></li>
+        <li><a href="http://twitter.com" class="item-red-social"><i class="fab fa-twitter-square"></i></a></li>
+        <li><a href="http://linkedin.com" class="item-red-social"><i class="fab fa-linkedin"></i></a></li>
+    </ul>
+</div>
+        <p>&copy; Copyright 2021 SimpleChat - Todos los derechos reservados</p>
+    </div>
 </div>
 <div id="hacia-arriba">
     <i class="fas fa-arrow-up"></i>
 </div>
+
+
 <script type="application/javascript" src="/files/js/About.js"></script>
 </body>
 </html>

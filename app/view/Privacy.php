@@ -13,7 +13,7 @@ use const HS\config\APP_NAME;
 
     <?php require 'template/Head.php' ?>
 
-    <title><?= APP_NAME ?>: Registro</title>
+    <title><?= APP_NAME ?>: Politicas de privacidad</title>
     <link rel="stylesheet" href="/files/scss/privacy.scss">
 </head>
 <body>
@@ -40,7 +40,7 @@ use const HS\config\APP_NAME;
                 </a>
             </li>
             <li class="nav-list-item">
-                <a href="#" class="nav-link">
+                <a href="/Contact" class="nav-link">
                         <span class="material-icons"><span class="material-icons-outlined">
 support_agent</span>
 </span>Contacto</a>

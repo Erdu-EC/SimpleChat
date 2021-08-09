@@ -32,6 +32,7 @@
 	Route::Get("/Register", 'Register.php');
 	Route::Get("/Privacy", 'Privacy.php');
 	Route::Get("/About", 'About.php');
+	Route::Get("/Contact", 'ContactUs.php');
 
 	Route::Post('/action/user/Login', 'LoginController#Login');
 	Route::Post('/action/user/Register', 'LoginController#Register');

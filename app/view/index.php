@@ -206,32 +206,32 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
                                 <div class="card-body">
                                     <h5>Harvey Specter</h5>
-                                    <h6>Abogado</h6>
-                                    <small>últ. conex. 18 de may 2021 a la(s) 4:05 p.m.</small>
+                                    <small></small>
                                 </div>
                                 <div class="contacto-redes">
 
                                 </div>
 
                             </div>
-                         <!--   <div class=" card contacto-extra">
+                           <div class=" card contacto-extra">
                                 <div class="item-contacto-extra email">
                                     <h6 class="campo">Correo</h6>
-                                    <span class="valor">harveyspecter@email.com</span>
+                                    <span class="valor"></span>
                                 </div>
                                 <div class="item-contacto-extra tel">
                                     <h6>Teléfono</h6>
-                                    <span>(EEUU) 6231 445</span>
+                                    <span></span>
                                 </div>
                                 <div class="item-contacto-extra fn">
                                     <h6>Fecha de nacimiento</h6>
-                                    <span>12 de junio de 1970</span>
+                                    <span></span>
                                 </div>
                                 <div class="item-contacto-extra sexo">
                                     <h6>Sexo</h6>
-                                    <span>Masculino</span>
+                                    <span></span>
                                 </div>
                             </div>
+                            <!--
 -->
                         </div>
 
