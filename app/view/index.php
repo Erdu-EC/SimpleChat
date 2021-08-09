@@ -214,7 +214,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                 </div>
 
                             </div>
-                         <!--   <div class=" card contacto-extra">
+                            <div class=" card contacto-extra">
                                 <div class="item-contacto-extra email">
                                     <h6 class="campo">Correo</h6>
                                     <span class="valor">harveyspecter@email.com</span>
@@ -232,7 +232,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                     <span>Masculino</span>
                                 </div>
                             </div>
--->
+
                         </div>
 
                     </section>
