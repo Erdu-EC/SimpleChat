@@ -60,7 +60,7 @@ support_agent</span>
             <div class="col-sm-12 col-md-7 col-lg-5">
                 <div class="card">
                     <div class="card-header">
-                        <img src="/files/icon/logo.png" alt="">
+                        <img src="/files/icon/logo-wh.png?h=70" alt="">
                         <?= 'Bienvenido al formulario de registro de ' . APP_NAME ?>
                     </div>
                     <form id="register_form" method="post">

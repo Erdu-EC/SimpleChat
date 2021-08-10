@@ -55,52 +55,57 @@ use const HS\config\APP_NAME;
     <div class="col-sm-12 col-md-7 col-lg-6 col-xl-6">
 <section class="contenedor-formulario">
     <form action="" class="formulario-contacto">
-<div class="titulo">
-    <span>Contáctanos</span>
-</div>
-        <div id="icono-mensaje">
-            <i class="far fa-envelope"></i>
+        <div class="logo-simplechat">
+            <img src="/files/icon/logo-wh.png?h=70" alt="">
         </div>
-<div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-        <div class="item-form">
-            <span class="etiqueta-input">Nombres *</span>
-            <div class="input-group">
-                <input  type="text" class="form-control" required placeholder="Introduzca su nombre">
-            </div>
+        <div class="titulo">
+            <span>Contáctanos</span>
         </div>
-    </div>
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-        <div class="item-form">
-            <span class="etiqueta-input">E-mail *</span>
-            <div class="input-group">
-                <input type="email" class="form-control" required placeholder="Introduzca su correo">
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-        <div class="item-form">
-            <span class="etiqueta-input">Teléfono</span>
-            <div class="input-group">
-                <input  type="text" class="form-control" placeholder="Número telefónico" >
-            </div>
-        </div>
-    </div>
 
-</div>
         <div class="row">
-            <div class="col-12">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
                 <div class="item-form">
-                    <span class="etiqueta-input">Mensaje</span>
+                    <span class="etiqueta-input"><i class="far fa-user icon-etiqueta"></i>Nombres *</span>
                     <div class="input-group">
-                        <textarea name="" id="mensaje" cols="30" rows="10"  class="form-control" placeholder="Escriba aquí su mensaje"></textarea >
+                        <input  type="text" class="form-control" required placeholder="Introduzca su nombre" id="nombre-remitente">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <div class="item-form">
+                    <span class="etiqueta-input"><i class="fas fa-at icon-etiqueta"></i>E-mail *</span>
+                    <div class="input-group">
+                        <input type="email" class="form-control" required placeholder="Introduzca su correo" id="correo-remitente">
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <div class="item-form">
+                    <span class="etiqueta-input"><i class="fas fa-phone-alt icon-etiqueta"></i>Teléfono</span>
+                    <div class="input-group">
+                        <input  type="text" class="form-control" placeholder="Número telefónico" id="telefono-remitente" maxlength="15"">
 
                     </div>
                 </div>
             </div>
+
         </div>
-        <div class="item-form">
-            <button id="enviar">Enviar mensaje</button>
+        <div class="row">
+                    <div class="col-12">
+                        <div class="item-form">
+                            <span class="etiqueta-input"><i class="far fa-envelope icon-etiqueta"></i>Mensaje</span>
+                            <div class="input-group">
+                                <textarea name="" id="mensaje" cols="30" rows="10"  class="form-control" placeholder="Escriba aquí su mensaje"></textarea >
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <div class="item-form contenedor-enviar">
+            <button id="enviar"><i class="far fa-paper-plane icon-etiqueta"></i>Enviar mensaje</button>
 
         </div>
     </form>

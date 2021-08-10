@@ -19,7 +19,7 @@ menu
 </div>
 
     <a class="navbar-brand " href="/" >
-        <img src="/files/icon/logo.png?h=55" alt="" id="logo-home" class="img img-fluid">
+        <img src="/files/icon/logo-wh.png?h=50" alt="" id="logo-home" class="img img-fluid">
 
     </a>
 </nav>
