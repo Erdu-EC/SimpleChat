@@ -114,6 +114,17 @@ use const HS\config\APP_NAME;
     </div>
 </div>
 </div>
+    <footer class="footer-acerca">
+        <div class="redes-sociales">
+            <ul>
+
+                <li><a href="http://facebook.com" class="item-red-social"><i class="fab fa-facebook-square"></i></a></li>
+                <li><a href="http://twitter.com" class="item-red-social"><i class="fab fa-twitter-square"></i></a></li>
+                <li><a href="http://linkedin.com" class="item-red-social"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+        <p>&copy; Copyright 2021 SimpleChat - Todos los derechos reservados</p>
+    </footer>
 </div>
 <script type="application/javascript" src="/files/js/ContactUs.js"></script>
 </body>

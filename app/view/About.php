@@ -76,7 +76,7 @@ use const HS\config\APP_NAME;
         </div>
 
     </section>
-<section class="contenido-acerca">
+    <section class="contenido-acerca">
 <div class="acciones">
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12">
@@ -120,7 +120,7 @@ use const HS\config\APP_NAME;
     </div>
 </div>
 </section>
-   <section class="bottom-acerca">
+     <section class="bottom-acerca">
        <div class="row">
            <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12 seccion-ultimo">
                <h2>Ultimas noticias</h2>

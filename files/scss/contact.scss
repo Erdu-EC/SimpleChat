@@ -266,6 +266,9 @@ Estilos de formulario de contacto
   padding-top: 50px;
   padding-bottom: 50px;
   font-family: sans-serif;
+  background-image: url("/files/bg/fondo-contactUs.svg");
+  background-repeat: no-repeat;
+ background-position: right;
 }
 
 .formulario-contacto {
@@ -329,7 +332,7 @@ border-radius: 0;
  color: #000000;
   border: none;
 height: 40px;
-  background: #f2f2f2;
+  background: #FFFFFF;
   font-weight: 600;
 }
 
@@ -392,3 +395,40 @@ background: #0F990C;}
 /*----------------------------------------------------
 Fin de estilos de formulario de contacto
 /----------------------------------------------------*/
+/*Estilos de footer
+ */
+
+.footer-acerca {
+  height: 170px;
+  max-width: 1320px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #2B364F;
+  justify-content: center;
+  align-items: center;
+  max-width: 1320px;
+  color: #FFFFFF;
+}
+.footer-acerca .redes-sociales ul{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+.redes-sociales ul li .item-red-social {
+  margin-right: 20px;
+  font-size: 25px;
+  color: #f2f2f2;
+
+}
+.redes-sociales ul li .item-red-social:hover{
+  color: #FFFFFF;
+}
+.footer-acerca p{
+
+  color: #f8f8f8;
+  display: block;
+  font-size: 12px;
+}
+/* Fin de es stilos de footer
+ */
