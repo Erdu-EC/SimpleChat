@@ -62,6 +62,10 @@ class ImageController
         die(file_get_contents($path, false));
     }
 
+    public static function Upload(){
+
+	}
+
     private static function GetPathOfType(string $type, string $filename) : ?string{
         //Si no es un tipo de imagen valido...
         if (!isset(APP_DIR::IMAGE[$type])) {

@@ -20,6 +20,7 @@
 	Route::Get('/files/{type*}/{filename}', 'ImageController#Get', $cond_image);
 	Route::Get('/files/{type*}/{filename}?{get}', 'ImageController#Get', $cond_image);
 	Route::Get('/files/{type*}/{filename}', 'ImageController#GetOriginal', [
+		'type' => call_user_func_array([Regex::class, 'InList'], array_keys(APP_DIR::IMAGE)),
 		'filename' => Regex::EndWith('.svg')
 	]);
 	unset($cond_image);
