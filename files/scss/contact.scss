@@ -263,12 +263,55 @@ Estilos de formulario de contacto
   background: #FFFFFF;
   max-width: 1320px;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 20px;
   padding-bottom: 50px;
   font-family: sans-serif;
   background-image: url("/files/bg/fondo-contactUs.svg");
   background-repeat: no-repeat;
- background-position: right;
+ background-position: bottom;
+  border-right: 2px solid #afafb6;
+}
+.container h1{
+  font-size: 28px;
+  font-weight: 600;
+  color: #afafb6;
+  margin-bottom: 30px;
+}
+
+.cont-info-contacto {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.cont-info-contacto h2{
+  font-size: 23px;
+  color: #afafb6;
+  margin-bottom: 20px;
+}
+.cont-info-contacto .item-info-contacto{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
+  margin-bottom: 20px;
+ width: 150px;
+}
+.item-info-contacto i.icon-info{
+  font-size: 30px;
+  color: #3e2093;
+
+}
+.item-info-contacto span.subtitulo{
+  font-size: 18px;
+  font-weight: 500;
+}
+.item-info-contacto p{
+  font-size: 14px;
+  color: #afafb6;
 }
 
 .formulario-contacto {
@@ -301,19 +344,28 @@ float: left;
     50% { transform:rotateZ( 0deg) scale(.8); }
     100%{ transform:rotateZ( 5deg); }
   }
-
-.formulario-contacto .titulo{
-  font-size: 25px;
+.formulario-contacto .cont-titulo {
+  margin-bottom: 20px;
+}
+.formulario-contacto .cont-titulo  .titulo{
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 10px;
   color: #FFFFFF;
 }
+.formulario-contacto .cont-titulo p{
+  font-size: 0.8rem;
+  color: #FFFFFF;
+  margin-top: 10px;
+}
 .formulario-contacto .logo-simplechat{
-  justify-content: center;
-  margin-left: auto;
-  align-content: center;
+justify-content: right;
+  text-align: center;
+  align-self: end;
+  align-items: end;
   display: flex;
-  margin-bottom: 20px;
+}
+.formulario-contacto .logo-simplechat img {
+  margin-left: auto;
 }
 .item-form .etiqueta-input {
   font-size: 0.8rem;
