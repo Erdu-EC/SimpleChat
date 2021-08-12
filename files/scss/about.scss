@@ -4,12 +4,9 @@ body {
 }
 
 body .container-fluid{
-
   width: 100vw;
   height: 100vh;
   padding: 60px 0 0;
-
-
   overflow-y: scroll;
   background-image: url("/files/bg/bg-about-1.svg");
   background-size: cover;
@@ -210,10 +207,15 @@ nav button.navbar-toggler:focus{
 @media screen and (max-width: 735px){
   body header{
     margin-top: 0px;
+    height: 50px;
   }
-  nav.menu-navegacion{
+  body .container-fluid{
+    padding: 50px 0 0 0;
+  }
+  nav.menu-navegacion {
     flex-direction: column;
     background: none;
+    height: 50px;
   }
   nav.menu-navegacion ul.nav-lista{
     flex-direction: column;
@@ -279,14 +281,14 @@ Fin de los estilos del navbar
 /*#####################################################
 Estilos del carrusel
 #####################################################*/
+
+
 .container-fluid .top-acerca{
 display: flex;
 }
 .container-fluid .top-acerca, .contenido-acerca , .bottom-acerca{
-
   max-width: 1320px;
   margin-right: auto;margin-left: auto;
-
 }
 .container-fluid .top-acerca {
   max-height: 580px;
@@ -302,13 +304,13 @@ position: absolute;
   color: #FFFFFF;
   font-size: 20px;
   z-index: 100;
-background: rgba(0,0,0,0.25);
+  background: rgba(0,0,0,0.25);
   right: 3rem;
   bottom: 6rem;
   height: 30px;
   width: 30px;
   border-radius: 50%;
-padding: 0px;
+  padding: 0px;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -367,7 +369,15 @@ margin: 0  0 20px 0;
   font-weight: 600;
 }
 .objetivos figure {
-  width: 100%;
+  display: flex;
+  width: 256px;
+  height: 256px;
+  align-items: center;
+  justify-content: center;
+}
+.objetivos figure img {
+  max-height: 256px;
+  max-width: 256px;
 }
 @media screen and (max-width: 735px){
   .objetivos {
@@ -375,9 +385,15 @@ margin: 0  0 20px 0;
 
   }
   .objetivos figure {
-    width: 45%;
+    width: 170px;
+    height: 170px;
     margin-right: 10px;
   }
+  .objetivos figure img {
+    max-height: 170px;
+    max-width: 170px;
+  }
+
   .cuerpo-objetivos {
     width: 65%;
   }
@@ -406,9 +422,19 @@ article ul time {
 .lista-desarrolladores li .item-desarrollador {
   display: flex;
   flex-direction: row;
+  border: 1px solid red;
+  margin-bottom: 20px;
 }
 .lista-desarrolladores li .item-desarrollador figure {
   margin-right: 10px;
+  border: 1px solid orange;
+}
+.lista-desarrolladores li .item-desarrollador .descr-desarrollador p {
+  margin: 0px;
+  border: 1px solid green;
+}
+.lista-desarrolladores li .item-desarrollador .descr-desarrollador {
+  border: 1px solid blue;
 }
 
 

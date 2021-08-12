@@ -153,7 +153,7 @@ use const HS\config\APP_NAME;
                    <li>
                        <div class="item-desarrollador">
                            <figure class="foto-desarrollador"><img src="/files/photos/home_pic1.jpg" alt=""></figure>
-                           <div class="descr-desarrolladorr">
+                           <div class="descr-desarrollador">
                                <span class="nombre-desarrollador">Lorem Ipsum</span>
                                <p>Consec tetuer adipiscing. Praesent vestibu.</p>
                            </div>
