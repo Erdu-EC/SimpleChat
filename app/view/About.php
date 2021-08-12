@@ -7,7 +7,7 @@ use HS\libs\core\Session;
 use const HS\config\APP_NAME;
 ?>
 <!doctype html>
-<html lang="es">
+<html lang="es" xmlns="http://www.w3.org/1999/html">
 <head>
     <?php require 'template/Head.php' ?>
 
@@ -183,7 +183,7 @@ use const HS\config\APP_NAME;
            </article>
        </div>
    </section>
-    <div class="footer-acerca">
+    <footer class="footer-acerca">
 <div class="redes-sociales">
     <ul>
 
@@ -194,7 +194,7 @@ use const HS\config\APP_NAME;
 </div>
         <p>&copy; Copyright 2021 SimpleChat - Todos los derechos reservados</p>
     </div>
-</div>
+</footer>
 <div id="hacia-arriba">
     <i class="fas fa-arrow-up"></i>
 </div>

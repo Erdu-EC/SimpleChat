@@ -1,15 +1,37 @@
 
 body {
-  overflow-y: scroll;
+  overflow-x: hidden;
 }
+
 body .container-fluid{
+
   width: 100vw;
   height: 100vh;
-  padding-top: 60px;
+  padding: 60px 0 0;
+
+
   overflow-y: scroll;
-  background-image: url("/files/bg/fondo-about.svg");
+  background-image: url("/files/bg/bg-about-1.svg");
   background-size: cover;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+
 }
+body .container-fluid::-webkit-scrollbar {
+  width: 5px;
+}
+
+body .container-fluid::-webkit-scrollbar-track-piece {
+  background-color: #FFFFFF;
+}
+body .container-fluid::-webkit-scrollbar-thumb:vertical {
+  height: 30px;
+  width: 8px;
+  background-color: #afafb6;
+}
+
 
 /*#####################################################
 Definiendo los estilos del navbar
@@ -257,12 +279,13 @@ Fin de los estilos del navbar
 /*#####################################################
 Estilos del carrusel
 #####################################################*/
-.container-fluid {
-
+.container-fluid .top-acerca{
+display: flex;
 }
 .container-fluid .top-acerca, .contenido-acerca , .bottom-acerca{
 
   max-width: 1320px;
+  margin-right: auto;margin-left: auto;
 
 }
 .container-fluid .top-acerca {
@@ -436,7 +459,6 @@ Fin de estilos del carrusel
   background: #2B364F;
   justify-content: center;
   align-items: center;
-  max-width: 1320px;
   color: #FFFFFF;
 }
 .footer-acerca .redes-sociales ul{
