@@ -1,37 +1,63 @@
+body{
 
-body .container-fluid{
-  width: 100vw;
-  height: 100vh;
-  background-image: url("/files/bg/fondo-about.svg");
 
-  background-size: cover;
-  background-color: none;
-  padding-top: 60px;
-  overflow-y: scroll;
+  overflow-x: hidden;
 }
+body::-webkit-scrollbar{
+  width: 0;
+}
+bod::-webkit-scrollbar-thumb:vertical{
+  width: 0;
+}
+
+.container-fluid {
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+
+ padding: 0;
+}
+
+body .container-fluid::-webkit-scrollbar {
+  width: 5px;
+}
+
+body .container-fluid::-webkit-scrollbar-track-piece {
+  background-color: #FFFFFF;
+}
+body .container-fluid::-webkit-scrollbar-thumb:vertical {
+  height: 30px;
+  width: 8px;
+  background-color: #afafb6;
+}
+
 
 /*#####################################################
 Definiendo los estilos del navbar
 #####################################################*/
-body header{
+header {
+  display: block;
   width: 100%;
-  margin: 0px;
-  display: flex;
+  height: auto;
   position: absolute;
   z-index: 5;
+top: 0px;
+  margin: 0;
+  padding: 0;
+
 }
+
 nav.menu-navegacion {
+
   margin: 0px;
   padding: 0px;
-  width: 100%;
   height: 60px;
   position: relative;
   z-index: 10;
   display: flex;
   background: #f2f2f2;
-
-  /* background-color: rgba(43,54,79,0.8);*/
-  /* background-color: rgba(231,231,231,0.5);*/
 }
 
 nav.menu-navegacion ul.nav-lista {
@@ -188,12 +214,18 @@ nav button.navbar-toggler:focus{
 }
 
 @media screen and (max-width: 735px){
-  body header{
+  .container-fluid .container {
+    padding-top: 70px;
+  }
+
+  header{
     margin-top: 0px;
+    width: 100%;
   }
   nav.menu-navegacion{
     flex-direction: column;
     background: none;
+    height: 100%;
   }
   nav.menu-navegacion ul.nav-lista{
     flex-direction: column;
@@ -231,7 +263,7 @@ nav button.navbar-toggler:focus{
     border-radius: 0px;
     padding: 4px 16px;
     box-shadow: none;
-
+height: 50px;
   }
 
   nav button.navbar-toggler span{
@@ -261,21 +293,22 @@ Estilos de formulario de contacto
 /----------------------------------------------------*/
 .container {
   background: #FFFFFF;
-  max-width: 1320px;
+  width: 100vw;
   align-items: center;
-  padding-top: 20px;
-  padding-bottom: 50px;
+  padding: 80px 0 50px 0;
+  margin: 0px;
   font-family: sans-serif;
   background-image: url("/files/bg/fondo-contactUs.svg");
   background-repeat: no-repeat;
  background-position: bottom;
-  border-right: 2px solid #afafb6;
 }
+
 .container h1{
   font-size: 28px;
   font-weight: 600;
   color: #afafb6;
   margin-bottom: 30px;
+  margin-left: 30px;
 }
 
 .cont-info-contacto {
@@ -447,19 +480,18 @@ background: #0F990C;}
 /*----------------------------------------------------
 Fin de estilos de formulario de contacto
 /----------------------------------------------------*/
+
 /*Estilos de footer
  */
 
 .footer-acerca {
   height: 170px;
-  max-width: 1320px;
   width: 100%;
   display: flex;
   flex-direction: column;
   background: #2B364F;
   justify-content: center;
   align-items: center;
-  max-width: 1320px;
   color: #FFFFFF;
 }
 .footer-acerca .redes-sociales ul{
