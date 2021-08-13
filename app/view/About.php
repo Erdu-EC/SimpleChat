@@ -55,6 +55,11 @@ use const HS\config\APP_NAME;
                 <div class="carousel-item active align-content-center">
                  <!-- la resolcion de las imagenes es de 4950 px X 2175 para mantener la proporcio a 330x145 px -->
                     <img src="/files/photos/photo-1.jpg" class="d-block img-carousel" alt="...">
+                    <div id="filtro">
+                        <div class="mensaje-carrousel">
+
+                        </div>
+                    </div>
                 </div>
                 <div class="carousel-item">
                     <img src="/files/photos/photo-2.jpg" class="d-block img-carousel" alt="...">
@@ -64,7 +69,7 @@ use const HS\config\APP_NAME;
                 </div
 
             </div>
-            <div id="filtro"></div>
+
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -75,6 +80,28 @@ use const HS\config\APP_NAME;
             </button>
         </div>
 
+    </section>
+    <section class="presentacion-acerca">
+        <div class="contenedor-presentacion">
+            <h2>Nuestro equipo</h2>
+            <div class="texto-presentacion">
+                <p>
+                    Todos somos muy diferentes.
+                    Nacimos en diferentes ciudades, en diferentes épocas, amamos música, comida, películas diferentes.
+                    Pero tenemos algo que nos une a todos. Esto es nuestra empresa SimpleChat. Somos su corazón.
+                    No somos solo un equipo, somos una familia.
+                </p>
+
+            </div>
+            <a href="/Contact" class="hacia-contactanos">
+                <button >
+                    Contáctanos
+                </button>
+            </a>
+        </div>
+
+    </section>
+    <section class="foto-panoramica">
     </section>
     <section class="contenido-acerca">
 <div class="acciones">
@@ -121,6 +148,32 @@ use const HS\config\APP_NAME;
 </div>
 </section>
      <section class="bottom-acerca">
+         <div class="row">
+             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas"><article class="caracteristicas">
+                     <div class="icon-caract">
+                         <img src="/files/photos/about-caract-1.svg" alt="">
+                     </div>
+                     <span>Creatividad</span>
+                     <p class="descrip-caract"></p>
+                 </article></div>
+             <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 cont-caracteristicas"><article class="caracteristicas">
+                     <div class="icon-caract">
+                         <img src="/files/photos/about-caract-2.svg" alt="">
+                     </div>
+                     <span>Creatividad</span>
+                     <p class="descrip-caract" ></p>
+                 </article></div>
+             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas"><article class="caracteristicas">
+                     <div class="icon-caract">
+                         <img src="/files/photos/about-caract-1.svg" alt="">
+                     </div>
+                     <span>Creatividad</span>
+                     <p class="descrip-caract"></p>
+                 </article></div>
+
+         </div>
+
+
        <div class="row">
            <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12 seccion-ultimo">
                <h2>Ultimas noticias</h2>

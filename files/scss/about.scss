@@ -1,4 +1,7 @@
-
+@font-face {
+  font-family: "Noto-Sans";
+  src: url("/files/font/NotoSans-Regular.ttf");
+}
 body {
   overflow-x: hidden;
 }
@@ -6,7 +9,7 @@ body {
 body .container-fluid{
   width: 100vw;
   height: 100vh;
-  padding: 60px 0 0;
+  padding: 60px 0 0 0;
   overflow-y: scroll;
   background-image: url("/files/bg/bg-about-1.svg");
   background-size: cover;
@@ -14,6 +17,7 @@ body .container-fluid{
   justify-items: center;
   align-items: center;
   align-content: center;
+  background: transparent;
 
 }
 body .container-fluid::-webkit-scrollbar {
@@ -211,6 +215,8 @@ nav button.navbar-toggler:focus{
   }
   body .container-fluid{
     padding: 50px 0 0 0;
+    width: 100vw;
+    height: 100vh;
   }
   nav.menu-navegacion {
     flex-direction: column;
@@ -283,12 +289,89 @@ Estilos del carrusel
 #####################################################*/
 
 
-.container-fluid .top-acerca{
+.container-fluid .top-acerca, .container-fluid .presentacion-acerca{
 display: flex;
 }
-.container-fluid .top-acerca, .contenido-acerca , .bottom-acerca{
+.presentacion-acerca {
+  padding: 40px;
+  min-height: 400px;
+
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #ecfafc;
+  font-family: "Noto-Sans",'Montserrat',sans-serif ;
+}
+.presentacion-acerca .contenedor-presentacion {
+  text-align: center;
+  max-width: 920px;
+  width: 100%;
+}
+.presentacion-acerca h2 {
+ text-transform: uppercase;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+
+}
+.presentacion-acerca .contenedor-presentacion .texto-presentacion p{
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 50px;
+}
+
+.contenedor-presentacion  .hacia-contactanos {
+
+  padding: 0px;
+  text-decoration: none;
+
+}
+.contenedor-presentacion  .hacia-contactanos button  {
+  width: 200px;
+  height: 50px;
+  background: transparent;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border: 2px solid #03608a;
+  color: #03608a;
+}
+.contenedor-presentacion  .hacia-contactanos button:hover {
+  background:#03608a;
+  color: #FFFFFF;
+}
+.foto-panoramica{
+ height:271px;
+  max-height: 271px;
+  width: 100%;
+  background-image: url("/files/photos/photo-5.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
   max-width: 1320px;
-  margin-right: auto;margin-left: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 735px){
+  .presentacion-acerca {
+    height: 600px;
+  }
+  .presentacion-acerca h2 {
+    font-size: 2rem;
+  }
+  .presentacion-acerca .contenedor-presentacion .texto-presentacion p {
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+  .contenedor-presentacion  .hacia-contactanos button {
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+}
+.container-fluid .top-acerca, .contenido-acerca , .bottom-acerca, .presentacion-acerca {
+  max-width: 1320px;
+  margin-right: auto;
+  margin-left: auto;
 }
 .container-fluid .top-acerca {
   max-height: 580px;
@@ -409,6 +492,24 @@ margin: 0  0 20px 0;
     padding: 70px 50px;
   }
 }
+.cont-caracteristicas {
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  margin-bottom: 30px;
+}
+
+article.caracteristicas{
+  display: inline-block;
+  width: 300px;
+margin-left: auto;
+  margin-right: auto;
+}
+article.caracteristicas .icon-caract img {
+  width: 100px;
+  height: 100px;
+}
+
 article ul{
   list-style: none;
   padding: 0px;
