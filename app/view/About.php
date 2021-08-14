@@ -148,35 +148,82 @@ use const HS\config\APP_NAME;
 </div>
 </section>
      <section class="bottom-acerca">
-         <div class="row">
-             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas"><article class="caracteristicas">
+         <div class="row hor-cont-caracteristicas">
+             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas">
+                 <article class="caracteristicas">
                      <div class="icon-caract">
                          <img src="/files/photos/about-caract-1.svg" alt="">
                      </div>
-                     <span>Creatividad</span>
-                     <p class="descrip-caract"></p>
-                 </article></div>
-             <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 cont-caracteristicas"><article class="caracteristicas">
+                     <span class="titulo-caract">Creatividad</span>
+                     <p class="descrip-caract">SimpleChat ha sido optimizado para dispositivos móviles de diferentes tamaños y resolcuiones de pantalla.</p>
+                 </article>
+             </div>
+             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas">
+                 <article class="caracteristicas">
                      <div class="icon-caract">
                          <img src="/files/photos/about-caract-2.svg" alt="">
                      </div>
-                     <span>Creatividad</span>
-                     <p class="descrip-caract" ></p>
-                 </article></div>
-             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas"><article class="caracteristicas">
+                     <span class="titulo-caract">Adaptabilidad</span>
+                     <p class="descrip-caract" >Es la capacidad de pensar fuera de la caja. Generamos muchas ideas, tomamos decisiones y creamos algo nuevo.</p>
+                 </article>
+             </div>
+             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas">
+                 <article class="caracteristicas">
                      <div class="icon-caract">
-                         <img src="/files/photos/about-caract-1.svg" alt="">
+                         <img src="/files/photos/about-caract-3.svg" alt="">
                      </div>
-                     <span>Creatividad</span>
-                     <p class="descrip-caract"></p>
-                 </article></div>
+                     <span class="titulo-caract">Estilo</span>
+                     <p class="descrip-caract">Diseños flexibles con colores elegantes ajustados a las tendencias actuales.</p>
+                 </article>
+             </div>
 
          </div>
 
 
+         <div id="carrusel-desarrolladores" class="carousel slide" data-bs-ride="carousel">
+             <div class="carousel-inner " id="integrantes-acerca">
+                 <div class="carousel-item active" data-bs-interval="4000">
+                     <img class="" src="/files/photos/home_pic1.jpg" alt="">
+
+                        <div class="item-integrante">
+                          <p class="palabras-integrante"> Hola a todos  </p>
+                            <span class="nombre-integrante">Emily Saens</span>
+                            <span class="puesto-integrante">Desarrollador</span>
+                        </div>
+
+
+
+                 </div>
+                 <div class="carousel-item" data-bs-interval="2500">
+                     <img class="" src="/files/photos/home_pic2.jpg" alt="">
+                     <div class="item-integrante">
+                         <p class="palabras-integrante"> Hola a todos  </p>
+                         <span class="nombre-integrante">Emily Saens</span>
+                         <span class="puesto-integrante">Desarrollador</span>
+                     </div>
+                 </div>
+                 <div class="carousel-item" data-bs-interval="2500">
+                     <img class="" src="/files/photos/home_pic3.jpg" alt="">
+                     <div class="item-integrante">
+                         <p class="palabras-integrante"> Hola a todos  </p>
+                         <span class="nombre-integrante">Emily Saens</span>
+                         <span class="puesto-integrante">Desarrollador</span>
+                     </div>
+                 </div>
+             </div>
+             <button class="carousel-control-prev" type="button" data-bs-target="#carrusel-desarrolladores" data-bs-slide="prev">
+                 <i class="fas fa-chevron-left"></i>
+             </button>
+             <button class="carousel-control-next" type="button" data-bs-target="#carrusel-desarrolladores" data-bs-slide="next">
+
+                 <i class="fas fa-chevron-right"></i>
+             </button>
+         </div>
+
+<!--
        <div class="row">
            <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12 seccion-ultimo">
-               <h2>Ultimas noticias</h2>
+               <h3>Ultimas noticias</h3>
                <ul class="lista-noticias">
                    <li>
                        <time datetime="20.09.2015">20.09.2015</time>
@@ -192,7 +239,7 @@ use const HS\config\APP_NAME;
                <hr class="separador-secciones">
            </article>
            <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12 seccion-benvenida">
-               <h2>Bienvenido(a)</h2>
+               <h3>Bienvenido(a)</h3>
                <p class="subtitulo">Fusce suscipit varius mium sociis totdnatibus et magis dis parturient montes, nascetur ridiculus mus. </p>
                <p class="descrip">Lorem ipsum dolor sit amet, consec teer adipiscing. Prsent vestibulum molestie lacuiirhs. Aeneon my . Phasellllus. porta. Fusce suscipit varius mium sociis.</p>
                <p>Lorem ipsum dolor sit amet, consec tetuer adipiscing. Praesent vestibu lum molestie lacuiirhs. Aenean non ummy hendreriauris. Phasellllus. porta. Fusce suscipit varius mium sociis totdnatibus et magis dis parturient montes, nascetur ridiculus mus. Nulla dui.</p>
@@ -200,7 +247,7 @@ use const HS\config\APP_NAME;
                <hr class="separador-secciones">
            </article>
            <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12  seccion-desarrolladores">
-               <h2>Nuestros desarrolladores</h2>
+               <h3>Nuestros desarrolladores</h3>
                <p class="subtitulo">Lorem ipsum dolor sit amet, consec teer adipiscing. Prsent vestibulum mo.</p>
                <ul class="lista-desarrolladores">
                    <li>
@@ -234,7 +281,7 @@ use const HS\config\APP_NAME;
                </ul>
                <hr class="separador-secciones">
            </article>
-       </div>
+       </div>-->
    </section>
     <footer class="footer-acerca">
 <div class="redes-sociales">

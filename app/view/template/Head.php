@@ -19,6 +19,6 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
 <link rel="stylesheet" href="/files/fontawesome/css/all.css">
 
 
-<script type="text/javascript" src="/files/bootstrap/bootstrap.bundle.min.js" async></script>
+<script type="text/javascript" src="/files/bootstrap/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="/files/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/files/js/Utils.js"></script>

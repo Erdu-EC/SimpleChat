@@ -10,3 +10,13 @@ $(".container-fluid").scroll(function() {
 $('#hacia-arriba').on('click', function() {
     $(".container-fluid").animate({scrollTop: 0}, 600);
 });
+
+
+$(document).ready(function () {
+    var myCarousel = document.querySelector('#carrusel-desarrolladores')
+    var carousel = new bootstrap.Carousel(myCarousel, {
+        interval: 1500,
+
+    })
+
+});

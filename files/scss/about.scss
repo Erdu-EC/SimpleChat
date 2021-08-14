@@ -1,7 +1,12 @@
 @font-face {
   font-family: "Noto-Sans";
-  src: url("/files/font/NotoSans-Regular.ttf");
+  src: url("/files/iconfont/NotoSans-Regular.ttf");
 }
+@font-face {
+  font-family: "Rubik";
+  src: url("/files/iconfont/Rubik-Regular.ttf");
+}
+
 body {
   overflow-x: hidden;
 }
@@ -39,14 +44,14 @@ Definiendo los estilos del navbar
 #####################################################*/
 body header{
   width: 100%;
-  margin: 0px;
+  margin: 0;
   display: flex;
   position: absolute;
   z-index: 5;
 }
 nav.menu-navegacion {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: 60px;
   position: relative;
@@ -210,7 +215,7 @@ nav button.navbar-toggler:focus{
 
 @media screen and (max-width: 735px){
   body header{
-    margin-top: 0px;
+    margin-top: 0;
     height: 50px;
   }
   body .container-fluid{
@@ -226,12 +231,12 @@ nav button.navbar-toggler:focus{
   nav.menu-navegacion ul.nav-lista{
     flex-direction: column;
     width: 100%;
-    padding: 0px;
+    padding: 0;
 
   }
   .nav-list-item a.activo{
     background: #7390af;
-    border-radius: 0px;
+    border-radius: 0;
   }
   nav.menu-navegacion ul.inactivo{
     display: none;
@@ -239,7 +244,7 @@ nav button.navbar-toggler:focus{
 
   .nav-lista li.nav-list-item{
     text-align: left;
-    margin: 0px;
+    margin: 0;
     background: #456380;
   }
   .nav-lista li.nav-list-item a{
@@ -247,7 +252,7 @@ nav button.navbar-toggler:focus{
     color: #ffffff;
   }
   .nav-lista li.nav-list-item a:hover{
-    border-radius: 0px;
+    border-radius: 0;
     background: #7390af;
   }
   nav button.navbar-toggler {
@@ -300,7 +305,7 @@ display: flex;
   align-items: center;
   flex-direction: column;
   background: #ecfafc;
-  font-family: "Noto-Sans",'Montserrat',sans-serif ;
+  font-family: "Noto-Sans", 'Montserrat',sans-serif;
 }
 .presentacion-acerca .contenedor-presentacion {
   text-align: center;
@@ -492,6 +497,11 @@ margin: 0  0 20px 0;
     padding: 70px 50px;
   }
 }
+
+.bottom-acerca  .hor-cont-caracteristicas {
+  padding: 90px 0;
+}
+
 .cont-caracteristicas {
   justify-content: center;
   text-align: center;
@@ -501,13 +511,35 @@ margin: 0  0 20px 0;
 
 article.caracteristicas{
   display: inline-block;
-  width: 300px;
+  width: 90%;
 margin-left: auto;
   margin-right: auto;
 }
+article.caracteristicas .icon-caract {
+  margin-bottom: 20px;
+}
 article.caracteristicas .icon-caract img {
-  width: 100px;
-  height: 100px;
+  width: 96px;
+  height: 96px;
+
+}
+.caracteristicas .titulo-caract {
+  font-size: 2rem;
+  font-family: "Noto-Sans","Montserrat",sans-serif ;
+  font-weight: 500;
+
+}
+.caracteristicas p.descrip-caract {
+  margin-top: 30px;
+  font-family: "Rubik","Montserrat",sans-serif ;
+  font-size: 1.2rem;
+  border-bottom: 20px;
+  line-height: 1.6;
+}
+@media screen and (max-width: 735px){
+  article.caracteristicas{
+
+  }
 }
 
 article ul{
@@ -545,19 +577,74 @@ article ul time {
    padding: 0px 50px;
 
 }
-.seccion-ultimo h2, .seccion-benvenida h2, .seccion-desarrolladores h2{
+.seccion-ultimo h3, .seccion-benvenida h3, .seccion-desarrolladores h3{
   text-transform: uppercase;
   font-weight: 600;
   font-size: 20px;
   height: 60px;
+  font-family: "Noto-Sans","Montserrat",sans-serif ;
 }
 @media screen and (max-width: 735px){
   .seccion-ultimo, .seccion-benvenida, .seccion-desarrolladores{
     padding: 0;
   }
 }
-/*Seccion ultimas noticias*/
+#carrusel-desarrolladores {
+}
+#integrantes-acerca .carousel-item {
+  align-items: center;
+  justify-content: center;
+}
+#integrantes-acerca .carousel-item img {
+  display: block;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+#integrantes-acerca .carousel-item .item-integrante {
+  display: flex;
+  flex-direction: column;
+  color: #000000;
+  max-width: 500px;
+min-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 
+#integrantes-acerca .carousel-item .item-integrante .palabras-integrante {
+  font-family: "Rubik","Montserrat",sans-serif ;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+#integrantes-acerca .carousel-item .item-integrante .nombre-integrante {
+font-weight: 700;
+  font-family: "Rubik","Montserrat",sans-serif ;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+#integrantes-acerca .carousel-item .item-integrante .puesto-integrante{
+  font-weight: 300;
+  font-family: "Rubik","Montserrat",sans-serif ;
+  font-size: 1rem;
+
+}
+
+#carrusel-desarrolladores .carousel-control-prev , #carrusel-desarrolladores .carousel-control-next{
+background: #0a58ca;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 1.2rem;
+}
+
+/*Seccion ultimas noticias*/
+/*
 .bottom-acerca .row article .separador-secciones {
   width: 80%;
   margin-bottom: 0px;
@@ -569,7 +656,7 @@ article ul time {
 .bottom-acerca .row p.subtitulo {
   color: #6c757d;
   font-size: 16px;
-}
+}*/
 
 /*Fin Seccion ultimas noticias*/
 /*#####################################################
