@@ -54,18 +54,35 @@ use const HS\config\APP_NAME;
             <div class="carousel-inner">
                 <div class="carousel-item active align-content-center">
                  <!-- la resolcion de las imagenes es de 4950 px X 2175 para mantener la proporcio a 330x145 px -->
-                    <img src="/files/photos/photo-1.jpg" class="d-block img-carousel" alt="...">
-                    <div id="filtro">
+                    <img src="/files/photos/photo-1.jpg" class="d-block img-carousel" alt="">
+                    <div class="filtro-img-carrusel">
                         <div class="mensaje-carrousel">
-
+                            <span class="titulo">Funcionamiento sencillo </span>
+                            <span class="subtitulo">& Diseño flexible</span>
+                            <p class="texto-carrusel">SimpleChatdespliega perfectamente en todos los dispositivos: PC, smartphone y tablet.</p>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/files/photos/photo-2.jpg" class="d-block img-carousel" alt="...">
+                    <img src="/files/photos/photo-2.jpg" class="d-block img-carousel" alt="">
+                    <div class="filtro-img-carrusel">
+                        <div class="mensaje-carrousel">
+                            <span class="titulo">Protección de Datos</span>
+                            <span class="subtitulo">& Privacidad</span>
+                            <p class="texto-carrusel">Tus datos están en buenas manos con nosotros, y siempre disponibles.</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/files/photos/photo-3.jpg" class="d-block img-carousel" alt="...">
+                    <img src="/files/photos/photo-3.jpg" class="d-block img-carousel" alt="">
+                    <div class="filtro-img-carrusel">
+                        <div class="mensaje-carrousel">
+                            <span class="titulo">Diseño simple</span>
+                            <span class="subtitulo">& Mensajes instantáneos</span>
+                            <p class="texto-carrusel">Es tan simple que ya
+                                sabes cómo utilizarlo con entrega mensajes de forma instantánea.</p>
+                        </div>
+                    </div>
                 </div
 
             </div>
@@ -111,8 +128,7 @@ use const HS\config\APP_NAME;
             <div class="objetivos" >
                 <figure><img src="/files/photos/mini-1.svg" alt=""></figure>
                 <div class="cuerpo-objetivos">
-                    <p class="title">Lorem ipsum</p>
-                    <p>Lorem ipsum dolor sit amet, consec tetuer adipi scing. Praesent vestibu lum molestie.</p>
+                    <p class="title">Desarrollo e innovación</p>
                 </div>
             </div>
 
@@ -121,8 +137,8 @@ use const HS\config\APP_NAME;
             <div class="objetivos" >
                 <figure><img src="/files/photos/mini-2.svg" alt=""></figure>
                 <div class="cuerpo-objetivos">
-                    <p class="title">Lorem ipsum</p>
-                    <p>Lorem ipsum dolor sit amet, consec tetuer adipi scing. Praesent vestibu lum molestie.</p>
+                    <p class="title">Actualizaciones periódicas</p>
+
                 </div>
             </div>
         </div>
@@ -130,8 +146,7 @@ use const HS\config\APP_NAME;
             <div class="objetivos" >
                 <figure><img src="/files/photos/mini-3.svg" alt=""></figure>
                 <div class="cuerpo-objetivos">
-                    <p class="title">Lorem ipsum</p>
-                    <p>Lorem ipsum dolor sit amet, consec tetuer adipi scing. Praesent vestibu lum molestie.</p>
+                    <p class="title">Protección de datos</p>
                 </div>
             </div>
         </div>
@@ -139,8 +154,7 @@ use const HS\config\APP_NAME;
             <div class="objetivos" >
                 <figure><img src="/files/photos/mini-4.svg" alt=""></figure>
                 <div class="cuerpo-objetivos">
-                    <p class="title">Lorem ipsum</p>
-                    <p>Lorem ipsum dolor sit amet, consec tetuer adipi scing. Praesent vestibu lum molestie.</p>
+                    <p class="title">Diseño adaptativo</p>
                 </div>
             </div>
         </div>
@@ -186,9 +200,9 @@ use const HS\config\APP_NAME;
                      <img class="" src="/files/photos/home_pic1.jpg" alt="">
 
                         <div class="item-integrante">
-                          <p class="palabras-integrante"> Hola a todos  </p>
+                          <p class="palabras-integrante">Esperamos que queden muy satisfechos con nuestro trabajo, representamos a una maravillosa empresa.</p>
                             <span class="nombre-integrante">Emily Saens</span>
-                            <span class="puesto-integrante">Desarrollador</span>
+                            <span class="puesto-integrante">Diseñadora</span>
                         </div>
 
 
@@ -197,16 +211,18 @@ use const HS\config\APP_NAME;
                  <div class="carousel-item" data-bs-interval="2500">
                      <img class="" src="/files/photos/home_pic2.jpg" alt="">
                      <div class="item-integrante">
-                         <p class="palabras-integrante"> Hola a todos  </p>
-                         <span class="nombre-integrante">Emily Saens</span>
+                         <p class="palabras-integrante"> Tratamos de  ser precisos, todas las promesas se cumplen, todas las preguntas obtienen respuestas, la empresa presenta un enfoque muy atento y positivo.</p>
+                         <span class="nombre-integrante">Dan Fonda</span>
                          <span class="puesto-integrante">Desarrollador</span>
                      </div>
                  </div>
                  <div class="carousel-item" data-bs-interval="2500">
                      <img class="" src="/files/photos/home_pic3.jpg" alt="">
                      <div class="item-integrante">
-                         <p class="palabras-integrante"> Hola a todos  </p>
-                         <span class="nombre-integrante">Emily Saens</span>
+                         <p class="palabras-integrante">Tratamos de resolver los problemas con prontitud.
+                             En comunicación, tratando de ser agradables y serviciales para usted.
+                             Ofrecer siempre nuevas ideas, nuevas formas de desarrollar, mejorar nuestro proyecto son nuestras principales directrices.</p>
+                         <span class="nombre-integrante">Matt Dot</span>
                          <span class="puesto-integrante">Desarrollador</span>
                      </div>
                  </div>
