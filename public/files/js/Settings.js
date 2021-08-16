@@ -116,9 +116,11 @@ $(document).on('change', "#nueva-foto-perfil", function () {
 
                     reader.onload = function () {
                         $imagenPrevisualizacion.attr("src", reader.result);
+                        $('#mi-perfil-sidepanel img').attr("src", reader.result);
+                        $('#profile-img').attr("src", reader.result);
                     };
                 } else {
-                    alert('Formato de imagen incorrecto.');
+                    alert('No fue posible subir la imagen.');
                 }
             }
         });
