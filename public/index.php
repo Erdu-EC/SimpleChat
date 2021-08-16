@@ -31,7 +31,7 @@ namespace {
     ini_set('display_errors', APP_DEBUG ? 1 : 0);
 
     #Limitando acceso a ficheros del servidor.
-    ini_set('open_basedir', APP_PATH);
+    ini_set('open_basedir', APP_PATH . ';c:' . $_SERVER['TMP']);
 
     #Estableciendo mascara de permisos.
     umask(APP_FILE_MODE_UMASK);

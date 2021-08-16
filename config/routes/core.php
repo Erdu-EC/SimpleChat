@@ -4,6 +4,7 @@
 
 	use HS\config\APP_DIR;
 	use HS\libs\core\Route;
+	use HS\libs\graphic\Image;
 	use HS\libs\helper\Regex;
 
 	#SCSS Routes
@@ -14,7 +15,7 @@
 	#Image Routes
 	$cond_image = [
 		'type' => call_user_func_array([Regex::class, 'InList'], array_keys(APP_DIR::IMAGE)),
-		'filename' => Regex::EndWith('.png', '.bmp', '.gif', '.jpg', '.jpeg'),
+		'filename' => call_user_func_array([Regex::class, 'EndWith'], Image::SUPPORTED_FORMATS),
 		'get' => '#^(?:[w|h]=\d+(?:\.\d+)?)(?:&[w|h]=\d+(?:\.\d+)?)?$#'
 	];
 	Route::Get('/files/{type*}/{filename}', 'ImageController#Get', $cond_image);

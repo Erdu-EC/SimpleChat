@@ -3,6 +3,7 @@
 
 namespace HS\libs\helper;
 
+use DirectoryIterator;
 use HS\libs\io\Path;
 use const HS\APP_FILE_MODE;
 
@@ -27,4 +28,16 @@ class IOUtil
         //Devolviendo.
         return $exist;
     }
+
+    public static function DeleteFileBeginWithName(string $dir, string $start_filename, bool $recursive = false){
+		foreach (new DirectoryIterator($dir) as $fileinfo) {
+			if (!$fileinfo->isDot()) {
+				if ($fileinfo->isDir() && $recursive)
+					self::DeleteFileBeginWithName($fileinfo->getPathname(), $start_filename, $recursive);
+				else if (Text::StartWith($fileinfo->getFilename(), $start_filename)) {
+					unlink(Path::Combine($dir, $fileinfo->getFilename()));
+				}
+			}
+		}
+	}
 }

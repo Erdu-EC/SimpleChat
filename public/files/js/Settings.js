@@ -92,17 +92,38 @@ $(document).on("click", "#opc-ver-foto", function () {
 $(document).on('click', "#opc-subir-foto", function () {
     $("#nueva-foto-perfil").trigger("click");
 });
+
+
 $(document).on('change', "#nueva-foto-perfil", function () {
     $imagenPrevisualizacion = $("#foto-perfil-cuenta");
     const archivos = document.getElementById('nueva-foto-perfil').files;
 
     if (archivos.length !== 0) {
-        const reader = new FileReader();
-        reader.readAsDataURL(archivos[0]);
+        const form_data = new FormData();
+        form_data.append('type', 'profile');
+        form_data.append('img', archivos.item(0));
 
-        reader.onload = function () {
-            $imagenPrevisualizacion.attr("src", reader.result);
-        };
+        $.ajax({
+            url: '/action/users/profile_img/upload', type: 'post',
+            data: form_data,
+            contentType: false,
+            processData: false,
+            mimeType: 'application/json',
+            success: function(response) {
+                if (response[0]) {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(archivos[0]);
+
+                    reader.onload = function () {
+                        $imagenPrevisualizacion.attr("src", reader.result);
+                    };
+                } else {
+                    alert('Formato de imagen incorrecto.');
+                }
+            }
+        });
+
+        return false;
     }
 });
 

@@ -26,26 +26,27 @@
             <div class="editar" id="btn-editar-perfil">
                 <span class="material-icons" title="Editar">edit</span>
             </div>
-            <form action="" id="">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
-                        <div class="img-perfil-cuenta">
-                            <img id="foto-perfil-cuenta" src="/files/profile/mikeross.png?w=200&h=200" class="" alt=""
-                                 data-fuente="/files/profile/mikeross.png"/>
-                            <div class="opciones" id="btn-opciones-perfil">
+
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
+                    <div class="img-perfil-cuenta">
+                        <img id="foto-perfil-cuenta" src="/files/profile/mikeross.png?w=200&h=200" class="" alt=""
+                             data-fuente="/files/profile/mikeross.png"/>
+                        <div class="opciones" id="btn-opciones-perfil">
                                   <span class="material-icons">
                                 photo_camera
                                 </span>
 
-                            </div>
-
-
-                            <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" id="nueva-foto-perfil">
-
-
                         </div>
 
+                        <form action="#" method="post" enctype="multipart/form-data">
+                            <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" id="nueva-foto-perfil">
+                        </form>
+
                     </div>
+
+                </div>
+                <form action="" id="">
                     <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7">
                         <div class="item-perfil-cuenta">
                             <span class="etiqueta-campo contraida">Nombres</span>
@@ -86,7 +87,7 @@
                     </div>
 
 
-                </div>
+            </div>
             </form>
         </div>
 

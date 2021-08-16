@@ -10,6 +10,8 @@ class Image
     private $Handle;
     private $FileName;
 
+    const SUPPORTED_FORMATS = ['.bmp', '.gif', '.jpg', '.jpeg', '.png'];
+
     public function __construct($resource, string $path){
         $this->Handle = $resource;
         $this->FileName = $path;
