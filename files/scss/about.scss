@@ -463,6 +463,38 @@ display: flex;
   font-size: calc(0.5em + 1vw);
   font-weight:500 ;
 }
+
+
+@keyframes EntradaTexto {
+  0% {
+    opacity: 0;
+    -webkit-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+    -webkit-transform: translateY(30px);
+    -ms-transform: translateY(30px);
+    transform: translateY(30px);
+  }
+
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+.filtro-img-carrusel .mensaje-carrousel *{
+  animation: EntradaTexto 2s cubic-bezier(0.65, 0.05, 0.36, 1);
+  animation-fill-mode: both;
+  animation-delay: 0.5s;
+}
+
+
+
+
 span.nombre-app {
   font-family: "Signalist";
 }

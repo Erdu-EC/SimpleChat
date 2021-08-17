@@ -16,8 +16,8 @@ $('#hacia-arriba').on('click', function() {
 $(document).ready(function () {
     var myCarousel = document.querySelector('#carrusel-desarrolladores')
     var carousel = new bootstrap.Carousel(myCarousel, {
-        interval: 1500,
-
+        interval: 2000,
+        wrap: true
     })
 
 });
