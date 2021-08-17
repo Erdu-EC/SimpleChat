@@ -1,11 +1,11 @@
 //Panel de información de contacto.
 $(document).on('click', '#btn-info-contacto', ActualizarInfoContacto);
 
-$(document).on('click', '#btn-cerrar-contacto', function (){
+$(document).on('click', '#btn-cerrar-contacto', function () {
 
 });
 
-function ActualizarInfoContacto(){
+function ActualizarInfoContacto() {
     const contenedor = $('#panelInfoContacto .contenedor-perfil');
     const usuario = $('#espacio-de-chat .messages').attr('data-usuario');
 
@@ -33,7 +33,7 @@ function ActualizarInfoContacto(){
 
                 //Rellenando datos.
                 const perfil = contenedor.find('.card.perfil');
-                                perfil.find('img').attr('src', null).attr('src', ObtenerUrlImagen($('.contact-profile img')) + "?w=100");
+                perfil.find('img').attr('src', null).attr('src', ObtenerUrlImagen($('.contact-profile img')) + "?w=100");
                 perfil.find('h5').text(json[0] + " " + json[1]);
                 perfil.find('h6').text("@" + json[2]);
                 perfil.find('small').text(ObtenerTiempoUltimaConexion(json[3]));
@@ -44,7 +44,7 @@ function ActualizarInfoContacto(){
                 extra.find('.fn span').text(ObtenerFecha(json[5]));
 
                 let sexo = '';
-                switch (json[6]){
+                switch (json[6]) {
                     case 'M':
                         sexo = 'Masculino';
                         break;
@@ -244,11 +244,11 @@ function ObtenerTiempoUltimaConexion(fecha_hora) {
 
     if (fecha.getHours() < 13) {
         ult_conex += fecha.getHours() + ':';
-        ult_conex += (fecha.getMinutes()<10?'0':'') + fecha.getMinutes();
+        ult_conex += (fecha.getMinutes() < 10 ? '0' : '') + fecha.getMinutes();
         ult_conex += ' a.m.';
     } else {
         ult_conex += (fecha.getHours() - 12) + ':';
-         ult_conex += (fecha.getMinutes()<10?'0':'') + fecha.getMinutes();
+        ult_conex += (fecha.getMinutes() < 10 ? '0' : '') + fecha.getMinutes();
         ult_conex += ' p.m.';
     }
     return ult_conex;

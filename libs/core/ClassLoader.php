@@ -20,7 +20,7 @@ spl_autoload_register(function (string $class) {
 
 class ClassLoader
 {
-    private static $List = [];
+    private static array $List = [];
 
     public static function Register()
     {
@@ -48,8 +48,7 @@ class ClassLoader
             foreach (self::$List as $directory){
                 if (strpos($fileClass, $directory) === 0){
                     if (file_exists($fileClass)) {
-                        /** @noinspection PhpIncludeInspection */
-                        require_once $fileClass;
+						require_once $fileClass;
 
                         if (class_exists($class)) return;
                         else break;
@@ -74,8 +73,7 @@ class ClassLoader
                 if ($fileinfo->isDir())
                     self::Search($class, "$dir/{$fileinfo->getFilename()}");
                 else if ($fileinfo->getFilename() == $file) {
-                    /** @noinspection PhpIncludeInspection */
-                    require_once $fileinfo->getPathname();
+					require_once $fileinfo->getPathname();
                 }
             }
         }

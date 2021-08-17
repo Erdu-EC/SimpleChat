@@ -12,6 +12,10 @@
 	Route::Post('/action/contacts/add', 'ContactController#AddContact');
 	Route::Post('/action/contacts/info', 'UserController#GetOneById');
 
+	#Users Settings
+	Route::Post('/action/profile/i/update', 'SettingController#UpdateInfo');
+	Route::Post('/action/profile/p/update', 'SettingController#UpdatePassword');
+
 	#Conversations and Messages.
 	Route::Post('/action/messages/send', 'MessageController#Send');
 	Route::Get('/action/conversations', 'MessageController#GetConversations');

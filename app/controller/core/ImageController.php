@@ -3,14 +3,12 @@
 	namespace HS\app\controller\core;
 
 	use HS\config\APP_DIR;
-	use HS\libs\collection\ArrayUtils;
 	use HS\libs\core\http\HttpResponse;
 	use HS\libs\core\Session;
 	use HS\libs\graphic\Image;
 	use HS\libs\graphic\ImageException;
 	use HS\libs\helper\IOUtil;
 	use HS\libs\helper\MimeType;
-	use HS\libs\helper\Regex;
 	use HS\libs\helper\Text;
 	use HS\libs\io\Path;
 
@@ -67,6 +65,7 @@
 		}
 
 		public static function Upload(string $type) {
+			//TODO: INGRESAR EN BASE DE DATOS RUTA DE LA IMAGEN.
 			HttpResponse::SetContentType(MimeType::Json);
 
 			$type = !empty($type) ? $type : die(json_encode([false, 0]));
