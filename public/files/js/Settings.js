@@ -100,11 +100,10 @@ $(document).on('change', "#nueva-foto-perfil", function () {
 
     if (archivos.length !== 0) {
         const form_data = new FormData();
-        form_data.append('type', 'profile');
         form_data.append('img', archivos.item(0));
 
         $.ajax({
-            url: '/action/users/profile_img/upload', type: 'post',
+            url: '/action/users/profile/upload_img', type: 'post',
             data: form_data,
             contentType: false,
             processData: false,

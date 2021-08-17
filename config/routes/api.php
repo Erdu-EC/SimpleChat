@@ -3,6 +3,7 @@
 	namespace HS\config\routes;
 
 	use HS\libs\core\Route;
+	use HS\libs\helper\Regex;
 
 	#Users and Contacts
 	Route::Get('/action/users/all', 'UserController#GetAll');
@@ -22,4 +23,8 @@
 	Route::Get('/action/users/MIInstant', 'Instant#GetUnreceivedMessagesAndInvitations');
 
 	#Upload Image Route
-	Route::Post('/action/users/profile_img/upload', 'ImageController#Upload');
+	Route::Post('/action/users/{type}/upload_img', 'ImageController#Upload', [
+		'type' => Regex::InList('profile')
+	]);
+
+	///action/users/profile/upload_img

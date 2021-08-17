@@ -66,10 +66,10 @@
 			die(file_get_contents($path, false));
 		}
 
-		public static function Upload() {
+		public static function Upload(string $type) {
 			HttpResponse::SetContentType(MimeType::Json);
 
-			$type = $_POST['type'] ?? die(json_encode([false, 0]));
+			$type = !empty($type) ? $type : die(json_encode([false, 0]));
 			$file = $_FILES['img'];
 
 			if ($file['error'] !== 0)
