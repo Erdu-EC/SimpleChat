@@ -1,3 +1,7 @@
+$("#btn-navbar-toggler").click(function () {
+    $("nav.menu-navegacion ul.nav-lista").toggleClass("activo").toggleClass("inactivo");
+});
+
 // validando nombre del remitente
 $("#nombre-remitente").on("input", function (){
     ValidarNombre();

@@ -1,3 +1,4 @@
+//FRONTEND
 $(".container-fluid").scroll(function() {
     if ($(this).scrollTop() > 200) {
         $("#hacia-arriba").addClass('visible');
@@ -19,4 +20,9 @@ $(document).ready(function () {
 
     })
 
+});
+
+
+$("#btn-navbar-toggler").click(function () {
+    $("nav.menu-navegacion ul.nav-lista").toggleClass("activo").toggleClass("inactivo");
 });

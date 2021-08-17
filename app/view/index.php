@@ -109,7 +109,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </div>
                     </li>
                     <li class="nav-item">
-                        <div class="nav-link" href="/About">
+                        <div class="nav-link" id="seccion-acerca">
                             <i class="fas fa-users icon-nav-link"></i>
                             <!-- <img src="/files/icon/nosotros.svg" alt="" class="img-fluid"> -->
                             Acerca de nosotros

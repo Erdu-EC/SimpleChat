@@ -107,18 +107,14 @@ $(document).on("click","#btn-info-contacto",function (){
     $("#frame #espacio-de-chat").addClass("desp-der");
     $("#panelInfoContacto").addClass("mostrar");
     $("#btn-info-contacto").addClass("ocultar");
-  /*  if($('#frame .content').width() < 400){
-        $('body').addClass('sb-sidenav-toggled');
-    }*/
+
 });
 
 $(document).on("click","#btn-cerrar-contacto",function (){
     $("#frame #espacio-de-chat").removeClass("desp-der");
     $("#panelInfoContacto").removeClass("mostrar");
     $("#btn-info-contacto").removeClass("ocultar");
-  /*  if($('#frame .content').width()< 400){
-        $('body').removeClass('sb-sidenav-toggled');
-    }*/
+
 });
 
 //detectar tamanos de pantalla y las acciones
@@ -139,10 +135,14 @@ $(document).on("click", "#btn-emojis", function () {
 
     picker.togglePicker(button);
 });
-
+//redireccion a otras paginas del sitio
 $("#seccion-politicas").click(function () {
  $(location).attr("href","/Privacy");
 });
+$("#seccion-acerca").click(function () {
+ $(location).attr("href","About");
+});
+
 //configuraciones de cuenta
 $(document).on("click", "#btn-configuraciones", function () {
     $('ul#lista-conversaciones li.active').removeClass('active');
