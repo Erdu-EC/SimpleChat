@@ -165,7 +165,11 @@ $("#enviar").on("click",function (e){
 
  if(continuar){
      //sentencias para enviar formulario
-     alert("El mensaje puede enviarse");
+     swal({
+
+         text: "Gracias por escribirnos, su mensaje ha sido recibido.",
+         icon: "/files/icon/logo-bk.png?h=50",
+     });
  }
  else{
      if($(".formulario-contacto .alert-error").length == 0){

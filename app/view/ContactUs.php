@@ -151,5 +151,6 @@ use const HS\config\APP_NAME;
 </div>
 
 <script type="application/javascript" src="/files/js/ContactUs.js"></script>
+<script type="text/javascript" src="/files/sweetalert/sweetalert.min.js"></script>
 </body>
 </html>

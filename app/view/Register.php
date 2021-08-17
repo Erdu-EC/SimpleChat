@@ -114,6 +114,17 @@ support_agent</span>
                                 </div>
                             </div>
                             <div class="item-form">
+                                <span class="etiqueta-input">Teléfono</span>
+                                <div class="input-group">
+
+                                    <label class="" for="user_phone">
+                                        <span class="material-icons">phone</span>
+                                    </label>
+                                    <input id="user_phone" type="text" class="form-control" minlength="8" maxlength="30" required>
+
+                                </div>
+                            </div>
+                            <div class="item-form">
                                 <span class="etiqueta-input">Usuario</span>
                                 <div class="input-group">
 

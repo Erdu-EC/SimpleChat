@@ -94,8 +94,8 @@ $(document).on('submit', "#register_form", null, function (e) {
             fn: $("#first_name").val(),
             ln: $("#last_name").val(),
             gen: $("#gender").val(),
-            birth: $("#birth_date").val()
-
+            birth: $("#birth_date").val(),
+            phone: $("#user_phone").val()
         },
         beforeSend: () => Alert(ALERT_NORMAL, "Cargando..."),
         error: () => Alert(ALERT_ERROR, "No fue posible realizar el registro."),
