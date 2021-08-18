@@ -86,6 +86,19 @@
 			return (new ContactModel($this->PDO))->IsContactOfUser($user, $contact);
 		}
 
+		#METODOS PARA INSERTAR Y ACTUALIZAR DATOS.
+		public function UpdateProfileImage(int $user_id, string $img_name, callable $action): bool {
+			return $this->ExecuteTransaction(function () use ($action, $img_name, $user_id) {
+				if ($action() === false)
+					return false;
+
+				$this->Execute('UPDATE users SET profile_img = :img WHERE id = :uid', [
+					'uid' => $user_id,
+					'img' => $img_name
+				]);
+			});
+		}
+
 		//Metodos para mensajes.
 		public function SendMessage(int $user_id, int $contact_id, string $text): bool {
 			return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $text);

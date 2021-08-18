@@ -55,8 +55,12 @@ class SDB
         $PDO->beginTransaction();
 
         try {
-            if (is_callable($actions))
-                $actions();
+            if (is_callable($actions)){
+				if ($actions() === false){
+					$PDO->rollBack();
+					return false;
+				}
+			}
             else
                 throw new \InvalidArgumentException();
 

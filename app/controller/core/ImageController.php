@@ -2,7 +2,9 @@
 
 	namespace HS\app\controller\core;
 
+	use HS\app\model\UserModel;
 	use HS\config\APP_DIR;
+	use HS\config\DBAccount;
 	use HS\libs\core\http\HttpResponse;
 	use HS\libs\core\Session;
 	use HS\libs\graphic\Image;
@@ -81,18 +83,27 @@
 				die(json_encode([false, 4]));
 			else {
 				//Nombre de usuario.
-				$user_name = (new Session())->user_name;
+				$session = new Session();
+				$user_id = $session->user_id;
+				$user_name = $session->user_name;
+				unset($session);
 
 				//Obteniendo ruta en donde se guardara la imagen.
 				$img_name = $type === 'profile' ? $user_name . Path::GetExtension($file['name']) : $file['name'];
 
-				//Moviendo imagen subida a directorio correcto.
-				if (move_uploaded_file($file['tmp_name'], self::GetPathOfType($type, $img_name)) !== false) {
+				//Actualizando base de datos.
+				if ($type === 'profile' && ($user = new UserModel(DBAccount::Root))->UpdateProfileImage($user_id, $img_name, fn() => move_uploaded_file($file['tmp_name'], self::GetPathOfType($type, $img_name)) !== false)) {
+					//Desconectando base de datos.
+					unset($user);
+
 					//Limpiar cache de foto de perfil.
-					if ($type === 'profile')
-						IOUtil::DeleteFileBeginWithName(Path::Combine(APP_DIR::IMAGE_CACHE, 'profile'), "$user_name (");
+					IOUtil::DeleteFileBeginWithName(Path::Combine(APP_DIR::IMAGE_CACHE, 'profile'), "$user_name (");
 
 					//Devolviendo respuesta.
+					die(json_encode([true]));
+				}
+				//Moviendo imagen subida a directorio correcto.
+				if (move_uploaded_file($file['tmp_name'], self::GetPathOfType($type, $img_name)) !== false) {
 					die(json_encode([true]));
 				} else
 					die(json_encode([false, 5]));
