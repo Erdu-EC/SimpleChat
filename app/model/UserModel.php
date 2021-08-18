@@ -4,8 +4,8 @@
 
 	use HS\libs\collection\Collection;
 	use HS\libs\core\Model;
-	use HS\libs\core\Session;
 	use HS\libs\core\TModel;
+	use PDOException;
 
 	class UserModel extends Model
 	{
@@ -40,7 +40,7 @@
 				return self::SelectOnly("select $fields from users where user_name = :user", [
 					'user' => $user_name
 				]);
-			} catch (\PDOException $ex) {
+			} catch (PDOException $ex) {
 				return null;
 			}
 		}
@@ -51,7 +51,7 @@
 				return self::SelectOnly("select $fields from users where id = :uid", [
 					'uid' => $user_id
 				]);
-			} catch (\PDOException $ex) {
+			} catch (PDOException $ex) {
 				return null;
 			}
 		}
@@ -60,7 +60,7 @@
 			try {
 				$fields = self::FilterAllowedFields($fields, '*');
 				return self::SelectAll("select $fields from users");
-			} catch (\PDOException $ex) {
+			} catch (PDOException $ex) {
 				return null;
 			}
 		}
@@ -76,13 +76,13 @@
 					'uid2' => $current_user,
 					'text' => "$text*"
 				]);
-			} catch (\PDOException $ex) {
+			} catch (PDOException $ex) {
 				return null;
 			}
 		}
 
 		//Metodos para obtener determinados datos.
-		public function HasContact(int $user, int $contact) {
+		public function HasContact(int $user, int $contact): ?bool {
 			return (new ContactModel($this->PDO))->IsContactOfUser($user, $contact);
 		}
 
@@ -96,6 +96,8 @@
 					'uid' => $user_id,
 					'img' => $img_name
 				]);
+
+				return true;
 			});
 		}
 
