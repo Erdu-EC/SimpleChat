@@ -144,7 +144,27 @@ support_agent</span>
                                            autocomplete="new-password"
                                            minlength="8" maxlength="60" required>
                                 </div>
+                                <div class="info-clave-usuario">
+                                    <div class="indicador-minimo">
+                                        8 caracteres mín. y 60 máx.
+                                    </div>
+                                    <div class="indicador-nivel-seguridad">
+                                        <i class="fas fa-info-circle"></i> Débil
+                                    </div>
+
+                                </div>
+                                <div class="desplegable-recomendaciones-clave">
+<p> <i class="fas fa-info-circle"></i> Una contraseña fuerte debe ser única, contener como mínimo 8 caracteres, con una combinación de:</p>
+                                    <ul>
+                                        <li>- 8 caracteres min.</li>
+                                        <li>- Números</li>
+                                        <li>- Letras mayúsculas</li>
+                                        <li>- Letras minúsculas</li>
+                                        <li>-Caracteres especiales</li>
+                                    </ul>
+                                </div>
                             </div>
+
                             <div class="item-form">
                                 <span class="etiqueta-input">Repita la contraseña</span>
                                 <div class="input-group">
@@ -166,12 +186,6 @@ support_agent</span>
 
                             </div>
                         </div>
-
-
-
-
-
-
                             <div class="acceder-cuenta">
                                 ¿Ya tienes una cuenta? <a class="" href="/Login">Inicia Sesión</a>
                             </div>

@@ -336,8 +336,8 @@ Estilos para el formulario de registro
 div.activo span.etiqueta-input {
 margin-top:-20px;
   color: #ffffff;
-  font-size: 12px;
-
+  font-size: 14px;
+font-weight: 600;
 }
 div.activo .input-group input, div.activo .input-group select#gender {
   border-bottom: 3px solid #303F9F;
@@ -427,9 +427,65 @@ border-radius: 0px;
 .acceder-cuenta a:hover{
   text-decoration: underline;
 }
-/*-------------------------------------------------------------
-Fin de estilos para el formulario de registro
-------------------------------------------------------*/
+
+
+/*
+estilos para informacion de contrtaseña
+*/
+.info-clave-usuario {
+  display: flex;
+  color: white;
+  flex-direction: row;
+  margin-top: -25px;
+  margin-bottom: 30px;
+  margin-right: 10px;
+  width: 100%;
+  padding: 0 10px;
+  font-size: 11px;
+}
+.info-clave-usuario .indicador-minimo {
+  flex-grow: 1;
+  color: #f2f2f2;
+}
+.info-clave-usuario .indicador-nivel-seguridad .fas{
+  margin-right: 5px;
+}
+.desplegable-recomendaciones-clave {
+display: none;
+  position: absolute;
+  background: #FFFFFF;
+z-index: 10;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-top: -10px;
+  padding: 20px;
+  left: 0;
+  right: 0;
+  margin-left: 32px;
+  margin-right: 32px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.desplegable-recomendaciones-clave.visible {
+  display: block;
+}
+.desplegable-recomendaciones-clave p {
+
+  margin: 0px;
+}
+.desplegable-recomendaciones-clave p .fas {
+  color: #8e8e8f;
+
+}
+.desplegable-recomendaciones-clave ul {
+  list-style: none;
+  padding: 5px 10px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+  /*-------------------------------------------------------------
+  Fin de estilos para el formulario de registro
+  ------------------------------------------------------*/
 
 /*
 Mensjaes de errores
@@ -454,6 +510,7 @@ display: flex;
 .mensaje-error span.material-icons {
   font-size: 20px;
   margin-right: 10px;
+
 }
 
 

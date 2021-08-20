@@ -74,6 +74,12 @@ if($("select#gender option:selected").text() == ""){
 }
 
 });
+$("#user_pass").focus(function () {
+    $(".desplegable-recomendaciones-clave").addClass("visible");
+});
+$("#user_pass").blur(function () {
+    $(".desplegable-recomendaciones-clave").removeClass("visible");
+});
 /*-----------------------------------------------
 Fin accione para estilos de la página
 -----------------------------------------------*/

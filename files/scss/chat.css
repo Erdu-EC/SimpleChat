@@ -1,9 +1,9 @@
 /* Error: 100% and 60px have incompatible units.
  *      ,
- * 1208 |   width: calc (100% - 60px);
+ * 1209 |   width: calc (100% - 60px);
  *      |                ^^^^^^^^^^^
  *      '
- *   chat.scss 1208:16  root stylesheet */
+ *   chat.scss 1209:16  root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -13,5 +13,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: 100% and 60px have incompatible units.\a      \2577 \a 1208 \2502    width: calc (100% - 60px);\d\a      \2502                 ^^^^^^^^^^^\a      \2575 \a   chat.scss 1208:16  root stylesheet";
+  content: "Error: 100% and 60px have incompatible units.\a      \2577 \a 1209 \2502    width: calc (100% - 60px);\d\a      \2502                 ^^^^^^^^^^^\a      \2575 \a   chat.scss 1209:16  root stylesheet";
 }
