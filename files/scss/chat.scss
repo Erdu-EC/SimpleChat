@@ -454,6 +454,7 @@ body::-webkit-scrollbar{
   #frame #sidepanel {
     width: 58px;
     min-width: 58px;
+    max-width: 58px;
   }
 }
 /* barra de navegacion
@@ -953,56 +954,57 @@ Fin de contactos
 }
 #sidepanel .img-perfil .opciones-sesion {
 
-  width: 150px;
+  width: 90%;
   position: absolute;
-background: #ffffff;
-  right:1rem;
-  top: 4rem;
+  margin-left: 10px;
+  margin-right: 10px;
+  top: 4.5rem;
   z-index: 1300;
   border-radius: 5px;
-  color: #000000;
+  background: #FFFFFF;
+  padding: 5px 0;
 }
+
 #sidepanel .img-perfil .opciones-sesion.inactivo {
   display: none;
 }
 #sidepanel .img-perfil .opciones-sesion:hover{
-  color: #000000;
 
-}
-#sidepanel .img-perfil .opciones-sesion .cerrar-sesion {
   border-radius: 5px;
-
+}
+#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion {
 
   width: 100%;
 }
-#sidepanel .img-perfil .opciones-sesion .cerrar-sesion:hover {
-  background: #f2f2f2;
+#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion:hover {
+background: #f2f2f2;
+
 }
-#sidepanel .img-perfil .opciones-sesion .cerrar-sesion a {
+#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion  .opc-sesion{
   text-decoration: none;
   text-underline: none;
-  color: #dc3545;
   vertical-align: center;
   font-size: 15px;
   display:flex;
   align-items: center;
   align-content: center;
-  padding: 5px 10px;
+  padding: 8px 10px;
   align-self: center;
+  color: #2B364F;
 }
-#sidepanel .img-perfil .opciones-sesion .cerrar-sesion a p{
+#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion  .opc-sesion p{
 
   vertical-align: center;
   margin-top: auto;
   margin-bottom: auto;
 }
-#sidepanel .img-perfil .opciones-sesion .cerrar-sesion a span {
+#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion  .opc-sesion span.material-icons {
 
   font-size: 18px;
   width: 25px;
   display: inline-flex;
   vertical-align: center;
-  color: #dc3545;
+
 }
 
 
@@ -1051,24 +1053,25 @@ background: #ffffff;
 
   }
   #sidepanel .img-perfil .opciones-sesion {
-    left:5px;
-    top: 4rem;
-    width: 50px;
 
+    top: 4rem;
+    width: 100%;
   }
-  #sidepanel .img-perfil .opciones-sesion .cerrar-sesion a{
+  #sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion{
     padding: 10px 5px;
 
 
     align-items: center;
     align-content: center;
   }
-  #sidepanel .img-perfil .opciones-sesion .cerrar-sesion a span{
+  #sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion span{
     width: 100%;
     text-align: center;
     justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
   }
-  #sidepanel .img-perfil .opciones-sesion .cerrar-sesion a p {
+  #sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion p {
     display: none;
 
   }

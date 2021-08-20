@@ -23,8 +23,8 @@ $('.submit').on('click',function() {
 });
 
 //cerrar sesion
-$(document).on("click", "#mi-perfil-sidepanel .usuario-perfil-opciones", function (){
-    $(this).toggleClass("activo");
+$(document).on("click", "#mi-perfil-sidepanel", function (){
+    $("#mi-perfil-sidepanel .usuario-perfil-opciones").toggleClass("activo");
     $("#mi-perfil-sidepanel .opciones-sesion").toggleClass("inactivo");
 });
 

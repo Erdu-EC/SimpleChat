@@ -150,11 +150,20 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     <span class="material-icons" title="">arrow_drop_down</span>
 </div>
 <div class="opciones-sesion inactivo">
-<div class="cerrar-sesion">
+    <div class="item-opciones-sesion ">
 
-    <a href="/Logout"> <span class="material-icons" title="Cerrar sesión">logout</span> <p>Cerrar sesión</p></a>
+        <div title="Configuraciones de cuenta" class="opc-sesion">
+            <span class="material-icons">settings</span>
+            <p>Configuraciones</p>
+        </div>
+    </div>
+
+    <div class="item-opciones-sesion ">
+    <a href="/Logout" class="opc-sesion">
+        <span class="material-icons" title="Cerrar sesión">logout</span>
+        <p>Cerrar sesión</p>
+    </a>
 </div>
-
 
 </div>
                         </div>
