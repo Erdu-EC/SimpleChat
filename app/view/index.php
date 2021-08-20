@@ -150,7 +150,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     <span class="material-icons" title="">arrow_drop_down</span>
 </div>
 <div class="opciones-sesion inactivo">
-    <div class="item-opciones-sesion ">
+    <div class="item-opciones-sesion " id="btn-conf-sesion">
 
         <div title="Configuraciones de cuenta" class="opc-sesion">
             <span class="material-icons">settings</span>
