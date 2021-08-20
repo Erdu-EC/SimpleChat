@@ -2017,7 +2017,28 @@ body .wrapper .emoji-picker .emoji-picker__preview {
   background: #435f7a;
 }
 
+#espacio-de-escritura #archivo-imagen-enviar {
+  display: none;
+}
+#espacio-de-escritura #icon-archivo-imagen {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  z-index: 100;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  right: 5.45rem;
+ top: 10px;
+  color: #a7a7a7;
+  font-size: 25px;
+}
 
+#espacio-de-escritura #icon-archivo-imagen:hover{
+  background: #a7a7a7;
+  color: #000000;
+}
 .container-fluid{
   padding: 0;
 }

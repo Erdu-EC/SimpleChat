@@ -162,3 +162,8 @@ function CargarEspacioConfiguraciones(){
     ).load(`/Settings`);
 
 };
+
+//enviar imagen
+$(document).on("click", "#icon-archivo-imagen",function (){
+    $("#archivo-imagen-enviar").trigger("click");
+});
