@@ -88,8 +88,15 @@ Fin accione para estilos de la página
 Còdigo de acciones para enviar datos al servidor
 -----------------------------------------------*/
 
-$(document).on('submit', "#register_form", null, function (e) {
-
+$(document).on('submit', "#register_form", function (e) {
+e.preventDefault();
+    if(!ValidarNombreApellido($("#first_name"),"nombre")){
+       //acciones
+    }
+    if(!ValidarNombreApellido($("#last_name"), "apellido")){
+        $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>Por favor verifique todos los campos.</div>');
+        return;
+    }
     $.ajax('/action/user/Register', {
         method: 'post',
         dataType: 'json',
@@ -149,10 +156,6 @@ $(document).on('input', '#user_name', null, function () {
 });
 
 $(document).on('input', '#user_pass', null, function () {
-    if (this.validity.tooLong || this.validity.tooShort)
-        this.setCustomValidity("La contraseña debe tener un mínimo de 8 caracteres y un máximo de 60.");
-    else
-        this.setCustomValidity('');
 
     var info_nivel = $("#indicador-nivel-seguridad");
     var nivel=0;
@@ -171,9 +174,6 @@ $(document).on('input', '#user_pass', null, function () {
 
 
     }
-
-
-    console.log(info_nivel.val().length+ "   "+ nivel);
     switch (nivel){
         case 0:
             info_nivel.addClass("debil");
@@ -188,10 +188,12 @@ $(document).on('input', '#user_pass', null, function () {
             $("#indicador-nivel-seguridad span").text("Media");
             break;
         case 3:
+        case 4:
             info_nivel.addClass("fuerte");
             $("#indicador-nivel-seguridad span").text("Fuerte");
-            break
+            break;
     }
+    ContrasenasCoinciden();
 });
 function Coincidencia(cadena, cadena_referencia){
     for(i=0; i<cadena.length; i++){
@@ -211,11 +213,9 @@ function CoincidenciaCaracteresEspecialess(cadena, cadena_referencia){
 }
 $(document).on('input', '#user_pass_repeat', null, function () {
 
-    if ($("#user_pass").val() !== this.value)
-        $("#contenedor-mensajes").html('<div class="mensaje-error no-coincide"><span class="material-icons">error</span> Las contraseñas no coinciden </div>');
-    else
-        $("#contenedor-mensajes .no-coincide").remove();
+    ContrasenasCoinciden();
 });
+
 
 const ALERT_NORMAL = 1;
 const ALERT_ERROR = 2;
@@ -237,6 +237,28 @@ function Alert(code, msg) {
             break;
     }
 }
+function ValidarNombreApellido(elemento, campo_nombre) {
+    if(elemento.val().length < 2){
+elemento.parent().after('<div class="indicador-error"> Ingrese un '+campo_nombre+' válido. 2 caract. mín.</div>');
+return false;
+    }
+    return true;
+}
+
+function ContrasenasCoinciden(){
+    var clave=$("#user_pass");
+    var clave_rep=$("#user_pass_repeat");
+    $("#contenedor-mensajes .no-coincide").remove();
+    if ((clave.val() != "")  && (clave_rep.val()!="")) {
+        if (clave.val()!= clave_rep.val()){
+            $("#contenedor-mensajes").append('<div class="mensaje-error no-coincide"><span class="material-icons">error</span> Las contraseñas no coinciden </div>');
+
+        }else{
+            $("#contenedor-mensajes .no-coincide").remove();
+        }
+    }
+}
+
 /*----------------------------------------------------
 Fin de còdigo de acciones para enviar datos al servidor
 ------------------------------------------------------*/
