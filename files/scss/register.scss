@@ -447,9 +447,25 @@ estilos para informacion de contrtaseña
   flex-grow: 1;
   color: #f2f2f2;
 }
-.info-clave-usuario .indicador-nivel-seguridad .fas{
+.info-clave-usuario #indicador-nivel-seguridad {
+  color: #FFFFFF;
+}
+.info-clave-usuario #indicador-nivel-seguridad .fas{
   margin-right: 5px;
 }
+.info-clave-usuario #indicador-nivel-seguridad.debil{
+  color: #dc3545;
+}
+.info-clave-usuario #indicador-nivel-seguridad.regular{
+  color: #ffc107;
+}
+.info-clave-usuario #indicador-nivel-seguridad.media{
+  color: #feb272;
+}
+.info-clave-usuario #indicador-nivel-seguridad.fuerte{
+  color: #5fb70f;
+}
+
 .desplegable-recomendaciones-clave {
 display: none;
   position: absolute;

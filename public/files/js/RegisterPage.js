@@ -150,12 +150,67 @@ $(document).on('input', '#user_name', null, function () {
 
 $(document).on('input', '#user_pass', null, function () {
     if (this.validity.tooLong || this.validity.tooShort)
-        this.setCustomValidity("La contraseña debe tener un minimo de 8 caracteres y un maximo de 60.");
+        this.setCustomValidity("La contraseña debe tener un mínimo de 8 caracteres y un máximo de 60.");
     else
         this.setCustomValidity('');
-});
 
+    var info_nivel = $("#indicador-nivel-seguridad");
+    var nivel=0;
+    info_nivel.removeClass();
+    if ($(this).val().length > 7){
+        nivel += 1;
+        if (Coincidencia($(this).val(),"0123456789" )){
+            nivel += 1;
+        }
+        if (Coincidencia($(this).val(),"ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" )){
+            nivel += 1;
+        }
+        if (CoincidenciaCaracteresEspecialess($(this).val(),"ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789abcdefghijklmnñopqrstuvwxyz")){
+            nivel += 1;
+        }
+
+
+    }
+
+
+    console.log(info_nivel.val().length+ "   "+ nivel);
+    switch (nivel){
+        case 0:
+            info_nivel.addClass("debil");
+            $("#indicador-nivel-seguridad span").text("Débil");
+            break;
+        case 1:
+            info_nivel.addClass("regular");
+            $("#indicador-nivel-seguridad span").text("Regular");
+            break;
+        case 2:
+            info_nivel.addClass("media");
+            $("#indicador-nivel-seguridad span").text("Media");
+            break;
+        case 3:
+            info_nivel.addClass("fuerte");
+            $("#indicador-nivel-seguridad span").text("Fuerte");
+            break
+    }
+});
+function Coincidencia(cadena, cadena_referencia){
+    for(i=0; i<cadena.length; i++){
+        if (cadena_referencia.indexOf(cadena.charAt(i),0)!=-1){
+            return true;
+        }
+    }
+    return false;
+}
+function CoincidenciaCaracteresEspecialess(cadena, cadena_referencia){
+    for(i=0; i<cadena.length; i++){
+        if (cadena_referencia.indexOf(cadena.charAt(i),0)==-1){
+            return true;
+        }
+    }
+    return false;
+}
 $(document).on('input', '#user_pass_repeat', null, function () {
+
     if ($("#user_pass").val() !== this.value)
         $("#contenedor-mensajes").html('<div class="mensaje-error no-coincide"><span class="material-icons">error</span> Las contraseñas no coinciden </div>');
     else

@@ -146,10 +146,10 @@ support_agent</span>
                                 </div>
                                 <div class="info-clave-usuario">
                                     <div class="indicador-minimo">
-                                        8 caracteres mín. y 60 máx.
+                                        8 caracteres mín.
                                     </div>
-                                    <div class="indicador-nivel-seguridad">
-                                        <i class="fas fa-info-circle"></i> Débil
+                                    <div id="indicador-nivel-seguridad">
+                                        <i class="fas fa-info-circle"></i> <span>Débil</span>
                                     </div>
 
                                 </div>
