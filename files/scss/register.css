@@ -519,6 +519,7 @@ Mensjaes de errores
 #contenedor-mensajes {
   display: flex;
   padding: 0 12px;
+  flex-direction: column;
 }
 
 .mensaje-error {
@@ -531,6 +532,11 @@ Mensjaes de errores
   display: flex;
   align-items: center;
   padding: 10px;
+  margin-bottom: 10px;
+}
+
+.mensaje-error:last-child {
+  margin-bottom: 20px;
 }
 
 .mensaje-error span.material-icons {

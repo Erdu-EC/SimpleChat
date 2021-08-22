@@ -102,9 +102,7 @@ support_agent</span>
                                             <option value="D">Sin especificar</option>
                                         </select>
                                     </div>
-                                    <div class="indicador-error">
-                                        Elige una opción.
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="col-6">
@@ -114,11 +112,9 @@ support_agent</span>
                                         <label class="" for="birth_date">
                                             <span class="material-icons">cake</span>
                                         </label>
-                                        <input id="birth_date" type="date" class=""  default="2013-05-21"  <?php echo 'max="',date('Y-m-d'),'"';?>>
+                                        <input id="birth_date" type="date" class="" <?php echo 'max="',date('Y-m-d'),'"';?>>
                                     </div>
-                                    <div class="indicador-error">
-                                    Ingrese una fecha válida.
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="item-form">
@@ -128,11 +124,8 @@ support_agent</span>
                                     <label class="" for="user_phone">
                                         <span class="material-icons">phone</span>
                                     </label>
-                                    <input id="user_phone" type="text" class="form-control" minlength="8" maxlength="30" >
+                                    <input id="user_phone" type="text" class="form-control">
 
-                                </div>
-                                <div class="indicador-error">
-                                    Ingrese un número de teléfono válido.
                                 </div>
                             </div>
                             <div class="item-form">
@@ -142,21 +135,15 @@ support_agent</span>
                                     <label class="" for="user_name">
                                         <span class="material-icons">person</span>
                                     </label>
-                                    <input id="user_name" type="text" class="form-control" autocomplete="username"
-                                           minlength="4" maxlength="30" >
+                                    <input id="user_name" type="text" class="form-control" autocomplete="username" maxlength="30" >
 
-                                </div>
-                                <div class="indicador-error">
-                                    El nombre de usuario debe contener al menos 4 caracteres.
                                 </div>
                             </div>
                             <div class="item-form">
                                 <span class="etiqueta-input">Escriba su contraseña</span>
                                 <div class="input-group">
                                     <label class="" for="user_pass"><span class="material-icons">lock</span></label>
-                                    <input id="user_pass" type="password" class="form-control"
-                                           autocomplete="new-password"
-                                           minlength="8" maxlength="60" >
+                                    <input id="user_pass" type="password" class="form-control" autocomplete="new-password" maxlength="60" >
                                 </div>
                                 <div class="info-clave-usuario">
                                     <div class="indicador-minimo">
@@ -183,8 +170,7 @@ support_agent</span>
                                 <span class="etiqueta-input">Repita la contraseña</span>
                                 <div class="input-group">
                                     <label for="user_pass_repeat" ><span class="material-icons">lock</span></label>
-                                    <input id="user_pass_repeat" type="password" class="form-control"   autocomplete="new-password"
-                                           minlength="8" maxlength="60" >
+                                    <input id="user_pass_repeat" type="password" class="form-control"   autocomplete="new-password" maxlength="60" >
                                 </div>
                             </div>
                             <div id="contenedor-mensajes">

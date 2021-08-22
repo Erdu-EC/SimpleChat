@@ -80,6 +80,33 @@ $("#user_pass").focus(function () {
 $("#user_pass").blur(function () {
     $(".desplegable-recomendaciones-clave").removeClass("visible");
 });
+$("#user_phone").keydown( function (e) {
+    var key =  e.key.charCodeAt(0);
+    if ((key == 8 ||
+            key == 9 ||
+            key == 66 ||
+            key == 13 ||
+            key == 65 ) ||
+        (key >= 48 && key <= 57))
+    {
+        return key;
+    }else{
+        e.preventDefault();
+    };
+});
+$("#first_name").on("input", function () {
+    ValidarNombreApellido($(this), "nombre");
+});
+$("#last_name").on("input", function () {
+    ValidarNombreApellido($(this), "apellido");
+});
+$("#gender").change(function () {
+    ValidarGenero();
+});
+$("#user_name").on("input", function () {
+    ValidarUsuario($(this), "apellido");
+});
+
 /*-----------------------------------------------
 Fin accione para estilos de la página
 -----------------------------------------------*/
@@ -90,9 +117,15 @@ Còdigo de acciones para enviar datos al servidor
 
 $(document).on('submit', "#register_form", function (e) {
 e.preventDefault();
+    $("#contenedor-mensajes .verificar").remove();
     if(!ValidarNombreApellido($("#first_name"),"nombre")){
        //acciones
     }
+    ValidarGenero();
+    ValidarFechaNacimiento();
+    ValidarTelefono();
+    ValidarUsuario();
+    ValidarContrasenas();
     if(!ValidarNombreApellido($("#last_name"), "apellido")){
         $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>Por favor verifique todos los campos.</div>');
         return;
@@ -148,12 +181,6 @@ e.preventDefault();
     return false;
 });
 
-$(document).on('input', '#user_name', null, function () {
-    if (this.validity.tooLong || this.validity.tooShort)
-        this.setCustomValidity("El nombre de usuario debe tener un minimo de 4 caracteres y un maximo de 30.");
-    else
-        this.setCustomValidity('');
-});
 
 $(document).on('input', '#user_pass', null, function () {
 
@@ -168,7 +195,7 @@ $(document).on('input', '#user_pass', null, function () {
         if (Coincidencia($(this).val(),"ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" )){
             nivel += 1;
         }
-        if (CoincidenciaCaracteresEspecialess($(this).val(),"ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789abcdefghijklmnñopqrstuvwxyz")){
+        if (CoincidenciaCaracteresEspeciales($(this).val(),"ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789abcdefghijklmnñopqrstuvwxyz")){
             nivel += 1;
         }
 
@@ -193,7 +220,7 @@ $(document).on('input', '#user_pass', null, function () {
             $("#indicador-nivel-seguridad span").text("Fuerte");
             break;
     }
-    ContrasenasCoinciden();
+    ValidarContrasenas();
 });
 function Coincidencia(cadena, cadena_referencia){
     for(i=0; i<cadena.length; i++){
@@ -203,7 +230,7 @@ function Coincidencia(cadena, cadena_referencia){
     }
     return false;
 }
-function CoincidenciaCaracteresEspecialess(cadena, cadena_referencia){
+function CoincidenciaCaracteresEspeciales(cadena, cadena_referencia){
     for(i=0; i<cadena.length; i++){
         if (cadena_referencia.indexOf(cadena.charAt(i),0)==-1){
             return true;
@@ -213,7 +240,7 @@ function CoincidenciaCaracteresEspecialess(cadena, cadena_referencia){
 }
 $(document).on('input', '#user_pass_repeat', null, function () {
 
-    ContrasenasCoinciden();
+    ValidarContrasenas();
 });
 
 
@@ -238,25 +265,92 @@ function Alert(code, msg) {
     }
 }
 function ValidarNombreApellido(elemento, campo_nombre) {
+    elemento.parent().siblings(".indicador-error").remove();
     if(elemento.val().length < 2){
-elemento.parent().after('<div class="indicador-error"> Ingrese un '+campo_nombre+' válido. 2 caract. mín.</div>');
-return false;
+        MostrarMensajeError(elemento.parent(), "Ingrese un "+campo_nombre+" válido. 2 caract. mín.");
+        return false;
     }
     return true;
 }
+
+function ValidarGenero(){
+    var elemento = $("#gender");
+    elemento.parent().siblings(".indicador-error").remove();
+if(elemento.val()== null){
+    MostrarMensajeError(elemento.parent(), "Elige una opción.");
+    return false;
+}
+return true;
+}
+function ValidarFechaNacimiento() {
+    var elemento = $("#birth_date");
+    elemento.parent().siblings(".indicador-error").remove();
+    if(elemento.val()== null ||elemento.val()=="" ){
+        MostrarMensajeError(elemento.parent(), "Ingrese una fecha válida.");
+        return false;
+    }
+    return true;
+}
+function ValidarTelefono() {
+    var elemento = $("#user_phone");
+    elemento.parent().siblings(".indicador-error").remove();
+    if((elemento.val().length > 0 && elemento.val() < 8) || elemento.val() > 15){
+        MostrarMensajeError(elemento.parent(), "Ingrese un número de teléfono válido.");
+        return false;
+    }
+    return true;
+}
+function ValidarUsuario() {
+    var elemento = $("#user_name");
+    elemento.parent().siblings(".indicador-error").remove();
+    if(elemento.val().length < 4 ) {
+        MostrarMensajeError(elemento.parent(), "El nombre de usuario debe contener al menos 4 caracteres.");
+        return false;
+    }
+     else if(elemento.val().length > 30){
+        MostrarMensajeError(elemento.parent(), "El nombre de usuario debe tener 30 caracteres máx.");
+        return false;
+    }
+    return  true;
+}
+function ValidarContrasenas() {
+    var clave = $("#user_pass")
+    var clave_rep = $("#user_pass_repeat");
+    clave_rep.parent().siblings(".indicador-error").remove();
+    $("#contenedor-mensajes .no-coincide").remove();
+    if ( clave.val()!= clave_rep.val()){
+            $("#contenedor-mensajes").prepend('<div class="mensaje-error no-coincide"><span class="material-icons">error</span> Las contraseñas no coinciden </div>');
+
+    }
+     else if(clave.val().length < 8 || clave_rep.val().length < 8){
+        MostrarMensajeError(clave_rep .parent(), "Su contraseña debe tener al menos 8 caracteres.");
+    return false;
+    }
+    else if(clave.val().length > 60 || clave_rep.val().length > 60){
+        MostrarMensajeError(clave_rep .parent(), "Su contraseña debe tener un máximo de 60 caracteres.");
+        return false;
+    }
+    return  true;
+}
+
 
 function ContrasenasCoinciden(){
     var clave=$("#user_pass");
     var clave_rep=$("#user_pass_repeat");
     $("#contenedor-mensajes .no-coincide").remove();
-    if ((clave.val() != "")  && (clave_rep.val()!="")) {
+    if ((clave.val() != "")  || (clave_rep.val()!="")) {
         if (clave.val()!= clave_rep.val()){
-            $("#contenedor-mensajes").append('<div class="mensaje-error no-coincide"><span class="material-icons">error</span> Las contraseñas no coinciden </div>');
+            $("#contenedor-mensajes").prepend('<div class="mensaje-error no-coincide"><span class="material-icons">error</span> Las contraseñas no coinciden </div>');
 
         }else{
             $("#contenedor-mensajes .no-coincide").remove();
         }
     }
+}
+function MostrarMensajeError(elemento, texto){
+if(elemento.siblings(".indicador-error").length == 0){
+    elemento.after('<div class="indicador-error">'+ texto +'</div>');
+}
 }
 
 /*----------------------------------------------------
