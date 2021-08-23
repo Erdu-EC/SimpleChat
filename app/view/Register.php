@@ -186,6 +186,9 @@ support_agent</span>
 
                             </div>
                         </div>
+                        <div class="notifiacion-privacidad">
+                            Al dar click en el "Registrarse", acepta los condiciones generales de uso disponibles en <a href="/Privacy">Términos y condiciones</a>
+                        </div>
                             <div class="acceder-cuenta">
                                 ¿Ya tienes una cuenta? <a class="" href="/Login">Inicia Sesión</a>
                             </div>

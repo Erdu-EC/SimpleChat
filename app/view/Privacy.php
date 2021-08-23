@@ -66,7 +66,7 @@ support_agent</span>
         <section class="contenido-politicas">
 <div class="tabla-contenido"></div>
             <div class="texto-politicas">
-                <h1>Términos y Condiciones de uso de Simplechat </h1>
+                <h1>Términos y Condiciones de uso de SimpleChat </h1>
                 <ol class="lista-principal">
                     <li>
 

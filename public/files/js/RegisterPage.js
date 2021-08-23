@@ -128,70 +128,124 @@ Còdigo de acciones para enviar datos al servidor
 
 $(document).on('submit', "#register_form", function (e) {
 e.preventDefault();
-    $("#contenedor-mensajes .verificar").remove();
+var continuar = true;
+    $("#contenedor-mensajes").empty();
     if(!ValidarNombreApellido($("#first_name"),"nombre")){
-       //acciones
+       continuar= false;
     }
-    ValidarGenero();
-    ValidarFechaNacimiento();
-    ValidarTelefono();
-    ValidarUsuario();
-    ValidarContrasenas();
     if(!ValidarNombreApellido($("#last_name"), "apellido")){
-        $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>Por favor verifique todos los campos.</div>');
-        return;
+        continuar= false;
     }
-    $.ajax('/action/user/Register', {
-        method: 'post',
-        dataType: 'json',
-        mimeType: 'application/json',
-        data: {
-            u: $("#user_name").val(),
-            p: $("#user_pass").val(),
-            fn: $("#first_name").val(),
-            ln: $("#last_name").val(),
-            gen: $("#gender").val(),
-            birth: $("#birth_date").val(),
-            phone: $("#user_phone").val()
-        },
-        beforeSend: () => Alert(ALERT_NORMAL, "Cargando..."),
-        error: () => Alert(ALERT_ERROR, "No fue posible realizar el registro."),
-        success: function (json) {
-            if (json[0] === true) {
+
+    if (!ValidarGenero()){
+        continuar= false;
+    }
+    if(!ValidarFechaNacimiento()){
+        continuar= false;
+    }
+    if(!ValidarTelefono()){
+        continuar= false;
+    }
+    if(!ValidarUsuario()){
+        continuar= false;
+    }
+    if(!ValidarContrasenas()){
+        continuar= false;
+    }
+
+    if (continuar){
+        $.ajax('/action/user/Register', {
+            method: 'post',
+            dataType: 'json',
+            mimeType: 'application/json',
+            data: {
+                u: $("#user_name").val(),
+                p: $("#user_pass").val(),
+                fn: $("#first_name").val(),
+                ln: $("#last_name").val(),
+                gen: $("#gender").val(),
+                birth: $("#birth_date").val(),
+                phone: $("#user_phone").val()
+            },
+            beforeSend: () => {
+                $("#contenedor-mensajes").append('<div id="enviando-datos"><div class="cargando"></div>Enviando datos</div>')
+            },
+            error: () => {
+                $("#contenedor-mensajes").empty();
                 swal({
-                    title: "Registro exitoso",
-                    text: "Usted ha sido registrado correctamente",
-                    icon: "success",
-                    confirmButtonText: "Ok"
-                }).then(
-                    function () {
-                        window.location = "/Login";
+                   text: "No fue posible realizar el registro en SimpleChat. Revise su conexion a internet.",
+                    icon: "error",
+                    button: "ok",
+                });
+            },
+            success: function (json) {
+                $("#contenedor-mensajes").empty()
+                if (json[0] === true) {
+                    swal({
+                        title: "Registro exitoso",
+                        text: "Usted ha sido registrado correctamente en SimpleChat.",
+                        icon: "success",
+                        confirmButtonText: "Ok"
+                    }).then(
+                        function () {
+                            window.location = "/Login";
+                        }
+                    );
+
+                } else {
+                    switch (json[1]) {
+                        case 0:
+                            $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>Ya existe una sesión iniciada.</div>');
+                            break;
+                        case 3:
+                            $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>No fue posible asegurar la contraseña.</div>');
+                            break;
+                        case 4:
+                            $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>Utilice otro nombre de usuario.</div>');
+                            MostrarMensajeError($("#user_name").parent(), "El nombre de usuario ya existe.")
+                            break;
+                        default:
+                            $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>Error desconocido, registro no completado.</div>');
+
+                            break;
                     }
-                );
 
-            } else {
-                switch (json[1]) {
-                    case 0:
-                        Alert(ALERT_ERROR, "Ya existe una sesión iniciada.");
-                        break;
-                    case 3:
-                        Alert(ALERT_ERROR, "No fue posible asegurar la contraseña.");
-                        break;
-                    case 4:
-                        Alert(ALERT_ERROR, "El nombre de usuario ya existe.");
-                        break;
-                    default:
-                        Alert(ALERT_ERROR, 'Error desconocido, registro no completado.');
-                        break;
                 }
-
             }
-        }
-    });
+        });
+    }else{
+        $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>Por favor verifique todos los campos.</div>');
 
-    return false;
+    }
 });
 
+
+
+/*
+const ALERT_NORMAL = 1;
+const ALERT_ERROR = 2;
+const ALERT_SUCCESS = 3;
+
+function Alert(code, msg) {
+    const action_alert = $("#action_alert");
+
+    const color_info = "alert-info";
+    const color_error = "alert-danger";
+
+    switch (code) {
+        case ALERT_SUCCESS:
+        case ALERT_NORMAL:
+            action_alert.removeClass(color_error).addClass(color_info).text(msg)
+            break;
+        case ALERT_ERROR:
+            action_alert.removeClass(color_info).addClass(color_error).text(msg)
+            break;
+    }
+}
+*/
+/*-----------------------------------------------
+Funciones de validacion de campos
+-----------------------------------------------*/
 
 $(document).on('input', '#user_pass', null, function () {
 
@@ -250,27 +304,6 @@ function CoincidenciaCaracteresEspeciales(cadena, cadena_referencia){
     return false;
 }
 
-
-const ALERT_NORMAL = 1;
-const ALERT_ERROR = 2;
-const ALERT_SUCCESS = 3;
-
-function Alert(code, msg) {
-    const action_alert = $("#action_alert");
-
-    const color_info = "alert-info";
-    const color_error = "alert-danger";
-
-    switch (code) {
-        case ALERT_SUCCESS:
-        case ALERT_NORMAL:
-            action_alert.removeClass(color_error).addClass(color_info).text(msg)
-            break;
-        case ALERT_ERROR:
-            action_alert.removeClass(color_info).addClass(color_error).text(msg)
-            break;
-    }
-}
 function ValidarNombreApellido(elemento, campo_nombre) {
     elemento.parent().siblings(".indicador-error").remove();
     if(elemento.val().length < 2){
@@ -356,20 +389,6 @@ function ValidarContrasenas() {
     return  true;
 }
 
-
-function ContrasenasCoinciden(){
-    var clave=$("#user_pass");
-    var clave_rep=$("#user_pass_repeat");
-    $("#contenedor-mensajes .no-coincide").remove();
-    if ((clave.val() != "")  || (clave_rep.val()!="")) {
-        if (clave.val()!= clave_rep.val()){
-            $("#contenedor-mensajes").prepend('<div class="mensaje-error no-coincide"><span class="material-icons">error</span> Las contraseñas no coinciden </div>');
-
-        }else{
-            $("#contenedor-mensajes .no-coincide").remove();
-        }
-    }
-}
 function MostrarMensajeError(elemento, texto){
 if(elemento.siblings(".indicador-error").length == 0){
     elemento.after('<div class="indicador-error">'+ texto +'</div>');
