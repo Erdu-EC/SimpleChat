@@ -112,7 +112,7 @@ support_agent</span>
                                         <label class="" for="birth_date">
                                             <span class="material-icons">cake</span>
                                         </label>
-                                        <input id="birth_date" type="date" class="" <?php echo 'max="',date('Y-m-d'),'"';?>>
+                                        <input id="birth_date" type="date" class="" <?php echo 'max="',date('Y-m-d'),'"'; ?>  min="1900-01-01" >
                                     </div>
 
                                 </div>

@@ -103,9 +103,20 @@ $("#last_name").on("input", function () {
 $("#gender").change(function () {
     ValidarGenero();
 });
+$("#birth_date").on("change", function () {
+    ValidarFechaNacimiento();
+});
+$("#user_phone").on("input", function () {
+    ValidarTelefono();
+});
 $("#user_name").on("input", function () {
     ValidarUsuario($(this), "apellido");
 });
+$(document).on('input', '#user_pass_repeat', null, function () {
+    ValidarContrasenas();
+});
+
+
 
 /*-----------------------------------------------
 Fin accione para estilos de la página
@@ -238,10 +249,6 @@ function CoincidenciaCaracteresEspeciales(cadena, cadena_referencia){
     }
     return false;
 }
-$(document).on('input', '#user_pass_repeat', null, function () {
-
-    ValidarContrasenas();
-});
 
 
 const ALERT_NORMAL = 1;
@@ -285,16 +292,32 @@ return true;
 function ValidarFechaNacimiento() {
     var elemento = $("#birth_date");
     elemento.parent().siblings(".indicador-error").remove();
+
+    var fecha_seleccionada = new Date(elemento.val()+ " 00:00:00");
+    var fecha_actual = new Date();
+
+var fecha_minima = new Date("1900-01-01");
+
     if(elemento.val()== null ||elemento.val()=="" ){
         MostrarMensajeError(elemento.parent(), "Ingrese una fecha válida.");
         return false;
     }
+     else if(fecha_seleccionada < fecha_minima){
+           MostrarMensajeError(elemento.parent(), "Ingrese una fecha válida.");
+           return false;
+       }
+     else if(fecha_seleccionada > fecha_actual)
+     {
+             MostrarMensajeError(elemento.parent(), "Ingrese una fecha válida.");
+
+             return false;
+         }
     return true;
 }
 function ValidarTelefono() {
     var elemento = $("#user_phone");
     elemento.parent().siblings(".indicador-error").remove();
-    if((elemento.val().length > 0 && elemento.val() < 8) || elemento.val() > 15){
+    if((elemento.val().length > 0 && elemento.val().length < 8) || elemento.val().length > 15){
         MostrarMensajeError(elemento.parent(), "Ingrese un número de teléfono válido.");
         return false;
     }
