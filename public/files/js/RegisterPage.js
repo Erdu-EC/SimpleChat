@@ -173,7 +173,7 @@ var continuar = true;
             error: () => {
                 $("#contenedor-mensajes").empty();
                 swal({
-                   text: "No fue posible realizar el registro en SimpleChat. Revise su conexion a internet.",
+                   text: "No se ha podido completar el registro en SimpleChat. Revise su conexion a Internet.",
                     icon: "error",
                     button: "ok",
                 });

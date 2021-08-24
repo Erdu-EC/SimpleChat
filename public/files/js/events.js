@@ -167,3 +167,32 @@ function CargarEspacioConfiguraciones(){
 $(document).on("click", "#icon-archivo-imagen",function (){
     $("#archivo-imagen-enviar").trigger("click");
 });
+$(document).on("input", "#archivo-imagen-enviar",function (){
+
+    const archivos = document.getElementById('archivo-imagen-enviar').files;
+    var tiempo = new Date();
+
+    var nombre='img_'+tiempo.getDate()+tiempo.getMonth()+tiempo.getFullYear()+'_'+tiempo.getHours()+ tiempo.getMinutes()+ tiempo.getSeconds();
+    var img = $('<li class="enviado"><div class="dir"></div><div class="cont-msj contenedor-imagen-enviada"><img class="imagen-enviada" id="'+nombre+'" title="'+nombre+'" tittle="'+ nombre+'"></div></li>');
+    $("#lista-mensajes").append(img);
+    var img = $('#'+nombre+'');
+    if (archivos.length != 0 ) {
+
+        let reader = new FileReader();
+        reader.readAsDataURL(archivos[0]);
+
+        reader.onload = function () {
+            img.attr("src", reader.result);
+
+        };
+        $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+        return;
+    }
+});
+$(document).on("load", ".imagen-enviada", function (){
+    $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+});
+$(document).on("click", ".imagen-enviada", function (){
+    var imagen = $(this).attr("src");
+    MostrarModal($(this).attr("tittle"), '<img src="'+imagen+'" alt="" />',"", 'modal-fullscreen', "btn-close-white");
+});
