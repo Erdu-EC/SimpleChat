@@ -129,6 +129,17 @@ support_agent</span>
                                 </div>
                             </div>
                             <div class="item-form">
+                                <span class="etiqueta-input">E-mail</span>
+                                <div class="input-group">
+
+                                    <label class="" for="user_name">
+                                        <span class="material-icons">person</span>
+                                    </label>
+                                    <input id="user_email" type="email" class="form-control" autocomplete="username">
+
+                                </div>
+                            </div>
+                            <div class="item-form">
                                 <span class="etiqueta-input">Usuario</span>
                                 <div class="input-group">
 

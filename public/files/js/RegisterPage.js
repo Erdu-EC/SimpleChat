@@ -109,6 +109,9 @@ $("#birth_date").on("change", function () {
 $("#user_phone").on("input", function () {
     ValidarTelefono();
 });
+$("#user_email").on("input", function () {
+    ValidarEmail();
+});
 $("#user_name").on("input", function () {
     ValidarUsuario($(this), "apellido");
 });
@@ -152,6 +155,9 @@ var continuar = true;
     if(!ValidarContrasenas()){
         continuar= false;
     }
+    if(!ValidarEmail()){
+        continuar= false;
+    }
 
     if (continuar){
         $.ajax('/action/user/Register', {
@@ -161,11 +167,13 @@ var continuar = true;
             data: {
                 u: $("#user_name").val(),
                 p: $("#user_pass").val(),
+                p_rep: $("#user_pass_repeat").val(),
                 fn: $("#first_name").val(),
                 ln: $("#last_name").val(),
                 gen: $("#gender").val(),
                 birth: $("#birth_date").val(),
-                phone: $("#user_phone").val()
+                phone: $("#user_phone").val(),
+                email: $("#user_email").val()
             },
             beforeSend: () => {
                 $("#contenedor-mensajes").append('<div id="enviando-datos"><div class="cargando"></div>Enviando datos</div>')
@@ -356,6 +364,22 @@ function ValidarTelefono() {
     }
     return true;
 }
+function ValidarEmail(){
+    var elemento=  $("#user_email");
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    elemento.parent().siblings(".indicador-error").remove();
+
+    if(elemento.val().length == 0 ){
+        MostrarMensajeError(elemento.parent(),'El formato de correo no es válido');
+        return  false;
+    }
+    else if(!regex.test(elemento.val()) ){
+        MostrarMensajeError(elemento.parent(),'El formato de correo no es válido');
+        return  false;
+    }
+    return true;
+}
+
 function ValidarUsuario() {
     var elemento = $("#user_name");
     elemento.parent().siblings(".indicador-error").remove();
