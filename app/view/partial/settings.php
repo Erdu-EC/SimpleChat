@@ -77,7 +77,18 @@ $SESSION = new Session();
 
                         </div>
                     </div>
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <div class="item-perfil-cuenta">
+        <span class="etiqueta-campo contraida">Correo</span>
+        <input type="text" id="user_email" class="atributo-perfil " value="mikeross@gmail.com"  readonly >
 
+    </div>
+    <div class="item-perfil-cuenta">
+        <span class="etiqueta-campo contraida">Teléfono</span>
+        <input type="text" id="user_telefono" class="atributo-perfil " value="88888888" minlength="1" readonly>
+
+    </div>
+</div>
 
 
                 </div>
