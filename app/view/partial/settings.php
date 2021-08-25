@@ -60,7 +60,7 @@ $SESSION = new Session();
                             <div id="valor-fecha_nac" class="atributo-perfil">
                                 16 de May. 1986
                             </div>
-                            <input type="date" id="fecha_nac" class="atributo-perfil ocultar" value="" readonly <?php echo 'max="',date('Y-m-d'),'"';?>>
+                            <input type="date" id="fecha_nac" class="atributo-perfil ocultar" value="1986-05-16" readonly <?php echo 'max="',date('Y-m-d'),'"';?>>
 
                         </div>
 
@@ -70,7 +70,7 @@ $SESSION = new Session();
                                 Masculino
                             </div>
                             <select name="genero" id="genero" class="atributo-perfil ocultar">
-                                <option value="M">Masculino</option>
+                                <option value="M" selected >Masculino</option>
                                 <option value="F">Femenino</option>
                                 <option value="O">Otro</option>
                                 <option value="D">Sin especificar</option>
@@ -83,16 +83,18 @@ $SESSION = new Session();
         <input type="text" id="correo_usuario" class="atributo-perfil " value="mikeross@gmail.com"  readonly maxlength="255" >
 
     </div>
-    <div class="item-perfil-cuenta">
+    <div class="item-perfil-cuenta contenedor-telefono-cuenta">
         <span class="etiqueta-campo contraida">Teléfono</span>
         <input type="text" id="telefono_usuario" class="atributo-perfil " value="88888888"  readonly maxlength="15">
 
     </div>
+
+
 </div>
 
 
                 </div>
-            </form>
+                  </form>
         </div>
 
     </div>

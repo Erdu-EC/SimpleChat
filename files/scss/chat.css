@@ -2652,7 +2652,7 @@ Fin Foto de perfil y opciones
   display: flex;
 }
 
-#error-claves span.material-icons {
+#error-claves span.material-icons, #faltan-campos span.material-icons {
   margin-right: 5px;
 }
 

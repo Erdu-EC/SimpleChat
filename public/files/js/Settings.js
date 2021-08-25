@@ -160,7 +160,7 @@ $("#fecha_nac").on("change", function () {
     ValidarFechaNacimiento();
 });
 $("#genero").on("change", function () {
-    ValidaGenero();
+    ValidarGenero();
 });
 $("#correo_usuario").on("input", function () {
     ValidarCorreo();
@@ -229,9 +229,10 @@ function ValidarFechaNacimiento() {
     elemento.parent().removeClass("no-valido");
     return true;
 }
-function ValidaGenero() {
+function ValidarGenero() {
+
     var elemento = $("#genero");
-   if (!(elemento.val=='M' || elemento.val()=='F'|| elemento.val()=='O'|| elemento.val()=='D')){
+   if (!(elemento.val()=='M' || elemento.val()=='F'|| elemento.val()=='O'|| elemento.val()=='D')){
        AgregarMensajeError(elemento, "Seleccione una opción válida");
        return false;
    }
@@ -268,6 +269,7 @@ function ValidarTelefono() {
 
 //Enviar datos al servidor 
 $("#btn-guardar-perfil").on("click", function () {
+    $("#faltan-campos").remove();
     if($("#btn-editar-perfil").hasClass("activo")){
         var continuar= true;
         if(!ValidarNombreApellido($("#nombres"),"nombre")){
@@ -283,7 +285,7 @@ $("#btn-guardar-perfil").on("click", function () {
         if(!ValidarFechaNacimiento()){
             continuar= false;
         }
-        if(!ValidarEmail()){
+        if(!ValidarCorreo()){
             continuar= false;
         }
         if(!ValidarTelefono()){
@@ -292,6 +294,9 @@ $("#btn-guardar-perfil").on("click", function () {
 
 if(continuar){
     //codigo para enviar los datps al sercvidor
+}
+else{
+    $(".contenedor-telefono-cuenta").after(' <div id="faltan-campos" class="error"><span class="material-icons">error</span>Verifique todos los campos</div>');
 }
 
 

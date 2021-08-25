@@ -2645,7 +2645,10 @@ padding: 0;
   display: flex;
 
 }
-#error-claves span.material-icons{
+#faltan-campos {
+
+}
+#error-claves span.material-icons, #faltan-campos span.material-icons {
   margin-right: 5px;
 }
 
