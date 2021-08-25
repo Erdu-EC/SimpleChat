@@ -42,13 +42,14 @@ $SESSION = new Session();
                         </div>
 
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7">
+                    <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7 columna">
                         <div class="item-perfil-cuenta">
                             <span class="etiqueta-campo contraida">Nombres</span>
                             <input type="text" id="nombres" class="atributo-perfil"  readonly minlength="1" value="Michael">
 
 
                         </div>
+
                         <div class="item-perfil-cuenta">
                             <span class="etiqueta-campo contraida">Apellidos</span>
                             <input type="text" id="apellidos" class="atributo-perfil " value="Ross" minlength="1" readonly>
@@ -74,18 +75,17 @@ $SESSION = new Session();
                                 <option value="O">Otro</option>
                                 <option value="D">Sin especificar</option>
                             </select>
-
                         </div>
                     </div>
-<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 columna">
     <div class="item-perfil-cuenta">
         <span class="etiqueta-campo contraida">Correo</span>
-        <input type="text" id="user_email" class="atributo-perfil " value="mikeross@gmail.com"  readonly >
+        <input type="text" id="correo_usuario" class="atributo-perfil " value="mikeross@gmail.com"  readonly maxlength="255" >
 
     </div>
     <div class="item-perfil-cuenta">
         <span class="etiqueta-campo contraida">Teléfono</span>
-        <input type="text" id="user_telefono" class="atributo-perfil " value="88888888" minlength="1" readonly>
+        <input type="text" id="telefono_usuario" class="atributo-perfil " value="88888888"  readonly maxlength="15">
 
     </div>
 </div>

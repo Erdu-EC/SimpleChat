@@ -2545,6 +2545,9 @@ padding: 0;
   font-family: "proxima-nova", "Source Sans Pro", sans-serif;
   font-size: 14px;
   }
+.item-perfil-cuenta.no-valido, .item-cuenta.no-valido {
+  margin-bottom: 40px;
+}
 .item-perfil-cuenta:focus{
   border: 2px solid #0c63e4;
 }
@@ -2577,6 +2580,18 @@ padding: 0;
 .item-perfil-cuenta.editable .atributo-perfil {
   border-bottom: 2px solid #0c63e4;
   color: #000000;
+}
+
+.item-perfil-cuenta .notif-error {
+
+  color: #df3c3c;
+  padding: 3px 10px;
+  font-size: 11px;
+  position: absolute;
+  z-index: 10;
+  margin-top: 50px;
+  margin-left: -10px;
+  background: #FFFFFF;
 }
 
 .ocultar {
