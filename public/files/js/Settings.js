@@ -377,7 +377,7 @@ function EnviarClaveNueva() {
         data: {
             ca: $("#clave-ant").val(),
             cn: $("#clave-nuev").val(),
-            cnp: $("#clave-nuev-rep").val()
+            cnr: $("#clave-nuev-rep").val()
         },
         mimeType: 'application/json',
         beforeSend:()=>{},
