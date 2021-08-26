@@ -180,4 +180,131 @@
                 die(json_encode([false, 5]));
             }
         }
+
+        public function Setting(){
+            array_filter($_POST, function ($val) {
+                return trim($val);
+            });
+
+            //Estableciendo tipo de respuesta.
+            HttpResponse::SetContentType(MimeType::Json);
+
+            $session = new Session();
+            $user_id = $session->user_id;
+            $first_name = empty($_POST['fn']) ? null : (string)$_POST['fn'];
+            $last_name = empty($_POST['ln']) ? null : (string)$_POST['ln'];
+            $birthday = empty($_POST['bt']) ? null : (string)$_POST['bt'];
+            $gender = empty($_POST['gn']) ? null : (string)$_POST['gn'];
+            $phone = empty($_POST['tf']) ? null : (string)$_POST['tf'];
+            $email= empty($_POST['em']) ? null : (string)$_POST['em'];
+
+
+            $arr = array($user_id,$first_name, $last_name, $birthday, $gender, $phone,$email);
+
+            try {
+                //Estableciendo conexión con BD.
+                $db = new DB(DBAccount::Root);
+
+                //Modificando los valores del registro.
+                    $db->Execute('UPDATE users SET first_name= :first, last_name= :last, birth_date= :birth, gender = :gender, phone = :phone, email = :email where id = :user_id', [
+
+                        'first' => $first_name,
+                        'last' => $last_name,
+                        'birth'=> $birthday,
+                        'gender' => $gender,
+                        'phone' => $phone,
+                        'email' => $email,
+
+                        'user_id' => $user_id
+                    ]);
+
+                    //Desconectando base de datos.
+                    unset($db);
+
+                    //Devolviendo respuesta.
+                    die(json_encode([true],0));
+            } catch (PDOException $ex) {
+                die(json_encode([false, 5]));
+            }
+            //Eliminando sesion.
+
+        }
+        //Cambio de clave
+        //codigo 1 una de las tres claves no es valida
+        //codigo 2 ulas claves recibidas no coinciden
+        public function NewPassword(){
+            //Estableciendo tipo de respuesta.
+            HttpResponse::SetContentType(MimeType::Json);
+
+            //Obteniendo parametros post.
+            $_POST = ArrayUtils::Trim($_POST, false);
+
+            $session = new Session();
+            $user_id = $session->user_id;
+            $user = $session->user_name;
+
+            $act_pass= empty($_POST['ca']) ? null : (string)$_POST['ca'];
+            $new_pass= empty($_POST['cn']) ? null : (string)$_POST['cn'];
+            $new_pass_rep= empty($_POST['cnp']) ? null : (string)$_POST['cnp'];
+
+
+
+            $arr = array($user_id, $user, $act_pass, $new_pass, $new_pass_rep, );
+            file_put_contents('../archivo_25_08_21.txt', $arr);
+
+            /*if(!(UserModel::IsValidPass($act_pass) & UserModel::IsValidPass($new_pass) & UserModel::IsValidPass($new_pass_rep))){
+                die(json_encode([false, 1]));
+                return;
+            }
+            if( strcmp($new_pass, $new_pass_rep)!=0){
+                die(json_encode([false, 2]));
+                return;
+            }
+            $row = $db->SelectOnly('SELECT pass, first_name, last_name, profile_img FROM users WHERE user_name = ?', [1 => $user]);
+            $user_id = $row['id'] ?? null;
+            $user_first = $row['first_name'] ?? null;
+            Crypt::IsEquals($pass, $hashed_pass)*/
+
+            try {
+                //Estableciendo conexión con BD.
+                $db = new DB(DBAccount::Root);
+
+                //Obteniendo el hash de la contrasena actual del usuario
+                $row = $db->SelectOnly('SELECT pass FROM users WHERE id= ? and user_name = ?', [1=> $user_id,2 => $user]);
+                if(Crypt::IsEquals($act_pass, $row)){
+                    file_put_contents('../archivo_25_08_21.txt', "Las claves son las mismas");
+                }else{
+                    file_put_contents('../archivo_25_08_21.txt', "Las no son la misma");
+                }
+                /*
+                //Realizando registro.
+                if (is_null($row)) {
+                    //Generando clave hash.
+                    if (($pass = Crypt::Hash($pass)) === false)
+                        die(json_encode([false, 3]));
+
+                    //Insertando registro.
+                    $db->Execute('INSERT INTO users(user_name, pass, first_name, last_name,birth_date, gender,create_at) VALUES (:user, :pass, :first, :last, :birth, :gender, NOW())', [
+                        'user' => $user,
+                        'pass' => $pass,
+                        'first' => $first_name,
+                        'last' => $last_name,
+                        'birth' => $birthday,
+                        'gender' => $gender
+                    ]);
+
+                    //Desconectando base de datos.
+                    unset($db);
+
+                    //Devolviendo respuesta.
+                    die(json_encode([true]));
+                } else
+                    die(json_encode([false, 4]));*/
+
+            } catch (PDOException $ex) {
+                die(json_encode([false, 5]));
+            }
+        }
+
+
     }

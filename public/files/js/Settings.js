@@ -292,8 +292,16 @@ $("#btn-guardar-perfil").on("click", function () {
             continuar= false;
         }
 
-if(continuar){
-    //codigo para enviar los datps al sercvidor
+if(continuar) {
+
+    swal("¿Estás seguro que deseas cambiar la información?", {
+        buttons: ["Cancelar", "Aceptar"],
+    }).then((r) => {
+       console.log(r);
+       if(r){
+         EnviarInformacionPerfil();
+       }
+    });
 }
 else{
     $(".contenedor-telefono-cuenta").after(' <div id="faltan-campos" class="error"><span class="material-icons">error</span>Verifique todos los campos</div>');
@@ -304,6 +312,78 @@ else{
     if($("#check-cambiar-clave").is(':checked')){
         var continuar = true;
        continuar= ClavesIguales();
+       if(continuar){
+           swal("¿Estás seguro que deseas cambiar tu contraseña?", {
+               buttons: ["Cancelar", "Aceptar"],
+           }).then((r) => {
+               console.log(r);
+               if(r){
+                   EnviarClaveNueva();
+               }
+           });
+       }
 
     }
 });
+
+//codigo para enviar los datos al servidor
+function EnviarInformacionPerfil(){
+    $.ajax({
+        url: "/action/user/Setting",
+        type: "POST",
+        mimeType: 'application/json',
+        dataType: "json",
+        data: {
+            fn: $("#nombres").val(),
+            ln: $("#apellidos").val(),
+            bt: $("#fecha_nac").val(),
+            gn: $("#genero").val(),
+            em: $("#correo_usuario").val(),
+            tf: $("#telefono_usuario").val(),
+        },
+        beforeSend:()=>{
+
+        },
+        success: function (json) {
+            if (json[0] === true) {
+                swal(
+                    {
+                    text: 'La información de su perfil ha sido modificada correctamente',
+                    icon: "success",
+                }).then(
+                    function () {
+                        window.location = "/";
+                    }
+                );
+
+            }
+        },
+        error:()=>{
+            swal({
+               text: "No se ha podido completar su solicitud. Revise su conexión a Internet",
+                icon: "error",
+                button: "Ok",
+                dangerMode: true});
+        }
+
+    });
+
+}
+function EnviarClaveNueva() {
+    $.ajax({
+        url: "/action/user/NewPassword",
+        method: 'POST',
+        dataType: 'json',
+        data: {
+            ca: $("#clave-ant").val(),
+            cn: $("#clave-nuev").val(),
+            cnp: $("#clave-nuev-rep").val()
+        },
+        mimeType: 'application/json',
+        beforeSend:()=>{},
+        error: ()=>{},
+        success:function (json){
+
+        }
+    })
+}

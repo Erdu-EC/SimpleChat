@@ -14,7 +14,7 @@ CREATE TABLE users
     birth_date      date,
     gender          enum ('M', 'F', 'O', 'D'), #M - Masculino, F - Femenino, O - Otro, D - Sin especificar
     email           varchar(255),
-
+    phone           char(15),
     /*City, Country, Occupation*/
 
     state           ENUM ('A', 'O', 'I'),      #A - Activo, O - Ocupado, I - Inactivo

@@ -157,6 +157,7 @@ $(document).on("click", "#btn-conf-sesion", function () {
 function CargarEspacioConfiguraciones(){
     $("body").addClass("sb-sidenav-toggled");
     $("#mi-perfil-sidepanel").removeClass("no-visible");
+    $('#espacio-de-chat').empty();
     $('#espacio-de-chat').html(
         ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
     ).load(`/Settings`);

@@ -36,6 +36,8 @@
 
 	Route::Post('/action/user/Login', 'LoginController#Login');
 	Route::Post('/action/user/Register', 'LoginController#Register');
+	Route::Post('/action/user/Setting', 'LoginController#Setting');
+	Route::Post('/action/user/NewPassword', 'LoginController#NewPassword');
 	Route::Get("/Logout", 'LoginController#Logout');
 
 	#Redirección a Login.
