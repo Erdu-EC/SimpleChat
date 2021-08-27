@@ -181,6 +181,7 @@
                 die(json_encode([false, 5]));
             }
         }
+        //Codigo 1 Uno de los parametros recibido no es valido
 
         public function Setting(){
             array_filter($_POST, function ($val) {
@@ -199,13 +200,19 @@
             $phone = empty($_POST['tf']) ? null : (string)$_POST['tf'];
             $email= empty($_POST['em']) ? null : (string)$_POST['em'];
 
+            //validacion de correo electronico
+           /* if(!$this->ValidarCorreo($email)){
+                die(json_encode([false, 1]));
+            }*/
+            //file_put_contents('../archivo_25_08_21.txt', $this->ValidarFechaNacimiento($birthday)->format('Y-m-d'));
+
+/* Codigo Correcto*/
             try {
                 //Estableciendo conexión con BD.
                 $db = new DB(DBAccount::Root);
 
                 //Modificando los valores del registro.
                     $db->Execute('UPDATE users SET first_name= :first, last_name= :last, birth_date= :birth, gender = :gender, phone = :phone, email = :email where id = :user_id', [
-
                         'first' => $first_name,
                         'last' => $last_name,
                         'birth'=> $birthday,
@@ -236,6 +243,7 @@
         //Codigo 4 La contrasena nueva es igual a la anterior
         //Codigo 5 No se ha podido asegurar la clave
         //Codigo 6 No se ha podido guardar el registro en la BBDD
+
         public function NewPassword(){
             //Estableciendo tipo de respuesta.
             HttpResponse::SetContentType(MimeType::Json);
@@ -253,12 +261,11 @@
 
             //una de las tres claves es invalida
             if(!(UserModel::IsValidPass($act_pass) & UserModel::IsValidPass($new_pass) & UserModel::IsValidPass($new_pass_rep))){
-                file_put_contents('../archivo_25_08_21.txt', "Una de las tres claves es invalida");
+
                 die(json_encode([false, 1]));
                }
             //las claves nuevas y clave nueva_rep no son la misma
             if( strcmp($new_pass, $new_pass_rep)!=0){
-                file_put_contents('../archivo_25_08_21.txt', "Las claves nuevas no coinciden");
                 die(json_encode([false, 2]));
             }
 
@@ -271,12 +278,10 @@
 
 //En esta parte verifico que la contrasena actual corresponde al hash registrado
                 if(!(Crypt::IsEquals($act_pass, $row))){
-                    file_put_contents('../archivo_25_08_21.txt', "Contrasenas no coincide => Hash recuperado -*- ".$row." -*-");
                     die(json_encode([false, 3]));
                 }
 
-                if(Crypt::IsEquals($new_pass, $row)){
-                    file_put_contents('../archivo_25_08_21.txt', "La contrasena nueva es la misma que la anterior");
+                if(strcmp($new_pass, $act_pass)==0){
                     die(json_encode([false, 4]));
                 }
 
@@ -291,18 +296,24 @@
                         'user_id' => $user_id,
                         'user_name' => $user
                     ]);
-                file_put_contents('../archivo_25_08_21.txt', "La contrasena se ha actualizado correctamente");
-                    //Desconectando base de datos.
+                   //Desconectando base de datos.
                     unset($db);
 
                     //Devolviendo respuesta.
                     die(json_encode([true]));
 
             } catch (PDOException $ex) {
-                file_put_contents('../archivo_25_08_21.txt', "$ex");
                 die(json_encode([false, 6]));
             }
         }
+private function ValidarCorreo($correo_recibido){
+      $correo_recibido = filter_var($correo_recibido, FILTER_SANITIZE_EMAIL);
 
+    return (filter_var($correo_recibido, FILTER_VALIDATE_EMAIL));
+    }
+    public function ValidarFechaNacimiento($fecha){
+        $dt = new DateTime($fecha);
 
+     return $dt;
+    }
     }
