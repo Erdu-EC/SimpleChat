@@ -32,17 +32,6 @@
                 die(json_encode(false));
         }
 
-        //TODO: Aplicar seguridad para que no se puedan leer mensajes que no son tuyos.
-        public function GetUnreceivedMessages()
-        {
-            
-        }
-
-        public function Receive()
-        {
-
-        }
-
         public function GetConversations()
         {
             //Estableciendo tipo de respuesta.
