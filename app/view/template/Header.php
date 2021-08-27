@@ -7,10 +7,7 @@
 
 
     <button class="btn nav-item" id="sidebarToggle">
-        <span class="material-icons">
-menu
-</span>
-        <!-- <img src="/files/icon/menu.png" alt="" class="" id="icono-sidebarToggle">-->
+        <span class="material-icons">menu</span>
     </button>
     <div class="indicador-mensajes" id="icon-indicador-mensaje">
         <i class="fas fa-envelope"></i>
