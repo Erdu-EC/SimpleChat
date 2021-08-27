@@ -1,0 +1,518 @@
+body{
+  overflow-x: hidden;
+}
+body::-webkit-scrollbar{
+  width: 0;
+}
+bod::-webkit-scrollbar-thumb:vertical{
+  width: 0;
+}
+
+.container-fluid {
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+
+ padding: 0;
+}
+
+body .container-fluid::-webkit-scrollbar {
+  width: 5px;
+}
+
+body .container-fluid::-webkit-scrollbar-track-piece {
+  background-color: #FFFFFF;
+}
+body .container-fluid::-webkit-scrollbar-thumb:vertical {
+  height: 30px;
+  width: 8px;
+  background-color: #afafb6;
+}
+
+
+/*#####################################################
+Definiendo los estilos del navbar
+#####################################################*/
+header {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  z-index: 5;
+top: 0px;
+  margin: 0;
+  padding: 0;
+
+}
+
+nav.menu-navegacion {
+
+  margin: 0px;
+  padding: 0px;
+  height: 60px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  background: #f2f2f2;
+}
+
+nav.menu-navegacion ul.nav-lista {
+  margin: 0px;
+  margin-left: auto;
+  margin-right: 30px;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+  display: flex;
+}
+
+.nav-lista li.nav-list-item {
+  display: inline-block;
+  line-height: 40px;
+  margin-left: 30px;
+
+}
+.nav-lista li.nav-list-item a span.material-icons{
+  margin-top: auto;
+  margin-bottom: auto;
+  display: inline-block;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  font-size: 15px;
+  margin-right: 10px;
+}
+a.nav-link {
+  display: flex;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  color: #000000;
+}
+.nav-list-item a.nav-link:hover {
+
+  border-bottom: 2px solid #2d96c8 ;
+  transition-property: border-bottom-color;
+  transition-duration: 0s;
+}
+
+.nav-list-item a.activo {
+
+  margin-top: 6px;
+  border-radius: 50px;
+  padding: 2px 16px;
+  color: #ffffff;
+  background:#2d96c8;
+
+}
+.nav-list-item a.activo:hover{
+  color: #ffffff;
+  background:#03608a;
+  border: none;
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+    -webkit-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+.nav-lista li {
+  animation: FadeIn 1s cubic-bezier(0.65, 0.05, 0.36, 1);
+  animation-fill-mode: both;
+}
+.nav-list ali:nth-child(1) {
+  animation-delay: .3s;
+}
+
+.nav-lista li:nth-child(2) {
+  animation-delay: .6s;
+}
+
+.nav-lista li:nth-child(3) {
+  animation-delay: .9s;
+}
+
+.nav-lista li:nth-child(4) {
+  animation-delay: 1.2s;
+}
+
+.nav-lista li:nth-child(5) {
+  animation-delay: 1.5s;
+}
+
+/* Animation */
+
+@keyframes fadeInUp {
+  from {
+    transform: translate3d(0, 40px, 0)
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1
+  }
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+    transform: translate3d(0, 40px, 0)
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1
+  }
+}
+
+
+.fadeInUp {
+  opacity: 0;
+  animation-name: fadeInUp;
+  -webkit-animation-name: fadeInUp;
+}
+@media screen and (max-width: 1050px) and (min-width: 735px){
+  .nav-lista li.nav-list-item{
+    margin-left: 10px;
+  }
+  .nav-lista li{
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+    max-width: 140px;
+  }
+}
+nav button.navbar-toggler{
+  border: none;
+  display: none;
+  box-shadow: none;
+}
+nav button.navbar-toggler:focus{
+  box-shadow: none;
+}
+
+@media screen and (max-width: 735px){
+  .container-fluid .container {
+    padding-top: 70px;
+  }
+
+  header{
+    margin-top: 0px;
+    width: 100%;
+  }
+  nav.menu-navegacion{
+    flex-direction: column;
+    background: none;
+    height: 100%;
+  }
+  nav.menu-navegacion ul.nav-lista{
+    flex-direction: column;
+    width: 100%;
+    padding: 0px;
+
+  }
+  .nav-list-item a.activo{
+    background: #7390af;
+    border-radius: 0px;
+  }
+  nav.menu-navegacion ul.inactivo{
+    display: none;
+  }
+
+  .nav-lista li.nav-list-item{
+    text-align: left;
+    margin: 0px;
+    background: #456380;
+  }
+  .nav-lista li.nav-list-item a{
+    padding: 4px 16px;
+    color: #ffffff;
+  }
+  .nav-lista li.nav-list-item a:hover{
+    border-radius: 0px;
+    background: #7390af;
+  }
+  nav button.navbar-toggler {
+    display: inline-flex;
+    height: auto;
+    width: auto;
+    align-items: start;
+    background: #456380;
+    border-radius: 0px;
+    padding: 4px 16px;
+    box-shadow: none;
+height: 50px;
+  }
+
+  nav button.navbar-toggler span{
+    font-size: 36px;
+    color: #ffffff;
+  }
+  nav button.navbar-toggler:active{
+    border: none;
+    box-shadow: none;
+
+  }
+  nav.menu-navegacion ul.activo{
+    display: flex;
+
+  }
+}
+
+
+
+
+/*#####################################################
+Fin de los estilos del navbar
+#####################################################*/
+
+/*----------------------------------------------------
+Estilos de formulario de contacto
+/----------------------------------------------------*/
+.container {
+  background: #FFFFFF;
+  align-items: center;
+  padding: 80px 0 50px 0;
+  margin: 0;
+  max-width: 100vw;
+  font-family: sans-serif;
+  background-image: url("/files/bg/fondo-contactUs.svg");
+  background-repeat: no-repeat;
+ background-position: bottom;
+}
+
+.container h1{
+  font-size: 28px;
+  font-weight: 600;
+  color: #afafb6;
+  margin-bottom: 30px;
+  margin-left: 30px;
+}
+
+.cont-info-contacto {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.cont-info-contacto h2{
+  font-size: 23px;
+  color: #afafb6;
+  margin-bottom: 20px;
+}
+.cont-info-contacto .item-info-contacto{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
+  margin-bottom: 20px;
+ width: 150px;
+}
+.item-info-contacto i.icon-info{
+  font-size: 30px;
+  color: #3e2093;
+
+}
+.item-info-contacto span.subtitulo{
+  font-size: 18px;
+  font-weight: 500;
+}
+.item-info-contacto p{
+  font-size: 14px;
+  color: #afafb6;
+}
+
+.formulario-contacto {
+  background: rgba(0,0,0,0.65);
+padding: 30px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+}
+#icono-mensaje {
+  font-size: 30px;
+  color: #FFFFFF;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+float: left;
+ margin-top: -8.5rem;
+  margin-left: -2.5rem;
+  z-index: 10;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+#icono-mensaje :hover{
+    animation: tiembla 0.1s 1s;
+  }
+@keyframes tiembla{
+    0%  { transform:rotateZ(-5deg); }
+    50% { transform:rotateZ( 0deg) scale(.8); }
+    100%{ transform:rotateZ( 5deg); }
+  }
+.formulario-contacto .cont-titulo {
+  margin-bottom: 20px;
+}
+.formulario-contacto .cont-titulo  .titulo{
+  font-size: 1rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+.formulario-contacto .cont-titulo p{
+  font-size: 0.8rem;
+  color: #FFFFFF;
+  margin-top: 10px;
+}
+.formulario-contacto .logo-simplechat{
+justify-content: right;
+  text-align: center;
+  align-self: end;
+  align-items: end;
+  display: flex;
+}
+.formulario-contacto .logo-simplechat img {
+  margin-left: auto;
+}
+.item-form .etiqueta-input {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+.icon-etiqueta {
+  margin-right: 10px;
+}
+.input-group {
+  margin-bottom: 20px;
+}
+.input-group .form-control {
+border-radius: 0;
+  font-size: 0.9rem;
+ color: #000000;
+  border: none;
+height: 40px;
+  background: #FFFFFF;
+  font-weight: 600;
+}
+
+.input-group .form-control.validado , .input-group .form-control.validado:focus {
+  border-bottom: 2px solid #5fb70f;
+}
+
+.input-group .form-control.error{
+  border-bottom:2px solid #D32F2F;
+}
+.input-group .form-control:focus {
+  border: none;
+  border-bottom: 2px solid #3390ec;
+outline: none;
+  box-shadow: none;
+}
+.input-group .caja-informacion {
+  width: 100%;
+margin-top: 10px;
+  font-size: 11px;
+  color: #fe447d;
+  display: block;
+}
+
+.input-group #mensaje{
+  height: 110px;
+}
+.formulario-contacto .alert-error{
+  background: #fe447d;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+ height: 35px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  align-items: center;
+
+}
+.formulario-contacto .alert-error .icon-error{
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.formulario-contacto #enviar {
+  background: #3390ec;
+  color: #FFFFFF;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  padding: 5px;
+  width: 100%;
+  font-weight: 600;
+}
+
+.formulario-contacto #enviar.habilitado {
+background: #06b52a;
+}
+.formulario-contacto #enviar.habilitado:hover{
+background: #0F990C;}
+
+
+/*----------------------------------------------------
+Fin de estilos de formulario de contacto
+/----------------------------------------------------*/
+
+/*Estilos de footer
+ */
+
+.footer-acerca {
+  height: 170px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #2B364F;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+}
+.footer-acerca .redes-sociales ul{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+.redes-sociales ul li .item-red-social {
+  margin-right: 20px;
+  font-size: 25px;
+  color: #f2f2f2;
+
+}
+.redes-sociales ul li .item-red-social:hover{
+  color: #FFFFFF;
+}
+.footer-acerca p{
+
+  color: #f8f8f8;
+  display: block;
+  font-size: 12px;
+}
+/* Fin de es stilos de footer
+ */

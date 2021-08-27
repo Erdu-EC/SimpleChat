@@ -1,12 +1,12 @@
-
-body .container-fluid{
+@charset "UTF-8";
+body .container-fluid {
   width: 100vw;
   height: 100vh;
   padding-top: 60px;
-background: none;
-
+  background: none;
 }
-.container-fluid main.main{
+
+.container-fluid main.main {
   width: 100%;
   height: 100%;
   background-image: url("/files/img/bg/fondo-registro.svg");
@@ -17,22 +17,24 @@ background: none;
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
 .container-fluid main.main::-webkit-scrollbar {
-  width: 0;               /* width of the entire scrollbar */
+  width: 0;
+  /* width of the entire scrollbar */
 }
 
 /*#####################################################
 Definiendo los estilos del navbar
 #####################################################*/
-body header{
+body header {
   width: 100%;
   margin: 0px;
   display: flex;
   position: fixed;
   top: 0;
   z-index: 5;
-
 }
+
 nav.menu-navegacion {
   margin: 0px;
   padding: 0px;
@@ -53,18 +55,16 @@ nav.menu-navegacion ul.nav-lista {
   padding: 0;
   list-style: none;
   text-align: right;
-
   display: flex;
-
 }
 
 .nav-lista li.nav-list-item {
   display: inline-block;
   line-height: 40px;
   margin-left: 30px;
-
 }
-.nav-lista li.nav-list-item a span.material-icons{
+
+.nav-lista li.nav-list-item a span.material-icons {
   margin-top: auto;
   margin-bottom: auto;
   display: inline-block;
@@ -74,6 +74,7 @@ nav.menu-navegacion ul.nav-lista {
   font-size: 15px;
   margin-right: 10px;
 }
+
 a.nav-link {
   display: flex;
   text-decoration: none;
@@ -84,26 +85,25 @@ a.nav-link {
   position: relative;
   color: #000000;
 }
-.nav-list-item a.nav-link:hover {
 
-  border-bottom: 2px solid #2d96c8 ;
+.nav-list-item a.nav-link:hover {
+  border-bottom: 2px solid #2d96c8;
   transition-property: border-bottom-color;
   transition-duration: 0s;
 }
 
 .nav-list-item a.activo {
-
   margin-top: 6px;
   border-radius: 50px;
   padding: 2px 16px;
   color: #ffffff;
-  background:#2d96c8;
-
+  background: #2d96c8;
 }
-.nav-list-item a.activo:hover{
+
+.nav-list-item a.activo:hover {
   color: #ffffff;
-  background:#03608a;
-  border:none;
+  background: #03608a;
+  border: none;
 }
 
 @keyframes FadeIn {
@@ -115,8 +115,6 @@ a.nav-link {
     -ms-transform: translateY(-10px);
     transform: translateY(-10px);
   }
-
-
   100% {
     opacity: 1;
     -webkit-transform: translateY(0);
@@ -126,21 +124,21 @@ a.nav-link {
     transition: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
-
 .nav-lista li {
   animation: FadeIn 1s cubic-bezier(0.65, 0.05, 0.36, 1);
   animation-fill-mode: both;
 }
+
 .nav-list ali:nth-child(1) {
-  animation-delay: .3s;
+  animation-delay: 0.3s;
 }
 
 .nav-lista li:nth-child(2) {
-  animation-delay: .6s;
+  animation-delay: 0.6s;
 }
 
 .nav-lista li:nth-child(3) {
-  animation-delay: .9s;
+  animation-delay: 0.9s;
 }
 
 .nav-lista li:nth-child(4) {
@@ -152,90 +150,93 @@ a.nav-link {
 }
 
 /* Animation */
-
 @keyframes fadeInUp {
   from {
-    transform: translate3d(0, 40px, 0)
+    transform: translate3d(0, 40px, 0);
   }
-
   to {
     transform: translate3d(0, 0, 0);
-    opacity: 1
+    opacity: 1;
   }
 }
-
 @-webkit-keyframes fadeInUp {
   from {
-    transform: translate3d(0, 40px, 0)
+    transform: translate3d(0, 40px, 0);
   }
-
   to {
     transform: translate3d(0, 0, 0);
-    opacity: 1
+    opacity: 1;
   }
 }
-
-
 .fadeInUp {
   opacity: 0;
   animation-name: fadeInUp;
   -webkit-animation-name: fadeInUp;
 }
-@media screen and (max-width: 1050px) and (min-width: 735px){
-  .nav-lista li.nav-list-item{
+
+@media screen and (max-width: 1050px) and (min-width: 735px) {
+  .nav-lista li.nav-list-item {
     margin-left: 10px;
   }
-  .nav-lista li{
+
+  .nav-lista li {
     text-overflow: ellipsis;
     overflow-x: hidden;
     white-space: nowrap;
     max-width: 140px;
   }
 }
-nav button.navbar-toggler{
+nav button.navbar-toggler {
   border: none;
   display: none;
   box-shadow: none;
 }
-nav button.navbar-toggler:focus{
+
+nav button.navbar-toggler:focus {
   box-shadow: none;
 }
 
-@media screen and (max-width: 735px){
-  body header{
+@media screen and (max-width: 735px) {
+  body header {
     margin-top: 0px;
   }
-  nav.menu-navegacion{
+
+  nav.menu-navegacion {
     flex-direction: column;
     background: none;
   }
-  nav.menu-navegacion ul.nav-lista{
+
+  nav.menu-navegacion ul.nav-lista {
     flex-direction: column;
     width: 100%;
     padding: 0px;
-
   }
-  .nav-list-item a.activo{
+
+  .nav-list-item a.activo {
     background: #7390af;
     border-radius: 0px;
   }
-  nav.menu-navegacion ul.inactivo{
+
+  nav.menu-navegacion ul.inactivo {
     display: none;
   }
 
-  .nav-lista li.nav-list-item{
+  .nav-lista li.nav-list-item {
     text-align: left;
     margin: 0px;
     background: #456380;
   }
-  .nav-lista li.nav-list-item a{
+
+  .nav-lista li.nav-list-item a {
     padding: 4px 16px;
     color: #ffffff;
   }
-  .nav-lista li.nav-list-item a:hover{
+
+  .nav-lista li.nav-list-item a:hover {
     border-radius: 0px;
     background: #7390af;
   }
+
   nav button.navbar-toggler {
     display: inline-flex;
     height: auto;
@@ -245,69 +246,67 @@ nav button.navbar-toggler:focus{
     border-radius: 0px;
     padding: 4px 16px;
     box-shadow: none;
-
   }
 
-  nav button.navbar-toggler span{
+  nav button.navbar-toggler span {
     font-size: 36px;
     color: #ffffff;
   }
-  nav button.navbar-toggler:active{
+
+  nav button.navbar-toggler:active {
     border: none;
     box-shadow: none;
-
   }
-  nav.menu-navegacion ul.activo{
-    display: flex;
 
+  nav.menu-navegacion ul.activo {
+    display: flex;
   }
 }
-
-
-
-
 /*#####################################################
 Fin de los estilos del navbar
 #####################################################*/
 /*-------------------------------------------------------------
 Estilos para el formulario de registro
 ------------------------------------------------------*/
-.card{
+.card {
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
   text-align: center;
   padding: 30px 32px 60px;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0, 0, 0, 0.65);
   border-radius: 0px;
-  font-family: 'Poppins',sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-.card .card-header img{
+
+.card .card-header img {
   display: block;
   margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
 }
-.card .card-header{
+
+.card .card-header {
   color: white;
-  font-size:20px;
+  font-size: 20px;
   font-weight: 600;
   margin: 0 0 35px 0;
-  font-family: 'Montserrat',sans-serif;
+  font-family: "Montserrat", sans-serif;
   background: none;
   border: none;
   width: 100%;
   align-content: center;
   align-items: center;
   text-align: center;
-
 }
-.item-form{
+
+.item-form {
   width: 100%;
   text-align: left;
   align-content: start;
   align-items: start;
 }
+
 .item-form span.etiqueta-input {
   color: #868580;
   text-align: left;
@@ -316,15 +315,14 @@ Estilos para el formulario de registro
   height: auto;
   position: absolute;
   z-index: 5;
-  margin-left:40px ;
+  margin-left: 40px;
   margin-top: 14px;
-  -webkit-transition: all .3s ease;
-  -o-transition: all .3s ease;
-  transition: all .3s ease;
-
-
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
-@media screen and (max-width: 576px){
+
+@media screen and (max-width: 576px) {
   span#etiquetaCumple {
     max-width: 120px;
     text-overflow: ellipsis;
@@ -332,51 +330,50 @@ Estilos para el formulario de registro
     white-space: nowrap;
   }
 }
-
 div.activo span.etiqueta-input {
-margin-top:-20px;
+  margin-top: -20px;
   color: #ffffff;
   font-size: 14px;
-font-weight: 600;
+  font-weight: 600;
 }
+
 div.activo .input-group input, div.activo .input-group select#gender {
   border-bottom: 3px solid #303F9F;
 }
 
-div.error span.etiqueta-input  {
+div.error span.etiqueta-input {
   color: #D32F2F;
 }
-.item-form .input-group input.error{
+
+.item-form .input-group input.error {
   border-bottom: 2px solid #D32F2F;
 }
+
 .input-group select#gender.error {
   border-bottom: 2px solid #D32F2F;
 }
 
-
-.item-form .input-group{
+.item-form .input-group {
   height: 45px;
   width: 100%;
   display: flex;
   border-radius: 0px;
   margin-bottom: 30px;
   background: #ffffff;
-
 }
-.item-form .input-group span.material-icons{
+
+.item-form .input-group span.material-icons {
   margin-top: auto;
   margin-bottom: auto;
   color: #868580;
-
   font-size: 20px;
-
 }
 
-.item-form .input-group input, .item-form .input-group select{
+.item-form .input-group input, .item-form .input-group select {
   box-shadow: none;
-  border:none;
+  border: none;
   outline: none;
-border-radius: 0px;
+  border-radius: 0px;
   height: 100%;
   width: 100%;
   background: transparent;
@@ -384,14 +381,16 @@ border-radius: 0px;
   padding: 8px 10px 0 40px;
   z-index: 6;
 }
-.item-form .input-group input[type=date]{
+
+.item-form .input-group input[type=date] {
   color: transparent;
 }
+
 .item-form .input-group input.valorado {
   color: #171a1d;
 }
 
-.item-form .input-group label{
+.item-form .input-group label {
   height: 100%;
   border-radius: 0px;
   background: #ffffff;
@@ -399,7 +398,8 @@ border-radius: 0px;
   padding-left: 10px;
   position: absolute;
 }
-.item-form .input-group button[type=submit]{
+
+.item-form .input-group button[type=submit] {
   width: 100%;
   background: #3498db;
   border: 1px solid #2691d9;
@@ -408,29 +408,29 @@ border-radius: 0px;
   letter-spacing: 1px;
   font-weight: 600;
   cursor: pointer;
-  font-family: 'Montserrat',sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
-.item-form .input-group button[type=submit]:hover{
+
+.item-form .input-group button[type=submit]:hover {
   background: #006aa9;
   border: 1px solid #006aa9;
 }
-.notifiacion-privacidad {
 
-}
-.notifiacion-privacidad , .acceder-cuenta {
-  font-family: 'Poppins',sans-serif;
+.notifiacion-privacidad, .acceder-cuenta {
+  font-family: "Poppins", sans-serif;
   color: #ffffff;
   text-align: left;
   font-size: 14px;
   margin-bottom: 10px;
 }
-.acceder-cuenta a,.notifiacion-privacidad a {
 
+.acceder-cuenta a, .notifiacion-privacidad a {
   text-decoration: none;
   color: #ffffff;
   font-weight: bold;
 }
-.acceder-cuenta a:hover, .notifiacion-privacidad a:hover{
+
+.acceder-cuenta a:hover, .notifiacion-privacidad a:hover {
   text-decoration: underline;
 }
 
@@ -442,7 +442,7 @@ border-radius: 0px;
     transform: rotate(360deg);
   }
 }
- #enviando-datos {
+#enviando-datos {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
@@ -451,13 +451,14 @@ border-radius: 0px;
   display: flex;
   color: #ffffff;
   font-weight: 600;
-   font-size: 14px;
+  font-size: 14px;
 }
+
 #enviando-datos .cargando {
   width: 20px;
   height: 20px;
   border: 4px solid #ffffff;
-  border-top: 4px solid rgba(0,0,0,0);
+  border-top: 4px solid rgba(0, 0, 0, 0);
   border-radius: 50%;
   animation-name: girar;
   animation-duration: 1.5s;
@@ -481,34 +482,41 @@ estilos para informacion de contrtaseña
   padding: 0 10px;
   font-size: 11px;
 }
+
 .info-clave-usuario .indicador-minimo {
   flex-grow: 1;
   color: #f2f2f2;
 }
+
 .info-clave-usuario #indicador-nivel-seguridad {
   color: #FFFFFF;
 }
-.info-clave-usuario #indicador-nivel-seguridad .fas{
+
+.info-clave-usuario #indicador-nivel-seguridad .fas {
   margin-right: 5px;
 }
-.info-clave-usuario #indicador-nivel-seguridad.debil{
+
+.info-clave-usuario #indicador-nivel-seguridad.debil {
   color: #dc3545;
 }
-.info-clave-usuario #indicador-nivel-seguridad.regular{
+
+.info-clave-usuario #indicador-nivel-seguridad.regular {
   color: #ffc107;
 }
-.info-clave-usuario #indicador-nivel-seguridad.media{
+
+.info-clave-usuario #indicador-nivel-seguridad.media {
   color: #feb272;
 }
-.info-clave-usuario #indicador-nivel-seguridad.fuerte{
+
+.info-clave-usuario #indicador-nivel-seguridad.fuerte {
   color: #5fb70f;
 }
 
 .desplegable-recomendaciones-clave {
-display: none;
+  display: none;
   position: absolute;
   background: #FFFFFF;
-z-index: 10;
+  z-index: 10;
   border-radius: 5px;
   font-size: 12px;
   margin-top: -10px;
@@ -519,17 +527,19 @@ z-index: 10;
   margin-right: 32px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
+
 .desplegable-recomendaciones-clave.visible {
   display: block;
 }
-.desplegable-recomendaciones-clave p {
 
+.desplegable-recomendaciones-clave p {
   margin: 0px;
 }
+
 .desplegable-recomendaciones-clave p .fas {
   color: #8e8e8f;
-
 }
+
 .desplegable-recomendaciones-clave ul {
   list-style: none;
   padding: 5px 10px;
@@ -537,19 +547,18 @@ z-index: 10;
   line-height: 1.2;
 }
 
-  /*-------------------------------------------------------------
-  Fin de estilos para el formulario de registro
-  ------------------------------------------------------*/
-
+/*-------------------------------------------------------------
+Fin de estilos para el formulario de registro
+------------------------------------------------------*/
 /*
 Mensjaes de errores
 */
-#contenedor-mensajes{
+#contenedor-mensajes {
   display: flex;
   padding: 0 12px;
-flex-direction: column;
-
+  flex-direction: column;
 }
+
 .mensaje-error {
   width: 100%;
   background: #fe447d;
@@ -557,19 +566,21 @@ flex-direction: column;
   font-size: 0.75rem;
   text-align: left;
   margin-bottom: 30px;
-display: flex;
+  display: flex;
   align-items: center;
   padding: 10px;
   margin-bottom: 10px;
 }
-.mensaje-error:last-child{
+
+.mensaje-error:last-child {
   margin-bottom: 20px;
 }
+
 .mensaje-error span.material-icons {
   font-size: 20px;
   margin-right: 10px;
-
 }
+
 .indicador-error {
   color: #dc3545;
   font-size: 11px;
@@ -579,11 +590,11 @@ display: flex;
   margin-bottom: 30px;
 }
 
-
 /*
 Fin de mensjaes de errores
 */
-
 .swal-modal {
-  font-family: 'Poppins',sans-serif;
+  font-family: "Poppins", sans-serif;
 }
+
+/*# sourceMappingURL=register.css.map */

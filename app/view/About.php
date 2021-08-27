@@ -7,11 +7,11 @@ use HS\libs\core\Session;
 use const HS\config\APP_NAME;
 ?>
 <!doctype html>
-<html lang="es">
+<html lang="es" xmlns="http://www.w3.org/1999/html">
 <head>
     <?php require 'template/Head.php' ?>
 
-    <title><?= APP_NAME ?>: Inició de sesión</title>
+    <title><?= APP_NAME ?>: Acerca de nosotros</title>
     <link rel="stylesheet" href="/files/scss/about.scss">
 </head>
 <body>
@@ -38,7 +38,7 @@ use const HS\config\APP_NAME;
                 </a>
             </li>
             <li class="nav-list-item">
-                <a href="/About" class="nav-link">
+                <a href="/Contact" class="nav-link">
                     <span class="material-icons"><span class="material-icons-outlined">support_agent</span></span>Contacto
                 </a>
             </li>
@@ -53,15 +53,40 @@ use const HS\config\APP_NAME;
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active align-content-center">
-                    <img src="/files/photos/photo-1.jpg" class="d-block img-carousel" alt="...">
+                 <!-- la resolcion de las imagenes es de 4950 px X 2175 para mantener la proporcio a 330x145 px -->
+                    <img src="/files/photos/photo-1.jpg" class="d-block img-carousel" alt="">
+                    <div class="filtro-img-carrusel">
+                        <div class="mensaje-carrousel">
+                            <span class="titulo">Funcionamiento sencillo </span>
+                            <span class="subtitulo">& Diseño flexible</span>
+                            <p class="texto-carrusel">SimpleChatdespliega perfectamente en todos los dispositivos: PC, smartphone y tablet.</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/files/photos/photo-2.jpg" class="d-block img-carousel" alt="...">
+                    <img src="/files/photos/photo-2.jpg" class="d-block img-carousel" alt="">
+                    <div class="filtro-img-carrusel">
+                        <div class="mensaje-carrousel">
+                            <span class="titulo">Protección de Datos</span>
+                            <span class="subtitulo">& Privacidad</span>
+                            <p class="texto-carrusel">Tus datos están en buenas manos con nosotros, y siempre disponibles.</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/files/photos/photo-3.jpg" class="d-block img-carousel" alt="...">
+                    <img src="/files/photos/photo-3.jpg" class="d-block img-carousel" alt="">
+                    <div class="filtro-img-carrusel">
+                        <div class="mensaje-carrousel">
+                            <span class="titulo">Diseño simple</span>
+                            <span class="subtitulo">& Mensajes instantáneos</span>
+                            <p class="texto-carrusel">Es tan simple que ya
+                                sabes cómo utilizarlo con entrega mensajes de forma instantánea.</p>
+                        </div>
+                    </div>
                 </div
+
             </div>
+
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -73,7 +98,29 @@ use const HS\config\APP_NAME;
         </div>
 
     </section>
-<section class="contenido-acerca">
+    <section class="presentacion-acerca">
+        <div class="contenedor-presentacion">
+            <h2>Nuestro equipo</h2>
+            <div class="texto-presentacion">
+                <p>
+                    Todos somos muy diferentes.
+                    Nacimos en diferentes ciudades, en diferentes épocas, amamos música, comida, películas diferentes.
+                    Pero tenemos algo que nos une a todos. Esto es nuestra empresa SimpleChat. Somos su corazón.
+                    No somos solo un equipo, somos una familia.
+                </p>
+
+            </div>
+            <a href="/Contact" class="hacia-contactanos">
+                <button >
+                    Contáctanos
+                </button>
+            </a>
+        </div>
+
+    </section>
+    <section class="foto-panoramica">
+    </section>
+    <section class="contenido-acerca">
 <div class="acciones">
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12">
@@ -81,8 +128,7 @@ use const HS\config\APP_NAME;
             <div class="objetivos" >
                 <figure><img src="/files/photos/mini-1.svg" alt=""></figure>
                 <div class="cuerpo-objetivos">
-                    <p class="title">Lorem ipsum</p>
-                    <p>Lorem ipsum dolor sit amet, consec tetuer adipi scing. Praesent vestibu lum molestie.</p>
+                    <p class="title">Desarrollo e innovación</p>
                 </div>
             </div>
 
@@ -91,8 +137,8 @@ use const HS\config\APP_NAME;
             <div class="objetivos" >
                 <figure><img src="/files/photos/mini-2.svg" alt=""></figure>
                 <div class="cuerpo-objetivos">
-                    <p class="title">Lorem ipsum</p>
-                    <p>Lorem ipsum dolor sit amet, consec tetuer adipi scing. Praesent vestibu lum molestie.</p>
+                    <p class="title">Actualizaciones periódicas</p>
+
                 </div>
             </div>
         </div>
@@ -100,8 +146,7 @@ use const HS\config\APP_NAME;
             <div class="objetivos" >
                 <figure><img src="/files/photos/mini-3.svg" alt=""></figure>
                 <div class="cuerpo-objetivos">
-                    <p class="title">Lorem ipsum</p>
-                    <p>Lorem ipsum dolor sit amet, consec tetuer adipi scing. Praesent vestibu lum molestie.</p>
+                    <p class="title">Protección de datos</p>
                 </div>
             </div>
         </div>
@@ -109,18 +154,92 @@ use const HS\config\APP_NAME;
             <div class="objetivos" >
                 <figure><img src="/files/photos/mini-4.svg" alt=""></figure>
                 <div class="cuerpo-objetivos">
-                    <p class="title">Lorem ipsum</p>
-                    <p>Lorem ipsum dolor sit amet, consec tetuer adipi scing. Praesent vestibu lum molestie.</p>
+                    <p class="title">Diseño adaptativo</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 </section>
-   <section class="bottom-acerca">
+     <section class="bottom-acerca">
+         <div class="row hor-cont-caracteristicas">
+             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas">
+                 <article class="caracteristicas">
+                     <div class="icon-caract">
+                         <img src="/files/photos/about-caract-1.svg" alt="">
+                     </div>
+                     <span class="titulo-caract">Creatividad</span>
+                     <p class="descrip-caract">SimpleChat ha sido optimizado para dispositivos móviles de diferentes tamaños y resolcuiones de pantalla.</p>
+                 </article>
+             </div>
+             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas">
+                 <article class="caracteristicas">
+                     <div class="icon-caract">
+                         <img src="/files/photos/about-caract-2.svg" alt="">
+                     </div>
+                     <span class="titulo-caract">Adaptabilidad</span>
+                     <p class="descrip-caract" >Es la capacidad de pensar fuera de la caja. Generamos muchas ideas, tomamos decisiones y creamos algo nuevo.</p>
+                 </article>
+             </div>
+             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas">
+                 <article class="caracteristicas">
+                     <div class="icon-caract">
+                         <img src="/files/photos/about-caract-3.svg" alt="">
+                     </div>
+                     <span class="titulo-caract">Estilo</span>
+                     <p class="descrip-caract">Diseños flexibles con colores elegantes ajustados a las tendencias actuales.</p>
+                 </article>
+             </div>
+
+         </div>
+
+
+         <div id="carrusel-desarrolladores" class="carousel slide" data-bs-ride="carousel">
+             <div class="carousel-inner " id="integrantes-acerca">
+                 <div class="carousel-item active" data-bs-interval="4000">
+                     <img class="" src="/files/photos/home_pic1.jpg" alt="">
+
+                        <div class="item-integrante">
+                          <p class="palabras-integrante">Esperamos que queden muy satisfechos con nuestro trabajo, representamos a una maravillosa empresa.</p>
+                            <span class="nombre-integrante">Emily Saens</span>
+                            <span class="puesto-integrante">Diseñadora</span>
+                        </div>
+
+
+
+                 </div>
+                 <div class="carousel-item" data-bs-interval="2500">
+                     <img class="" src="/files/photos/home_pic2.jpg" alt="">
+                     <div class="item-integrante">
+                         <p class="palabras-integrante"> Tratamos de  ser precisos, todas las promesas se cumplen, todas las preguntas obtienen respuestas, la empresa presenta un enfoque muy atento y positivo.</p>
+                         <span class="nombre-integrante">Dan Fonda</span>
+                         <span class="puesto-integrante">Desarrollador</span>
+                     </div>
+                 </div>
+                 <div class="carousel-item" data-bs-interval="2500">
+                     <img class="" src="/files/photos/home_pic3.jpg" alt="">
+                     <div class="item-integrante">
+                         <p class="palabras-integrante">Tratamos de resolver los problemas con prontitud.
+                             En comunicación, tratando de ser agradables y serviciales para usted.
+                             Ofrecer siempre nuevas ideas, nuevas formas de desarrollar, mejorar nuestro proyecto son nuestras principales directrices.</p>
+                         <span class="nombre-integrante">Matt Dot</span>
+                         <span class="puesto-integrante">Desarrollador</span>
+                     </div>
+                 </div>
+             </div>
+             <button class="carousel-control-prev" type="button" data-bs-target="#carrusel-desarrolladores" data-bs-slide="prev">
+                 <i class="fas fa-chevron-left"></i>
+             </button>
+             <button class="carousel-control-next" type="button" data-bs-target="#carrusel-desarrolladores" data-bs-slide="next">
+
+                 <i class="fas fa-chevron-right"></i>
+             </button>
+         </div>
+
+<!--
        <div class="row">
            <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12 seccion-ultimo">
-               <h2>Ultimas noticias</h2>
+               <h3>Ultimas noticias</h3>
                <ul class="lista-noticias">
                    <li>
                        <time datetime="20.09.2015">20.09.2015</time>
@@ -136,7 +255,7 @@ use const HS\config\APP_NAME;
                <hr class="separador-secciones">
            </article>
            <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12 seccion-benvenida">
-               <h2>Bienvenido(a)</h2>
+               <h3>Bienvenido(a)</h3>
                <p class="subtitulo">Fusce suscipit varius mium sociis totdnatibus et magis dis parturient montes, nascetur ridiculus mus. </p>
                <p class="descrip">Lorem ipsum dolor sit amet, consec teer adipiscing. Prsent vestibulum molestie lacuiirhs. Aeneon my . Phasellllus. porta. Fusce suscipit varius mium sociis.</p>
                <p>Lorem ipsum dolor sit amet, consec tetuer adipiscing. Praesent vestibu lum molestie lacuiirhs. Aenean non ummy hendreriauris. Phasellllus. porta. Fusce suscipit varius mium sociis totdnatibus et magis dis parturient montes, nascetur ridiculus mus. Nulla dui.</p>
@@ -144,13 +263,13 @@ use const HS\config\APP_NAME;
                <hr class="separador-secciones">
            </article>
            <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12  seccion-desarrolladores">
-               <h2>Nuestros desarrolladores</h2>
+               <h3>Nuestros desarrolladores</h3>
                <p class="subtitulo">Lorem ipsum dolor sit amet, consec teer adipiscing. Prsent vestibulum mo.</p>
                <ul class="lista-desarrolladores">
                    <li>
                        <div class="item-desarrollador">
                            <figure class="foto-desarrollador"><img src="/files/photos/home_pic1.jpg" alt=""></figure>
-                           <div class="descr-desarrolladorr">
+                           <div class="descr-desarrollador">
                                <span class="nombre-desarrollador">Lorem Ipsum</span>
                                <p>Consec tetuer adipiscing. Praesent vestibu.</p>
                            </div>
@@ -178,13 +297,25 @@ use const HS\config\APP_NAME;
                </ul>
                <hr class="separador-secciones">
            </article>
-       </div>
+       </div>-->
    </section>
+    <footer class="footer-acerca">
+<div class="redes-sociales">
+    <ul>
 
+        <li><a href="http://facebook.com" class="item-red-social"><i class="fab fa-facebook-square"></i></a></li>
+        <li><a href="http://twitter.com" class="item-red-social"><i class="fab fa-twitter-square"></i></a></li>
+        <li><a href="http://linkedin.com" class="item-red-social"><i class="fab fa-linkedin"></i></a></li>
+    </ul>
 </div>
+        <p>&copy; Copyright 2021 SimpleChat - Todos los derechos reservados</p>
+    </div>
+</footer>
 <div id="hacia-arriba">
     <i class="fas fa-arrow-up"></i>
 </div>
+
+
 <script type="application/javascript" src="/files/js/About.js"></script>
 </body>
 </html>

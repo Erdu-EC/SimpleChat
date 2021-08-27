@@ -42,7 +42,7 @@ if (Session::IsLogin()) HttpResponse::Redirect('/');
                 </a>
             </li>
             <li class="nav-list-item">
-                <a href="#" class="nav-link">
+                <a href="/Contact" class="nav-link">
                         <span class="material-icons"><span class="material-icons-outlined">
 support_agent</span>
 </span>Contacto</a>
@@ -60,7 +60,7 @@ support_agent</span>
             <div class="col-sm-12 col-md-7 col-lg-5">
                 <div class="card">
                     <div class="card-header">
-                        <img src="/files/icon/logo.png" alt="">
+                        <img src="/files/icon/logo-wh.png?h=70" alt="">
                         <?= 'Bienvenido al formulario de registro de ' . APP_NAME ?>
                     </div>
                     <form id="register_form" method="post">
@@ -70,17 +70,19 @@ support_agent</span>
                                     <span class="etiqueta-input">Nombres</span>
                                     <div class="input-group">
                                         <label for="first_name"><span class="material-icons">face</span></label>
-                                        <input id="first_name" type="text" class="form-control"  required>
+                                        <input id="first_name" type="text" class="form-control" >
 
                                     </div>
+
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="item-form">
                                     <span class="etiqueta-input">Apellidos</span>
                                     <div class="input-group">
-                                        <input id="last_name" type="text" class="form-control" required>
+                                        <input id="last_name" type="text" class="form-control">
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -100,6 +102,7 @@ support_agent</span>
                                             <option value="D">Sin especificar</option>
                                         </select>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="col-6">
@@ -109,8 +112,31 @@ support_agent</span>
                                         <label class="" for="birth_date">
                                             <span class="material-icons">cake</span>
                                         </label>
-                                        <input id="birth_date" type="date" class=""  default="2013-05-21" required  <?php echo 'max="',date('Y-m-d'),'"';?>>
+                                        <input id="birth_date" type="date" class="" <?php echo 'max="',date('Y-m-d'),'"'; ?>  min="1900-01-01" >
                                     </div>
+
+                                </div>
+                            </div>
+                            <div class="item-form">
+                                <span class="etiqueta-input">Teléfono</span>
+                                <div class="input-group">
+
+                                    <label class="" for="user_phone">
+                                        <span class="material-icons">phone</span>
+                                    </label>
+                                    <input id="user_phone" type="text" class="form-control">
+
+                                </div>
+                            </div>
+                            <div class="item-form">
+                                <span class="etiqueta-input">E-mail</span>
+                                <div class="input-group">
+
+                                    <label class="" for="user_name">
+                                        <span class="material-icons">person</span>
+                                    </label>
+                                    <input id="user_email" type="email" class="form-control" autocomplete="username">
+
                                 </div>
                             </div>
                             <div class="item-form">
@@ -120,8 +146,7 @@ support_agent</span>
                                     <label class="" for="user_name">
                                         <span class="material-icons">person</span>
                                     </label>
-                                    <input id="user_name" type="text" class="form-control" autocomplete="username"
-                                           minlength="4" maxlength="30" required>
+                                    <input id="user_name" type="text" class="form-control" autocomplete="username" maxlength="30" >
 
                                 </div>
                             </div>
@@ -129,17 +154,34 @@ support_agent</span>
                                 <span class="etiqueta-input">Escriba su contraseña</span>
                                 <div class="input-group">
                                     <label class="" for="user_pass"><span class="material-icons">lock</span></label>
-                                    <input id="user_pass" type="password" class="form-control"
-                                           autocomplete="new-password"
-                                           minlength="8" maxlength="60" required>
+                                    <input id="user_pass" type="password" class="form-control" autocomplete="new-password" maxlength="60" >
+                                </div>
+                                <div class="info-clave-usuario">
+                                    <div class="indicador-minimo">
+                                        8 caracteres mín.
+                                    </div>
+                                    <div id="indicador-nivel-seguridad">
+                                        <i class="fas fa-info-circle"></i> <span>Débil</span>
+                                    </div>
+
+                                </div>
+                                <div class="desplegable-recomendaciones-clave">
+<p> <i class="fas fa-info-circle"></i> Una contraseña fuerte debe ser única, contener como mínimo 8 caracteres, con una combinación de:</p>
+                                    <ul>
+                                        <li>- 8 caracteres min.</li>
+                                        <li>- Números</li>
+                                        <li>- Letras mayúsculas</li>
+                                        <li>- Letras minúsculas</li>
+                                        <li>- Caracteres especiales</li>
+                                    </ul>
                                 </div>
                             </div>
+
                             <div class="item-form">
                                 <span class="etiqueta-input">Repita la contraseña</span>
                                 <div class="input-group">
                                     <label for="user_pass_repeat" ><span class="material-icons">lock</span></label>
-                                    <input id="user_pass_repeat" type="password" class="form-control"   autocomplete="new-password"
-                                           minlength="8" maxlength="60" required>
+                                    <input id="user_pass_repeat" type="password" class="form-control"   autocomplete="new-password" maxlength="60" >
                                 </div>
                             </div>
                             <div id="contenedor-mensajes">
@@ -155,12 +197,9 @@ support_agent</span>
 
                             </div>
                         </div>
-
-
-
-
-
-
+                        <div class="notifiacion-privacidad">
+                            Al dar click en el "Registrarse", acepta los condiciones generales de uso disponibles en <a href="/Privacy">Términos y condiciones</a>
+                        </div>
                             <div class="acceder-cuenta">
                                 ¿Ya tienes una cuenta? <a class="" href="/Login">Inicia Sesión</a>
                             </div>

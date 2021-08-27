@@ -1,15 +1,11 @@
-@charset "UTF-8";
-
 @font-face {
   font-family: "Signalist";
   src: url("/files/iconfont/Net-Signalist-W00-Signalist.ttf");
 }
-
-
-
-.material-icons{
+.material-icons {
   vert-align: middle;
 }
+
 *,
 *::before,
 *::after {
@@ -43,12 +39,14 @@ body {
 .user-activo {
   border: 2px solid #2ecc71;
 }
-.user-ocupado{
+
+.user-ocupado {
   border: 2px solid #f1c40f;
 }
- .user-inactivo{
-   border: 2px solid #e74c3c;
- }
+
+.user-inactivo {
+  border: 2px solid #e74c3c;
+}
 
 @media (min-width: 576px) {
   .container-sm, .container {
@@ -70,15 +68,13 @@ body {
     max-width: 1140px;
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .custom-control-label::before,
-  .custom-file-label,
-  .custom-select {
+.custom-file-label,
+.custom-select {
     transition: none;
   }
 }
-
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -86,11 +82,6 @@ body {
   margin-bottom: 0;
   list-style: none;
 }
-
-
-
-
-
 
 .navbar {
   position: relative;
@@ -100,9 +91,6 @@ body {
   justify-content: space-between;
   padding: 0.5rem 1rem;
 }
-
-
-
 
 .navbar-collapse {
   flex-basis: 100%;
@@ -118,6 +106,7 @@ body {
   border: 1px solid transparent;
   border-radius: 0.25rem;
 }
+
 .navbar-toggler:hover, .navbar-toggler:focus {
   text-decoration: none;
 }
@@ -136,8 +125,6 @@ body {
   overflow-y: auto;
 }
 
-
-
 .navbar-expand {
   flex-flow: row nowrap;
   justify-content: flex-start;
@@ -145,24 +132,24 @@ body {
 
 .navbar-expand .navbar-nav {
   flex-direction: row;
-}/*
+}
+
+/*
 .navbar-expand .navbar-nav .dropdown-menu {
   position: absolute;
 }*/
-
 .navbar-expand .navbar-nav-scroll {
   overflow: visible;
 }
+
 .navbar-expand .navbar-collapse {
   display: flex !important;
   flex-basis: auto;
 }
+
 .navbar-expand .navbar-toggler {
   display: none;
 }
-
-
-
 
 @keyframes progress-bar-stripes {
   from {
@@ -172,11 +159,11 @@ body {
     background-position: 0 0;
   }
 }
-
 /*layoutSidenav*/
-#layoutSidenav{
+#layoutSidenav {
   width: 100%;
 }
+
 .fixed-top, .sb-nav-fixed #layoutSidenav #layoutSidenav_nav, .sb-nav-fixed .sb-topnav {
   position: fixed;
   top: 0;
@@ -185,18 +172,18 @@ body {
   z-index: 1030;
 }
 
-
-
 html,
 body {
   height: 100%;
 }
+
 .no-seleccionable {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
+
 .container,
 .container-fluid,
 .container-sm,
@@ -207,10 +194,10 @@ body {
   padding-right: 1.5rem;
 }
 
-
 #layoutSidenav {
   display: flex;
 }
+
 #layoutSidenav #layoutSidenav_nav {
   flex-basis: 225px;
   flex-shrink: 0;
@@ -222,6 +209,7 @@ body {
   z-index: 1038;
   transform: translateX(0px);
 }
+
 #layoutSidenav #layoutSidenav_content {
   width: 100vw;
   position: relative;
@@ -229,19 +217,19 @@ body {
   flex-direction: column;
   justify-content: space-between;
   min-width: 0;
-
 }
-#layoutSidenav #layoutSidenav_content .row{
+
+#layoutSidenav #layoutSidenav_content .row {
   margin: 0;
   padding: 0;
 }
+
 /* Animacion para panel barra de navegacion lateral izquierdo
 */
-
-
 .sb-nav-fixed .sb-topnav {
   z-index: 1039;
 }
+
 .sb-nav-fixed #layoutSidenav #layoutSidenav_nav {
   width: 225px;
   height: 100vh;
@@ -258,33 +246,32 @@ body {
   transition-property: padding-left, padding-left;
 }
 
-.sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav{
+.sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
   transition: transform 0.3s ease-in-out;
   transform: translateX(-225px);
 }
-.sb-sidenav-toggled #layoutSidenav #layoutSidenav_content{
+
+.sb-sidenav-toggled #layoutSidenav #layoutSidenav_content {
   transition: transform 0.15s ease-in-out;
   padding: 0;
   transition-property: padding-left, padding-left;
 }
-@media screen and (max-width: 935px){
+
+@media screen and (max-width: 935px) {
   .sb-nav-fixed #layoutSidenav #layoutSidenav_content {
-    padding:0;
+    padding: 0;
   }
-  .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav{
+
+  .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
     position: absolute;
     z-index: 1000;
   }
 }
-
-
-
 .sb-topnav {
   padding-left: 0;
   height: 56px;
   z-index: 1039;
 }
-
 
 .sb-sidenav {
   margin-top: 60px;
@@ -296,47 +283,45 @@ body {
   overflow-x: hidden;
   scrollbar-width: none;
 }
+
 .sb-sidenav::-webkit-scrollbar {
   display: none;
 }
 
 .sb-sidenav::-moz-scrollbar {
   display: none;
-
 }
-.accordion-body{
+
+.accordion-body {
   padding-left: 0.1rem;
   padding-right: 0.1rem;
 }
-
 
 #layoutSidenav_nav .sb-sidenav-footer {
   padding-left: 20px;
   font-size: 3rem;
   font-family: "Signalist", sans-serif;
 }
+
 #layoutSidenav_nav .sb-sidenav-footer small {
   font-family: SimpleChat, sans-serif;
 }
+
 /*
 ***********************************************
 Estilos de title
 
 ***********************************************
  */
-
-
 /*-------------------------------------------*/
-
 /*Barra de navegacion */
-
 #barra-superior {
   background: #2B364F;
-  color:white;
+  color: white;
   height: 60px;
 }
 
-#sidebarToggle{
+#sidebarToggle {
   background: #32465a;
   height: 40px;
   width: 48px;
@@ -350,43 +335,44 @@ Estilos de title
 }
 
 #sidebarToggle:hover, #sidebarToggle.activo {
-  color:#ffffff ;
+  color: #ffffff;
 }
-
 
 .indicador-mensajes {
   margin-right: auto;
   margin-left: 50px;
-display: flex;
+  display: flex;
   color: #cbcbcc;
 }
+
 .indicador-mensajes:hover {
   color: #ffffff;
 }
 
-.indicador-mensajes i{
+.indicador-mensajes i {
   font-size: 25px;
-
 }
-.indicador-mensajes:hover .num-mensajes{
+
+.indicador-mensajes:hover .num-mensajes {
   background: #f12526;
 }
+
 .indicador-mensajes .num-mensajes {
-display: flex;
-  background: #b92326;/*#f12526;*/
+  display: flex;
+  background: #b92326;
+  /*#f12526;*/
   font-size: 10px;
-  border-radius:50% ;
+  border-radius: 50%;
   width: 13px;
   height: 13px;
   justify-content: center;
   align-items: center;
-
-
   margin-left: -5px;
   font-weight: 700;
   padding: 0;
 }
-.indicador-mensajes .num-mensajes span  {
+
+.indicador-mensajes .num-mensajes span {
   white-space: nowrap;
   overflow: hidden;
   horiz-align: center;
@@ -394,40 +380,43 @@ display: flex;
 }
 
 @media (max-width: 576px) {
-  #sidebarToggle{
+  #sidebarToggle {
     margin-left: 5px;
   }
+
   .indicador-mensajes {
     margin-right: auto;
     margin-left: 50px;
   }
 }
-#icono-sidebarToggle{
-  width:100%;
+#icono-sidebarToggle {
+  width: 100%;
 }
+
 .navbar-brand {
   margin-right: 5px;
-
   float: right;
- padding: 0px;
+  padding: 0px;
 }
+
 .navbar-brand img {
   height: 50px;
   padding: 0px;
 }
+
 /*-------------------------------------------*/
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   display: none;
 }
 
 #frame {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: calc(100vh - 60px);
   min-height: 300px;
   background: #E6EAEA;
-  background-image:url("/files/img/bg/fondo-chat.png");
+  background-image: url("/files/img/bg/fondo-chat.png");
   display: flex;
 }
 
@@ -444,13 +433,14 @@ body::-webkit-scrollbar{
   max-width: 380px;
   height: 100%;
   background: #2c3e50;
-  padding:0;
+  padding: 0;
   color: #f5f5f5;
   overflow: hidden;
   position: relative;
   display: inline;
   z-index: 1000;
 }
+
 @media screen and (max-width: 735px) {
   #frame #sidepanel {
     width: 58px;
@@ -461,11 +451,11 @@ body::-webkit-scrollbar{
 /* barra de navegacion
 ------------------------------------------------------------*/
 /*Barra lateral izquierda*/
-
 #layoutSidenav_nav {
   color: #f5f5f5;
-  background:#2B364F;
+  background: #2B364F;
 }
+
 #profile {
   width: 95%;
   margin: 25px auto 5px;
@@ -480,8 +470,6 @@ body::-webkit-scrollbar{
   transition: 0.3s height ease;
   align-content: center;
   line-height: initial;
-
-
 }
 
 #profile .wrap #profile-img {
@@ -496,33 +484,31 @@ body::-webkit-scrollbar{
   transition: 0.3s border ease;
   margin: auto auto 15px auto;
   display: block;
-
 }
-#profile .wrap #ajustes-cuenta{
 
+#profile .wrap #ajustes-cuenta {
   margin-top: 0;
-  background-image:url("/files/icon/configuracion.png");
+  background-image: url("/files/icon/configuracion.png");
   width: 80px;
   height: 80px;
-  background-position:center;
+  background-position: center;
 }
 
 img.online {
   border: 2px solid #2ecc71;
-
 }
+
 img.away {
   border: 2px solid #f1c40f;
 }
+
 img.busy {
   border: 2px solid #e74c3c;
 }
 
 #profile .wrap img.online {
   border: 2px solid #2ecc71;
-
 }
-
 
 #profile .wrap #expanded label {
   float: left;
@@ -530,20 +516,22 @@ img.busy {
   margin: 0 8px 5px 0;
   padding: 5px 0;
 }
+
 #profile .wrap #expanded input {
   border: none;
   margin-bottom: 6px;
   background: #32465a;
   border-radius: 3px;
-
   padding: 7px;
   width: calc(100% - 43px);
 }
+
 #profile .wrap #expanded input:focus {
   outline: none;
   background: #435f7a;
 }
-.accordion-item button.accordion-header{
+
+.accordion-item button.accordion-header {
   color: #6c757d;
   background: #2B364F;
   padding-top: 10px;
@@ -554,22 +542,25 @@ img.busy {
   border: none;
 }
 
-
-.accordion-item button span.izquierda{
+.accordion-item button span.izquierda {
   margin-right: auto;
   color: #6c757d;
 }
-.accordion-item button span.derecha{
+
+.accordion-item button span.derecha {
   margin-left: auto;
   color: #6c757d;
 }
-.accordion-item button.btn-activo{
+
+.accordion-item button.btn-activo {
   color: #ffffff;
 }
-.accordion-item button.btn-activo span{
+
+.accordion-item button.btn-activo span {
   color: #ffffff;
 }
-.icono-centrado{
+
+.icono-centrado {
   width: auto;
   height: auto;
   align-content: center;
@@ -578,26 +569,29 @@ img.busy {
   align-items: center;
   display: flex;
   margin: 0;
-  padding:0;
+  padding: 0;
 }
 
-.accordion-body {background: #2B364F;
+.accordion-body {
+  background: #2B364F;
+  padding: 0;
+}
 
-  padding:0;}
-.accordion-body .item-accordion-body .nav-link{
+.accordion-body .item-accordion-body .nav-link {
   padding: 15px 0 15px 25px;
   display: flex;
   link: none;
   color: white;
-width: 100%;
+  width: 100%;
 }
-.accordion-body .item-accordion-body .nav-link span{
 
+.accordion-body .item-accordion-body .nav-link span {
   padding-right: 10px;
 }
+
 .accordion-body .item-accordion-body .nav-link {
   background: #2B364F;
-  border:none ;
+  border: none;
 }
 
 /*fin de barra lateral izquierda*/
@@ -610,16 +604,16 @@ Barra de contactos desplegable
 #frame #sidepanel.expandido {
   width: 500px;
 }
+
 #panelTodosContactos {
-  margin:0 auto 0 -600px;
-border-right: 1px solid #288795;
+  margin: 0 auto 0 -600px;
+  border-right: 1px solid #288795;
   z-index: 2000;
   position: absolute;
   height: 100vh;
   padding: 0;
   display: flex;
 }
-
 
 @media screen and (max-width: 360px) {
   #panelTodosContactos {
@@ -634,26 +628,29 @@ border-right: 1px solid #288795;
   position: relative;
   width: 400px;
 }
+
 #sidepanelTodosContactos .titulo-cab {
   display: flex;
   justify-content: space-between;
-  background: #288795;/*#454775;*/
+  background: #288795;
+  /*#454775;*/
   color: white;
   height: 60px;
-  align-items:center
+  align-items: center;
 }
 
-#sidepanelTodosContactos .titulo-cab h1{
-  order:1;
+#sidepanelTodosContactos .titulo-cab h1 {
+  order: 1;
   font-family: "proxima-nova", "Source Sans Pro", sans-serif;
   text-align: left;
-  font-size:1.5rem;
+  font-size: 1.5rem;
   margin: 0 10px;
   float: left;
   display: flex;
   vertical-align: center;
 }
-#sidepanelTodosContactos .titulo-cab #ocultar{
+
+#sidepanelTodosContactos .titulo-cab #ocultar {
   order: 2;
   float: right;
   width: 40px;
@@ -661,23 +658,22 @@ border-right: 1px solid #288795;
   cursor: pointer;
   text-align: right;
 }
-#sidepanelTodosContactos .titulo-cab #ocultar span{
 
+#sidepanelTodosContactos .titulo-cab #ocultar span {
   order: 2;
   width: 30px;
   height: 30px;
   font-size: 1.7rem;
   justify-content: center;
-
   margin-left: auto;
   transition-duration: 1s;
-
 }
-#sidepanelTodosContactos .titulo-cab #ocultar span:hover{
+
+#sidepanelTodosContactos .titulo-cab #ocultar span:hover {
   transform: translateX(-20px);
-
 }
-#sidepanelTodosContactos .titulo-cab #ocultar span:after{
+
+#sidepanelTodosContactos .titulo-cab #ocultar span:after {
   transform: translateX(20px);
 }
 
@@ -686,16 +682,17 @@ border-right: 1px solid #288795;
   margin: 20px 5px 0;
   font-weight: 300;
   box-shadow: rgba(33, 35, 38, 0.1) 0 10px 10px -10px;
-
 }
+
 #panelTodosContactos #sidepanelTodosContactos #buscar-contacto label {
   position: absolute;
   margin: 10px 0 0 10px;
   width: 1rem;
   color: black;
 }
+
 #panelTodosContactos #sidepanelTodosContactos #buscar-contacto input {
-  font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
+  font-family: "proxima-nova", "Source Sans Pro", sans-serif;
   padding: 10px 40px 10px 40px;
   width: 100%;
   color: black;
@@ -707,47 +704,47 @@ border-right: 1px solid #288795;
 #panelTodosContactos #sidepanelTodosContactos #buscar-contacto input:focus {
   outline: none;
   border-bottom: 2px solid #0c63e4;
-
 }
+
 #panelTodosContactos #sidepanelTodosContactos #buscar-contacto input::-webkit-input-placeholder {
   color: black;
 }
+
 #panelTodosContactos #sidepanelTodosContactos #buscar-contacto input::-moz-placeholder {
   color: black;
 }
+
 #panelTodosContactos #sidepanelTodosContactos #buscar-contacto input:-ms-input-placeholder {
   color: black;
 }
+
 #panelTodosContactos #sidepanelTodosContactos #buscar-contacto input:-moz-placeholder {
   color: black;
 }
+
 @media screen and (max-width: 735px) {
-  #panelTodosContactos #sidepanelTodosContactos #buscar-contacto label{
+  #panelTodosContactos #sidepanelTodosContactos #buscar-contacto label {
     padding: 0;
   }
+
   #panelTodosContactos #sidepanelTodosContactos #buscar-contacto {
     padding-left: 0;
-
   }
-
 }
-
 #buscar-contacto .borrar {
   color: black;
   position: absolute;
-  display:inline;
+  display: inline;
   z-index: 2010;
   margin-left: -40px;
   height: 46px;
-box-sizing: border-box;
+  box-sizing: border-box;
   cursor: pointer;
   border-radius: 50%;
 }
 
 #buscar-contacto .borrar:hover {
-
   color: #0c63e4;
-
 }
 
 #buscar-contacto .borrar span {
@@ -756,7 +753,7 @@ box-sizing: border-box;
 }
 
 #sidepanelTodosContactos #listaTodosContactos {
-  margin-top:20px;
+  margin-top: 20px;
   overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-width: none;
@@ -771,35 +768,30 @@ box-sizing: border-box;
     overflow-x: hidden;
     margin-bottom: 20px;
   }
+
   #sidepanelTodosContactos #listaTodosContactos::-webkit-scrollbar {
     display: none;
   }
-
-
 }
-
 #sidepanelTodosContactos #listaTodosContactos::-webkit-scrollbar {
   width: 8px;
   /* background: #2c3e50;*/
 }
+
 #sidepanelTodosContactos #listaTodosContactos::-webkit-scrollbar-thumb {
   background-color: darkgray;
 }
 
-
 /*Expandir el sidepanelTodosContactos que contiene a los contactos cuando la resolucion es menor a 576px*/
-
-
 /*------------------------------------------------
 Lista de contactos
 ---------------------------------------------------*/
-
 #listaTodosContactos #lista-contactos, #lista-contactos-buscar {
   padding: 0;
   list-style: none;
 }
 
-#listaTodosContactos #lista-contactos li , #lista-contactos-buscar li{
+#listaTodosContactos #lista-contactos li, #lista-contactos-buscar li {
   margin: 0px;
   border: none;
 }
@@ -811,10 +803,11 @@ Lista de contactos
   background: #ffffff;
   border: none;
 }
-.elemento-contacto:hover{
+
+.elemento-contacto:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
   z-index: 99;
-  background: rgba(135, 206,250, 0.2);
+  background: rgba(135, 206, 250, 0.2);
 }
 
 .elemento-contacto .img-perfil-contacto {
@@ -828,11 +821,11 @@ Lista de contactos
   position: relative;
   vertical-align: middle;
 }
+
 .elemento-contacto .img-perfil-contacto img {
   border-radius: 50%;
   width: 60px;
   height: 60px;
-
 }
 
 .elemento-contacto .cuerpo-perfil-contacto {
@@ -846,20 +839,18 @@ Lista de contactos
   justify-items: center;
   display: flex;
   flex-direction: column;
-
 }
-.elemento-contacto .cuerpo-perfil-contacto span.nombre-contacto {
 
+.elemento-contacto .cuerpo-perfil-contacto span.nombre-contacto {
   padding: 5px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  margin:0;
+  margin: 0;
   font-size: 1.1rem;
   font-weight: 400;
-
-
 }
+
 .elemento-contacto .cuerpo-perfil-contacto .nombre-usuario {
   font-size: 14px;
   color: #939393;
@@ -869,16 +860,14 @@ Lista de contactos
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-
 }
+
 .elemento-contacto .cuerpo-perfil-contacto div span.material-icons {
   font-size: 15px;
   margin-right: 5px;
   padding: 0px;
   height: 15px;
-
 }
-
 
 .elemento-contacto .cuerpo-perfil-contacto .ult-conexion-contacto {
   font-size: 12px;
@@ -889,16 +878,15 @@ Lista de contactos
   white-space: nowrap;
   margin-left: auto;
   color: #939393;
-
 }
+
 .elemento-contacto .cuerpo-perfil-contacto .ult-conexion-contacto i {
   font-size: 11px;
 }
+
 /*-------------------------------------------------
 Fin de contactos
 -------------------------------------------------*/
-
-
 /*#####################################*/
 /*-------------------------------------------------*/
 /*Barra de contactos y mensajes*/
@@ -907,7 +895,6 @@ Fin de contactos
 }
 
 #sidepanel .img-perfil {
-
   display: flex;
   align-content: center;
   align-items: center;
@@ -915,9 +902,9 @@ Fin de contactos
   color: #9a9da0;
   width: 100%;
   padding: 10px 0;
-
 }
-#sidepanel .img-perfil:hover{
+
+#sidepanel .img-perfil:hover {
   color: #ffffff;
 }
 
@@ -928,6 +915,7 @@ Fin de contactos
   margin-left: 15px;
   margin-right: 20px;
 }
+
 #sidepanel #mi-perfil-sidepanel .usuario-perfil {
   color: #ffffff;
   font-weight: 500;
@@ -936,25 +924,25 @@ Fin de contactos
 #sidepanel .img-perfil div.usuario-perfil-opciones {
   display: inline-flex;
   margin-left: auto;
-
   height: 40px;
   width: 40px;
   border-radius: 50%;
   align-items: center;
   align-self: center;
 }
-#sidepanel .img-perfil div.usuario-perfil-opciones.activo,.img-perfil div.usuario-perfil-opciones:hover  {
+
+#sidepanel .img-perfil div.usuario-perfil-opciones.activo, .img-perfil div.usuario-perfil-opciones:hover {
   background: #32465a;
   color: #ffffff;
 }
-#sidepanel .img-perfil div.usuario-perfil-opciones span {
 
+#sidepanel .img-perfil div.usuario-perfil-opciones span {
   display: flex;
   margin-left: auto;
   margin-right: auto;
 }
-#sidepanel .img-perfil .opciones-sesion {
 
+#sidepanel .img-perfil .opciones-sesion {
   width: 90%;
   position: absolute;
   margin-left: 10px;
@@ -969,47 +957,46 @@ Fin de contactos
 #sidepanel .img-perfil .opciones-sesion.inactivo {
   display: none;
 }
-#sidepanel .img-perfil .opciones-sesion:hover{
 
+#sidepanel .img-perfil .opciones-sesion:hover {
   border-radius: 5px;
 }
-#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion {
 
+#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion {
   width: 100%;
 }
-#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion:hover {
-background: #f2f2f2;
 
+#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion:hover {
+  background: #f2f2f2;
 }
-#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion  .opc-sesion{
+
+#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion {
   text-decoration: none;
   text-underline: none;
   vertical-align: center;
   font-size: 15px;
-  display:flex;
+  display: flex;
   align-items: center;
   align-content: center;
   padding: 8px 10px;
   align-self: center;
   color: #2B364F;
 }
-#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion  .opc-sesion p{
 
+#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion p {
   vertical-align: center;
   margin-top: auto;
   margin-bottom: auto;
 }
-#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion  .opc-sesion span.material-icons {
 
+#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion span.material-icons {
   font-size: 18px;
   width: 25px;
   display: inline-flex;
   vertical-align: center;
-
 }
 
-
-@media screen and (max-width: 735px){
+@media screen and (max-width: 735px) {
   #sidepanel #mi-perfil-sidepanel {
     position: relative;
     display: flex;
@@ -1022,69 +1009,59 @@ background: #f2f2f2;
     border-bottom: 1px solid #a9a9a9;
   }
 
-
-
   #sidepanel #mi-perfil-sidepanel .usuario-perfil-opciones span.material-icons {
     margin: 0px;
     display: flex;
   }
 
-
   #sidepanel #mi-perfil-sidepanel .usuario-perfil {
     display: none;
   }
-
-
 }
-
 @media screen and (max-width: 735px) {
   #sidepanel .img-perfil .usuario-perfil-opciones {
-
     position: absolute;
     text-align: center;
     align-self: center;
     z-index: 500;
-    top:-15px;
+    top: -15px;
     right: -10px;
-
   }
+
   #sidepanel #mi-perfil-sidepanel img {
     margin: 0;
     position: relative;
-
   }
-  #sidepanel .img-perfil .opciones-sesion {
 
+  #sidepanel .img-perfil .opciones-sesion {
     top: 4rem;
     width: 100%;
   }
-  #sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion{
+
+  #sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion {
     padding: 10px 5px;
-
-
     align-items: center;
     align-content: center;
   }
-  #sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion span{
+
+  #sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion span {
     width: 100%;
     text-align: center;
     justify-content: center;
     margin-right: auto;
     margin-left: auto;
   }
+
   #sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion p {
     display: none;
-
   }
 }
-
-
-
 #frame #sidepanel #search {
   border-top: 1px solid #32465a;
   border-bottom: 1px solid #32465a;
   font-weight: 300;
 }
+
 @media screen and (max-width: 735px) {
   #frame #sidepanel #search {
     display: none;
@@ -1094,43 +1071,51 @@ background: #f2f2f2;
   position: absolute;
   height: 40px;
   width: auto;
-  padding-top:10px;
+  padding-top: 10px;
   padding-left: 10px;
 }
+
 #frame #sidepanel #search input {
-  font-family: "proxima-nova","Source Sans Pro", sans-serif;
+  font-family: "proxima-nova", "Source Sans Pro", sans-serif;
   padding: 5px 10px 5px 40px;
   border: none;
   background: #32465a;
   color: #f5f5f5;
   height: 50px;
   width: 100%;
-  font-size: 0.90rem;
+  font-size: 0.9rem;
 }
+
 #frame #sidepanel #search input:focus {
   outline: none;
   background: #435f7a;
 }
+
 #frame #sidepanel #search input::-webkit-input-placeholder {
   color: #f5f5f5;
 }
+
 #frame #sidepanel #search input::-moz-placeholder {
   color: #f5f5f5;
 }
+
 #frame #sidepanel #search input:-ms-input-placeholder {
   color: #f5f5f5;
 }
+
 #frame #sidepanel #search input:-moz-placeholder {
   color: #f5f5f5;
 }
+
 #frame #sidepanel #contacts {
   margin-top: 30px;
   height: calc(100% - 110px);
   overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-width: none;
-  margin-botton:0px;
+  margin-botton: 0px;
 }
+
 @media screen and (max-width: 735px) {
   #frame #sidepanel #contacts {
     height: calc(100% - 130px);
@@ -1138,6 +1123,7 @@ background: #f2f2f2;
     overflow-x: hidden;
     margin-top: 10px;
   }
+
   #frame #sidepanel #contacts::-webkit-scrollbar {
     display: none;
   }
@@ -1145,50 +1131,52 @@ background: #f2f2f2;
 #frame #sidepanel #contacts.expanded {
   height: calc(100% - 334px);
 }
+
 #frame #sidepanel #contacts::-webkit-scrollbar {
   width: 8px;
   background: #2c3e50;
 }
+
 #frame #sidepanel #contacts::-webkit-scrollbar-thumb {
   background-color: #243140;
 }
+
 #frame #sidepanel #contacts ul li.contact {
   position: relative;
   font-size: 0.9em;
   cursor: pointer;
   padding: 0;
-
 }
+
 #frame #sidepanel #contacts ul li.contact:hover {
   background: #32465a;
 }
+
 #frame #sidepanel #contacts ul li.contact.active {
   background: #32465a;
 }
 
 #frame #sidepanel #contacts ul li.contact .wrap {
-
   height: auto;
   display: flex;
   flex-direction: row;
   padding: 10px 10px 10px 15px;
 }
 
-
-
 #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil {
   position: absolute;
 }
-#frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil .contact-status {
 
-display: flex;
-  width:8px;
+#frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil .contact-status {
+  display: flex;
+  width: 8px;
   height: 8px;
-border-radius: 50%;
+  border-radius: 50%;
   position: absolute;
   z-index: 110;
   left: -5px;
 }
+
 #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil img {
   width: 40px;
   height: 40px;
@@ -1196,8 +1184,8 @@ border-radius: 50%;
   float: left;
   z-index: 100;
 }
-#frame #sidepanel #contacts ul li.contact .wrap .meta {
 
+#frame #sidepanel #contacts ul li.contact .wrap .meta {
   display: flex;
   flex-direction: column;
   padding: 0;
@@ -1209,10 +1197,12 @@ border-radius: 50%;
   width: calc(100% - 60px);
   float: left;
 }
+
 #frame #sidepanel #contacts ul li.contact .wrap .meta .name {
   font-weight: 600;
-  margin:10px 0 0 50px;
+  margin: 10px 0 0 50px;
 }
+
 #frame #sidepanel #contacts ul li.contact .wrap .meta .preview {
   font-weight: 400;
   margin: 10px 10px 0 0;
@@ -1221,51 +1211,51 @@ border-radius: 50%;
   white-space: nowrap;
   overflow: hidden;
   transition: 1s all ease;
-
 }
+
 #frame #sidepanel #contacts ul li.contact .wrap .meta .preview span.material-icons {
-margin-top: auto;
+  margin-top: auto;
   font-size: 15px;
   color: #a9a9a9;
   margin-right: 5px;
-height: 15px;
-vertical-align: bottom;
+  height: 15px;
+  vertical-align: bottom;
   margin-bottom: 2px;
-  }
+}
 
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes {
-float: right;
+  float: right;
   width: 60px;
   min-width: 60px;
   display: flex;
   align-content: center;
   align-items: center;
   align-self: center;
-position: relative;
-
+  position: relative;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
+
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes {
   flex-direction: column;
   justify-self: center;
-  color:#a9a9a9 ;
+  color: #a9a9a9;
   margin-left: auto;
 }
+
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .hora-ult-mesj {
   font-size: 11px;
   font-weight: 700;
-width: 100%;
+  width: 100%;
   text-align: right;
 }
-#frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes {
 
+#frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes {
   min-width: 20px;
   height: 20px;
   max-width: 40px;
   padding: 0px 5px;
-
   border-radius: 25px;
   color: #ffffff;
   justify-content: center;
@@ -1275,9 +1265,11 @@ width: 100%;
   overflow: hidden;
   margin-left: auto;
 }
+
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes.online {
   background: #0ac630;
 }
+
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes.inactivo {
   background: #f12526;
 }
@@ -1285,11 +1277,9 @@ width: 100%;
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes.anterior {
   background: #a9a9a9;
 }
-#frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes span{
 
-
+#frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes span {
   font-weight: 500;
-
 }
 
 @media screen and (max-width: 735px) {
@@ -1297,6 +1287,7 @@ width: 100%;
     padding: 0;
     margin: 0;
   }
+
   #frame #sidepanel #contacts ul li.contact .wrap {
     padding: 0;
     margin: 0;
@@ -1307,20 +1298,23 @@ width: 100%;
     align-items: center;
     height: 70px;
   }
+
   #frame #sidepanel #contacts ul li.contact .wrap .meta {
     display: none;
   }
+
   #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil {
     position: relative;
   }
+
   #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes {
     position: absolute;
     top: 10px;
     left: 0px;
     flex-direction: row;
     z-index: 120;
-
   }
+
   #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .hora-ult-mesj {
     display: none;
   }
@@ -1332,18 +1326,15 @@ width: 100%;
     font-size: 11px;
     margin-left: 0;
   }
-  #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil .contact-status {
-
-  }
-
 }
-
 #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil span.online {
   background: #0ac630;
 }
+
 #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil span.away {
   background: #f1c40f;
 }
+
 #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil span.busy {
   background: #e74c3c;
 }
@@ -1353,7 +1344,6 @@ width: 100%;
   width: 100%;
   bottom: 0;
   margin-top: 0;
-
 }
 
 #frame #sidepanel #bottom-bar button {
@@ -1365,15 +1355,18 @@ width: 100%;
   color: #f5f5f5;
   cursor: pointer;
   font-size: 0.85em;
-  font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
+  font-family: "proxima-nova", "Source Sans Pro", sans-serif;
   height: 50px;
 }
-#icon-nuevo-chat{
+
+#icon-nuevo-chat {
   width: 30px;
 }
-#icon-agregar-contacto{
+
+#icon-agregar-contacto {
   width: 30px;
 }
+
 @media screen and (max-width: 735px) {
   #frame #sidepanel #bottom-bar button {
     float: none;
@@ -1381,20 +1374,24 @@ width: 100%;
     height: 60px;
     padding: 0;
   }
-  #icon-nuevo-chat{
+
+  #icon-nuevo-chat {
     width: 30px;
     margin: auto;
   }
-  #icon-agregar-contacto{
+
+  #icon-agregar-contacto {
     margin-left: auto;
   }
 }
 #frame #sidepanel #bottom-bar button:focus {
   outline: none;
 }
+
 #frame #sidepanel #bottom-bar button:nth-child(1) {
   border-right: 1px solid #2c3e50;
 }
+
 @media screen and (max-width: 735px) {
   #frame #sidepanel #bottom-bar button:nth-child(1) {
     border-right: none;
@@ -1404,10 +1401,12 @@ width: 100%;
 #frame #sidepanel #bottom-bar button:hover {
   background: #435f7a;
 }
-#frame #sidepanel #bottom-bar button span{
+
+#frame #sidepanel #bottom-bar button span {
   margin-left: 10px;
   font-size: 0.95em;
 }
+
 @media screen and (max-width: 735px) {
   #frame #sidepanel #bottom-bar button i {
     font-size: 1.3em;
@@ -1419,7 +1418,6 @@ width: 100%;
   }
 }
 #frame .content {
-
   width: 100%;
   min-width: 350px;
   height: 100%;
@@ -1428,7 +1426,7 @@ width: 100%;
   transition-property: padding-left, padding-right;
   transition-duration: 500ms;
   float: right;
-  padding:0;
+  padding: 0;
   z-index: 100;
 }
 
@@ -1441,6 +1439,7 @@ width: 100%;
   margin: 0;
   float: left;
 }
+
 #frame .content .contact-profile img, #frame .content .contact-profile .material-icons {
   width: 40px;
   height: 40px;
@@ -1448,7 +1447,8 @@ width: 100%;
   float: left;
   margin: 9px 12px 0 9px;
 }
-#frame .content .contact-profile .chat-conexion{
+
+#frame .content .contact-profile .chat-conexion {
   flex-grow: 1;
   padding: 0;
   height: 100%;
@@ -1463,20 +1463,22 @@ width: 100%;
   height: 30px;
   padding: 0;
   margin: -10px 0 0 0;
-  width: calc(100% - 5px) ;
+  width: calc(100% - 5px);
   display: block;
   font-size: 1.2rem;
 }
-#frame .content .contact-profile .chat-conexion span.ult-conex{
+
+#frame .content .contact-profile .chat-conexion span.ult-conex {
   height: 20px;
   padding: 0;
   /*width: 100%;*/
   margin: -10px 0 0;
   font-size: 0.65rem;
   display: block;
-  width: calc(100% - 5px) ;
+  width: calc(100% - 5px);
   text-overflow: ellipsis;
 }
+
 /*opciones para contacto nuevo*/
 #frame .content .contact-profile .opciones-contacto {
   display: flex;
@@ -1484,9 +1486,9 @@ width: 100%;
   color: black;
   font-family: Roboto, sans-serif;
   background-color: rgba(40, 135, 139, 0.55);
-
 }
-#frame .content .contact-profile .opciones-contacto div{
+
+#frame .content .contact-profile .opciones-contacto div {
   width: 12vw;
   height: 100%;
   text-align: justify;
@@ -1497,11 +1499,12 @@ width: 100%;
   font-size: 0.85rem;
   cursor: pointer;
 }
-#frame .content .contact-profile .opciones-contacto div:active,#frame .content .contact-profile .opciones-contacto div:hover{
+
+#frame .content .contact-profile .opciones-contacto div:active, #frame .content .contact-profile .opciones-contacto div:hover {
   background-color: rgba(40, 135, 139, 0.75);
 }
-#frame .content .contact-profile .opciones-contacto div span.material-icons{
 
+#frame .content .contact-profile .opciones-contacto div span.material-icons {
   margin: auto 10px;
   width: 25px;
   height: 25px;
@@ -1511,41 +1514,41 @@ width: 100%;
   justify-content: center;
   align-items: center;
 }
-hr.separador-vertical{
+
+hr.separador-vertical {
   border: 1px solid white;
   background: white;
   height: auto;
   position: relative;
   margin: 10px 5px 10px 5px;
-
 }
-@media screen and (max-width: 576px){
+
+@media screen and (max-width: 576px) {
   #frame .content .contact-profile .opciones-contacto div {
     font-size: 0;
-    margin:0;
+    margin: 0;
     align-content: center;
     justify-content: center;
   }
-  #frame .content .contact-profile .opciones-contacto div span.material-icons{
+
+  #frame .content .contact-profile .opciones-contacto div span.material-icons {
     font-size: 2rem;
     flex-grow: 1;
   }
-  hr.separador-vertical{
+
+  hr.separador-vertical {
     height: 80%;
     margin-top: auto;
     margin-bottom: auto;
   }
 }
-
-
-
-#frame .content .contact-profile #btn-info-contacto{
+#frame .content .contact-profile #btn-info-contacto {
   position: relative;
-  top:10px;
+  top: 10px;
   height: 40px;
   width: 40px;
   margin-right: 10px;
-  margin-left:10px;
+  margin-left: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1553,19 +1556,18 @@ hr.separador-vertical{
   border-radius: 50%;
   color: darkgray;
 }
-#frame .content .contact-profile #btn-info-contacto span.material-icons
-{
+
+#frame .content .contact-profile #btn-info-contacto span.material-icons {
   height: 20px;
   width: 20px;
   display: flex;
   margin-bottom: auto;
   margin-top: auto;
 }
-#frame .content .contact-profile .icon-info-contacto:active{
+
+#frame .content .contact-profile .icon-info-contacto:active {
   background: lightgray;
 }
-
-
 
 #frame .content .contact-profile .social-media i {
   margin-left: 14px;
@@ -1582,10 +1584,10 @@ hr.separador-vertical{
   overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-width: none;
-
   margin: 0;
   padding: 0;
 }
+
 /*
 Solicitud de chat
 */
@@ -1599,27 +1601,28 @@ Solicitud de chat
   position: absolute;
   margin-top: 100px;
 }
-#mensaje-invitacion {
 
+#mensaje-invitacion {
   margin: 0;
   background: #ffffff;
-  color:#000000;
+  color: #000000;
   max-width: 400px;
   z-index: 100;
   box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
   text-align: left;
 }
+
 #mensaje-invitacion p {
   margin: 0;
 }
 
-#mensaje-invitacion .botones
-{
+#mensaje-invitacion .botones {
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding: 20px;
 }
+
 #mensaje-invitacion .botones .btn {
   width: 50%;
   display: flex;
@@ -1634,39 +1637,40 @@ Solicitud de chat
   outline: none;
   border: 1px solid #d3d3d3;
   border-radius: 10px;
-  margin:0 10px;
+  margin: 0 10px;
 }
+
 #mensaje-invitacion .botones .btn span {
   text-align: center;
   margin-right: 10px;
-
 }
+
 #mensaje-invitacion .botones .btn-si:hover {
   color: #198754;
-  border:1px solid  #198754;
+  border: 1px solid #198754;
   background: none;
-
 }
+
 #mensaje-invitacion .botones .btn-no:hover {
   color: #dc3545;
-  border:1px solid  #dc3545;
+  border: 1px solid #dc3545;
   background: none;
 }
+
 /*
 Fin de solicitud de chat
 */
-
-
 #frame .content .messages::-webkit-scrollbar {
   width: 6px;
-
   background: transparent;
 }
+
 #frame .content .messages::-webkit-scrollbar-thumb {
   border-radius: 3px;
   height: 20px;
   background-color: rgba(0, 0, 0, 0.3);
 }
+
 #frame .content .messages ul#lista-mensajes {
   padding: 30px 30px 0 50px;
   height: auto;
@@ -1674,19 +1678,18 @@ Fin de solicitud de chat
   margin: 0;
 }
 
-
 #frame .content .messages ul li {
   display: inline-block;
   width: 100%;
   font-size: 0.9rem;
   margin-bottom: 8px;
 }
+
 #frame .content .messages ul li.marcador {
   display: flex;
 }
 
 #frame .content .messages ul li .marcador-fecha {
-
   display: flex;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -1710,17 +1713,18 @@ Fin de solicitud de chat
   border-radius: 50%;
   float: left;
 }
+
 #frame .content .messages ul li .cont-msj {
   display: inline-block;
   padding: 8px 15px;
   width: auto;
   max-width: calc(70% - 50px);
   min-width: 50px;
-  margin:0;
+  margin: 0;
   overflow-wrap: break-word;
 }
-#frame .content .messages ul li .cont-msj p {
 
+#frame .content .messages ul li .cont-msj p {
   padding: 0px;
   margin: 0px;
 }
@@ -1728,13 +1732,14 @@ Fin de solicitud de chat
 #frame .content .messages ul li.enviado img {
   float: right;
   margin-left: 10px;
-
 }
+
 #frame .content .messages ul li.enviado .contenedor-imagen-enviada {
   display: flex;
   padding: 3px;
 }
-#frame .content .messages ul li.enviado .contenedor-imagen-enviada img{
+
+#frame .content .messages ul li.enviado .contenedor-imagen-enviada img {
   width: 300px;
   height: auto;
   border-radius: 0;
@@ -1742,29 +1747,25 @@ Fin de solicitud de chat
   cursor: pointer;
 }
 
-
 #frame .content .messages ul li.enviado .cont-msj {
   float: right;
   background: #435f7a;
   color: white;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  border-radius:10px ;
+  border-radius: 10px;
 }
 
-#frame .content .messages ul li.enviado .dir{
-
-  border-left:5px solid #435f7a;
-  border-bottom:4px solid transparent;
-  border-top:4px solid transparent;
+#frame .content .messages ul li.enviado .dir {
+  border-left: 5px solid #435f7a;
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
   margin-top: 15px;
-  font-size:0px;
-  line-height:0px;
+  font-size: 0px;
+  line-height: 0px;
   float: right;
   display: inline;
   z-index: 2000;
-
 }
-
 
 #frame .content .messages ul li.recibido img {
   margin-right: 10px;
@@ -1774,15 +1775,15 @@ Fin de solicitud de chat
   background: #ffffff;
   color: black;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  border-radius:10px ;
+  border-radius: 10px;
   z-index: 1;
 }
 
-#frame .content .messages ul li.recibido .contenedor-imagen-enviada{
+#frame .content .messages ul li.recibido .contenedor-imagen-enviada {
   display: flex;
   padding: 3px;
-
 }
+
 #frame .content .messages ul li.recibido .contenedor-imagen-enviada img {
   width: 300px;
   height: auto;
@@ -1791,45 +1792,40 @@ Fin de solicitud de chat
   cursor: pointer;
 }
 
-
 #frame .content .messages ul li.recibido .dir {
-
-  border-right:5px solid rgba(50, 50, 93, 0.25);
-  border-top:4px solid transparent;
-  border-bottom:4px solid transparent;
+  border-right: 5px solid rgba(50, 50, 93, 0.25);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
   float: left;
   display: inline;
   z-index: 2;
   margin-top: 15px;
 }
-@media screen and (max-width: 576px) {
 
+@media screen and (max-width: 576px) {
   #frame .content .messages ul li .cont-msj {
     max-width: calc(85% - 50px);
     height: auto;
   }
+
   #frame .content .messages ul#lista-mensajes {
     padding: 30px 20px 100px 20px;
   }
 }
-
 .messages ul li .extra-mensaje {
   margin-top: 5px;
-
   display: flex;
   flex-direction: row;
   width: 100%;
-
 }
+
 .messages ul li.recibido .extra-mensaje {
   float: left;
   align-items: flex-start;
-
   align-content: start;
   justify-content: start;
   align-self: flex-start;
   padding-left: 10px;
-
 }
 
 .messages ul li.enviado .extra-mensaje {
@@ -1839,6 +1835,7 @@ Fin de solicitud de chat
   justify-content: end;
   align-self: flex-end;
 }
+
 .messages ul li.enviado .extra-mensaje .enviando {
   margin-left: auto;
   width: 14px;
@@ -1857,42 +1854,38 @@ Fin de solicitud de chat
     transform: rotate(360deg);
   }
 }
-
 .messages ul li .extra-mensaje .extra {
-color: #8e8e8f;
+  color: #8e8e8f;
   display: flex;
-
   font-size: 12px;
   align-content: center;
   align-items: center;
   align-self: center;
 }
-.messages ul li.enviado .extra-mensaje .extra
-{
+
+.messages ul li.enviado .extra-mensaje .extra {
   margin-left: auto;
 }
 
 .messages ul li.enviado .extra-mensaje .icon {
   margin: 0 0 0 5px;
 }
-.messages ul li.enviado .extra-mensaje .icon span{
+
+.messages ul li.enviado .extra-mensaje .icon span {
   display: flex;
   vertical-align: center;
   font-size: 16px;
 }
-.messages ul li.enviado .extra-mensaje .icon i {
 
+.messages ul li.enviado .extra-mensaje .icon i {
   font-size: 13px;
 }
-.messages ul li.enviado .extra-mensaje .icon i.fas{
-  color:#288795;
+
+.messages ul li.enviado .extra-mensaje .icon i.fas {
+  color: #288795;
 }
 
-
 /*---- Fin de estilos de mensajes enviados y recibidos */
-
-
-
 #frame .content .message-input {
   position: relative;
   width: 100%;
@@ -1904,14 +1897,13 @@ color: #8e8e8f;
 
 .message-input .utiles {
   display: flex;
-
   float: left;
   margin-right: 10px;
   vertical-align: center;
   align-content: center;
   align-items: center;
   justify-content: center;
-width: auto;
+  width: auto;
   color: #7a7a7a;
 }
 
@@ -1919,29 +1911,29 @@ width: auto;
   cursor: pointer;
   user-select: none;
 }
+
 .message-input .utiles .emojis:hover {
   color: #0c63e4;
 }
-.message-input .utiles .emojis span{
 
+.message-input .utiles .emojis span {
   font-size: 25px;
 }
+
 /* ***
 *** Estilos del cuadro de emojis
 *** */
 .message-input .utiles .emojis #cuadro-emojis.inactivo {
   display: none;
 }
-.message-input .utiles .emojis .contenedor-emojis {
 
+.message-input .utiles .emojis .contenedor-emojis {
   position: absolute;
   width: 26.25rem !important;
   height: 26.25rem;
   background: #ffffff;
   float: top;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-
   border-radius: 10px;
 }
 
@@ -1949,26 +1941,24 @@ width: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
   color: #51585e;
-
-padding:5px 10px;
+  padding: 5px 10px;
   border-bottom: 1px solid #2B364F;
 }
-#cuadro-emojis .tab-emoji .opc-tab-emoji{
 
+#cuadro-emojis .tab-emoji .opc-tab-emoji {
   display: flex;
   font-size: 20px;
-
   align-items: center;
   align-content: center;
   justify-content: center;
-width: 35px;
+  width: 35px;
   height: 35px;
 }
+
 #cuadro-emojis .tab-emoji .opc-tab-emoji:hover {
   border-radius: 50%;
-background: #f5f5f5;
+  background: #f5f5f5;
 }
 
 body .wrapper {
@@ -1977,12 +1967,13 @@ body .wrapper {
   background: #ffffff;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
-  bottom:10%;
-  left:400px;
+  bottom: 10%;
+  left: 400px;
   width: 400px;
   height: auto;
 }
-body .wrapper .emoji-picker{
+
+body .wrapper .emoji-picker {
   width: 100%;
   height: auto;
 }
@@ -1990,47 +1981,48 @@ body .wrapper .emoji-picker{
 body .wrapper .emoji-picker .emoji-picker__preview {
   height: 60px;
 }
+
 .emoji-picker__emojis::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
+
 .emoji-picker__emojis::-webkit-scrollbar-thumb {
   background: #cccccc;
   border-radius: 4px;
 }
-@media screen and (max-width: 735px){
-  body .wrapper {
-    bottom:10%;
-    left:90px;
-  }
 
-}
-@media screen and (max-width: 576px){
+@media screen and (max-width: 735px) {
   body .wrapper {
-    bottom:10%;
-    left:60px;
+    bottom: 10%;
+    left: 90px;
   }
 }
-
-
-  /* ***
-  ***  Fin Estilos del cuadro de emojis
-  *** */
-
+@media screen and (max-width: 576px) {
+  body .wrapper {
+    bottom: 10%;
+    left: 60px;
+  }
+}
+/* ***
+***  Fin Estilos del cuadro de emojis
+*** */
 #frame .content .message-input .wrap {
   display: flex;
   width: 100%;
 }
+
 #frame .content .message-input .wrap input {
- width: 100%;
-  font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
+  width: 100%;
+  font-family: "proxima-nova", "Source Sans Pro", sans-serif;
   float: left;
   border: 1px solid #bebebf;
   font-size: 0.85rem;
-  border-radius: 20px 0 0 20px ;
+  border-radius: 20px 0 0 20px;
   padding-left: 20px;
 }
-#frame .content .message-input .wrap input:focus{
+
+#frame .content .message-input .wrap input:focus {
   outline: 0;
 }
 
@@ -2039,8 +2031,9 @@ body .wrapper .emoji-picker .emoji-picker__preview {
   background: #288795;
   color: #f5f5f5;
   /*border-radius: 0;*/
-  border-radius: 0 20px 20px 0 ;
+  border-radius: 0 20px 20px 0;
 }
+
 #frame .content #espacio-de-escritura .wrap button.activar {
   background: #435f7a;
 }
@@ -2048,6 +2041,7 @@ body .wrapper .emoji-picker .emoji-picker__preview {
 #espacio-de-escritura #archivo-imagen-enviar {
   display: none;
 }
+
 #espacio-de-escritura #icon-archivo-imagen {
   width: 40px;
   height: 40px;
@@ -2058,27 +2052,29 @@ body .wrapper .emoji-picker .emoji-picker__preview {
   justify-content: center;
   align-items: center;
   right: 5.45rem;
- top: 10px;
+  top: 10px;
   color: #a7a7a7;
   font-size: 25px;
 }
 
-#espacio-de-escritura #icon-archivo-imagen:hover{
+#espacio-de-escritura #icon-archivo-imagen:hover {
   background: #a7a7a7;
   color: #000000;
 }
-.container-fluid{
+
+.container-fluid {
   padding: 0;
 }
 
-#contacts ul{
+#contacts ul {
   padding-left: 0;
 }
-#contacts ul li{
-  list-style:none;
+
+#contacts ul li {
+  list-style: none;
 }
 
-ul#LateralMenu li{
+ul#LateralMenu li {
   width: 100%;
   margin: 0;
   padding: 0;
@@ -2087,31 +2083,35 @@ ul#LateralMenu li{
 ul#LateralMenu li:hover {
   background: #32465a;
 }
-ul#LateralMenu li.active{
-  background: #32465a;
 
+ul#LateralMenu li.active {
+  background: #32465a;
 }
-ul#LateralMenu li div.nav-link:hover{
+
+ul#LateralMenu li div.nav-link:hover {
   color: #ffffff;
 }
+
 ul#LateralMenu li.active div.nav-link {
   color: #ffffff;
 }
+
 ul#LateralMenu li div.nav-link {
   display: flex;
   font-family: "Roboto", sans-serif;
- padding-left: 10px;
-  align-content: center ;
+  padding-left: 10px;
+  align-content: center;
   align-items: center;
   height: 70px;
   color: #9a9da0;
 }
 
-ul#LateralMenu li div img{
+ul#LateralMenu li div img {
   height: 30px;
   width: 30px;
   margin-right: 5px;
 }
+
 ul#LateralMenu li div.nav-link .icon-nav-link {
   font-size: 20px;
   min-width: 30px;
@@ -2121,59 +2121,49 @@ ul#LateralMenu li div.nav-link .icon-nav-link {
   text-align: center;
   vertical-align: center;
   align-items: center;
-align-content: center;
-align-self: center
+  align-content: center;
+  align-self: center;
 }
-
 
 .accordion-header button {
   background-color: white;
 }
+
 /*
 ##############################################
 Contenedor laterial de informacion de contacto
 ##############################################
 */
-
-@media screen and (min-width: 735px ){
-  #frame #espacio-de-chat.desp-der{
-
-  }
-
-}
-@media screen and (max-width: 1100px ){
-  #frame #panelInfoContacto.mostrar{
+@media screen and (max-width: 1100px) {
+  #frame #panelInfoContacto.mostrar {
     margin-left: -400px;
   }
-  #frame .content .messages #espacio-de-chat{
-    padding:20px;
+
+  #frame .content .messages #espacio-de-chat {
+    padding: 20px;
   }
 }
-@media screen and (max-width: 576px ){
-  #frame #panelInfoContacto.mostrar{
+@media screen and (max-width: 576px) {
+  #frame #panelInfoContacto.mostrar {
     min-width: calc(100% - 58px);
   }
 }
-
-#frame #panelInfoContacto.mostrar{
+#frame #panelInfoContacto.mostrar {
   display: flex;
   flex-direction: column;
   background: #f2f2f2;
   border-left: 1px solid #bebebf;
   z-index: 1000;
-
 }
 
 #frame #panelInfoContacto {
   display: none;
   min-width: 400px;
   max-width: 400px;
-  width:100%;
+  width: 100%;
 }
 
-
-#panelInfoContacto #btn-cerrar-contacto{
-
+#panelInfoContacto #btn-cerrar-contacto {
   height: 60px;
   width: 60px;
   color: #4f5050;
@@ -2185,12 +2175,14 @@ Contenedor laterial de informacion de contacto
   margin: 0;
   display: flex;
 }
-#panelInfoContacto #btn-cerrar-contacto span{
+
+#panelInfoContacto #btn-cerrar-contacto span {
   height: 60px;
   width: 60px;
   padding-top: 20px;
   vertical-align: center;
 }
+
 #panelInfoContacto #btn-cerrar-contacto:hover {
   background: #267cb5;
   color: white;
@@ -2201,15 +2193,15 @@ Contenedor laterial de informacion de contacto
   visibility: hidden;
 }
 
-#frame #panelInfoContacto .contenedor-perfil{
+#frame #panelInfoContacto .contenedor-perfil {
   height: calc( 100% - 5px);
   overflow-y: scroll;
   margin: 0;
   padding: 0;
 }
+
 #frame #panelInfoContacto .contenedor-perfil::-webkit-scrollbar {
   width: 6px;
-
 }
 
 #frame #panelInfoContacto .contenedor-perfil::-webkit-scrollbar-track {
@@ -2223,19 +2215,19 @@ Contenedor laterial de informacion de contacto
   height: 20px;
 }
 
-.foto-perfil{
+.foto-perfil {
   border-radius: 50%;
 }
-#panelInfoContacto .contenedor-perfil .card{
 
+#panelInfoContacto .contenedor-perfil .card {
   margin: 0 0 0 0;
   box-shadow: rgba(0, 0, 0, 0.15) 0 2px 8px;
   /*box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;*/
   border-radius: 0;
   width: 100%;
   padding: 30px 20px 40px 20px;
-
 }
+
 #panelInfoContacto .contenedor-perfil .perfil {
   align-content: center;
   text-align: center;
@@ -2243,45 +2235,43 @@ Contenedor laterial de informacion de contacto
   justify-content: center;
   position: relative;
   vertical-align: middle;
-
 }
 
 #panelInfoContacto .contenedor-perfil .card img {
-  width:100px;
+  width: 100px;
   height: 100px;
-
 }
-#panelInfoContacto .contenedor-perfil .card .card-body small{
+
+#panelInfoContacto .contenedor-perfil .card .card-body small {
   text-align: right;
   width: 100%;
   color: #a9a9a9;
 }
+
 #panelInfoContacto .contenedor-perfil .contacto-extra {
   width: 100%;
   padding: 20px 20px 40px 20px;
 }
 
-#panelInfoContacto .contenedor-perfil .contacto-extra .item-contacto-extra{
+#panelInfoContacto .contenedor-perfil .contacto-extra .item-contacto-extra {
   border-bottom: 1px solid #a9a9a9;
   margin-top: 25px;
   text-align: left;
-
 }
-#panelInfoContacto .contenedor-perfil .contacto-extra .item-contacto-extra h6{
 
-  font-family: "proxima-nova","Source Sans Pro", sans-serif;
-
+#panelInfoContacto .contenedor-perfil .contacto-extra .item-contacto-extra h6 {
+  font-family: "proxima-nova", "Source Sans Pro", sans-serif;
   font-size: 0.85rem;
-  color: #529dfe;/*#a9a9a9;*/
+  color: #529dfe;
+  /*#a9a9a9;*/
   font-weight: 600;
 }
 
-#panelInfoContacto .contenedor-perfil .contacto-extra .item-contacto-extra span{
+#panelInfoContacto .contenedor-perfil .contacto-extra .item-contacto-extra span {
   font-size: 0.95rem;
   font-style: normal;
   color: #000000;
 }
-
 
 /*
 Fin de div lateral derecho de informacion de contacto
@@ -2291,7 +2281,6 @@ Fin de div lateral derecho de informacion de contacto
 /*
 * Estilos para temporal a la espera de seleccionar un chat
 */
-
 .content .temporal {
   width: 100%;
   height: 100%;
@@ -2304,7 +2293,6 @@ Fin de div lateral derecho de informacion de contacto
   width: 500px;
   min-width: 350px;
   display: inline-block;
-
   background-position: center;
   background-repeat: no-repeat;
   margin-right: auto;
@@ -2313,29 +2301,29 @@ Fin de div lateral derecho de informacion de contacto
   vertical-align: middle;
   text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
 }
-.content .temporal .cuerpo-temporal img{
+
+.content .temporal .cuerpo-temporal img {
   max-width: 350px;
   width: 350px;
   min-width: 350px;
-  opacity:0.85;
-  filter:alpha(opacity=85);
+  opacity: 0.85;
+  filter: alpha(opacity=85);
 }
+
 .content .temporal .cuerpo-temporal span.bienvenida {
   display: block;
   margin-top: 30px;
   color: #2B364F;
   font-size: 1.5rem;
 }
+
 .content .temporal .cuerpo-temporal p {
   margin-top: 30px;
-font-size: 0.85rem;
+  font-size: 0.85rem;
   color: #8e8e8f;
 }
-.content .temporal .cuerpo-temporal hr {
 
-}
 .content .temporal .cuerpo-temporal .iconos-dispositivos {
   color: #bebebf;
   text-align: center;
@@ -2354,40 +2342,38 @@ Estilos para las configuraciones del perfil
   background: #FFFFFF;
   overflow-y: scroll;
   z-index: 1;
-
-
 }
+
 .contenedor-info-cuenta .row .card {
-margin-right: auto;
+  margin-right: auto;
   margin-left: auto;
   width: 600px;
   min-width: 400px;
   display: block;
   height: auto;
 }
-.contenedor-info-cuenta .row .card .titulo{
+
+.contenedor-info-cuenta .row .card .titulo {
   text-align: center;
   font-family: Roboto;
   font-size: 25px;
   margin-bottom: 40px;
   margin-left: auto;
-margin-right: auto;
+  margin-right: auto;
   font-family: "proxima-nova", "Source Sans Pro", sans-serif;
 }
- #btn-editar-perfil, #btn-guardar-perfil{
 
+#btn-editar-perfil, #btn-guardar-perfil {
   height: 50px;
   width: 50px;
-  border-radius:50%;
+  border-radius: 50%;
   position: absolute;
-
   justify-content: center;
-
   align-items: center;
   color: #FFFFFF;
-   background: #3390ec;
-   z-index: 5;
-   cursor: pointer;
+  background: #3390ec;
+  z-index: 5;
+  cursor: pointer;
 }
 
 #btn-guardar-perfil {
@@ -2395,9 +2381,10 @@ margin-right: auto;
   right: 150px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
-#btn-guardar-perfil.activo{
+
+#btn-guardar-perfil.activo {
   display: flex;
-  bottom:50px;
+  bottom: 50px;
 }
 
 #btn-editar-perfil {
@@ -2407,8 +2394,7 @@ margin-right: auto;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 
-
- #btn-editar-perfil span.material-icons, #btn-guardar-perfil span.material-icons  {
+#btn-editar-perfil span.material-icons, #btn-guardar-perfil span.material-icons {
   width: 40px;
   height: 40px;
   display: flex;
@@ -2416,29 +2402,31 @@ margin-right: auto;
   align-items: center;
   justify-content: center;
 }
-#btn-editar-perfil.activo{
-  background:#bebebf;
+
+#btn-editar-perfil.activo {
+  background: #bebebf;
 }
 
-@media screen  and (max-width: 735px ){
-  #btn-editar-perfil{
+@media screen and (max-width: 735px) {
+  #btn-editar-perfil {
     right: 20px;
   }
-  #btn-guardar-perfil{
+
+  #btn-guardar-perfil {
     right: 80px;
   }
 }
-
 /*
 Foto de perfil y opciones
 */
-
-.item-perfil-cuenta:hover{
+.item-perfil-cuenta:hover {
   border: 1px solid #0c63e4;
 }
-.item-perfil-cuenta:hover .etiqueta-campo{
+
+.item-perfil-cuenta:hover .etiqueta-campo {
   color: #0c63e4;
 }
+
 .img-perfil-cuenta {
   height: auto;
   width: auto;
@@ -2448,30 +2436,34 @@ Foto de perfil y opciones
   display: flex;
   cursor: pointer;
 }
+
 .img-perfil-cuenta input {
   display: none;
 }
+
 .img-perfil-cuenta .opciones {
   width: 200px;
   height: 200px;
   border-radius: 50%;
   position: absolute;
   background: transparent;
-  top:77px;
+  top: 77px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   color: transparent;
-
 }
+
 .img-perfil-cuenta .opciones span.material-icons {
   font-size: 40px;
 }
-.img-perfil-cuenta .opciones:hover{
-  background: rgba(0,0,0,0.45);
+
+.img-perfil-cuenta .opciones:hover {
+  background: rgba(0, 0, 0, 0.45);
   color: #FFFFFF;
 }
+
 .img-perfil-cuenta #foto-perfil-cuenta {
   width: 200px;
   height: 200px;
@@ -2483,53 +2475,56 @@ Foto de perfil y opciones
   display: flex;
   position: absolute;
   z-index: 4000;
-  top:150px;
+  top: 150px;
   left: 180px;
   background: #FFFFFF;
- width: 160px;
+  width: 160px;
   padding: 10px 0;
   border-radius: 5px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
-.img-perfil-cuenta .contenedor-opciones ul{
+
+.img-perfil-cuenta .contenedor-opciones ul {
   list-style: none;
-padding: 0;
+  padding: 0;
   width: 100%;
   margin: 0;
 }
-.img-perfil-cuenta .contenedor-opciones ul li {
-  padding:  10px 20px;
 
+.img-perfil-cuenta .contenedor-opciones ul li {
+  padding: 10px 20px;
 }
-.img-perfil-cuenta .contenedor-opciones ul li:hover{
+
+.img-perfil-cuenta .contenedor-opciones ul li:hover {
   background: #f5f5f5;
 }
 
-
-.modal-fullscreen .modal-content{
-
+.modal-fullscreen .modal-content {
   background: transparent;
 }
-.modal-fullscreen img{
+
+.modal-fullscreen img {
   max-width: 70vw;
 }
+
 .modal-fullscreen .modal-content .modal-header {
   color: #FFFFFF;
   border: none;
 }
+
 .modal-fullscreen .modal-content .modal-header .btn-close {
   color: #FFFFFF;
 }
+
 .modal-fullscreen .modal-content .modal-body {
   justify-content: center;
   display: flex;
 }
-  /*
-  Fin Foto de perfil y opciones
-  */
 
-
-.item-perfil-cuenta, .item-cuenta{
+/*
+Fin Foto de perfil y opciones
+*/
+.item-perfil-cuenta, .item-cuenta {
   height: 54px;
   width: 100%;
   background: #FFFFFF;
@@ -2544,46 +2539,51 @@ padding: 0;
   padding-right: 20px;
   font-family: "proxima-nova", "Source Sans Pro", sans-serif;
   font-size: 14px;
-  }
+}
+
 .item-perfil-cuenta.no-valido, .item-cuenta.no-valido {
   margin-bottom: 40px;
 }
-.item-perfil-cuenta:focus{
+
+.item-perfil-cuenta:focus {
   border: 2px solid #0c63e4;
 }
+
 .item-perfil-cuenta .etiqueta-campo, .item-cuenta .etiqueta-campo {
   position: absolute;
   z-index: 1;
   color: #bebebf;
   font-weight: 600;
 }
-.item-perfil-cuenta .etiqueta-campo.contraida, .item-cuenta.editable .etiqueta-campo{
+
+.item-perfil-cuenta .etiqueta-campo.contraida, .item-cuenta.editable .etiqueta-campo {
   margin-top: -54px;
   margin-left: -10px;
   font-size: 12px;
-  padding:0 10px ;
+  padding: 0 10px;
   background: #FFFFFF;
 }
+
 .item-perfil-cuenta.editable {
   border: 1px solid #0c63e4;
 }
-.item-perfil-cuenta .atributo-perfil,.item-cuenta .campo-cuenta  {
 
+.item-perfil-cuenta .atributo-perfil, .item-cuenta .campo-cuenta {
   width: 100%;
   font-weight: 600;
   z-index: 2;
   background: transparent;
   outline: none;
   border: none;
-  color: rgba(0,0,0,0.6);
+  color: rgba(0, 0, 0, 0.6);
 }
+
 .item-perfil-cuenta.editable .atributo-perfil {
   border-bottom: 2px solid #0c63e4;
   color: #000000;
 }
 
 .item-perfil-cuenta .notif-error {
-
   color: #df3c3c;
   padding: 3px 10px;
   font-size: 11px;
@@ -2597,44 +2597,51 @@ padding: 0;
 .ocultar {
   display: none;
 }
-.contenedor-info-cuenta .conf-acceso{
+
+.contenedor-info-cuenta .conf-acceso {
   display: block;
   margin-top: 20px;
   padding-top: 30px;
 }
+
 .conf-acceso form .encabezado {
   position: absolute;
   background: #FFFFFF;
   font-weight: 600;
- color: rgba(0,0,0,0.6);
-  top:-20px;
+  color: rgba(0, 0, 0, 0.6);
+  top: -20px;
   padding: 10px;
 }
+
 .checkbox-cambio-clave {
   display: flex;
   align-items: center;
   height: 60px;
-
 }
+
 #check-cambiar-clave {
   height: 20px;
   width: 20px;
   margin-right: 10px;
 }
+
 #check-cambiar-clave {
   background: #0c63e4;
 }
+
 .item-cuenta.editable {
   border: 1px solid #0c63e4;
 }
 
 .item-cuenta.editable .etiqueta-campo {
-   color: #0c63e4;
+  color: #0c63e4;
 }
-.item-cuenta.editable .campo-cuenta{
+
+.item-cuenta.editable .campo-cuenta {
   border-bottom: 2px solid #0c63e4;
   color: #000000;
 }
+
 .error {
   width: 100%;
   background: #fe447d;
@@ -2643,11 +2650,8 @@ padding: 0;
   padding: 10px;
   margin-bottom: 20px;
   display: flex;
-
 }
-#faltan-campos {
 
-}
 #error-claves span.material-icons, #faltan-campos span.material-icons {
   margin-right: 5px;
 }
@@ -2655,3 +2659,5 @@ padding: 0;
 /*------------------------------------------------------
 Fin de estilos para las configuraciones del perfil
 ------------------------------------------------------*/
+
+/*# sourceMappingURL=chat.css.map */

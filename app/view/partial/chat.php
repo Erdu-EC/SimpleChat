@@ -178,7 +178,12 @@
     <div class="wrap">
         <label for="contenido-mensaje" style="display: none"></label>
         <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..."/>
+
         <button class=" btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
+    </div>
+    <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" id="archivo-imagen-enviar">
+    <div id="icon-archivo-imagen">
+        <i class="fas fa-camera"></i>
     </div>
 </div>
 

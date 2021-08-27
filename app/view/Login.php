@@ -46,7 +46,7 @@ if (Session::IsLogin())
                     </a>
                 </li>
                 <li class="nav-list-item">
-                    <a href="#" class="nav-link">
+                    <a href="/Contact" class="nav-link">
                         <span class="material-icons"><span class="material-icons-outlined">support_agent</span></span>Contacto
                     </a>
                 </li>
@@ -64,7 +64,7 @@ if (Session::IsLogin())
             <div class="col-sm-12 col-md-6 col-lg-5 contenedor-login" >
                 <div class="card">
                     <div class="card-header">
-                        <img src="/files/icon/logo.png" alt="">
+                        <img src="/files/icon/logo-wh.png?h=70" alt="">
                         <?= 'Bienvenido a ' . APP_NAME ?>
                     </div>
 

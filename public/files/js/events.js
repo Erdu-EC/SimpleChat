@@ -23,8 +23,8 @@ $('.submit').on('click',function() {
 });
 
 //cerrar sesion
-$(document).on("click", "#mi-perfil-sidepanel .usuario-perfil-opciones", function (){
-    $(this).toggleClass("activo");
+$(document).on("click", "#mi-perfil-sidepanel", function (){
+    $("#mi-perfil-sidepanel .usuario-perfil-opciones").toggleClass("activo");
     $("#mi-perfil-sidepanel .opciones-sesion").toggleClass("inactivo");
 });
 
@@ -107,18 +107,14 @@ $(document).on("click","#btn-info-contacto",function (){
     $("#frame #espacio-de-chat").addClass("desp-der");
     $("#panelInfoContacto").addClass("mostrar");
     $("#btn-info-contacto").addClass("ocultar");
-  /*  if($('#frame .content').width() < 400){
-        $('body').addClass('sb-sidenav-toggled');
-    }*/
+
 });
 
 $(document).on("click","#btn-cerrar-contacto",function (){
     $("#frame #espacio-de-chat").removeClass("desp-der");
     $("#panelInfoContacto").removeClass("mostrar");
     $("#btn-info-contacto").removeClass("ocultar");
-  /*  if($('#frame .content').width()< 400){
-        $('body').removeClass('sb-sidenav-toggled');
-    }*/
+
 });
 
 //detectar tamanos de pantalla y las acciones
@@ -139,22 +135,65 @@ $(document).on("click", "#btn-emojis", function () {
 
     picker.togglePicker(button);
 });
-
+//redireccion a otras paginas del sitio
 $("#seccion-politicas").click(function () {
  $(location).attr("href","/Privacy");
 });
+$("#seccion-acerca").click(function () {
+ $(location).attr("href","About");
+});
+
 //configuraciones de cuenta
 $(document).on("click", "#btn-configuraciones", function () {
     $('ul#lista-conversaciones li.active').removeClass('active');
     CargarEspacioConfiguraciones();
 
 });
+$(document).on("click", "#btn-conf-sesion", function () {
+    CargarEspacioConfiguraciones();
+
+});
 
 function CargarEspacioConfiguraciones(){
     $("body").addClass("sb-sidenav-toggled");
-    $("#mi-perfil-sidepanel").toggleClass("no-visible");
+    $("#mi-perfil-sidepanel").removeClass("no-visible");
+    $('#espacio-de-chat').empty();
     $('#espacio-de-chat').html(
         ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
     ).load(`/Settings`);
 
 };
+
+//enviar imagen
+$(document).on("click", "#icon-archivo-imagen",function (){
+    $("#archivo-imagen-enviar").trigger("click");
+});
+$(document).on("input", "#archivo-imagen-enviar",function (){
+
+    const archivos = document.getElementById('archivo-imagen-enviar').files;
+    var tiempo = new Date();
+
+    var nombre='img_'+tiempo.getDate()+tiempo.getMonth()+tiempo.getFullYear()+'_'+tiempo.getHours()+ tiempo.getMinutes()+ tiempo.getSeconds();
+    var img = $('<li class="enviado"><div class="dir"></div><div class="cont-msj contenedor-imagen-enviada"><img class="imagen-enviada" id="'+nombre+'" title="'+nombre+'" tittle="'+ nombre+'"></div></li>');
+    $("#lista-mensajes").append(img);
+    var img = $('#'+nombre+'');
+    if (archivos.length != 0 ) {
+
+        let reader = new FileReader();
+        reader.readAsDataURL(archivos[0]);
+
+        reader.onload = function () {
+            img.attr("src", reader.result);
+
+        };
+        $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+        return;
+    }
+});
+$(document).on("load", ".imagen-enviada", function (){
+    $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+});
+$(document).on("click", ".imagen-enviada", function (){
+    var imagen = $(this).attr("src");
+    MostrarModal($(this).attr("tittle"), '<img src="'+imagen+'" alt="" />',"", 'modal-fullscreen', "btn-close-white");
+});

@@ -13,7 +13,7 @@ use const HS\config\APP_NAME;
 
     <?php require 'template/Head.php' ?>
 
-    <title><?= APP_NAME ?>: Registro</title>
+    <title><?= APP_NAME ?>: Politicas de privacidad</title>
     <link rel="stylesheet" href="/files/scss/privacy.scss">
 </head>
 <body>
@@ -40,7 +40,7 @@ use const HS\config\APP_NAME;
                 </a>
             </li>
             <li class="nav-list-item">
-                <a href="#" class="nav-link">
+                <a href="/Contact" class="nav-link">
                         <span class="material-icons"><span class="material-icons-outlined">
 support_agent</span>
 </span>Contacto</a>
@@ -66,7 +66,7 @@ support_agent</span>
         <section class="contenido-politicas">
 <div class="tabla-contenido"></div>
             <div class="texto-politicas">
-                <h1>Términos y Condiciones de uso de Simplechat </h1>
+                <h1>Términos y Condiciones de uso de SimpleChat </h1>
                 <ol class="lista-principal">
                     <li>
 

@@ -1,3 +1,4 @@
+//FRONTEND
 $(".container-fluid").scroll(function() {
     if ($(this).scrollTop() > 200) {
         $("#hacia-arriba").addClass('visible');
@@ -9,4 +10,19 @@ $(".container-fluid").scroll(function() {
 
 $('#hacia-arriba').on('click', function() {
     $(".container-fluid").animate({scrollTop: 0}, 600);
+});
+
+
+$(document).ready(function () {
+    var myCarousel = document.querySelector('#carrusel-desarrolladores')
+    var carousel = new bootstrap.Carousel(myCarousel, {
+        interval: 2000,
+        wrap: true
+    })
+
+});
+
+
+$("#btn-navbar-toggler").click(function () {
+    $("nav.menu-navegacion ul.nav-lista").toggleClass("activo").toggleClass("inactivo");
 });
