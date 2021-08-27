@@ -165,15 +165,17 @@ var continuar = true;
             dataType: 'json',
             mimeType: 'application/json',
             data: {
-                u: $("#user_name").val(),
-                p: $("#user_pass").val(),
-                p_rep: $("#user_pass_repeat").val(),
+
+
                 fn: $("#first_name").val(),
                 ln: $("#last_name").val(),
                 gen: $("#gender").val(),
                 birth: $("#birth_date").val(),
                 phone: $("#user_phone").val(),
-                email: $("#user_email").val()
+                email: $("#user_email").val(),
+                u: $("#user_name").val(),
+                p: $("#user_pass").val(),
+                p_rep: $("#user_pass_repeat").val()
             },
             beforeSend: () => {
                 $("#contenedor-mensajes").append('<div id="enviando-datos"><div class="cargando"></div>Enviando datos</div>')

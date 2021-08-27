@@ -779,7 +779,7 @@ Barra de contactos desplegable
 }
 
 #sidepanelTodosContactos #listaTodosContactos::-webkit-scrollbar-thumb {
-  background-color: darkgray;
+  background-color: #A9A9A9FF;
 }
 
 /*Expandir el sidepanelTodosContactos que contiene a los contactos cuando la resolucion es menor a 576px*/

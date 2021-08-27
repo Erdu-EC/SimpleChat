@@ -124,10 +124,9 @@ from message m
 where m.send_date >= i.send_date
    or m.send_date >= c.register_date;
 
-
+#Funciones Y procedimientos.
 DELIMITER $
 
-#Funciones Y procedimientos.
 CREATE FUNCTION user_set_login(name varchar(30), device_desc TEXT) RETURNS INT
     MODIFIES SQL DATA
 BEGIN
@@ -137,7 +136,8 @@ BEGIN
     INSERT INTO connections(id_user, device, login_date) VALUES (USER_ID, device_desc, NOW());
 
     RETURN LAST_INSERT_ID();
-END $
+END
+$
 
 CREATE PROCEDURE user_set_logout(in USER_ID int, in CONNECTION_ID int)
 BEGIN
@@ -147,13 +147,16 @@ BEGIN
     IF NOT EXISTS(SELECT id FROM connections WHERE logout_date IS NULL) THEN
         UPDATE users SET state = 'I' WHERE id = USER_ID;
     END IF;
-END $
+END
+$
+
 
 CREATE FUNCTION user_is_contact(USERID int, CONTACTID int) RETURNS BOOLEAN
     READS SQL DATA
 BEGIN
     RETURN EXISTS(SELECT * FROM contacts WHERE user_id = USERID and contact_id = CONTACTID);
-END $
+END
+$
 
 #Procedimientos para contactos.
 CREATE FUNCTION user_AddContact(own int, contact int) RETURNS INT
@@ -261,7 +264,7 @@ BEGIN
     order by send_date, id;
 END $
 
-CREATE OR REPLACE PROCEDURE user_GetUnreceiveMessages(in USER_ID int)
+CREATE PROCEDURE user_GetUnreceiveMessages(in USER_ID int)
 BEGIN
     CREATE TEMPORARY TABLE unrcv_messages
     (
