@@ -143,6 +143,7 @@ $("#clave-nuev").on("input", function () {
 function ClavesIguales() {
     var clave = $("#clave-nuev");
     var clave_rep = $("#clave-nuev-rep");
+
     $("#error-claves").remove();
     if (clave.val() != clave_rep.val()) {
         if ($("#error-claves").length == 0) {
