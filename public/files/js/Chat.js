@@ -7,7 +7,7 @@ $(document).on("keydown", "#espacio-de-escritura", function (e) {
 
 $(document).on("keyup change", "#espacio-de-escritura", function () {
     message = $("#espacio-de-escritura .wrap input").val();
-    if ($.trim(message) == '') {
+    if ($.trim(message) === '') {
         $("#btn-enviar-mensaje").removeClass("activar");
         $("#buscar-contacto .borrar").remove();
 
@@ -94,9 +94,17 @@ function EnviarMensaje() {
 
 //Agregar contacto
 function CargarEspacioDeChat() {
+    const nombre_usuario = $(this).attr('data-usuario');
+
     $('#espacio-de-chat').html(
         ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
-    ).load(`/Chats/${$(this).attr('data-usuario')}`, function (){
+    ).load(`/Chats/${nombre_usuario}`, function (){
+        //Eliminar globo contador de mensajes no leidos.
+        $(`#lista-conversaciones .contact > div[data-usuario=${nombre_usuario}] .num-msj-pendientes.online`).remove();
+
+        //Actualizar total de conversaciones no leidas.
+        ActualizarTotalDeConversacionesNoLeidas();
+
         //Actualizar panel de información de contacto, si este esta abierto.
         if ($('#panelInfoContacto').hasClass('mostrar'))
             ActualizarInfoContacto();
@@ -172,6 +180,5 @@ function ObtenerFecha(fecha){
         return "----";
     var fecha_rec= new Date(fecha);
 var meses = ["En.", "Febr.", "Mzo.", "Abr.","May.","Jun.", "Jul.", "Agto.","Sept.","Oct.","Nov.","Dic."];
-var result = fecha_rec.getDate() +" "+ meses[fecha_rec.getMonth()] + " "+fecha_rec.getUTCFullYear();
-return result;
+    return fecha_rec.getDate() + " " + meses[fecha_rec.getMonth()] + " " + fecha_rec.getUTCFullYear();
 }

@@ -59,15 +59,16 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
         <div class="hora-ult-mesj">
         ${Fecha_hora_ultima_Mensaje(ult_msj)}
 </div>
-        <div class="num-msj-pendientes online">
-        
-        <span>33</span>
-        </div>
+
+        <!--
+        ${obtener_elemento_msg_pendientes(33)}
+        -->
 </div>
     </div>`;
 
 //<div class="num-msj-pendientes anterior"><span>n</span></div> -> para notificaciones vistas
 
+const obtener_elemento_msg_pendientes = (num) => '<div class="num-msj-pendientes online"><span>' + num + '</span></div>';
 
 function Fecha_hora_ultima_Mensaje( fecha_mensaje) {
     var hoy = new Date();
@@ -75,7 +76,7 @@ function Fecha_hora_ultima_Mensaje( fecha_mensaje) {
     var result= '';
     var diferencia = Math.trunc((hoy - fecha_msj)/(1000*60*60*24));
     if (diferencia < 1){
-        var result= fecha_msj.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }).toLowerCase();
+        result= fecha_msj.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }).toLowerCase();
 
     }
     else  if (diferencia == 1){
