@@ -373,18 +373,64 @@ function EnviarInformacionPerfil() {
                 );
 
             }
+            else{
+                switch (json[1]) {
+                    case 1:
+                        IndicarError("Uno de los campos está vacío. Por favor, verifique todos los campos.");
+                        break;
+                    case 2:
+                        IndicarError("Ingrese un nombre válido. 2 caracteres mín.");
+                        break;
+                   case 3:
+                        IndicarError("Ingrese un apellido válido. 2 caracteres mín.");
+                        break;
+                   case 4:
+                        IndicarError("Ingrese una fecha de nacimiento válida.");
+                        break;
+                   case 5:
+                        IndicarError("Seleccione una opción de género válido.");
+                        break;
+                   case 6:
+                        IndicarError("Ingrese un número de teléfono válido.");
+                        break;
+                   case 7:
+                        IndicarError("Ingrese una dirección de correo válida.");
+                        break;
+                   case 8:
+                           swal({
+                                    title: "Ha ocurrido un error",
+                                    text: "No se han podido guardar los cambios",
+                                    icon: "warning",
+                                    buttons: {
+                                        retry: "Reintentar",
+                                        defeat: "Cerrar",
+                                    },
+                                })
+                           .then((value)=> {
+                               if(value == "retry"){
+                                   EnviarInformacionPerfil()
+                               }else{
+                                   return;
+                               }
+                           });
+                        break;
+                }
+            }
         },
         error: () => {
-            swal({
-                text: "No se ha podido completar su solicitud. Revise su conexión a Internet",
-                icon: "error",
-                button: "Ok",
-                dangerMode: true
-            });
+            IndicarError("No se ha podido completar su solicitud. Revise su conexión a Internet");
         }
 
     });
 
+}
+function IndicarError($mensaje) {
+    swal({
+        text: $mensaje,
+        icon: "error",
+        button: "Ok",
+        dangerMode: true
+    });
 }
 
 function EnviarClaveNueva() {

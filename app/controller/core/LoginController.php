@@ -191,7 +191,7 @@
             }
         }
         //Código 1: Uno de los parámetros recibido no es válido o esta vacio
-        //Código 2: Nombre no valido
+        //Código 2: Nombre no válido
         //Código 3: Apellido no valido
         //Código 4: La fecha de nacimiento no es valida
         //Código 5: Opcion de genero no valida
