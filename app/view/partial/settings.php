@@ -21,11 +21,10 @@
                 <span>Perfil</span>
             </div>
 
-
             <div class="editar" id="btn-editar-perfil">
                 <span class="material-icons" title="Editar">edit</span>
             </div>
-
+            <form action="" id="">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
                     <div class="img-perfil-cuenta">
@@ -46,7 +45,8 @@
                     </div>
 
                 </div>
-                <form action="" id="">
+
+
                     <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7 columna">
                         <div class="item-perfil-cuenta">
                             <label for="nombres" class="etiqueta-campo contraida">Nombres</label>
