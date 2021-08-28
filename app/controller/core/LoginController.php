@@ -190,7 +190,14 @@
                 die(json_encode([false, 5]));
             }
         }
-        //Codigo 1 Uno de los parametros recibido no es valido
+        //Código 1: Uno de los parámetros recibido no es válido o esta vacio
+        //Código 2: Nombre no valido
+        //Código 3: Apellido no valido
+        //Código 4: La fecha de nacimiento no es valida
+        //Código 5: Opcion de genero no valida
+        //Código 6: Formato de telefono no valido
+        //Código 7: Formato de Email no valido
+        //Código 8: No se ha podido guardar los cambio en la Base de datos
 
         public function Setting(){
             array_filter($_POST, function ($val) {
@@ -200,6 +207,11 @@
             //Estableciendo tipo de respuesta.
             HttpResponse::SetContentType(MimeType::Json);
 
+            //Se verifica que los parametros recibidos no esten vacios a excepcion de email
+            if(!$this->Iniciar()){
+                die(json_encode([false, 1]));
+            }
+
             $session = new Session();
             $user_id = $session->user_id;
             $first_name = empty($_POST['fn']) ? null : (string)$_POST['fn'];
@@ -208,14 +220,27 @@
             $gender = empty($_POST['gn']) ? null : (string)$_POST['gn'];
             $phone = empty($_POST['tf']) ? null : (string)$_POST['tf'];
             $email= empty($_POST['em']) ? null : (string)$_POST['em'];
+//Validacion de cada uno de los parametros recibidos por POST
+            if(!$this->ValidarNombreApellido($first_name)){
+                die(json_encode([false, 2]));
+            }
+            if(!$this->ValidarNombreApellido($last_name)){
+                die(json_encode([false, 3]));
+            }
+            if(!$this->ValidarFechanacimiento($birthday)){
+                die(json_encode([false, 4]));
+            }
+            if(!$this->ValidarGenero($gender)){
+                die(json_encode([false, 5]));
+            }
+            if(!$this->ValidaTelefono($phone)){
+                die(json_encode([false, 6]));
+            }
+            if(!$this->ValidarCorreo($email)){
+                die(json_encode([false, 7]));
+            }
+            file_put_contents('../archivo_25_08_21.txt', "La validacion ha sido correcta", FILE_APPEND);
 
-            //validacion de correo electronico
-           /* if(!$this->ValidarCorreo($email)){
-                die(json_encode([false, 1]));
-            }*/
-            //file_put_contents('../archivo_25_08_21.txt', $this->ValidarFechaNacimiento($birthday)->format('Y-m-d'));
-
-/* Codigo Correcto*/
             try {
                 //Estableciendo conexión con BD.
                 $db = new DB(DBAccount::Root);
@@ -238,14 +263,14 @@
                     //Devolviendo respuesta.
                     die(json_encode([true],0));
             } catch (PDOException $ex) {
-                die(json_encode([false, 5]));
+                die(json_encode([false, 8]));
             }
 
 
         }
 
-
-        //Cambio de clave
+///
+/// Cambio de clave
         //codigo 1 una de las tres claves no es valida
         //codigo 2 las claves recibidas no coinciden
         //codigo 3 las contrasena es incorrecta
@@ -315,6 +340,17 @@
                 die(json_encode([false, 6]));
             }
         }
+        
+        //Funciones de validacion
+        function Iniciar()
+        {
+            foreach ($_POST as $campo => $valor) {
+                if (($campo!="phone") && empty($valor)) {
+                   return false;
+                }
+            }
+            return false;
+        }
   private function AsignarImagenPorDefecto($genero){
             $nombre_imagen="";
             if($genero=='M'){
@@ -328,4 +364,65 @@
             }
 return $nombre_imagen;
   }
+        function ValidarNombreApellido(&$cadena){
+            $cadena= filter_var ( $cadena, FILTER_SANITIZE_STRING);
+            if(strlen($cadena)< 2){
+                return false;
+            }
+            if(strlen($cadena) > 100){
+                $cadena= substr($cadena,100);
+            }
+
+            return true;
+        }
+        function ValidarFechanacimiento($date)
+        {
+            if (!(date('Y-m-d', strtotime($date)) == $date)) { //si el valor no coincide se devuelve un false
+                return false;
+            }
+            //si es una fecha se procede a verificar que se encuentre entre 01-01-1900 y la fecha actual
+            $fecha_max = new DateTime();
+            $fecha_min = new DateTime("01-01-1900");
+            $fecha_recibida = new DateTime($date);
+
+            if ($fecha_recibida > $fecha_max) {
+                return false;
+            }
+            if($fecha_recibida < $fecha_min){
+                return false;
+            }
+
+            return true;
+        }
+        function ValidarGenero($valor){
+            $resp = true;
+            switch ($valor){
+                case'M':
+                case  'F':
+                case'D':
+                case 'O':
+                    $resp = true;
+                    break;
+                default:
+                    $resp= false;
+                    break;
+            }
+            return $resp;
+        }
+        function ValidaTelefono($tel){
+            $long= strlen($tel);
+            if(!ctype_digit($tel)){
+                return false;
+            }
+            if(($long > 0 && $long<8) || $long >15 ){
+                return false;
+            }
+            return true;
+        }
+
+        function ValidarCorreo($correo_recibido)
+        {
+            $correo_recibido = filter_var($correo_recibido, FILTER_SANITIZE_EMAIL);
+            return (filter_var($correo_recibido, FILTER_VALIDATE_EMAIL));
+        }
     }
