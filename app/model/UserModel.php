@@ -31,7 +31,7 @@
 		const V_STATE_INACTIVE = 'I';
 
 		public static function _st_init() {
-			self::$ALLOW_READ_VALUES = [self::C_ID, self::C_NICK, self::C_FNAME, self::C_LNAME, self::C_BIRTH, self::C_GENDER, self::C_EMAIL, self::C_LAST_CONN, self::C_STATE, self::C_PROFILE_IMG];
+			self::$ALLOW_READ_VALUES = [self::C_ID, self::C_NICK, self::C_FNAME, self::C_LNAME, self::C_BIRTH, self::C_GENDER, self::C_EMAIL, self::C_LAST_CONN, self::C_STATE, self::C_PROFILE_IMG, self::C_PHONE];
 		}
 
 		//Metodos para obtener datos.
