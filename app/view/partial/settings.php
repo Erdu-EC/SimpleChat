@@ -54,7 +54,7 @@ $USERNAME = $SESSION->user_name;
                         <div class="item-perfil-cuenta">
                             <label for="nombres" class="etiqueta-campo contraida">Nombres</label>
                             <input type="text" id="nombres" class="atributo-perfil" readonly minlength="1"
-                                   value="Michael">
+                                   value="<?= $_VIEW->first_name ?>">
 
 
                         </div>
