@@ -1,15 +1,15 @@
 <?php
-/*TODO: APLICAR PERMISOS PARA LA SEGURIDAD DE LA INFORMACION MOSTRADA.*/
+	/*TODO: APLICAR PERMISOS PARA LA SEGURIDAD DE LA INFORMACION MOSTRADA.*/
 
-namespace HS\app\view;
+	namespace HS\app\view;
 
-use HS\libs\collection\Collection;
+	use HS\libs\collection\Collection;
 use HS\libs\core\Session;
 
-$SESSION = new Session();
-$USERNAME = $SESSION->user_name;
+	$SESSION = new Session();
+	$USERNAME = $SESSION->user_name;
 
-/** @var Collection $_VIEW */
+
 ?>
 <div class="guardar" id="btn-guardar-perfil" title="Guardar cambios">
             <span class="material-icons">
@@ -28,26 +28,26 @@ $USERNAME = $SESSION->user_name;
                 <span class="material-icons" title="Editar">edit</span>
             </div>
             <form action="" id="">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
-                        <div class="img-perfil-cuenta">
-                            <img id="foto-perfil-cuenta" src="/files/profile/mikeross.png?w=200&h=200" class="" alt=""
-                                 data-fuente="/files/profile/mikeross.png"/>
-                            <div class="opciones" id="btn-opciones-perfil">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
+                    <div class="img-perfil-cuenta">
+                        <img id="foto-perfil-cuenta" src="<?= @$_VIEW;?>?w=200&h=200" class="" alt=""
+                             data-fuente="/files/profile/mikeross.png"/>
+                        <div class="opciones" id="btn-opciones-perfil">
                                   <span class="material-icons">
                                 photo_camera
                                 </span>
 
-                            </div>
-
-                            <form action="#" method="post" enctype="multipart/form-data">
-                                <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png"
-                                       id="nueva-foto-perfil">
-                            </form>
-
                         </div>
 
+                        <form action="#" method="post" enctype="multipart/form-data">
+                            <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png"
+                                   id="nueva-foto-perfil">
+                        </form>
+
                     </div>
+
+                </div>
 
 
                     <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7 columna">
@@ -105,53 +105,53 @@ $USERNAME = $SESSION->user_name;
 
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="card conf-acceso">
+
+            <form class="form-conf-acceso">
+                <input type="text" value="<?= $USERNAME ?>" autocomplete="username" class="visually-hidden">
+
+                <div class="encabezado">
+                    <span>Configuraciones de  la cuenta</span>
+                </div>
+                <div class="checkbox-cambio-clave">
+                    <input type="checkbox" name="check-cambiar-clave" id="check-cambiar-clave">
+                    <label for="check-cambiar-clave">Cambiar contraseña</label>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="item-cuenta">
+                            <label for="clave-ant" class="etiqueta-campo ">Contraseña Actual</label>
+                            <input type="password" id="clave-ant" class="campo-cuenta" autocomplete="current-password"
+                                   readonly>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="item-cuenta">
+                            <label for="clave-nuev" class="etiqueta-campo ">Nueva contraseña</label>
+                            <input type="password" id="clave-nuev" class="campo-cuenta" autocomplete="new-password"
+                                   readonly>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="item-cuenta" id="cont-clave-nuev-rep">
+                            <label for="clave-nuev-rep" class="etiqueta-campo">Repita la nueva Contraseña</label>
+                            <input type="password" id="clave-nuev-rep" class="campo-cuenta" autocomplete="new-password"
+                                   readonly>
+
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
+
     </div>
-
-</div>
-<div class="row">
-    <div class="card conf-acceso">
-
-        <form class="form-conf-acceso">
-            <input type="text" value="<?= $USERNAME ?>" autocomplete="username" class="visually-hidden">
-
-            <div class="encabezado">
-                <span>Configuraciones de  la cuenta</span>
-            </div>
-            <div class="checkbox-cambio-clave">
-                <input type="checkbox" name="check-cambiar-clave" id="check-cambiar-clave">
-                <label for="check-cambiar-clave">Cambiar contraseña</label>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="item-cuenta">
-                        <label for="clave-ant" class="etiqueta-campo ">Contraseña Actual</label>
-                        <input type="password" id="clave-ant" class="campo-cuenta" autocomplete="current-password"
-                               readonly>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="item-cuenta">
-                        <label for="clave-nuev" class="etiqueta-campo ">Nueva contraseña</label>
-                        <input type="password" id="clave-nuev" class="campo-cuenta" autocomplete="new-password"
-                               readonly>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="item-cuenta" id="cont-clave-nuev-rep">
-                        <label for="clave-nuev-rep" class="etiqueta-campo">Repita la nueva Contraseña</label>
-                        <input type="password" id="clave-nuev-rep" class="campo-cuenta" autocomplete="new-password"
-                               readonly>
-
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
-</div>
 
 </div>
 

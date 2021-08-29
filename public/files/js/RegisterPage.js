@@ -81,18 +81,15 @@ $("#user_pass").blur(function () {
     $(".desplegable-recomendaciones-clave").removeClass("visible");
 });
 $("#user_phone").keydown( function (e) {
-    var key =  e.key.charCodeAt(0);
+    var key = e.key.charCodeAt();
     if ((key == 8 ||
-            key == 9 ||
-            key == 66 ||
-            key == 13 ||
-            key == 65 ) ||
-        (key >= 48 && key <= 57))
-    {
+            key == 9  ||
+            key == 13  || key == 27 || key == 26  ) ||
+        (key >= 48 && key <= 57)) {
         return key;
-    }else{
+    } else {
         e.preventDefault();
-    };
+    }
 });
 $("#first_name").on("input", function () {
     ValidarNombreApellido($(this), "nombre");
@@ -205,14 +202,49 @@ var continuar = true;
                 } else {
                     switch (json[1]) {
                         case 0:
-                            $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>Ya existe una sesión iniciada.</div>');
+                            swal({
+                                text: "Ya existe una sesión iniciada con este usuario.",
+                                icon: "info",
+                                confirmButtonText: "Ok"
+                            }).then(
+                                function () {
+                                    window.location = "/";
+                                }
+                            );
+                           // $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>Ya existe una sesión iniciada.</div>');
+                            break;
+                        case 1:
+                            IndicarError("Uno de los campos está vacío. Por favor, verifique todos los campos.");
+                            break;
+                        case 2:
+                            IndicarError("Ingrese un nombre válido. 2 caracteres mín.");
                             break;
                         case 3:
-                            $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>No fue posible asegurar la contraseña.</div>');
+                            IndicarError("Ingrese un apellido válido. 2 caracteres mín.");
+                            // $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>No fue posible asegurar la contraseña.</div>');
                             break;
                         case 4:
-                            $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>Utilice otro nombre de usuario.</div>');
+                            IndicarError("Seleccione una opción de género válido.");
+                            //$("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>Utilice otro nombre de usuario.</div>');
                             MostrarMensajeError($("#user_name").parent(), "El nombre de usuario ya existe.")
+                            break;
+                        case 5:
+                            IndicarError("Ingrese una fecha de nacimiento válida.");
+                            break;
+                        case 6:
+                            IndicarError("Ingrese un número de teléfono válido.");
+                            break;
+                        case 7:
+                            IndicarError("Ingrese una dirección de correo válida.");
+                            break;
+                        case 8:
+                            IndicarError("Ingrese un nombre de usuario válido. 4 caracteres mín.");
+                            break;
+                        case 9:
+                            IndicarError("Verifique que ambas contraseñas coinciden. 8 caracteres mín. y 60 caracteres máx.")
+                            break;
+                        case 10:
+                            IndicarError("No se ha podido registrar el usuario en SimpleChat. Intente nuevamente.");
                             break;
                         default:
                             $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>Error desconocido, registro no completado.</div>');
@@ -230,29 +262,6 @@ var continuar = true;
 });
 
 
-
-/*
-const ALERT_NORMAL = 1;
-const ALERT_ERROR = 2;
-const ALERT_SUCCESS = 3;
-
-function Alert(code, msg) {
-    const action_alert = $("#action_alert");
-
-    const color_info = "alert-info";
-    const color_error = "alert-danger";
-
-    switch (code) {
-        case ALERT_SUCCESS:
-        case ALERT_NORMAL:
-            action_alert.removeClass(color_error).addClass(color_info).text(msg)
-            break;
-        case ALERT_ERROR:
-            action_alert.removeClass(color_info).addClass(color_error).text(msg)
-            break;
-    }
-}
-*/
 /*-----------------------------------------------
 Funciones de validacion de campos
 -----------------------------------------------*/
@@ -400,11 +409,11 @@ function ValidarContrasenas() {
     var clave_rep = $("#user_pass_repeat");
     clave_rep.parent().siblings(".indicador-error").remove();
     $("#contenedor-mensajes .no-coincide").remove();
-    if ( clave.val()!= clave_rep.val()){
+    if ( clave.val() != clave_rep.val()){
             $("#contenedor-mensajes").prepend('<div class="mensaje-error no-coincide"><span class="material-icons">error</span> Las contraseñas no coinciden </div>');
-
+        return false;
     }
-     else if(clave.val().length < 8 || clave_rep.val().length < 8){
+    else if(clave.val().length < 8 || clave_rep.val().length < 8){
         MostrarMensajeError(clave_rep .parent(), "Su contraseña debe tener al menos 8 caracteres.");
     return false;
     }
@@ -414,11 +423,21 @@ function ValidarContrasenas() {
     }
     return  true;
 }
-
+//Alertas de error
 function MostrarMensajeError(elemento, texto){
 if(elemento.siblings(".indicador-error").length == 0){
     elemento.after('<div class="indicador-error">'+ texto +'</div>');
 }
+}
+
+function IndicarError($mensaje) {
+    swal({
+        tittle:"No se ha completado el registro",
+        text: $mensaje,
+        icon: "error",
+        button: "Ok",
+        dangerMode: true
+    });
 }
 
 /*----------------------------------------------------

@@ -187,18 +187,16 @@ $("#telefono_usuario").on("input", function () {
     ValidarTelefono();
 });
 $("#telefono_usuario").keydown(function (e) {
-    var key = e.key.charCodeAt(0);
+    var key = e.key.charCodeAt();
     if ((key == 8 ||
-            key == 9 ||
-            key == 66 ||
-            key == 13 ||
-            key == 65) ||
+            key == 9  ||
+            key == 13  || key == 27 || key == 26  ) ||
         (key >= 48 && key <= 57)) {
         return key;
     } else {
         e.preventDefault();
     }
-    ;
+
 });
 
 //Funciones para validacion de los campos

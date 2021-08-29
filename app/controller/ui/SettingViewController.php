@@ -20,8 +20,12 @@ class SettingViewController extends Controller
             //Obteniendo datos de usuario consultado.
             $user = new UserModel(DBAccount::Root);
             $user_data = $user->GetOneById($user_id, [
-                UserModel::C_ID,
-                UserModel::C_NICK
+                UserModel::C_FNAME,
+                UserModel::C_LNAME,
+                UserModel::C_BIRTH,
+                UserModel::C_GENDER,
+                UserModel::C_PHONE,
+                UserModel::C_EMAIL
             ]);
 
             //Cerrando conexión BD.

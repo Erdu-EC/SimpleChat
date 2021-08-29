@@ -20,6 +20,7 @@
 		const C_LNAME = 'last_name';
 		const C_BIRTH = 'birth_date';
 		const C_GENDER = 'gender';
+		const C_PHONE = 'PHONE';
 		const C_EMAIL = 'email';
 		const C_LAST_CONN = 'last_connection';
 		const C_STATE = 'state';

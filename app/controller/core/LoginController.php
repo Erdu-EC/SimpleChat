@@ -122,10 +122,24 @@
                 die;
             }
         }
+//Env[io de true El registro del nuevo usuario fue correcto
+    //envio de false y codigo
+        //Codigo 0: Hay una sesión iniciada
+        //Codigo 1: Uno de los parámetros recibido esta vacío
+        //Codigo 2: El nombre que se ha recibido no es válido
+        //Codigo 3: El apellido que se ha recibido no es válido
+        //Codigo 4: La opción de género recibida no es válida
+        //Codigo 5: La fecha de nacimiento recibida no es válida
+        //Codigo 6: El número de teléfono recibido no es válido
+        //Codigo 7: El correo electronico recibido no es válido
+        //Codigo 8: El usuario no es válido
+        //Codigo 9: La contraseña no es válido
+        //Codigo 10: El nombre de usuario ya está siendo utilizado
+        //Codigo 11, ...: No se ha podido efectuar el registro
 
         public function Register()
         {
-            //Obteniendo parametros post.
+            //Obteniendo parámetros post.
             array_filter($_POST, function ($val) {
                 return trim($val);
             });
@@ -145,12 +159,34 @@
             HttpResponse::SetContentType(MimeType::Json);
 
             //Comprobaciones.
-            if (Session::IsLogin())
-                die(json_encode([false, 0])); //Sesion iniciada, no realizar registro.
-            else if (!UserModel::IsValidUserName($user))
-                die(json_encode([false, 1])); //Nombre de usuario, no valido.
-            else if (!UserModel::IsValidPass($pass))
-                die(json_encode([false, 2])); //Contraseña no valida.
+            if (Session::IsLogin()){
+                die(json_encode([false, 0]));
+            }
+            else if(!$this->Iniciar()){
+                die(json_encode([false, 1]));
+            }
+            else if(!$this->ValidarNombreApellido($first_name)){
+                die(json_encode([false, 2]));
+            }
+            else if(!$this->ValidarNombreApellido($last_name)){
+                die(json_encode([false, 3]));
+            }
+            else if(!$this->ValidarGenero($gender)){
+                die(json_encode([false, 4]));
+            }
+            else if(!$this->ValidarFechanacimiento($birthday)){
+                die(json_encode([false, 5]));
+            }
+            else if(!$this->ValidarTelefono($phone)){
+                die(json_encode([false, 6]));
+            }
+            else if(!$this->ValidarCorreo($email)){
+                die(json_encode([false, 7]));
+            }
+            else if (!$this->UserModel::IsValidUserName($user))
+                die(json_encode([false, 8]));
+            else if (!$this->ValidarContrasena($pass, $pass_rep) )
+                die(json_encode([false, 9]));
 
             try {
                 //Estableciendo conexión con BD.
@@ -163,7 +199,7 @@
                 if (is_null($row)) {
                     //Generando clave hash.
                     if (($pass = Crypt::Hash($pass)) === false)
-                        die(json_encode([false, 3]));
+                        die(json_encode([false, 11]));
 
                     //Insertando registro.
                     $img = $this->AsignarImagenPorDefecto($gender);
@@ -185,9 +221,9 @@
                     //Devolviendo respuesta.
                     die(json_encode([true]));
                 } else
-                    die(json_encode([false, 4]));
+                    die(json_encode([false, 10]));
             } catch (PDOException $ex) {
-                die(json_encode([false, 5]));
+                die(json_encode([false, 12]));
             }
         }
         //Código 1: Uno de los parámetros recibido no es válido o esta vacio
@@ -207,7 +243,7 @@
             //Estableciendo tipo de respuesta.
             HttpResponse::SetContentType(MimeType::Json);
 
-            //Se verifica que los parametros recibidos no esten vacios a excepcion de email
+            //Se verifica que los parámetros recibidos no esten vacíos a excepción de email
             if(!$this->Iniciar()){
                 die(json_encode([false, 1]));
             }
@@ -233,7 +269,7 @@
             if(!$this->ValidarGenero($gender)){
                 die(json_encode([false, 5]));
             }
-            if(!$this->ValidaTelefono($phone)){
+            if(!$this->ValidarTelefono($phone)){
                 die(json_encode([false, 6]));
             }
             if(!$this->ValidarCorreo($email)){
@@ -271,10 +307,10 @@
 
 ///
 /// Cambio de clave
-        //codigo 1 una de las tres claves no es valida
-        //codigo 2 las claves recibidas no coinciden
-        //codigo 3 las contrasena es incorrecta
-        //Codigo 4 La contrasena nueva es igual a la anterior
+        //codigo 1 Una de las tres claves no es valida
+        //codigo 2 Las claves recibidas no coinciden
+        //codigo 3 La contraseña es incorrecta
+        //Codigo 4 La contraseña nueva es igual a la anterior
         //Codigo 5 No se ha podido asegurar la clave
         //Codigo 6 No se ha podido guardar el registro en la BBDD
 
@@ -349,7 +385,7 @@
                    return false;
                 }
             }
-            return false;
+            return true;
         }
   private function AsignarImagenPorDefecto($genero){
             $nombre_imagen="";
@@ -409,8 +445,11 @@ return $nombre_imagen;
             }
             return $resp;
         }
-        function ValidaTelefono($tel){
+        function ValidarTelefono($tel){
             $long= strlen($tel);
+            if($long == 0){
+                return true;
+            }
             if(!ctype_digit($tel)){
                 return false;
             }
@@ -424,5 +463,14 @@ return $nombre_imagen;
         {
             $correo_recibido = filter_var($correo_recibido, FILTER_SANITIZE_EMAIL);
             return (filter_var($correo_recibido, FILTER_VALIDATE_EMAIL));
+        }
+        function ValidarContrasena($clave, $clave_rep){
+            if(strcmp($clave, $clave_rep)!==0){
+                return  false;
+            }
+            if(!UserModel::IsValidPass($clave)){
+                return false;
+            }
+            return true;
         }
     }
