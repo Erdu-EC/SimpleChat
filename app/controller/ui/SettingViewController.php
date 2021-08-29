@@ -25,7 +25,9 @@ class SettingViewController extends Controller
                 UserModel::C_BIRTH,
                 UserModel::C_GENDER,
                 UserModel::C_PHONE,
-                UserModel::C_EMAIL
+                UserModel::C_EMAIL,
+                UserModel::C_PROFILE_IMG,
+
             ]);
 
             //Cerrando conexión BD.

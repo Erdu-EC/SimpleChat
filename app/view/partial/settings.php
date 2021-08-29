@@ -1,14 +1,23 @@
 <?php
 	/*TODO: APLICAR PERMISOS PARA LA SEGURIDAD DE LA INFORMACION MOSTRADA.*/
 
-	namespace HS\app\view;
+namespace HS\app\view;
 
-	use HS\libs\collection\Collection;
+use HS\libs\collection\Collection;
 use HS\libs\core\Session;
 
-	$SESSION = new Session();
-	$USERNAME = $SESSION->user_name;
+$SESSION = new Session();
+$USERNAME = $SESSION->user_name;
 
+/** @var Collection $_VIEW */
+
+//Obtener Fecha de nacimiento
+function Obtener_fecha($fecha){
+$meses= array("En.", "Febr.", "Mzo.", "Abr.","May.","Jun.", "Jul.", "Agto.","Sept.","Oct.","Nov.","Dic.");
+$time = strtotime($fecha);
+$res= date("d",$time)." de ".$meses[(date("n", $time) - 1)]." de ".date("Y", $time);
+return $res;
+}
 
 ?>
 <div class="guardar" id="btn-guardar-perfil" title="Guardar cambios">
@@ -31,8 +40,8 @@ use HS\libs\core\Session;
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
                     <div class="img-perfil-cuenta">
-                        <img id="foto-perfil-cuenta" src="<?= @$_VIEW;?>?w=200&h=200" class="" alt=""
-                             data-fuente="/files/profile/mikeross.png"/>
+                        <img id="foto-perfil-cuenta" src="/files/profile/<?= $_VIEW->profile_img ?>?w=200&h=200" class="" alt=""
+                             data-fuente="/files/profile/<?= $_VIEW->profile_img ?>"/>
                         <div class="opciones" id="btn-opciones-perfil">
                                   <span class="material-icons">
                                 photo_camera
@@ -61,31 +70,51 @@ use HS\libs\core\Session;
 
                         <div class="item-perfil-cuenta">
                             <label for="apellidos" class="etiqueta-campo contraida">Apellidos</label>
-                            <input type="text" id="apellidos" class="atributo-perfil " value="Ross" minlength="1"
+                            <input type="text" id="apellidos" class="atributo-perfil "value="<?= $_VIEW->last_name ?>" minlength="1"
                                    readonly>
 
                         </div>
                         <div class="item-perfil-cuenta">
                             <label for="fecha_nac" class="etiqueta-campo contraida">Fecha de Nacimiento</label>
                             <div id="valor-fecha_nac" class="atributo-perfil">
-                                16 de May. 1986
+                                <?= Obtener_fecha($_VIEW->birth_date)?>
                             </div>
 
-                            <input type="date" id="fecha_nac" class="atributo-perfil ocultar" value=""
-                                   readonly <?php echo 'max="', date('Y-m-d'), '"'; ?>>
+                            <input type="date" id="fecha_nac" class="atributo-perfil ocultar" value="<?=$_VIEW->birth_date ?>"
+                                   readonly <?php echo 'max="', date('Y-m-d'), '"'; ?>  min="1900-01-01">
 
                         </div>
 
                         <div class="item-perfil-cuenta">
                             <label for="genero" class="etiqueta-campo contraida">Género</label>
-                            <div id="valor-genero" class="atributo-perfil">
-                                Masculino
-                            </div>
+                            <?php
+                            $g = "";
+                            switch ($_VIEW->gender){
+                                case "F":
+                                    $g= "Femenino";
+                                    break;
+                                case "M":
+                                        $g= "Masculino";
+                                    break;
+                                case "O":
+                                        $g= "Otro";
+                                    break;
+                                case "D":
+                                        $g= "Sin especificar";
+                                    break;
+
+                            }
+echo '<div id="valor-genero" class="atributo-perfil">'.$g.' </div>';
+                            ?>
+
+
+
+
                             <select name="genero" id="genero" class="atributo-perfil ocultar">
-                                <option value="M" selected>Masculino</option>
-                                <option value="F">Femenino</option>
-                                <option value="O">Otro</option>
-                                <option value="D">Sin especificar</option>
+                                <option value="M" <?= ($_VIEW->gender=='M')? "selected":"" ?> >Masculino</option>
+                                <option value="F" <?= ($_VIEW->gender=='F')? "selected":"" ?> >Femenino</option>
+                                <option value="O" <?= ($_VIEW->gender=='O')? "selected":"" ?> >Otro</option>
+                                <option value="D" <?= ($_VIEW->gender=='D')? "selected":"" ?> >Sin especificar</option>
                             </select>
                         </div>
                     </div>
@@ -93,13 +122,13 @@ use HS\libs\core\Session;
                         <div class="item-perfil-cuenta">
                             <label for="correo_usuario" class="etiqueta-campo contraida">Correo</label>
                             <input type="text" id="correo_usuario" class="atributo-perfil "
-                                   value="mikeross@gmail.com"
+                                   value="<?=$_VIEW->email ?>"
                                    readonly maxlength="255">
 
                         </div>
                         <div class="item-perfil-cuenta contenedor-telefono-cuenta">
                             <label for="telefono_usuario" class="etiqueta-campo contraida">Teléfono</label>
-                            <input type="text" id="telefono_usuario" class="atributo-perfil " value="88888888"
+                            <input type="text" id="telefono_usuario" class="atributo-perfil " value="<?= $_VIEW->phone ?>"
                                    readonly
                                    maxlength="15">
 

@@ -139,6 +139,9 @@
 
         public function Register()
         {
+            //Estableciendo tipo de respuesta.
+            HttpResponse::SetContentType(MimeType::Json);
+
             //Obteniendo parámetros post.
             array_filter($_POST, function ($val) {
                 return trim($val);
@@ -146,49 +149,65 @@
 
             $first_name = empty($_POST['fn']) ? null : (string)$_POST['fn'];
             $last_name = empty($_POST['ln']) ? null : (string)$_POST['ln'];
+
             $gender = empty($_POST['gen'])?null: (string) $_POST['gen'];
+
             $birthday = empty($_POST['birth']) ? null : (string) $_POST['birth'];
+
             $phone = empty($_POST['phone'])?null: (string) $_POST['phone'];
+
             $email = empty($_POST['email'])?null: (string) $_POST['email'];
+
             $user = empty($_POST['u']) ? null : (string)$_POST['u'];
+
             $pass = empty($_POST['p']) ? null : (string)$_POST['p'];
+
             $pass_rep = empty($_POST['p_rep']) ? null : (string)$_POST['p_rep'];
-
-
-            //Estableciendo tipo de respuesta.
-            HttpResponse::SetContentType(MimeType::Json);
 
             //Comprobaciones.
             if (Session::IsLogin()){
+                file_put_contents('../archivo_25_08_21.txt', "\nYa se ha registrado un usuario", FILE_APPEND);
                 die(json_encode([false, 0]));
             }
             else if(!$this->Iniciar()){
+                file_put_contents('../archivo_25_08_21.txt', "\nUn campos vacio", FILE_APPEND);
                 die(json_encode([false, 1]));
             }
             else if(!$this->ValidarNombreApellido($first_name)){
+                file_put_contents('../archivo_25_08_21.txt', "\nNOmbre Invalido", FILE_APPEND);
                 die(json_encode([false, 2]));
             }
             else if(!$this->ValidarNombreApellido($last_name)){
+                file_put_contents('../archivo_25_08_21.txt', "\nApellido Invalido", FILE_APPEND);
                 die(json_encode([false, 3]));
             }
             else if(!$this->ValidarGenero($gender)){
+                file_put_contents('../archivo_25_08_21.txt', "\nGenero no valido", FILE_APPEND);
                 die(json_encode([false, 4]));
             }
             else if(!$this->ValidarFechanacimiento($birthday)){
+                file_put_contents('../archivo_25_08_21.txt', "\nFecha no valida", FILE_APPEND);
                 die(json_encode([false, 5]));
             }
             else if(!$this->ValidarTelefono($phone)){
+                file_put_contents('../archivo_25_08_21.txt', "\nTelefono no valido", FILE_APPEND);
                 die(json_encode([false, 6]));
             }
             else if(!$this->ValidarCorreo($email)){
+                file_put_contents('../archivo_25_08_21.txt', "\nCorreo no valido", FILE_APPEND);
                 die(json_encode([false, 7]));
             }
-            else if (!$this->UserModel::IsValidUserName($user))
+            else if (!UserModel::IsValidUserName($user)){
+                file_put_contents('../archivo_25_08_21.txt', "\nNombre de usuario no valido", FILE_APPEND);
                 die(json_encode([false, 8]));
-            else if (!$this->ValidarContrasena($pass, $pass_rep) )
+            }
+            else if (!$this->ValidarContrasena($pass, $pass_rep) ){
+                file_put_contents('../archivo_25_08_21.txt', "\nContrasena no valida", FILE_APPEND);
                 die(json_encode([false, 9]));
+            }
+            file_put_contents('../archivo_25_08_21.txt', "Todo ha sido valido", FILE_APPEND);
 
-            try {
+           try {
                 //Estableciendo conexión con BD.
                 $db = new DB(DBAccount::Root);
 
@@ -417,9 +436,9 @@ return $nombre_imagen;
                 return false;
             }
             //si es una fecha se procede a verificar que se encuentre entre 01-01-1900 y la fecha actual
-            $fecha_max = new DateTime();
-            $fecha_min = new DateTime("01-01-1900");
-            $fecha_recibida = new DateTime($date);
+            $fecha_max = new \DateTime();
+            $fecha_min = new \DateTime("01-01-1900");
+            $fecha_recibida = new \DateTime($date);
 
             if ($fecha_recibida > $fecha_max) {
                 return false;
