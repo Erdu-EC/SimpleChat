@@ -153,9 +153,7 @@ $(document).on("input", "#telefono_usuario",function () {
 });
 $(document).on("keydown","#telefono_usuario",function (e) {
     var key = e.key.charCodeAt();
-    if ((key == 8 ||
-            key == 9  ||
-            key == 13  || key == 27 || key == 26  ) ||
+    if ((e.key == "Backspace") ||(e.key == "ArrowRight")|| (e.key == "ArrowLeft")|| (e.key == "Tab")|| (e.key == "Enter")||
         (key >= 48 && key <= 57)) {
         return key;
     } else {
@@ -294,8 +292,7 @@ $(document).on("click","#btn-guardar-perfil", function () {
             swal("¿Estás seguro que deseas cambiar tu contraseña?", {
                 buttons: ["Cancelar", "Aceptar"],
             }).then((r) => {
-                console.log(r);
-                if (r) {
+                 if (r) {
                     EnviarClaveNueva();
                 }
             });
@@ -400,8 +397,8 @@ function EnviarInformacionPerfil() {
                    case 8:
                            swal({
                                     title: "Ha ocurrido un error",
-                                    text: "No se han podido guardar los cambios",
-                                    icon: "warning",
+                                    text: "No se han podido efectuar los cambios",
+                                    icon: "info",
                                     buttons: {
                                         retry: "Reintentar",
                                         defeat: "Cerrar",
@@ -409,7 +406,7 @@ function EnviarInformacionPerfil() {
                                 })
                            .then((value)=> {
                                if(value == "retry"){
-                                   EnviarInformacionPerfil()
+                                   EnviarInformacionPerfil();
                                }else{
                                    return;
                                }
@@ -419,19 +416,11 @@ function EnviarInformacionPerfil() {
             }
         },
         error: () => {
-            IndicarError("No se ha podido completar su solicitud. Revise su conexión a Internet");
+            DatosNoEnviados();
         }
 
     });
 
-}
-function IndicarError($mensaje) {
-    swal({
-        text: $mensaje,
-        icon: "error",
-        button: "Ok",
-        dangerMode: true
-    });
 }
 
 function EnviarClaveNueva() {
@@ -448,9 +437,81 @@ function EnviarClaveNueva() {
         beforeSend: () => {
         },
         error: () => {
+          DatosNoEnviados();
         },
         success: function (json) {
+            if(json[0]=== true){
+                swal(
+                    {
+                        text: 'La contraseña de  su cuenta ha sido modificada correctamente.',
+                        icon: "success",
+                    }).then(
+                    function () {
+                        CargarEspacioConfiguraciones();
+                    }
+                );
+            }else{
 
-        }
-    })
+                switch (json[1]) {
+                    case 1:
+                        IndicarError("Por favor, verifique que las contraseñas introducidas sean válidas.", "No se ha podido cambiar su contraseña");
+                        break;
+                    case 2:
+                        IndicarError("Verifique que ambas contraseñas coinciden e intente nuevamente", "No se ha podido cambiar su contraseña");
+                        break;
+                    case 3:
+                        IndicarError("La contraseña introducida en el campo \"Contraseña cctual\" es incorrecta.","No se ha podido cambiar su contraseña");
+                        break;
+                    case 4:
+                        swal({
+                            title:"Restablecer la contrase",
+                            text:"La nueva contraseña no puede ser igual que la anterior.",
+                            icon: "info",
+                            button: "Ok"
+                        });
+                        break;
+                    default:
+                        swal({
+                            title: "Ha ocurrido un error",
+                            text: "No se ha podido efectuar el cambio de contraseña.",
+                            icon: "info",
+                            buttons: {
+                                retry: "Reintentar",
+                                defeat: "Cerrar",
+                            },
+                        })
+                            .then((value)=> {
+                                if(value == "retry"){
+                                    EnviarClaveNueva();
+
+                                }else{
+                                    return;
+                                }
+                            });
+                        break;
+                }
+            }
+
+         }
+    });
+}
+function DatosNoEnviados(){
+    swal({
+        title: "Datos no enviados",
+        text:"No se ha podido completar su solicitud. Revise su conexión a Internet",
+        icon:"error",
+        dangerMode: true,
+        button: "OK"
+
+    });
+}
+
+function IndicarError($mensaje, $titulo="") {
+    swal({
+        title: $titulo,
+        text: $mensaje,
+        icon: "error",
+        button: "Ok",
+        dangerMode: true
+    });
 }

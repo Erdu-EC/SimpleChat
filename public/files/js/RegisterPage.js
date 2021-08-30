@@ -9,7 +9,6 @@ $(document).on("ready",function () {
         elemento.addClass("activo");
         elemento.removeClass("error");
         $(this).removeClass("error");
-        console.log("El input tiene datos");
     }
 
 
@@ -82,9 +81,7 @@ $("#user_pass").blur(function () {
 });
 $("#user_phone").keydown( function (e) {
     var key = e.key.charCodeAt();
-    if ((key == 8 ||
-            key == 9  ||
-            key == 13  || key == 27 || key == 26  ) ||
+    if ((e.key == "Backspace") ||(e.key == "ArrowRight")|| (e.key == "ArrowLeft")|| (e.key == "Tab")|| (e.key == "Enter")||
         (key >= 48 && key <= 57)) {
         return key;
     } else {

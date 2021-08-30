@@ -156,7 +156,7 @@ echo '<div id="valor-genero" class="atributo-perfil">'.$g.' </div>';
                 <div class="row">
                     <div class="col-12">
                         <div class="item-cuenta">
-                            <label for="clave-ant" class="etiqueta-campo ">Contraseña Actual</label>
+                            <label for="clave-ant" class="etiqueta-campo ">Contraseña actual</label>
                             <input type="password" id="clave-ant" class="campo-cuenta" autocomplete="current-password"
                                    readonly>
                         </div>
@@ -170,7 +170,7 @@ echo '<div id="valor-genero" class="atributo-perfil">'.$g.' </div>';
                     </div>
                     <div class="col-12">
                         <div class="item-cuenta" id="cont-clave-nuev-rep">
-                            <label for="clave-nuev-rep" class="etiqueta-campo">Repita la nueva Contraseña</label>
+                            <label for="clave-nuev-rep" class="etiqueta-campo">Repita la nueva contraseña</label>
                             <input type="password" id="clave-nuev-rep" class="campo-cuenta" autocomplete="new-password"
                                    readonly>
 

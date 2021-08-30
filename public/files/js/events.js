@@ -92,7 +92,7 @@ function Contactos() {
 
 
 $("#espacio-de-escritura .wrap input").on("keyup keydown change",function () {
-    console.log('activado')
+
     message = $(".wrap input").val();
     if ($.trim(message) == '') {
         $("#btn-enviar-mensaje").removeClass("activar")

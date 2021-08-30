@@ -326,7 +326,7 @@
 
 ///
 /// Cambio de clave
-        //codigo 1 Una de las tres claves no es valida
+        //codigo 1 Una o mas de las tres claves no es valida
         //codigo 2 Las claves recibidas no coinciden
         //codigo 3 La contraseña es incorrecta
         //Codigo 4 La contraseña nueva es igual a la anterior
@@ -348,12 +348,10 @@
             $new_pass= empty($_POST['cn']) ? null : (string)$_POST['cn'];
             $new_pass_rep= empty($_POST['cnr']) ? null : (string)$_POST['cnr'];
 
-            //una de las tres claves es invalida
             if(!(UserModel::IsValidPass($act_pass) & UserModel::IsValidPass($new_pass) & UserModel::IsValidPass($new_pass_rep))){
-
                 die(json_encode([false, 1]));
                }
-            //las claves nuevas y clave nueva_rep no son la misma
+
             if( strcmp($new_pass, $new_pass_rep)!=0){
                 die(json_encode([false, 2]));
             }
