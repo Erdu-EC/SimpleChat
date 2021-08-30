@@ -63,7 +63,7 @@ return $res;
                         <div class="item-perfil-cuenta">
                             <label for="nombres" class="etiqueta-campo contraida">Nombres</label>
                             <input type="text" id="nombres" class="atributo-perfil" readonly minlength="1"
-                                   value="<?= $_VIEW->first_name ?>">
+                                   value="<?= $_VIEW->first_name ?>" data-src="<?= $_VIEW->first_name ?>">
 
 
                         </div>
@@ -71,7 +71,7 @@ return $res;
                         <div class="item-perfil-cuenta">
                             <label for="apellidos" class="etiqueta-campo contraida">Apellidos</label>
                             <input type="text" id="apellidos" class="atributo-perfil "value="<?= $_VIEW->last_name ?>" minlength="1"
-                                   readonly>
+                                   readonly data-src="<?= $_VIEW->last_name ?>">
 
                         </div>
                         <div class="item-perfil-cuenta">
@@ -81,7 +81,7 @@ return $res;
                             </div>
 
                             <input type="date" id="fecha_nac" class="atributo-perfil ocultar" value="<?=$_VIEW->birth_date ?>"
-                                   readonly <?php echo 'max="', date('Y-m-d'), '"'; ?>  min="1900-01-01">
+                                   readonly <?php echo 'max="', date('Y-m-d'), '"'; ?>  min="1900-01-01" data-src="<?=$_VIEW->birth_date ?>">
 
                         </div>
 
@@ -185,4 +185,4 @@ echo '<div id="valor-genero" class="atributo-perfil">'.$g.' </div>';
 </div>
 
 <!-- Script para el espacio de Configuraciones-->
-<script type="application/javascript" src="/files/js/Settings.js"></script>
+<script type="application/javascript" src="/files/js/Settings.js<?= '?v='.rand(1,100)?>" defer id="sh-setting"></script>

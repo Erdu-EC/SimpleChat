@@ -158,6 +158,8 @@ function CargarEspacioConfiguraciones(){
     $("body").addClass("sb-sidenav-toggled");
     $("#mi-perfil-sidepanel").removeClass("no-visible");
     $('#espacio-de-chat').empty();
+    $('#sh-setting').remove();
+
     $('#espacio-de-chat').html(
         ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
     ).load(`/Settings`);
@@ -194,6 +196,10 @@ $(document).on("load", ".imagen-enviada", function (){
     $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
 });
 $(document).on("click", ".imagen-enviada", function (){
+    var imagen = $(this).attr("src");
+    MostrarModal($(this).attr("tittle"), '<img src="'+imagen+'" alt="" />',"", 'modal-fullscreen', "btn-close-white");
+});
+$(document).on("click", ".imagen-recibida", function (){
     var imagen = $(this).attr("src");
     MostrarModal($(this).attr("tittle"), '<img src="'+imagen+'" alt="" />',"", 'modal-fullscreen', "btn-close-white");
 });

@@ -170,6 +170,7 @@ function ClavesIguales() {
 //manejando evento INPUT y CHANGE de los input de formularios
 $("#nombres").on("input", function () {
     ValidarNombreApellido($(this), "nombre");
+    console.log("escribiendo en #nombres");
 });
 $("#apellidos").on("input", function () {
     ValidarNombreApellido($(this), "apellido");
