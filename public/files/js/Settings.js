@@ -68,8 +68,7 @@ $(document).on("click", "#btn-opciones-perfil", function (e) {
     var caja = '<div class="contenedor-opciones" id="list-opciones"><ul> <li id="opc-ver-foto">Ver foto</li> <li id="opc-subir-foto">Subir foto</li></ul> </div>';
 
     $(this).after(caja);
-    $("#list-opciones").css("left", posX);
-    $("#list-opciones").css("top", posY);
+    $("#list-opciones").css("left", posX).css("top", posY);
 
 });
 
@@ -91,41 +90,6 @@ $(document).on("click", "#opc-ver-foto", function () {
 
 $(document).on('click', "#opc-subir-foto", function () {
     $("#nueva-foto-perfil").trigger("click");
-});
-
-
-$(document).on('change', "#nueva-foto-perfil", function () {
-    $imagenPrevisualizacion = $("#foto-perfil-cuenta");
-    const archivos = document.getElementById('nueva-foto-perfil').files;
-
-    if (archivos.length !== 0) {
-        const form_data = new FormData();
-        form_data.append('img', archivos.item(0));
-
-        $.ajax({
-            url: '/action/users/profile/upload_img', type: 'post',
-            data: form_data,
-            contentType: false,
-            processData: false,
-            mimeType: 'application/json',
-            success: function (response) {
-                if (response[0]) {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(archivos[0]);
-
-                    reader.onload = function () {
-                        $imagenPrevisualizacion.attr("src", reader.result);
-                        $('#mi-perfil-sidepanel img').attr("src", reader.result);
-                        $('#profile-img').attr("src", reader.result);
-                    };
-                } else {
-                    alert('No fue posible subir la imagen.');
-                }
-            }
-        });
-
-        return false;
-    }
 });
 
 
@@ -170,24 +134,24 @@ function ClavesIguales() {
 //manejando evento INPUT y CHANGE de los input de formularios
 $("#nombres").on("input", function () {
     ValidarNombreApellido($(this), "nombre");
-    console.log("escribiendo en #nombres");
+
 });
-$("#apellidos").on("input", function () {
+$(document).on("input", "#apellidos",function () {
     ValidarNombreApellido($(this), "apellido");
 });
-$("#fecha_nac").on("change", function () {
+$(document).on("change","#fecha_nac", function () {
     ValidarFechaNacimiento();
 });
-$("#genero").on("change", function () {
+$(document).on("change","#genero", function () {
     ValidarGenero();
 });
-$("#correo_usuario").on("input", function () {
+$(document).on("input","#correo_usuario", function () {
     ValidarCorreo();
 });
-$("#telefono_usuario").on("input", function () {
+$(document).on("input", "#telefono_usuario",function () {
     ValidarTelefono();
 });
-$("#telefono_usuario").keydown(function (e) {
+$(document).on("keydown","#telefono_usuario",function (e) {
     var key = e.key.charCodeAt();
     if ((key == 8 ||
             key == 9  ||
@@ -283,8 +247,8 @@ function ValidarTelefono() {
     return true;
 }
 
-//Enviar datos al servidor
-$("#btn-guardar-perfil").on("click", function () {
+//Código para enviar los datos al servidor
+$(document).on("click","#btn-guardar-perfil", function () {
     $("#faltan-campos").remove();
     if ($("#btn-editar-perfil").hasClass("activo")) {
         var continuar = true;
@@ -313,7 +277,6 @@ $("#btn-guardar-perfil").on("click", function () {
             swal("¿Estás seguro que deseas cambiar la información?", {
                 buttons: ["Cancelar", "Aceptar"],
             }).then((r) => {
-                console.log(r);
                 if (r) {
                     EnviarInformacionPerfil();
                 }
@@ -341,7 +304,46 @@ $("#btn-guardar-perfil").on("click", function () {
     }
 });
 
-//codigo para enviar los datos al servidor
+
+
+$(document).on('change', "#nueva-foto-perfil", function () {
+    $imagenPrevisualizacion = $("#foto-perfil-cuenta");
+    const archivos = document.getElementById('nueva-foto-perfil').files;
+
+    if (archivos.length !== 0) {
+        const form_data = new FormData();
+        form_data.append('img', archivos.item(0));
+
+        $.ajax({
+            url: '/action/users/profile/upload_img', type: 'post',
+            data: form_data,
+            contentType: false,
+            processData: false,
+            mimeType: 'application/json',
+            success: function (response) {
+                if (response[0]) {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(archivos[0]);
+
+                    reader.onload = function () {
+                        $imagenPrevisualizacion.attr("src", reader.result);
+                        $('#mi-perfil-sidepanel img').attr("src", reader.result);
+                        $('#profile-img').attr("src", reader.result);
+                    };
+                } else {
+                    alert('No fue posible subir la imagen.');
+                }
+            }
+        });
+
+        return false;
+    }
+});
+
+
+
+
+
 function EnviarInformacionPerfil() {
     $.ajax({
         url: "/action/user/Setting",
@@ -367,7 +369,7 @@ function EnviarInformacionPerfil() {
                         icon: "success",
                     }).then(
                     function () {
-                        window.location = "/";
+                        CargarEspacioConfiguraciones();
                     }
                 );
 

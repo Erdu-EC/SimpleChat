@@ -185,4 +185,3 @@ echo '<div id="valor-genero" class="atributo-perfil">'.$g.' </div>';
 </div>
 
 <!-- Script para el espacio de Configuraciones-->
-<script type="application/javascript" src="/files/js/Settings.js<?= '?v='.rand(1,100)?>" defer id="sh-setting"></script>

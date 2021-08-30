@@ -267,7 +267,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
 <script type="application/javascript" src="/files/vanillatoasts/vanillatoasts.js"></script>
 <script type="text/javascript" src="/files/sweetalert/sweetalert.min.js"></script>
-
+<script type="application/javascript" src="/files/js/Settings.js" defer id="sh-setting"></script>
 
 </body>
 </html>
