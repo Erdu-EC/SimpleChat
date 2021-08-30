@@ -138,7 +138,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     </div>
 
     <div id="layoutSidenav_content">
-        <main class="container-fluid">
+        <div class="container-fluid">
             <div class="row">
                 <article id="frame">
                     <div id="sidepanel">
@@ -251,7 +251,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
             </div>
 
 
-        </main>
+        </div>
     </div>
 </div>
 
