@@ -72,12 +72,15 @@ $(document).on("click", "#btn-opciones-perfil", function (e) {
 $(document).on("click", function (e) {
 
     var container = $("#btn-opciones-perfil");
-
     if (!container.is(e.target) && container.has(e.target).length === 0 && container.length) {
         if ($("#list-opciones").length) {
             $("#list-opciones").remove();
         }
     }
+    if($("#espacio-de-chat").length==0 && $("#panelInfoContacto").length > 0){
+        $("#btn-cerrar-contacto").trigger("click");
+    }
+
 });
 
 $(document).on("click", "#opc-ver-foto", function () {
