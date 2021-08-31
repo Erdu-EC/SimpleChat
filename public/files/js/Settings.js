@@ -19,14 +19,8 @@ $(document).on("click", "#btn-editar-perfil", function () {
         padre.addClass("editable");
         elemento.removeAttr("readonly");
     } else {
-        $("#btn-editar-perfil").html('<span class="material-icons" title="Editar">edit</span>');
-        $("#valor-genero").removeClass("ocultar");
-        $("#genero").addClass("ocultar");
-        $("#valor-fecha_nac").removeClass("ocultar");
-        $("#fecha_nac").addClass("ocultar");
 
-        elemento.attr("readonly", true);
-        padre.removeClass("editable");
+        ValoresPorDefecto();
 
     }
 
@@ -54,6 +48,9 @@ $(document).on("change", "#check-cambiar-clave", function () {
             padre.removeClass("editable");
         });
         $(".form-conf-acceso .row div .error").remove();
+        $("#clave-ant").val("");
+        $("#clave-nuev").val("");
+        $("#clave-nuev_rep").val("");
     }
 });
 $(document).on("click", ".item-cuenta.editable", function () {
@@ -132,7 +129,7 @@ function ClavesIguales() {
 }
 
 //manejando evento INPUT y CHANGE de los input de formularios
-$("#nombres").on("input", function () {
+$(document).on("input","#nombres", function () {
     ValidarNombreApellido($(this), "nombre");
 
 });
@@ -161,6 +158,48 @@ $(document).on("keydown","#telefono_usuario",function (e) {
     }
 
 });
+
+//Funciones
+function ValoresPorDefecto(){
+    nombres= $("#nombres");
+    apellidos = $("#apellidos");
+   cont_fecha= $("#valor-fecha_nac");
+    genero= $("#genero");
+    telefono = $("#telefono_usuario");
+correo = $("#correo_usuario");
+
+/*
+    $("#").val();
+    $("#").val();*/
+
+    nombres.val(nombres.attr("data-src"));
+    apellidos.val(apellidos.attr("data-src"));
+    cont_fecha.text( ObtenerFecha($("#fecha_nac").attr("data-src")));
+    $("#fecha_nac").val($("#fecha_nac").attr("data-src"));
+
+    telefono.val(telefono.attr("data-src"));
+    correo.val(correo.attr("data-src"));
+    $(".item-perfil-cuenta .atributo-perfil").siblings(".notif-error").remove();
+    $(".contenedor-telefono-cuenta").siblings(".error").remove();
+
+    var elemento = $(".item-perfil-cuenta .atributo-perfil");
+    var padre = elemento.parent();
+    $("#btn-editar-perfil").removeClass("activo").html('<span class="material-icons" title="Editar">edit</span>');
+    $("#valor-genero").removeClass("ocultar");
+    $("#genero").addClass("ocultar");
+    $("#valor-fecha_nac").removeClass("ocultar");
+    $("#fecha_nac").addClass("ocultar");
+    elemento.attr("readonly", true);
+    padre.removeClass("editable");
+
+}
+//una vez que se ha modificado la informacion de perfil se cambia el data-src con los datos nuevos
+function AsignarValoresNuevos(){
+$(".item-perfil-cuenta .atributo-perfil").each (function (index, element) {
+$(this).attr("data-src", $(this).val());
+});
+
+}
 
 //Funciones para validacion de los campos
 
@@ -366,7 +405,8 @@ function EnviarInformacionPerfil() {
                         icon: "success",
                     }).then(
                     function () {
-                        CargarEspacioConfiguraciones();
+                        AsignarValoresNuevos();
+                        ValoresPorDefecto();
                     }
                 );
 

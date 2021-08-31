@@ -178,7 +178,7 @@ return hora_envio;
 function ObtenerFecha(fecha){
     if(fecha==null)
         return "----";
-    var fecha_rec= new Date(fecha);
+    var fecha_rec= new Date(fecha+" 00:00:00");
 var meses = ["En.", "Febr.", "Mzo.", "Abr.","May.","Jun.", "Jul.", "Agto.","Sept.","Oct.","Nov.","Dic."];
     return fecha_rec.getDate() + " " + meses[fecha_rec.getMonth()] + " " + fecha_rec.getUTCFullYear();
 }

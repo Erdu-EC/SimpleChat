@@ -53,9 +53,7 @@ return $res;
                             <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png"
                                    id="nueva-foto-perfil">
                         </form>
-
                     </div>
-
                 </div>
 
 
@@ -64,8 +62,6 @@ return $res;
                             <label for="nombres" class="etiqueta-campo contraida">Nombres</label>
                             <input type="text" id="nombres" class="atributo-perfil" readonly minlength="1"
                                    value="<?= $_VIEW->first_name ?>" data-src="<?= $_VIEW->first_name ?>">
-
-
                         </div>
 
                         <div class="item-perfil-cuenta">
@@ -82,7 +78,6 @@ return $res;
 
                             <input type="date" id="fecha_nac" class="atributo-perfil ocultar" value="<?=$_VIEW->birth_date ?>"
                                    readonly <?php echo 'max="', date('Y-m-d'), '"'; ?>  min="1900-01-01" data-src="<?=$_VIEW->birth_date ?>">
-
                         </div>
 
                         <div class="item-perfil-cuenta">
@@ -110,7 +105,7 @@ echo '<div id="valor-genero" class="atributo-perfil">'.$g.' </div>';
 
 
 
-                            <select name="genero" id="genero" class="atributo-perfil ocultar">
+                            <select name="genero" id="genero" class="atributo-perfil ocultar" data-src="<?= $_VIEW->gender ?>">
                                 <option value="M" <?= ($_VIEW->gender=='M')? "selected":"" ?> >Masculino</option>
                                 <option value="F" <?= ($_VIEW->gender=='F')? "selected":"" ?> >Femenino</option>
                                 <option value="O" <?= ($_VIEW->gender=='O')? "selected":"" ?> >Otro</option>
@@ -122,15 +117,14 @@ echo '<div id="valor-genero" class="atributo-perfil">'.$g.' </div>';
                         <div class="item-perfil-cuenta">
                             <label for="correo_usuario" class="etiqueta-campo contraida">Correo</label>
                             <input type="text" id="correo_usuario" class="atributo-perfil "
-                                   value="<?=$_VIEW->email ?>"
+                                   value="<?=$_VIEW->email ?>" data-src="<?=$_VIEW->email ?>"
                                    readonly maxlength="255">
 
                         </div>
                         <div class="item-perfil-cuenta contenedor-telefono-cuenta">
                             <label for="telefono_usuario" class="etiqueta-campo contraida">Teléfono</label>
                             <input type="text" id="telefono_usuario" class="atributo-perfil " value="<?= $_VIEW->phone ?>"
-                                   readonly
-                                   maxlength="15">
+                                   readonly  maxlength="15" data-src="<?= $_VIEW->phone ?>">
 
                         </div>
                     </div>
