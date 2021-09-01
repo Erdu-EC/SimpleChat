@@ -1125,12 +1125,14 @@ background: #f2f2f2;
 }
 #frame #sidepanel #contacts {
   margin-top: 30px;
-  height: calc(100% - 110px);
+  height: calc(100% - 130px);
   overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-width: none;
   margin-botton:0px;
+  padding-bottom: 60px;
 }
+
 @media screen and (max-width: 735px) {
   #frame #sidepanel #contacts {
     height: calc(100% - 130px);
@@ -1186,7 +1188,7 @@ display: flex;
   height: 8px;
 border-radius: 50%;
   position: absolute;
-  z-index: 110;
+  z-index: 10;
   left: -5px;
 }
 #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil img {
@@ -1353,7 +1355,7 @@ width: 100%;
   width: 100%;
   bottom: 0;
   margin-top: 0;
-
+  z-index: 2000;
 }
 
 #frame #sidepanel #bottom-bar button {
@@ -1367,9 +1369,13 @@ width: 100%;
   font-size: 0.85em;
   font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
   height: 50px;
+
+
 }
+
 #icon-nuevo-chat{
   width: 30px;
+
 }
 #icon-agregar-contacto{
   width: 30px;
@@ -1628,8 +1634,6 @@ Solicitud de chat
   padding: 10px;
   align-items: center;
   text-align: center;
-  /*border-radius: 0;
-  border: none;*/
   box-shadow: none;
   outline: none;
   border: 1px solid #d3d3d3;

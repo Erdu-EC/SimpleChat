@@ -97,7 +97,6 @@ return $res;
                                 case "D":
                                         $g= "Sin especificar";
                                     break;
-
                             }
 echo '<div id="valor-genero" class="atributo-perfil">'.$g.' </div>';
                             ?>
@@ -151,15 +150,13 @@ echo '<div id="valor-genero" class="atributo-perfil">'.$g.' </div>';
                     <div class="col-12">
                         <div class="item-cuenta">
                             <label for="clave-ant" class="etiqueta-campo ">Contraseña actual</label>
-                            <input type="password" id="clave-ant" class="campo-cuenta" autocomplete="current-password"
-                                   readonly>
+                            <input type="password" id="clave-ant" class="campo-cuenta" autocomplete="current-password" readonly>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="item-cuenta">
                             <label for="clave-nuev" class="etiqueta-campo ">Nueva contraseña</label>
-                            <input type="password" id="clave-nuev" class="campo-cuenta" autocomplete="new-password"
-                                   readonly>
+                            <input type="password" id="clave-nuev" class="campo-cuenta" autocomplete="new-password" readonly>
                         </div>
                     </div>
                     <div class="col-12">

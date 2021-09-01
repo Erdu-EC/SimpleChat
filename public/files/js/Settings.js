@@ -37,20 +37,7 @@ $(document).on("change", "#check-cambiar-clave", function () {
             padre.addClass("editable")
         });
     } else {
-        if (!$("#btn-editar-perfil").hasClass("activo")) {
-
-            $("#btn-guardar-perfil").removeClass("activo")
-        }
-        $(".item-cuenta .campo-cuenta").each(function () {
-            var elemento = $(this);
-            var padre = $(this).parent();
-            elemento.attr("readonly", true).val("");
-            padre.removeClass("editable");
-        });
-        $(".form-conf-acceso .row div .error").remove();
-        $("#clave-ant").val("");
-        $("#clave-nuev").val("");
-        $("#clave-nuev_rep").val("");
+        ValoresPorDefectoContrasenas();
     }
 });
 $(document).on("click", ".item-cuenta.editable", function () {
@@ -69,19 +56,7 @@ $(document).on("click", "#btn-opciones-perfil", function (e) {
 
 });
 
-$(document).on("click", function (e) {
 
-    var container = $("#btn-opciones-perfil");
-    if (!container.is(e.target) && container.has(e.target).length === 0 && container.length) {
-        if ($("#list-opciones").length) {
-            $("#list-opciones").remove();
-        }
-    }
-    if($("#espacio-de-chat").length==0 && $("#panelInfoContacto").length > 0){
-        $("#btn-cerrar-contacto").trigger("click");
-    }
-
-});
 
 $(document).on("click", "#opc-ver-foto", function () {
     var imagen = $("#foto-perfil-cuenta").attr("data-fuente");
@@ -93,12 +68,12 @@ $(document).on('click', "#opc-subir-foto", function () {
 });
 
 
-$("#clave-nuev-rep").on("input", function () {
+$(document).on("input", "#clave-nuev-rep" ,function () {
     if ($("#clave-nuev").val() != "") {
         ClavesIguales();
     }
 });
-$("#clave-nuev").on("input", function () {
+$(document).on("input","#clave-nuev", function () {
     if ($("#clave-nuev-rep").val() != "") {
         ClavesIguales();
     }
@@ -171,17 +146,19 @@ function ValoresPorDefecto(){
     telefono = $("#telefono_usuario");
 correo = $("#correo_usuario");
 
-/*
-    $("#").val();
-    $("#").val();*/
-
     nombres.val(nombres.attr("data-src"));
     apellidos.val(apellidos.attr("data-src"));
     cont_fecha.text( ObtenerFecha($("#fecha_nac").attr("data-src")));
     $("#fecha_nac").val($("#fecha_nac").attr("data-src"));
 
+    $("#valor-genero").text($('#genero option[value="'+genero.attr("data-src")+'"]').html());
+    $("#genero option:selected").attr("selected",false);
+   genero.val(genero.attr("data-src"));
+
+    console.log($("#genero option:selected").val());
     telefono.val(telefono.attr("data-src"));
     correo.val(correo.attr("data-src"));
+
     $(".item-perfil-cuenta .atributo-perfil").siblings(".notif-error").remove();
     $(".contenedor-telefono-cuenta").siblings(".error").remove();
 
@@ -198,12 +175,31 @@ correo = $("#correo_usuario");
 }
 //una vez que se ha modificado la informacion de perfil se cambia el data-src con los datos nuevos
 function AsignarValoresNuevos(){
+
 $(".item-perfil-cuenta .atributo-perfil").each (function (index, element) {
 $(this).attr("data-src", $(this).val());
 });
-
+    /*genero= $("#genero");
+    genero.attr("data-src", $("#genero option:selected").val());*/
 }
 
+function ValoresPorDefectoContrasenas() {
+    $("#check-cambiar-clave").prop('checked', false);
+    if (!$("#btn-editar-perfil").hasClass("activo")) {
+
+        $("#btn-guardar-perfil").removeClass("activo")
+    }
+    $(".item-cuenta .campo-cuenta").each(function () {
+        var elemento = $(this);
+        var padre = $(this).parent();
+        elemento.attr("readonly", true).val("");
+        padre.removeClass("editable");
+    });
+    $(".form-conf-acceso .row div .error").remove();
+    $("#clave-ant").val("");
+    $("#clave-nuev").val("");
+    $("#clave-nuev_rep").val("");
+}
 //Funciones para validacion de los campos
 
 
@@ -322,7 +318,7 @@ $(document).on("click","#btn-guardar-perfil", function () {
                 }
             });
         } else {
-            $(".contenedor-telefono-cuenta").after(' <div id="faltan-campos" class="error"><span class="material-icons">error</span>Verifique todos los campos</div>');
+            $(".contenedor-telefono-cuenta").after('<div id="faltan-campos" class="error"><span class="material-icons">error</span>Verifique todos los campos</div>');
         }
 
 
@@ -339,7 +335,6 @@ $(document).on("click","#btn-guardar-perfil", function () {
                 }
             });
         }
-
     }
 });
 
@@ -379,10 +374,6 @@ $(document).on('change', "#nueva-foto-perfil", function () {
     }
 });
 
-
-
-
-
 function EnviarInformacionPerfil() {
     $.ajax({
         url: "/action/user/Setting",
@@ -412,7 +403,6 @@ function EnviarInformacionPerfil() {
                         ValoresPorDefecto();
                     }
                 );
-
             }
             else{
                 switch (json[1]) {
@@ -449,7 +439,7 @@ function EnviarInformacionPerfil() {
                                 })
                            .then((value)=> {
                                if(value == "retry"){
-                                   EnviarInformacionPerfil();
+
                                }else{
                                    return;
                                }
@@ -461,9 +451,7 @@ function EnviarInformacionPerfil() {
         error: () => {
             DatosNoEnviados();
         }
-
     });
-
 }
 
 function EnviarClaveNueva() {
@@ -490,7 +478,7 @@ function EnviarClaveNueva() {
                         icon: "success",
                     }).then(
                     function () {
-                        CargarEspacioConfiguraciones();
+                        ValoresPorDefectoContrasenas();
                     }
                 );
             }else{
@@ -503,7 +491,7 @@ function EnviarClaveNueva() {
                         IndicarError("Verifique que ambas contraseñas coinciden e intente nuevamente", "No se ha podido cambiar su contraseña");
                         break;
                     case 3:
-                        IndicarError("La contraseña introducida en el campo \"Contraseña cctual\" es incorrecta.","No se ha podido cambiar su contraseña");
+                        IndicarError("La contraseña introducida en el campo \"Contraseña actual\" es incorrecta.","No se ha podido cambiar su contraseña");
                         break;
                     case 4:
                         swal({

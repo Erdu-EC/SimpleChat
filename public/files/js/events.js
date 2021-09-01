@@ -3,6 +3,26 @@ $(document).on("load", function () {
 
 });
 
+$(document).on("click", function (e) {
+
+    var container = $("#btn-opciones-perfil");
+    if ($("#list-opciones").length > 0) {
+        if (!container.is(e.target) && container.has(e.target).length === 0 && container.length) {
+            $("#list-opciones").remove();
+        }
+    }
+    var opc_perfil= $("#mi-perfil-sidepanel");
+if($("#mi-perfil-sidepanel .opciones-sesion").length){
+    if (!opc_perfil.is(e.target) && opc_perfil.has(e.target).length === 0 && opc_perfil.length) {
+
+        $("#mi-perfil-sidepanel .usuario-perfil-opciones").removeClass("activo");
+        $("#mi-perfil-sidepanel .opciones-sesion").remove();
+    }
+}
+
+});
+
+
 $("#sidebarToggle").on("click", function(e) {
     e.preventDefault();
     $("body").toggleClass("sb-sidenav-toggled");
@@ -24,8 +44,24 @@ $('.submit').on('click',function() {
 
 //cerrar sesion
 $(document).on("click", "#mi-perfil-sidepanel", function (){
-    $("#mi-perfil-sidepanel .usuario-perfil-opciones").toggleClass("activo");
-    $("#mi-perfil-sidepanel .opciones-sesion").toggleClass("inactivo");
+    $("#mi-perfil-sidepanel .usuario-perfil-opciones").addClass("activo");
+
+    $("#mi-perfil-sidepanel").append('<div class="opciones-sesion activo">\n' +
+        '                                <div class="item-opciones-sesion " id="btn-conf-sesion">\n' +
+        '\n' +
+        '                                    <div title="Configuraciones de cuenta" class="opc-sesion">\n' +
+        '                                        <span class="material-icons">settings</span>\n' +
+        '                                        <p>Configuraciones</p>\n' +
+        '                                    </div>\n' +
+        '                                </div>\n' +
+        '                                <div class="item-opciones-sesion ">\n' +
+        '                                    <a href="/Logout" class="opc-sesion">\n' +
+        '                                        <span class="material-icons" title="Cerrar sesión">logout</span>\n' +
+        '                                        <p>Cerrar sesión</p>\n' +
+        '                                    </a>\n' +
+        '                                </div>\n' +
+        '                            </div>');
+
 });
 
 $(".expand-button").click(function() {
@@ -150,6 +186,8 @@ $(document).on("click", "#btn-configuraciones", function () {
 
 });
 $(document).on("click", "#btn-conf-sesion", function () {
+    $("#mi-perfil-sidepanel .usuario-perfil-opciones").removeClass("activo");
+    $("#mi-perfil-sidepanel .opciones-sesion").addClass("inactivo");
     CargarEspacioConfiguraciones();
 
 });
@@ -157,7 +195,7 @@ $(document).on("click", "#btn-conf-sesion", function () {
 function CargarEspacioConfiguraciones(){
     $("body").addClass("sb-sidenav-toggled");
     $("#mi-perfil-sidepanel").removeClass("no-visible");
-    $('#espacio-de-chat').empty();
+    $("#btn-cerrar-contacto").trigger("click");
     $('#sh-setting').remove();
 
     $('#espacio-de-chat').html(

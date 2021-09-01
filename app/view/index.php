@@ -152,23 +152,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <div class="usuario-perfil-opciones">
                                 <span class="material-icons" title="">arrow_drop_down</span>
                             </div>
-                            <div class="opciones-sesion inactivo">
-                                <div class="item-opciones-sesion " id="btn-conf-sesion">
 
-                                    <div title="Configuraciones de cuenta" class="opc-sesion">
-                                        <span class="material-icons">settings</span>
-                                        <p>Configuraciones</p>
-                                    </div>
-                                </div>
 
-                                <div class="item-opciones-sesion ">
-                                    <a href="/Logout" class="opc-sesion">
-                                        <span class="material-icons" title="Cerrar sesión">logout</span>
-                                        <p>Cerrar sesión</p>
-                                    </a>
-                                </div>
-
-                            </div>
                         </div>
                         <div id="search">
                             <label for="inputBuscarConversacion" class="material-icons">search</i></label>
