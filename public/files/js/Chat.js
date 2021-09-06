@@ -57,7 +57,7 @@ function EnviarMensaje() {
     textarea.val('');
     $("#btn-enviar-mensaje").removeClass("activar");
     if (texto !== '') {
-        const mensaje = $(ObtenerElementoMensaje(texto));
+        const mensaje = $(ObtenerElementoMensajeEnviado(texto));
 
         $.ajax('/action/messages/send', {
             method: 'post', dataType: 'json', mimeType: 'application/json',
@@ -72,18 +72,9 @@ function EnviarMensaje() {
                 }, 150)
             },
             success: function (json) {
-                if (json) {
-                    var hora_envio = ObtenerHoraMensaje(new Date());
-                    mensaje.find('.extra-mensaje').empty().append('<div class="extra"><span>' + hora_envio + '</span></div> <div class="extra icon"><span class="material-icons">done</span></div> ');
-
-                    /*Estados de un mensaje enviado
-                 enviado: <div class="extra icon"><span class="material-icons">done</span></div>
-                 entregado:<div class="extra icon"><i class="far fa-check-circle"></i></div>
-                 visto: <div class="extra icon"><i class="fas fa-check-circle"></i></div>
-
-                    * */
-
-                } else
+                if (json)
+                    mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHoraMensaje(new Date()), 1));
+                else
                     mensaje.find('.popover-header').text("Error al enviar.");
             }
         });
@@ -116,6 +107,7 @@ function CargarEspacioDeChat() {
         success: function (json) {
             if (json !== false) {
                 const contenedor_datos = espacio_chat.find('.contact-profile');
+                const lista_mensajes =  $('#lista-mensajes').html('');
 
                 //Estableciendo datos.
                 espacio_chat.find('.messages').attr('data-usuario', json.id);
@@ -129,14 +121,22 @@ function CargarEspacioDeChat() {
                     contenedor_datos.find('.opciones-contacto').show();
 
                 if (json.has_invitation)
-                    $('#lista-mensajes').before(ObtenerModalDeInvitacion());
+                    lista_mensajes.before(ObtenerModalDeInvitacion());
                 else
                     espacio_chat.find('.messages .notificacion').remove();
 
                 //Mostrando mensajes.
                 json.messages.forEach(msg => {
+                    if (msg[1] === json.id){
+                        lista_mensajes.append(ObtenerElementoMensajeContacto(json.profile_img, msg[6], msg[4]));
+                    }else{
+                        lista_mensajes.append(ObtenerElementoMensaje(msg[6], ObtenerHoraMensaje(msg[3]),
+                            msg[5] !== null ? 3 : msg[4] !== null ? 2 : 1));
+                    }
+                });
 
-                })
+                //Bajar scroll.
+                $("#espacio-de-chat .messages").scrollTop($("#espacio-de-chat .messages").prop("scrollHeight"));
 
                 //Mostrar contenedor.
                 espacio_chat.find('.cargando').remove();
@@ -203,18 +203,6 @@ $(document).on('click', '.btn-agregar-contacto', function () {
         }
     });
 });
-
-const ObtenerElementoMensaje = mensaje => `
-<li class="enviado">
-            <img src="${ObtenerUrlImagen($('#profile-img')) + '?w=40&h=40'}" alt="" />
-            <div class="dir"></div>
-            <div class="cont-msj"><p> ${mensaje}</p> </div>
-            <div class="extra-mensaje">
-                                <div class="enviando">
-                                </div>
-            </div>
-    </li>`;
-
 
 function ObtenerHoraMensaje(hora) {
     var act = new Date(hora);
