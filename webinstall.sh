@@ -20,6 +20,7 @@ sudo cp -r $(pwd) /var/www/SimpleChat
 #Configurando host virtual.
 sudo rm /etc/apache2/sites-available/SimpleChat.com.conf
 sudo cp SimpleChat.com.conf /etc/apache2/sites-available/SimpleChat.com.conf
+sudo cp -r ssl /etc/apache2
 
 #Habilitando host virtual.
 sudo a2ensite SimpleChat.com.conf

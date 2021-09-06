@@ -1,3 +1,5 @@
+#!/bin/bash
+
 SERVER_DIR=$(pwd)
 USER=$(whoami)
 
