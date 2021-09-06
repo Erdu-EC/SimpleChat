@@ -135,13 +135,13 @@ function CargarEspacioDeChat() {
                     }
                 });
 
-                //Bajar scroll.
-                $("#espacio-de-chat .messages").scrollTop($("#espacio-de-chat .messages").prop("scrollHeight"));
-
                 //Mostrar contenedor.
                 espacio_chat.find('.cargando').remove();
                 espacio_chat.find('> *').show();
                 espacio_chat.show();
+
+                //Bajar scroll.
+                espacio_chat.find('.messages').scrollTop(espacio_chat.find('.messages').prop("scrollHeight"));
 
                 //Eliminar globo contador de mensajes no leidos.
                 $(`#lista-conversaciones .contact > div[data-usuario=${nombre_usuario}] .num-msj-pendientes.online`).remove();
