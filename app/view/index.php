@@ -202,16 +202,16 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </section>
 
                         <div class="messages">
-                            <!--<div class="notificacion">
+                            <div class="notificacion">
                                 <div id="mensaje-invitacion" class="row border-bottom">
-                                    <p><?= $_VIEW->full_name ?> no está en tus contactos y te ha enviado un mensaje, ¿Quieres aceptarlo?
+                                    <p>Esta persona no está en tus contactos y te ha enviado un mensaje, ¿Quieres aceptarlo?
                                     </p>
                                     <div class="botones">
                                         <button class="btn btn-si"><span class="material-icons">done</span>Si</button>
                                         <button class="btn btn-no"><span class="material-icons">close</span>No</button>
                                     </div>
                                 </div>
-                            </div>-->
+                            </div>
 
                             <ul id="lista-mensajes">
                                 <!--<?php

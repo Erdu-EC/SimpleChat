@@ -90,7 +90,7 @@
 			$data->is_contact = $user_data->is_contact;
 			$data->has_invitation = $user_data->has_invitation;
 			$data->messages = ArrayUtils::GetIndexedValues($user_data->messages->GetInnerArray());
-			$data->profile_img = $user_data->profile_img;
+			$data->profile_img = APP_URL::OfImageProfile($user_data->profile_img);
 
 			//Destruyendo variables.
 			unset($user_data);

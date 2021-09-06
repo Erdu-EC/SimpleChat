@@ -22,9 +22,7 @@
 	Route::Get('/action/conversations', 'MessageController#GetConversations');
 
 	Route::Get('/Chats/{contact_name}/', 'MessageController#GetConversationsWithContact', [
-		'contact_name' => function (string $user): bool {
-			return UserModel::IsValidUserName($user);
-		}
+		'contact_name' => fn(string $user): bool => UserModel::IsValidUserName($user)
 	]);
 
 	#Invitations.

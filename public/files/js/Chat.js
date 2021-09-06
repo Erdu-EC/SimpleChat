@@ -73,7 +73,7 @@ function EnviarMensaje() {
             },
             success: function (json) {
                 if (json) {
-                    var hora_envio = ObtenerHoraMensaje (new Date());
+                    var hora_envio = ObtenerHoraMensaje(new Date());
                     mensaje.find('.extra-mensaje').empty().append('<div class="extra"><span>' + hora_envio + '</span></div> <div class="extra icon"><span class="material-icons">done</span></div> ');
 
                     /*Estados de un mensaje enviado
@@ -114,13 +114,29 @@ function CargarEspacioDeChat() {
         error: () => {
         },
         success: function (json) {
-            if (json !== false){
+            if (json !== false) {
                 const contenedor_datos = espacio_chat.find('.contact-profile');
 
                 //Estableciendo datos.
                 espacio_chat.find('.messages').attr('data-usuario', json.id);
+                contenedor_datos.find('img').attr('src', null).attr('src', json.profile_img + '?w=40&h=40');
                 contenedor_datos.find('.nombre-chat').text(json.full_name);
                 contenedor_datos.find('.ult-conex').text(json.state);
+
+                if (json.is_contact)
+                    contenedor_datos.find('.opciones-contacto').hide();
+                else
+                    contenedor_datos.find('.opciones-contacto').show();
+
+                if (json.has_invitation)
+                    $('#lista-mensajes').before(ObtenerModalDeInvitacion());
+                else
+                    espacio_chat.find('.messages .notificacion').remove();
+
+                //Mostrando mensajes.
+                json.messages.forEach(msg => {
+
+                })
 
                 //Mostrar contenedor.
                 espacio_chat.find('.cargando').remove();
@@ -136,14 +152,25 @@ function CargarEspacioDeChat() {
                 //Actualizar panel de información de contacto, si este esta abierto.
                 if ($('#panelInfoContacto').hasClass('mostrar'))
                     ActualizarInfoContacto();
-            }
-            else {
+            } else {
 
             }
         }
     });
 
 }
+
+const ObtenerModalDeInvitacion = () => `
+                            <div class="notificacion">
+                                <div id="mensaje-invitacion" class="row border-bottom">
+                                    <p>Esta persona no está en tus contactos y te ha enviado un mensaje, ¿Quieres aceptarlo?
+                                    </p>
+                                    <div class="botones">
+                                        <button class="btn btn-si"><span class="material-icons">done</span>Si</button>
+                                        <button class="btn btn-no"><span class="material-icons">close</span>No</button>
+                                    </div>
+                                </div>
+                            </div>`;
 
 $(document).on('click', '.btn-agregar-contacto', function () {
     const boton = $(this);
@@ -179,40 +206,38 @@ $(document).on('click', '.btn-agregar-contacto', function () {
 
 const ObtenerElementoMensaje = mensaje => `
 <li class="enviado">
-            <img src="/files/profile/mikeross.png?w=40&h=40" alt="" />
+            <img src="${ObtenerUrlImagen($('#profile-img')) + '?w=40&h=40'}" alt="" />
             <div class="dir"></div>
             <div class="cont-msj"><p> ${mensaje}</p> </div>
             <div class="extra-mensaje">
                                 <div class="enviando">
                                 </div>
-                               
             </div>
     </li>`;
 
 
-
-function ObtenerHoraMensaje( hora) {
+function ObtenerHoraMensaje(hora) {
     var act = new Date(hora);
-    var hora_envio='';
-    if (act.getHours() < 13 ) {
+    var hora_envio = '';
+    if (act.getHours() < 13) {
         hora_envio += act.getHours() + ':';
-        hora_envio += (act.getMinutes()<10?'0':'') + act.getMinutes();
+        hora_envio += (act.getMinutes() < 10 ? '0' : '') + act.getMinutes();
         hora_envio += ' a.m.';
-    }
-    else{
+    } else {
 
         hora_envio += (act.getHours() - 12) + ':';
-        hora_envio += (act.getMinutes()<10?'0':'') + act.getMinutes();
+        hora_envio += (act.getMinutes() < 10 ? '0' : '') + act.getMinutes();
         hora_envio += ' p.m.';
     }
-console.log(hora_envio);
+    console.log(hora_envio);
 
-return hora_envio;
+    return hora_envio;
 }
-function ObtenerFecha(fecha){
-    if(fecha==null)
+
+function ObtenerFecha(fecha) {
+    if (fecha == null)
         return "----";
-    var fecha_rec= new Date(fecha+" 00:00:00");
-var meses = ["En.", "Febr.", "Mzo.", "Abr.","May.","Jun.", "Jul.", "Agto.","Sept.","Oct.","Nov.","Dic."];
+    var fecha_rec = new Date(fecha + " 00:00:00");
+    var meses = ["En.", "Febr.", "Mzo.", "Abr.", "May.", "Jun.", "Jul.", "Agto.", "Sept.", "Oct.", "Nov.", "Dic."];
     return fecha_rec.getDate() + " " + meses[fecha_rec.getMonth()] + " " + fecha_rec.getUTCFullYear();
 }
