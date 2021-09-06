@@ -95,20 +95,54 @@ function EnviarMensaje() {
 //Agregar contacto
 function CargarEspacioDeChat() {
     const nombre_usuario = $(this).attr('data-usuario');
+    const espacio_chat = $('#espacio-de-chat');
 
-    $('#espacio-de-chat').html(
-        ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')
-    ).load(`/Chats/${nombre_usuario}`, function (){
-        //Eliminar globo contador de mensajes no leidos.
-        $(`#lista-conversaciones .contact > div[data-usuario=${nombre_usuario}] .num-msj-pendientes.online`).remove();
+    espacio_chat.find('> *').hide();
+    espacio_chat.append(`
+        <div class="cargando d-flex h-100">
+            ${ObtenerContenedorHtmlDeAnimacionDeCarga('4.5em', '4.5em', 'text-primary')}
+        </div>`);
+    espacio_chat.show();
 
-        //Actualizar total de conversaciones no leidas.
-        ActualizarTotalDeConversacionesNoLeidas();
+    $('#espacio-de-configuracion').hide();
+    $('#espacio-temporal').remove();
 
-        //Actualizar panel de información de contacto, si este esta abierto.
-        if ($('#panelInfoContacto').hasClass('mostrar'))
-            ActualizarInfoContacto();
+    $.ajax(`/Chats/${nombre_usuario}`, {
+        method: 'get', dataType: 'json', mimeType: 'application/json',
+        beforeSend: () => {
+        },
+        error: () => {
+        },
+        success: function (json) {
+            if (json !== false){
+                const contenedor_datos = espacio_chat.find('.contact-profile');
+
+                //Estableciendo datos.
+                espacio_chat.find('.messages').attr('data-usuario', json.id);
+                contenedor_datos.find('.nombre-chat').text(json.full_name);
+                contenedor_datos.find('.ult-conex').text(json.state);
+
+                //Mostrar contenedor.
+                espacio_chat.find('.cargando').remove();
+                espacio_chat.find('> *').show();
+                espacio_chat.show();
+
+                //Eliminar globo contador de mensajes no leidos.
+                $(`#lista-conversaciones .contact > div[data-usuario=${nombre_usuario}] .num-msj-pendientes.online`).remove();
+
+                //Actualizar total de conversaciones no leidas.
+                ActualizarTotalDeConversacionesNoLeidas();
+
+                //Actualizar panel de información de contacto, si este esta abierto.
+                if ($('#panelInfoContacto').hasClass('mostrar'))
+                    ActualizarInfoContacto();
+            }
+            else {
+
+            }
+        }
     });
+
 }
 
 $(document).on('click', '.btn-agregar-contacto', function () {

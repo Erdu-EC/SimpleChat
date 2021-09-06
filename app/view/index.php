@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/files/vanillatoasts/vanillatoasts.css">
 </head>
 <body class="d-flex flex-column sb-nav-fixed sb-sidenav-toggled">
+
 <!-- Barra superior -->
 <header><?php require 'template/Header.php' ?></header>
 <!-- Fin de barra superior -->
@@ -51,8 +52,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
         </div>
     </div>
 </div>
-
 <!--Fin del contenedor de los contactos para nuevo chat -->
+
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
         <nav class="sb-sidenav ">
@@ -77,52 +78,41 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                         <button class="nav-link" id="btn-configuraciones">
                                             <span class="material-icons">settings</span>
                                             Configuraciones
-
                                         </button>
                                     </div>
                                     <div class="item-accordion-body">
                                         <a class="nav-link" href="/Logout">
                                             <span class="material-icons icono-centrado">logout</span>
                                             Cerrar sesión
-
                                         </a>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <ul class="nav flex-column nav-pills no-seleccionable" id="LateralMenu">
                     <li class="nav-item active">
                         <div class="nav-link" id="seccion-conversaciones">
                             <i class="far fa-comments icon-nav-link"></i>
-                            <!--  <img src="/files/icon/conversaciones.svg" alt="" class="img-fluid">-->
                             <span>Conversaciones</span>
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="nav-link align-middle" id="seccion-contactos">
-                            <i class="far fa-address-book icon-nav-link"></i> <!--
-                            <img src="/files/icon/contactos.svg" alt="" class="img-fluid link-contactos">-->
+                            <i class="far fa-address-book icon-nav-link"></i>
                             <span>Contactos</span>
-
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="nav-link" id="seccion-acerca">
                             <i class="fas fa-users icon-nav-link"></i>
-                            <!-- <img src="/files/icon/nosotros.svg" alt="" class="img-fluid"> -->
                             Acerca de nosotros
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="nav-link" id="seccion-politicas">
                             <i class="fas fa-file-contract icon-nav-link"></i>
-                            <!--
-                            <img src="/files/icon/acuerdos.svg" alt="" class="img-fluid">       -->
                             Términos y condiciones de uso
                         </div>
                     </li>
@@ -130,11 +120,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
         </nav>
         <div class="sb-sidenav-footer">
-
             SimpleChat
         </div>
-
-
     </div>
 
     <div id="layoutSidenav_content">
@@ -167,13 +154,11 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         <div id="bottom-bar">
                             <button id="nuevo-chat"><img src="/files/icon/nuevo-chat.svg" alt="" id="icon-nuevo-chat"
                                                          class="img-fluid"> <span>Nuevo chat</span></button>
-
-                            <!-- <button id="agregar-contacto"><img src="/files/icon/agregar-contacto.svg" alt="" id="icon-agregar-contacto"><span>Agregar contacto</span></button>-->
                         </div>
                     </div>
-                    <section class="content" id="espacio-de-chat">
-                        <div class="temporal">
 
+                    <section class="content" id="espacio-temporal">
+                        <div class="temporal">
                             <div class="cuerpo-temporal align-self-center">
                                 <img src="/files/img/bg/fondo-tmp.svg" alt="" class="align-self-center">
                                 <span class="bienvenida">Bienvenido(a) a <?= APP_NAME ?></span>
@@ -189,20 +174,146 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                 </div>
                             </div>
                         </div>
+                    </section>
 
-                        <!-- -->
+                    <section class="content" id="espacio-de-chat" style="display: none">
+                        <section class="contact-profile no-seleccionable">
+                                <img src="/files/profile/undefined-photo.png?w=40&h=40" alt="">
+
+                            <div class="chat-conexion">
+                                <span class="nombre-chat">Desconocido</span>
+                                <span class="ult-conex">Desconocido</span>
+                            </div>
+
+                            <div class="opciones-contacto">
+                                <div class="btn-agregar-contacto" title="Agregar a contactos"><span class="material-icons">person_add</span>
+                                    Agregar contacto
+                                </div>
+                                <!--<hr class="separador-vertical">
+                                <div class="btn-bloquear-contacto" title="Bloquear">
+                                    <span class="material-icons">block</span>
+                                    Bloquear
+                                </div>-->
+                            </div>
+
+                            <div class="icon-info-contacto" title="Información del contacto" id="btn-info-contacto">
+                                <span class="material-icons">info</span>
+                            </div>
+                        </section>
+
+                        <div class="messages">
+                            <!--<div class="notificacion">
+                                <div id="mensaje-invitacion" class="row border-bottom">
+                                    <p><?= $_VIEW->full_name ?> no está en tus contactos y te ha enviado un mensaje, ¿Quieres aceptarlo?
+                                    </p>
+                                    <div class="botones">
+                                        <button class="btn btn-si"><span class="material-icons">done</span>Si</button>
+                                        <button class="btn btn-no"><span class="material-icons">close</span>No</button>
+                                    </div>
+                                </div>
+                            </div>-->
+
+                            <ul id="lista-mensajes">
+                                <!--<?php
+									$fecha_anterior = '';
+									if (!is_null($_VIEW->messages)):
+										foreach ($_VIEW->messages as $msg):
+											if (!is_null($msg->send_date)) { ?>
+
+												<?php
+												$f = new DateTime($msg->send_date);
+												if ($fecha_anterior == '' || ($fecha_anterior->format('Y-m-d') !== $f->format('Y-m-d'))) {
+													$fecha_anterior = new DateTime($msg->send_date);
+													echo '<li class="marcador"><div class="marcador-fecha">' . ObtenerFecha($msg->send_date) . '</div></li>';
+												}
+											} ?>
+											<?php if ($msg->id_source === $SESSION->user_id): ?>
+                                            <li class="enviado">
+
+                                                <img src="<?= $SESSION->user_profile_img ?>?w=40&h=40" alt="Yo" class="no-seleccionable"
+                                                     width="37px" height="37px"/>
+                                                <div class="dir"></div>
+                                                <div class="cont-msj"><p><?= $msg->content ?></p></div>
+
+                                                <div class="extra-mensaje no-seleccionable">
+													<?php if (!is_null($msg->read_date)): ?>
+                                                        <div class="extra">
+                                                            <span><?= ObtenerHora($msg->read_date); ?></span>
+                                                        </div>
+                                                        <div class="extra icon"><i class="fas fa-check-circle"></i></div>
+													<?php elseif (!is_null($msg->rcv_date)): ?>
+                                                        <div class="extra">
+                                                            <span><?= ObtenerHora($msg->rcv_date); ?></span>
+                                                        </div>
+                                                        <div class="extra icon"><i class="far fa-check-circle"></i></div>
+													<?php else: ?>
+                                                        <div class="extra">
+                                                            <span><?= ObtenerHora($msg->send_date); ?></span>
+                                                        </div>
+                                                        <div class="extra icon"><i class="far fa-check-circle"></i></div>
+													<?php endif; ?>
+                                                </div>
+                                            </li>
+										<?php else: ?>
+
+                                            <li class="recibido">
+                                                <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=40&h=40" alt="Contacto"
+                                                     class="no-seleccionable" width="37px" height="37px"/>
+                                                <div class="dir"></div>
+                                                <div class="cont-msj"><p><?= $msg->content ?></p></div>
+                                                <div class="extra-mensaje no-seleccionable">
+													<?php if (!is_null($msg->send_date)): ?>
+                                                        <div class="extra">
+                                                            <span><?= ObtenerHora($msg->send_date); ?></span>
+                                                        </div>
+													<?php endif; ?>
+                                                </div>
+                                            </li>
+
+										<?php endif;
+
+										endforeach;
+									endif;
+								?>-->
 
 
+                                <script> $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight")); </script>
+                            </ul>
+
+                        </div>
+
+                        <div class="message-input" id="espacio-de-escritura">
+                            <div class="utiles">
+                                <div class="emojis">
+                                    <span class="material-icons" id="btn-emojis">sentiment_satisfied_alt</span>
+
+                                </div>
+
+                            </div>
+                            <div class="wrap">
+                                <label for="contenido-mensaje" style="display: none"></label>
+                                <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..."/>
+
+                                <button class=" btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
+                            </div>
+                            <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" id="archivo-imagen-enviar">
+                            <div id="icon-archivo-imagen">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content" id="espacio-de-configuracion" style="display: none">
                     </section>
 
                     <section class="" id="panelInfoContacto">
                         <button id="btn-cerrar-contacto"><span class="material-icons">close</span></button>
                         <div class="contenedor-perfil">
                             <div class="card perfil">
-                                <img src="/files/profile/harveyspecter.png" alt="" class="img-fluid foto-perfil away">
+                                <img src="" alt="" class="img-fluid foto-perfil away">
 
                                 <div class="card-body">
-                                    <h5>Harvey Specter</h5>
+                                    <h5></h5>
                                     <small></small>
                                 </div>
                                 <div class="contacto-redes">
@@ -232,10 +343,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
                     </section>
                 </article>
-
             </div>
-
-
         </div>
     </div>
 </div>

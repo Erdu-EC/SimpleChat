@@ -167,6 +167,7 @@
     </ul>
 
 </div>
+
 <div class="message-input" id="espacio-de-escritura">
     <div class="utiles">
         <div class="emojis">

@@ -22,7 +22,6 @@
 
 		use HS\libs\helper\System;
 		use const HS\APP_DEBUG;
-		use const HS\APP_FILE_MODE;
 		use const HS\APP_FILE_MODE_UMASK;
 		use const HS\APP_PATH;
 

@@ -2,6 +2,7 @@
 
 	namespace HS\config\routes;
 
+	use HS\app\model\UserModel;
 	use HS\libs\core\Route;
 	use HS\libs\helper\Regex;
 
@@ -19,6 +20,12 @@
 	#Conversations and Messages.
 	Route::Post('/action/messages/send', 'MessageController#Send');
 	Route::Get('/action/conversations', 'MessageController#GetConversations');
+
+	Route::Get('/Chats/{contact_name}/', 'MessageController#GetConversationsWithContact', [
+		'contact_name' => function (string $user): bool {
+			return UserModel::IsValidUserName($user);
+		}
+	]);
 
 	#Invitations.
 	Route::Post('/action/invitation/accept', 'InvitationController#ChangeStateOfLast');
