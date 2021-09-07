@@ -48,3 +48,39 @@ function MostrarModal(titulo, contenido, evento_cierre, clases, color_boton="") 
 
 //Obtener Url de imagen.
 const ObtenerUrlImagen = elemento_img => new URL(elemento_img.attr('src'), window.location.origin).pathname;
+
+//Hora y Fecha.
+function ObtenerHora(hora) {
+    var act = new Date(hora);
+    var hora_envio = '';
+    if (act.getHours() < 13) {
+        hora_envio += act.getHours() + ':';
+        hora_envio += (act.getMinutes() < 10 ? '0' : '') + act.getMinutes();
+        hora_envio += ' a.m.';
+    } else {
+        hora_envio += (act.getHours() - 12) + ':';
+        hora_envio += (act.getMinutes() < 10 ? '0' : '') + act.getMinutes();
+        hora_envio += ' p.m.';
+    }
+
+    return hora_envio;
+}
+
+function ObtenerFecha(fecha) {
+    if (fecha == null)
+        return "----";
+
+    const fecha_solicitada = new Date(fecha);
+    const fecha_actual = new Date(Date.now());
+    fecha_solicitada.setHours(0, 0, 0, 0);
+    fecha_actual.setHours(0, 0, 0, 0);
+
+    if (fecha_solicitada.getTime() === fecha_actual.getTime())
+        return 'Hoy';
+    else if (fecha_solicitada.getTime() === fecha_actual.setDate(fecha_actual.getDate() - 1))
+        return 'Ayer';
+    else {
+        const meses = ["En.", "Febr.", "Mzo.", "Abr.", "May.", "Jun.", "Jul.", "Agto.", "Sept.", "Oct.", "Nov.", "Dic."];
+        return fecha_solicitada.getDate() + " " + meses[fecha_solicitada.getMonth()] + " " + fecha_solicitada.getUTCFullYear();
+    }
+}

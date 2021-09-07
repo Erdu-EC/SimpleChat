@@ -73,7 +73,7 @@ function EnviarMensaje() {
             },
             success: function (json) {
                 if (json)
-                    mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHoraMensaje(new Date()), 1));
+                    mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
                 else
                     mensaje.find('.popover-header').text("Error al enviar.");
             }
@@ -107,7 +107,7 @@ function CargarEspacioDeChat() {
         success: function (json) {
             if (json !== false) {
                 const contenedor_datos = espacio_chat.find('.contact-profile');
-                const lista_mensajes =  $('#lista-mensajes').html('');
+                const lista_mensajes = $('#lista-mensajes').html('');
 
                 //Estableciendo datos.
                 espacio_chat.find('.messages').attr('data-usuario', json.id);
@@ -126,11 +126,21 @@ function CargarEspacioDeChat() {
                     espacio_chat.find('.messages .notificacion').remove();
 
                 //Mostrando mensajes.
+                let fecha_anterior = '';
                 json.messages.forEach(msg => {
-                    if (msg[1] === json.id){
-                        lista_mensajes.append(ObtenerElementoMensajeContacto(json.profile_img, msg[6], msg[4]));
-                    }else{
-                        lista_mensajes.append(ObtenerElementoMensaje(msg[6], ObtenerHoraMensaje(msg[3]),
+                    //Estableciendo fecha del mensaje.
+                    const fecha_envio = ObtenerFecha(msg[3]);
+
+                    if (fecha_anterior === '' || fecha_anterior !== fecha_envio) {
+                        fecha_anterior = fecha_envio;
+                        lista_mensajes.append('<li class="marcador"><div class="marcador-fecha">' + fecha_envio + '</div></li>')
+                    }
+
+                    //Agregando mensaje.
+                    if (msg[1] === json.id) {
+                        lista_mensajes.append(ObtenerElementoMensajeContacto(json.profile_img, msg[6], ObtenerHora(msg[4])));
+                    } else {
+                        lista_mensajes.append(ObtenerElementoMensaje(msg[6], ObtenerHora(msg[3]),
                             msg[5] !== null ? 3 : msg[4] !== null ? 2 : 1));
                     }
                 });
@@ -153,7 +163,7 @@ function CargarEspacioDeChat() {
                 if ($('#panelInfoContacto').hasClass('mostrar'))
                     ActualizarInfoContacto();
             } else {
-
+                console.log('Error al obtener mensajes.');
             }
         }
     });
@@ -204,28 +214,3 @@ $(document).on('click', '.btn-agregar-contacto', function () {
     });
 });
 
-function ObtenerHoraMensaje(hora) {
-    var act = new Date(hora);
-    var hora_envio = '';
-    if (act.getHours() < 13) {
-        hora_envio += act.getHours() + ':';
-        hora_envio += (act.getMinutes() < 10 ? '0' : '') + act.getMinutes();
-        hora_envio += ' a.m.';
-    } else {
-
-        hora_envio += (act.getHours() - 12) + ':';
-        hora_envio += (act.getMinutes() < 10 ? '0' : '') + act.getMinutes();
-        hora_envio += ' p.m.';
-    }
-    console.log(hora_envio);
-
-    return hora_envio;
-}
-
-function ObtenerFecha(fecha) {
-    if (fecha == null)
-        return "----";
-    var fecha_rec = new Date(fecha + " 00:00:00");
-    var meses = ["En.", "Febr.", "Mzo.", "Abr.", "May.", "Jun.", "Jul.", "Agto.", "Sept.", "Oct.", "Nov.", "Dic."];
-    return fecha_rec.getDate() + " " + meses[fecha_rec.getMonth()] + " " + fecha_rec.getUTCFullYear();
-}
