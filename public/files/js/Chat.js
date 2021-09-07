@@ -1,5 +1,5 @@
 $(document).on("keydown", "#espacio-de-escritura", function (e) {
-    if (e.which == 13) {
+    if (e.which === 13) {
         EnviarMensaje();
         return false;
     }
@@ -65,7 +65,7 @@ function EnviarMensaje() {
                 contact: $('#espacio-de-chat > div').attr('data-usuario'),
                 text: texto
             },
-            beforeSend: () => $('#espacio-de-chat .messages #lista-mensajes').append(mensaje),
+            beforeSend: () => AgregarMensajeEnEspacioDeChat(mensaje, new Date(Date.now()).toDateString()),
             error: () => {
                 setTimeout(function () {
                     mensaje.find('.extra-mensaje').empty().append(' <div class="extra"><i class="far fa-clock"></i></div>');
@@ -133,7 +133,7 @@ function CargarEspacioDeChat() {
 
                     if (fecha_anterior === '' || fecha_anterior !== fecha_envio) {
                         fecha_anterior = fecha_envio;
-                        lista_mensajes.append('<li class="marcador"><div class="marcador-fecha">' + fecha_envio + '</div></li>')
+                        lista_mensajes.append(ObtenerSeparadorDeFechasEnChat(fecha_envio))
                     }
 
                     //Agregando mensaje.
@@ -169,6 +169,18 @@ function CargarEspacioDeChat() {
     });
 
 }
+
+function AgregarMensajeEnEspacioDeChat(item_msg, fecha_msg){
+    const lista_msg = $('#lista-mensajes');
+    const fecha = ObtenerFecha(fecha_msg);
+
+    if (lista_msg.find(`.marcador-fecha:contains(${fecha})`).length === 0)
+        lista_msg.append(ObtenerSeparadorDeFechasEnChat(fecha));
+
+    lista_msg.append(item_msg);
+}
+
+const ObtenerSeparadorDeFechasEnChat = fecha_envio => `<li class="marcador"><div class="marcador-fecha">${fecha_envio}</div></li>`;
 
 const ObtenerModalDeInvitacion = () => `
                             <div class="notificacion">

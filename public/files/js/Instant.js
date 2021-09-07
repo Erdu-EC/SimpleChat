@@ -38,9 +38,9 @@ function TratarMensajes(mensajes) {
 }
 
 function MostrarMensajeEnEspacioDeChat(nombre, datos) {
-    const mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, datos.send_date));
+    const mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, ObtenerHora(datos.send_date)));
 
-    $('#lista-mensajes').append(mensaje);
+    AgregarMensajeEnEspacioDeChat(mensaje, datos.send_date);
     mensaje[0].scrollIntoView();
 
     if (document.visibilityState && document.visibilityState !== "visible")
