@@ -36,15 +36,15 @@ function ActualizarInfoContacto() {
                 perfil.find('img').attr('src', null).attr('src', ObtenerUrlImagen($('.contact-profile img')) + "?w=100");
                 perfil.find('h5').text(json[0] + " " + json[1]);
                 perfil.find('h6').text("@" + json[2]);
-                perfil.find('small').text(ObtenerTiempoUltimaConexion(json[3]));
+                perfil.find('small').text(ObtenerTiempoUltimaConexion(json[4]));
 
                 const extra = contenedor.find('.card.contacto-extra');
-                extra.find('.tel span').text(' - ');
-                extra.find('.email span').text(json[4] ?? ' - ');
-                extra.find('.fn span').text(ObtenerFecha(json[5]));
+                extra.find('.tel span').text(json[8] ?? ' - ');
+                extra.find('.email span').text(json[5] ?? ' - ');
+                extra.find('.fn span').text(ObtenerFecha(json[6]));
 
                 let sexo = '';
-                switch (json[6]) {
+                switch (json[7]) {
                     case 'M':
                         sexo = 'Masculino';
                         break;
@@ -137,7 +137,7 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
                     json.forEach((registro) => {
                         $('<li>', {
                             class: 'item-contacto',
-                            html: ObtenerElementoContactoBuscado(registro[0], registro[1], registro[2], registro[3], registro[4]),
+                            html: ObtenerElementoContactoBuscado(registro[0], registro[1], registro[2], registro[3], registro[5]),
                         }).appendTo(lista_resultados);
                     });
                 }
@@ -170,7 +170,7 @@ function actualizar_lista_contactos() {
                 json.forEach((registro) => {
                     $('<li>', {
                         class: 'item-contacto',
-                        html: ObtenerElementoContacto(registro[0], registro[1], registro[2], registro[3], registro[4]),
+                        html: ObtenerElementoContacto(registro[0], registro[1], registro[2], registro[4], registro[5]),
                     }).appendTo(lista_contactos);
                 });
             }
@@ -189,13 +189,9 @@ const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, foto_perfil
                                     <span class="nombre-contacto">${nombres} ${apellidos}</span>
 
                                     <div class="nombre-usuario">
-                                        <span class="material-icons icon-usuario">person</span>
-${usuario}
-                                        </div>
-                                        
-                                        <!--<small class="text-muted">
-                            ${(esContacto) ? '<i class="material-icons" style="vertical-align: middle">person</i><span>Mi contacto</span>' : ''}
-                        </small>-->
+                                         ${(esContacto) ? '<span class="material-icons icon-usuario">person</span>': '<span class="me-1">@</span>'}
+                                                            ${usuario}
+                                    </div>
                                 </div>
                     </div>
 `;

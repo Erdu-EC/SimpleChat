@@ -11,6 +11,7 @@ use HS\libs\core\Controller;
 use HS\libs\core\http\HttpResponse;
 use HS\libs\core\Session;
 use HS\libs\helper\MimeType;
+use http\Client\Curl\User;
 
 class ContactController extends Controller
 {
@@ -24,6 +25,7 @@ class ContactController extends Controller
             UserModel::C_NICK,
             UserModel::C_FNAME,
             UserModel::C_LNAME,
+			UserModel::C_STATE,
             UserModel::C_LAST_CONN,
             UserModel::C_PROFILE_IMG
         ]);

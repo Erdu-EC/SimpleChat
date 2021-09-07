@@ -30,10 +30,12 @@ class UserController extends Controller
 			UserModel::C_FNAME,
 			UserModel::C_LNAME,
 			UserModel::C_NICK,
+			UserModel::C_STATE,
 			UserModel::C_LAST_CONN,
 			UserModel::C_EMAIL,
 			UserModel::C_BIRTH,
-			UserModel::C_GENDER
+			UserModel::C_GENDER,
+			UserModel::C_PHONE
 		]);
 
 		//Devolviendo.
@@ -71,7 +73,8 @@ class UserController extends Controller
             UserModel::C_NICK,
             UserModel::C_FNAME,
             UserModel::C_LNAME,
-            UserModel::C_PROFILE_IMG
+            UserModel::C_PROFILE_IMG,
+			UserModel::C_STATE
         ]);
 
         //Modificando datos.

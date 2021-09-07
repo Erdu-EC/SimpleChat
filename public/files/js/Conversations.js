@@ -26,8 +26,7 @@ function cargar_conversaciones() {
                 json.forEach((registro) => {
                     $('<li>', {
                         class: 'contact',
-                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[3], registro[5], registro[7], registro[4], registro[8]),
-
+                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[3], registro[6], registro[8], registro[5], registro[9]),
                     }).appendTo(lista_conversaciones);
                 });
             }
@@ -35,9 +34,9 @@ function cargar_conversaciones() {
     });
 }
 
-const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, hay_invitacion, contenido, enviado, ult_msj ) =>
+const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, hay_invitacion, contenido, enviado, ult_msj) =>
 
-`<div class="wrap elemento-conversacion" data-usuario="${usuario_id}">
+    `<div class="wrap elemento-conversacion" data-usuario="${usuario_id}">
 <div class="conversacion-perfil">
 <span class="contact-status online"></span>
         <img src="${foto_perfil}?w=100&h=100" alt="" />
@@ -51,7 +50,7 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
             (contenido === null) ?
                 '<i>Has rechazado una invitación.</i>' :
                 (enviado) ? '<span class="material-icons">done</span>' + contenido : contenido
-                
+
     }
             </div>
         </div>
@@ -59,10 +58,6 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
         <div class="hora-ult-mesj">
         ${Fecha_hora_ultima_Mensaje(ult_msj)}
 </div>
-
-        <!--
-        ${obtener_elemento_msg_pendientes(33)}
-        -->
 </div>
     </div>`;
 
@@ -70,28 +65,24 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
 
 const obtener_elemento_msg_pendientes = (num) => '<div class="num-msj-pendientes online"><span>' + num + '</span></div>';
 
-function Fecha_hora_ultima_Mensaje( fecha_mensaje) {
+function Fecha_hora_ultima_Mensaje(fecha_mensaje) {
     var hoy = new Date();
     var fecha_msj = new Date(fecha_mensaje);
-    var result= '';
-    var diferencia = Math.trunc((hoy - fecha_msj)/(1000*60*60*24));
-    if (diferencia < 1){
-        result= fecha_msj.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }).toLowerCase();
+    var result = '';
+    var diferencia = Math.trunc((hoy - fecha_msj) / (1000 * 60 * 60 * 24));
+    if (diferencia < 1) {
+        result = fecha_msj.toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true}).toLowerCase();
 
-    }
-    else  if (diferencia == 1){
-        result= 'Ayer';
-    }
-    else if (diferencia < 7){
-         dias = ["Domingo","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-                result= dias[fecha_msj.getDay()];
-    }
-    else if (hoy.getFullYear() == fecha_msj.getFullYear()){
+    } else if (diferencia == 1) {
+        result = 'Ayer';
+    } else if (diferencia < 7) {
+        dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+        result = dias[fecha_msj.getDay()];
+    } else if (hoy.getFullYear() == fecha_msj.getFullYear()) {
         mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-       result = fecha_msj.getDate() +" de " + mes[fecha_msj.getMonth()];
+        result = fecha_msj.getDate() + " de " + mes[fecha_msj.getMonth()];
+    } else {
+        result = fecha_msj.getDate() + "/" + fecha_msj.getMonth() + "/" + fecha_msj.getFullYear();
     }
-    else {
-        result = fecha_msj.getDate() + "/" + fecha_msj.getMonth()+"/"+fecha_msj.getFullYear();
-    }
-return result;
+    return result;
 }
