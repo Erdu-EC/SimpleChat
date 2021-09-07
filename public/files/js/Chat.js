@@ -58,11 +58,12 @@ function EnviarMensaje() {
     $("#btn-enviar-mensaje").removeClass("activar");
     if (texto !== '') {
         const mensaje = $(ObtenerElementoMensajeEnviado(texto));
+        const espacio_chat = $('#espacio-de-chat > div');
 
         $.ajax('/action/messages/send', {
             method: 'post', dataType: 'json', mimeType: 'application/json',
             data: {
-                contact: $('#espacio-de-chat > div').attr('data-usuario'),
+                contact: espacio_chat.attr('data-usuario'),
                 text: texto
             },
             beforeSend: () => AgregarMensajeEnEspacioDeChat(mensaje, new Date(Date.now()).toDateString()),
@@ -72,8 +73,19 @@ function EnviarMensaje() {
                 }, 150)
             },
             success: function (json) {
-                if (json)
+                if (json){
+                    const usuario_nick = espacio_chat.attr('data-nick').trim();
+
                     mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
+
+                    //Actualizar item de conversación.
+                    let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${usuario_nick}]`).parent();
+                    elemento_conversacion.prependTo($('#lista-conversaciones'));
+                    elemento_conversacion.find('.preview').html('<span class="material-icons">done</span>' + texto);
+                    elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now()).toString()));
+
+
+                }
                 else
                     mensaje.find('.popover-header').text("Error al enviar.");
             }
@@ -110,7 +122,7 @@ function CargarEspacioDeChat() {
                 const lista_mensajes = $('#lista-mensajes').html('');
 
                 //Estableciendo datos.
-                espacio_chat.find('.messages').attr('data-usuario', json.id);
+                espacio_chat.find('.messages').attr('data-usuario', json.id).attr('data-nick', nombre_usuario);
                 contenedor_datos.find('img').attr('src', null).attr('src', json.profile_img + '?w=40&h=40');
                 contenedor_datos.find('.nombre-chat').text(json.full_name);
                 contenedor_datos.find('.ult-conex').text(json.state);
