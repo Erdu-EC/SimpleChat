@@ -42,6 +42,9 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
         </div>
         <div id="listaTodosContactos">
+            <div id="sin-resultados">
+            </div>
+
             <ul id="lista-contactos" class="no-seleccionable">
 
             </ul>

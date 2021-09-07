@@ -106,7 +106,8 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
     const lista_resultados = $('#lista-contactos-buscar').html('');
     const lista_contactos = $('#lista-contactos');
     const entrada = $(this).val().trim();
-
+ var msg_error= $("#listaTodosContactos #sin-resultados");//si existe mensajes anteriores lo eliminamos
+    msg_error.empty();
     if (entrada === '') {
         lista_contactos.show();
         return;
@@ -114,6 +115,7 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
         lista_contactos.hide();
 
     if (entrada.length > 3) {
+
         $.ajax('/action/users/search', {
             method: 'post', dataType: 'json', mimeType: 'application/json',
             data: {
@@ -123,15 +125,29 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
                 // console.log("Buscando..."),//alerta.text("Buscando..."),
             },
             error: () => {
-                //console.log( "No fue posible realizar la busqueda."),//alerta.text("No fue posible realizar la busqueda."),
-            }, success: function (json) {
+                msg_error.html('<div id="sin-resultados"><span >No fue posible realizar la búsqueda. Revise su conexión a Internet</span></div>\n');
+               /* setTimeout(function () {
+                    VanillaToasts.create({
+                        title: "SimpleChat",
+                        text: "No se ha completado la busqueda. En este momento no tienes conexión.",
+                        type: "error",
+                        icon: "/files/icon/icono.png",
+                        timeout: 2000,
+                        close: true
+                    });
+                },1000);*/
+                 },
+            success: function (json) {
                 if (json === null) {
                     //console.log("Se recibieron nulos");
                     // alerta.text('No fue posible realizar la busqueda.');
+                    msg_error.html('<span >No fue posible realizar la búsqueda.</span>');
                 } else if (json.length === 0) {
                     //alerta.text('No hay coincidencias.');
                     //console.log("Se recibieron nulos");
+                    msg_error.html('<span >No se han encontrado coincidencias.</span>');
                 } else {
+                    msg_error.empty();
                     lista_resultados.html('');
 
                     json.forEach((registro) => {
@@ -145,7 +161,9 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
         });
     }
 });
-
+$(document).ajaxStop(function() {
+    console.log("Fin");
+});
 $(document).on('click', '.elemento-contacto', CargarEspacioDeChat);
 
 

@@ -17,7 +17,7 @@ CREATE TABLE users
     phone           char(15),
     /*City, Country, Occupation*/
 
-    state           ENUM ('A', 'O', 'I'),      #A - Activo, O - Ocupado, I - Inactivo
+    state           ENUM ('A', 'O', 'I') NOT NULL DEFAULT 'I',      #A - Activo, O - Ocupado, I - Inactivo
     create_at       datetime,
     last_connection datetime,
 
@@ -295,18 +295,18 @@ DELIMITER ;
 #Datos de prueba.
 insert into users (id, user_name, pass, first_name, last_name, birth_date, gender, email, state, create_at,
                    last_connection, profile_img)
-values (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa', 'E', 'C', now(), 'M', null, null,
+values (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa', 'E', 'C', now(), 'M', null, 'I',
         now(), null, '0_erdu.png'),
        (2, 'test', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', now(), 'M', null,
-        null, now(), null, null),
+        'I', now(), null, null),
        (3, 'test2', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', now(), 'M', null,
-        null, now(), null, null),
+        'I', now(), null, null),
        (4, 'louislitt', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Louis', 'Marlowe Litt',
-        '1970-05-20', 'M', 'louislitt@email.com', null, now(), null, 'louislitt.png'),
+        '1970-05-20', 'M', 'louislitt@email.com', 'I', now(), null, 'louislitt.png'),
        (5, 'rachelzane', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Rachel Elizabeth', 'Zane',
-        '1985-04-30', 'F', 'rachelzane@email.com', null, now(), null, 'rachelzane.png'),
+        '1985-04-30', 'F', 'rachelzane@email.com', 'I', now(), null, 'rachelzane.png'),
        (6, 'mikeross', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Michael James', 'Ross',
-        '1981-04-04', 'M', 'mikeross@email.com', null, now(), null, 'mikeross.png'),
+        '1981-04-04', 'M', 'mikeross@email.com', 'I', now(), null, 'mikeross.png'),
        (7, 'harveyspecter', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Harvey Reginald',
         'Specter', '1970-06-12', 'M', 'harveyspecter@email.com', 'I', now(), null, 'harveyspecter.png');
 

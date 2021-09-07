@@ -789,6 +789,13 @@ box-sizing: border-box;
 
 /*Expandir el sidepanelTodosContactos que contiene a los contactos cuando la resolucion es menor a 576px*/
 
+#listaTodosContactos #sin-resultados{
+  color: #000000;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
 
 /*------------------------------------------------
 Lista de contactos

@@ -106,6 +106,9 @@ function CerrarContactos() {
             $("body").removeClass("sb-sidenav-toggled");
         }
     }
+    $("#cuadro-busqueda-usuario").val("");
+    $('#lista-contactos').show();
+    $("#sin-resultados").empty();
 };
 
 
