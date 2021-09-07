@@ -73,7 +73,7 @@ function EnviarMensaje() {
                 }, 150)
             },
             success: function (json) {
-                if (json){
+                if (json) {
                     const usuario_nick = espacio_chat.attr('data-nick').trim();
 
                     mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
@@ -82,11 +82,8 @@ function EnviarMensaje() {
                     let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${usuario_nick}]`).parent();
                     elemento_conversacion.prependTo($('#lista-conversaciones'));
                     elemento_conversacion.find('.preview').html('<span class="material-icons">done</span>' + texto);
-                    elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now()).toString()));
-
-
-                }
-                else
+                    elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
+                } else
                     mensaje.find('.popover-header').text("Error al enviar.");
             }
         });
@@ -182,7 +179,7 @@ function CargarEspacioDeChat() {
 
 }
 
-function AgregarMensajeEnEspacioDeChat(item_msg, fecha_msg){
+function AgregarMensajeEnEspacioDeChat(item_msg, fecha_msg) {
     const lista_msg = $('#lista-mensajes');
     const fecha = ObtenerFecha(fecha_msg);
 
