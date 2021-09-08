@@ -836,6 +836,18 @@ Lista de contactos
   height: 60px;
 }
 
+.elemento-contacto .img-perfil-contacto img.online {
+  border: 2px solid #0ac630;
+}
+
+.elemento-contacto .img-perfil-contacto img.ocupado {
+  border: 2px solid #f1c40f;
+}
+
+.elemento-contacto .img-perfil-contacto img.inactivo {
+  border: 2px solid #a9a9a9;
+}
+
 .elemento-contacto .cuerpo-perfil-contacto {
   border-bottom: 1px solid #f2f2f2;
   color: #000000;

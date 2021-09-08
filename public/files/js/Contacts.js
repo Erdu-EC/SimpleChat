@@ -34,9 +34,10 @@ function ActualizarInfoContacto() {
                 //Rellenando datos.
                 const perfil = contenedor.find('.card.perfil');
                 perfil.find('img').attr('src', null).attr('src', ObtenerUrlImagen($('.contact-profile img')) + "?w=100");
+                perfil.find('img').attr('data-fuente', ObtenerUrlImagen($('.contact-profile img')));
                 perfil.find('h5').text(json[0] + " " + json[1]);
                 perfil.find('h6').text("@" + json[2]);
-                perfil.find('small').text(ObtenerTiempoUltimaConexion(json[4]));
+                perfil.find('small').text(ObtenerInformacionEstado(json[3],json[4]));
 
                 const extra = contenedor.find('.card.contacto-extra');
                 extra.find('.tel span').text(json[8] ?? ' - ');
@@ -51,10 +52,10 @@ function ActualizarInfoContacto() {
                     case 'F':
                         sexo = 'Femenino';
                         break;
-                    case null:
+                    case 'D':
                         sexo = 'No especificado';
                         break;
-                    default:
+                    case 'O':
                         sexo = 'Otro';
                         break;
                 }
@@ -140,9 +141,11 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
                     lista_resultados.html('');
 
                     json.forEach((registro) => {
+                        var estado=Clase_Segun_Estado(registro[4]);
+
                         $('<li>', {
                             class: 'item-contacto',
-                            html: ObtenerElementoContactoBuscado(registro[0], registro[1], registro[2], registro[3], registro[5]),
+                            html: ObtenerElementoContactoBuscado(registro[0], registro[1], registro[2], registro[3], registro[5], estado),
                         }).appendTo(lista_resultados);
                     });
                 }
@@ -173,9 +176,10 @@ function actualizar_lista_contactos() {
                 lista_contactos.html('')
 
                 json.forEach((registro) => {
+                    var estado=Clase_Segun_Estado(registro[3]);
                     $('<li>', {
                         class: 'item-contacto',
-                        html: ObtenerElementoContacto(registro[0], registro[1], registro[2], registro[4], registro[5]),
+                        html: ObtenerElementoContacto(registro[0], registro[1], registro[2], registro[4], registro[5], estado),
                     }).appendTo(lista_contactos);
                 });
             }
@@ -183,30 +187,30 @@ function actualizar_lista_contactos() {
     });
 }
 
-const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, foto_perfil, esContacto) =>
+const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, foto_perfil, esContacto, estado) =>
     `
 <div class="elemento-contacto " data-usuario="${usuario}">
 
                             <div class="img-perfil-contacto">
-                                <img src="${foto_perfil}?w=60&h=60" alt="" class="online"/>
+                                <img src="${foto_perfil}?w=60&h=60" alt="" class="${estado}"/>
                             </div>
                                 <div class="cuerpo-perfil-contacto">
                                     <span class="nombre-contacto">${nombres} ${apellidos}</span>
 
                                     <div class="nombre-usuario">
-                                         ${(esContacto) ? '<span class="material-icons icon-usuario">person</span>': '<span class="me-1">@</span>'}
+                                         ${(esContacto) ? '<span class="material-icons icon-usuario">person</span>': '<span class="material-icons icon-usuario">person</span>'}
                                                             ${usuario}
                                     </div>
                                 </div>
                     </div>
 `;
 
-const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion, foto_perfil) =>
+const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion, foto_perfil, estado) =>
     `
 <div class="elemento-contacto" data-usuario="${usuario}">
 
                             <div class="img-perfil-contacto">
-                                <img src="${foto_perfil}?w=60&h=60" alt="" class="online"/>
+                                <img src="${foto_perfil}?w=60&h=60" alt="" class="${estado}"/>
                             </div>
                                 <div class="cuerpo-perfil-contacto">
                                     <span class="nombre-contacto">${nombres} ${apellidos}</span>
@@ -222,7 +226,22 @@ ${(ultima_conexion !== undefined) ? ObtenerTiempoUltimaConexion(ultima_conexion)
                                 </div>
                     </div>
 `;
+function ObtenerInformacionEstado(estado, ultimaConexion){
+    var info_estado="";
+    switch (estado){
+        case 'A':
+            info_estado = 'En linea'
+            break;
+        case 'I':
+            info_estado= ObtenerTiempoUltimaConexion(ultimaConexion);
+            break;
+        case 'O':
+            info_estado = "Ocupado";
+            break;
+    }
 
+    return info_estado;
+}
 
 function ObtenerTiempoUltimaConexion(fecha_hora) {
     const fecha = new Date(fecha_hora);
@@ -254,4 +273,20 @@ function ObtenerTiempoUltimaConexion(fecha_hora) {
     }
     return ult_conex;
 
+}
+function Clase_Segun_Estado(est){
+    var estado='';
+    switch(est){
+        case 'I':
+            estado='inactivo';
+            break;
+        case 'A':
+            estado= 'online'
+            break;
+        case 'O':
+            estado ='ocupado';
+            break;
+    }
+    console.log(est);
+    return estado;
 }

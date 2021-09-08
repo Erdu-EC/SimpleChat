@@ -109,6 +109,7 @@ function CerrarContactos() {
     $("#cuadro-busqueda-usuario").val("");
     $('#lista-contactos').show();
     $("#sin-resultados").empty();
+    $("#buscar-contacto .borrar").remove();
 };
 
 
@@ -152,6 +153,11 @@ $(document).on("click", "#btn-cerrar-contacto", function () {
     $("#panelInfoContacto").removeClass("mostrar");
     $("#btn-info-contacto").removeClass("ocultar");
 
+});
+
+$(document).on("click", ".contenedor-perfil .perfil .foto-perfil", function () {
+    var imagen = $(this).attr("data-fuente");
+    MostrarModal("Mike Ross", '<img src="' + imagen + '" alt="" />', "", 'modal-fullscreen', "btn-close-white");
 });
 
 //detectar tamanos de pantalla y las acciones
