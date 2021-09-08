@@ -155,12 +155,13 @@ $(document).on("click", "#btn-cerrar-contacto", function () {
 });
 
 //detectar tamanos de pantalla y las acciones
+/*
 $("div#contacts ul#lista-conversaciones").on("click", "li.contact", function () {
 
     $('div#contacts ul#lista-conversaciones li.active').removeClass('active');
     $(this).addClass("active");
 
-});
+});*/
 
 $(document).on("click", "#btn-emojis", function () {
     var button = $("#btn-emojis");
@@ -198,7 +199,7 @@ function CargarEspacioConfiguraciones() {
     $("#mi-perfil-sidepanel").removeClass("no-visible");
     $("#btn-cerrar-contacto").trigger("click");
     $('#sh-setting').remove();
-
+$("#lista-conversaciones li").removeClass("active");
     $('#espacio-temporal').remove();
     $('#espacio-de-chat').hide();
 

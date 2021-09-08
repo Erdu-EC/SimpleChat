@@ -24,9 +24,22 @@ function cargar_conversaciones() {
                 lista_conversaciones.html('');
 
                 json.forEach((registro) => {
+                    var estado='';
+                    switch(registro[4]){
+                        case 'I':
+                            estado='inactivo';
+                            break;
+                        case 'A':
+                            estado= 'online'
+                            break;
+                        case 'O':
+                            estado ='ocupado';
+                            break;
+                    }
+
                     $('<li>', {
                         class: 'contact',
-                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[3], registro[6], registro[8], registro[5], registro[9]),
+                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[3],estado, registro[6], registro[8], registro[5], registro[9]),
                     }).appendTo(lista_conversaciones);
                 });
             }
@@ -34,11 +47,11 @@ function cargar_conversaciones() {
     });
 }
 
-const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, hay_invitacion, contenido, enviado, ult_msj) =>
+const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, estado,hay_invitacion, contenido, enviado, ult_msj) =>
 
     `<div class="wrap elemento-conversacion" data-usuario="${usuario_id}">
 <div class="conversacion-perfil">
-<span class="contact-status online"></span>
+<span class="contact-status ${estado}"></span>
         <img src="${foto_perfil}?w=100&h=100" alt="" />
 </div>
         

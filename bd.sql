@@ -225,7 +225,7 @@ BEGIN
 END $
 
 #Obtener las conversaciones.
-CREATE OR REPLACE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
+CREATE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
 BEGIN
     SELECT if(c.id_source != USER_ID, s_nick, d_nick)                                      as contact_id,
            if(c.id_source != USER_ID, s_first_name, d_first_name)                          as first_name,

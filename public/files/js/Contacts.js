@@ -99,6 +99,7 @@ $(document).on("click", '#buscar-contacto .borrar', function () {
     $('#lista-contactos-buscar').empty();
     $('#lista-contactos').show();
     $("#buscar-contacto .borrar").remove();
+    $("#listaTodosContactos #sin-resultados").empty();
 });
 
 ///////
@@ -122,29 +123,17 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
                 text: entrada
             },
             beforeSend: () => {
-                // console.log("Buscando..."),//alerta.text("Buscando..."),
+                msg_error.html('<div id="sin-resultados"><span >Buscando...</span></div>');
+
             },
             error: () => {
-                msg_error.html('<div id="sin-resultados"><span >No fue posible realizar la búsqueda. Revise su conexión a Internet</span></div>\n');
-               /* setTimeout(function () {
-                    VanillaToasts.create({
-                        title: "SimpleChat",
-                        text: "No se ha completado la busqueda. En este momento no tienes conexión.",
-                        type: "error",
-                        icon: "/files/icon/icono.png",
-                        timeout: 2000,
-                        close: true
-                    });
-                },1000);*/
+                msg_error.html('<div id="sin-resultados"><span >No fue posible realizar la búsqueda. Revise su conexión a Internet</span></div>');
+
                  },
             success: function (json) {
                 if (json === null) {
-                    //console.log("Se recibieron nulos");
-                    // alerta.text('No fue posible realizar la busqueda.');
                     msg_error.html('<span >No fue posible realizar la búsqueda.</span>');
                 } else if (json.length === 0) {
-                    //alerta.text('No hay coincidencias.');
-                    //console.log("Se recibieron nulos");
                     msg_error.html('<span >No se han encontrado coincidencias.</span>');
                 } else {
                     msg_error.empty();
@@ -161,9 +150,7 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
         });
     }
 });
-$(document).ajaxStop(function() {
-    console.log("Fin");
-});
+
 $(document).on('click', '.elemento-contacto', CargarEspacioDeChat);
 
 
