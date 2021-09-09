@@ -294,7 +294,7 @@ body {
   flex-wrap: nowrap;
   overflow-y: scroll;
   overflow-x: hidden;
-  scrollbar-width: none;
+  scrollbar-width: thin;
 }
 .sb-sidenav::-webkit-scrollbar {
   display: none;
@@ -409,11 +409,11 @@ display: flex;
   margin-right: 5px;
 
   float: right;
- padding: 0px;
+ padding: 0;
 }
 .navbar-brand img {
   height: 50px;
-  padding: 0px;
+  padding: 0;
 }
 /*-------------------------------------------*/
 body::-webkit-scrollbar{
@@ -944,6 +944,7 @@ Fin de contactos
   border-radius: 50%;
   margin-left: 15px;
   margin-right: 20px;
+  object-fit: cover;
 }
 #sidepanel #mi-perfil-sidepanel .usuario-perfil {
   color: #ffffff;
@@ -1241,16 +1242,24 @@ border-radius: 50%;
   overflow: hidden;
   transition: 1s all ease;
 
+
 }
-#frame #sidepanel #contacts ul li.contact .wrap .meta .preview span.material-icons {
+#frame #sidepanel #contacts ul li.contact .wrap .meta .preview .icon-indicador {
 margin-top: auto;
-  font-size: 15px;
-  color: #a9a9a9;
+  font-size: 13px;
+  color: #a7a7a7;
   margin-right: 5px;
 height: 15px;
 vertical-align: bottom;
-  margin-bottom: 2px;
   }
+#frame #sidepanel #contacts ul li.contact .wrap .meta .preview i.icon-indicador{
+
+  font-size: 11px;
+  align-items: end;
+  padding: 0;
+  margin-bottom: 0px;
+}
+
 
 #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes {
 float: right;
@@ -1574,7 +1583,7 @@ hr.separador-vertical{
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  color: darkgray;
+  color: #A9A9A9FF;
 }
 #frame .content .contact-profile #btn-info-contacto span.material-icons
 {
@@ -1627,13 +1636,22 @@ Solicitud de chat
   margin: 0;
   background: #ffffff;
   color:#000000;
-  max-width: 400px;
+  max-width: 350px;
   z-index: 100;
   box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
   text-align: left;
+  border-radius: 10px;
+font-family: "Montserrat", sans-serif;
+}
+#mensaje-invitacion i{
+  text-align: right;
+  color: #00000070;
+  color:rgba(0,0,0,0.44);
 }
 #mensaje-invitacion p {
   margin: 0;
+  padding: 10px 20px;
+font-size: 0.9rem;
 }
 
 #mensaje-invitacion .botones
@@ -1641,7 +1659,7 @@ Solicitud de chat
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 20px;
+  padding: 10px 20px 20px;
 }
 #mensaje-invitacion .botones .btn {
   width: 50%;
@@ -1653,14 +1671,15 @@ Solicitud de chat
   text-align: center;
   box-shadow: none;
   outline: none;
-  border: 1px solid #d3d3d3;
+  border: 1px solid #00000070;
   border-radius: 10px;
   margin:0 10px;
+  color: #00000070;
 }
 #mensaje-invitacion .botones .btn span {
   text-align: center;
   margin-right: 10px;
-
+  color: #00000070;
 }
 #mensaje-invitacion .botones .btn-si:hover {
   color: #198754;
@@ -1668,10 +1687,17 @@ Solicitud de chat
   background: none;
 
 }
+#mensaje-invitacion .botones .btn-si:hover span{
+  color: #198754;
+}
+
 #mensaje-invitacion .botones .btn-no:hover {
   color: #dc3545;
   border:1px solid  #dc3545;
   background: none;
+}
+#mensaje-invitacion .botones .btn-no:hover span{
+  color: #dc3545;
 }
 /*
 Fin de solicitud de chat
@@ -2270,7 +2296,7 @@ Contenedor laterial de informacion de contacto
   border-radius: 0;
   object-fit: cover;
 border: none;
-  filter: brightness(85%);
+  filter: brightness(80%);
   z-index: 1001;
 }
 #panelInfoContacto .contenedor-perfil .card .card-body {
@@ -2560,6 +2586,7 @@ Foto de perfil y opciones
   height: 200px;
   border-radius: 100px;
   border: none;
+  object-fit: cover;
 }
 
 .img-perfil-cuenta .contenedor-opciones {
@@ -2572,7 +2599,7 @@ Foto de perfil y opciones
  width: 160px;
   padding: 10px 0;
   border-radius: 5px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
 }
 .img-perfil-cuenta .contenedor-opciones ul{
   list-style: none;
@@ -2594,7 +2621,9 @@ padding: 0;
   background: transparent;
 }
 .modal-fullscreen img{
-  max-width: 70vw;
+  max-width: 80vw;
+  max-height: 80vh;
+  object-fit: cover;
 }
 .modal-fullscreen .modal-content .modal-header {
   color: #FFFFFF;

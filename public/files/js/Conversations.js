@@ -39,7 +39,7 @@ function cargar_conversaciones() {
 
                     $('<li>', {
                         class: 'contact',
-                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[3],estado, registro[6], registro[8], registro[5], registro[9]),
+                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[3],estado, registro[6], registro[8], registro[5], registro[9], registro[10], registro[11]),
                     }).appendTo(lista_conversaciones);
                 });
             }
@@ -47,7 +47,7 @@ function cargar_conversaciones() {
     });
 }
 
-const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, estado,hay_invitacion, contenido, enviado, ult_msj) =>
+const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, estado,hay_invitacion, contenido, enviado, ult_msj,hora_recibido, hora_leido) =>
 
     `<div class="wrap elemento-conversacion" data-usuario="${usuario_id}">
 <div class="conversacion-perfil">
@@ -62,7 +62,7 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
             '<i>Tienes una invitacion.</i>' :
             (contenido === null) ?
                 '<i>Has rechazado una invitación.</i>' :
-                (enviado) ? '<span class="material-icons">done</span>' + contenido : contenido
+                (enviado) ? IndicadorEstadoMensaje(hora_recibido,hora_leido )+ contenido : contenido
 
     }
             </div>
@@ -78,3 +78,17 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
 
 const obtener_elemento_msg_pendientes = (num) => '<div class="num-msj-pendientes online"><span>' + num + '</span></div>';
 
+function IndicadorEstadoMensaje(hora_recibido, hora_leido){
+    var indicador ='';
+    if(hora_leido === null || hora_leido === ""){
+        if(hora_recibido === null || hora_recibido === ""){
+            indicador= '<span class="material-icons icon-indicador">done</span>';
+        }
+        else{
+            indicador='<i class="far fa-check-circle icon-indicador"></i>';
+        }
+    }else{
+        indicador='<i class="fas fa-check-circle icon-indicador"></i>';
+    }
+return indicador;
+}

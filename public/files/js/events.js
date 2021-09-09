@@ -83,7 +83,19 @@ function ConversacionActiva() {
     $('#LateralMenu li.active').removeClass('active');
     $('#LateralMenu li:first').addClass('active');
 }
-
+//Notificacion de solicitud de mensaje
+$(document).on("mouseover", "#mensaje-invitacion-si",function () {
+    $("#icon-mensaje-invitacion").css("color","#198754");
+});
+$(document).on("mouseleave", "#mensaje-invitacion-si",function () {
+    $("#icon-mensaje-invitacion").css("color","#00000070");
+});
+$(document).on("mouseover", "#mensaje-invitacion-no",function () {
+    $("#icon-mensaje-invitacion").css("color","#dc3545");
+});
+$(document).on("mouseleave", "#mensaje-invitacion-no",function () {
+    $("#icon-mensaje-invitacion").css("color","#00000070");
+});
 
 /*
 /*llamar elementos chat*/

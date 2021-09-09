@@ -19,8 +19,8 @@ $(document).on("keyup change", "#espacio-de-escritura", function () {
 });
 
 $(document).on('click', '#mensaje-invitacion button', function () {
-    const boton_si = $('#mensaje-invitacion button:first');
-    const boton_no = $('#mensaje-invitacion button:last');
+    const boton_si = $('#mensaje-invitacion #mensaje-invitacion-si');
+    const boton_no = $('#mensaje-invitacion #mensaje-invitacion-no');
 
     $.ajax('/action/invitation/accept', {
         method: 'post', dataType: 'json', mimeType: 'application/json',
@@ -81,7 +81,7 @@ function EnviarMensaje() {
                     //Actualizar item de conversación.
                     let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${usuario_nick}]`).parent();
                     elemento_conversacion.prependTo($('#lista-conversaciones'));
-                    elemento_conversacion.find('.preview').html('<span class="material-icons">done</span>' + texto);
+                    elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span>' + texto);
                     elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
                 } else
                     mensaje.find('.popover-header').text("Error al enviar.");
@@ -141,7 +141,7 @@ function CargarEspacioDeChat() {
                     contenedor_datos.find('.opciones-contacto').show();
 
                 if (json.has_invitation)
-                    lista_mensajes.before(ObtenerModalDeInvitacion());
+                    lista_mensajes.before(ObtenerModalDeInvitacion(json.full_name));
                 else
                     espacio_chat.find('.messages .notificacion').remove();
 
@@ -200,16 +200,17 @@ function AgregarMensajeEnEspacioDeChat(item_msg, fecha_msg) {
     lista_msg.append(item_msg);
 }
 
-const ObtenerSeparadorDeFechasEnChat = fecha_envio => `<li class="marcador"><div class="marcador-fecha">${fecha_envio}</div></li>`;
+const ObtenerSeparadorDeFechasEnChat = fecha_envio => `<li class="marcador"><div class="marcador-fecha no-seleccionable">${fecha_envio}</div></li>`;
 
-const ObtenerModalDeInvitacion = () => `
+const ObtenerModalDeInvitacion = (nombre) => `
                             <div class="notificacion">
-                                <div id="mensaje-invitacion" class="row border-bottom">
-                                    <p>Esta persona no está en tus contactos y te ha enviado un mensaje, ¿Quieres aceptarlo?
+                                <div id="mensaje-invitacion" class="row border-bottom no-seleccionable">
+                                <i class="fas fa-comments" id="icon-mensaje-invitacion"></i>
+                                    <p><b>${nombre}</b> no está entre tus contactos y te ha enviado un mensaje. ¿Deseas recibir mensajes de ${nombre}?
                                     </p>
                                     <div class="botones">
-                                        <button class="btn btn-si"><span class="material-icons">done</span>Si</button>
-                                        <button class="btn btn-no"><span class="material-icons">close</span>No</button>
+                                        <button class="btn btn-si" id="mensaje-invitacion-si"><span class="material-icons">done</span>Si</button>
+                                        <button class="btn btn-no" id="mensaje-invitacion-no"><span class="material-icons">close</span>No</button>
                                     </div>
                                 </div>
                             </div>`;
