@@ -9,8 +9,19 @@ body .container-fluid {
   background-color: none;
   padding-top: 76px;
   overflow-y: scroll;
+  scrollbar-width: thin;
   scrollbar-color: #939393 #ffffff;
   scrollbar-width: thin;
+}
+
+body .container-fluid::-webkit-scrollbar {
+  width: 7px;
+  background: transparent;
+}
+
+body .container-fluid::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }
 
 /*#####################################################

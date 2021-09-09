@@ -317,7 +317,10 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
                                 <div class="card-body">
                                     <h5></h5>
-                                    <small></small>
+                                    <h6></h6 >
+
+                                        <small></small>
+
                                 </div>
                                 <div class="contacto-redes">
 
@@ -326,20 +329,33 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             </div>
                             <div class=" card contacto-extra">
                                 <div class="item-contacto-extra email">
-                                    <h6 class="campo">Correo</h6>
-                                    <span class="valor"></span>
+                                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                                    <div class="texto">
+                                        <h6 class="campo">Correo</h6>
+                                        <span class="valor"></span>
+                                    </div>
+
                                 </div>
                                 <div class="item-contacto-extra tel">
+                                    <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                                    <div class="texto">
                                     <h6>Teléfono</h6>
                                     <span></span>
+                                    </div>
                                 </div>
                                 <div class="item-contacto-extra fn">
-                                    <h6>Fecha de nacimiento</h6>
-                                    <span></span>
+                                    <div class="icon"><i class="fas fa-birthday-cake"></i></div>
+                                    <div class="texto">
+                                        <h6>Fecha de nacimiento</h6>
+                                        <span></span>
+                                    </div>
                                 </div>
                                 <div class="item-contacto-extra sexo">
+                                    <div class="icon"><i class="fas fa-male"></i><i class="fas fa-female"></i></div>
+                                    <div class="texto">
                                     <h6>Sexo</h6>
                                     <span></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

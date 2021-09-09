@@ -4,7 +4,8 @@ body .container-fluid{
   height: 100vh;
   padding-top: 60px;
 background: none;
-
+padding-left: 0;
+padding-right: 0;
 }
 .container-fluid main.main{
   width: 100%;
@@ -15,10 +16,16 @@ background: none;
   background-attachment: fixed;
   background-position: center;
   overflow-y: scroll;
+  scrollbar-width: thin;
   overflow-x: hidden;
 }
 .container-fluid main.main::-webkit-scrollbar {
-  width: 0;               /* width of the entire scrollbar */
+  width: 7px;
+  background: transparent;
+}
+.container-fluid main.main::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }
 
 /*#####################################################

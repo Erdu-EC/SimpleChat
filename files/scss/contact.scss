@@ -12,6 +12,7 @@ bod::-webkit-scrollbar-thumb:vertical{
   height: 100vh;
   width: 100vw;
   overflow-y: scroll;
+  scrollbar-width: thin;
   overflow-x: hidden;
   position: relative;
 

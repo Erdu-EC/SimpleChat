@@ -19,6 +19,7 @@ body .container-fluid{
   height: 100vh;
   padding: 60px 0 0 0;
   overflow-y: scroll;
+  scrollbar-width: thin;
   background-image: url("/files/bg/bg-about-1.svg");
   background-size: cover;
   justify-content: center;
