@@ -44,9 +44,10 @@ $('.submit').on('click', function () {
 
 //cerrar sesion
 $(document).on("click", "#mi-perfil-sidepanel", function () {
-    $("#mi-perfil-sidepanel .usuario-perfil-opciones").addClass("activo");
+    $("#mi-perfil-sidepanel .usuario-perfil-opciones").toggleClass("activo");
 
-    $("#mi-perfil-sidepanel").append(`
+    if($("#mi-perfil-sidepanel .usuario-perfil-opciones").hasClass("activo")){
+        $("#mi-perfil-sidepanel").append(`
         <div class="opciones-sesion activo">
             <div class="item-opciones-sesion " id="btn-conf-sesion">
                 <div title="Configuraciones de cuenta" class="opc-sesion">
@@ -61,6 +62,10 @@ $(document).on("click", "#mi-perfil-sidepanel", function () {
                 </a>
             </div>
         </div>`);
+    }else{
+        $("#mi-perfil-sidepanel .opciones-sesion").remove();
+    }
+
 });
 
 $(".expand-button").click(function () {
