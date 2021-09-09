@@ -96,14 +96,11 @@ function EnviarMensaje() {
 function CargarEspacioDeChat() {
     var li_contenedor = $(this).parent();
 
-    if (li_contenedor.hasClass("active")) {
-        console.log("El elemento actual esta en uso");
-
+    if (li_contenedor.hasClass("active"))
         return; //evitamos recargar el espacio de chat en caso de que el elemento seleccionado sea el que está en uso
-    }
 
     $("#btn-cerrar-contacto").trigger("click");//provocamos el evento click en el boton de cerrar info de contacto (en caso de que se encuentre en pantalla)
-    $('div#contacts ul#lista-conversaciones li.active').removeClass('active');
+    $('#lista-conversaciones li.active').removeClass('active');
     li_contenedor.addClass("active");
 
     const nombre_usuario = $(this).attr('data-usuario');
