@@ -29,7 +29,11 @@ function TratarMensajes(mensajes) {
                 msg_pendientes.text(parseInt(msg_pendientes.text()) + 1);
         }
 
+        //Mover conversación hacia arriba en la lista de conversaciónes.
+        elemento_contacto.parent().prependTo($('#lista-conversaciones'));
+
         //Mostrar vista previa del mensaje en lista de conversaciones.
+        elemento_contacto.find('.hora-ult-mesj').text(Fecha_hora_ultima_Mensaje(row.send_date));
         elemento_contacto.find('.preview').text(row.content);
 
         //Actualizar total de conversaciones no leidas.
