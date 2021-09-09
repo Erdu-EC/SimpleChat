@@ -206,72 +206,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
                         <div class="messages">
 
-                            <ul id="lista-mensajes">
-                                <!--<?php
-									$fecha_anterior = '';
-									if (!is_null($_VIEW->messages)):
-										foreach ($_VIEW->messages as $msg):
-											if (!is_null($msg->send_date)) { ?>
-
-												<?php
-												$f = new DateTime($msg->send_date);
-												if ($fecha_anterior == '' || ($fecha_anterior->format('Y-m-d') !== $f->format('Y-m-d'))) {
-													$fecha_anterior = new DateTime($msg->send_date);
-													echo '<li class="marcador"><div class="marcador-fecha">' . ObtenerFecha($msg->send_date) . '</div></li>';
-												}
-											} ?>
-											<?php if ($msg->id_source === $SESSION->user_id): ?>
-                                            <li class="enviado">
-
-                                                <img src="<?= $SESSION->user_profile_img ?>?w=40&h=40" alt="Yo" class="no-seleccionable"
-                                                     width="37px" height="37px"/>
-                                                <div class="dir"></div>
-                                                <div class="cont-msj"><p><?= $msg->content ?></p></div>
-
-                                                <div class="extra-mensaje no-seleccionable">
-													<?php if (!is_null($msg->read_date)): ?>
-                                                        <div class="extra">
-                                                            <span><?= ObtenerHora($msg->read_date); ?></span>
-                                                        </div>
-                                                        <div class="extra icon"><i class="fas fa-check-circle"></i></div>
-													<?php elseif (!is_null($msg->rcv_date)): ?>
-                                                        <div class="extra">
-                                                            <span><?= ObtenerHora($msg->rcv_date); ?></span>
-                                                        </div>
-                                                        <div class="extra icon"><i class="far fa-check-circle"></i></div>
-													<?php else: ?>
-                                                        <div class="extra">
-                                                            <span><?= ObtenerHora($msg->send_date); ?></span>
-                                                        </div>
-                                                        <div class="extra icon"><i class="far fa-check-circle"></i></div>
-													<?php endif; ?>
-                                                </div>
-                                            </li>
-										<?php else: ?>
-
-                                            <li class="recibido">
-                                                <img src="<?= APP_URL::OfImageProfile($_VIEW->profile_img) ?>?w=40&h=40" alt="Contacto"
-                                                     class="no-seleccionable" width="37px" height="37px"/>
-                                                <div class="dir"></div>
-                                                <div class="cont-msj"><p><?= $msg->content ?></p></div>
-                                                <div class="extra-mensaje no-seleccionable">
-													<?php if (!is_null($msg->send_date)): ?>
-                                                        <div class="extra">
-                                                            <span><?= ObtenerHora($msg->send_date); ?></span>
-                                                        </div>
-													<?php endif; ?>
-                                                </div>
-                                            </li>
-
-										<?php endif;
-
-										endforeach;
-									endif;
-								?>-->
-
-
-                                <script> $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight")); </script>
-                            </ul>
+                            <ul id="lista-mensajes"></ul>
 
                         </div>
 

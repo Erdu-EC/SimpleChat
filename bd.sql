@@ -250,6 +250,11 @@ END $
 #Obtener una conversación completa.
 CREATE PROCEDURE user_GetConversationWithContact(in USER_ID int, in CONTACT_ID int)
 BEGIN
+    #Marcando mensajes a obtener como leidos.
+    UPDATE message msg inner join message_readable mr on mr.id = msg.id
+    SET msg.rcv_date = IF(msg.rcv_date IS NULL, now(), msg.rcv_date), msg.read_date = IF(msg.read_date IS NULL, now(), msg.read_date)
+        where msg.id_source = CONTACT_ID and msg.id_dest = USER_ID and (msg.rcv_date IS NULL or msg.read_date IS NULL);
+
     select *
     from (
              select *

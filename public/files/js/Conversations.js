@@ -68,10 +68,10 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
             </div>
         </div>
         <div class="msj-pendientes ">
-        <div class="hora-ult-mesj">
-        ${Fecha_hora_ultima_Mensaje(ult_msj)}
-</div>
-</div>
+            <div class="hora-ult-mesj">
+                ${Fecha_hora_ultima_Mensaje(ult_msj)}
+            </div>
+        </div>
     </div>`;
 
 //<div class="num-msj-pendientes anterior"><span>n</span></div> -> para notificaciones vistas
