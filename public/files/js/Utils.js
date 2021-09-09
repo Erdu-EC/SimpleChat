@@ -84,3 +84,24 @@ function ObtenerFecha(fecha) {
         return fecha_solicitada.getDate() + " " + meses[fecha_solicitada.getMonth()] + " " + fecha_solicitada.getUTCFullYear();
     }
 }
+
+function Fecha_hora_ultima_Mensaje(fecha_mensaje) {
+    const fecha_solicitada = new Date(fecha_mensaje);
+    const fecha_actual = new Date(Date.now());
+    fecha_solicitada.setHours(0, 0, 0, 0);
+    fecha_actual.setHours(0, 0, 0, 0);
+
+    if (fecha_solicitada.getTime() === fecha_actual.getTime())
+        return new Date(fecha_mensaje).toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true}).toLowerCase();
+    else if (fecha_solicitada.getTime() === fecha_actual.setDate(fecha_actual.getDate() - 1))
+        return 'Ayer';
+    else if (Math.trunc((fecha_actual - fecha_solicitada) / (1000 * 60 * 60 * 24)) < 7)
+        return ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"][fecha_solicitada.getDay()];
+    else if (fecha_actual.getFullYear() === fecha_solicitada.getFullYear())
+        return fecha_solicitada.getDate() + "de " + [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto","Septiembre","Octubre", "Noviembre", "Diciembre"
+        ][fecha_solicitada.getMonth()];
+    else
+        return fecha_solicitada.getDate() + "/" + fecha_solicitada.getMonth() + "/" + fecha_solicitada.getFullYear();
+}

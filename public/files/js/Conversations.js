@@ -78,24 +78,3 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
 
 const obtener_elemento_msg_pendientes = (num) => '<div class="num-msj-pendientes online"><span>' + num + '</span></div>';
 
-function Fecha_hora_ultima_Mensaje(fecha_mensaje) {
-    var hoy = new Date();
-    var fecha_msj = new Date(fecha_mensaje);
-    var result = '';
-    var diferencia = Math.trunc((hoy - fecha_msj) / (1000 * 60 * 60 * 24));
-    if (diferencia < 1) {
-        result = fecha_msj.toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true}).toLowerCase();
-
-    } else if (diferencia == 1) {
-        result = 'Ayer';
-    } else if (diferencia < 7) {
-        dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-        result = dias[fecha_msj.getDay()];
-    } else if (hoy.getFullYear() == fecha_msj.getFullYear()) {
-        mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-        result = fecha_msj.getDate() + " de " + mes[fecha_msj.getMonth()];
-    } else {
-        result = fecha_msj.getDate() + "/" + fecha_msj.getMonth() + "/" + fecha_msj.getFullYear();
-    }
-    return result;
-}
