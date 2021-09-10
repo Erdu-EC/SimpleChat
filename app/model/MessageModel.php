@@ -43,7 +43,8 @@
             }
         }
 
-        public function GetUnreceivedMessages(int $user_id){
+        public function GetUnreceivedMessages(int $user_id): ?Collection
+        {
             try{
                 return $this->SelectAll('CALL user_GetUnreceiveMessages(:user)', [
                     'user' => $user_id

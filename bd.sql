@@ -203,6 +203,27 @@ BEGIN
       AND accepted is NULL;
 END $
 
+CREATE PROCEDURE user_GetUnreceiveInvitations(in USER_ID int)
+BEGIN
+    CREATE TEMPORARY TABLE unrcv_invitations
+    (
+        id int
+    ) ENGINE = MEMORY;
+
+    INSERT INTO unrcv_invitations
+    SELECT id
+    from invitations
+    where id_dest = USER_ID
+      and rcv_date is null;
+
+    UPDATE invitations set rcv_date = NOW() where id in (select id from unrcv_invitations);
+
+    SELECT *
+    FROM invitations
+    WHERE id in (select id from unrcv_invitations)
+    order by send_date, id;
+END $
+
 #Procedimientos para mensajes.
 CREATE FUNCTION user_SendMessage(source int, dest int, msg text) RETURNS INT
     MODIFIES SQL DATA
