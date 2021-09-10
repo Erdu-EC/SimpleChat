@@ -21,12 +21,13 @@ $(document).on("keyup change", "#espacio-de-escritura", function () {
 $(document).on('click', '#mensaje-invitacion button', function () {
     const boton_si = $('#mensaje-invitacion #mensaje-invitacion-si');
     const boton_no = $('#mensaje-invitacion #mensaje-invitacion-no');
+    const es_boton_si = $(this).is(boton_si);
 
     $.ajax('/action/invitation/accept', {
         method: 'post', dataType: 'json', mimeType: 'application/json',
         data: {
             contact: $('#espacio-de-chat > div').attr('data-usuario'),
-            accept: $(this).is(boton_si)
+            accept: es_boton_si
         },
         beforeSend: () => {
             boton_si.attr('disabled', '');
@@ -37,9 +38,20 @@ $(document).on('click', '#mensaje-invitacion button', function () {
             boton_no.attr('disabled', null);
         },
         success: function (json) {
-            if (json)
+            if (json) {
+                const elemento = $(`.elemento-conversacion[data-usuario=${$('#espacio-de-chat .messages').attr('data-nick')}]`);
+                elemento.find('.hora-ult-mesj').text(Fecha_hora_ultima_Mensaje(new Date(Date.now())));
+
+                if (es_boton_si) {
+                    //Recargar conversación.
+                    elemento.find('.preview').html('<i>Invitación aceptada</i>');
+                    elemento.parent().removeClass('active');
+                    elemento.click();
+                }else
+                    elemento.find('.preview').html('<i>Invitación rechazada</i>');
+
                 $('#mensaje-invitacion').remove();
-            else {
+            } else {
                 boton_si.attr('disabled', null);
                 boton_no.attr('disabled', null);
             }

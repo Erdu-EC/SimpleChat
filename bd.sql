@@ -7,17 +7,17 @@ SET GLOBAL log_bin_trust_function_creators = 1;
 CREATE TABLE users
 (
     id              int auto_increment,
-    user_name       varchar(30)  not null unique,
-    pass            varchar(120) not null,
-    first_name      varchar(250) not null,
-    last_name       varchar(250) not null,
+    user_name       varchar(30)          not null unique,
+    pass            varchar(120)         not null,
+    first_name      varchar(250)         not null,
+    last_name       varchar(250)         not null,
     birth_date      date,
-    gender          enum ('M', 'F', 'O', 'D'), #M - Masculino, F - Femenino, O - Otro, D - Sin especificar
+    gender          enum ('M', 'F', 'O', 'D'),                 #M - Masculino, F - Femenino, O - Otro, D - Sin especificar
     email           varchar(255),
     phone           char(15),
     /*City, Country, Occupation*/
 
-    state           ENUM ('A', 'O', 'I') NOT NULL DEFAULT 'I',      #A - Activo, O - Ocupado, I - Inactivo
+    state           ENUM ('A', 'O', 'I') NOT NULL DEFAULT 'I', #A - Activo, O - Ocupado, I - Inactivo
     create_at       datetime,
     last_connection datetime,
 
@@ -74,6 +74,8 @@ CREATE TABLE message
     rcv_date  datetime,
     read_date datetime,
     content   TEXT NOT NULL,
+    rcv_see   bool NOT NULL DEFAULT false,
+    read_see  bool not null default false,
     PRIMARY KEY (id),
     FOREIGN KEY (id_source) REFERENCES users (id),
     FOREIGN KEY (id_dest) REFERENCES users (id)
@@ -225,8 +227,9 @@ BEGIN
 END $
 
 #Obtener las conversaciones.
-CREATE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
+CREATE OR REPLACE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
 BEGIN
+    #TODO Mensaje mostrado en conversación recibido marcarlos todos.
     SELECT if(c.id_source != USER_ID, s_nick, d_nick)                                      as contact_id,
            if(c.id_source != USER_ID, s_first_name, d_first_name)                          as first_name,
            if(c.id_source != USER_ID, s_last_name, d_last_name)                            as last_name,
@@ -245,6 +248,13 @@ BEGIN
     WHERE USER_ID IN (c.id_source, c.id_dest)
       AND (if(CONTACT_ID IS NULL, TRUE, CONTACT_ID IN (c.id_source, c.id_dest)))
     order by msg_send_date desc, msg_id desc;
+
+    #Marcar invitaciónes como recibidas.
+    UPDATE invitations
+    SET rcv_date = now()
+    WHERE rcv_date IS NULL
+      and id_dest = USER_ID
+      AND if(CONTACT_ID IS NULL, TRUE, CONTACT_ID = id_source);
 END $
 
 #Obtener una conversación completa.
@@ -252,8 +262,11 @@ CREATE PROCEDURE user_GetConversationWithContact(in USER_ID int, in CONTACT_ID i
 BEGIN
     #Marcando mensajes a obtener como leidos.
     UPDATE message msg inner join message_readable mr on mr.id = msg.id
-    SET msg.rcv_date = IF(msg.rcv_date IS NULL, now(), msg.rcv_date), msg.read_date = IF(msg.read_date IS NULL, now(), msg.read_date)
-        where msg.id_source = CONTACT_ID and msg.id_dest = USER_ID and (msg.rcv_date IS NULL or msg.read_date IS NULL);
+    SET msg.rcv_date  = IF(msg.rcv_date IS NULL, now(), msg.rcv_date),
+        msg.read_date = IF(msg.read_date IS NULL, now(), msg.read_date)
+    where msg.id_source = CONTACT_ID
+      and msg.id_dest = USER_ID
+      and (msg.rcv_date IS NULL or msg.read_date IS NULL);
 
     select *
     from (
