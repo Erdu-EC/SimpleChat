@@ -338,12 +338,29 @@ $(document).on("click","#btn-guardar-perfil", function () {
 });
 
 
-
+let imagen_edicion;
 $(document).on('change', "#nueva-foto-perfil", function () {
-    $imagenPrevisualizacion = $("#foto-perfil-cuenta");
-    const archivos = document.getElementById('nueva-foto-perfil').files;
 
-    if (archivos.length !== 0) {
+    const archivos = document.getElementById('nueva-foto-perfil').files;
+    AgregarBotonesEdicion();
+    const imagenPrevisualizacion = $("#contenedor-editor #img-tmp");
+
+    if (archivos.length != 0 ) {
+
+        let reader = new FileReader();
+        reader.readAsDataURL(archivos[0]);
+
+        reader.onload = function () {
+            imagenPrevisualizacion.attr("src", reader.result);
+            imagen_edicion = imagenPrevisualizacion;
+           LanzarEditor(imagenPrevisualizacion);
+        };
+
+        return;
+    }
+
+
+   /* if (archivos.length !== 0) {
         const form_data = new FormData();
         form_data.append('img', archivos.item(0));
 
@@ -362,6 +379,7 @@ $(document).on('change', "#nueva-foto-perfil", function () {
                         $imagenPrevisualizacion.attr("src", reader.result);
                         $('#mi-perfil-sidepanel img').attr("src", reader.result);
                         $('#profile-img').attr("src", reader.result);
+
                     };
                 } else {
                     alert('No fue posible subir la imagen.');
@@ -370,8 +388,18 @@ $(document).on('change', "#nueva-foto-perfil", function () {
         });
 
         return false;
-    }
+    }*/
 });
+
+function LanzarEditor(imagenPrevisualizacion) {
+    console.log("he dado click");
+    imagenPrevisualizacion.cropper({
+        aspectRatio: 1/1,
+        viewMode: 1,
+        crop: function(event) {
+        }
+    });
+}
 
 function EnviarInformacionPerfil() {
     $.ajax({

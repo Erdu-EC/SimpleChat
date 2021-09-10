@@ -267,3 +267,65 @@ $(document).on("click", ".imagen-recibida", function () {
     var imagen = $(this).attr("src");
     MostrarModal($(this).attr("tittle"), '<img src="' + imagen + '" alt="" />', "", 'modal-fullscreen', "btn-close-white");
 });
+
+
+//botones para Edicion de fotos
+function AgregarBotonesEdicion() {
+    $('body').toggleClass('modoEdicionFotografia');
+    if($('body').hasClass('modoEdicionFotografia')){
+        $('body').prepend('<div id="botonera-edicion">\n' +
+            '    <button id="edicion-izquierda" title="Desplazar a la izquierda"><i class="fas fa-arrow-left"></i></button>\n' +
+            '    <button id="edicion-arriba" title="Desplazar a la derecha"><i class="fas fa-arrow-up"></i></button>\n' +
+            '    <button id="edicion-abajo" title="Desplazar hacia abajo"><i class="fas fa-arrow-down"></i></button>\n' +
+            '    <button id="edicion-derecha" title="Desplazar hacia arriba"><i class="fas fa-arrow-right"></i></button>\n' +
+            '    <button id="edicion-girar-der" title=""><i class="fas fa-redo"></i></button>\n' +
+            '    <button id="edicion-girar-izq" title=""><i class="fas fa-undo"></i></button>\n' +
+            '    <button id="edicion-invertir-h" title=""><i class="fas fa-arrows-alt-h"></i></button>\n' +
+            '    <button id="edicion-invertir-v" title=""><i class="fas fa-arrows-alt-v"></i></button>\n' +
+            '\n' +
+            '    <button id="edicion-zoom-mas" title=""><i class="fas fa-search-plus"></i></button>\n' +
+            '    <button id="edicion-zoom-menos" title=""><i class="fas fa-search-minus"></i></button>\n' +
+            '    <div class="edicion-finalizar">\n' +
+            '        <button id="edicion-enviar" title="Guardar cambios"><span class="material-icons">done</span></button> <button id="edicion-cerrar" title="Cancelar"><span class="material-icons">close</span></button>\n' +
+            '        </div>\n' +
+            '\n' +
+            '</div><div id="contenedor-editor"> <img id="img-tmp"> </>');
+    }else{
+        $("#botonera-edicion").remove();
+    }
+
+
+}
+
+$(document).on("click", "#edicion-cerrar", function (){
+    $('body').removeClass('modoEdicionFotografia')
+    $("#botonera-edicion").remove();
+    $("#contenedor-editor").remove();
+    /*img_result.cropper('clear');
+    img_result.cropper('destroy');
+    img_result.attr('src','');*/
+});
+$(document).on("click", "#edicion-enviar", function (){
+    $('body').removeClass('modoEdicionFotografia')
+    $("#botonera-edicion").remove();
+    $("#contenedor-editor").remove();
+});
+
+$(document).on("click", "#edicion-arriba", function (){
+    imagen_edicion.cropper('move',0,10);
+});
+$(document).on("click", "#edicion-abajo", function (){
+    imagen_edicion.cropper('move',0,-10);
+});
+$(document).on("click","#edicion-izquierda" , function (){
+    imagen_edicion.cropper('move',10,0);
+});
+$(document).on("click","#edicion-derecha" , function (){
+    imagen_edicion.cropper('move',-10,0);
+});
+$(document).on("click", "#edicion-girar-der", function (){
+    imagen_edicion.cropper('rotate',90);
+});
+$(document).on("click", "#edicion-girar-izq", function (){
+    imagen_edicion.cropper('rotate',-90);
+});
