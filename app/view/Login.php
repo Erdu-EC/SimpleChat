@@ -34,7 +34,7 @@ if (Session::IsLogin())
                     <a href="/Login" class="nav-link activo"> <span class="material-icons">login</span>Acceder</a>
                 </li>
                 <li class="nav-list-item">
-                    <a href="/Register" class="nav-link"><span class="material-icons">add</span>Resgistrarse</a>
+                    <a href="/Register" class="nav-link"><span class="material-icons">add</span>Registrarse</a>
                 </li>
                 <li class="nav-list-item">
                     <a href="/Privacy" class="nav-link">

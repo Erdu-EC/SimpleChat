@@ -2,6 +2,7 @@
 
     namespace HS\app\model;
 
+    use HS\libs\collection\Collection;
     use HS\libs\core\Model;
     use PDOException;
 
@@ -29,6 +30,16 @@
                 ]));
             } catch (PDOException $ex) {
                 return false;
+            }
+        }
+
+        public function GetUnreceive(int $user_id) : ?Collection{
+            try{
+                return $this->SelectAll('CALL user_GetUnreceiveInvitations(:user)', [
+                    'user' => $user_id
+                ]);
+            }catch (\PDOException $ex){
+                return null;
             }
         }
     }
