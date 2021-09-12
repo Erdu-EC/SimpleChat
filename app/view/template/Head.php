@@ -26,5 +26,4 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
 
 <!--Cropper js -->
 <script type="text/javascript" src="/files/cropper/cropper.js"></script>
-<script type="text/javascript" src="/files/cropper/jquery-cropper.js"></script>
 

@@ -344,27 +344,62 @@ var my_cropper;
 $(document).on('change', "#nueva-foto-perfil", function () {
     const archivos = document.getElementById('nueva-foto-perfil').files;
 
-    AgregarBotonesEdicion();
+     //El navegador debe soportar la lectura de archivos
+if (!window.FileReader) {
+        swal({
+            title: "¡Ha ocurrido un error!",
+            text: "El navegador no soporta la lectura de archivos.",
+            icon: "info",
+        });
+        return;
+    }
+//El archivo debe ser una imagen
 
-    if (archivos.length !== 0 ) {
-        const reader = new FileReader();
-        reader.readAsDataURL(archivos[0]);
-        reader.onload = function () {
-            const imagen = document.getElementById("img-tmp");
-            imagen.src = reader.result;
-            LanzarEditor(imagen);
-        };
+    if (!(/\.(jpg|png|gif|jpeg)$/i).test(archivos[0].name)) {
+        swal({
+            title: "¡Ha ocurrido un error!",
+            text: "El archivo seleccionado no es un archivo de imágen. Por favor, seleccione un archivo de imágen válido.",
+            icon: "warning",
+        });
+        return;
+    }
+    //El tamano del archivo no debe ser mayor a 15 MB
+
+    if((archivos[0].size /1048576) > 15){
+        swal({
+            title: "¡Ha ocurrido un error!",
+            text: "El peso de la imágen no debe superar los 15 MB. Por favor, seleccione una imágen válida.",
+            icon: "warning",
+        });
+        return;
     }
 
-    return false;
+    AgregarBotonesEdicion();
+    var imagenPrevisualizacion = document.getElementById("img-tmp");
+    if (archivos.length != 0 ) {
+
+        let reader = new FileReader();
+        reader.readAsDataURL(archivos[0]);
+
+        reader.onload = function () {
+            imagenPrevisualizacion.src =reader.result;
+           LanzarEditor(imagenPrevisualizacion);
+        };
+
+        return;
+    }
+
 });
 
 function EnviarImagen() {
 
-    my_cropper.getCroppedCanvas().toBlob(function (blob) {
-        const formData = new FormData();
-        formData.append('img', blob, "image.png");
+    const archivo = document.getElementById('nueva-foto-perfil').files;
 
+   my_cropper.getCroppedCanvas().toBlob(function (blob) {
+        const formData = new FormData();
+        formData.append('img', blob, archivo[0].name);
+
+        // Use `jQuery.ajax` method for example
         $.ajax({
             url: '/action/users/profile/upload_img',
             type: 'post',
@@ -376,7 +411,7 @@ function EnviarImagen() {
             success:function (response) {
                 if (response[0]) {
                     const reader = new FileReader();
-                    reader.readAsDataURL(blob);
+                    reader.readAsDataURL(archivo[0]);
 
                     reader.onload = function () {
                         $("#foto-perfil-cuenta").attr("src", reader.result);
@@ -390,7 +425,6 @@ function EnviarImagen() {
             }
         });
     });
-
 }
 
 function LanzarEditor(imagenPrevisualizacion) {
