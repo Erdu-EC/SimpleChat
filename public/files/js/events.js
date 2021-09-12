@@ -301,6 +301,7 @@ $(document).on("click", "#edicion-cerrar", function (){
     $('body').removeClass('modoEdicionFotografia')
     $("#botonera-edicion").remove();
     $("#contenedor-editor").remove();
+    my_cropper.destroy();
     /*img_result.cropper('clear');
     img_result.cropper('destroy');
     img_result.attr('src','');*/
@@ -309,23 +310,53 @@ $(document).on("click", "#edicion-enviar", function (){
     $('body').removeClass('modoEdicionFotografia')
     $("#botonera-edicion").remove();
     $("#contenedor-editor").remove();
+    EnviarImagen();
 });
 
 $(document).on("click", "#edicion-arriba", function (){
-    imagen_edicion.cropper('move',0,10);
+    my_cropper.move(0,10);
 });
 $(document).on("click", "#edicion-abajo", function (){
-    imagen_edicion.cropper('move',0,-10);
+    my_cropper.move(0,-10);
 });
 $(document).on("click","#edicion-izquierda" , function (){
-    imagen_edicion.cropper('move',10,0);
+    my_cropper.move(10,0);
 });
 $(document).on("click","#edicion-derecha" , function (){
-    imagen_edicion.cropper('move',-10,0);
+    my_cropper.move(-10,0);
 });
 $(document).on("click", "#edicion-girar-der", function (){
-    imagen_edicion.cropper('rotate',90);
+    my_cropper.rotate(90);
 });
 $(document).on("click", "#edicion-girar-izq", function (){
-    imagen_edicion.cropper('rotate',-90);
+    my_cropper.rotate(-90);
+});
+$(document).on("click", "#edicion-invertir-h",function (){
+    my_cropper.scaleX(-1);
+   $(this).toggleClass('activo')
+    if($(this).hasClass('activo')){
+        my_cropper.scaleX(-1);
+    }
+    else{
+        my_cropper.scaleX(1);
+    }
+});
+
+$(document).on("click", "#edicion-invertir-v",function (){
+
+   $(this).toggleClass('activo')
+    if($(this).hasClass('activo')){
+        my_cropper.scaleY(-1);
+    }
+    else{
+        my_cropper.scaleY(1);
+    }
+
+});
+
+$(document).on("click","#edicion-zoom-mas", function (){
+    my_cropper.zoom(0.1);
+});
+$(document).on("click","#edicion-zoom-menos",function (){
+    my_cropper.zoom(-0.1);
 });

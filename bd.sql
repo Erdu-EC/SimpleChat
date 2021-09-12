@@ -248,7 +248,7 @@ BEGIN
 END $
 
 #Obtener las conversaciones.
-CREATE OR REPLACE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
+CREATE  PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
 BEGIN
     #TODO Mensaje mostrado en conversación recibido marcarlos todos.
     SELECT if(c.id_source != USER_ID, s_nick, d_nick)                                      as contact_id,

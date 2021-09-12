@@ -339,20 +339,21 @@ $(document).on("click","#btn-guardar-perfil", function () {
 
 
 let imagen_edicion;
+var img_result= $("#contenedor-editor #img-tmp");
+var my_cropper;
 $(document).on('change', "#nueva-foto-perfil", function () {
 
     const archivos = document.getElementById('nueva-foto-perfil').files;
     AgregarBotonesEdicion();
-    const imagenPrevisualizacion = $("#contenedor-editor #img-tmp");
-
+    console.log(archivos[0]);
+    var imagenPrevisualizacion = document.getElementById("img-tmp");
     if (archivos.length != 0 ) {
 
         let reader = new FileReader();
         reader.readAsDataURL(archivos[0]);
 
         reader.onload = function () {
-            imagenPrevisualizacion.attr("src", reader.result);
-            imagen_edicion = imagenPrevisualizacion;
+            imagenPrevisualizacion.src =reader.result;
            LanzarEditor(imagenPrevisualizacion);
         };
 
@@ -391,13 +392,47 @@ $(document).on('change', "#nueva-foto-perfil", function () {
     }*/
 });
 
+function EnviarImagen() {
+
+    my_cropper.getCroppedCanvas().toBlob(function (blob) {
+        const formData = new FormData();
+        formData.append('img', blob);
+
+        // Use `jQuery.ajax` method for example
+        $.ajax({
+            url: '/action/users/profile/upload_img',
+            type: 'post',
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            mimeType: 'application/json',
+            success:function (response) {
+                if (response[0]) {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(archivos[0]);
+
+                    reader.onload = function () {
+                        $("#foto-perfil-cuenta").attr("src", reader.result);
+                        $('#mi-perfil-sidepanel img').attr("src", reader.result);
+                        $('#profile-img').attr("src", reader.result);
+
+                    };
+                } else {
+                    alert('No fue posible subir la imagen.');
+                }
+            }
+        });
+    });
+
+}
+
 function LanzarEditor(imagenPrevisualizacion) {
-    console.log("he dado click");
-    imagenPrevisualizacion.cropper({
+    my_cropper = new Cropper( imagenPrevisualizacion, {
         aspectRatio: 1/1,
         viewMode: 1,
         crop: function(event) {
-        }
+        },
     });
 }
 
