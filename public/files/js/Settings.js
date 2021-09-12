@@ -343,7 +343,7 @@ var img_result= $("#contenedor-editor #img-tmp");
 var my_cropper;
 $(document).on('change', "#nueva-foto-perfil", function () {
     const archivos = document.getElementById('nueva-foto-perfil').files;
-console.log(archivos[0].name);
+console.log(archivos[0].name + "Tipo: "+ archivos[0].type);
      //El navegador debe soportar la lectura de archivos
 if (!window.FileReader) {
         swal({
@@ -395,7 +395,7 @@ function EnviarImagen() {
 
     const archivo = document.getElementById('nueva-foto-perfil').files;
 
-   my_cropper.getCroppedCanvas().toBlob(function (blob) {
+   my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,}).toBlob(function (blob) {
         const formData = new FormData();
         formData.append('img', blob, archivo[0].name);
 
@@ -424,7 +424,7 @@ function EnviarImagen() {
                 }
             }
         });
-    });
+    }, archivo[0].type);
 }
 
 function LanzarEditor(imagenPrevisualizacion) {
