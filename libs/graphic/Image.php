@@ -34,18 +34,18 @@ class Image
             throw new ImageException($path, ImageException::NOTFOUND);
 
         //Obteniendo instancia de la imagen
-        switch (Path::GetExtension($path)) {
-            case ".bmp":
+        switch (exif_imagetype($path)) {
+            case IMAGETYPE_BMP:
                 $img = imagecreatefrombmp($path);
                 break;
-            case ".gif":
+            case IMAGETYPE_GIF:
                 $img = imagecreatefromgif($path);
                 break;
-            case ".jpg":
-            case ".jpeg":
+            case IMAGETYPE_JPEG:
+            case IMAGETYPE_JPEG2000:
                 $img = imagecreatefromjpeg($path);
                 break;
-            case ".png":
+            case IMAGETYPE_PNG:
                 $img = imagecreatefrompng($path);
                 break;
             default:

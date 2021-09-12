@@ -57,7 +57,6 @@ $(document).on("click", "#btn-opciones-perfil", function (e) {
 });
 
 
-
 $(document).on("click", "#opc-ver-foto", function () {
     MostrarModal("Mike Ross", '<img src="' + ObtenerUrlImagen($("#foto-perfil-cuenta")) + '" alt="" />', "", 'modal-fullscreen', "btn-close-white");
 });
@@ -67,12 +66,12 @@ $(document).on('click', "#opc-subir-foto", function () {
 });
 
 
-$(document).on("input", "#clave-nuev-rep" ,function () {
+$(document).on("input", "#clave-nuev-rep", function () {
     if ($("#clave-nuev").val() != "") {
         ClavesIguales();
     }
 });
-$(document).on("input","#clave-nuev", function () {
+$(document).on("input", "#clave-nuev", function () {
     if ($("#clave-nuev-rep").val() != "") {
         ClavesIguales();
     }
@@ -106,28 +105,28 @@ function ClavesIguales() {
 }
 
 //manejando evento INPUT y CHANGE de los input de formularios
-$(document).on("input","#nombres", function () {
+$(document).on("input", "#nombres", function () {
     ValidarNombreApellido($(this), "nombre");
 
 });
-$(document).on("input", "#apellidos",function () {
+$(document).on("input", "#apellidos", function () {
     ValidarNombreApellido($(this), "apellido");
 });
-$(document).on("change","#fecha_nac", function () {
+$(document).on("change", "#fecha_nac", function () {
     ValidarFechaNacimiento();
 });
-$(document).on("change","#genero", function () {
+$(document).on("change", "#genero", function () {
     ValidarGenero();
 });
-$(document).on("input","#correo_usuario", function () {
+$(document).on("input", "#correo_usuario", function () {
     ValidarCorreo();
 });
-$(document).on("input", "#telefono_usuario",function () {
+$(document).on("input", "#telefono_usuario", function () {
     ValidarTelefono();
 });
-$(document).on("keydown","#telefono_usuario",function (e) {
+$(document).on("keydown", "#telefono_usuario", function (e) {
     var key = e.key.charCodeAt();
-    if ((e.key == "Backspace") ||(e.key == "ArrowRight")|| (e.key == "ArrowLeft")|| (e.key == "Tab")|| (e.key == "Enter")||
+    if ((e.key == "Backspace") || (e.key == "ArrowRight") || (e.key == "ArrowLeft") || (e.key == "Tab") || (e.key == "Enter") ||
         (key >= 48 && key <= 57)) {
         return key;
     } else {
@@ -137,22 +136,22 @@ $(document).on("keydown","#telefono_usuario",function (e) {
 });
 
 //Funciones
-function ValoresPorDefecto(){
-    nombres= $("#nombres");
+function ValoresPorDefecto() {
+    nombres = $("#nombres");
     apellidos = $("#apellidos");
-   cont_fecha= $("#valor-fecha_nac");
-    genero= $("#genero");
+    cont_fecha = $("#valor-fecha_nac");
+    genero = $("#genero");
     telefono = $("#telefono_usuario");
-correo = $("#correo_usuario");
+    correo = $("#correo_usuario");
 
     nombres.val(nombres.attr("data-src"));
     apellidos.val(apellidos.attr("data-src"));
-    cont_fecha.text( ObtenerFecha($("#fecha_nac").attr("data-src")));
+    cont_fecha.text(ObtenerFecha($("#fecha_nac").attr("data-src")));
     $("#fecha_nac").val($("#fecha_nac").attr("data-src"));
 
-    $("#valor-genero").text($('#genero option[value="'+genero.attr("data-src")+'"]').html());
-    $("#genero option:selected").attr("selected",false);
-   genero.val(genero.attr("data-src"));
+    $("#valor-genero").text($('#genero option[value="' + genero.attr("data-src") + '"]').html());
+    $("#genero option:selected").attr("selected", false);
+    genero.val(genero.attr("data-src"));
 
     console.log($("#genero option:selected").val());
     telefono.val(telefono.attr("data-src"));
@@ -172,12 +171,13 @@ correo = $("#correo_usuario");
     padre.removeClass("editable");
 
 }
-//una vez que se ha modificado la informacion de perfil se cambia el data-src con los datos nuevos
-function AsignarValoresNuevos(){
 
-$(".item-perfil-cuenta .atributo-perfil").each (function (index, element) {
-$(this).attr("data-src", $(this).val());
-});
+//una vez que se ha modificado la informacion de perfil se cambia el data-src con los datos nuevos
+function AsignarValoresNuevos() {
+
+    $(".item-perfil-cuenta .atributo-perfil").each(function (index, element) {
+        $(this).attr("data-src", $(this).val());
+    });
     /*genero= $("#genero");
     genero.attr("data-src", $("#genero option:selected").val());*/
 }
@@ -199,6 +199,7 @@ function ValoresPorDefectoContrasenas() {
     $("#clave-nuev").val("");
     $("#clave-nuev_rep").val("");
 }
+
 //Funciones para validacion de los campos
 
 
@@ -283,7 +284,7 @@ function ValidarTelefono() {
 }
 
 //Código para enviar los datos al servidor
-$(document).on("click","#btn-guardar-perfil", function () {
+$(document).on("click", "#btn-guardar-perfil", function () {
     $("#faltan-campos").remove();
     if ($("#btn-editar-perfil").hasClass("activo")) {
         var continuar = true;
@@ -329,7 +330,7 @@ $(document).on("click","#btn-guardar-perfil", function () {
             swal("¿Estás seguro que deseas cambiar tu contraseña?", {
                 buttons: ["Cancelar", "Aceptar"],
             }).then((r) => {
-                 if (r) {
+                if (r) {
                     EnviarClaveNueva();
                 }
             });
@@ -339,33 +340,33 @@ $(document).on("click","#btn-guardar-perfil", function () {
 
 
 let imagen_edicion;
-var img_result= $("#contenedor-editor #img-tmp");
+var img_result = $("#contenedor-editor #img-tmp");
 var my_cropper;
 $(document).on('change', "#nueva-foto-perfil", function () {
     const archivos = document.getElementById('nueva-foto-perfil').files;
-console.log(archivos[0].name + "Tipo: "+ archivos[0].type);
-     //El navegador debe soportar la lectura de archivos
-if (!window.FileReader) {
+
+    //El navegador debe soportar la lectura de archivos
+    if (!window.FileReader) {
         swal({
             title: "¡Ha ocurrido un error!",
             text: "El navegador no soporta la lectura de archivos.",
             icon: "info",
         });
-        return;
+        return false;
     }
-//El archivo debe ser una imagen
 
+    //El archivo debe ser una imagen
     if (!(/\.(jpg|png|gif|jpeg)$/i).test(archivos[0].name)) {
         swal({
             title: "¡Ha ocurrido un error!",
             text: "El archivo seleccionado no es un archivo de imágen. Por favor, seleccione un archivo de imágen válido.",
             icon: "warning",
         });
-        return;
+        return false;
     }
-    //El tamano del archivo no debe ser mayor a 15 MB
 
-    if((archivos[0].size /1048576) > 15){
+    //El tamano del archivo no debe ser mayor a 15 MB
+    if ((archivos[0].size / 1048576) > 15) {
         swal({
             title: "¡Ha ocurrido un error!",
             text: "El peso de la imágen no debe superar los 15 MB. Por favor, seleccione una imágen válida.",
@@ -375,31 +376,29 @@ if (!window.FileReader) {
     }
 
     AgregarBotonesEdicion();
-    var imagenPrevisualizacion = document.getElementById("img-tmp");
-    if (archivos.length != 0 ) {
 
-        let reader = new FileReader();
+    if (archivos.length !== 0) {
+        const reader = new FileReader();
         reader.readAsDataURL(archivos[0]);
 
         reader.onload = function () {
-            imagenPrevisualizacion.src =reader.result;
-           LanzarEditor(imagenPrevisualizacion);
+            const image = document.getElementById("img-tmp");
+            image.src = reader.result;
+            LanzarEditor(image);
         };
-
-        return;
     }
 
+    return false;
 });
 
 function EnviarImagen() {
 
     const archivo = document.getElementById('nueva-foto-perfil').files;
 
-   my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,}).toBlob(function (blob) {
+    my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,}).toBlob(function (blob) {
         const formData = new FormData();
         formData.append('img', blob, archivo[0].name);
 
-        // Use `jQuery.ajax` method for example
         $.ajax({
             url: '/action/users/profile/upload_img',
             type: 'post',
@@ -408,7 +407,7 @@ function EnviarImagen() {
             processData: false,
             contentType: false,
             mimeType: 'application/json',
-            success:function (response) {
+            success: function (response) {
                 if (response[0]) {
                     const reader = new FileReader();
                     reader.readAsDataURL(blob);
@@ -424,14 +423,14 @@ function EnviarImagen() {
                 }
             }
         });
-    }, archivo[0].type);
+    });
 }
 
 function LanzarEditor(imagenPrevisualizacion) {
-    my_cropper = new Cropper( imagenPrevisualizacion, {
-        aspectRatio: 1/1,
+    my_cropper = new Cropper(imagenPrevisualizacion, {
+        aspectRatio: 1 / 1,
         viewMode: 1,
-        crop: function(event) {
+        crop: function (event) {
         },
     });
 }
@@ -465,8 +464,7 @@ function EnviarInformacionPerfil() {
                         ValoresPorDefecto();
                     }
                 );
-            }
-            else{
+            } else {
                 switch (json[1]) {
                     case 1:
                         IndicarError("Uno de los campos está vacío. Por favor, verifique todos los campos.");
@@ -474,38 +472,38 @@ function EnviarInformacionPerfil() {
                     case 2:
                         IndicarError("Ingrese un nombre válido. 2 caracteres mín.");
                         break;
-                   case 3:
+                    case 3:
                         IndicarError("Ingrese un apellido válido. 2 caracteres mín.");
                         break;
-                   case 4:
+                    case 4:
                         IndicarError("Ingrese una fecha de nacimiento válida.");
                         break;
-                   case 5:
+                    case 5:
                         IndicarError("Seleccione una opción de género válido.");
                         break;
-                   case 6:
+                    case 6:
                         IndicarError("Ingrese un número de teléfono válido.");
                         break;
-                   case 7:
+                    case 7:
                         IndicarError("Ingrese una dirección de correo válida.");
                         break;
-                   case 8:
-                           swal({
-                                    title: "Ha ocurrido un error",
-                                    text: "No se han podido efectuar los cambios",
-                                    icon: "info",
-                                    buttons: {
-                                        retry: "Reintentar",
-                                        defeat: "Cerrar",
-                                    },
-                                })
-                           .then((value)=> {
-                               if(value == "retry"){
+                    case 8:
+                        swal({
+                            title: "Ha ocurrido un error",
+                            text: "No se han podido efectuar los cambios",
+                            icon: "info",
+                            buttons: {
+                                retry: "Reintentar",
+                                defeat: "Cerrar",
+                            },
+                        })
+                            .then((value) => {
+                                if (value == "retry") {
 
-                               }else{
-                                   return;
-                               }
-                           });
+                                } else {
+                                    return;
+                                }
+                            });
                         break;
                 }
             }
@@ -530,10 +528,10 @@ function EnviarClaveNueva() {
         beforeSend: () => {
         },
         error: () => {
-          DatosNoEnviados();
+            DatosNoEnviados();
         },
         success: function (json) {
-            if(json[0]=== true){
+            if (json[0] === true) {
                 swal(
                     {
                         text: 'La contraseña de  su cuenta ha sido modificada correctamente.',
@@ -543,7 +541,7 @@ function EnviarClaveNueva() {
                         ValoresPorDefectoContrasenas();
                     }
                 );
-            }else{
+            } else {
 
                 switch (json[1]) {
                     case 1:
@@ -553,12 +551,12 @@ function EnviarClaveNueva() {
                         IndicarError("Verifique que ambas contraseñas coinciden e intente nuevamente", "No se ha podido cambiar su contraseña");
                         break;
                     case 3:
-                        IndicarError("La contraseña introducida en el campo \"Contraseña actual\" es incorrecta.","No se ha podido cambiar su contraseña");
+                        IndicarError("La contraseña introducida en el campo \"Contraseña actual\" es incorrecta.", "No se ha podido cambiar su contraseña");
                         break;
                     case 4:
                         swal({
-                            title:"Restablecer la contrase",
-                            text:"La nueva contraseña no puede ser igual que la anterior.",
+                            title: "Restablecer la contrase",
+                            text: "La nueva contraseña no puede ser igual que la anterior.",
                             icon: "info",
                             button: "Ok"
                         });
@@ -573,11 +571,11 @@ function EnviarClaveNueva() {
                                 defeat: "Cerrar",
                             },
                         })
-                            .then((value)=> {
-                                if(value == "retry"){
+                            .then((value) => {
+                                if (value == "retry") {
                                     EnviarClaveNueva();
 
-                                }else{
+                                } else {
                                     return;
                                 }
                             });
@@ -585,21 +583,22 @@ function EnviarClaveNueva() {
                 }
             }
 
-         }
+        }
     });
 }
-function DatosNoEnviados(){
+
+function DatosNoEnviados() {
     swal({
         title: "Datos no enviados",
-        text:"No se ha podido completar su solicitud. Revise su conexión a Internet",
-        icon:"error",
+        text: "No se ha podido completar su solicitud. Revise su conexión a Internet",
+        icon: "error",
         dangerMode: true,
         button: "OK"
 
     });
 }
 
-function IndicarError($mensaje, $titulo="") {
+function IndicarError($mensaje, $titulo = "") {
     swal({
         title: $titulo,
         text: $mensaje,

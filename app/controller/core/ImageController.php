@@ -4,7 +4,8 @@
 
 	use HS\app\model\UserModel;
 	use HS\config\APP_DIR;
-	use HS\config\DBAccount;
+    use HS\config\APP_URL;
+    use HS\config\DBAccount;
 	use HS\libs\core\http\HttpResponse;
 	use HS\libs\core\Session;
 	use HS\libs\graphic\Image;
@@ -13,8 +14,10 @@
 	use HS\libs\helper\MimeType;
 	use HS\libs\helper\Text;
 	use HS\libs\io\Path;
+    use HS\libs\io\Url;
+    use const HS\APP_URL;
 
-	class ImageController
+    class ImageController
 	{
 		public static function Get(string $type, string $filename): void {
 			/*TODO Limitar quien puede acceder a las fotos de perfil, con permisos de BD.*/
@@ -75,7 +78,7 @@
 
 			if ($file['error'] !== 0)
 				die(json_encode([false, 1]));
-			else if (array_search(Path::GetExtension($file['name']), Image::SUPPORTED_FORMATS) === false)
+			else if (array_search(strtolower(Path::GetExtension($file['name'])), Image::SUPPORTED_FORMATS) === false)
 				die(json_encode([false, 2]));
 			else if (array_search(exif_imagetype($file['tmp_name']), [IMAGETYPE_BMP, IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_JPEG2000, IMAGETYPE_PNG]) === false)
 				die(json_encode([false, 3]));
@@ -86,7 +89,6 @@
 				$session = new Session();
 				$user_id = $session->user_id;
 				$user_name = $session->user_name;
-				unset($session);
 
 				//Obteniendo ruta en donde se guardara la imagen.
 				$img_name = $type === 'profile' ? $user_name . Path::GetExtension($file['name']) : $file['name'];
@@ -96,12 +98,34 @@
 					//Desconectando base de datos.
 					unset($user);
 
+                    //Eliminando anterior foto de perfil.
+                    $new_profile_img = APP_URL::OfImageProfile($img_name);
+
+                    if ($new_profile_img != $session->user_profile_img){
+                        $current_profile_img = Path::GetFileName($session->user_profile_img);
+
+                        //Eliminando imagen de perfil anterior.
+                        unlink(self::GetPathOfType($type, $current_profile_img));
+
+                        //Actualizando datos de sesion.
+                        $session->user_profile_img = $new_profile_img;
+                    }
+
+                    //Cerrando datos de sesión.
+                    unset($current_profile_img);
+                    unset($new_profile_img);
+                    unset($session);
+
 					//Limpiar cache de foto de perfil.
 					IOUtil::DeleteFileBeginWithName(Path::Combine(APP_DIR::IMAGE_CACHE, 'profile'), "$user_name (");
 
 					//Devolviendo respuesta.
 					die(json_encode([true]));
 				}
+
+                //Cerrando datos de sesión.
+                unset($session);
+
 				//Moviendo imagen subida a directorio correcto.
 				if (move_uploaded_file($file['tmp_name'], self::GetPathOfType($type, $img_name)) !== false) {
 					die(json_encode([true]));
