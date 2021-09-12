@@ -343,7 +343,7 @@ var img_result= $("#contenedor-editor #img-tmp");
 var my_cropper;
 $(document).on('change', "#nueva-foto-perfil", function () {
     const archivos = document.getElementById('nueva-foto-perfil').files;
-
+console.log(archivos[0].name);
      //El navegador debe soportar la lectura de archivos
 if (!window.FileReader) {
         swal({
@@ -411,7 +411,7 @@ function EnviarImagen() {
             success:function (response) {
                 if (response[0]) {
                     const reader = new FileReader();
-                    reader.readAsDataURL(archivo[0]);
+                    reader.readAsDataURL(blob);
 
                     reader.onload = function () {
                         $("#foto-perfil-cuenta").attr("src", reader.result);

@@ -301,7 +301,7 @@ $(document).on("click", "#edicion-cerrar", function (){
     $('body').removeClass('modoEdicionFotografia')
     $("#botonera-edicion").remove();
     $("#contenedor-editor").remove();
-    my_cropper.destroy();
+    my_cropper.reset();
     /*img_result.cropper('clear');
     img_result.cropper('destroy');
     img_result.attr('src','');*/

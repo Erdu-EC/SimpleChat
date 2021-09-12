@@ -62,7 +62,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
         <nav class="sb-sidenav ">
             <div id="profile">
                 <div class="wrap no-seleccionable">
-                    <img id="profile-img" src="<?= $SESSION_USER_PROFILE_IMG ?>?w=100&h=100" class="online" alt=""/>
+                    <img id="profile-img" src="<?= $SESSION_USER_PROFILE_IMG ?>" class="online" alt=""/>
 
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item">
