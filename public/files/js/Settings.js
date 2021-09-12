@@ -342,63 +342,29 @@ let imagen_edicion;
 var img_result= $("#contenedor-editor #img-tmp");
 var my_cropper;
 $(document).on('change', "#nueva-foto-perfil", function () {
-
     const archivos = document.getElementById('nueva-foto-perfil').files;
+
     AgregarBotonesEdicion();
-    console.log(archivos[0]);
-    var imagenPrevisualizacion = document.getElementById("img-tmp");
-    if (archivos.length != 0 ) {
 
-        let reader = new FileReader();
+    if (archivos.length !== 0 ) {
+        const reader = new FileReader();
         reader.readAsDataURL(archivos[0]);
-
         reader.onload = function () {
-            imagenPrevisualizacion.src =reader.result;
-           LanzarEditor(imagenPrevisualizacion);
+            const imagen = document.getElementById("img-tmp");
+            imagen.src = reader.result;
+            LanzarEditor(imagen);
         };
-
-        return;
     }
 
-
-   /* if (archivos.length !== 0) {
-        const form_data = new FormData();
-        form_data.append('img', archivos.item(0));
-
-        $.ajax({
-            url: '/action/users/profile/upload_img', type: 'post',
-            data: form_data,
-            contentType: false,
-            processData: false,
-            mimeType: 'application/json',
-            success: function (response) {
-                if (response[0]) {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(archivos[0]);
-
-                    reader.onload = function () {
-                        $imagenPrevisualizacion.attr("src", reader.result);
-                        $('#mi-perfil-sidepanel img').attr("src", reader.result);
-                        $('#profile-img').attr("src", reader.result);
-
-                    };
-                } else {
-                    alert('No fue posible subir la imagen.');
-                }
-            }
-        });
-
-        return false;
-    }*/
+    return false;
 });
 
 function EnviarImagen() {
 
     my_cropper.getCroppedCanvas().toBlob(function (blob) {
         const formData = new FormData();
-        formData.append('img', blob);
+        formData.append('img', blob, "image.png");
 
-        // Use `jQuery.ajax` method for example
         $.ajax({
             url: '/action/users/profile/upload_img',
             type: 'post',
@@ -410,7 +376,7 @@ function EnviarImagen() {
             success:function (response) {
                 if (response[0]) {
                     const reader = new FileReader();
-                    reader.readAsDataURL(archivos[0]);
+                    reader.readAsDataURL(blob);
 
                     reader.onload = function () {
                         $("#foto-perfil-cuenta").attr("src", reader.result);

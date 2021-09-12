@@ -47,7 +47,10 @@ function MostrarModal(titulo, contenido, evento_cierre, clases, color_boton="") 
 }
 
 //Obtener Url de imagen.
-const ObtenerUrlImagen = elemento_img => new URL(elemento_img.attr('src'), window.location.origin).pathname;
+const ObtenerUrlImagen = elemento_img => {
+    const src = elemento_img.attr('src');
+    return src.startsWith('data:image/') ? src : new URL( src, window.location.origin).pathname;
+}
 
 //Hora y Fecha.
 function ObtenerHora(hora) {
