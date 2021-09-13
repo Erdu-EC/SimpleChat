@@ -237,24 +237,32 @@ $(document).on("click", "#icon-archivo-imagen", function () {
 $(document).on("input", "#archivo-imagen-enviar", function () {
 
     const archivos = document.getElementById('archivo-imagen-enviar').files;
-    var tiempo = new Date();
-
-    var nombre = 'img_' + tiempo.getDate() + tiempo.getMonth() + tiempo.getFullYear() + '_' + tiempo.getHours() + tiempo.getMinutes() + tiempo.getSeconds();
-    var img = $('<li class="enviado"><div class="dir"></div><div class="cont-msj contenedor-imagen-enviada"><img class="imagen-enviada" id="' + nombre + '" title="' + nombre + '" tittle="' + nombre + '"></div></li>');
-    $("#lista-mensajes").append(img);
-    var img = $('#' + nombre + '');
-    if (archivos.length != 0) {
-
-        let reader = new FileReader();
-        reader.readAsDataURL(archivos[0]);
-
-        reader.onload = function () {
-            img.attr("src", reader.result);
-
-        };
-        $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+    if(!ValidarImagen( archivos)){
         return;
+    }else {
+       // var tiempo = new Date();
+
+        //var nombre = 'img_' + tiempo.getDate() + tiempo.getMonth() + tiempo.getFullYear() + '_' + tiempo.getHours() + tiempo.getMinutes() + tiempo.getSeconds();
+      //  var img = $('<li class="enviado"><div class="dir"></div><div class="cont-msj contenedor-imagen-enviada"><img class="imagen-enviada" id="' + nombre + '" title="' + nombre + '" tittle="' + nombre + '"></div></li>');
+      //  $("#lista-mensajes").append(img);
+     //   var img = $('#' + nombre + '');
+        AgregarBotonesEdicion("mensaje");
+        if (archivos.length != 0) {
+
+            let reader = new FileReader();
+            reader.readAsDataURL(archivos[0]);
+            const image = document.getElementById("img-tmp");
+            reader.onload = function () {
+                image.src = reader.result;
+                LanzarEditor(image, NaN);
+              //  img.attr("src", reader.result);
+            };
+            $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+            return;
+        }
+
     }
+
 });
 $(document).on("load", ".imagen-enviada", function () {
     $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
@@ -270,7 +278,7 @@ $(document).on("click", ".imagen-recibida", function () {
 
 
 //botones para Edicion de fotos
-function AgregarBotonesEdicion() {
+function AgregarBotonesEdicion(elemento) {
     $('body').toggleClass('modoEdicionFotografia');
     if($('body').hasClass('modoEdicionFotografia')){
         $('body').prepend('<div id="botonera-edicion">\n' +
@@ -281,12 +289,12 @@ function AgregarBotonesEdicion() {
             '    <button id="edicion-girar-der" title=""><i class="fas fa-redo"></i></button>\n' +
             '    <button id="edicion-girar-izq" title=""><i class="fas fa-undo"></i></button>\n' +
             '    <button id="edicion-invertir-h" title=""><i class="fas fa-arrows-alt-h"></i></button>\n' +
-            '    <button id="edicion-invertir-v" title=""><i class="fas fa-arrows-alt-v"></i></button>\n' +
-            '\n' +
-            '    <button id="edicion-zoom-mas" title=""><i class="fas fa-search-plus"></i></button>\n' +
+            '    <button id="edicion-invertir-v" title=""><i class="fas fa-arrows-alt-v"></i></button><button id="edicion-encuadre" title=""><span class="material-icons">\n' +
+            'crop_free\n' +
+            '</span></button>'+'<button id="edicion-zoom-mas" title=""><i class="fas fa-search-plus"></i></button>\n' +
             '    <button id="edicion-zoom-menos" title=""><i class="fas fa-search-minus"></i></button>\n' +
             '    <div class="edicion-finalizar">\n' +
-            '        <button id="edicion-enviar" title="Guardar cambios"><span class="material-icons">done</span></button> <button id="edicion-cerrar" title="Cancelar"><span class="material-icons">close</span></button>\n' +
+            '        <button id="edicion-enviar-'+elemento+'" title="Guardar cambios"><span class="material-icons">done</span></button> <button id="edicion-cerrar-'+elemento+'" title="Cancelar"><span class="material-icons">close</span></button>\n' +
             '        </div>\n' +
             '\n' +
             '</div><div id="contenedor-editor"> <img id="img-tmp"> </>');
@@ -297,16 +305,27 @@ function AgregarBotonesEdicion() {
 
 }
 
-$(document).on("click", "#edicion-cerrar", function (){
-    $('body').removeClass('modoEdicionFotografia')
-    $("#botonera-edicion").remove();
-    $("#contenedor-editor").remove();
-    my_cropper.reset();
+$(document).on("click", "#edicion-cerrar-perfil", function (){
+
+    CancelarEdicion();
+    $("#nueva-foto-perfil").val("");
     /*img_result.cropper('clear');
     img_result.cropper('destroy');
     img_result.attr('src','');*/
 });
-$(document).on("click", "#edicion-enviar", function (){
+
+$(document).on("click", "#edicion-cerrar-mensaje", function (){
+    CancelarEdicion();
+$("#archivo-imagen-enviar").val("");
+});
+
+$(document).on("click", "#edicion-enviar-mensaje", function (){
+    $('body').removeClass('modoEdicionFotografia')
+    $("#botonera-edicion").remove();
+    $("#contenedor-editor").remove();
+    $("#archivo-imagen-enviar").val("");
+});
+$(document).on("click", "#edicion-enviar-perfil", function (){
     $('body').removeClass('modoEdicionFotografia')
     $("#botonera-edicion").remove();
     $("#contenedor-editor").remove();
@@ -360,3 +379,51 @@ $(document).on("click","#edicion-zoom-mas", function (){
 $(document).on("click","#edicion-zoom-menos",function (){
     my_cropper.zoom(-0.1);
 });
+$(document).on("click", "#edicion-encuadre", function (){
+ancho= my_cropper.getImageData().naturalWidth;
+alto= my_cropper.getImageData().naturalHeight;
+    my_cropper.setCropBoxData({width: ancho, height: alto,});
+});
+
+//Funciones
+ function ValidarImagen( archivos) {
+
+     //El navegador debe soportar la lectura de archivos
+     if (!window.FileReader) {
+         swal({
+             title: "¡Ha ocurrido un error!",
+             text: "El navegador no soporta la lectura de archivos.",
+             icon: "info",
+         });
+         return false;
+     }
+
+     //El archivo debe ser una imagen
+     if (!(/\.(jpg|png|gif|jpeg)$/i).test(archivos[0].name)) {
+         swal({
+             title: "¡Ha ocurrido un error!",
+             text: "El archivo seleccionado no es un archivo de imágen. Por favor, seleccione un archivo de imágen válido.",
+             icon: "warning",
+         });
+         return false;
+     }
+
+     //El tamano del archivo no debe ser mayor a 15 MB
+     if ((archivos[0].size / 1048576) > 15) {
+         swal({
+             title: "¡Ha ocurrido un error!",
+             text: "El peso de la imágen no debe superar los 15 MB. Por favor, seleccione una imágen válida.",
+             icon: "warning",
+         });
+         return false;
+     }
+return true;
+ }
+ function CancelarEdicion(){
+     $('body').removeClass('modoEdicionFotografia')
+     $("#botonera-edicion").remove();
+     $("#contenedor-editor").remove();
+     my_cropper.clear();
+     my_cropper.reset();
+     delete my_cropper;
+ }

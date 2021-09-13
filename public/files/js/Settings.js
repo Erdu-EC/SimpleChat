@@ -339,62 +339,33 @@ $(document).on("click", "#btn-guardar-perfil", function () {
 });
 
 
-let imagen_edicion;
-var img_result = $("#contenedor-editor #img-tmp");
+
 var my_cropper;
-$(document).on('change', "#nueva-foto-perfil", function () {
+$(document).on('input', "#nueva-foto-perfil", function () {
     const archivos = document.getElementById('nueva-foto-perfil').files;
 
-    //El navegador debe soportar la lectura de archivos
-    if (!window.FileReader) {
-        swal({
-            title: "¡Ha ocurrido un error!",
-            text: "El navegador no soporta la lectura de archivos.",
-            icon: "info",
-        });
-        return false;
-    }
-
-    //El archivo debe ser una imagen
-    if (!(/\.(jpg|png|gif|jpeg)$/i).test(archivos[0].name)) {
-        swal({
-            title: "¡Ha ocurrido un error!",
-            text: "El archivo seleccionado no es un archivo de imágen. Por favor, seleccione un archivo de imágen válido.",
-            icon: "warning",
-        });
-        return false;
-    }
-
-    //El tamano del archivo no debe ser mayor a 15 MB
-    if ((archivos[0].size / 1048576) > 15) {
-        swal({
-            title: "¡Ha ocurrido un error!",
-            text: "El peso de la imágen no debe superar los 15 MB. Por favor, seleccione una imágen válida.",
-            icon: "warning",
-        });
+    if(!( ValidarImagen( archivos))){
         return;
     }
+    else {
+        AgregarBotonesEdicion("perfil");
 
-    AgregarBotonesEdicion();
-
-    if (archivos.length !== 0) {
-        const reader = new FileReader();
-        reader.readAsDataURL(archivos[0]);
-
-        reader.onload = function () {
+        if (archivos.length !== 0) {
+            const reader = new FileReader();
+            reader.readAsDataURL(archivos[0]);
             const image = document.getElementById("img-tmp");
-            image.src = reader.result;
-            LanzarEditor(image);
-        };
-    }
+            reader.onload = function () {
 
-    return false;
+                image.src = reader.result;
+                LanzarEditor(image, 1/1);
+            };
+        }
+    }
 });
 
 function EnviarImagen() {
 
     const archivo = document.getElementById('nueva-foto-perfil').files;
-
     my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,}).toBlob(function (blob) {
         const formData = new FormData();
         formData.append('img', blob, archivo[0].name);
@@ -408,6 +379,7 @@ function EnviarImagen() {
             contentType: false,
             mimeType: 'application/json',
             success: function (response) {
+
                 if (response[0]) {
                     const reader = new FileReader();
                     reader.readAsDataURL(blob);
@@ -416,23 +388,39 @@ function EnviarImagen() {
                         $("#foto-perfil-cuenta").attr("src", reader.result);
                         $('#mi-perfil-sidepanel img').attr("src", reader.result);
                         $('#profile-img').attr("src", reader.result);
-
+                        $("#nueva-foto-perfil").val("");
                     };
                 } else {
-                    alert('No fue posible subir la imagen.');
+                   swal({
+                       title: "¡Ha ocurrido un error!",
+                       text:"No se ha podido modificar la foto de perfil. Por favor, asegúrese de seleccionar un archivo de imagen válido.",
+                       icon:"error",
+                       button:"Ok",
+                   });
                 }
+            },
+            error: function (){
+                swal({
+                    title: "¡Ha ocurrido un error!",
+                    text:"No se ha podido modificar la foto de perfil. Por favor, verifique su conexión a Internet.",
+                    icon:"error",
+                    button:"Ok",
+                });
             }
         });
     });
 }
 
-function LanzarEditor(imagenPrevisualizacion) {
+function LanzarEditor(imagenPrevisualizacion, apecto) {
     my_cropper = new Cropper(imagenPrevisualizacion, {
-        aspectRatio: 1 / 1,
+        aspectRatio: apecto,
         viewMode: 1,
-        crop: function (event) {
-        },
+autoCropArea: 1,
+        minCropBoxWidth: 100,
+        minCropBoxHeight: 100,
+        cropBoxResizable: true,
     });
+
 }
 
 function EnviarInformacionPerfil() {
