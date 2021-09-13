@@ -47,9 +47,18 @@ function MostrarModal(titulo, contenido, evento_cierre, clases, color_boton="") 
 }
 
 //Obtener Url de imagen.
-const ObtenerUrlImagen = elemento_img => {
+const ObtenerUrlImagen = (elemento_img, width, height) => {
     const src = elemento_img.attr('src');
-    return src.startsWith('data:image/') ? src : new URL( src, window.location.origin).pathname;
+    let param = '';
+
+    if (width !== undefined && height !== undefined)
+        param = `?w=${width}&h=${height}`;
+    else if (width !== undefined)
+        param = `?w=${width}`;
+    else if (height !== undefined)
+        param = `?h=${height}`;
+    
+    return src.startsWith('data:image/') ? src : (new URL( src, window.location.origin).pathname) + param;
 }
 
 //Hora y Fecha.

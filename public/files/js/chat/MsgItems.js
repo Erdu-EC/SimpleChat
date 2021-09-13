@@ -24,7 +24,7 @@ const ObtenerElementoMensajeEnviado = mensaje => {
 * */
 const ObtenerElementoMensaje = (mensaje, fecha_envio, estado) => `
 <li class="enviado">
-            <img src="${ObtenerUrlImagen($('#profile-img')) + '?w=40&h=40'}" alt="" />
+            <img src="${ObtenerUrlImagen($('#profile-img'), 40, 40)}" alt="" />
             <div class="dir"></div>
             <div class="cont-msj"><p> ${mensaje}</p> </div>
             <div class="extra-mensaje">
