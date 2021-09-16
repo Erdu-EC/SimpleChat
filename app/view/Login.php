@@ -55,8 +55,11 @@ if (Session::IsLogin())
 
 
             </ul>
-            <div class="logo-simplechat">
+            <div class="logo-simplechat-bk">
                 <img src="/files/icon/logo-bk.png?h=40" alt="" data-src="logo-bk.png">
+            </div>
+            <div class="logo-simplechat-wh">
+                <img src="/files/icon/logo-wh.png?h=36" alt="" data-src="logo-bk.png">
             </div>
         </nav>
     </header>

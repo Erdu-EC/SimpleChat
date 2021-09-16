@@ -47,24 +47,9 @@ $(document).on('input', '#user_pass', null, function () {
 $("#btn-navbar-toggler").click(function () {
     $("nav.menu-navegacion ul.nav-lista").toggleClass("activo").toggleClass("inactivo");
     if( $("nav.menu-navegacion ul.nav-lista").hasClass('activo')){
-        $("#btn-navbar-toggler").html('<span class="material-icons-outlined">close</span>');
+        $("#btn-navbar-toggler").html('<span class="material-icons">close</span>');
+    }
+    else{
+        $("#btn-navbar-toggler").html('<span class="material-icons">menu</span>');
     }
 });
-$(document).ready(function () {
-    CambiarLogo();
-});
-$(window).resize(function () {
-    CambiarLogo();
-});
-function CambiarLogo() {
-    var logo =$(".logo-simplechat img");
-    if(window.innerWidth < 735 && (logo.attr('data-src')=='logo-bk.png')){
-        logo.attr('src', '/files/icon/logo-wh.png?h=36').attr('data-src','logo-wh.png' );
-        console.log("Ancho de pantalla: "+ window.width +logo.attr('src'));
-
-    }
-    else if(window.innerWidth > 735 && (logo.attr('data-src')=='logo-wh.png')){
-        logo.attr('src', '/files/icon/logo-bk.png?h=40').attr('data-src','logo-bk.png' );
-        console.log("Ancho de pantalla: "+ window.innerWidth +logo.attr('src'));
-    }
-}
