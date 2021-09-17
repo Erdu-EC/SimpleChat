@@ -1,4 +1,5 @@
 <?php
+
 	namespace HS {
 		#Depuración.
 		const APP_DEBUG = true;
@@ -9,6 +10,9 @@
 
 		/**Ruta del directorio raiz de la aplicación.*/
 		define(__NAMESPACE__ . '\APP_PATH', realpath(__DIR__ . "/.."));
+
+        //estableciendo zona horaria 'America/Managua'
+        date_default_timezone_set('America/Managua');
 
 		/**Url raiz de la aplicación.*/
 		define(__NAMESPACE__ . '\APP_URL', pathinfo($_SERVER['PHP_SELF'], PATHINFO_DIRNAME));

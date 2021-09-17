@@ -15,10 +15,12 @@ use const HS\config\APP_NAME;
 </head>
 <body>
 <header class="">
+
     <nav class="menu-navegacion">
         <button class="navbar-toggler" id="btn-navbar-toggler">
             <span class="material-icons">menu</span>
         </button>
+
         <ul class="nav-lista inactivo">
             <li class="nav-list-item">
 
@@ -38,13 +40,18 @@ use const HS\config\APP_NAME;
             </li>
             <li class="nav-list-item">
                 <a href="/Contact" class="nav-link activo">
-                    <span class="material-icons"><span class="material-icons-outlined">support_agent</span></span>Contacto
+                    <span class="material-icons">support_agent</span>Contacto
                 </a>
             </li>
 
 
         </ul>
-
+        <div class="logo-simplechat-bk">
+            <img src="/files/icon/logo-bk.png?h=40" alt="">
+        </div>
+        <div class="logo-simplechat-wh">
+            <img src="/files/icon/logo-wh.png?h=36" alt="" >
+        </div>
     </nav>
 </header>
 <div class="container-fluid">

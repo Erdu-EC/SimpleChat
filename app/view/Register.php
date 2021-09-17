@@ -20,10 +20,12 @@ if (Session::IsLogin()) HttpResponse::Redirect('/');
 <body>
 
 <header class="">
+
     <nav class="menu-navegacion">
         <button class="navbar-toggler" id="btn-navbar-toggler">
             <span class="material-icons">menu</span>
         </button>
+
         <ul class="nav-lista inactivo">
             <li class="nav-list-item">
 
@@ -43,21 +45,25 @@ if (Session::IsLogin()) HttpResponse::Redirect('/');
             </li>
             <li class="nav-list-item">
                 <a href="/Contact" class="nav-link">
-                        <span class="material-icons"><span class="material-icons-outlined">
-support_agent</span>
-</span>Contacto</a>
+                    <span class="material-icons">support_agent</span>Contacto
+                </a>
             </li>
 
 
         </ul>
-
+        <div class="logo-simplechat-bk">
+            <img src="/files/icon/logo-bk.png?h=40" alt="">
+        </div>
+        <div class="logo-simplechat-wh">
+            <img src="/files/icon/logo-wh.png?h=36" alt="" >
+        </div>
     </nav>
 </header>
 <section class="container-fluid">
     <main class="main">
         <div class="row">
             <div class="d-sm-none d-md-block col-md-3 col-lg-4"></div>
-            <div class="col-sm-12 col-md-7 col-lg-5">
+            <div class="col-sm-12 col-md-7 col-lg-5 col-xl-5">
                 <div class="card">
                     <div class="card-header">
                         <img src="/files/icon/logo-wh.png?h=70" alt="">
@@ -65,7 +71,7 @@ support_agent</span>
                     </div>
                     <form id="register_form" method="post">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="item-form">
                                     <span class="etiqueta-input">Nombres</span>
                                     <div class="input-group">
@@ -76,7 +82,7 @@ support_agent</span>
 
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="item-form">
                                     <span class="etiqueta-input">Apellidos</span>
                                     <div class="input-group">
@@ -87,7 +93,7 @@ support_agent</span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="item-form">
                                     <span class="etiqueta-input">Género</span>
                                     <div class="input-group">
@@ -105,7 +111,7 @@ support_agent</span>
 
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="item-form">
                                     <span class="etiqueta-input" id="etiquetaCumple">Fecha de nacimiento</span>
                                     <div class="input-group">
@@ -133,7 +139,7 @@ support_agent</span>
                                 <div class="input-group">
 
                                     <label class="" for="user_name">
-                                        <span class="material-icons">person</span>
+                                        <span class="material-icons">email</span>
                                     </label>
                                     <input id="user_email" type="email" class="form-control" autocomplete="username">
 
@@ -189,7 +195,7 @@ support_agent</span>
                             </div>
                             <div class="item-form">
 
-                                <div class="input-group">
+                                <div class="input-group " id="contenedor-registrar">
                                     <button type="submit" class="" id="registrar">
                                         Registrarse
                                     </button>
@@ -198,7 +204,7 @@ support_agent</span>
                             </div>
                         </div>
                         <div class="notifiacion-privacidad">
-                            Al dar click en el "Registrarse", acepta los condiciones generales de uso disponibles en <a href="/Privacy">Términos y condiciones</a>
+                            Al dar click en "Registrarse", acepta los condiciones generales de uso disponibles en <a href="/Privacy">Términos y condiciones</a>
                         </div>
                             <div class="acceder-cuenta">
                                 ¿Ya tienes una cuenta? <a class="" href="/Login">Inicia Sesión</a>

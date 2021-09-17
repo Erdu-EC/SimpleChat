@@ -223,10 +223,12 @@ nav button.navbar-toggler:focus{
 @media screen and (max-width: 735px){
     body header{
         margin-top: 0px;
+        height: 45px;
     }
     nav.menu-navegacion{
         flex-direction: column;
-        background: none;
+        background: #456380;
+        height: 45px;
     }
     nav.menu-navegacion .logo-simplechat-bk {
         display: none;
@@ -235,7 +237,7 @@ nav button.navbar-toggler:focus{
         position: absolute;
         top: 5px;
         right: 0;
-margin-right: 20px;
+    margin-right: 20px;
         display: flex;
         height: 36px;
     }
@@ -244,7 +246,7 @@ margin-right: 20px;
         flex-direction: column;
         width: 100%;
         padding: 0px;
-
+        height: 45px;
     }
     .nav-list-item a.activo{
         background: #7390af;
@@ -271,18 +273,23 @@ margin-right: 20px;
     }
     nav button.navbar-toggler {
         display: inline-flex;
-        height: auto;
-        width: auto;
-        align-items: start;
+
+        align-items: center;
+        justify-content: center;
         background: #456380;
         border-radius: 0px;
         padding: 4px 16px;
         box-shadow: none;
-
+        height: 45px;
+        width: 60px;
     }
 
     nav button.navbar-toggler span{
-        font-size: 36px;
+        font-size: 30px;
+        color:#D3D3D3FF;
+        /*color: #ffffff;*/
+    }
+    nav button.navbar-toggler:hover span{
         color: #ffffff;
     }
     nav button.navbar-toggler:active{
@@ -290,9 +297,12 @@ margin-right: 20px;
         box-shadow: none;
 
     }
+    nav button.navbar-toggler:active span{
+        color: #ffffff;
+    }
     nav.menu-navegacion ul.activo{
         display: flex;
-
+margin-top: 7px;
     }
 }
 

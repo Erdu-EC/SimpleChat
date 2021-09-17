@@ -25,4 +25,10 @@ $(document).ready(function () {
 
 $("#btn-navbar-toggler").click(function () {
     $("nav.menu-navegacion ul.nav-lista").toggleClass("activo").toggleClass("inactivo");
+    if( $("nav.menu-navegacion ul.nav-lista").hasClass('activo')){
+        $("#btn-navbar-toggler").html('<span class="material-icons">close</span>');
+    }
+    else{
+        $("#btn-navbar-toggler").html('<span class="material-icons">menu</span>');
+    }
 });
