@@ -389,7 +389,19 @@ display: flex;
   horiz-align: center;
   display: block;
 }
+#icono-sidebarToggle{
+  width:100%;
+}
+.navbar-brand {
+  margin-right: 5px;
 
+  float: right;
+  padding: 0;
+}
+.navbar-brand img {
+  height: 50px;
+  padding: 0;
+}
 @media (max-width: 576px) {
   #sidebarToggle{
     margin-left: 5px;
@@ -398,20 +410,12 @@ display: flex;
     margin-right: auto;
     margin-left: 50px;
   }
+  .navbar-brand img {
+    height: 30px;
+    object-fit: cover;
+  }
 }
-#icono-sidebarToggle{
-  width:100%;
-}
-.navbar-brand {
-  margin-right: 5px;
 
-  float: right;
- padding: 0;
-}
-.navbar-brand img {
-  height: 50px;
-  padding: 0;
-}
 /*-------------------------------------------*/
 body::-webkit-scrollbar{
   display: none;
@@ -420,7 +424,7 @@ body::-webkit-scrollbar{
 #frame {
   margin:0;
   padding:0;
-  width: 100%;
+  width: 100vw;
   height: calc(100vh - 60px);
   min-height: 300px;
   background: #E6EAEA;
@@ -428,18 +432,14 @@ body::-webkit-scrollbar{
   display: flex;
 }
 
-@media screen and (max-width: 360px) {
-  #frame {
-    width: 100%;
-    height: 100vh;
-  }
-}
+
+/*Barra lateral izquierda*/
 #frame #sidepanel {
   float: left;
   min-width: 380px;
   width: 380px;
   max-width: 380px;
-  height: 100%;
+
   background: #2c3e50;
   padding:0;
   color: #f5f5f5;
@@ -447,6 +447,7 @@ body::-webkit-scrollbar{
   position: relative;
   display: inline;
   z-index: 1000;
+  border: 1px solid red;
 }
 @media screen and (max-width: 735px) {
   #frame #sidepanel {
@@ -455,9 +456,14 @@ body::-webkit-scrollbar{
     max-width: 58px;
   }
 }
-/* barra de navegacion
-------------------------------------------------------------*/
-/*Barra lateral izquierda*/
+@media screen and (max-width: 576px) {
+  #frame #sidepanel {
+    width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
+  }
+}
+
 
 #layoutSidenav_nav {
   color: #f5f5f5;
@@ -761,7 +767,7 @@ box-sizing: border-box;
   height: calc(100vh - 160px);
   padding: 0;
 }
-
+/*
 @media screen and (max-width: 735px) {
   #sidepanelTodosContactos #listaTodosContactos {
     overflow-y: scroll;
@@ -773,7 +779,7 @@ box-sizing: border-box;
   }
 
 
-}
+}*/
 
 #sidepanelTodosContactos #listaTodosContactos::-webkit-scrollbar {
   width: 8px;
@@ -1022,7 +1028,7 @@ background: #f2f2f2;
   vertical-align: center;
 
 }
-
+/*
 
 @media screen and (max-width: 735px){
   #sidepanel #mi-perfil-sidepanel {
@@ -1050,8 +1056,8 @@ background: #f2f2f2;
   }
 
 
-}
-
+}*/
+/*
 @media screen and (max-width: 735px) {
   #sidepanel .img-perfil .usuario-perfil-opciones {
 
@@ -1092,7 +1098,7 @@ background: #f2f2f2;
 
   }
 }
-
+*/
 
 
 #frame #sidepanel #search {
@@ -1100,11 +1106,12 @@ background: #f2f2f2;
   border-bottom: 1px solid #32465a;
   font-weight: 300;
 }
+/*
 @media screen and (max-width: 735px) {
   #frame #sidepanel #search {
     display: none;
   }
-}
+}*/
 #frame #sidepanel #search label {
   position: absolute;
   height: 40px;
@@ -1147,7 +1154,7 @@ background: #f2f2f2;
   margin-botton:0px;
   padding-bottom: 60px;
 }
-
+/*
 @media screen and (max-width: 735px) {
   #frame #sidepanel #contacts {
     height: calc(100% - 130px);
@@ -1158,7 +1165,7 @@ background: #f2f2f2;
   #frame #sidepanel #contacts::-webkit-scrollbar {
     display: none;
   }
-}
+}*/
 #frame #sidepanel #contacts.expanded {
   height: calc(100% - 334px);
 }
@@ -1316,7 +1323,7 @@ width: 100%;
   font-weight: 500;
 
 }
-
+/*
 @media screen and (max-width: 735px) {
   #frame #sidepanel #contacts ul li.contact {
     padding: 0;
@@ -1362,7 +1369,7 @@ width: 100%;
   }
 
 }
-
+*/
 #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil span.online {
   background: #0ac630;
 }
@@ -1403,6 +1410,7 @@ width: 100%;
 #icon-agregar-contacto{
   width: 30px;
 }
+/*
 @media screen and (max-width: 735px) {
   #frame #sidepanel #bottom-bar button {
     float: none;
@@ -1418,6 +1426,8 @@ width: 100%;
     margin-left: auto;
   }
 }
+*/
+
 #frame #sidepanel #bottom-bar button:focus {
   outline: none;
 }
