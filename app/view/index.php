@@ -131,7 +131,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
         <div class="container-fluid">
             <div class="row">
                 <article id="frame">
-                    <div id="sidepanel">
+                    <section id="sidepanel">
 
                         <div class="img-perfil no-seleccionable" id="mi-perfil-sidepanel">
                             <img src="<?= $SESSION_USER_PROFILE_IMG ?>?w=100&h=100" alt=""/>
@@ -158,9 +158,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <button id="nuevo-chat"><img src="/files/icon/nuevo-chat.svg" alt="" id="icon-nuevo-chat"
                                                          class="img-fluid"> <span>Nuevo chat</span></button>
                         </div>
-                    </div>
-
-                    <section class="content" id="espacio-temporal">
+                    </section>
+                    <section id="espacio-temporal">
                         <div class="temporal">
                             <div class="cuerpo-temporal align-self-center">
                                 <img src="/files/img/bg/fondo-tmp.svg" alt="" class="align-self-center">
@@ -192,11 +191,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                 <div class="btn-agregar-contacto" title="Agregar a contactos"><span class="material-icons">person_add</span>
                                     Agregar contacto
                                 </div>
-                                <!--<hr class="separador-vertical">
-                                <div class="btn-bloquear-contacto" title="Bloquear">
-                                    <span class="material-icons">block</span>
-                                    Bloquear
-                                </div>-->
+
                             </div>
 
                             <div class="icon-info-contacto" title="Información del contacto" id="btn-info-contacto">
