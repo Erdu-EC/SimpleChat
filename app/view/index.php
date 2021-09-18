@@ -131,7 +131,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
         <div class="container-fluid">
             <div class="row">
                 <article id="frame">
-                    <section id="sidepanel">
+                    <section id="sidepanel" class="no-visible-sm">
 
                         <div class="img-perfil no-seleccionable" id="mi-perfil-sidepanel">
                             <img src="<?= $SESSION_USER_PROFILE_IMG ?>?w=100&h=100" alt=""/>

@@ -2391,6 +2391,16 @@ Fin de div lateral derecho de informacion de contacto
   width: 100%;
 height: 100%;
   overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+}
+#espacio-temporal::-webkit-scrollbar {
+  width: 5px;
+  background: transparent;
+}
+#espacio-temporal::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
 }
 
 #espacio-temporal .temporal {
@@ -2416,28 +2426,29 @@ height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
 }
-.content .temporal .cuerpo-temporal img{
+#espacio-temporal .temporal .cuerpo-temporal img{
   max-width: 350px;
   width: 350px;
-  min-width: 350px;
   opacity:0.85;
   filter:alpha(opacity=85);
 }
-.content .temporal .cuerpo-temporal span.bienvenida {
+#espacio-temporal .temporal .cuerpo-temporal span.bienvenida {
   display: block;
   margin-top: 30px;
   color: #2B364F;
   font-size: 1.5rem;
 }
-.content .temporal .cuerpo-temporal p {
+#espacio-temporal .temporal .cuerpo-temporal p {
   margin-top: 30px;
 font-size: 0.85rem;
   color: #8e8e8f;
 }
-.content .temporal .cuerpo-temporal hr {
-
+#espacio-temporal .temporal .cuerpo-temporal hr {
+  background: #bebebf;
+  height: 1px;
+  display: block;
 }
-.content .temporal .cuerpo-temporal .iconos-dispositivos {
+#espacio-temporal .temporal .cuerpo-temporal .iconos-dispositivos {
   color: #bebebf;
   text-align: center;
 }
@@ -2449,10 +2460,10 @@ Estilos version móvil
 ------------------------------------------------------*/
 
 @media screen and (max-width: 576px) {
-  #frame #sidepanel{
+  #frame #sidepanel.no-visible-sm{
     display: none;
   }
-  #frame #sidepanel.visible{
+  #frame #sidepanel{
     width: 100vw;
     min-width: 100vw;
     max-width: 100vw;
@@ -2461,7 +2472,7 @@ Estilos version móvil
   #espacio-temporal {
     width: 100vw;
     height: 100%;
-    z-index: 2000;
+    z-index: 1010;
 
   }
   #espacio-temporal .temporal{
@@ -2476,9 +2487,13 @@ Estilos version móvil
     align-content: center;
     align-items: center;
   }
-  .content .temporal .cuerpo-temporal img{
-    max-width: 100%;
+  #espacio-temporal .temporal .cuerpo-temporal hr {
+    width: 80%;
   }
+  .content .temporal .cuerpo-temporal img{
+    width: 100%;
+  }
+
 }
 /*------------------------------------------------------
 Fin de estilos version móvil

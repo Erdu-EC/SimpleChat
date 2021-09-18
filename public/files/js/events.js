@@ -1,7 +1,18 @@
-/*$(document).ready(function () {
-    $("#espacio-de-chat .messages").hide();
-    $('#espacio-de-configuracion').hide();
-});*/
+$("#LateralMenu").ready(function () {
+    VistaMovil();
+
+});
+$(window).resize(function () {
+    VistaMovil();
+});
+function VistaMovil(){
+    if(window.innerWidth < 576){
+        $('#LateralMenu li.active').removeClass('active');
+    }
+    else{
+        $('#seccion-conversaciones').parent().addClass('active')
+    }
+}
 
 $(document).on("click", function (e) {
 
