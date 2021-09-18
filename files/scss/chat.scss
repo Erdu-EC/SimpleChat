@@ -2371,10 +2371,11 @@ height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-width: thin;
+  paddin:0;
 }
 #espacio-temporal::-webkit-scrollbar {
   width: 5px;
-  background: transparent;
+  background: #f2f2f2;
 }
 #espacio-temporal::-webkit-scrollbar-thumb {
   background: #ccc;
@@ -2446,6 +2447,7 @@ Estilos version móvil
     width: 100vw;
     min-width: 100vw;
     max-width: 100vw;
+    height: calc(100vh - 60px);
     display: inline;
   }
   #espacio-temporal {
@@ -2472,6 +2474,11 @@ Estilos version móvil
   .content .temporal .cuerpo-temporal img{
     width: 100%;
   }
+  #espacio-de-chat{
+    width: 100vw;
+    height: calc(100vh - 60px);
+  }
+
   #espacio-de-chat .contact-profile .chat-atras{
     display: flex;
     height: 40px;
