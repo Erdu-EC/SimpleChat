@@ -16,7 +16,9 @@ function VistaMovil(){
     }
 }
 $("#seccion-conversaciones").on("click", function () {
+
     if(window.innerWidth < 576){
+        $("#sidebarToggle").trigger('click');
         $("#sidepanel").removeClass('no-visible-sm');
         $("#espacio-temporal").remove();
     }
@@ -27,7 +29,9 @@ $(document).on("click","#lista-conversaciones .contact", function (){
     console.log("Doy click en un contacto");
 });
 
-
+$(document).on("click","#btn-chat-atras", function () {
+    $("#sidepanel").removeClass('no-visible-sm');
+})
 //Fin de codigo para vista movil
 
 

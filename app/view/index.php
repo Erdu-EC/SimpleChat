@@ -180,7 +180,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
                     <section class="content" id="espacio-de-chat" style="display: none">
                         <section class="contact-profile no-seleccionable">
-                                <img src="/files/profile/undefined-photo.png?w=40&h=40" alt="">
+                            <div class="chat-atras" id="btn-chat-atras"><span class="material-icons">arrow_back</span></div>
+                                <img src="/files/profile/undefined-photo.png?w=40&h=40" alt="" class="img-contacto">
 
                             <div class="chat-conexion">
                                 <span class="nombre-chat">Desconocido</span>
@@ -188,7 +189,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             </div>
 
                             <div class="opciones-contacto">
-                                <div class="btn-agregar-contacto" title="Agregar a contactos"><span class="material-icons">person_add</span>
+                                <div class="btn-agregar-contacto" title="Agregar a contactos">
+                                    <span class="material-icons">person_add</span>
                                     Agregar contacto
                                 </div>
 

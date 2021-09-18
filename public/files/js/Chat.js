@@ -107,7 +107,7 @@ function EnviarMensaje() {
 //Agregar contacto
 function CargarEspacioDeChat() {
     var li_contenedor = $(this).parent();
-
+    $("#sidepanel").addClass('no-visible-sm');
     if (li_contenedor.hasClass("active"))
         return; //evitamos recargar el espacio de chat en caso de que el elemento seleccionado sea el que está en uso
 

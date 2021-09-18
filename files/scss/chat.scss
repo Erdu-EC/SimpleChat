@@ -1454,6 +1454,9 @@ width: 100%;
   margin: 0;
   float: left;
 }
+#espacio-de-chat .contact-profile .chat-atras{
+  display: none;
+}
 #frame .content .contact-profile img, #frame .content .contact-profile .material-icons {
   width: 40px;
   height: 40px;
@@ -1497,7 +1500,6 @@ width: 100%;
   color: black;
   font-family: Roboto, sans-serif;
   background-color: rgba(40, 135, 139, 0.55);
-
 }
 #frame .content .contact-profile .opciones-contacto div{
   width: 12vw;
@@ -1509,6 +1511,9 @@ width: 100%;
   color: white;
   font-size: 0.85rem;
   cursor: pointer;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 #frame .content .contact-profile .opciones-contacto div:active,#frame .content .contact-profile .opciones-contacto div:hover{
   background-color: rgba(40, 135, 139, 0.75);
@@ -1519,10 +1524,6 @@ width: 100%;
   width: 25px;
   height: 25px;
   float: left;
-  align-content: center;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
 }
 hr.separador-vertical{
   border: 1px solid white;
@@ -1694,8 +1695,8 @@ Fin de solicitud de chat
   height: 20px;
   background-color: rgba(0, 0, 0, 0.3);
 }
-#frame .content .messages ul#lista-mensajes {
-  padding: 30px 30px 0 50px;
+#frame .content .messages #lista-mensajes {
+  padding: 10px 30px 10px 50px;
   height: auto;
   width: 100%;
   margin: 0;
@@ -1831,9 +1832,7 @@ max-width: 340px;
     max-width: calc(85% - 50px);
     height: auto;
   }
-  #frame .content .messages ul#lista-mensajes {
-    padding: 30px 20px 100px 20px;
-  }
+
 }
 
 .messages ul li .extra-mensaje {
@@ -2158,12 +2157,6 @@ Contenedor laterial de informacion de contacto
 ##############################################
 */
 
-@media screen and (min-width: 735px ){
-  #frame #espacio-de-chat.desp-der{
-
-  }
-
-}
 @media screen and (max-width: 1100px ){
   #frame #panelInfoContacto.mostrar{
     margin-left: -400px;
@@ -2479,7 +2472,43 @@ Estilos version móvil
   .content .temporal .cuerpo-temporal img{
     width: 100%;
   }
+  #espacio-de-chat .contact-profile .chat-atras{
+    display: flex;
+    height: 40px;
+    width: 40px;
+    border-radius:50%;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+    color:#A9A9A9FF;
+  }
+  #espacio-de-chat .contact-profile .chat-atras:active{
+color: #f2f2f2;
+    background: #D3D3D3FF;
+  }
+  #espacio-de-chat .contact-profile img.img-contacto{
+    margin: auto 5px auto 0;
 
+  }
+  #frame .content .contact-profile #btn-info-contacto{
+    display: none;
+  }
+  #frame .content .contact-profile .opciones-contacto div .material-icons{
+    margin: 0;
+    height: auto;
+    width: auto;
+  }
+  #frame .content .messages #lista-mensajes{
+padding: 10px;
+  }
+  #frame .content .contact-profile .opciones-contacto{
+    margin-right: 10px;
+    align-items: center;
+    align-content: center;
+  }
 }
 /*------------------------------------------------------
 Fin de estilos version móvil
