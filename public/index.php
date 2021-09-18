@@ -39,10 +39,13 @@
 		if (System::GetOS() == System::OS_WIN)
 			ini_set('open_basedir', APP_PATH . ';c:' . $_SERVER['TMP']);
 		else
-			ini_set('open_basedir', APP_PATH);
+			ini_set('open_basedir', APP_PATH . ':' . sys_get_temp_dir());
 
 		#Estableciendo mascara de permisos.
 		umask(APP_FILE_MODE_UMASK);
+
+        #Estableciendo region de la aplicación.
+        date_default_timezone_set('America/Managua');
 
 		#Iniciando aplicación.
 		require '../app/init.php';
