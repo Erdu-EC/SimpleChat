@@ -447,13 +447,7 @@ body::-webkit-scrollbar{
   display: inline;
   z-index: 1000;
 }
-@media screen and (max-width: 735px) {
-  #frame #sidepanel {
-    width: 58px;
-    min-width: 58px;
-    max-width: 58px;
-  }
-}
+
 
 
 
@@ -1021,7 +1015,12 @@ background: #f2f2f2;
 }
 
 
-@media screen and (max-width: 735px){
+@media screen and (max-width: 735px) and (min-width: 576px){
+  #frame #sidepanel {
+    width: 58px;
+    min-width: 58px;
+    max-width: 58px;
+  }
   #sidepanel #mi-perfil-sidepanel {
     position: relative;
     display: flex;
@@ -1045,11 +1044,6 @@ background: #f2f2f2;
   #sidepanel #mi-perfil-sidepanel .usuario-perfil {
     display: none;
   }
-
-
-}
-
-@media screen and (max-width: 735px) {
   #sidepanel .img-perfil .usuario-perfil-opciones {
 
     position: absolute;
@@ -1088,6 +1082,60 @@ background: #f2f2f2;
     display: none;
 
   }
+  #frame #sidepanel #search {
+    display: none;
+  }
+  #frame #sidepanel #contacts {
+    height: calc(100% - 130px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-top: 10px;
+  }
+  #frame #sidepanel #contacts::-webkit-scrollbar {
+    display: none;
+  }
+  #frame #sidepanel #contacts ul li.contact {
+    padding: 0;
+    margin: 0;
+  }
+  #frame #sidepanel #contacts ul li.contact .wrap {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    height: 70px;
+  }
+  #frame #sidepanel #contacts ul li.contact .wrap .meta {
+    display: none;
+  }
+  #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil {
+    position: relative;
+  }
+  #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    flex-direction: row;
+    z-index: 120;
+
+  }
+  #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .hora-ult-mesj {
+    display: none;
+  }
+
+  #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes {
+    height: 15px;
+    min-width: 15px;
+    max-width: 25px;
+    font-size: 11px;
+    margin-left: 0;
+  }
+  #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil .contact-status {
+
+  }
 }
 
 
@@ -1098,11 +1146,6 @@ background: #f2f2f2;
   font-weight: 300;
 }
 
-@media screen and (max-width: 735px) {
-  #frame #sidepanel #search {
-    display: none;
-  }
-}
 #frame #sidepanel #search label {
   position: absolute;
   height: 40px;
@@ -1146,17 +1189,6 @@ background: #f2f2f2;
   padding-bottom: 60px;
 }
 
-@media screen and (max-width: 735px) {
-  #frame #sidepanel #contacts {
-    height: calc(100% - 130px);
-    overflow-y: scroll;
-    overflow-x: hidden;
-    margin-top: 10px;
-  }
-  #frame #sidepanel #contacts::-webkit-scrollbar {
-    display: none;
-  }
-}
 #frame #sidepanel #contacts.expanded {
   height: calc(100% - 334px);
 }
@@ -1313,51 +1345,7 @@ width: 100%;
 
 }
 
-@media screen and (max-width: 735px) {
-  #frame #sidepanel #contacts ul li.contact {
-    padding: 0;
-    margin: 0;
-  }
-  #frame #sidepanel #contacts ul li.contact .wrap {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-    height: 70px;
-  }
-  #frame #sidepanel #contacts ul li.contact .wrap .meta {
-    display: none;
-  }
-  #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil {
-    position: relative;
-  }
-  #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes {
-    position: absolute;
-    top: 10px;
-    left: 0px;
-    flex-direction: row;
-    z-index: 120;
 
-  }
-  #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .hora-ult-mesj {
-    display: none;
-  }
-
-  #frame #sidepanel #contacts ul li.contact .wrap .msj-pendientes .num-msj-pendientes {
-    height: 15px;
-    min-width: 15px;
-    max-width: 25px;
-    font-size: 11px;
-    margin-left: 0;
-  }
-  #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil .contact-status {
-
-  }
-
-}
 
 #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil span.online {
   background: #0ac630;
@@ -1400,7 +1388,7 @@ width: 100%;
   width: 30px;
 }
 
-@media screen and (max-width: 735px) {
+@media screen and (max-width: 735px) and (min-width: 576px) {
   #frame #sidepanel #bottom-bar button {
     float: none;
     width: 100%;
@@ -1414,6 +1402,16 @@ width: 100%;
   #icon-agregar-contacto{
     margin-left: auto;
   }
+  #frame #sidepanel #bottom-bar button:nth-child(1) {
+    border-right: none;
+    border-bottom: 1px solid #2c3e50;
+  }
+  #frame #sidepanel #bottom-bar button i {
+    font-size: 1.3em;
+  }
+  #frame #sidepanel #bottom-bar button span {
+    display: none;
+  }
 }
 
 
@@ -1423,12 +1421,7 @@ width: 100%;
 #frame #sidepanel #bottom-bar button:nth-child(1) {
   border-right: 1px solid #2c3e50;
 }
-@media screen and (max-width: 735px) {
-  #frame #sidepanel #bottom-bar button:nth-child(1) {
-    border-right: none;
-    border-bottom: 1px solid #2c3e50;
-  }
-}
+
 #frame #sidepanel #bottom-bar button:hover {
   background: #435f7a;
 }
@@ -1436,16 +1429,8 @@ width: 100%;
   margin-left: 10px;
   font-size: 0.95em;
 }
-@media screen and (max-width: 735px) {
-  #frame #sidepanel #bottom-bar button i {
-    font-size: 1.3em;
-  }
-}
-@media screen and (max-width: 735px) {
-  #frame #sidepanel #bottom-bar button span {
-    display: none;
-  }
-}
+
+
 #frame .content {
 
   width: 100%;
@@ -2463,6 +2448,7 @@ Estilos version móvil
   #frame #sidepanel.no-visible-sm{
     display: none;
   }
+
   #frame #sidepanel{
     width: 100vw;
     min-width: 100vw;

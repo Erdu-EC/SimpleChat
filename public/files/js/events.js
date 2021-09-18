@@ -2,17 +2,35 @@ $("#LateralMenu").ready(function () {
     VistaMovil();
 
 });
+
 $(window).resize(function () {
     VistaMovil();
 });
+//Codigo para vista movil
 function VistaMovil(){
-    if(window.innerWidth < 576){
+    if(window.innerWidth < 576 && ($("#espacio-de-chat").length!=0)){
         $('#LateralMenu li.active').removeClass('active');
     }
     else{
         $('#seccion-conversaciones').parent().addClass('active')
     }
 }
+$("#seccion-conversaciones").on("click", function () {
+    if(window.innerWidth < 576){
+        $("#sidepanel").removeClass('no-visible-sm');
+        $("#espacio-temporal").remove();
+    }
+});
+$(document).on("click","#lista-conversaciones .contact", function (){
+    $("#sidepanel").addClass('no-visible-sm');
+    $("body").addClass("sb-sidenav-toggled");
+    console.log("Doy click en un contacto");
+});
+
+
+//Fin de codigo para vista movil
+
+
 
 $(document).on("click", function (e) {
 
