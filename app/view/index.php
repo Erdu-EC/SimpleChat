@@ -287,23 +287,6 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     </div>
 </div>
 
- <script type="text/javascript" charset="utf-8">
-        (function() {
-        function size() {
-
-            if (/Android|webos|iphone|ipad|iPod|blackberry|nokia|opera mini|opera mobi|skyfire|maemo|windows phone|Palm|iemobile|symbian|symbianos|fennec/i.test(navigator.userAgent.toLowerCase())) {
-                var theminheight = Math.min(document.documentElement.clientHeight, window.screen.height, window.innerHeight);
-
-                $('#frame').css('height', theminheight);
-                console.log(theminheight);
-            }
-        }
-        window.addEventListener('resize orientationchange', function() {
-        size();
-    }, false);
-        size();
-    }());
-</script>
 <script type="application/javascript" src="/files/js/chat/MsgItems.js"></script>
 
 <script type="application/javascript" src="/files/js/emojis.min.js"></script>

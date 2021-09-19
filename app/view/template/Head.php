@@ -7,8 +7,9 @@ namespace HS\app\view\template;
 <link rel="shortcut icon" href="/files/icon/icono.png">
 
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
+<meta name="Apple-mobile-web-app-capable" content="yes" />
+<meta name="Apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <?php
