@@ -13,7 +13,9 @@ namespace HS\app\view\template;
 <?php
 header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
 header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
+
 ?>
+<meta http-equiv="Cache-control" content="no-cache">
 <link rel="stylesheet" href="/files/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/files/iconfont/material-icons.css">
 <link rel="stylesheet" href="/files/fontawesome/css/all.css">

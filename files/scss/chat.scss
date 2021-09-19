@@ -7,9 +7,7 @@
 
 
 
-.material-icons{
-  vert-align: middle;
-}
+
 *,
 *::before,
 *::after {
@@ -223,7 +221,7 @@ body {
   transform: translateX(0px);
 }
 #layoutSidenav #layoutSidenav_content {
-  width: 100vw;
+
   position: relative;
   display: flex;
   flex-direction: column;
@@ -426,27 +424,14 @@ body::-webkit-scrollbar{
   padding:0;
   width: 100vw;
   height: calc(100vh - 60px);
-  min-height: 300px;
   background: #E6EAEA;
   background-image:url("/files/img/bg/fondo-chat.png");
   display: flex;
-}
-
-
-/*Barra lateral izquierda*/
-#frame #sidepanel {
-  float: left;
-  min-width: 380px;
-  width: 380px;
-  max-width: 380px;
-  background: #2c3e50;
-  padding:0;
-  color: #f5f5f5;
   overflow: hidden;
-  position: relative;
-  display: inline;
-  z-index: 1000;
 }
+
+
+
 
 
 
@@ -907,59 +892,80 @@ Fin de contactos
 /*#####################################*/
 /*-------------------------------------------------*/
 /*Barra de contactos y mensajes*/
+
+/*Barra lateral izquierda*/
+#frame #sidepanel {
+  float: left;
+  min-width: 380px;
+  width: 380px;
+  max-width: 380px;
+  background: #2c3e50;
+  padding:0;
+  color: #f5f5f5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 #sidepanel #mi-perfil-sidepanel.no-visible {
   display: none;
 }
 
-#sidepanel .img-perfil {
-
-  display: flex;
+#sidepanel #mi-perfil-sidepanel {
+display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-content: center;
   align-items: center;
-  flex-direction: row;
+
   color: #9a9da0;
   width: 100%;
   padding: 10px 0;
-
 }
-#sidepanel .img-perfil:hover{
+#sidepanel #mi-perfil-sidepanel:hover{
   color: #ffffff;
 }
 
-#sidepanel .img-perfil img {
+ #mi-perfil-sidepanel img {
   height: 50px;
   width: 50px;
   border-radius: 50%;
   margin-left: 15px;
   margin-right: 20px;
   object-fit: cover;
+   display: inline;
 }
-#sidepanel #mi-perfil-sidepanel .usuario-perfil {
+#mi-perfil-sidepanel .usuario-perfil {
   color: #ffffff;
   font-weight: 500;
+  display: inline;
+  flex-grow: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-#sidepanel .img-perfil div.usuario-perfil-opciones {
-  display: inline-flex;
-  margin-left: auto;
+ #mi-perfil-sidepanel .usuario-perfil-opciones {
+display: flex;
 
-  height: 40px;
-  width: 40px;
   border-radius: 50%;
-  align-items: center;
-  align-self: center;
+   justify-content: center;
+   align-items: center;
+   height: 40px !important;
+   width: 40px !important;
 }
-#sidepanel .img-perfil div.usuario-perfil-opciones.activo,.img-perfil div.usuario-perfil-opciones:hover  {
+#mi-perfil-sidepanel .usuario-perfil-opciones span.material-icons
+{
+  width: auto;
+  height: auto;
+
+}
+
+#mi-perfil-sidepanel .usuario-perfil-opciones.activo, #mi-perfil-sidepanel .usuario-perfil-opciones:hover  {
   background: #32465a;
   color: #ffffff;
 }
-#sidepanel .img-perfil div.usuario-perfil-opciones span {
 
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-}
-#sidepanel .img-perfil .opciones-sesion {
+#sidepanel #mi-perfil-sidepanel .opciones-sesion {
 
   width: 90%;
   position: absolute;
@@ -972,22 +978,22 @@ Fin de contactos
   padding: 5px 0;
 }
 
-#sidepanel .img-perfil .opciones-sesion.inactivo {
+#sidepanel #mi-perfil-sidepanel .opciones-sesion.inactivo {
   display: none;
 }
-#sidepanel .img-perfil .opciones-sesion:hover{
+#sidepanel #mi-perfil-sidepanel .opciones-sesion:hover{
 
   border-radius: 5px;
 }
-#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion {
+#sidepanel #mi-perfil-sidepanel .opciones-sesion .item-opciones-sesion {
 
   width: 100%;
 }
-#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion:hover {
+#sidepanel #mi-perfil-sidepanel .opciones-sesion .item-opciones-sesion:hover {
 background: #f2f2f2;
 
 }
-#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion  .opc-sesion{
+#sidepanel #mi-perfil-sidepanel .opciones-sesion .item-opciones-sesion  .opc-sesion{
   text-decoration: none;
   text-underline: none;
   vertical-align: center;
@@ -999,13 +1005,13 @@ background: #f2f2f2;
   align-self: center;
   color: #2B364F;
 }
-#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion  .opc-sesion p{
+#sidepanel #mi-perfil-sidepanel .opciones-sesion .item-opciones-sesion  .opc-sesion p{
 
   vertical-align: center;
   margin-top: auto;
   margin-bottom: auto;
 }
-#sidepanel .img-perfil .opciones-sesion .item-opciones-sesion  .opc-sesion span.material-icons {
+#sidepanel #mi-perfil-sidepanel .opciones-sesion .item-opciones-sesion  .opc-sesion span.material-icons {
 
   font-size: 18px;
   width: 25px;
@@ -1023,74 +1029,60 @@ background: #f2f2f2;
   }
   #sidepanel #mi-perfil-sidepanel {
     position: relative;
-    display: flex;
     flex-direction: column-reverse;
-    width: 100%;
-    align-items: center;
-    align-content: center;
-    text-align: center;
+   text-align: center;
     justify-content: center;
     border-bottom: 1px solid #a9a9a9;
   }
 
-
-
-  #sidepanel #mi-perfil-sidepanel .usuario-perfil-opciones span.material-icons {
-    margin: 0px;
-    display: flex;
-  }
-
-
   #sidepanel #mi-perfil-sidepanel .usuario-perfil {
     display: none;
   }
-  #sidepanel .img-perfil .usuario-perfil-opciones {
-
+  #mi-perfil-sidepanel .usuario-perfil-opciones {
+    display: flex;
+    height: 20px;
+    width: 20px;
     position: absolute;
-    text-align: center;
-    align-self: center;
     z-index: 500;
     top:-15px;
     right: -10px;
 
+  }
+  #mi-perfil-sidepanel .usuario-perfil-opciones.activo, #mi-perfil-sidepanel .usuario-perfil-opciones:hover{
+    background: none;
   }
   #sidepanel #mi-perfil-sidepanel img {
     margin: 0;
     position: relative;
 
   }
-  #sidepanel .img-perfil .opciones-sesion {
+  #sidepanel #mi-perfil-sidepanel .opciones-sesion {
 
     top: 4rem;
     width: 100%;
   }
-  #sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion{
+  #sidepanel #mi-perfil-sidepanel.opciones-sesion .item-opciones-sesion .opc-sesion{
     padding: 10px 5px;
 
 
     align-items: center;
     align-content: center;
   }
-  #sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion span{
+  #sidepanel #mi-perfil-sidepanel .opciones-sesion .item-opciones-sesion .opc-sesion span{
     width: 100%;
     text-align: center;
     justify-content: center;
     margin-right: auto;
     margin-left: auto;
   }
-  #sidepanel .img-perfil .opciones-sesion .item-opciones-sesion .opc-sesion p {
+  #sidepanel #mi-perfil-sidepanel .opciones-sesion .item-opciones-sesion .opc-sesion p {
     display: none;
 
   }
   #frame #sidepanel #search {
     display: none;
   }
-  #frame #sidepanel #contacts {
-    height: calc(100% - 130px);
-    overflow-y: scroll;
-    overflow-x: hidden;
-    margin-top: 10px;
-  }
+
   #frame #sidepanel #contacts::-webkit-scrollbar {
     display: none;
   }
@@ -1180,13 +1172,11 @@ background: #f2f2f2;
   color: #f5f5f5;
 }
 #frame #sidepanel #contacts {
-  margin-top: 30px;
-  height: calc(100% - 130px);
+  flex-grow: 1;
   overflow-y: scroll;
   overflow-x: hidden;
+  margin-top: 10px;
   scrollbar-width: none;
-  margin-botton:0px;
-  padding-bottom: 60px;
 }
 
 #frame #sidepanel #contacts.expanded {
@@ -1358,16 +1348,14 @@ width: 100%;
 }
 
 #frame #sidepanel #bottom-bar {
-  position: absolute;
+  display: flex;
+  height: 50px;
   width: 100%;
-  bottom: 0;
-  margin-top: 0;
-  z-index: 2000;
+
 }
 
 #frame #sidepanel #bottom-bar button {
-  float: left;
-  border: none;
+    border: none;
   width: 100%;
   padding: 10px 0;
   background: #32465a;
@@ -1375,8 +1363,6 @@ width: 100%;
   cursor: pointer;
   font-size: 0.85em;
   font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
-  height: 50px;
-
 
 }
 
@@ -1384,9 +1370,7 @@ width: 100%;
   width: 30px;
 
 }
-#icon-agregar-contacto{
-  width: 30px;
-}
+
 
 @media screen and (max-width: 735px) and (min-width: 576px) {
   #frame #sidepanel #bottom-bar button {
@@ -2456,16 +2440,13 @@ Estilos version móvil
     height: 100%;
     max-width: 100%;
     min-width: 100%;
-    display: inline;
+   display: flex;
+    overflow: hidden;
   }
   #frame #sidepanel #contacts{
 
-    min-height: 100px;
-    height: 100%;
-    max-height: 100%;
-    padding: 0 0 60px 0;
+    padding: 0 0 30px 0;
     margin: 10px 0 0;
-    border: 1px solid red;
   }
   #espacio-temporal {
     width: 100%;
