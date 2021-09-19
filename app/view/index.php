@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/files/scss/chat.scss">
     <link rel="stylesheet" href="/files/vanillatoasts/vanillatoasts.css">
 </head>
-<body class="d-flex flex-column sb-nav-fixed sb-sidenav-toggled">
+<body class=" sb-nav-fixed sb-sidenav-toggled">
 
 <!-- Barra superior -->
 <header><?php require 'template/Header.php' ?></header>
