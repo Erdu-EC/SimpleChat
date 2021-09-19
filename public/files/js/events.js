@@ -27,10 +27,12 @@ $(document).on("click","#lista-conversaciones .contact", function (){
     $("#sidepanel").addClass('no-visible-sm');
     $("body").addClass("sb-sidenav-toggled");
     console.log("Doy click en un contacto");
+    $("#espacio-de-chat").removeClass('no-visible-sm');
 });
 
 $(document).on("click","#btn-chat-atras", function () {
     $("#sidepanel").removeClass('no-visible-sm');
+    $("#espacio-de-chat").addClass('no-visible-sm');
 })
 //Fin de codigo para vista movil
 
