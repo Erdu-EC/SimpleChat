@@ -2420,6 +2420,12 @@ Estilos version móvil
   #frame #sidepanel.no-visible-sm{
     display: none;
   }
+#layoutSidenav_content{
+  border: 1px solid orange;
+}
+  #layoutSidenav_content .container-fluid{
+    border: 1px solid blue;
+  }
   #frame{
     min-width: 100vw;
     width: 100vw;
