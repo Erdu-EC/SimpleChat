@@ -29,11 +29,13 @@ $(document).on("click","#lista-conversaciones .contact", function (){
     $("body").addClass("sb-sidenav-toggled");
     console.log("Doy click en un contacto");
     $("#espacio-de-chat").removeClass('no-visible-sm');
+    $("header").addClass('no-visible-sm');
 });
 
 $(document).on("click","#btn-chat-atras", function () {
     $("#sidepanel").removeClass('no-visible-sm');
     $("#espacio-de-chat").addClass('no-visible-sm');
+    $("header").removeClass('no-visible-sm');
 })
 //Fin de codigo para vista movil
 
