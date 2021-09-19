@@ -2420,20 +2420,14 @@ Estilos version móvil
   #frame #sidepanel.no-visible-sm{
     display: none;
   }
-#layoutSidenav_content{
-  border: 1px solid orange;
-}
-  #layoutSidenav_content .container-fluid{
-    border: 1px solid blue;
-  }
+
   #frame{
     min-width: 100vw;
     width: 100vw;
     max-width: 100vw;
-    height: 90vh;
-    min-height: 90vh;
-    max-height: 90vh;
-    border: 1px solid red;
+    height: 80vh;
+    min-height: 80vh;
+    max-height: 80vh;
   }
 
   #frame #sidepanel{
