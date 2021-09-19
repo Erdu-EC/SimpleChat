@@ -2410,6 +2410,10 @@ Estilos version móvil
 ------------------------------------------------------*/
 
 @media screen and (max-width: 576px) {
+  body {
+    height: 100vh;
+    width: 100vw;
+  }
   #frame #sidepanel.no-visible-sm{
     display: none;
   }
