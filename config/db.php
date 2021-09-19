@@ -8,7 +8,7 @@ const APP_DB_HOST = 'localhost';
 const APP_DB_CHARSET = 'utf8mb4';
 
 class DBAccount{
-    const Root = ['user' => 'S¡mp1EcH47', 'pass' => 'S¡mp1EcH47_@Dm1n'];
+    const Root = ['user' => 'simplechat', 'pass' => 'simplechat'];
 }
 
 //usuario y clave propuestos (seguros):
