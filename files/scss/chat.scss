@@ -2400,7 +2400,9 @@ Estilos version móvil
     height: 100vh;
     width: 100vw;
   }
-
+  header{
+    display: none;
+  }
   #layoutSidenav {
     width: 100%;
     min-width: 100%;
