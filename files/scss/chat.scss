@@ -223,7 +223,6 @@ body {
 
 .sb-nav-fixed #layoutSidenav #layoutSidenav_content {
   padding-left: 225px;
-  top: 60px;
   webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
@@ -2400,30 +2399,27 @@ Estilos version móvil
     height: 100vh;
     width: 100vw;
   }
-  header{
-    display: none;
-  }
+
   #layoutSidenav {
     width: 100%;
     min-width: 100%;
     height: 100%;
     min-height: 100%;
   }
-  .sb-nav-fixed #layoutSidenav #layoutSidenav_content {
-    top:0;
-  }
+
   #layoutSidenav #layoutSidenav_content
   {
   }
 
-  #frame #sidepanel.no-visible-sm{
+  #frame #sidepanel.no-visible-sm, header.no-visible-sm{
     display: none;
   }
 
   #frame{
-    padding-top: 60px;
     width: 100vw;
     height:100vh;
+    padding-top: 60px;
+    display: flex;
   }
 
   #frame #sidepanel{
