@@ -286,8 +286,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
         </div>
     </div>
 </div>
-<script>
-    <script type="text/javascript" charset="utf-8">
+
+ <script type="text/javascript" charset="utf-8">
         (function() {
         function size() {
 
@@ -303,7 +303,6 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     }, false);
         size();
     }());
-</script>
 </script>
 <script type="application/javascript" src="/files/js/chat/MsgItems.js"></script>
 
