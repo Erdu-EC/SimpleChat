@@ -1,4 +1,7 @@
-window.scrollTo(0,1);
+$(document).ready(function (){
+    alert("hola");
+    window.scrollTo(0,1);
+});
 $("#LateralMenu").ready(function () {
     VistaMovil();
 
