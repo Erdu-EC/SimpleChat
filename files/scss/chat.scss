@@ -30,8 +30,6 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff;
-  width: 100vw;
-  height: 100vh;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -177,11 +175,6 @@ body {
 }
 
 
-
-html,
-body {
-  height: 100%;
-}
 .no-seleccionable {
   -webkit-user-select: none;
   -moz-user-select: none;
