@@ -1,7 +1,4 @@
-$(document).ready(function (){
-    alert("hola");
-    window.scrollTo(0,1);
-});
+
 $("#LateralMenu").ready(function () {
     VistaMovil();
 
@@ -42,6 +39,9 @@ $(document).on("click","#btn-chat-atras", function () {
     $("header").removeClass('no-visible-sm');
     $(" #frame").removeClass('full-pantalla');
 })
+$(".messages").on("swiperight",function(){
+    alert("You swiped right!");
+});
 //Fin de codigo para vista movil
 
 

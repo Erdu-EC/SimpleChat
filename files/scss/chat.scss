@@ -2396,10 +2396,10 @@ Estilos version móvil
   #frame{
     display: flex;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 60px);
   }
   #frame.full-pantalla{
-    height:calc(100vh + 60px);
+    height: 100vh;
   }
   #frame #sidepanel{
     width: 100%;
