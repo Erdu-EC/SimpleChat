@@ -12,7 +12,7 @@
     <div class="indicador-mensajes" id="icon-indicador-mensaje">
         <i class="fas fa-envelope"></i>
         <div class="num-mensajes" style="display: none">
-            <span>0</span>
+            <span></span>
         </div>
     </div>
 

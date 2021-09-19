@@ -22,7 +22,7 @@
 <body class=" sb-nav-fixed sb-sidenav-toggled">
 
 <!-- Barra superior -->
-<header><?php require 'template/Header.php' ?></header>
+<header class="header-sitio"><?php require 'template/Header.php' ?></header>
 <!-- Fin de barra superior -->
 
 <!-- -------------------------------------------------------------
@@ -58,43 +58,22 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 <!--Fin del contenedor de los contactos para nuevo chat -->
 
 <div id="layoutSidenav">
-    <div id="layoutSidenav_nav">
-        <nav class="sb-sidenav ">
-            <div id="profile">
-                <div class="wrap no-seleccionable">
-                    <img id="profile-img" src="<?= $SESSION_USER_PROFILE_IMG ?>?w=100&h=100" class="online" alt=""/>
-
-                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <div class="accordion-item">
-                            <button class="accordion-header collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                    aria-controls="flush-collapseOne" id="btn-sesion">
-                                <span class="material-icons izquierda">account_circle</span>
-								<?= $SESSION_USER_SHORTNAME ?>
-                                <span class="material-icons  derecha">arrow_drop_down</span>
-                            </button>
-
-                            <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                 aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <div class="item-accordion-body">
-                                        <button class="nav-link" id="btn-configuraciones">
-                                            <span class="material-icons">settings</span>
-                                            Configuraciones
-                                        </button>
-                                    </div>
-                                    <div class="item-accordion-body">
-                                        <a class="nav-link" href="/Logout">
-                                            <span class="material-icons icono-centrado">logout</span>
-                                            Cerrar sesión
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div id="layoutSidenav_nav" class="no-seleccionable">
+        <div id="profile">
+            <div class="wrap">
+                <img id="profile-img" src="<?= $SESSION_USER_PROFILE_IMG ?>?w=100&h=100" class="online" alt=""/>
+                <div class="usuario-perfil" id="btn-sesion">
+                    <span class="material-icons izquierda">account_circle</span>
+                    <?= $SESSION_USER_SHORTNAME ?>
+                    <span class="material-icons  derecha">arrow_drop_down</span>
+                    <div class="usuario-perfil-opciones"></div>
                 </div>
-                <ul class="nav flex-column nav-pills no-seleccionable" id="LateralMenu">
+            </div>
+        </div>
+
+        <nav class="sb-sidenav " id="LateralMenu">
+
+        <ul class="nav flex-column nav-pills no-seleccionable" id="">
                     <li class="nav-item active">
                         <div class="nav-link" id="seccion-conversaciones">
                             <i class="far fa-comments icon-nav-link"></i>
@@ -108,15 +87,22 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </div>
                     </li>
                     <li class="nav-item">
+                        <div class="nav-link" id="seccion-politicas">
+                            <i class="fas fa-file-contract icon-nav-link"></i>
+                            Términos y condiciones de uso
+                        </div>
+                    </li>
+                    <li class="nav-item">
                         <div class="nav-link" id="seccion-acerca">
                             <i class="fas fa-users icon-nav-link"></i>
                             Acerca de nosotros
                         </div>
                     </li>
+
                     <li class="nav-item">
-                        <div class="nav-link" id="seccion-politicas">
-                            <i class="fas fa-file-contract icon-nav-link"></i>
-                            Términos y condiciones de uso
+                        <div class="nav-link" id="seccion-contactanos">
+                            <span class="material-icons icon-nav-link">support_agent</span>
+                            Contáctanos
                         </div>
                     </li>
                 </ul>

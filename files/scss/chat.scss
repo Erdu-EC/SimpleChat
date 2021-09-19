@@ -15,10 +15,10 @@ body {
   background-color: #fff;
 
 }
-header {
-  padding-left: 0;
+header.header-sitio {
+  padding:0;
   height: 60px;
-  z-index: 1039;
+  z-index:4000;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -64,19 +64,6 @@ header {
   }
 }
 
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
-}
-
-
-
-
-
-
 .navbar {
   position: relative;
   display: flex;
@@ -85,9 +72,6 @@ header {
   justify-content: space-between;
   padding: 0.5rem 1rem;
 }
-
-
-
 
 .navbar-collapse {
   flex-basis: 100%;
@@ -150,13 +134,7 @@ header {
 
 /*layoutSidenav*/
 
-.fixed-top, .sb-nav-fixed #layoutSidenav #layoutSidenav_nav, .sb-nav-fixed .sb-topnav {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030;
-}
+
 
 
 .no-seleccionable {
@@ -167,19 +145,7 @@ header {
 }
 
 
-#layoutSidenav #layoutSidenav_nav {
-  flex-basis: 225px;
-  flex-shrink: 0;
-  -webkit-transition-duration: 0.3s;
-  -moz-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  transition-property: margin-left, margin-right;
-  z-index: 1038;
-  transform: translateX(0px);
-  margin: 0;
-  padding: 0;
-}
+
 #layoutSidenav #layoutSidenav_content {
 
   position: relative;
@@ -189,22 +155,38 @@ header {
   min-width: 0;
   margin: 0;
   padding: 0;
-
+z-index: 500;
 }
 
 /* Animacion para panel barra de navegacion lateral izquierdo
 */
 
-
-.sb-nav-fixed .sb-topnav {
-  z-index: 1039;
-}
 .sb-nav-fixed #layoutSidenav #layoutSidenav_nav {
   width: 225px;
-  height: 100vh;
+  height: calc(100vh - 60px);
   transition: transform 0.15s ease-in-out;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 1000;
+  flex-basis: 225px;
+  flex-shrink: 0;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  transition-property: margin-left, margin-right;
+  transform: translateX(0px);
+  margin: 0;
+  padding: 0;
+  color: #f5f5f5;
+  background:#2B364F;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
 }
+ #layoutSidenav #layoutSidenav_nav::-webkit-scrollbar{
+   display: none;
+ }
 
 .sb-nav-fixed #layoutSidenav #layoutSidenav_content {
   padding-left: 225px;
@@ -230,28 +212,9 @@ header {
   }
   .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav{
     position: absolute;
-    z-index: 1000;
   }
 }
 
-
-
-
-
-
-.sb-sidenav {
-  margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  height: calc(100% - 140px);
-  flex-wrap: nowrap;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  scrollbar-width: thin;
-}
-.sb-sidenav::-webkit-scrollbar {
-  display: none;
-}
 
 
 .accordion-body{
@@ -268,18 +231,10 @@ header {
 #layoutSidenav_nav .sb-sidenav-footer small {
   font-family: SimpleChat, sans-serif;
 }
-/*
-***********************************************
-Estilos de title
-
-***********************************************
- */
-
 
 /*-------------------------------------------*/
-
 /*Barra de navegacion */
-
+/*-------------------------------------------*/
 #barra-superior {
   background: #2B364F;
   color:white;
@@ -385,31 +340,21 @@ body::-webkit-scrollbar{
   overflow: hidden;
 }
 
-
-
-
-
-
-
-#layoutSidenav_nav {
-  color: #f5f5f5;
-  background:#2B364F;
-}
 #profile {
   width: 95%;
-  margin: 25px auto 5px;
+  margin: 0;
+
 }
 
 #profile .wrap {
   /*line-height: 60px;*/
-  overflow: hidden;
   -moz-transition: 0.3s height ease;
   -o-transition: 0.3s height ease;
   -webkit-transition: 0.3s height ease;
   transition: 0.3s height ease;
   align-content: center;
   line-height: initial;
-
+  height: 140px;
 
 }
 
@@ -482,22 +427,48 @@ img.busy {
   display: flex;
   border: none;
 }
+#profile .wrap #btn-sesion{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+}
 
-
-.accordion-item button span.izquierda{
+#profile .wrap #btn-sesion.btn-activo{
+  color: #ffffff;
+}
+#profile .wrap #btn-sesion.btn-activo span.material-icons{
+  color: #ffffff;
+}
+#profile .wrap #btn-sesion span.izquierda{
   margin-right: auto;
   color: #6c757d;
 }
-.accordion-item button span.derecha{
+#profile .wrap #btn-sesion span.derecha{
   margin-left: auto;
   color: #6c757d;
 }
-.accordion-item button.btn-activo{
-  color: #ffffff;
+#profile .wrap #btn-sesion .usuario-perfil-opciones{
+
 }
-.accordion-item button.btn-activo span{
-  color: #ffffff;
+#profile .wrap #btn-sesion .opciones-sesion {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 9000;
+  background: #FFFFFF;
+  top: 0;
+  border: 1px solid blue;
+  left: 0;
+  border-radius: 10px;
+  margin: 30px 0 10px 10px;
+  width: calc(100% - 20px);
+  padding: 5px 0;
+
 }
+
+
+
 .icono-centrado{
   width: auto;
   height: auto;
@@ -521,7 +492,6 @@ img.busy {
 width: 100%;
 }
 .accordion-body .item-accordion-body .nav-link span{
-
   padding-right: 10px;
 }
 .accordion-body .item-accordion-body .nav-link {
@@ -900,7 +870,7 @@ display: inline-flex;
   white-space: nowrap;
 }
 
- #mi-perfil-sidepanel .usuario-perfil-opciones {
+ .usuario-perfil-opciones {
 display: flex;
 
   border-radius: 50%;
@@ -909,17 +879,18 @@ display: flex;
    height: 40px !important;
    width: 40px !important;
 }
-#mi-perfil-sidepanel .usuario-perfil-opciones span.material-icons
+ .usuario-perfil-opciones span.material-icons
 {
   width: auto;
   height: auto;
 
 }
 
-#mi-perfil-sidepanel .usuario-perfil-opciones.activo, #mi-perfil-sidepanel .usuario-perfil-opciones:hover  {
+.usuario-perfil-opciones.activo, #mi-perfil-sidepanel .usuario-perfil-opciones:hover  {
   background: #32465a;
   color: #ffffff;
 }
+
 
 #sidepanel #mi-perfil-sidepanel .opciones-sesion {
 
@@ -941,15 +912,14 @@ display: flex;
 
   border-radius: 5px;
 }
-#sidepanel #mi-perfil-sidepanel .opciones-sesion .item-opciones-sesion {
-
+.opciones-sesion .item-opciones-sesion {
   width: 100%;
 }
-#sidepanel #mi-perfil-sidepanel .opciones-sesion .item-opciones-sesion:hover {
+ .opciones-sesion .item-opciones-sesion:hover {
 background: #f2f2f2;
 
 }
-#sidepanel #mi-perfil-sidepanel .opciones-sesion .item-opciones-sesion  .opc-sesion{
+ .opciones-sesion .item-opciones-sesion  .opc-sesion{
   text-decoration: none;
   text-underline: none;
   vertical-align: center;
@@ -961,13 +931,13 @@ background: #f2f2f2;
   align-self: center;
   color: #2B364F;
 }
-#sidepanel #mi-perfil-sidepanel .opciones-sesion .item-opciones-sesion  .opc-sesion p{
+.opciones-sesion .item-opciones-sesion  .opc-sesion p{
 
   vertical-align: center;
   margin-top: auto;
   margin-bottom: auto;
 }
-#sidepanel #mi-perfil-sidepanel .opciones-sesion .item-opciones-sesion  .opc-sesion span.material-icons {
+ .opciones-sesion .item-opciones-sesion  .opc-sesion span.material-icons {
 
   font-size: 18px;
   width: 25px;
@@ -2038,26 +2008,47 @@ body .wrapper .emoji-picker .emoji-picker__preview {
   list-style:none;
 }
 
-ul#LateralMenu li{
+
+#LateralMenu {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+#LateralMenu::-webkit-scrollbar {
+  display: none;
+}
+#LateralMenu {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-width: thin;
+}
+
+#LateralMenu .nav-item{
   width: 100%;
   margin: 0;
   padding: 0;
 }
 
-ul#LateralMenu li:hover {
+#LateralMenu .nav-item:hover {
   background: #32465a;
 }
-ul#LateralMenu li.active{
+#LateralMenu .nav-item.active{
   background: #32465a;
 
 }
-ul#LateralMenu li div.nav-link:hover{
+#LateralMenu .nav-item div.nav-link:hover{
   color: #ffffff;
 }
-ul#LateralMenu li.active div.nav-link {
+#LateralMenu .nav-item.active div.nav-link {
   color: #ffffff;
 }
-ul#LateralMenu li div.nav-link {
+#LateralMenu .nav-item div.nav-link {
   display: flex;
   font-family: "Roboto", sans-serif;
  padding-left: 10px;
@@ -2067,12 +2058,12 @@ ul#LateralMenu li div.nav-link {
   color: #9a9da0;
 }
 
-ul#LateralMenu li div img{
+#LateralMenu .nav-item div img{
   height: 30px;
   width: 30px;
   margin-right: 5px;
 }
-ul#LateralMenu li div.nav-link .icon-nav-link {
+#LateralMenu .nav-item div.nav-link .icon-nav-link {
   font-size: 20px;
   min-width: 30px;
   max-width: 30px;
@@ -2310,6 +2301,7 @@ height: 100%;
   overflow-x: hidden;
   scrollbar-width: thin;
   paddin:0;
+
 }
 #espacio-temporal::-webkit-scrollbar {
   width: 5px;

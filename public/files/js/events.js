@@ -79,6 +79,7 @@ $("#profile-img").click(function () {
 });
 $("#btn-sesion").click(function () {
     $("#btn-sesion").toggleClass("btn-activo");
+    AgregarOpcionesSesion($("#btn-sesion"))
 });
 
 $('.submit').on('click', function () {
@@ -86,11 +87,14 @@ $('.submit').on('click', function () {
 });
 
 //cerrar sesion
-$(document).on("click", "#mi-perfil-sidepanel", function () {
-    $("#mi-perfil-sidepanel .usuario-perfil-opciones").toggleClass("activo");
+$(document).on("click", "#mi-perfil-sidepanel",  function () {
+    AgregarOpcionesSesion($("#mi-perfil-sidepanel"))
+});
+function AgregarOpcionesSesion(elemento){
+elemento.children(".usuario-perfil-opciones").toggleClass("activo");
 
-    if($("#mi-perfil-sidepanel .usuario-perfil-opciones").hasClass("activo")){
-        $("#mi-perfil-sidepanel").append(`
+    if(elemento.children(".usuario-perfil-opciones").hasClass("activo")){
+        elemento.append(`
         <div class="opciones-sesion activo">
             <div class="item-opciones-sesion " id="btn-conf-sesion">
                 <div title="Configuraciones de cuenta" class="opc-sesion">
@@ -106,10 +110,10 @@ $(document).on("click", "#mi-perfil-sidepanel", function () {
             </div>
         </div>`);
     }else{
-        $("#mi-perfil-sidepanel .opciones-sesion").remove();
+        elemento.children(".opciones-sesion").remove();
     }
 
-});
+}
 
 $(".expand-button").click(function () {
     $("#profile").toggleClass("expanded");
@@ -243,9 +247,11 @@ $("#seccion-politicas").click(function () {
     $(location).attr("href", "/Privacy");
 });
 $("#seccion-acerca").click(function () {
-    $(location).attr("href", "About");
+    $(location).attr("href", "/About");
 });
-
+$("#seccion-contactanos").click(function () {
+    $(location).attr("href", "/About");
+});
 //configuraciones de cuenta
 $(document).on("click", "#btn-configuraciones", function () {
     $('ul#lista-conversaciones li.active').removeClass('active');
