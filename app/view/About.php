@@ -5,6 +5,13 @@ namespace HS\app\view;
 use HS\libs\core\http\HttpResponse;
 use HS\libs\core\Session;
 use const HS\config\APP_NAME;
+if (Session::IsLogin()){
+    $SESSION = new Session();
+    $SESSION_USER_SHORTNAME = $SESSION->user_shortname;
+    $SESSION_USER_PROFILE_IMG = $SESSION->user_profile_img;
+
+    unset($SESSION);
+}
 ?>
 <!doctype html>
 <html lang="es" xmlns="http://www.w3.org/1999/html">
@@ -23,13 +30,11 @@ use const HS\config\APP_NAME;
         </button>
 
         <ul class="nav-lista inactivo">
-            <li class="nav-list-item">
-
-                <a href="/Login" class="nav-link "> <span class="material-icons">login</span>Acceder</a>
-            </li>
-            <li class="nav-list-item">
-                <a href="/Register" class="nav-link"><span class="material-icons">add</span>Registrarse</a>
-            </li>
+            <?php if (Session::IsLogin()){
+                echo ' <li class="nav-list-item"><a href="/" class="nav-link usuario"><img src="'.$SESSION_USER_PROFILE_IMG.'?w=40&h=40" alt="">'. $SESSION_USER_SHORTNAME.'</a></li>';
+            }else{
+                echo ' <li class="nav-list-item"><a href="/Login" class="nav-link "> <span class="material-icons">login</span>Acceder</a></li><li class="nav-list-item"> <a href="/Register" class="nav-link"><span class="material-icons">add</span>Registrarse</a></li>';
+            }?>
             <li class="nav-list-item">
                 <a href="/Privacy" class="nav-link">
                     <span class="material-icons">gavel</span>Términos y condiciones</a>

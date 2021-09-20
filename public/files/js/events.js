@@ -256,7 +256,7 @@ $("#seccion-acerca").click(function () {
     $(location).attr("href", "/About");
 });
 $("#seccion-contactanos").click(function () {
-    $(location).attr("href", "/About");
+    $(location).attr("href", "/Contact");
 });
 //configuraciones de cuenta
 $(document).on("click", "#btn-configuraciones", function () {

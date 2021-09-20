@@ -27,13 +27,10 @@ if (Session::IsLogin()) HttpResponse::Redirect('/');
         </button>
 
         <ul class="nav-lista inactivo">
-            <li class="nav-list-item">
+            <?php if (!Session::IsLogin()){
+              echo ' <li class="nav-list-item"><a href="/Login" class="nav-link "> <span class="material-icons">login</span>Acceder</a></li><li class="nav-list-item"> <a href="/Register" class="nav-link activo"><span class="material-icons">add</span>Registrarse</a></li>';
+            }?>
 
-                <a href="/Login" class="nav-link "> <span class="material-icons">login</span>Acceder</a>
-            </li>
-            <li class="nav-list-item">
-                <a href="/Register" class="nav-link activo"><span class="material-icons">add</span>Registrarse</a>
-            </li>
             <li class="nav-list-item">
                 <a href="/Privacy" class="nav-link">
                     <span class="material-icons">gavel</span>Términos y condiciones</a>
