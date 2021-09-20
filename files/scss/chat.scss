@@ -21,6 +21,7 @@ header.header-sitio {
   padding:0;
   height: 60px;
   z-index:4000;
+  border: 1px solid red;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -101,18 +102,6 @@ xl < 1200px
   display: none;
 }
 
-
-
-
-@keyframes progress-bar-stripes {
-  from {
-    background-position: 1rem 0;
-  }
-  to {
-    background-position: 0 0;
-  }
-}
-
 /*layoutSidenav*/
 
 
@@ -124,7 +113,12 @@ xl < 1200px
   -ms-user-select: none;
   user-select: none;
 }
-
+#layoutSidenav{
+  border: 1px solid blue;
+  height: 100vh;
+  width: 100vw;
+  background: #000000;
+}
 
 
 #layoutSidenav #layoutSidenav_content {
@@ -137,6 +131,7 @@ xl < 1200px
   margin: 0;
   padding: 0;
 z-index: 500;
+  border: 1px solid orange;
 }
 
 /* Animacion para panel barra de navegacion lateral izquierdo
@@ -502,10 +497,11 @@ Barra de contactos desplegable
   margin:0 auto 0 -600px;
 border-right: 1px solid #288795;
   z-index: 2000;
-  position: absolute;
-  height: 100vh;
+  height: 100ch;
+  position: fixed;
   padding: 0;
   display: flex;
+  top: 0;
 }
 
 
