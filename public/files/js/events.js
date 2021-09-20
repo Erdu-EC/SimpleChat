@@ -218,6 +218,11 @@ $(document).on("click", "#btn-info-contacto", function () {
 
 });
 
+$(document).on("click", ".chat-conexion", function () {
+    $("#frame #espacio-de-chat").addClass("desp-der");
+    $("#panelInfoContacto").addClass("mostrar");
+});
+
 $(document).on("click", "#btn-cerrar-contacto", function () {
     $("#frame #espacio-de-chat").removeClass("desp-der");
     $("#panelInfoContacto").removeClass("mostrar");
