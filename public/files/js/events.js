@@ -272,9 +272,16 @@ $(document).on("click", "#btn-configuraciones", function () {
 $(document).on("click", "#btn-conf-sesion", function () {
     $("#mi-perfil-sidepanel .usuario-perfil-opciones").removeClass("activo");
     $("#mi-perfil-sidepanel .opciones-sesion").addClass("inactivo");
+    $("#sidepanel").addClass("no-visible-sm");
+    $("#espacio-de-configuracion").removeClass("no-visible-sm");
     CargarEspacioConfiguraciones();
 
 });
+$(document).on("click", "#btn-cerrar-configuraciones", function () {
+    $("#espacio-de-configuracion").addClass("no-visible-sm");
+    $("#sidepanel").removeClass("no-visible-sm");
+});
+
 
 function CargarEspacioConfiguraciones() {
     $("body").addClass("sb-sidenav-toggled");

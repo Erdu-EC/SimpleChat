@@ -30,6 +30,9 @@
     <div class="row">
         <div class="card">
             <div class="titulo">
+                <div class="sm-visible" id="btn-cerrar-configuraciones">
+                <span class="material-icons">arrow_back</span>
+                </div>
                 <span>Perfil</span>
             </div>
 

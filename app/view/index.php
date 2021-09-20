@@ -213,11 +213,11 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </div>
                     </section>
 
-                    <section class="content" id="espacio-de-configuracion" style="display: none">
+                    <section class="no-visible-sm" id="espacio-de-configuracion" style="display: none">
                     </section>
 
                     <section class="" id="panelInfoContacto">
-                        <button id="btn-cerrar-contacto"><span class="material-icons">close</span></button>
+                        <button id="btn-cerrar-contacto"><span class="material-icons">chevron_right</span></button>
                         <div class="contenedor-perfil">
                             <div class="card perfil">
                                 <img src="" alt="" class="img-fluid foto-perfil away">

@@ -2124,7 +2124,7 @@ Contenedor laterial de informacion de contacto
   height: 60px;
   width: 60px;
   color: #4f5050;
-  font-size: 40px;
+  font-size: 50px;
   justify-content: center;
   background: none;
   border: none;
@@ -2503,6 +2503,43 @@ min-width: 100vw;
 width: 100vw;
     margin: 0;
   }
+  #espacio-de-configuracion{
+    height: 100vh;
+    width: 100vw;
+
+  }
+  #espacio-de-configuracion.no-visible-sm{
+    display: none;
+  }
+  .contenedor-info-cuenta .row .card {
+    display: flex;
+
+    max-width: calc(100%);
+  }
+  #btn-guardar-perfil.activo{
+    right: 15px;
+  }
+   #btn-cerrar-configuraciones.sm-visible {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+     width: 40px;
+     height: 40px;
+     font-size: 35px;
+     border-radius: 50%;
+
+      }
+  #btn-cerrar-configuraciones.sm-visible:active span {
+    color: #8e8e8f;
+  }
+  #btn-cerrar-configuraciones.sm-visible:active{
+
+    background: #8e8e8f;
+  }
+  #btn-cerrar-configuraciones.sm-visible:active span {
+    color: #f2f2f2;
+  }
 }
 /*------------------------------------------------------
 Fin de estilos version móvil
@@ -2510,24 +2547,35 @@ Fin de estilos version móvil
 /*------------------------------------------------------
 Estilos para las configuraciones del perfil
 ------------------------------------------------------*/
-.contenedor-info-cuenta {
-  padding-top: 10px;
-  padding-bottom: 30px;
-  flex-direction: column;
+#espacio-de-configuracion{
+  padding-left: 20px;
+  padding-right: 20px;
   width: 100%;
   height: 100%;
   background: #FFFFFF;
   overflow-y: scroll;
+  overflow-x: hidden;
   scrollbar-width: thin;
+}
+
+.contenedor-info-cuenta {
+  padding-top: 10px;
+  padding-bottom: 30px;
+
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+
   z-index: 1;
 
 }
-.contenedor-info-cuenta::-webkit-scrollbar {
+#espacio-de-configuracion::-webkit-scrollbar {
   width: 7px;
   height: 7px;
   background: transparent;
 }
-.contenedor-info-cuenta::-webkit-scrollbar-thumb {
+#espacio-de-configuracion::-webkit-scrollbar-thumb {
   background: #ccc;
   border-radius: 4px;
 }
@@ -2535,10 +2583,15 @@ Estilos para las configuraciones del perfil
 .contenedor-info-cuenta .row .card {
 margin-right: auto;
   margin-left: auto;
-  width: 600px;
-  min-width: 400px;
+
   display: block;
   height: auto;
+}
+@media screen and (min-width: 536px ){
+  .contenedor-info-cuenta .row .card {
+    width: 600px;
+    min-width: 400px;
+  }
 }
 .contenedor-info-cuenta .row .card .titulo{
   text-align: center;
@@ -2547,8 +2600,21 @@ margin-right: auto;
   margin-bottom: 40px;
   margin-left: auto;
 margin-right: auto;
+  margin-top: 5px;
   font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+  display: flex;
+  flex-direction: row;
 }
+.contenedor-info-cuenta .row .card .titulo span{
+  text-align: center;
+  width: 100%;
+}
+#btn-cerrar-configuraciones {
+  display: none;
+
+}
+
+
  #btn-editar-perfil, #btn-guardar-perfil{
 
   height: 50px;
@@ -2632,7 +2698,7 @@ Foto de perfil y opciones
   border-radius: 50%;
   position: absolute;
   background: transparent;
-  top:77px;
+  top:82px;
   cursor: pointer;
   display: flex;
   align-items: center;
