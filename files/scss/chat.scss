@@ -2370,7 +2370,6 @@ Estilos version móvil
     width: 100vw;
     position: fixed;
     height: 60px;
-    display: none;
   }
 
   #layoutSidenav {
@@ -2387,7 +2386,7 @@ padding-top: 60px;
     height: 100%;
   }
 
-  #frame #sidepanel.no-visible-sm, header.no-visible-sm{
+  #frame #sidepanel.no-visible-sm{
     display: none;
   }
   @-moz-document url-prefix() {
