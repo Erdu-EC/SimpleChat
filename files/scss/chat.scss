@@ -20,8 +20,7 @@ body {
 header.header-sitio {
   padding:0;
   height: 60px;
-  z-index:4000;
-  border: 1px solid red;
+  z-index:1100;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -114,8 +113,6 @@ xl < 1200px
   user-select: none;
 }
 #layoutSidenav{
-  border: 1px solid blue;
-  height: 100vh;
   width: 100vw;
   background: #000000;
 }
@@ -131,7 +128,6 @@ xl < 1200px
   margin: 0;
   padding: 0;
 z-index: 500;
-  border: 1px solid orange;
 }
 
 /* Animacion para panel barra de navegacion lateral izquierdo
@@ -2371,17 +2367,24 @@ Estilos version móvil
 
 @media screen and (max-width: 576px) {
   header.header-sitio  {
+    width: 100vw;
     position: fixed;
+    height: 60px;
   }
 
   #layoutSidenav {
-
+padding-top: 60px;
+    display: flex;
   }
  #layoutSidenav_nav {
    display: flex;
    width: 100vw;
    height: calc(100vh - 60px);
  }
+  #layoutSidenav_content{
+    width: 100%;
+    height: 100%;
+  }
 
   #frame #sidepanel.no-visible-sm, header.no-visible-sm{
     display: none;
@@ -2395,13 +2398,17 @@ Estilos version móvil
   #frame{
     display: flex;
     width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
   }
 
   #frame #sidepanel{
    display: flex;
     overflow: hidden;
-    height: calc(100% - 60px);
+    height: 100%;
     width: 100vw;
+    max-width: 100vw;
+    min-width: 100vw;
   }
   #frame #sidepanel #contacts{
 
