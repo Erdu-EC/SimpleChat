@@ -69,7 +69,16 @@ $(document).on("click", function (e) {
             opc_perfil_lat.children(".opciones-sesion").remove();
         }
     }
+    var emojis =$('.wrapper');
+    var btn_emojis= $('#btn-emojis');
+    if(emojis.length){
 
+        if ((!emojis.is(e.target) && emojis.has(e.target).length === 0) && (!btn_emojis.is(e.target) && btn_emojis.has(e.target).length === 0) ) {
+            var button = $("#btn-emojis");
+            button.removeClass("activo");
+            button.text("sentiment_satisfied_alt");
+        }
+    }
 });
 
 
@@ -244,6 +253,7 @@ $("div#contacts ul#lista-conversaciones").on("click", "li.contact", function () 
 
 });*/
 var picker;
+
 $(document).on("click", "#btn-emojis", function () {
     var button = $("#btn-emojis");
 
@@ -251,22 +261,27 @@ $(document).on("click", "#btn-emojis", function () {
     var msj = $("#contenido-mensaje");
 
     if(button.hasClass("activo")){
-        picker = new EmojiButton({
-            theme: 'auto',
-            autoHide: false,
-        });
         button.text("keyboard_alt");
-        picker.showPicker();
+
+        picker= new EmojiButton({
+            autoHide: false,
+            showSearch: 0,
+            hidePicker: ()=>{},
+        });
+        picker.showPicker(button);
+
         picker.on('emoji', emoji => {
             msj.val(msj.val() + emoji);
         });
-    }
-    else{
+ picker.on('hidden', emoji => {
+     console.log("Hola mundo");
+        });
+
+    }else{
         button.text("sentiment_satisfied_alt");
+        if(picker.isPickerVisible)
         picker.hidePicker();
     }
-
-
 
 });
 //redireccion a otras paginas del sitio
