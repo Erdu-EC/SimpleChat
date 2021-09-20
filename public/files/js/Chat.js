@@ -190,7 +190,7 @@ function CargarEspacioDeChat() {
                 ActualizarTotalDeConversacionesNoLeidas();
 
                 //Actualizar panel de información de contacto, si este esta abierto.
-                if ($('#panelInfoContacto').hasClass('mostrar'))
+
                     ActualizarInfoContacto();
             } else {
                 console.log('Error al obtener mensajes.');
