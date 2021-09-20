@@ -2404,6 +2404,7 @@ Estilos version móvil
   #frame #sidepanel{
    display: flex;
     overflow: hidden;
+    height: calc(100% - 60px);
   }
   #frame #sidepanel #contacts{
 
