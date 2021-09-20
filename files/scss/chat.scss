@@ -1167,7 +1167,7 @@ border-radius: 50%;
   white-space: nowrap;
   overflow: hidden;
   transition: 1s all ease;
-
+height: 21px;
 
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta .preview .icon-indicador {
@@ -1904,7 +1904,7 @@ background: #f5f5f5;
 
 body .wrapper {
   position: absolute;
-  z-index: 100;
+  z-index: 1200;
   background: #ffffff;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
@@ -2528,7 +2528,7 @@ width: 100vw;
      height: 40px;
      font-size: 35px;
      border-radius: 50%;
-
+position: absolute;
       }
   #btn-cerrar-configuraciones.sm-visible:active span {
     color: #8e8e8f;
@@ -2540,7 +2540,19 @@ width: 100vw;
   #btn-cerrar-configuraciones.sm-visible:active span {
     color: #f2f2f2;
   }
+
+  /* Contenedor de emojis*/
+ body .wrapper {
+  position: absolute;
+
+  bottom:65px;
+  left:0;
+  width: 100vw;
+  height: auto;
 }
+}
+
+
 /*------------------------------------------------------
 Fin de estilos version móvil
 ------------------------------------------------------*/

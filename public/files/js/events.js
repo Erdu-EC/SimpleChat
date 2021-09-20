@@ -9,8 +9,9 @@ $(window).resize(function () {
 });
 //Codigo para vista movil
 function VistaMovil(){
-    if(window.innerWidth < 576 && ($("#espacio-de-chat").length!=0)){
+    if(window.innerWidth < 576 && (($("#sidepanel").hasClass("no-visible-sm")))){
         $('#LateralMenu li.active').removeClass('active');
+
     }
     else{
         $('#seccion-conversaciones').parent().addClass('active')
@@ -242,16 +243,31 @@ $("div#contacts ul#lista-conversaciones").on("click", "li.contact", function () 
     $(this).addClass("active");
 
 });*/
-
+var picker;
 $(document).on("click", "#btn-emojis", function () {
     var button = $("#btn-emojis");
-    var msj = $("#contenido-mensaje");
-    var picker = new EmojiButton();
-    picker.on('emoji', emoji => {
-        msj.val(msj.val() + emoji);
-    });
 
-    picker.togglePicker(button);
+    button.toggleClass("activo");
+    var msj = $("#contenido-mensaje");
+
+    if(button.hasClass("activo")){
+        picker = new EmojiButton({
+            theme: 'auto',
+            autoHide: false,
+        });
+        button.text("keyboard_alt");
+        picker.showPicker();
+        picker.on('emoji', emoji => {
+            msj.val(msj.val() + emoji);
+        });
+    }
+    else{
+        button.text("sentiment_satisfied_alt");
+        picker.hidePicker();
+    }
+
+
+
 });
 //redireccion a otras paginas del sitio
 $("#seccion-politicas").click(function () {
@@ -280,6 +296,8 @@ $(document).on("click", "#btn-conf-sesion", function () {
 $(document).on("click", "#btn-cerrar-configuraciones", function () {
     $("#espacio-de-configuracion").addClass("no-visible-sm");
     $("#sidepanel").removeClass("no-visible-sm");
+    $('#seccion-conversaciones').parent().addClass('active')
+
 });
 
 
