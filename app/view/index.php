@@ -65,8 +65,10 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                 <div class="usuario-perfil" id="btn-sesion">
                     <span class="material-icons izquierda">account_circle</span>
                     <?= $SESSION_USER_SHORTNAME ?>
-                    <span class="material-icons  derecha">arrow_drop_down</span>
-                    <div class="usuario-perfil-opciones"></div>
+
+                    <div class="usuario-perfil-opciones derecha">
+                        <span class="material-icons  ">arrow_drop_down</span>
+                    </div>
                 </div>
             </div>
         </div>

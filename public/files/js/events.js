@@ -27,7 +27,6 @@ $("#seccion-conversaciones").on("click", function () {
 $(document).on("click","#lista-conversaciones .contact", function (){
     $("#sidepanel").addClass('no-visible-sm');
     $("body").addClass("sb-sidenav-toggled");
-    console.log("Doy click en un contacto");
     $("#espacio-de-chat").removeClass('no-visible-sm');
     $("header").addClass('no-visible-sm');
     $(" #frame").addClass('full-pantalla');
@@ -60,6 +59,13 @@ $(document).on("click", function (e) {
 
             $("#mi-perfil-sidepanel .usuario-perfil-opciones").removeClass("activo");
             $("#mi-perfil-sidepanel .opciones-sesion").remove();
+        }
+    }
+    var opc_perfil_lat = $("#btn-sesion");
+    if(opc_perfil_lat.children('.opciones-sesion').length){
+        if (!opc_perfil_lat.is(e.target) && opc_perfil_lat.has(e.target).length === 0 && opc_perfil_lat.length){
+            opc_perfil_lat.children(".usuario-perfil-opciones").removeClass("activo");
+            opc_perfil_lat.children(".opciones-sesion").remove();
         }
     }
 
@@ -131,13 +137,13 @@ function ConversacionActiva() {
     $('#LateralMenu li:first').addClass('active');
 }
 //Notificacion de solicitud de mensaje
-$(document).on("mouseover", "#mensaje-invitacion-si",function () {
+$(document).on("mouseover click", "#mensaje-invitacion-si",function () {
     $("#icon-mensaje-invitacion").css("color","#198754");
 });
 $(document).on("mouseleave", "#mensaje-invitacion-si",function () {
     $("#icon-mensaje-invitacion").css("color","#00000070");
 });
-$(document).on("mouseover", "#mensaje-invitacion-no",function () {
+$(document).on("mouseover click", "#mensaje-invitacion-no",function () {
     $("#icon-mensaje-invitacion").css("color","#dc3545");
 });
 $(document).on("mouseleave", "#mensaje-invitacion-no",function () {

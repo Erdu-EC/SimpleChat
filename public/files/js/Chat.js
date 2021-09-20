@@ -215,7 +215,7 @@ const ObtenerSeparadorDeFechasEnChat = fecha_envio => `<li class="marcador"><div
 const ObtenerModalDeInvitacion = (nombre) => `
                             <div class="notificacion">
                                 <div id="mensaje-invitacion" class="row border-bottom no-seleccionable">
-                                <i class="fas fa-comments" id="icon-mensaje-invitacion"></i>
+                                <div class="cont-icon"><i class="fas fa-comments" id="icon-mensaje-invitacion"></i></div>
                                     <p><b>${nombre}</b> no está entre tus contactos y te ha enviado un mensaje. ¿Deseas recibir mensajes de ${nombre}?
                                     </p>
                                     <div class="botones">
