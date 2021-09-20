@@ -2151,12 +2151,13 @@ Contenedor laterial de informacion de contacto
 #frame #panelInfoContacto .contenedor-perfil{
   height: calc( 100% - 5px);
   overflow-y: scroll;
-  scrollbar-width: thin;
+  scrollbar-width: none;
   margin: 0;
   padding: 0;
+
 }
 #frame #panelInfoContacto .contenedor-perfil::-webkit-scrollbar {
-  width: 6px;
+  width: 0;
 
 }
 
@@ -2502,6 +2503,7 @@ min-width: 100vw;
 width: 100vw;
     margin: 0;
   }
+  #frame #panelInfoContacto::
 
 }
 /*------------------------------------------------------
