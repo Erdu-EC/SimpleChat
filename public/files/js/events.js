@@ -393,17 +393,18 @@ function AgregarBotonesEdicion(elemento) {
     $('body').toggleClass('modoEdicionFotografia');
     if($('body').hasClass('modoEdicionFotografia')){
         $('body').prepend('<div id="botonera-edicion">\n' +
-            '    <button id="edicion-izquierda" title="Desplazar a la izquierda"><i class="fas fa-arrow-left"></i></button>\n' +
-            '    <button id="edicion-arriba" title="Desplazar a la derecha"><i class="fas fa-arrow-up"></i></button>\n' +
+            '   <div class="edicion-desplazamiento"><button id="edicion-izquierda" title="Desplazar a la izquierda"><i class="fas fa-arrow-left"></i></button><button id="edicion-arriba" title="Desplazar a la derecha"><i class="fas fa-arrow-up"></i></button>' +
             '    <button id="edicion-abajo" title="Desplazar hacia abajo"><i class="fas fa-arrow-down"></i></button>\n' +
             '    <button id="edicion-derecha" title="Desplazar hacia arriba"><i class="fas fa-arrow-right"></i></button>\n' +
+            '</div> \n' +
+
             '    <button id="edicion-girar-der" title=""><i class="fas fa-redo"></i></button>\n' +
             '    <button id="edicion-girar-izq" title=""><i class="fas fa-undo"></i></button>\n' +
             '    <button id="edicion-invertir-h" title=""><i class="fas fa-arrows-alt-h"></i></button>\n' +
-            '    <button id="edicion-invertir-v" title=""><i class="fas fa-arrows-alt-v"></i></button><button id="edicion-encuadre" title=""><span class="material-icons">\n' +
-            'crop_free\n' +
-            '</span></button>'+'<button id="edicion-zoom-mas" title=""><i class="fas fa-search-plus"></i></button>\n' +
-            '    <button id="edicion-zoom-menos" title=""><i class="fas fa-search-minus"></i></button>\n' +
+            '    <button id="edicion-invertir-v" title=""><i class="fas fa-arrows-alt-v"></i></button>' +
+            '<button id="edicion-encuadre" title=""><span class="material-icons">crop_free</span></button>' +
+            '<div class="edicion-zoom"> <button id="edicion-zoom-mas" title=""><i class="fas fa-search-plus"></i></button>\n' +
+            '    <button id="edicion-zoom-menos" title=""><i class="fas fa-search-minus"></i></button> </div>\n' +
             '    <div class="edicion-finalizar">\n' +
             '        <button id="edicion-enviar-'+elemento+'" title="Guardar cambios"><span class="material-icons">done</span></button> <button id="edicion-cerrar-'+elemento+'" title="Cancelar"><span class="material-icons">close</span></button>\n' +
             '        </div>\n' +

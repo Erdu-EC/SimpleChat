@@ -2553,7 +2553,7 @@ position: absolute;
   /* Contenedor de emojis*/
  body .wrapper {
   position: absolute;
-  bottom: 2vh;
+  bottom: 1.9vh;
   left:0;
   width: 100vw;
   height: auto;
@@ -2951,6 +2951,10 @@ Estilos de botonera de edicion
   justify-content: center;
   align-items: center;
 }
+#botonera-edicion .edicion-desplazamiento, #botonera-edicion .edicion-zoom{
+  display: flex;
+  flex-direction: row;
+}
 #botonera-edicion .edicion-finalizar{
   display: flex;
   flex-direction: row;
@@ -2987,6 +2991,12 @@ Estilos de botonera de edicion
 .cropper-container::-webkit-scrollbar-thumb {
   background: #ccc;
   border-radius: 4px;
+}
+/*botonera movil*/
+@media screen  and (max-width: 576px ){
+  #botonera-edicion .edicion-desplazamiento, #botonera-edicion .edicion-zoom , #botonera-edicion #edicion-encuadre{
+    display: none;
+  }
 }
 
 /*------------------------------------------------------
