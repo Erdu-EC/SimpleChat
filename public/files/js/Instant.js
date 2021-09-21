@@ -15,8 +15,18 @@ $(document).ready(function () {
 
 function TratarMensajes(mensajes) {
     mensajes.forEach(row => {
-        const elemento_contacto = $(`#lista-conversaciones .contact > div[data-usuario=${row.user_name}]`);
+        const lista_conversaciones = $('#lista-conversaciones');
+        let elemento_contacto = lista_conversaciones.find(`.contact > div[data-usuario=${row.user_name}]`);
         const nombre = row.first_name + " " + row.last_name;
+
+        //Si no existe conversacion, agregarla.
+        if (elemento_contacto.length === 0){
+            elemento_contacto = $('<li>', {
+                class: 'contact',
+                html: ObtenerElementoConversacion(row.user_name, row.first_name, row.last_name, row.profile, null, null, row.content, row.send_date, row.send_date, row.rcv_date, row.read_date)
+            });
+            elemento_contacto.prependTo(lista_conversaciones);
+        }
 
         //Si el mensaje es para el contacto de la actual conversación abierta en el chat.
         if (row.id.toString() === $('#espacio-de-chat .messages').attr('data-usuario'))
@@ -34,7 +44,7 @@ function TratarMensajes(mensajes) {
         }
 
         //Mover conversación hacia arriba en la lista de conversaciónes.
-        elemento_contacto.parent().prependTo($('#lista-conversaciones'));
+        elemento_contacto.parent().prependTo(lista_conversaciones);
 
         //Mostrar vista previa del mensaje en lista de conversaciones.
         elemento_contacto.find('.hora-ult-mesj').text(Fecha_hora_ultima_Mensaje(row.send_date));

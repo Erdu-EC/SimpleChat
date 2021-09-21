@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     if (!Notification) {
         VanillaToasts.create({
@@ -11,15 +10,17 @@ $(document).ready(function () {
         });
         return;
     }
-    if (!(Notification.permission === "granted"))  {
+    if (!(Notification.permission === "granted")) {
         $("#icon-indicador-mensaje").after('<div class="indicador-notifiaciones" id="btn-habilitar-notificaciones"><i class="fas fa-bell-slash"></i> </div>');
         $(".msg-indicador-notificaciones").show();
-        setTimeout(function () {  $(".msg-indicador-notificaciones").hide();},4000);
-    }else{
+        setTimeout(function () {
+            $(".msg-indicador-notificaciones").hide();
+        }, 4000);
+    } else {
         $(".msg-indicador-notificaciones").remove();
     }
 });
-$(document).on("click","#btn-habilitar-notificaciones", function () {
+$(document).on("click", "#btn-habilitar-notificaciones", function () {
     Notification.requestPermission().then(function (
         permission) {
         if (permission === "denied") {
@@ -31,19 +32,18 @@ $(document).on("click","#btn-habilitar-notificaciones", function () {
                 timeout: 10000,
                 close: true
             });
-        }
-        else {
+        } else {
             $("#btn-habilitar-notificaciones").remove();
             $(".msg-indicador-notificaciones").remove();
         }
     });
 });
 
-var visible= true;
-$(window).blur( function () {
-visible = false;
+var visible = true;
+$(window).blur(function () {
+    visible = false;
 });
-$(window).focus( function () {
+$(window).focus(function () {
     visible = true;
 });
 
@@ -57,18 +57,17 @@ function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
     }
 
     if (!(visible)) {
-    if (Notification.permission === "granted") {
-        var n = new Notification(titulo, opciones);
-        n.onclick = function (event) {
-            window.focus();
+        if (Notification.permission === "granted") {
+            var n = new Notification(titulo, opciones);
+            n.onclick = function (event) {
+                window.focus();
+            }
+            n.onshow = function (event) {
+                var music = new Audio('/files/song/notification.mp3');
+                music.play();
+            }
         }
-        n.onshow = function (event) {
-            var music = new Audio('/files/song/notification.mp3');
-            music.play();
-        }
-    }
-    }
-    else {
+    } else {
         VanillaToasts.create({
             title: titulo,
             text: mensaje,
