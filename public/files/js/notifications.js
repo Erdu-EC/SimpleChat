@@ -39,18 +39,10 @@ $(document).on("click", "#btn-habilitar-notificaciones", function () {
     });
 });
 
-var visible = true;
-$(window).blur(function () {
-    visible = false;
-});
-$(window).focus(function () {
-    visible = true;
-});
 
 function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
-    console.log( document.visibilityState);
 
-    if (!(visible)) {
+    if (!document.hasFocus()) {
         var opciones = {
             body: mensaje,
             icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
