@@ -61,7 +61,7 @@ function MostrarMensajeEnEspacioDeChat(nombre, datos) {
     AgregarMensajeEnEspacioDeChat(mensaje, datos.send_date);
     mensaje[0].scrollIntoView();
 
-    if (document.visibilityState && document.visibilityState !== "visible")
+  //  if (document.visibilityState && document.visibilityState !== "visible")
         NotificacionesEscritorio(datos.id, nombre, datos.content, datos.profile);
 }
 

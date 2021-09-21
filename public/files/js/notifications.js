@@ -48,15 +48,16 @@ $(window).focus(function () {
 });
 
 function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
-    var opciones = {
-        body: mensaje,
-        icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
-        tag: origen,
-        renotify: true,
-        silent: true,
-    }
+    console.log( document.visibilityState);
 
-    if (!(visible)) {
+    if (Document.visibilityState !== "visible") {
+        var opciones = {
+            body: mensaje,
+            icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
+            tag: origen,
+            renotify: true,
+            silent: true,
+        }
         if (Notification.permission === "granted") {
             var n = new Notification(titulo, opciones);
             n.onclick = function (event) {
@@ -73,9 +74,11 @@ function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
             text: mensaje,
             type: "info",
             icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
-            timeout: 10000,
+            timeout: 2000,
             close: true
         });
+        var music = new Audio('/files/song/notification.mp3');
+        music.play();
     }
 }
 
