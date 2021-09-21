@@ -186,12 +186,12 @@ $(document).on("click", "li.item-contacto", function () {
 
 function CerrarContactos() {
 
-    $("#panelTodosContactos").animate({
+    $("#panelTodosContactos").removeClass("mostrar");/*animate({
         margin: "=0 auto 0 -600px"
     }, {
         duration: 500,
         queue: false
-    });
+    });*/
     if ($('body').width() > 1000) {
         if ($("body").hasClass("prev-inactivo")) {
             $("body").removeClass("prev-inactivo");
@@ -207,12 +207,13 @@ function CerrarContactos() {
 
 
 function Contactos() {
-    $("#panelTodosContactos").animate({
-        margin: "=0 auto 0 0"
+    $("#panelTodosContactos").addClass("mostrar");
+    /*({
+
     }, {
         duration: 500,
         queue: false
-    });
+    });*/
     if ($(window).width() > 1000) {
         if (!$("body").hasClass("sb-sidenav-toggled")) {
             $("body").addClass("prev-inactivo");
