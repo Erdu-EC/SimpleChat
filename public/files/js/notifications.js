@@ -56,11 +56,15 @@ function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
                 window.focus();
             }
             n.onshow = function (event) {
-                var music = new Audio('/files/song/notification.mp3');
-                music.play();
+                AudioNotificacion();
             }
         }
-    } else {
+    }
+}
+
+function MensajeNuevo(origen, titulo, mensaje, imagen) {
+
+if(document.hasFocus()) {
         VanillaToasts.create({
             title: titulo,
             text: mensaje,
@@ -69,19 +73,18 @@ function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
             timeout: 2000,
             close: true
         });
-        var music = new Audio('/files/song/notification.mp3');
-        music.play();
+    AudioNotificacion();
     }
+else{
+    NotificacionesEscritorio(origen, titulo, mensaje, imagen);
 }
 
-function MensajeNuevo(remitente, fotografia, previa) {
-    VanillaToasts.create({
-        title: remitente,
-        text: previa,
-        type: "success",
-        icon: fotografia,
-        timeout: 1500,
-        close: true
+}
+
+function AudioNotificacion(){
+
+    var music = new Audio('/files/song/notification.mp3');
+    var err = music.play().catch (function (e){
+        console.log("No se ha podido reproducir el sonido de notificación");
     });
-    music.play();
 }

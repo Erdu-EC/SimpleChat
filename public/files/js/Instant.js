@@ -32,7 +32,7 @@ function TratarMensajes(mensajes) {
         if (row.id.toString() === $('#espacio-de-chat .messages').attr('data-usuario'))
             MostrarMensajeEnEspacioDeChat(nombre, row)
         else {
-            NotificacionesEscritorio(row.id, nombre, row.content, row.profile);
+            MensajeNuevo(row.id, nombre, row.content, row.profile);
 
             //Contar mensajes no leidos.
             const msg_pendientes = elemento_contacto.find('.num-msj-pendientes.online span');
@@ -61,7 +61,6 @@ function MostrarMensajeEnEspacioDeChat(nombre, datos) {
     AgregarMensajeEnEspacioDeChat(mensaje, datos.send_date);
     mensaje[0].scrollIntoView();
 
-  //  if (document.visibilityState && document.visibilityState !== "visible")
         NotificacionesEscritorio(datos.id, nombre, datos.content, datos.profile);
 }
 
