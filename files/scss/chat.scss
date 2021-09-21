@@ -15,7 +15,6 @@ body {
   background-color: #fff;
   height: auto;
   width: auto;
-
 }
 #audio-notificacion{
   display: none;
@@ -320,6 +319,7 @@ body::-webkit-scrollbar{
   background-image:url("/files/img/bg/fondo-chat.png");
   display: flex;
   overflow: hidden;
+
 }
 
 #profile {
@@ -1262,7 +1262,7 @@ width: 100%;
 
 #frame #sidepanel #bottom-bar {
   display: flex;
-  height: 50px;
+  height: 60px;
   width: 100%;
 
 }
@@ -1354,7 +1354,7 @@ width: 100%;
 #espacio-de-chat .contact-profile .chat-atras{
   display: none;
 }
-#frame .content .contact-profile img, #frame .content .contact-profile .material-icons {
+#frame .content .contact-profile img{
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -1430,7 +1430,10 @@ hr.separador-vertical{
   margin: 10px 5px 10px 5px;
 
 }
-@media screen and (max-width: 576px){
+@media screen and (max-width: 992px){
+  #frame .content .contact-profile .opciones-contacto {
+    width: 60px;
+  }
   #frame .content .contact-profile .opciones-contacto div {
     font-size: 0;
     margin:0;
@@ -1440,11 +1443,6 @@ hr.separador-vertical{
   #frame .content .contact-profile .opciones-contacto div span.material-icons{
     font-size: 2rem;
     flex-grow: 1;
-  }
-  hr.separador-vertical{
-    height: 80%;
-    margin-top: auto;
-    margin-bottom: auto;
   }
 }
 
@@ -1460,17 +1458,13 @@ hr.separador-vertical{
   display: flex;
   justify-content: center;
   align-items: center;
-  justify-content: center;
+  text-align: center;
   border-radius: 50%;
   color: #A9A9A9FF;
 }
-#frame .content .contact-profile #btn-info-contacto span.material-icons
-{
-  height: 20px;
-  width: 20px;
-  display: flex;
-  margin-bottom: auto;
-  margin-top: auto;
+
+#frame .content .contact-profile #btn-info-contacto.ocultar{
+  display: none;
 }
 #frame .content .contact-profile .icon-info-contacto:active{
   background: #D3D3D3FF;
@@ -2086,17 +2080,14 @@ Contenedor laterial de informacion de contacto
 ##############################################
 */
 
-@media screen and (max-width: 1100px ){
+@media screen and (max-width: 1100px) and (min-width: 576px){
   #frame #panelInfoContacto.mostrar{
-    margin-left: -400px;
+    position: fixed;
+    right: 0;
+    height: calc(100vh - 60px);
   }
   #frame .content .messages #espacio-de-chat{
     padding:20px;
-  }
-}
-@media screen and (max-width: 576px ){
-  #frame #panelInfoContacto.mostrar{
-    min-width: calc(100% - 58px);
   }
 }
 
@@ -2113,30 +2104,28 @@ Contenedor laterial de informacion de contacto
   display: none;
   min-width: 370px;
   max-width: 370px;
-  width:100%;
+
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
 }
 
 
 #panelInfoContacto #btn-cerrar-contacto{
-
-  height: 60px;
-  width: 60px;
+  margin: 10px;
+  height: 40px;
+  min-height: 40px;
+  width: 40px;
   color: #4f5050;
-  font-size: 50px;
   justify-content: center;
+  align-items: center;
   background: none;
   border: none;
   padding: 0;
-  margin: 0;
   display: flex;
+border-radius: 50%;
 }
-#panelInfoContacto #btn-cerrar-contacto span{
-  height: 60px;
-  width: 60px;
-  padding-top: 20px;
-  vertical-align: center;
-}
+#panelInfoContacto #btn-cerrar-contacto span{font-size: 35px;}
+
 #panelInfoContacto #btn-cerrar-contacto:hover {
   background: #267cb5;
   color: white;
@@ -2153,7 +2142,6 @@ Contenedor laterial de informacion de contacto
   scrollbar-width: none;
   margin: 0;
   padding: 0;
-
 }
 #frame #panelInfoContacto .contenedor-perfil::-webkit-scrollbar {
   width: 0;
@@ -2501,6 +2489,7 @@ padding: 10px;
     align-content: center;
   }
   #frame #panelInfoContacto.mostrar{
+    height: calc(100vh - 60px);
     display: flex;
     position: absolute;
     left: 0;
@@ -2508,10 +2497,21 @@ padding: 10px;
     background: #f2f2f2;
     border-left: 1px solid #bebebf;
     z-index: 10000;
-min-width: 100vw;
-width: 100vw;
+    min-width: 100vw;
+    width: 100vw;
     margin: 0;
   }
+  #panelInfoContacto #btn-cerrar-contacto{
+    height: 40px;
+    width: 40px;
+    color: #4f5050;
+    margin: 10px;
+    display: flex;
+    position: absolute;
+    z-index: 1002;
+  }
+
+
   #espacio-de-configuracion{
     height: 100vh;
     width: 100vw;
