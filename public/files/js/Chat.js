@@ -14,7 +14,6 @@ $(document).on("keyup change", "#espacio-de-escritura", function () {
     } else {
         $("#btn-enviar-mensaje").addClass("activar");
         $("#cuadro-busqueda-usuario").after(' <div class="borrar"><span class="material-icons"> close</span></div>');
-
     }
 });
 

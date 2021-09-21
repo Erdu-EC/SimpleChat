@@ -2,7 +2,8 @@
 
     namespace HS\app\model;
 
-    use HS\libs\collection\Collection;
+    use HS\config\APP_URL;
+	use HS\libs\collection\Collection;
     use HS\libs\core\Model;
     use PDOException;
 
