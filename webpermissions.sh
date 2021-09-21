@@ -16,6 +16,7 @@ sudo usermod -a -G www-data ${USER}
 sudo chmod -R 750 ${SERVER_DIR}
 sudo chmod 770 ${SERVER_DIR}
 sudo find ${SERVER_DIR} -type f -exec chmod 740 {} \;
+sudo chmod -R 770 ${SERVER_DIR}/upload
 
 #Propietario de los ficheros.
 sudo chown -R ${USER} ${SERVER_DIR}

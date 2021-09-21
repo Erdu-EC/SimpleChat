@@ -203,7 +203,7 @@ BEGIN
       AND accepted is NULL;
 END $
 
-CREATE PROCEDURE user_GetUnreceiveInvitations(in USER_ID int)
+CREATE OR REPLACE PROCEDURE user_GetUnreceiveInvitations(in USER_ID int)
 BEGIN
     CREATE TEMPORARY TABLE unrcv_invitations
     (
@@ -218,10 +218,11 @@ BEGIN
 
     UPDATE invitations set rcv_date = NOW() where id in (select id from unrcv_invitations);
 
-    SELECT *
-    FROM invitations
-    WHERE id in (select id from unrcv_invitations)
-    order by send_date, id;
+    SELECT u.user_name as nick, u.first_name, u.last_name, u.profile_img as profile,
+           send_date
+    FROM invitations i inner join users u on id_source = u.id
+    WHERE i.id in (select id from unrcv_invitations)
+    order by send_date, i.id;
 END $
 
 #Procedimientos para mensajes.
