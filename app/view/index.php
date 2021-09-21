@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="/files/vanillatoasts/vanillatoasts.css">
 </head>
 <body class=" sb-nav-fixed sb-sidenav-toggled">
-
+<audio src="/files/song/notification.mp3" id="audio-notificacion"></audio>
 <!-- Barra superior -->
 <header class="header-sitio"><?php require 'template/Header.php' ?></header>
 <!-- Fin de barra superior -->

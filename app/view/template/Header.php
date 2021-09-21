@@ -3,7 +3,7 @@
 	use HS\libs\core\Session; ?>
 
 
-<nav class="sb-topnav navbar navbar-expand " id="barra-superior">
+<nav class="sb-topnav navbar " id="barra-superior">
 
 
     <button class="btn nav-item" id="sidebarToggle">
@@ -15,6 +15,13 @@
             <span></span>
         </div>
     </div>
+<div class="msg-indicador-notificaciones">
+    <div class="sup"></div>
+    <div class="body">
+        <p>Presione el ícono para habilitar las notificaciones</p>
+    </div>
+
+</div>
 
     <a class="navbar-brand " href="/">
         <img src="/files/icon/logo-wh.png?h=50" alt="" id="logo-home" class="img img-fluid">

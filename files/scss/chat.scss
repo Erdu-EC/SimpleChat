@@ -17,6 +17,9 @@ body {
   width: auto;
 
 }
+#audio-notificacion{
+  display: none;
+}
 header.header-sitio {
   padding:0;
   height: 60px;
@@ -79,26 +82,6 @@ xl < 1200px
   vertical-align: middle;
   content: "";
   background: 50%/100% 100% no-repeat;
-}
-
-.navbar-expand {
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-}
-
-.navbar-expand .navbar-nav {
-  flex-direction: row;
-}
-
-.navbar-expand .navbar-nav-scroll {
-  overflow: visible;
-}
-.navbar-expand .navbar-collapse {
-  display: flex !important;
-  flex-basis: auto;
-}
-.navbar-expand .navbar-toggler {
-  display: none;
 }
 
 /*layoutSidenav*/
@@ -212,6 +195,9 @@ z-index: 500;
   background: #2B364F;
   color:white;
   height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 #sidebarToggle{
@@ -219,7 +205,6 @@ z-index: 500;
   height: 40px;
   width: 48px;
   margin-top: 0;
-  margin-left: 10px;
   border-radius: 3px;
   color: #9a9da0;
   outline: none;
@@ -232,24 +217,21 @@ z-index: 500;
 }
 
 
-.indicador-mensajes {
-  margin-right: auto;
-  margin-left: 50px;
+.indicador-mensajes, .indicador-notifiaciones {
+
 display: flex;
   color: #cbcbcc;
   height: 40px;
   width: 40px;
   align-items: center;
   justify-content: center;
+  font-size: 25px;
 }
-.indicador-mensajes:hover {
+.indicador-notifiaciones {cursor: pointer}
+.indicador-mensajes:hover, .indicador-notifiaciones:hover {
   color: #ffffff;
 }
 
-.indicador-mensajes i{
-  font-size: 25px;
-
-}
 .indicador-mensajes:hover .num-mensajes{
   background: #f12526;
 }
@@ -274,6 +256,32 @@ display: flex;
   horiz-align: center;
   display: block;
 }
+.msg-indicador-notificaciones {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 50vw;
+  z-index: 1000;
+  background: #FFFFFF;
+  color:  #2B364F;
+  width: 210px;
+padding: 0;
+  border-radius: 10px;
+  font-size: 14px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+.msg-indicador-notificaciones .sup{
+  height: 20px;
+  width: 100%;
+  background: #3390ec;
+  border-radius: 10px 10px 0 0;
+}
+.msg-indicador-notificaciones .body{
+  width: 100%;
+  padding: 10px;
+  font-weight: 600;
+}
+
 #icono-sidebarToggle{
   width:100%;
 }
@@ -291,10 +299,7 @@ display: flex;
   #sidebarToggle{
     margin-left: 5px;
   }
-  .indicador-mensajes {
-    margin-right: auto;
-    margin-left: 50px;
-  }
+
   .navbar-brand img {
     height: 30px;
     object-fit: cover;
@@ -1507,6 +1512,7 @@ Solicitud de chat
   text-align: center;
   position: absolute;
   margin-top: 100px;
+  z-index: 200;
 }
 #mensaje-invitacion {
 
@@ -2380,10 +2386,10 @@ Estilos version móvil
   #sidebarToggle{
     margin: 0;
   }
-  .indicador-mensajes {
-    margin-right: auto;
-    margin-left: 10px;
 
+  .msg-indicador-notificaciones {
+    left: calc(50vw - 110px);
+    z-index: 10000;
   }
   #layoutSidenav {
 padding: 0;

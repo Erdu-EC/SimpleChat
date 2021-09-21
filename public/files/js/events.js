@@ -1,4 +1,16 @@
 
+
+$(document).on("click", (".indicador-mensajes"), function () {
+
+});
+$(document).on("mouseover", ("#btn-habilitar-notificaciones"), function () {
+$(".msg-indicador-notificaciones").show();
+});
+$(document).on("mouseleave", ("#btn-habilitar-notificaciones"), function () {
+    $(".msg-indicador-notificaciones").hide();
+});
+
+
 $("#LateralMenu").ready(function () {
     VistaMovil();
 
@@ -266,17 +278,13 @@ $(document).on("click", "#btn-emojis", function () {
         picker= new EmojiButton({
             autoHide: false,
             showSearch: 0,
-            hidePicker: ()=>{},
+            autoFocusSearch: false,
         });
         picker.showPicker(button);
 
         picker.on('emoji', emoji => {
             msj.val(msj.val() + emoji);
         });
- picker.on('hidden', emoji => {
-     console.log("Hola mundo");
-        });
-
     }else{
         button.text("sentiment_satisfied_alt");
         if(picker.isPickerVisible)
