@@ -202,7 +202,7 @@ function CerrarContactos() {
     $('#lista-contactos').show();
     $("#sin-resultados").empty();
     $("#buscar-contacto .borrar").remove();
-    $("#layoutSidenav").fadeIn(400);
+    $("#layoutSidenav").removeClass("no-visible-sm");
 };
 
 
@@ -220,7 +220,7 @@ function Contactos() {
         $("body").addClass("sb-sidenav-toggled");
     }
     $("#frame #espacio-de-chat").addClass("expandido")
-    $("#layoutSidenav").fadeOut(400);
+    $("#layoutSidenav").addClass("no-visible-sm")
 };
 
 
