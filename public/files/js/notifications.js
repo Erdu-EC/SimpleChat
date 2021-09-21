@@ -50,7 +50,7 @@ $(window).focus(function () {
 function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
     console.log( document.visibilityState);
 
-    if (Document.visibilityState !== "visible") {
+    if (!(visible)) {
         var opciones = {
             body: mensaje,
             icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
