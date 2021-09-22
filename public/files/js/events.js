@@ -99,6 +99,12 @@ $("#sidebarToggle").on("click", function (e) {
     $("body").toggleClass("sb-sidenav-toggled");
     $("#mi-perfil-sidepanel").toggleClass("no-visible");
     $(this).toggleClass("activo");
+    if( $(this).hasClass("activo")){
+        $(this).html('<span class="material-icons">close</span>');
+    }
+    else{
+        $(this).html('<span class="material-icons">menu</span>');
+    }
 });
 
 
