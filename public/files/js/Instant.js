@@ -1,6 +1,7 @@
 $(document).ready(function () {
-    if (window.Worker) {
+    if (!window.Worker) {
         const chatWorker = new Worker('/files/js/Chat-bg.js');
+
         chatWorker.onmessage = ev => {
             //Si hay mensajes no leidos.
             if (ev.data['messages'].length > 0)
@@ -9,7 +10,42 @@ $(document).ready(function () {
             //Si hay invitaciones no recibidas.
             if (ev.data['invitations'].length > 0)
                 TratarInvitaciones(ev.data['invitations']);
+
+
         }
+    }else{
+        navigator.serviceWorker.register('/files/js/Chat-bg.js').then(function(registration) {
+            registration.showNotification('Buzz!', {
+                body: 'Bzzz bzzzz',
+                vibrate: [300, 100, 400] // Vibrate 300ms, pause 100ms, then vibrate 400ms
+            });
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+        });
+
+
+
+        navigator.serviceWorker.getRegistration().then(function(reg) {
+            var options = {
+                body: 'Here is a notification body!',
+                icon: 'images/example.png',
+                vibrate: [100, 50, 100],
+                data: {
+                    dateOfArrival: Date.now(),
+                    primaryKey: 1
+                },
+                actions: [
+                    {action: 'explore', title: 'Explore this new world',
+                        icon: 'images/checkmark.png'},
+                    {action: 'close', title: 'Close notification',
+                        icon: 'images/xmark.png'},
+                ]
+            };
+            //reg.showNotification('Hello world!', options);
+        });
     }
 });
 

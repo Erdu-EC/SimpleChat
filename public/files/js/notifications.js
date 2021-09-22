@@ -64,7 +64,7 @@ function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
 
 function MensajeNuevo(origen, titulo, mensaje, imagen) {
 
-if(document.hasFocus()) {
+    if (document.hasFocus()) {
         VanillaToasts.create({
             title: titulo,
             text: mensaje,
@@ -73,18 +73,17 @@ if(document.hasFocus()) {
             timeout: 2000,
             close: true
         });
-    AudioNotificacion();
+        AudioNotificacion();
+    } else {
+        NotificacionesEscritorio(origen, titulo, mensaje, imagen);
     }
-else{
-    NotificacionesEscritorio(origen, titulo, mensaje, imagen);
-}
 
 }
 
-function AudioNotificacion(){
+function AudioNotificacion() {
 
     var music = new Audio('/files/song/notification.mp3');
-    var err = music.play().catch (function (e){
+    var err = music.play().catch(function (e) {
         console.log("No se ha podido reproducir el sonido de notificación");
     });
 }
