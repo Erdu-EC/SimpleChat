@@ -65,7 +65,9 @@ $(document).on('click', '#btn-enviar-mensaje', function () {
 
 function EnviarMensaje() {
     const textarea = $('#contenido-mensaje');
-    const texto = textarea.text().trim();
+
+    var texto= new Option(textarea.text()).innerHTML;
+     texto = $.trim(texto);
     textarea.text('');
     $("#btn-enviar-mensaje").removeClass("activar");
     if (texto !== '') {

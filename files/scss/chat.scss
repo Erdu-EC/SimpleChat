@@ -2025,11 +2025,13 @@ body .wrapper .emoji-picker .emoji-picker__preview {
   flex-direction: column;
 align-content: center;
   overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
   align-items: stretch;
   padding: 0 40px;
   background: #FFFFFF;
   z-index: 98;
-  border-radius: 20px ;
+  border-radius: 30px ;
   overflow: hidden;
   font-size: 0.85rem;
   border: 1px solid #bebebf;
@@ -2057,14 +2059,17 @@ position: absolute;
 }
 #frame .content .message-input  .wrap  #contenido-mensaje{
 min-height: 44px;
+  height: auto;
   max-height: 100px;
+  max-width: 100%;
   z-index: 100;
   overflow-x: hidden;
   overflow-y: scroll;
-  scroll-width: thin;
-
-  align-items: center;
+  scrollbar-width: none;
   padding: 12px 5px;
+
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 #contenido-mensaje::-webkit-scrollbar {
   width: 4px;
