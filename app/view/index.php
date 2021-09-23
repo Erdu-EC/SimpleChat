@@ -220,11 +220,10 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             </div>
                             <div class="wrap">
                               <!--  <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..." size="2"/>
--->
-                                    <div class="entrada-placeholder">Escribe un mensage aquí...</div>
+-->                                    <div class="entrada-placeholder">Escribe un mensage aquí...</div>
                                     <div id="contenido-mensaje" contenteditable="true"></div>
                             </div>
-                            <button class="btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
+                            <button class="btn" id="btn-enviar-mensaje"><i class="fas fa-paper-plane"></i></button>
                             <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" id="archivo-imagen-enviar">
                             <div id="icon-archivo-imagen">
                                 <i class="fas fa-camera"></i>

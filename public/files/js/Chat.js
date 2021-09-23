@@ -13,7 +13,7 @@ $(document).on("keyup change", "#contenido-mensaje", function () {
         $("#frame .content .message-input .wrap .entrada-placeholder").show();
 
     } else {
-        $("#btn-enviar-mensaje").addClass("activar");
+       $("#btn-enviar-mensaje").addClass("activar");
         $("#cuadro-busqueda-usuario").after(' <div class="borrar"><span class="material-icons"> close</span></div>');
     }
 });

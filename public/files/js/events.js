@@ -8,9 +8,7 @@ $(window).on("load", function () {
 //
 $(document).on("input", "#contenido-mensaje", function () {
     $("#frame .content .message-input .wrap .entrada-placeholder").hide();
-    if($("#contenido-mensaje").text == ""){
 
-    }
 })
 
 //
@@ -307,7 +305,7 @@ $(document).on("click", "#btn-emojis", function () {
         picker.showPicker(button);
 
         picker.on('emoji', emoji => {
-            msj.val(msj.val() + emoji);
+            msj.text(msj.text() + emoji);
         });
     }else{
         button.text("sentiment_satisfied_alt");
