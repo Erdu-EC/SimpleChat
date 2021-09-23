@@ -216,9 +216,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <div class="utiles">
                                 <div class="emojis">
                                     <span class="material-icons" id="btn-emojis">sentiment_satisfied_alt</span>
-
                                 </div>
-
                             </div>
                             <div class="wrap">
                               <!--  <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..." size="2"/>

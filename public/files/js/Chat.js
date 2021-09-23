@@ -1,15 +1,16 @@
-$(document).on("keydown", "#espacio-de-escritura", function (e) {
+$(document).on("keydown", "#contenido-mensaje", function (e) {
     if (e.which === 13) {
         EnviarMensaje();
         return false;
     }
 });
 
-$(document).on("keyup change", "#espacio-de-escritura", function () {
-    message = $("#espacio-de-escritura .wrap input").val();
+$(document).on("keyup change", "#contenido-mensaje", function () {
+    message = $("#contenido-mensaje").text();
     if ($.trim(message) === '') {
         $("#btn-enviar-mensaje").removeClass("activar");
         $("#buscar-contacto .borrar").remove();
+        $("#frame .content .message-input .wrap .entrada-placeholder").show();
 
     } else {
         $("#btn-enviar-mensaje").addClass("activar");
@@ -63,9 +64,9 @@ $(document).on('click', '#espacio-de-escritura .wrap button', function () {
 });
 
 function EnviarMensaje() {
-    const textarea = $('#espacio-de-escritura .wrap input');
-    const texto = textarea.val().trim();
-    textarea.val('');
+    const textarea = $(' #contenido-mensaje');
+    const texto = textarea.text().trim();
+    textarea.text('');
     $("#btn-enviar-mensaje").removeClass("activar");
     if (texto !== '') {
         const mensaje = $(ObtenerElementoMensajeEnviado(texto));

@@ -8,7 +8,11 @@ $(window).on("load", function () {
 //
 $(document).on("input", "#contenido-mensaje", function () {
     $("#frame .content .message-input .wrap .entrada-placeholder").hide();
+    if($("#contenido-mensaje").text == ""){
+
+    }
 })
+
 //
 
 $(document).on("click", (".indicador-mensajes"), function () {
