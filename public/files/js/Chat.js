@@ -59,12 +59,12 @@ $(document).on('click', '#mensaje-invitacion button', function () {
     });
 });
 
-$(document).on('click', '#espacio-de-escritura .wrap button', function () {
+$(document).on('click', '#btn-enviar-mensaje', function () {
     EnviarMensaje()
 });
 
 function EnviarMensaje() {
-    const textarea = $(' #contenido-mensaje');
+    const textarea = $('#contenido-mensaje');
     const texto = textarea.text().trim();
     textarea.text('');
     $("#btn-enviar-mensaje").removeClass("activar");
