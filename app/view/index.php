@@ -20,7 +20,26 @@
     <link rel="stylesheet" href="/files/vanillatoasts/vanillatoasts.css">
 </head>
 <body class=" sb-nav-fixed sb-sidenav-toggled">
-
+<div id="preloader"><section id="espacio-temporal">
+        <div class="temporal">
+            <div class="cuerpo-temporal align-self-center">
+                <img src="/files/img/bg/fondo-tmp.svg" alt="" class="align-self-center">
+                <div class="page-loader"><span class="preloader-interior"></span></div>
+                <span class="bienvenida">Bienvenido(a) a <?= APP_NAME ?></span>
+                <p>Conéctate a SimpleChat desde cualquier dispositivo a través del navegador web de tu
+                    preferencia.</p>
+                <hr>
+                <div class="iconos-dispositivos">
+                    <span class="material-icons">desktop_windows</span>
+                    <span class="material-icons">laptop</span>
+                    <span class="material-icons">tablet_android</span>
+                    <span class="material-icons">tablet</span>
+                    <span class="material-icons">smartphone</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 <!-- Barra superior -->
 <header class="header-sitio"><?php require 'template/Header.php' ?></header>
 <!-- Fin de barra superior -->
@@ -144,7 +163,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                                          class="img-fluid"> <span>Nuevo chat</span></button>
                         </div>
                     </section>
-                    <section id="espacio-temporal">
+                  <!--  <section id="espacio-temporal">
                         <div class="temporal">
                             <div class="cuerpo-temporal align-self-center">
                                 <img src="/files/img/bg/fondo-tmp.svg" alt="" class="align-self-center">
@@ -162,6 +181,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             </div>
                         </div>
                     </section>
+                    -->
 
                     <section class="content" id="espacio-de-chat" style="display: none">
                         <section class="contact-profile no-seleccionable">
@@ -201,11 +221,12 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
                             </div>
                             <div class="wrap">
-                                <label for="contenido-mensaje" style="display: none"></label>
-                                <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..."/>
-
-                                <button class=" btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
+                              <!--  <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..." size="2"/>
+-->
+                                    <div class="entrada-placeholder">Escribe un mensage aquí...</div>
+                                    <div id="contenido-mensaje" contenteditable="true"></div>
                             </div>
+                            <button class=" btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
                             <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" id="archivo-imagen-enviar">
                             <div id="icon-archivo-imagen">
                                 <i class="fas fa-camera"></i>

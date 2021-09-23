@@ -1,4 +1,15 @@
 
+$(window).on("load", function () {
+    $("#frame").append($("#espacio-temporal"));
+    $("#preloader").remove();
+    $("#espacio-temporal .page-loader").remove();
+});
+
+//
+$(document).on("input", "#contenido-mensaje", function () {
+    $("#frame .content .message-input .wrap .entrada-placeholder").hide();
+})
+//
 
 $(document).on("click", (".indicador-mensajes"), function () {
 
@@ -545,3 +556,16 @@ return true;
      my_cropper.reset();
      delete my_cropper;
  }
+
+//eventos mobile
+/*
+$(document).on("mousedown",function(e){
+    var a= e.pageX;
+    console.log("voy hacia la izquierda "+ a);
+});
+$(document).on("mouseup",function(e){
+    var a= e.pageX;
+    console.log("voy hacia la izquierda "+ a);
+});
+
+ */
