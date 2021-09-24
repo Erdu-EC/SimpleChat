@@ -68,7 +68,7 @@ function EnviarMensaje() {
     var texto= $.trim(textarea.text());
     var texto_org= texto;
     texto = SanearTexto(texto);
-    textarea.text('');
+    textarea.html('');
     $("#btn-enviar-mensaje").removeClass("activar");
     if (texto !== '') {
         const mensaje = $(ObtenerElementoMensajeEnviado(texto));
@@ -115,12 +115,14 @@ function CargarEspacioDeChat() {
         return; //evitamos recargar el espacio de chat en caso de que el elemento seleccionado sea el que está en uso
 
     $("#btn-cerrar-contacto").trigger("click");//provocamos el evento click en el boton de cerrar info de contacto (en caso de que se encuentre en pantalla)
-    $('#lista-conversaciones li.active').removeClass('active');
-    li_contenedor.addClass("active");
 
+    var usr_ant=$('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario");
+   $('#lista-conversaciones li.active').removeClass('active');
+
+    li_contenedor.addClass("active");
     const nombre_usuario = $(this).attr('data-usuario');
     const espacio_chat = $('#espacio-de-chat');
-
+    Buffer_Borradores(usr_ant, nombre_usuario,$('#contenido-mensaje').text() );
     espacio_chat.find('> *').hide();
     espacio_chat.append(`
         <div class="cargando d-flex h-100">
@@ -163,7 +165,7 @@ function CargarEspacioDeChat() {
                 json.messages.forEach(msg => {
                     //Estableciendo fecha del mensaje.
                     const fecha_envio = ObtenerFecha(msg[3]);
-
+                    msg[6]= SanearTexto(msg[6]);
                     if (fecha_anterior === '' || fecha_anterior !== fecha_envio) {
                         fecha_anterior = fecha_envio;
                         lista_mensajes.append(ObtenerSeparadorDeFechasEnChat(fecha_envio))
@@ -171,9 +173,9 @@ function CargarEspacioDeChat() {
 
                     //Agregando mensaje.
                     if (msg[1] === json.id) {
-                        lista_mensajes.append(ObtenerElementoMensajeContacto(json.profile_img, SanearTexto(msg[6]), ObtenerHora(msg[4])));
+                        lista_mensajes.append(ObtenerElementoMensajeContacto(json.profile_img, (msg[6]), ObtenerHora(msg[4])));
                     } else {
-                        lista_mensajes.append(ObtenerElementoMensaje(SanearTexto(msg[6]), ObtenerHora(msg[3]),
+                        lista_mensajes.append(ObtenerElementoMensaje(msg[6], ObtenerHora(msg[3]),
                             msg[5] !== null ? 3 : msg[4] !== null ? 2 : 1));
                     }
                 });
@@ -274,4 +276,20 @@ function SanearTexto(str) {
     return String(str).replace(/[&<>"'`=\/]/g, function (s) {
         return caracteres[s];
     });
+}
+
+
+//Buffer de entradas en el contenido de mensaje de cada chat
+const buffer = new Map();
+function Buffer_Borradores(contacto_ant, contacto_act, borrador) {
+    if(! (contacto_ant)){return;}
+    buffer.set(contacto_ant, borrador);
+    if (buffer.has(contacto_act) && (buffer.get(contacto_act)!="")) {
+        $("#contenido-mensaje").text(buffer.get(contacto_act));
+        $("#frame .content .message-input .wrap .entrada-placeholder").hide();
+    } else {
+        $("#frame .content .message-input .wrap .entrada-placeholder").show();
+        $("#contenido-mensaje").text("");
+    }
+
 }
