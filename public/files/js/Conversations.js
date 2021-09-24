@@ -1,6 +1,7 @@
-
-//se cargan las conversaciones con los contactos agregados
+//Funcion que se ejecuta al cargar la pagina web
+//se cargan las conversaciones con los contactos agregados y no agregados
 $(document).ready(cargar_conversaciones);
+
 $(document).on('click', '.elemento-conversacion', CargarEspacioDeChat);
 
 function cargar_conversaciones() {
@@ -35,9 +36,10 @@ function cargar_conversaciones() {
                             estado ='ocupado';
                             break;
                     }
+
                     $('<li>', {
                         class: 'contact',
-                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[3],estado, registro[6], SanearTexto(registro[8]), registro[5], registro[9], registro[10], registro[11]),
+                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[3],estado, registro[6], registro[8], registro[5], registro[9], registro[10], registro[11]),
                     }).appendTo(lista_conversaciones);
                 });
             }
