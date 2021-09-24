@@ -65,9 +65,9 @@ $(document).on('click', '#btn-enviar-mensaje', function () {
 
 function EnviarMensaje() {
     const textarea = $('#contenido-mensaje');
-
-    var texto= new Option(textarea.text()).innerHTML;
-     texto = $.trim(texto);
+    var texto= $.trim(textarea.text());
+    var texto_org= texto;
+    texto = SanearTexto(texto);
     textarea.text('');
     $("#btn-enviar-mensaje").removeClass("activar");
     if (texto !== '') {
@@ -78,7 +78,7 @@ function EnviarMensaje() {
             method: 'post', dataType: 'json', mimeType: 'application/json',
             data: {
                 contact: espacio_chat.attr('data-usuario'),
-                text: texto
+                text: texto_org
             },
             beforeSend: () => AgregarMensajeEnEspacioDeChat(mensaje, new Date(Date.now()).toDateString()),
             error: () => {
@@ -104,6 +104,7 @@ function EnviarMensaje() {
     }
 
     $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+    $("#contenido-mensaje").focus();
 }
 
 //Agregar contacto
@@ -170,9 +171,9 @@ function CargarEspacioDeChat() {
 
                     //Agregando mensaje.
                     if (msg[1] === json.id) {
-                        lista_mensajes.append(ObtenerElementoMensajeContacto(json.profile_img, msg[6], ObtenerHora(msg[4])));
+                        lista_mensajes.append(ObtenerElementoMensajeContacto(json.profile_img, SanearTexto(msg[6]), ObtenerHora(msg[4])));
                     } else {
-                        lista_mensajes.append(ObtenerElementoMensaje(msg[6], ObtenerHora(msg[3]),
+                        lista_mensajes.append(ObtenerElementoMensaje(SanearTexto(msg[6]), ObtenerHora(msg[3]),
                             msg[5] !== null ? 3 : msg[4] !== null ? 2 : 1));
                     }
                 });
@@ -194,6 +195,7 @@ function CargarEspacioDeChat() {
                 //Actualizar panel de información de contacto, si este esta abierto.
 
                     ActualizarInfoContacto();
+                $("#contenido-mensaje").focus();
             } else {
                 console.log('Error al obtener mensajes.');
             }
@@ -258,4 +260,18 @@ $(document).on('click', '.btn-agregar-contacto', function () {
         }
     });
 });
-
+function SanearTexto(str) {
+    var caracteres = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+        '/': '&#x2F;',
+        '`': '&#x60;',
+        '=': '&#x3D;'
+    };
+    return String(str).replace(/[&<>"'`=\/]/g, function (s) {
+        return caracteres[s];
+    });
+}

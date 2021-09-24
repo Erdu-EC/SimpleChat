@@ -23,7 +23,7 @@
 
 </div>
 
-    <a class="navbar-brand " href="/">
+    <a class="navbar-brand " href="/" title="Inicio">
         <img src="/files/icon/logo-wh.png?h=50" alt="" id="logo-home" class="img img-fluid">
     </a>
 </nav>

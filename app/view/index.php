@@ -17,10 +17,11 @@
 
     <title><?= APP_NAME ?>: Inicio</title>
     <link rel="stylesheet" href="/files/scss/chat.scss">
+    <link rel="stylesheet" href="/files/scss/chat-movil.scss">
     <link rel="stylesheet" href="/files/vanillatoasts/vanillatoasts.css">
 </head>
 <body class=" sb-nav-fixed sb-sidenav-toggled">
-<div id="preloader"><section id="espacio-temporal">
+<div id="preloader"><section id="espacio-temporal" class="no-visible-sm">
         <div class="temporal">
             <div class="cuerpo-temporal align-self-center">
                 <img src="/files/img/bg/fondo-tmp.svg" alt="" class="align-self-center">
@@ -137,7 +138,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     <div id="layoutSidenav_content">
 
                 <article id="frame">
-                    <section id="sidepanel" class="no-visible-sm">
+                    <section id="sidepanel" class="">
 
                         <div class="img-perfil no-seleccionable" id="mi-perfil-sidepanel">
                             <img src="<?= $SESSION_USER_PROFILE_IMG ?>?w=100&h=100" alt=""/>
@@ -189,8 +190,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                 <img src="/files/profile/undefined-photo.png?w=40&h=40" alt="" class="img-contacto">
 
                             <div class="chat-conexion">
-                                <span class="nombre-chat">Desconocido</span>
-                                <span class="ult-conex">Desconocido</span>
+                                <div class="nombre-chat">Desconocido</div>
+                                <div class="ult-conex">Desconocido</div>
                             </div>
 
                             <div class="opciones-contacto">
@@ -221,7 +222,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <div class="wrap">
                               <!--  <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..." size="2"/>
 -->                                    <div class="entrada-placeholder">Escribe un mensage aquí...</div>
-                                    <div id="contenido-mensaje" contenteditable="true"></div>
+                                    <div id="contenido-mensaje" contenteditable="true" spellcheck="true"></div>
                             </div>
                             <button class="btn" id="btn-enviar-mensaje"><i class="fas fa-paper-plane"></i></button>
                             <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" id="archivo-imagen-enviar">
@@ -235,7 +236,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                     </section>
 
                     <section class="" id="panelInfoContacto">
-                        <button id="btn-cerrar-contacto"><span class="material-icons">chevron_right</span></button>
+                        <button id="btn-cerrar-contacto"><span class="material-icons">arrow_back</span></button>
                         <div class="contenedor-perfil">
                             <div class="card perfil">
                                 <img src="" alt="" class="img-fluid foto-perfil away">
