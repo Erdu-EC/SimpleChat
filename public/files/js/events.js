@@ -13,11 +13,13 @@ $(document).on("input", "#contenido-mensaje", function () {
 const target = document.getElementById('contenido-mensaje');
 
 target.addEventListener('paste', (e) => {
-
-    var elemento=$("#contenido-mensaje");
-    let paste = (e.clipboardData || window.clipboardData).getData('text');
-        elemento.text(elemento.text()+paste.toString());
     $("#frame .content .message-input .wrap .entrada-placeholder").hide();
+    var elemento=$("#contenido-mensaje");
+    let paste = (e.clipboardData || window.clipboardData).getData("text");//.replace(/(\r\n|\n|\r)/gm, "");
+console.log(paste);
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return false;
+    selection.getRangeAt(0).insertNode(document.createTextNode(paste));
     e.preventDefault();
 });
 

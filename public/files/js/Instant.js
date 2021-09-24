@@ -18,12 +18,12 @@ function TratarMensajes(mensajes) {
         const lista_conversaciones = $('#lista-conversaciones');
         let elemento_contacto = lista_conversaciones.find(`.contact > div[data-usuario=${row.user_name}]`);
         const nombre = row.first_name + " " + row.last_name;
-
+        var texto_saneado =SanearTexto(row.content);
         //Si no existe conversacion, agregarla.
         if (elemento_contacto.length === 0){
             elemento_contacto = $('<li>', {
                 class: 'contact',
-                html: ObtenerElementoConversacion(row.user_name, row.first_name, row.last_name, row.profile, null, null, row.content, row.send_date, row.send_date, row.rcv_date, row.read_date)
+                html: ObtenerElementoConversacion(row.user_name, row.first_name, row.last_name, row.profile, null, null, texto_saneado, row.send_date, row.send_date, row.rcv_date, row.read_date)
             });
             elemento_contacto.prependTo(lista_conversaciones);
         }
