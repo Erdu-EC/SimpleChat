@@ -10,27 +10,18 @@ $(document).on("input", "#contenido-mensaje", function () {
     $("#frame .content .message-input .wrap .entrada-placeholder").hide();
 
 })
+
+const target = document.getElementById('contenido-mensaje');
 target.addEventListener('paste', (e) => {
     $("#frame .content .message-input .wrap .entrada-placeholder").hide();
-    var elemento=$("#contenido-mensaje");
-    let paste = (e.clipboardData || window.clipboardData).getData("text");//.replace(/(\r\n|\n|\r)/gm, "");
-    console.log(paste);
+    let paste = (e.clipboardData || window.clipboardData).getData("text").replace(/(\r\n|\n|\r)/gm, "");
+
     const selection = window.getSelection();
     if (!selection.rangeCount) return false;
     selection.getRangeAt(0).insertNode(document.createTextNode(paste));
     e.preventDefault();
 });
 
-
-/*
-$(document).on("paste","#contenido-mensaje" , function (event) {
-
-    event.preventDefault();
-console.log(event.clipboardData._items);
-
-});
-*/
-//
 
 $(document).on("click", (".indicador-mensajes"), function () {
 
