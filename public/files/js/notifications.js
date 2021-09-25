@@ -1,3 +1,5 @@
+let ALLOW_NOTIFICATIONS = false;
+
 $(document).ready(function () {
     if (!Notification) {
         VanillaToasts.create({
@@ -10,6 +12,7 @@ $(document).ready(function () {
         });
         return;
     }
+
     if (!(Notification.permission === "granted")) {
         $("#icon-indicador-mensaje").after('<div class="indicador-notifiaciones" id="btn-habilitar-notificaciones"><i class="fas fa-bell-slash"></i> </div>');
         $(".msg-indicador-notificaciones").show();
@@ -20,9 +23,9 @@ $(document).ready(function () {
         $(".msg-indicador-notificaciones").remove();
     }
 });
+
 $(document).on("click", "#btn-habilitar-notificaciones", function () {
-    Notification.requestPermission().then(function (
-        permission) {
+    Notification.requestPermission().then(function (permission) {
         if (permission === "denied") {
             VanillaToasts.create({
                 title: "SimpleChat",
@@ -33,6 +36,15 @@ $(document).on("click", "#btn-habilitar-notificaciones", function () {
                 close: true
             });
         } else {
+            //Determinando si se soportan las notificaciones en realidad.
+            try{
+                new Notification("SimpleChat", {body: "Notificaciones habilitadas exitosamente."});
+                ALLOW_NOTIFICATIONS = true;
+            }catch (ex){
+                ALLOW_NOTIFICATIONS = false;
+            }
+
+            //Eliminando boton.
             $("#btn-habilitar-notificaciones").remove();
             $(".msg-indicador-notificaciones").remove();
         }
@@ -41,29 +53,38 @@ $(document).on("click", "#btn-habilitar-notificaciones", function () {
 
 
 function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
-
     if (!document.hasFocus()) {
         var opciones = {
             body: mensaje,
             icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
             tag: origen,
             renotify: true,
-            silent: true,
+            silent: true
+            //vibrate: [200, 100, 200, 100, 200, 100, 200]
         }
+
         if (Notification.permission === "granted") {
-            var n = new Notification(titulo, opciones);
-            n.onclick = function (event) {
-                window.focus();
-            }
-            n.onshow = function (event) {
-                AudioNotificacion();
+            //Mostrando notificaciones.
+            if (window.Notification && ALLOW_NOTIFICATIONS) {
+                var n = new Notification(titulo, opciones);
+                n.onclick = function (event) {
+                    window.focus();
+                }
+                n.onshow = function (event) {
+                    AudioNotificacion();
+                }
+            } else if (navigator.serviceWorker) {
+                navigator.serviceWorker.getRegistration().then(function(registration) {
+                    registration.showNotification(titulo, opciones).then(function (){
+                        AudioNotificacion();
+                    });
+                });
             }
         }
     }
 }
 
 function MensajeNuevo(origen, titulo, mensaje, imagen) {
-
     if (document.hasFocus()) {
         VanillaToasts.create({
             title: titulo,
