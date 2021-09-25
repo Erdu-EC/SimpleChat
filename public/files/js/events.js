@@ -18,6 +18,7 @@ target.addEventListener('paste', (e) => {
 
     const selection = window.getSelection();
     if (!selection.rangeCount) return false;
+    selection.deleteFromDocument();
     selection.getRangeAt(0).insertNode(document.createTextNode(paste));
     e.preventDefault();
 });
@@ -257,16 +258,6 @@ function Contactos() {
 };
 
 
-$("#espacio-de-escritura .wrap input").on("keyup keydown change", function () {
-
-    message = $(".wrap input").val();
-    if ($.trim(message) == '') {
-        $("#btn-enviar-mensaje").removeClass("activar")
-    } else {
-        $("#btn-enviar-mensaje").addClass("activar")
-    }
-});
-
 //Panel de información de contactos.
 $(document).on("click", "#btn-info-contacto", function () {
     $("#frame #espacio-de-chat").addClass("desp-der");
@@ -303,13 +294,19 @@ $("div#contacts ul#lista-conversaciones").on("click", "li.contact", function () 
 
 });*/
 var picker;
-
 $(document).on("click", "#btn-emojis", function () {
+
     var button = $("#btn-emojis");
 
     button.toggleClass("activo");
-    var msj = $("#contenido-mensaje");
+    var msj = document.getElementById('contenido-mensaje');
 
+        if(obj_sele= document.getSelection().focusNode.parentNode){
+          if( obj_sele!== msj){
+                obj = window.getSelection();
+                obj.removeAllRanges();
+               // msj.focus();
+            }}
     if(button.hasClass("activo")){
         button.text("keyboard_alt");
 
@@ -321,7 +318,12 @@ $(document).on("click", "#btn-emojis", function () {
         picker.showPicker(button);
 
         picker.on('emoji', emoji => {
-            msj.text(msj.text() + emoji);
+
+            $("#frame .content .message-input .wrap .entrada-placeholder").hide();
+
+            $('#contenido-mensaje').text($("#contenido-mensaje").text()+emoji);
+            //InsertarenContenedorMensaje(emoji);
+
         });
     }else{
         button.text("sentiment_satisfied_alt");
@@ -330,6 +332,90 @@ $(document).on("click", "#btn-emojis", function () {
     }
 
 });
+
+function InsertarenContenedorMensaje(emoji){
+    var msj = $("#contenido-mensaje");
+    var obj = document.getElementById('contenido-mensaje');
+    obj_sele= document.getSelection();
+    if( obj_sele.rangeCount < 1){
+        $("#contenido-mensaje").append(emoji);
+        return;
+    }
+    let inicio =obj_sele.getRangeAt(0).startOffset;
+   let  fin =obj_sele.getRangeAt(0).endOffset;
+   console.log(obj_sele.rangeCount+ "   >> "+ inicio);
+
+let cadena = "";
+    cadena=  $("#contenido-mensaje").text().toString();
+    $("#contenido-mensaje").text("");
+    var range = document.createRange();
+    console.log(cadena);
+if (inicio === 0){
+    if (cadena.length == 0){
+        $("#contenido-mensaje").text(emoji)
+    }
+    else if(inicio==0) {
+        $("#contenido-mensaje").text(emoji + cadena);
+    }
+    /*range.setStart(obj_sele.focusNode.childNodes[0], (inicio) + 1);
+    var sel = window.getSelection();*/
+}else{
+    console.log("Longitud de cadena: " +cadena.length);
+    if(cadena.length == fin){
+        $("#contenido-mensaje").text(cadena.substr(0,(inicio)+1)+ emoji);
+    }else{
+        $("#contenido-mensaje").text(cadena.substr(0,inicio)+ emoji);
+    }
+
+}/*
+*/
+/*
+   if(!(cadena))
+       cadena = emoji;
+   else
+       cadena = cadena.substr(0, (inicio)+1) + `${emoji}` +cadena.substr((fin)+1);
+
+  //  $("#contenido-mensaje").text(cadena);
+    var el = document.getElementById("contenido-mensaje");
+    var range = document.createRange();
+
+    var sel = window.getSelection();
+if(!el.childNodes[0]){
+    range.setStart(obj_sele.anchorNode, inicio);
+    range.insertNode(document.createTextNode(emoji));
+    console.log("no tiene:"+obj_sele.anchorNode);
+    range.collapse(true);
+    var range = document.createRange();
+    let pos_fin = fin + 1;
+    range.setStart(obj_sele.anchorNode, pos_fin);
+}
+else {
+    range.setStart(obj_sele.focusNode, inicio);
+    range.insertNode(document.createTextNode(emoji));
+    let pos_fin = fin + 1;
+    range.setStart(obj_sele.focusNode, pos_fin);
+   // range.setStart(obj_sele.focusNode, pos_fin)
+    /*range.setStart(obj_sele.focusNode.parentNode, inicio);
+    range.insertNode(document.createTextNode(emoji));
+   // console.log("Si tiene:"+obj_sele.focusNode.parentNode);
+
+}*/
+
+
+
+//console.log( obj_sele.anchorNode+"   > "+pos_fin);
+
+    /*
+       range.setStart(el.childNodes[0], (inicio)+1);
+
+   /*
+       console.log(el.childNodes[0]);
+       range.setStart(el, inicio);
+
+    sel.removeAllRanges();
+  sel.addRange(range);*/
+return;
+}
 //redireccion a otras paginas del sitio
 $("#seccion-politicas").click(function () {
     $(location).attr("href", "/Privacy");

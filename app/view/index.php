@@ -214,7 +214,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </div>
 
                         <div class="message-input" id="espacio-de-escritura">
-                            <div class="utiles">
+                            <div class="utiles no-seleccionable">
                                 <div class="emojis">
                                     <span class="material-icons" id="btn-emojis">sentiment_satisfied_alt</span>
                                 </div>

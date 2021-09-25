@@ -52,19 +52,23 @@ function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
         }
         if (Notification.permission === "granted") {
             var n = new Notification(titulo, opciones);
+            setTimeout(n.close.bind(n), 3500);
             n.onclick = function (event) {
                 window.focus();
             }
             n.onshow = function (event) {
                 AudioNotificacion();
             }
+
         }
+
     }
 }
 
 function MensajeNuevo(origen, titulo, mensaje, imagen) {
 
 if(document.hasFocus()) {
+    mensaje= SanearTexto(mensaje);
         VanillaToasts.create({
             title: titulo,
             text: mensaje,

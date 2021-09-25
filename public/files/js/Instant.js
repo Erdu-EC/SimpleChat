@@ -23,7 +23,7 @@ function TratarMensajes(mensajes) {
         if (elemento_contacto.length === 0){
             elemento_contacto = $('<li>', {
                 class: 'contact',
-                html: ObtenerElementoConversacion(row.user_name, row.first_name, row.last_name, row.profile, null, null, row.content, row.send_date, row.send_date, row.rcv_date, row.read_date)
+                html: ObtenerElementoConversacion(row.user_name, row.first_name, row.last_name, row.profile, null, null, texto_saneado, row.send_date, row.send_date, row.rcv_date, row.read_date)
             });
             elemento_contacto.prependTo(lista_conversaciones);
         }
