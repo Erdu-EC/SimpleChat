@@ -1,8 +1,16 @@
+//desactivar boton atras
+
+history.pushState(null, document.title, location.href);
+window.addEventListener('popstate', function (event)
+{
+    history.pushState(null, document.title, location.href);
+});
 
 $(window).on("load", function () {
     $("#frame").append($("#espacio-temporal"));
     $("#preloader").remove();
     $("#espacio-temporal .page-loader").remove();
+    window.history.forward();
 });
 
 //
