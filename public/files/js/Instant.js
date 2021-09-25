@@ -18,7 +18,7 @@ function TratarMensajes(mensajes) {
         const lista_conversaciones = $('#lista-conversaciones');
         let elemento_contacto = lista_conversaciones.find(`.contact > div[data-usuario=${row.user_name}]`);
         const nombre = row.first_name + " " + row.last_name;
-
+        var texto_saneado =SanearTexto(row.content);
         //Si no existe conversacion, agregarla.
         if (elemento_contacto.length === 0){
             elemento_contacto = $('<li>', {
