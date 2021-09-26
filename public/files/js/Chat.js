@@ -6,8 +6,8 @@ $(document).on("keydown", "#contenido-mensaje", function (e) {
 });
 
 $(document).on("keyup change", "#contenido-mensaje", function () {
-    message = $("#contenido-mensaje").text();
-    if ($.trim(message) === '') {
+    var message = $("#contenido-mensaje").text();
+    if (message === '') {
         $("#btn-enviar-mensaje").removeClass("activar");
         $("#buscar-contacto .borrar").remove();
         $("#frame .content .message-input .wrap .entrada-placeholder").show();

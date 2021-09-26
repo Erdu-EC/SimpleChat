@@ -49,8 +49,17 @@ $(document).on("click", "#btn-opciones-perfil", function (e) {
     $("#list-opciones").remove();
     var posX = (e.pageX - $(this).parent().offset().left) + 20;
     var posY = (e.pageY - $(this).parent().offset().top) + 80;
-    var caja = '<div class="contenedor-opciones" id="list-opciones"><ul> <li id="opc-ver-foto">Ver foto</li> <li id="opc-subir-foto">Subir foto</li></ul> </div>';
 
+    if(window.innerWidth <= 576) {
+        if((window.innerWidth - e.pageX) < 180 ){
+            posX= (e.pageX - 160);
+            }
+        else{
+            posX = (e.pageX );
+        }
+    }
+
+    var caja = '<div class="contenedor-opciones" id="list-opciones"><ul> <li id="opc-ver-foto">Ver foto</li> <li id="opc-subir-foto">Subir foto</li></ul> </div>';
     $(this).after(caja);
     $("#list-opciones").css("left", posX).css("top", posY);
 
@@ -366,10 +375,10 @@ $(document).on('input', "#nueva-foto-perfil", function () {
 function EnviarImagen() {
 
     const archivo = document.getElementById('nueva-foto-perfil').files;
-    my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,}).toBlob(function (blob) {
+    my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,imageSmoothingQuality:"medium"}).toBlob(function (blob) {
         const formData = new FormData();
         formData.append('img', blob, archivo[0].name);
-
+console.log(blob);
         $.ajax({
             url: '/action/users/profile/upload_img',
             type: 'post',

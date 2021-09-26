@@ -310,12 +310,12 @@ $(document).on("click", "#btn-emojis", function () {
     button.toggleClass("activo");
     var msj = document.getElementById('contenido-mensaje');
 
-        if(obj_sele= document.getSelection().focusNode.parentNode){
+        /*if(obj_sele= document.getSelection().focusNode.parentNode){
           if( obj_sele!== msj){
                 obj = window.getSelection();
                 obj.removeAllRanges();
                // msj.focus();
-            }}
+            }}*/
     if(button.hasClass("activo")){
         button.text("keyboard_alt");
 

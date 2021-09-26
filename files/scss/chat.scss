@@ -1930,6 +1930,7 @@ position: absolute;
   align-items: center;
   justify-content: center;
 width: 40px;
+  height: 44px;
   color: #7a7a7a;
   bottom: 8px;
 }
@@ -1937,14 +1938,15 @@ width: 40px;
 .message-input .utiles .emojis {
   cursor: pointer;
   user-select: none;
+  display: flex;
+}
+.message-input .utiles .emojis .material-icons{
+   font-size: 25px;
 }
 .message-input .utiles .emojis:hover {
   color: #0c63e4;
 }
-.message-input .utiles .emojis span{
 
-  font-size: 25px;
-}
 /* ***
 *** Estilos del cuadro de emojis
 *** */
@@ -1959,8 +1961,6 @@ width: 40px;
   background: #ffffff;
   float: top;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-
   border-radius: 10px;
 }
 
