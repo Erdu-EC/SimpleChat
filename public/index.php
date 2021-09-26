@@ -1,4 +1,5 @@
 <?php
+
 	namespace HS {
 		#Depuración.
 		const APP_DEBUG = true;

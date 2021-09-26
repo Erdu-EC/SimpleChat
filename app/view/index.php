@@ -19,10 +19,10 @@
     <link rel="stylesheet" href="/files/scss/chat.scss">
     <link rel="stylesheet" href="/files/vanillatoasts/vanillatoasts.css">
 </head>
-<body class="d-flex flex-column sb-nav-fixed sb-sidenav-toggled">
-
+<body class=" sb-nav-fixed sb-sidenav-toggled">
+<audio src="/files/song/notification.mp3" id="audio-notificacion"></audio>
 <!-- Barra superior -->
-<header><?php require 'template/Header.php' ?></header>
+<header class="header-sitio"><?php require 'template/Header.php' ?></header>
 <!-- Fin de barra superior -->
 
 <!-- -------------------------------------------------------------
@@ -58,43 +58,24 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 <!--Fin del contenedor de los contactos para nuevo chat -->
 
 <div id="layoutSidenav">
-    <div id="layoutSidenav_nav">
-        <nav class="sb-sidenav ">
-            <div id="profile">
-                <div class="wrap no-seleccionable">
-                    <img id="profile-img" src="<?= $SESSION_USER_PROFILE_IMG ?>?w=100&h=100" class="online" alt=""/>
+    <div id="layoutSidenav_nav" class="no-seleccionable">
+        <div id="profile">
+            <div class="wrap">
+                <img id="profile-img" src="<?= $SESSION_USER_PROFILE_IMG ?>?w=100&h=100" class="online" alt=""/>
+                <div class="usuario-perfil" id="btn-sesion">
+                    <span class="material-icons izquierda">account_circle</span>
+                    <?= $SESSION_USER_SHORTNAME ?>
 
-                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <div class="accordion-item">
-                            <button class="accordion-header collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                    aria-controls="flush-collapseOne" id="btn-sesion">
-                                <span class="material-icons izquierda">account_circle</span>
-								<?= $SESSION_USER_SHORTNAME ?>
-                                <span class="material-icons  derecha">arrow_drop_down</span>
-                            </button>
-
-                            <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                 aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <div class="item-accordion-body">
-                                        <button class="nav-link" id="btn-configuraciones">
-                                            <span class="material-icons">settings</span>
-                                            Configuraciones
-                                        </button>
-                                    </div>
-                                    <div class="item-accordion-body">
-                                        <a class="nav-link" href="/Logout">
-                                            <span class="material-icons icono-centrado">logout</span>
-                                            Cerrar sesión
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="usuario-perfil-opciones derecha">
+                        <span class="material-icons  ">arrow_drop_down</span>
                     </div>
                 </div>
-                <ul class="nav flex-column nav-pills no-seleccionable" id="LateralMenu">
+            </div>
+        </div>
+
+        <nav class="sb-sidenav " id="LateralMenu">
+
+        <ul class="nav flex-column nav-pills no-seleccionable" id="">
                     <li class="nav-item active">
                         <div class="nav-link" id="seccion-conversaciones">
                             <i class="far fa-comments icon-nav-link"></i>
@@ -108,15 +89,22 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </div>
                     </li>
                     <li class="nav-item">
+                        <div class="nav-link" id="seccion-politicas">
+                            <i class="fas fa-file-contract icon-nav-link"></i>
+                            Términos y condiciones de uso
+                        </div>
+                    </li>
+                    <li class="nav-item">
                         <div class="nav-link" id="seccion-acerca">
                             <i class="fas fa-users icon-nav-link"></i>
                             Acerca de nosotros
                         </div>
                     </li>
+
                     <li class="nav-item">
-                        <div class="nav-link" id="seccion-politicas">
-                            <i class="fas fa-file-contract icon-nav-link"></i>
-                            Términos y condiciones de uso
+                        <div class="nav-link" id="seccion-contactanos">
+                            <span class="material-icons icon-nav-link">support_agent</span>
+                            Contáctanos
                         </div>
                     </li>
                 </ul>
@@ -128,10 +116,9 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     </div>
 
     <div id="layoutSidenav_content">
-        <div class="container-fluid">
-            <div class="row">
+
                 <article id="frame">
-                    <div id="sidepanel">
+                    <section id="sidepanel" class="no-visible-sm">
 
                         <div class="img-perfil no-seleccionable" id="mi-perfil-sidepanel">
                             <img src="<?= $SESSION_USER_PROFILE_IMG ?>?w=100&h=100" alt=""/>
@@ -142,8 +129,6 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <div class="usuario-perfil-opciones">
                                 <span class="material-icons" title="">arrow_drop_down</span>
                             </div>
-
-
                         </div>
                         <div id="search">
                             <label for="inputBuscarConversacion" class="material-icons">search</i></label>
@@ -158,9 +143,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <button id="nuevo-chat"><img src="/files/icon/nuevo-chat.svg" alt="" id="icon-nuevo-chat"
                                                          class="img-fluid"> <span>Nuevo chat</span></button>
                         </div>
-                    </div>
-
-                    <section class="content" id="espacio-temporal">
+                    </section>
+                    <section id="espacio-temporal">
                         <div class="temporal">
                             <div class="cuerpo-temporal align-self-center">
                                 <img src="/files/img/bg/fondo-tmp.svg" alt="" class="align-self-center">
@@ -181,7 +165,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
                     <section class="content" id="espacio-de-chat" style="display: none">
                         <section class="contact-profile no-seleccionable">
-                                <img src="/files/profile/undefined-photo.png?w=40&h=40" alt="">
+                            <div class="chat-atras" id="btn-chat-atras"><span class="material-icons">arrow_back</span></div>
+                                <img src="/files/profile/undefined-photo.png?w=40&h=40" alt="" class="img-contacto">
 
                             <div class="chat-conexion">
                                 <span class="nombre-chat">Desconocido</span>
@@ -189,14 +174,11 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             </div>
 
                             <div class="opciones-contacto">
-                                <div class="btn-agregar-contacto" title="Agregar a contactos"><span class="material-icons">person_add</span>
+                                <div class="btn-agregar-contacto" title="Agregar a contactos">
+                                    <span class="material-icons">person_add</span>
                                     Agregar contacto
                                 </div>
-                                <!--<hr class="separador-vertical">
-                                <div class="btn-bloquear-contacto" title="Bloquear">
-                                    <span class="material-icons">block</span>
-                                    Bloquear
-                                </div>-->
+
                             </div>
 
                             <div class="icon-info-contacto" title="Información del contacto" id="btn-info-contacto">
@@ -231,11 +213,11 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </div>
                     </section>
 
-                    <section class="content" id="espacio-de-configuracion" style="display: none">
+                    <section class="no-visible-sm" id="espacio-de-configuracion" style="display: none">
                     </section>
 
                     <section class="" id="panelInfoContacto">
-                        <button id="btn-cerrar-contacto"><span class="material-icons">close</span></button>
+                        <button id="btn-cerrar-contacto"><span class="material-icons">chevron_right</span></button>
                         <div class="contenedor-perfil">
                             <div class="card perfil">
                                 <img src="" alt="" class="img-fluid foto-perfil away">
@@ -287,8 +269,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
                     </section>
                 </article>
-            </div>
-        </div>
+
+
     </div>
 </div>
 

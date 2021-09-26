@@ -24,10 +24,12 @@ if (Session::IsLogin())
     </head>
     <body>
     <header class="">
+
         <nav class="menu-navegacion">
             <button class="navbar-toggler" id="btn-navbar-toggler">
                 <span class="material-icons">menu</span>
             </button>
+
             <ul class="nav-lista inactivo">
                 <li class="nav-list-item">
 
@@ -47,13 +49,18 @@ if (Session::IsLogin())
                 </li>
                 <li class="nav-list-item">
                     <a href="/Contact" class="nav-link">
-                        <span class="material-icons"><span class="material-icons-outlined">support_agent</span></span>Contacto
+                        <span class="material-icons">support_agent</span>Contacto
                     </a>
                 </li>
 
 
             </ul>
-
+            <div class="logo-simplechat-bk">
+                <img src="/files/icon/logo-bk.png?h=40" alt="">
+            </div>
+            <div class="logo-simplechat-wh">
+                <img src="/files/icon/logo-wh.png?h=36" alt="" >
+            </div>
         </nav>
     </header>
     <div class="container-fluid">
@@ -72,11 +79,11 @@ if (Session::IsLogin())
                     <form id="user_form">
                         <div class="input-group">
                             <label for="usuario"><span class="material-icons">person</span></label>
-                            <input type="text" id="user_name" minlength="4" maxlength="30" required placeholder="Introduzca su nombre de usuario">
+                            <input type="text" id="user_name"  maxlength="30" required placeholder="Introduzca su nombre de usuario">
                         </div>
                         <div class="input-group separar">
                             <label for="clave-usuario"><span class="material-icons">lock</span></label>
-                            <input type="password" id="user_pass"  placeholder="Introduzca su contraseña" minlength="8" maxlength="60" required>
+                            <input type="password" id="user_pass"  placeholder="Introduzca su contraseña" maxlength="60" required>
                         </div>
                         <div class="recuperar-clave">
                             <a href="">¿Has olvidado tu contraseña?</a>
@@ -84,7 +91,7 @@ if (Session::IsLogin())
                         <div class="crear-cuenta">
                             <a href="/Register">Regístrate en SimpleChat</a>
                         </div>
-                        <div class="input-group">
+                        <div class="input-group" id="contenedor-acceder">
                             <input type="submit" value="Acceder" id="acceder">
                         </div>
 

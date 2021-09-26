@@ -48,26 +48,42 @@ Definiendo los estilos del navbar
 #####################################################*/
 body header{
   width: 100%;
-  margin: 0;
+  margin: 0px;
   display: flex;
   position: absolute;
-  z-index: 5;
+  z-index: 100;
 }
+
 nav.menu-navegacion {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
   width: 100%;
   height: 60px;
   position: relative;
-  z-index: 10;
+  z-index: 101;
   display: flex;
   background: #f2f2f2;
+
+
+}
+nav.menu-navegacion .logo-simplechat-bk,nav.menu-navegacion .logo-simplechat-wh  {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  float: right;
+  margin-left: auto;
+  margin-right: 30px;
+}
+nav.menu-navegacion .logo-simplechat-wh {
+  display: none;
+}
+nav.menu-navegacion .logo-simplechat-bk img, nav.menu-navegacion .logo-simplechat-wh img{
+  height: 40px;
 }
 
 nav.menu-navegacion ul.nav-lista {
-  margin: 0px;
-  margin-left: auto;
-  margin-right: 30px;
+  float: left;
+  margin: 0;
   padding: 0;
   list-style: none;
   text-align: right;
@@ -77,9 +93,10 @@ nav.menu-navegacion ul.nav-lista {
 .nav-lista li.nav-list-item {
   display: inline-block;
   line-height: 40px;
+  margin: 0;
   margin-left: 30px;
-
 }
+
 .nav-lista li.nav-list-item a span.material-icons{
   margin-top: auto;
   margin-bottom: auto;
@@ -94,11 +111,20 @@ a.nav-link {
   display: flex;
   text-decoration: none;
   font-size: 15px;
-  font-family: 'Montserrat',sans-serif;
+  font-family: sans-serif;
   font-weight: 500;
   cursor: pointer;
   position: relative;
   color: #000000;
+}
+a.usuario {
+  font-weight: 600;
+}
+a.nav-link img{
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  margin-right: 5px;
 }
 .nav-list-item a.nav-link:hover {
 
@@ -147,7 +173,7 @@ a.nav-link {
   animation: FadeIn 1s cubic-bezier(0.65, 0.05, 0.36, 1);
   animation-fill-mode: both;
 }
-.nav-list ali:nth-child(1) {
+.nav-list li:nth-child(1) {
   animation-delay: .3s;
 }
 
@@ -207,6 +233,10 @@ a.nav-link {
     white-space: nowrap;
     max-width: 140px;
   }
+  nav.menu-navegacion .logo-simplechat-bk{
+    display: none;
+  }
+
 }
 nav button.navbar-toggler{
   border: none;
@@ -219,28 +249,35 @@ nav button.navbar-toggler:focus{
 
 @media screen and (max-width: 735px){
   body header{
-    margin-top: 0;
-    height: 50px;
+    margin-top: 0px;
+    height: 45px;
   }
-  body .container-fluid{
-    padding: 50px 0 0 0;
-    width: 100vw;
-    height: 100vh;
-  }
-  nav.menu-navegacion {
+  nav.menu-navegacion{
     flex-direction: column;
-    background: none;
-    height: 50px;
+    background: #456380;
+    height: 45px;
   }
+  nav.menu-navegacion .logo-simplechat-bk {
+    display: none;
+  }
+  nav.menu-navegacion .logo-simplechat-wh {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    margin-right: 20px;
+    display: flex;
+    height: 36px;
+  }
+
   nav.menu-navegacion ul.nav-lista{
     flex-direction: column;
     width: 100%;
-    padding: 0;
-
+    padding: 0px;
+    height: 45px;
   }
   .nav-list-item a.activo{
     background: #7390af;
-    border-radius: 0;
+    border-radius: 0px;
   }
   nav.menu-navegacion ul.inactivo{
     display: none;
@@ -248,31 +285,38 @@ nav button.navbar-toggler:focus{
 
   .nav-lista li.nav-list-item{
     text-align: left;
-    margin: 0;
+    margin: 0px;
     background: #456380;
   }
   .nav-lista li.nav-list-item a{
     padding: 4px 16px;
     color: #ffffff;
+    margin: 0;
   }
   .nav-lista li.nav-list-item a:hover{
-    border-radius: 0;
+    border-radius: 0px;
     background: #7390af;
+    border: none;
   }
   nav button.navbar-toggler {
     display: inline-flex;
-    height: auto;
-    width: auto;
-    align-items: start;
+
+    align-items: center;
+    justify-content: center;
     background: #456380;
     border-radius: 0px;
     padding: 4px 16px;
     box-shadow: none;
-
+    height: 45px;
+    width: 60px;
   }
 
   nav button.navbar-toggler span{
-    font-size: 36px;
+    font-size: 30px;
+    color:#D3D3D3FF;
+    /*color: #ffffff;*/
+  }
+  nav button.navbar-toggler:hover span{
     color: #ffffff;
   }
   nav button.navbar-toggler:active{
@@ -280,12 +324,14 @@ nav button.navbar-toggler:focus{
     box-shadow: none;
 
   }
+  nav button.navbar-toggler:active span{
+    color: #ffffff;
+  }
   nav.menu-navegacion ul.activo{
     display: flex;
-
+    margin-top: 7px;
   }
 }
-
 
 
 

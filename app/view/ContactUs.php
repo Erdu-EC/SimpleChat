@@ -4,6 +4,14 @@ namespace HS\app\view;
 use HS\libs\core\http\HttpResponse;
 use HS\libs\core\Session;
 use const HS\config\APP_NAME;
+
+if (Session::IsLogin()){
+    $SESSION = new Session();
+    $SESSION_USER_SHORTNAME = $SESSION->user_shortname;
+    $SESSION_USER_PROFILE_IMG = $SESSION->user_profile_img;
+    unset($SESSION);
+}
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -15,18 +23,18 @@ use const HS\config\APP_NAME;
 </head>
 <body>
 <header class="">
+
     <nav class="menu-navegacion">
         <button class="navbar-toggler" id="btn-navbar-toggler">
             <span class="material-icons">menu</span>
         </button>
-        <ul class="nav-lista inactivo">
-            <li class="nav-list-item">
 
-                <a href="/Login" class="nav-link "> <span class="material-icons">login</span>Acceder</a>
-            </li>
-            <li class="nav-list-item">
-                <a href="/Register" class="nav-link"><span class="material-icons">add</span>Registrarse</a>
-            </li>
+        <ul class="nav-lista inactivo">
+            <?php if (Session::IsLogin()){
+    echo ' <li class="nav-list-item"><a href="/" class="nav-link usuario"><img src="'.$SESSION_USER_PROFILE_IMG.'?w=40&h=40" alt="">'. $SESSION_USER_SHORTNAME.'</a></li>';
+            }else{
+                echo ' <li class="nav-list-item"><a href="/Login" class="nav-link "> <span class="material-icons">login</span>Acceder</a></li><li class="nav-list-item"> <a href="/Register" class="nav-link"><span class="material-icons">add</span>Registrarse</a></li>';
+            }?>
             <li class="nav-list-item">
                 <a href="/Privacy" class="nav-link">
                     <span class="material-icons">gavel</span>Términos y condiciones</a>
@@ -38,13 +46,18 @@ use const HS\config\APP_NAME;
             </li>
             <li class="nav-list-item">
                 <a href="/Contact" class="nav-link activo">
-                    <span class="material-icons"><span class="material-icons-outlined">support_agent</span></span>Contacto
+                    <span class="material-icons">support_agent</span>Contacto
                 </a>
             </li>
 
 
         </ul>
-
+        <div class="logo-simplechat-bk">
+            <img src="/files/icon/logo-bk.png?h=40" alt="">
+        </div>
+        <div class="logo-simplechat-wh">
+            <img src="/files/icon/logo-wh.png?h=36" alt="" >
+        </div>
     </nav>
 </header>
 <div class="container-fluid">
@@ -90,7 +103,7 @@ use const HS\config\APP_NAME;
                                 <div class="item-form">
                                     <span class="etiqueta-input"><i class="far fa-user icon-etiqueta"></i>Nombres *</span>
                                     <div class="input-group">
-                                        <input  type="text" class="form-control" required placeholder="Introduzca su nombre" id="nombre-remitente">
+                                        <input  type="text" class="form-control" required placeholder="Introduzca su nombre" id="nombre-remitente" value="<?= (isset($SESSION_USER_SHORTNAME)) ?$SESSION_USER_SHORTNAME : ""?>">
                                     </div>
                                 </div>
                             </div>

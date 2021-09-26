@@ -34,6 +34,7 @@ $(document).on('submit', "#user_form", null, function () {
     return false;
 });
 
+
 $(document).on('input', '#user_pass', null, function () {
     if (this.validity.tooLong || this.validity.tooShort)
         this.setCustomValidity("La contraseña debe tener un mínimo de 8 caracteres y un maximo de 60.");
@@ -41,8 +42,14 @@ $(document).on('input', '#user_pass', null, function () {
         this.setCustomValidity('');
 });
 
-
 //FRONTEND
+
 $("#btn-navbar-toggler").click(function () {
     $("nav.menu-navegacion ul.nav-lista").toggleClass("activo").toggleClass("inactivo");
+    if( $("nav.menu-navegacion ul.nav-lista").hasClass('activo')){
+        $("#btn-navbar-toggler").html('<span class="material-icons">close</span>');
+    }
+    else{
+        $("#btn-navbar-toggler").html('<span class="material-icons">menu</span>');
+    }
 });

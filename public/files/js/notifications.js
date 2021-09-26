@@ -1,3 +1,5 @@
+let ALLOW_NOTIFICATIONS = false;
+
 $(document).ready(function () {
     if (!Notification) {
         VanillaToasts.create({
@@ -8,50 +10,101 @@ $(document).ready(function () {
             timeout: 10000,
             close: true
         });
-    } else if (Notification.permission !== "granted") {
-        Notification.requestPermission().then(function (permission) {
-            if (permission === "denied") {
-                VanillaToasts.create({
-                    title: "SimpleChat",
-                    text: "No se han permitido las notificaciones de escritorio para SimpleChat",
-                    type: "error",
-                    icon: "/files/icon/icono.png",
-                    timeout: 10000,
-                    close: true
-                });
-            }
-        });
+        return;
+    }
+
+    if (!(Notification.permission === "granted")) {
+        $("#icon-indicador-mensaje").after('<div class="indicador-notifiaciones" id="btn-habilitar-notificaciones"><i class="fas fa-bell-slash"></i> </div>');
+        $(".msg-indicador-notificaciones").show();
+        setTimeout(function () {
+            $(".msg-indicador-notificaciones").hide();
+        }, 4000);
+    } else {
+        $(".msg-indicador-notificaciones").remove();
     }
 });
 
+$(document).on("click", "#btn-habilitar-notificaciones", function () {
+    Notification.requestPermission().then(function (permission) {
+        if (permission === "denied") {
+            VanillaToasts.create({
+                title: "SimpleChat",
+                text: "No se han permitido las notificaciones de escritorio para SimpleChat",
+                type: "error",
+                icon: "/files/icon/icono.png",
+                timeout: 10000,
+                close: true
+            });
+        } else {
+            //Determinando si se soportan las notificaciones en realidad.
+            try{
+                new Notification("SimpleChat", {body: "Notificaciones habilitadas exitosamente."});
+                ALLOW_NOTIFICATIONS = true;
+            }catch (ex){
+                ALLOW_NOTIFICATIONS = false;
+            }
+
+            //Eliminando boton.
+            $("#btn-habilitar-notificaciones").remove();
+            $(".msg-indicador-notificaciones").remove();
+        }
+    });
+});
+
+
 function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
-    var opciones = {
-        body: mensaje,
-        icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
-        tag: origen,
-        renotify: true
+    if (!document.hasFocus()) {
+        var opciones = {
+            body: mensaje,
+            icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
+            tag: origen,
+            renotify: true,
+            silent: true
+            //vibrate: [200, 100, 200, 100, 200, 100, 200]
+        }
+
+        if (Notification.permission === "granted") {
+            //Mostrando notificaciones.
+            if (window.Notification && ALLOW_NOTIFICATIONS) {
+                var n = new Notification(titulo, opciones);
+                n.onclick = function (event) {
+                    window.focus();
+                }
+                n.onshow = function (event) {
+                    AudioNotificacion();
+                }
+            } else if (navigator.serviceWorker) {
+                navigator.serviceWorker.getRegistration().then(function(registration) {
+                    registration.showNotification(titulo, opciones).then(function (){
+                        AudioNotificacion();
+                    });
+                });
+            }
+        }
     }
-    if (Notification.permission === "granted") {
-        new Notification(titulo, opciones);
-    } else {
+}
+
+function MensajeNuevo(origen, titulo, mensaje, imagen) {
+    if (document.hasFocus()) {
         VanillaToasts.create({
             title: titulo,
             text: mensaje,
             type: "info",
             icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
-            timeout: 10000,
+            timeout: 2000,
             close: true
         });
+        AudioNotificacion();
+    } else {
+        NotificacionesEscritorio(origen, titulo, mensaje, imagen);
     }
+
 }
 
-function MensajeNuevo(remitente, fotografia, previa) {
-    VanillaToasts.create({
-        title: remitente,
-        text: previa,
-        type: "success",
-        icon: fotografia,
-        timeout: 1500,
-        close: true
+function AudioNotificacion() {
+
+    var music = new Audio('/files/song/notification.mp3');
+    var err = music.play().catch(function (e) {
+        console.log("No se ha podido reproducir el sonido de notificación");
     });
 }
