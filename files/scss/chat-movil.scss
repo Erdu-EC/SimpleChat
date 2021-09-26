@@ -218,3 +218,18 @@ top: 10px;
 /*------------------------------------------------------
 Fin de estilos version móvil
 ------------------------------------------------------*/
+
+/*------------------------------------------------------
+Alertas de mensajes nuevos
+------------------------------------------------------*/
+@media screen and (max-width: 576px) {
+  #vanillatoasts-container {
+    max-height: 40vh !important;
+    max-width: 80vw !important;
+  }
+  .vanillatoasts-toast {
+
+    margin: 0 0 5px 0 !important;
+  }
+
+}

@@ -29,7 +29,9 @@ function TratarMensajes(mensajes) {
         }
 
         //Si el mensaje es para el contacto de la actual conversación abierta en el chat.
-        if (row.id.toString() === $('#espacio-de-chat .messages').attr('data-usuario'))
+        //
+       // if (row.id.toString() === $('#espacio-de-chat .messages').attr('data-usuario'))
+        if (row.id.toString() === $('lista-conversaciones li.active .elemento-conversacion').attr('data-usuario'))
             MostrarMensajeEnEspacioDeChat(nombre, row)
         else {
             MensajeNuevo(row.id, nombre, row.content, row.profile);

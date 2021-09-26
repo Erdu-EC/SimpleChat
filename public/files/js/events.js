@@ -1,4 +1,14 @@
 //desactivar boton atras
+$("#icon-indicador-mensaje").on("click", function (){
+  /**/  VanillaToasts.create({
+        title: "Hola",
+        text: "este es un ejemplo de mensaje largo asi que no te preocupes por meter texto demsaiado largo en tus alertas, este es un ejemplo de mensaje largo asi que no te preocupes por meter texto demsaiado largo en tus alertas, este es un ejemplo de mensaje largo asi que no te preocupes por meter texto demsaiado largo en tus alertas, este es un ejemplo de mensaje largo asi que no te preocupes por meter texto demsaiado largo en tus alertas, este es un ejemplo de mensaje largo asi que no te preocupes por meter texto demsaiado largo en tus alertas",
+        type: "success",
+        icon: "/files/icon/icono.png",
+        timeout: 30000,
+        close: true
+    });
+});
 
 history.pushState(null, document.title, location.href);
 window.addEventListener('popstate', function (event)
@@ -54,10 +64,15 @@ $(window).resize(function () {
 //Codigo para vista movil
 
 function VistaMovil(){
-   /* if(window.innerWidth < 576 ){
-        $('#LateralMenu li.active').removeClass('active');
-
-    }
+   if(window.innerWidth > 576 ){
+       /* $('#LateralMenu li.active').removeClass('active');
+        if($("#espacio-de-chat .messages").length){
+            var usuario = $('#espacio-de-chat .messages').attr('data-nick')
+            $('#lista-conversaciones .contact .elemento-conversacion[data-usurio="'+usuario+'"]').addClass("active");
+            console.log(usuario);
+        }
+*/
+    } /*
     else{
         $('#seccion-conversaciones').parent().addClass('active')
     }*/
@@ -85,6 +100,7 @@ $(document).on("click","#lista-conversaciones .contact", function (){
 $(document).on("click","#btn-chat-atras", function () {
     $("#sidepanel").removeClass('no-visible-sm');
     $("#espacio-de-chat").addClass('no-visible-sm');
+    $("#lista-conversaciones li.active").removeClass("active");
 })
 $(".messages").on("swiperight",function(){
     alert("You swiped right!");

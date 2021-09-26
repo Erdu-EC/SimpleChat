@@ -41,7 +41,6 @@ $(document).on("click", "#btn-habilitar-notificaciones", function () {
 
 
 function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
-
     if (!document.hasFocus()) {
         var opciones = {
             body: mensaje,
@@ -72,7 +71,7 @@ if(document.hasFocus()) {
         VanillaToasts.create({
             title: titulo,
             text: mensaje,
-            type: "info",
+            type: "success",
             icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
             timeout: 2000,
             close: true
