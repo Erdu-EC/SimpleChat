@@ -136,8 +136,8 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
                 } else if (json.length === 0) {
                     msg_error.html('<span >No se han encontrado coincidencias.</span>');
                 } else {
-                    msg_error.empty();
-                    lista_resultados.html('');
+                    msg_error.html('<span >Resultados</span>');
+                    lista_resultados.html();
 
                     json.forEach((registro) => {
                         var estado=Clase_Segun_Estado(registro[4]);

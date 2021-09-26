@@ -4,6 +4,7 @@ history.pushState(null, document.title, location.href);
 window.addEventListener('popstate', function (event)
 {
     history.pushState(null, document.title, location.href);
+    console.log("Hacia atras");
 });
 
 $(window).on("load", function () {
@@ -16,7 +17,6 @@ $(window).on("load", function () {
 //
 $(document).on("input", "#contenido-mensaje", function () {
     $("#frame .content .message-input .wrap .entrada-placeholder").hide();
-
 })
 
 const target = document.getElementById('contenido-mensaje');
@@ -241,7 +241,8 @@ function CerrarContactos() {
     }
     $("#cuadro-busqueda-usuario").val("");
     $('#lista-contactos').show();
-    $("#sin-resultados").empty();
+    $('#lista-contactos-buscar').empty();
+    $("#sin-resultados").html('<span>Mis Contactos</span>');
     $("#buscar-contacto .borrar").remove();
     $("#layoutSidenav").removeClass("no-visible-sm");
 };
