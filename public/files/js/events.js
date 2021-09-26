@@ -242,7 +242,7 @@ function CerrarContactos() {
     $("#cuadro-busqueda-usuario").val("");
     $('#lista-contactos').show();
     $('#lista-contactos-buscar').empty();
-    $("#sin-resultados").html('<span>Mis Contactos</span>');
+    $("#sin-resultados").html('<span>Mis contactos</span>');
     $("#buscar-contacto .borrar").remove();
     $("#layoutSidenav").removeClass("no-visible-sm");
 };

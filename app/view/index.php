@@ -63,7 +63,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
         </div>
         <div id="listaTodosContactos">
             <div id="sin-resultados">
-                <span>Mis Contactos</span>
+                <span>Mis contactos</span>
             </div>
             <ul id="lista-contactos-buscar" class="no-seleccionable">
 
