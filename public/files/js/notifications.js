@@ -37,10 +37,10 @@ $(document).on("click", "#btn-habilitar-notificaciones", function () {
             });
         } else {
             //Determinando si se soportan las notificaciones en realidad.
-            try{
+            try {
                 new Notification("SimpleChat", {body: "Notificaciones habilitadas exitosamente."});
                 ALLOW_NOTIFICATIONS = true;
-            }catch (ex){
+            } catch (ex) {
                 ALLOW_NOTIFICATIONS = false;
             }
 
@@ -65,21 +65,29 @@ function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
 
         if (Notification.permission === "granted") {
             //Mostrando notificaciones.
-            if (window.Notification && ALLOW_NOTIFICATIONS) {
-                var n = new Notification(titulo, opciones);
-                n.onclick = function (event) {
-                    window.focus();
-                }
-                n.onshow = function (event) {
-                    AudioNotificacion();
-                }
-            } else if (navigator.serviceWorker) {
-                navigator.serviceWorker.getRegistration().then(function(registration) {
-                    registration.showNotification(titulo, opciones).then(function (){
-                        AudioNotificacion();
-                    });
+            if (navigator.serviceWorker) {
+                navigator.serviceWorker.getRegistration().then(function (registration) {
+                    if (registration) {
+                        registration.showNotification(titulo, opciones).then(() => {
+                            AudioNotificacion();
+                        });
+                    } else
+                        ShowNotificationWithObject(titulo, opciones);
                 });
-            }
+            } else
+                ShowNotificationWithObject(titulo, opciones);
+        }
+    }
+}
+
+function ShowNotificationWithObject(titulo, opciones) {
+    if (window.Notification) {
+        var n = new Notification(titulo, opciones);
+        n.onclick = event => {
+            window.focus();
+        }
+        n.onshow = event => {
+            AudioNotificacion();
         }
     }
 }
@@ -102,9 +110,9 @@ function MensajeNuevo(origen, titulo, mensaje, imagen) {
 }
 
 function AudioNotificacion() {
-
     var music = new Audio('/files/song/notification.mp3');
-    var err = music.play().catch(function (e) {
+    music.autoplay = true;
+    music.play().catch(function (e) {
         console.log("No se ha podido reproducir el sonido de notificación");
     });
 }
