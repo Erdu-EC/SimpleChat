@@ -387,6 +387,26 @@ console.log(blob);
             processData: false,
             contentType: false,
             mimeType: 'application/json',
+            xhr: function() {
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function(evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = (evt.loaded / evt.total) *100;
+                            //Do something with upload progress here
+                            console.log(percentComplete);
+                        }
+                    }, false);
+
+                    xhr.addEventListener("progress", function(evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = (evt.loaded / evt.total)*100;
+                            //Do something with download progress
+                            console.log(percentComplete);
+                        }
+                    }, false);
+
+                    return xhr;
+                },
             success: function (response) {
 
                 if (response[0]) {

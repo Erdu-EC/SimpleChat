@@ -2940,4 +2940,73 @@ Estilos de botonera de edicion
 
 /*------------------------------------------------------
 Fin de estilos de botonera de edicion
-------------------------------------------------------*/
+--------------------------------------------------------*/
+
+/*------------------------------------------------------
+Carga de foto de perfil
+--------------------------------------------------------*/
+
+.ocultables {
+  position: fixed;
+  bottom: 15vh;
+  right: 0;
+  height: 60px;
+  background-color: #FFFFFF;
+  z-index:1000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 3px 0 0 3px;
+}
+.ocultables:hover{
+  width: 100px;
+}
+.ocultables .barra-visible{
+height: 100%;
+  width: 5px;
+  background: #288795;
+  margin-right: 5px;
+border-radius: 3px 0 0 3px;
+}
+.barra-progreso{
+  display: none;
+}
+.ocultables:hover .barra-progreso {
+  display: block;
+  width: 85px;
+  background-color: #ddd;
+  height: 10px;
+  border-radius: 5px;
+}
+
+.ocultables:hover .barra-progreso .barra {
+  width: 1%;
+  height: 100%;
+  background-color: #3390ec;
+  border-radius: 5px;
+}
+
+
+/*
+.ocultables .contenedor-loader{
+  display: none;
+  border-radius: 50%;
+  height: 58px;
+  width: 58px;
+}
+.ocultables:hover .contenedor-loader{
+  display: flex;
+background: #cccccc;
+justify-content: center;
+  align-items: center;
+}
+.contenedor-loader .text{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFFFFF;
+  font-size: 12px;
+}*/
