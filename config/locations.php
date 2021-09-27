@@ -17,7 +17,8 @@ class APP_DIR
         'icon' => '/files/icon',
         'bg' => '/files/bg',
         'profile' => '/upload/profile',
-        'photos' => '/files/photos'
+        'photos' => '/files/photos',
+		'msg' => '/upload/message'
     ];
 
     const F_PREPROCESSED_JS = '/files/js';

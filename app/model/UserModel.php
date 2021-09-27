@@ -107,6 +107,10 @@
 			return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $text);
 		}
 
+		public function SendMessageImg(){
+
+		}
+
 		//Metodos estaticos publicos
 		public static function GetStringUserState(string $user_state): string {
 			switch ($user_state) {
