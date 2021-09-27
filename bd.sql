@@ -81,6 +81,15 @@ CREATE TABLE message
     FOREIGN KEY (id_dest) REFERENCES users (id)
 );
 
+CREATE TABLE message_img
+(
+    id     INT AUTO_INCREMENT,
+    id_msg INT,
+    url    text NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_msg) REFERENCES message (id)
+);
+
 create table permissions
 (
     id    INT,
@@ -203,7 +212,7 @@ BEGIN
       AND accepted is NULL;
 END $
 
-CREATE  PROCEDURE user_GetUnreceiveInvitations(in USER_ID int)
+CREATE PROCEDURE user_GetUnreceiveInvitations(in USER_ID int)
 BEGIN
     CREATE TEMPORARY TABLE unrcv_invitations
     (
@@ -218,9 +227,13 @@ BEGIN
 
     UPDATE invitations set rcv_date = NOW() where id in (select id from unrcv_invitations);
 
-    SELECT u.user_name as nick, u.first_name, u.last_name, u.profile_img as profile,
+    SELECT u.user_name   as nick,
+           u.first_name,
+           u.last_name,
+           u.profile_img as profile,
            send_date
-    FROM invitations i inner join users u on id_source = u.id
+    FROM invitations i
+             inner join users u on id_source = u.id
     WHERE i.id in (select id from unrcv_invitations)
     order by send_date, i.id;
 END $
@@ -249,7 +262,7 @@ BEGIN
 END $
 
 #Obtener las conversaciones.
-CREATE  PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
+CREATE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
 BEGIN
     #TODO Mensaje mostrado en conversación recibido marcarlos todos.
     SELECT if(c.id_source != USER_ID, s_nick, d_nick)                                      as contact_id,

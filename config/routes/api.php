@@ -19,6 +19,7 @@
 
 	#Conversations and Messages.
 	Route::Post('/action/messages/send', 'MessageController#Send');
+	Route::Post('/action/messages/send_img', 'ImageController#Upload');
 	Route::Get('/action/conversations', 'MessageController#GetConversations');
 
 	Route::Get('/Chats/{contact_name}/', 'MessageController#GetConversationsWithContact', [
