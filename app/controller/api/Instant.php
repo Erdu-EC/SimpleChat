@@ -17,9 +17,6 @@ class Instant
 {
     public function GetUnreceivedMessagesAndInvitations()
     {
-        //Desactivando cache del navegador.
-        HttpResponse::Set('Cache-Control: no-store');
-
         //Deshabilitando siempre log de errores.
         ini_set('display_errors', 0);
 
@@ -44,6 +41,9 @@ class Instant
             unset($message_model);
 
             if ((!is_null($msg_data) && $msg_data->count() > 0) || (!is_null($inv_data) && $inv_data->count() > 0)) {
+				//Desactivando cache del navegador.
+				HttpResponse::Set('Cache-Control: no-store');
+
                 //Estableciendo tipo de respuesta.
                 HttpResponse::SetContentType(MimeType::Json);
 
