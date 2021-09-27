@@ -346,18 +346,11 @@ $(document).on("click", "#icon-archivo-imagen", function () {
     $("#archivo-imagen-enviar").trigger("click");
 });
 $(document).on("input", "#archivo-imagen-enviar", function () {
-
     const archivos = document.getElementById('archivo-imagen-enviar').files;
     if(!ValidarImagen( archivos)){
         return;
     }else {
-       // var tiempo = new Date();
-
-        //var nombre = 'img_' + tiempo.getDate() + tiempo.getMonth() + tiempo.getFullYear() + '_' + tiempo.getHours() + tiempo.getMinutes() + tiempo.getSeconds();
-      //  var img = $('<li class="enviado"><div class="dir"></div><div class="cont-msj contenedor-imagen-enviada"><img class="imagen-enviada" id="' + nombre + '" title="' + nombre + '" tittle="' + nombre + '"></div></li>');
-      //  $("#lista-mensajes").append(img);
-     //   var img = $('#' + nombre + '');
-        AgregarBotonesEdicion("mensaje");
+       AgregarBotonesEdicion("mensaje");
         if (archivos.length != 0) {
 
             let reader = new FileReader();
@@ -366,7 +359,6 @@ $(document).on("input", "#archivo-imagen-enviar", function () {
             reader.onload = function () {
                 image.src = reader.result;
                 LanzarEditor(image, NaN);
-              //  img.attr("src", reader.result);
             };
             $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
             return;
@@ -375,6 +367,23 @@ $(document).on("input", "#archivo-imagen-enviar", function () {
     }
 
 });
+
+function EnviarImagenEnChat() {
+    console.log( my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,imageSmoothingQuality:"medium"}));
+    my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,imageSmoothingQuality:"medium"}).toBlob(function (blob) {
+        console.log(blob);
+        var tiempo = new Date();
+
+        var nombre = 'img_' + tiempo.getDate() + tiempo.getMonth() + tiempo.getFullYear() + '_' + tiempo.getHours() + tiempo.getMinutes() + tiempo.getSeconds();
+        var img = $('<li class="enviado"><div class="dir"></div><div class="cont-msj contenedor-imagen-enviada"><img class="imagen-enviada" id="' + nombre + '" title="' + nombre + '" tittle="' + nombre + '"></div></li>');
+        $("#lista-mensajes").append(img);
+
+        var img = $('#' + nombre + '');
+        img.attr("src", URL.createObjectURL(blob));
+    });
+}
+
+
 $(document).on("load", ".imagen-enviada", function () {
     $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
 });
@@ -431,6 +440,7 @@ $("#archivo-imagen-enviar").val("");
 });
 
 $(document).on("click", "#edicion-enviar-mensaje", function (){
+    EnviarImagenEnChat();
     $('body').removeClass('modoEdicionFotografia')
     $("#botonera-edicion").remove();
     $("#contenedor-editor").remove();
