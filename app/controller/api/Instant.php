@@ -33,10 +33,6 @@ class Instant
             $msg_data = $message_model->GetUnreceivedMessages($user_id);
             $inv_data = $invitation_model->GetUnreceive($user_id);
 
-			//Modificando valores.
-			for($i = 0; $i < count($inv_data); $i++)
-				$inv_data[$i]->profile = APP_URL::OfImageProfile($inv_data[$i]->profile);
-
             unset($invitation_model);
             unset($message_model);
 
@@ -50,6 +46,10 @@ class Instant
                 //Modificando datos.
                 for ($i = 0; $i < count($msg_data); $i++)
                     $msg_data[$i]->profile = APP_URL::OfImageProfile($msg_data[$i]->profile);
+
+				//Modificando valores.
+				for($i = 0; $i < count($inv_data); $i++)
+					$inv_data[$i]->profile = APP_URL::OfImageProfile($inv_data[$i]->profile);
 
                 //Regresando datos.
                 echo json_encode([
