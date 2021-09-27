@@ -3,8 +3,8 @@ $(document).ready(function () {
     if (navigator.serviceWorker) {
         navigator.serviceWorker.register("/ServiceWorker.js").then(function (reg){
             //console.log('ServiceWorker registration successful with scope: ', reg.scope);
-        }, function (err){
-            console.log('Error al registrar el service worker: '/*, err*/);
+        }, function (){
+            console.log('Error al registrar el service worker.');
         });
     }
 
