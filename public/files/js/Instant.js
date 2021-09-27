@@ -1,15 +1,15 @@
 $(document).ready(function () {
     //Lanzar un service worker.
-    if (navigator.serviceWorker){
+    if (navigator.serviceWorker) {
         navigator.serviceWorker.register("/ServiceWorker.js").then(function (reg){
-            console.log('ServiceWorker registration successful with scope: ', reg.scope);
-        }, function (err){
-            console.log('Error al registrar el service worker: ', err);
+            //console.log('ServiceWorker registration successful with scope: ', reg.scope);
+        }, function (){
+            console.log('Error al registrar el service worker.');
         });
     }
 
     //Siempre lanzar el service worker.
-    if (window.Worker){
+    if (window.Worker) {
         const chatWorker = new Worker('/files/js/Chat-bg.js');
         chatWorker.onmessage = function (ev) {
             //Si hay mensajes no leidos.
@@ -30,7 +30,7 @@ function TratarMensajes(mensajes) {
         const nombre = row.first_name + " " + row.last_name;
 
         //Si no existe conversacion, agregarla.
-        if (elemento_contacto.length === 0){
+        if (elemento_contacto.length === 0) {
             elemento_contacto = $('<li>', {
                 class: 'contact',
                 html: ObtenerElementoConversacion(row.user_name, row.first_name, row.last_name, row.profile, null, null, row.content, row.send_date, row.send_date, row.rcv_date, row.read_date)
@@ -71,7 +71,7 @@ function MostrarMensajeEnEspacioDeChat(nombre, datos) {
     AgregarMensajeEnEspacioDeChat(mensaje, datos.send_date);
     mensaje[0].scrollIntoView();
 
-        NotificacionesEscritorio(datos.id, nombre, datos.content, datos.profile);
+    NotificacionesEscritorio(datos.id, nombre, datos.content, datos.profile);
 }
 
 function ActualizarTotalDeConversacionesNoLeidas() {

@@ -17,9 +17,6 @@ class Instant
 {
     public function GetUnreceivedMessagesAndInvitations()
     {
-        //Desactivando cache del navegador.
-        HttpResponse::Set('Cache-Control: no-store');
-
         //Deshabilitando siempre log de errores.
         ini_set('display_errors', 0);
 
@@ -36,14 +33,13 @@ class Instant
             $msg_data = $message_model->GetUnreceivedMessages($user_id);
             $inv_data = $invitation_model->GetUnreceive($user_id);
 
-			//Modificando valores.
-			for($i = 0; $i < count($inv_data); $i++)
-				$inv_data[$i]->profile = APP_URL::OfImageProfile($inv_data[$i]->profile);
-
             unset($invitation_model);
             unset($message_model);
 
             if ((!is_null($msg_data) && $msg_data->count() > 0) || (!is_null($inv_data) && $inv_data->count() > 0)) {
+				//Desactivando cache del navegador.
+				HttpResponse::Set('Cache-Control: no-store');
+
                 //Estableciendo tipo de respuesta.
                 HttpResponse::SetContentType(MimeType::Json);
 
@@ -51,13 +47,18 @@ class Instant
                 for ($i = 0; $i < count($msg_data); $i++)
                     $msg_data[$i]->profile = APP_URL::OfImageProfile($msg_data[$i]->profile);
 
+				//Modificando valores.
+				for($i = 0; $i < count($inv_data); $i++)
+					$inv_data[$i]->profile = APP_URL::OfImageProfile($inv_data[$i]->profile);
+
                 //Regresando datos.
                 echo json_encode([
                     'messages' => !is_null($msg_data) ? $msg_data->GetInnerArray(true) : [],
                     'invitations' => !is_null($inv_data) ? $inv_data->GetInnerArray(true) : []
                 ]);
-                ob_flush();
-                exit;
+
+                //ob_flush();
+                break;
             }
 
             sleep(2);

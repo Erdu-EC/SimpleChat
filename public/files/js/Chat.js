@@ -94,6 +94,7 @@ function EnviarMensaje() {
                     elemento_conversacion.prependTo($('#lista-conversaciones'));
                     elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span>' + texto);
                     elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
+                    textarea.focus();
                 } else
                     mensaje.find('.popover-header').text("Error al enviar.");
             }

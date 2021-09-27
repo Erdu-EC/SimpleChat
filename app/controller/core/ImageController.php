@@ -121,6 +121,8 @@
 
 					//Devolviendo respuesta.
 					die(json_encode([true]));
+				}elseif ($type === 'msg'){
+
 				}
 
                 //Cerrando datos de sesión.

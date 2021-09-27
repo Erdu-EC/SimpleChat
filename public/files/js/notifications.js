@@ -1,5 +1,3 @@
-let ALLOW_NOTIFICATIONS = false;
-
 $(document).ready(function () {
     if (!Notification) {
         VanillaToasts.create({
@@ -36,14 +34,6 @@ $(document).on("click", "#btn-habilitar-notificaciones", function () {
                 close: true
             });
         } else {
-            //Determinando si se soportan las notificaciones en realidad.
-            try{
-                new Notification("SimpleChat", {body: "Notificaciones habilitadas exitosamente."});
-                ALLOW_NOTIFICATIONS = true;
-            }catch (ex){
-                ALLOW_NOTIFICATIONS = false;
-            }
-
             //Eliminando boton.
             $("#btn-habilitar-notificaciones").remove();
             $(".msg-indicador-notificaciones").remove();
@@ -54,7 +44,7 @@ $(document).on("click", "#btn-habilitar-notificaciones", function () {
 
 function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
     if (!document.hasFocus()) {
-        var opciones = {
+        const opciones = {
             body: mensaje,
             icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
             tag: origen,
@@ -63,23 +53,31 @@ function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
             //vibrate: [200, 100, 200, 100, 200, 100, 200]
         }
 
+        //Mostrando notificaciones.
         if (Notification.permission === "granted") {
-            //Mostrando notificaciones.
-            if (window.Notification && ALLOW_NOTIFICATIONS) {
-                var n = new Notification(titulo, opciones);
-                n.onclick = function (event) {
-                    window.focus();
-                }
-                n.onshow = function (event) {
-                    AudioNotificacion();
-                }
-            } else if (navigator.serviceWorker) {
-                navigator.serviceWorker.getRegistration().then(function(registration) {
-                    registration.showNotification(titulo, opciones).then(function (){
-                        AudioNotificacion();
-                    });
+            if (navigator.serviceWorker) {
+                navigator.serviceWorker.getRegistration().then(function (registration) {
+                    if (registration) {
+                        registration.showNotification(titulo, opciones).then(() => {
+                            AudioNotificacion();
+                        });
+                    } else
+                        ShowNotificationWithObject(titulo, opciones);
                 });
-            }
+            } else
+                ShowNotificationWithObject(titulo, opciones);
+        }
+    }
+}
+
+function ShowNotificationWithObject(titulo, opciones) {
+    if (window.Notification) {
+        const n = new Notification(titulo, opciones);
+        n.onclick = () => {
+            window.focus();
+        }
+        n.onshow = () => {
+            AudioNotificacion();
         }
     }
 }
@@ -102,9 +100,9 @@ function MensajeNuevo(origen, titulo, mensaje, imagen) {
 }
 
 function AudioNotificacion() {
-
-    var music = new Audio('/files/song/notification.mp3');
-    var err = music.play().catch(function (e) {
+    const music = new Audio('/files/song/notification.mp3');
+    music.autoplay = true;
+    music.play().catch(function () {
         console.log("No se ha podido reproducir el sonido de notificación");
     });
 }
