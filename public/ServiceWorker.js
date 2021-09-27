@@ -1,4 +1,4 @@
-self.addEventListener('notificationclick', async function (event) {
+self.addEventListener('notificationclick', function (event) {
     //Cerrando notificación.
     event.notification.close();
 
