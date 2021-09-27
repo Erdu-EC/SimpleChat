@@ -1,5 +1,3 @@
-let ALLOW_NOTIFICATIONS = false;
-
 $(document).ready(function () {
     if (!Notification) {
         VanillaToasts.create({
@@ -36,14 +34,6 @@ $(document).on("click", "#btn-habilitar-notificaciones", function () {
                 close: true
             });
         } else {
-            //Determinando si se soportan las notificaciones en realidad.
-            try {
-                new Notification("SimpleChat", {body: "Notificaciones habilitadas exitosamente."});
-                ALLOW_NOTIFICATIONS = true;
-            } catch (ex) {
-                ALLOW_NOTIFICATIONS = false;
-            }
-
             //Eliminando boton.
             $("#btn-habilitar-notificaciones").remove();
             $(".msg-indicador-notificaciones").remove();
