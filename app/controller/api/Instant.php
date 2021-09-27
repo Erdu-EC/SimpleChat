@@ -56,8 +56,9 @@ class Instant
                     'messages' => !is_null($msg_data) ? $msg_data->GetInnerArray(true) : [],
                     'invitations' => !is_null($inv_data) ? $inv_data->GetInnerArray(true) : []
                 ]);
-                ob_flush();
-                exit;
+
+                //ob_flush();
+                break;
             }
 
             sleep(2);
