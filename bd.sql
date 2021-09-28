@@ -74,20 +74,12 @@ CREATE TABLE message
     rcv_date  datetime,
     read_date datetime,
     content   TEXT NOT NULL,
+    content_img TEXT NULL,
     rcv_see   bool NOT NULL DEFAULT false,
     read_see  bool not null default false,
     PRIMARY KEY (id),
     FOREIGN KEY (id_source) REFERENCES users (id),
     FOREIGN KEY (id_dest) REFERENCES users (id)
-);
-
-CREATE TABLE message_img
-(
-    id     INT AUTO_INCREMENT,
-    id_msg INT,
-    url    text NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (id_msg) REFERENCES message (id)
 );
 
 create table permissions
@@ -239,7 +231,7 @@ BEGIN
 END $
 
 #Procedimientos para mensajes.
-CREATE FUNCTION user_SendMessage(source int, dest int, msg text) RETURNS INT
+CREATE OR REPLACE FUNCTION user_SendMessage(source int, dest int, msg text, img text) RETURNS INT
     MODIFIES SQL DATA
 BEGIN
     #Si usuario no pertenece a los contactos del destinario
@@ -255,7 +247,7 @@ BEGIN
     END IF;
 
     #Insertar mensaje en cualquier caso.
-    INSERT INTO message(id_source, id_dest, send_date, content) VALUES (source, dest, NOW(), msg);
+    INSERT INTO message(id_source, id_dest, send_date, content, content_img) VALUES (source, dest, NOW(), msg, img);
 
     #Devolver ID del mensaje.
     RETURN LAST_INSERT_ID();
@@ -373,22 +365,22 @@ INSERT INTO invitations(ID_SOURCE, ID_DEST, SEND_DATE, RCV_DATE, ACCEPTED, ACTIO
 VALUES (7, 6, now(), now(), true, now()),
        (6, 7, now(), now(), true, now());
 
-INSERT INTO message(id_source, id_dest, send_date, rcv_date, read_date, content)
-VALUES (4, 6, now(), now(), now(), 'Acabas de levantar a LITT, Mike.'),
-       (5, 6, now(), now(), now(), 'Estaba pensando que podríamos comer pollo esta noche, ¿suena bien?'),
+INSERT INTO message(id_source, id_dest, send_date, rcv_date, read_date, content, content_img)
+VALUES (4, 6, now(), now(), now(), 'Acabas de levantar a LITT, Mike.', null),
+       (5, 6, now(), now(), now(), 'Estaba pensando que podríamos comer pollo esta noche, ¿suena bien?', null),
        (6, 7, now(), now(), now(),
-        '¡¿Cómo diablos se supone que voy a hacer que un jurado te crea cuando ni siquiera estoy seguro de que lo crea ?!'),
+        '¡¿Cómo diablos se supone que voy a hacer que un jurado te crea cuando ni siquiera estoy seguro de que lo crea ?!', null),
        (7, 6, now(), now(), now(),
-        'Cuando estés contra la pared, derriba esa maldita cosa.'),
+        'Cuando estés contra la pared, derriba esa maldita cosa.', null),
        (7, 6, now(), now(), now(),
-        'Las excusas no ganan campeonatos.'),
+        'Las excusas no ganan campeonatos.', null),
        (6, 7, now(), now(), now(),
-        'Oh, sí, ¿Michael Jordan te dijo eso?'),
+        'Oh, sí, ¿Michael Jordan te dijo eso?', null),
        (7, 6, now(), now(), now(),
-        'No, le dije eso.'),
+        'No, le dije eso.', null),
        (7, 6, now(), now(), now(),
-        '¿Cuáles son sus opciones cuando alguien le apunta con un arma a la cabeza?'),
+        '¿Cuáles son sus opciones cuando alguien le apunta con un arma a la cabeza?', null),
        (6, 7, now(), now(), now(),
-        '¿De qué estás hablando? Haz lo que te dicen o te disparan.'),
+        '¿De qué estás hablando? Haz lo que te dicen o te disparan.', null),
        (7, 6, now(), now(), now(),
-        'Equivocado. Coges el arma o sacas una más grande. O llama a su farol. O haces una de las ciento cuarenta y seis cosas más.');
+        'Equivocado. Coges el arma o sacas una más grande. O llama a su farol. O haces una de las ciento cuarenta y seis cosas más.', null);

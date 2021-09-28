@@ -18,7 +18,7 @@ class APP_DIR
         'bg' => '/files/bg',
         'profile' => '/upload/profile',
         'photos' => '/files/photos',
-		'msg' => '/upload/message'
+		'chat' => '/upload/message'
     ];
 
     const F_PREPROCESSED_JS = '/files/js';
@@ -26,9 +26,15 @@ class APP_DIR
 
 class APP_URL {
     const IMG_PROFILE = '/files/profile';
+	const IMG_CHAT = '/files/chat/';
 
     public static function OfImageProfile(?string $file_img): string
     {
         return !is_null($file_img) ? Path::Combine(self::IMG_PROFILE, $file_img) : '';
     }
+
+	public static function OfChatImage(?string $file_img): string
+	{
+		return !is_null($file_img) ? Path::Combine(self::IMG_CHAT, $file_img) : '';
+	}
 }

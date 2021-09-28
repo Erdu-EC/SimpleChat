@@ -19,7 +19,6 @@
 
 	#Conversations and Messages.
 	Route::Post('/action/messages/send', 'MessageController#Send');
-	Route::Post('/action/messages/send_img', 'ImageController#Upload');
 	Route::Get('/action/conversations', 'MessageController#GetConversations');
 
 	Route::Get('/Chats/{contact_name}/', 'MessageController#GetConversationsWithContact', [
@@ -34,7 +33,7 @@
 
 	#Upload Image Route
 	Route::Post('/action/users/{type}/upload_img', 'ImageController#Upload', [
-		'type' => Regex::InList('profile')
+		'type' => Regex::InList('profile', 'chat')
 	]);
 
 	///action/users/profile/upload_img

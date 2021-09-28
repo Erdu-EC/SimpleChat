@@ -92,6 +92,13 @@
 			$data->messages = ArrayUtils::GetIndexedValues($user_data->messages->GetInnerArray());
 			$data->profile_img = APP_URL::OfImageProfile($user_data->profile_img);
 
+			//Tratando mensajes con imagenes.
+			for($i = 0; $i < count($data->messages); $i++){
+				$url_img = $data->messages[$i][7];
+				$data->messages[$i][7] = !empty($url_img) ? APP_URL::OfChatImage($data->messages[$i][7]) : null;
+			}
+
+
 			//Destruyendo variables.
 			unset($user_data);
 

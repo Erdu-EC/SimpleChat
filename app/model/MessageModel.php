@@ -9,13 +9,14 @@
 
     class MessageModel extends Model
     {
-        public function Add(int $user_id, int $contact_id, string $text): bool
+        public function Add(int $user_id, int $contact_id, ?string $text, ?string $img): bool
         {
             try {
-                return !is_null($this->Execute('SELECT user_SendMessage(:uid, :cid, :text)', [
+                return !is_null($this->Execute('SELECT user_SendMessage(:uid, :cid, :text, :img)', [
                     'uid' => $user_id,
                     'cid' => $contact_id,
-                    'text' => $text
+                    'text' => $text ?? '',
+					'img' => $img
                 ]));
             } catch (\PDOException $ex) {
                 return false;

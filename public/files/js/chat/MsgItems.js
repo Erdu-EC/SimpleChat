@@ -16,6 +16,22 @@ const ObtenerElementoMensajeEnviado = mensaje => {
     return msg;
 };
 
+const ObtenerElementoImgContacto = (foto, nombre, url, fecha_envio) => {
+
+}
+
+const ObtenerElementoImgEnviada = (nombre, url_data) => {
+    const msg = ObtenerElementoImg(nombre, url_data, null, null);
+    msg.find('.extra-mensaje').html('<div class="enviando"></div>');
+    return msg;
+};
+
+const ObtenerElementoImg = (nombre, url, fecha_envio, estado) => {
+    const msg = $(ObtenerElementoMensaje('', fecha_envio, estado));
+    msg.find('.cont-msj').addClass('contenedor-imagen-enviada').html(`<img class="imagen-enviada" src="${url}" title="${nombre}">`);
+    return msg;
+}
+
 /*
 * Estados:
 * 1- Enviado
@@ -28,7 +44,7 @@ const ObtenerElementoMensaje = (mensaje, fecha_envio, estado) => `
             <div class="dir"></div>
             <div class="cont-msj"><p> ${mensaje}</p> </div>
             <div class="extra-mensaje">
-                ${fecha_envio !== undefined || estado !== undefined? ObtenerElementoExtraMensaje(fecha_envio, estado) : ''}
+                ${fecha_envio !== undefined || estado !== undefined ? ObtenerElementoExtraMensaje(fecha_envio, estado) : ''}
             </div>
     </li>`;
 
@@ -38,10 +54,10 @@ const ObtenerElementoMensaje = (mensaje, fecha_envio, estado) => `
 * 2- Recibido
 * 3- Leido
 * */
-const ObtenerElementoExtraMensaje = (fecha_envio, estado)=> {
+const ObtenerElementoExtraMensaje = (fecha_envio, estado) => {
     let html = fecha_envio !== undefined ? '<div class="extra"><span>' + fecha_envio + '</span>' : '';
 
-    switch (estado){
+    switch (estado) {
         case 1:
             return html + '<div class="extra icon"><span class="material-icons">done</span></div>';
         case 2:

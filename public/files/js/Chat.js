@@ -167,12 +167,22 @@ function CargarEspacioDeChat() {
                     }
 
                     //Agregando mensaje.
+                    let mensaje;
                     if (msg[1] === json.id) {
-                        lista_mensajes.append(ObtenerElementoMensajeContacto(json.profile_img, msg[6], ObtenerHora(msg[4])));
+                        if (msg[7] === null)
+                            mensaje = ObtenerElementoMensajeContacto(json.profile_img, msg[6], ObtenerHora(msg[4]));
+                        else
+                            mensaje = ObtenerElementoImgContacto(json.profile_img, msg[7], msg[7], ObtenerHora(msg[4]))
                     } else {
-                        lista_mensajes.append(ObtenerElementoMensaje(msg[6], ObtenerHora(msg[3]),
-                            msg[5] !== null ? 3 : msg[4] !== null ? 2 : 1));
+                        if (msg[7] === null)
+                            mensaje = ObtenerElementoMensaje(msg[6], ObtenerHora(msg[3]),
+                                msg[5] !== null ? 3 : msg[4] !== null ? 2 : 1);
+                        else
+                            mensaje  = ObtenerElementoImg(msg[7], msg[7], ObtenerHora(msg[3]),
+                                msg[5] !== null ? 3 : msg[4] !== null ? 2 : 1)
                     }
+
+                    lista_mensajes.append(mensaje);
                 });
 
                 //Mostrar contenedor.

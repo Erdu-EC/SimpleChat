@@ -104,11 +104,16 @@
 
 		//Metodos para mensajes.
 		public function SendMessage(int $user_id, int $contact_id, string $text): bool {
-			return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $text);
+			return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $text, null);
 		}
 
-		public function SendMessageImg(){
+		public function SendMessageImg(int $user_id, int $contact_id, string $img, callable $action){
+			return $this->ExecuteTransaction(function () use ($user_id, $contact_id, $img, $action) {
+				if ($action() === false)
+					return false;
 
+				return (new MessageModel($this->PDO))->Add($user_id, $contact_id, null, $img);
+			});
 		}
 
 		//Metodos estaticos publicos

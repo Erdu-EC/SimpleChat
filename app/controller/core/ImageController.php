@@ -4,9 +4,10 @@
 
 	use HS\app\model\UserModel;
 	use HS\config\APP_DIR;
-    use HS\config\APP_URL;
-    use HS\config\DBAccount;
+	use HS\config\APP_URL;
+	use HS\config\DBAccount;
 	use HS\libs\core\http\HttpResponse;
+	use HS\libs\core\Logger;
 	use HS\libs\core\Session;
 	use HS\libs\graphic\Image;
 	use HS\libs\graphic\ImageException;
@@ -14,13 +15,15 @@
 	use HS\libs\helper\MimeType;
 	use HS\libs\helper\Text;
 	use HS\libs\io\Path;
-    use HS\libs\io\Url;
-    use const HS\APP_URL;
+	use HS\libs\io\Url;
+	use const HS\APP_URL;
 
-    class ImageController
+	class ImageController
 	{
 		public static function Get(string $type, string $filename): void {
 			/*TODO Limitar quien puede acceder a las fotos de perfil, con permisos de BD.*/
+
+			//Logger::Log('img', $type, $filename);
 
 			//Obteniendo parámetros proporcionados por GET.
 			$THUMB_WIDTH = isset($_GET['w']) ? intval($_GET['w']) : 0;
@@ -94,45 +97,64 @@
 				$img_name = $type === 'profile' ? $user_name . Path::GetExtension($file['name']) : $file['name'];
 
 				//Actualizando base de datos.
-				if ($type === 'profile' && ($user = new UserModel(DBAccount::Root))->UpdateProfileImage($user_id, $img_name, fn() => move_uploaded_file($file['tmp_name'], self::GetPathOfType($type, $img_name)) !== false)) {
-					//Desconectando base de datos.
-					unset($user);
+				if ($type === 'profile') {
+					if (($user = new UserModel(DBAccount::Root))->UpdateProfileImage($user_id, $img_name, fn() => move_uploaded_file($file['tmp_name'], self::GetPathOfType($type, $img_name)) !== false)){
+						//Desconectando base de datos.
+						unset($user);
 
-                    //Eliminando anterior foto de perfil.
-                    $new_profile_img = APP_URL::OfImageProfile($img_name);
+						//Eliminando anterior foto de perfil.
+						$new_profile_img = APP_URL::OfImageProfile($img_name);
 
-                    if ($new_profile_img != $session->user_profile_img){
-                        $current_profile_img = Path::GetFileName($session->user_profile_img);
+						if ($new_profile_img != $session->user_profile_img) {
+							$current_profile_img = Path::GetFileName($session->user_profile_img);
 
-                        //Eliminando imagen de perfil anterior.
-                        unlink(self::GetPathOfType($type, $current_profile_img));
+							//Eliminando imagen de perfil anterior.
+							unlink(self::GetPathOfType($type, $current_profile_img));
 
-                        //Actualizando datos de sesion.
-                        $session->user_profile_img = $new_profile_img;
-                    }
+							//Actualizando datos de sesion.
+							$session->user_profile_img = $new_profile_img;
+						}
 
-                    //Cerrando datos de sesión.
-                    unset($current_profile_img);
-                    unset($new_profile_img);
-                    unset($session);
+						//Cerrando datos de sesión.
+						unset($current_profile_img);
+						unset($new_profile_img);
+						unset($session);
 
-					//Limpiar cache de foto de perfil.
-					IOUtil::DeleteFileBeginWithName(Path::Combine(APP_DIR::IMAGE_CACHE, 'profile'), "$user_name (");
+						//Limpiar cache de foto de perfil.
+						IOUtil::DeleteFileBeginWithName(Path::Combine(APP_DIR::IMAGE_CACHE, 'profile'), "$user_name (");
 
-					//Devolviendo respuesta.
-					die(json_encode([true]));
-				}elseif ($type === 'msg'){
+						//Devolviendo respuesta.
+						die(json_encode([true]));
+					}
 
+					//Devolviendo respuesta negativa.
+					die(json_encode([false, 5]));
+				} elseif ($type === 'chat') {
+					//Obteniendo contacto y nombre con que se guardara el fichero.
+					$contact_id = !empty($_POST['contact']) ? $_POST['contact'] : die(json_encode([false, 6]));
+					$img_name = dechex($user_id) . md5(uniqid('', true)) . Path::GetExtension($img_name);
+
+					//Insertando en base de datos el mensaje que contendra el fichero.
+					if (($user = new UserModel(DBAccount::Root))->SendMessageImg($user_id, $contact_id, $img_name, fn() => move_uploaded_file($file['tmp_name'], self::GetPathOfType($type, $img_name)) !== false)) {
+						//Desconectando base de datos.
+						unset($user);
+
+						//Devolviendo respuesta.
+						die(json_encode([true]));
+					}else{
+						//Devolviendo respuesta negativa.
+						die(json_encode([false, 7]));
+					}
 				}
 
-                //Cerrando datos de sesión.
-                unset($session);
+				//Cerrando datos de sesión.
+				unset($session);
 
 				//Moviendo imagen subida a directorio correcto.
 				if (move_uploaded_file($file['tmp_name'], self::GetPathOfType($type, $img_name)) !== false) {
 					die(json_encode([true]));
 				} else
-					die(json_encode([false, 5]));
+					die(json_encode([false, 8]));
 			}
 		}
 

@@ -1,10 +1,8 @@
-
-
 $(document).on("click", (".indicador-mensajes"), function () {
 
 });
 $(document).on("mouseover", ("#btn-habilitar-notificaciones"), function () {
-$(".msg-indicador-notificaciones").show();
+    $(".msg-indicador-notificaciones").show();
 });
 $(document).on("mouseleave", ("#btn-habilitar-notificaciones"), function () {
     $(".msg-indicador-notificaciones").hide();
@@ -19,25 +17,26 @@ $("#LateralMenu").ready(function () {
 $(window).resize(function () {
     VistaMovil();
 });
+
 //Codigo para vista movil
-function VistaMovil(){
-    if(window.innerWidth < 576 && (($("#sidepanel").hasClass("no-visible-sm")))){
+function VistaMovil() {
+    if (window.innerWidth < 576 && (($("#sidepanel").hasClass("no-visible-sm")))) {
         $('#LateralMenu li.active').removeClass('active');
 
-    }
-    else{
+    } else {
         $('#seccion-conversaciones').parent().addClass('active')
     }
 }
+
 $("#seccion-conversaciones").on("click", function () {
 
-    if(window.innerWidth < 576){
+    if (window.innerWidth < 576) {
         $("#sidebarToggle").trigger('click');
         $("#sidepanel").removeClass('no-visible-sm');
         $("#espacio-temporal").remove();
     }
 });
-$(document).on("click","#lista-conversaciones .contact", function (){
+$(document).on("click", "#lista-conversaciones .contact", function () {
     $("#sidepanel").addClass('no-visible-sm');
     $("body").addClass("sb-sidenav-toggled");
     $("#espacio-de-chat").removeClass('no-visible-sm');
@@ -45,17 +44,16 @@ $(document).on("click","#lista-conversaciones .contact", function (){
     $(" #frame").addClass('full-pantalla');
 });
 
-$(document).on("click","#btn-chat-atras", function () {
+$(document).on("click", "#btn-chat-atras", function () {
     $("#sidepanel").removeClass('no-visible-sm');
     $("#espacio-de-chat").addClass('no-visible-sm');
     $("header").removeClass('no-visible-sm');
     $(" #frame").removeClass('full-pantalla');
 })
-$(".messages").on("swiperight",function(){
+$(".messages").on("swiperight", function () {
     alert("You swiped right!");
 });
 //Fin de codigo para vista movil
-
 
 
 $(document).on("click", function (e) {
@@ -75,17 +73,17 @@ $(document).on("click", function (e) {
         }
     }
     var opc_perfil_lat = $("#btn-sesion");
-    if(opc_perfil_lat.children('.opciones-sesion').length){
-        if (!opc_perfil_lat.is(e.target) && opc_perfil_lat.has(e.target).length === 0 && opc_perfil_lat.length){
+    if (opc_perfil_lat.children('.opciones-sesion').length) {
+        if (!opc_perfil_lat.is(e.target) && opc_perfil_lat.has(e.target).length === 0 && opc_perfil_lat.length) {
             opc_perfil_lat.children(".usuario-perfil-opciones").removeClass("activo");
             opc_perfil_lat.children(".opciones-sesion").remove();
         }
     }
-    var emojis =$('.wrapper');
-    var btn_emojis= $('#btn-emojis');
-    if(emojis.length){
+    var emojis = $('.wrapper');
+    var btn_emojis = $('#btn-emojis');
+    if (emojis.length) {
 
-        if ((!emojis.is(e.target) && emojis.has(e.target).length === 0) && (!btn_emojis.is(e.target) && btn_emojis.has(e.target).length === 0) ) {
+        if ((!emojis.is(e.target) && emojis.has(e.target).length === 0) && (!btn_emojis.is(e.target) && btn_emojis.has(e.target).length === 0)) {
             var button = $("#btn-emojis");
             button.removeClass("activo");
             button.text("sentiment_satisfied_alt");
@@ -115,13 +113,14 @@ $('.submit').on('click', function () {
 });
 
 //cerrar sesion
-$(document).on("click", "#mi-perfil-sidepanel",  function () {
+$(document).on("click", "#mi-perfil-sidepanel", function () {
     AgregarOpcionesSesion($("#mi-perfil-sidepanel"))
 });
-function AgregarOpcionesSesion(elemento){
-elemento.children(".usuario-perfil-opciones").toggleClass("activo");
 
-    if(elemento.children(".usuario-perfil-opciones").hasClass("activo")){
+function AgregarOpcionesSesion(elemento) {
+    elemento.children(".usuario-perfil-opciones").toggleClass("activo");
+
+    if (elemento.children(".usuario-perfil-opciones").hasClass("activo")) {
         elemento.append(`
         <div class="opciones-sesion activo">
             <div class="item-opciones-sesion " id="btn-conf-sesion">
@@ -137,7 +136,7 @@ elemento.children(".usuario-perfil-opciones").toggleClass("activo");
                 </a>
             </div>
         </div>`);
-    }else{
+    } else {
         elemento.children(".opciones-sesion").remove();
     }
 
@@ -158,18 +157,19 @@ function ConversacionActiva() {
     $('#LateralMenu li.active').removeClass('active');
     $('#LateralMenu li:first').addClass('active');
 }
+
 //Notificacion de solicitud de mensaje
-$(document).on("mouseover click", "#mensaje-invitacion-si",function () {
-    $("#icon-mensaje-invitacion").css("color","#198754");
+$(document).on("mouseover click", "#mensaje-invitacion-si", function () {
+    $("#icon-mensaje-invitacion").css("color", "#198754");
 });
-$(document).on("mouseleave", "#mensaje-invitacion-si",function () {
-    $("#icon-mensaje-invitacion").css("color","#00000070");
+$(document).on("mouseleave", "#mensaje-invitacion-si", function () {
+    $("#icon-mensaje-invitacion").css("color", "#00000070");
 });
-$(document).on("mouseover click", "#mensaje-invitacion-no",function () {
-    $("#icon-mensaje-invitacion").css("color","#dc3545");
+$(document).on("mouseover click", "#mensaje-invitacion-no", function () {
+    $("#icon-mensaje-invitacion").css("color", "#dc3545");
 });
-$(document).on("mouseleave", "#mensaje-invitacion-no",function () {
-    $("#icon-mensaje-invitacion").css("color","#00000070");
+$(document).on("mouseleave", "#mensaje-invitacion-no", function () {
+    $("#icon-mensaje-invitacion").css("color", "#00000070");
 });
 
 /*
@@ -275,10 +275,10 @@ $(document).on("click", "#btn-emojis", function () {
     button.toggleClass("activo");
     var msj = $("#contenido-mensaje");
 
-    if(button.hasClass("activo")){
+    if (button.hasClass("activo")) {
         button.text("keyboard_alt");
 
-        picker= new EmojiButton({
+        picker = new EmojiButton({
             autoHide: false,
             showSearch: 0,
             autoFocusSearch: false,
@@ -288,10 +288,10 @@ $(document).on("click", "#btn-emojis", function () {
         picker.on('emoji', emoji => {
             msj.val(msj.val() + emoji);
         });
-    }else{
+    } else {
         button.text("sentiment_satisfied_alt");
-        if(picker.isPickerVisible)
-        picker.hidePicker();
+        if (picker.isPickerVisible)
+            picker.hidePicker();
     }
 
 });
@@ -332,7 +332,7 @@ function CargarEspacioConfiguraciones() {
     $("#mi-perfil-sidepanel").removeClass("no-visible");
     $("#btn-cerrar-contacto").trigger("click");
     $('#sh-setting').remove();
-$("#lista-conversaciones li").removeClass("active");
+    $("#lista-conversaciones li").removeClass("active");
     $('#espacio-temporal').remove();
     $('#espacio-de-chat').hide();
 
@@ -347,10 +347,10 @@ $(document).on("click", "#icon-archivo-imagen", function () {
 });
 $(document).on("input", "#archivo-imagen-enviar", function () {
     const archivos = document.getElementById('archivo-imagen-enviar').files;
-    if(!ValidarImagen( archivos)){
+    if (!ValidarImagen(archivos)) {
         return;
-    }else {
-       AgregarBotonesEdicion("mensaje");
+    } else {
+        AgregarBotonesEdicion("mensaje");
         if (archivos.length != 0) {
 
             let reader = new FileReader();
@@ -368,18 +368,48 @@ $(document).on("input", "#archivo-imagen-enviar", function () {
 
 });
 
-function EnviarImagenEnChat() {
-    console.log( my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,imageSmoothingQuality:"medium"}));
-    my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,imageSmoothingQuality:"medium"}).toBlob(function (blob) {
-        console.log(blob);
-        var tiempo = new Date();
+function EnviarImagenEnChat(filename) {
+    my_cropper.getCroppedCanvas({
+        maxWidth: 2048,
+        maxHeight: 2048,
+        imageSmoothingQuality: "medium"
+    }).toBlob(function (blob) {
+        const formData = new FormData();
+        formData.append('img', blob, filename);
+        formData.append('contact', $('#espacio-de-chat > div').attr('data-usuario'))
 
-        var nombre = 'img_' + tiempo.getDate() + tiempo.getMonth() + tiempo.getFullYear() + '_' + tiempo.getHours() + tiempo.getMinutes() + tiempo.getSeconds();
-        var img = $('<li class="enviado"><div class="dir"></div><div class="cont-msj contenedor-imagen-enviada"><img class="imagen-enviada" id="' + nombre + '" title="' + nombre + '" tittle="' + nombre + '"></div></li>');
-        $("#lista-mensajes").append(img);
+        const mensaje = ObtenerElementoImgEnviada(filename.split('\\').pop().split('/').pop(), URL.createObjectURL(blob));
 
-        var img = $('#' + nombre + '');
-        img.attr("src", URL.createObjectURL(blob));
+        $.ajax({
+            url: '/action/users/chat/upload_img',
+            type: 'post',
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            mimeType: 'application/json',
+            beforeSend: () => $("#lista-mensajes").append(mensaje),
+            success: function (response) {
+                if (response[0]) {
+                    mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
+                } else {
+                    swal({
+                        title: "¡Ha ocurrido un error!",
+                        text: "No se ha podido subir la imagen. Por favor, asegúrese de seleccionar un archivo de imagen válido.",
+                        icon: "error",
+                        button: "Ok",
+                    });
+                }
+            },
+            error: function () {
+                swal({
+                    title: "¡Ha ocurrido un error!",
+                    text: "No se ha subir la imagen. Por favor, verifique su conexión a Internet.",
+                    icon: "error",
+                    button: "Ok",
+                });
+            }
+        });
     });
 }
 
@@ -400,7 +430,7 @@ $(document).on("click", ".imagen-recibida", function () {
 //botones para Edicion de fotos
 function AgregarBotonesEdicion(elemento) {
     $('body').toggleClass('modoEdicionFotografia');
-    if($('body').hasClass('modoEdicionFotografia')){
+    if ($('body').hasClass('modoEdicionFotografia')) {
         $('body').prepend('<div id="botonera-edicion">\n' +
             '    <button id="edicion-izquierda" title="Desplazar a la izquierda"><i class="fas fa-arrow-left"></i></button>\n' +
             '    <button id="edicion-arriba" title="Desplazar a la derecha"><i class="fas fa-arrow-up"></i></button>\n' +
@@ -411,21 +441,21 @@ function AgregarBotonesEdicion(elemento) {
             '    <button id="edicion-invertir-h" title=""><i class="fas fa-arrows-alt-h"></i></button>\n' +
             '    <button id="edicion-invertir-v" title=""><i class="fas fa-arrows-alt-v"></i></button><button id="edicion-encuadre" title=""><span class="material-icons">\n' +
             'crop_free\n' +
-            '</span></button>'+'<button id="edicion-zoom-mas" title=""><i class="fas fa-search-plus"></i></button>\n' +
+            '</span></button>' + '<button id="edicion-zoom-mas" title=""><i class="fas fa-search-plus"></i></button>\n' +
             '    <button id="edicion-zoom-menos" title=""><i class="fas fa-search-minus"></i></button>\n' +
             '    <div class="edicion-finalizar">\n' +
-            '        <button id="edicion-enviar-'+elemento+'" title="Guardar cambios"><span class="material-icons">done</span></button> <button id="edicion-cerrar-'+elemento+'" title="Cancelar"><span class="material-icons">close</span></button>\n' +
+            '        <button id="edicion-enviar-' + elemento + '" title="Guardar cambios"><span class="material-icons">done</span></button> <button id="edicion-cerrar-' + elemento + '" title="Cancelar"><span class="material-icons">close</span></button>\n' +
             '        </div>\n' +
             '\n' +
             '</div><div id="contenedor-editor"> <img id="img-tmp"> </>');
-    }else{
+    } else {
         $("#botonera-edicion").remove();
     }
 
 
 }
 
-$(document).on("click", "#edicion-cerrar-perfil", function (){
+$(document).on("click", "#edicion-cerrar-perfil", function () {
 
     CancelarEdicion();
     $("#nueva-foto-perfil").val("");
@@ -434,117 +464,117 @@ $(document).on("click", "#edicion-cerrar-perfil", function (){
     img_result.attr('src','');*/
 });
 
-$(document).on("click", "#edicion-cerrar-mensaje", function (){
+$(document).on("click", "#edicion-cerrar-mensaje", function () {
     CancelarEdicion();
-$("#archivo-imagen-enviar").val("");
+    $("#archivo-imagen-enviar").val("");
 });
 
-$(document).on("click", "#edicion-enviar-mensaje", function (){
-    EnviarImagenEnChat();
+$(document).on("click", "#edicion-enviar-mensaje", function () {
+    const file_input = $("#archivo-imagen-enviar");
+    EnviarImagenEnChat(file_input.val());
     $('body').removeClass('modoEdicionFotografia')
     $("#botonera-edicion").remove();
     $("#contenedor-editor").remove();
-    $("#archivo-imagen-enviar").val("");
+    file_input.val("");
 });
-$(document).on("click", "#edicion-enviar-perfil", function (){
+$(document).on("click", "#edicion-enviar-perfil", function () {
     $('body').removeClass('modoEdicionFotografia')
     $("#botonera-edicion").remove();
     $("#contenedor-editor").remove();
     EnviarImagen();
 });
 
-$(document).on("click", "#edicion-arriba", function (){
-    my_cropper.move(0,10);
+$(document).on("click", "#edicion-arriba", function () {
+    my_cropper.move(0, 10);
 });
-$(document).on("click", "#edicion-abajo", function (){
-    my_cropper.move(0,-10);
+$(document).on("click", "#edicion-abajo", function () {
+    my_cropper.move(0, -10);
 });
-$(document).on("click","#edicion-izquierda" , function (){
-    my_cropper.move(10,0);
+$(document).on("click", "#edicion-izquierda", function () {
+    my_cropper.move(10, 0);
 });
-$(document).on("click","#edicion-derecha" , function (){
-    my_cropper.move(-10,0);
+$(document).on("click", "#edicion-derecha", function () {
+    my_cropper.move(-10, 0);
 });
-$(document).on("click", "#edicion-girar-der", function (){
+$(document).on("click", "#edicion-girar-der", function () {
     my_cropper.rotate(90);
 });
-$(document).on("click", "#edicion-girar-izq", function (){
+$(document).on("click", "#edicion-girar-izq", function () {
     my_cropper.rotate(-90);
 });
-$(document).on("click", "#edicion-invertir-h",function (){
+$(document).on("click", "#edicion-invertir-h", function () {
     my_cropper.scaleX(-1);
-   $(this).toggleClass('activo')
-    if($(this).hasClass('activo')){
+    $(this).toggleClass('activo')
+    if ($(this).hasClass('activo')) {
         my_cropper.scaleX(-1);
-    }
-    else{
+    } else {
         my_cropper.scaleX(1);
     }
 });
 
-$(document).on("click", "#edicion-invertir-v",function (){
+$(document).on("click", "#edicion-invertir-v", function () {
 
-   $(this).toggleClass('activo')
-    if($(this).hasClass('activo')){
+    $(this).toggleClass('activo')
+    if ($(this).hasClass('activo')) {
         my_cropper.scaleY(-1);
-    }
-    else{
+    } else {
         my_cropper.scaleY(1);
     }
 
 });
 
-$(document).on("click","#edicion-zoom-mas", function (){
+$(document).on("click", "#edicion-zoom-mas", function () {
     my_cropper.zoom(0.1);
 });
-$(document).on("click","#edicion-zoom-menos",function (){
+$(document).on("click", "#edicion-zoom-menos", function () {
     my_cropper.zoom(-0.1);
 });
-$(document).on("click", "#edicion-encuadre", function (){
-ancho= my_cropper.getImageData().naturalWidth;
-alto= my_cropper.getImageData().naturalHeight;
+$(document).on("click", "#edicion-encuadre", function () {
+    ancho = my_cropper.getImageData().naturalWidth;
+    alto = my_cropper.getImageData().naturalHeight;
     my_cropper.setCropBoxData({width: ancho, height: alto,});
 });
 
 //Funciones
- function ValidarImagen( archivos) {
+function ValidarImagen(archivos) {
 
-     //El navegador debe soportar la lectura de archivos
-     if (!window.FileReader) {
-         swal({
-             title: "¡Ha ocurrido un error!",
-             text: "El navegador no soporta la lectura de archivos.",
-             icon: "info",
-         });
-         return false;
-     }
+    //El navegador debe soportar la lectura de archivos
+    if (!window.FileReader) {
+        swal({
+            title: "¡Ha ocurrido un error!",
+            text: "El navegador no soporta la lectura de archivos.",
+            icon: "info",
+        });
+        return false;
+    }
 
-     //El archivo debe ser una imagen
-     if (!(/\.(jpg|png|gif|jpeg)$/i).test(archivos[0].name)) {
-         swal({
-             title: "¡Ha ocurrido un error!",
-             text: "El archivo seleccionado no es un archivo de imágen. Por favor, seleccione un archivo de imágen válido.",
-             icon: "warning",
-         });
-         return false;
-     }
+    //El archivo debe ser una imagen
+    if (!(/\.(jpg|png|gif|jpeg)$/i).test(archivos[0].name)) {
+        swal({
+            title: "¡Ha ocurrido un error!",
+            text: "El archivo seleccionado no es un archivo de imágen. Por favor, seleccione un archivo de imágen válido.",
+            icon: "warning",
+        });
+        return false;
+    }
 
-     //El tamano del archivo no debe ser mayor a 15 MB
-     if ((archivos[0].size / 1048576) > 15) {
-         swal({
-             title: "¡Ha ocurrido un error!",
-             text: "El peso de la imágen no debe superar los 15 MB. Por favor, seleccione una imágen válida.",
-             icon: "warning",
-         });
-         return false;
-     }
-return true;
- }
- function CancelarEdicion(){
-     $('body').removeClass('modoEdicionFotografia')
-     $("#botonera-edicion").remove();
-     $("#contenedor-editor").remove();
-     my_cropper.clear();
-     my_cropper.reset();
-     delete my_cropper;
- }
+    //El tamano del archivo no debe ser mayor a 15 MB
+    if ((archivos[0].size / 1048576) > 15) {
+        swal({
+            title: "¡Ha ocurrido un error!",
+            text: "El peso de la imágen no debe superar los 15 MB. Por favor, seleccione una imágen válida.",
+            icon: "warning",
+        });
+        return false;
+    }
+    return true;
+}
+
+function CancelarEdicion() {
+    $('body').removeClass('modoEdicionFotografia')
+    $("#botonera-edicion").remove();
+    $("#contenedor-editor").remove();
+    my_cropper.clear();
+    my_cropper.reset();
+    delete my_cropper;
+}
