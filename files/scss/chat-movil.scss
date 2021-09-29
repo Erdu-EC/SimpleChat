@@ -140,6 +140,15 @@ Estilos version móvil
     align-items: center;
     align-content: center;
   }
+
+  /*estilos en imagenes enviadas*/
+  #frame .content .messages ul li.enviado .contenedor-imagen-enviada, #frame .content .messages ul li.recibido .contenedor-imagen-recibida{
+width: calc(100vw - 100px);
+    min-width: calc(100vw - 100px);
+    max-width: calc(100vw - 100px);
+
+  }
+  /*fin de estilos en imagenes enviadas*/
   #frame #panelInfoContacto.mostrar{
     height: 100vh;
     display: flex;
