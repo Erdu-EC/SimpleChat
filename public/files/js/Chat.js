@@ -179,13 +179,13 @@ function CargarEspacioDeChat() {
                         if (msg[7] === null)
                             mensaje = ObtenerElementoMensajeContacto(json.profile_img, msg[6], ObtenerHora(msg[4]));
                         else
-                            mensaje = ObtenerElementoImgContacto(json.profile_img, msg[7], msg[7], ObtenerHora(msg[4]))
+                            mensaje = ObtenerElementoImgContacto(json.profile_img, msg[7].split('\\').pop().split('/').pop(), msg[7], ObtenerHora(msg[4]))
                     } else {
                         if (msg[7] === null)
                             mensaje = ObtenerElementoMensaje(msg[6], ObtenerHora(msg[3]),
                                 msg[5] !== null ? 3 : msg[4] !== null ? 2 : 1);
                         else
-                            mensaje = ObtenerElementoImg(msg[7], msg[7], ObtenerHora(msg[3]),
+                            mensaje = ObtenerElementoImg(msg[7].split('\\').pop().split('/').pop(), msg[7], ObtenerHora(msg[3]),
                                 msg[5] !== null ? 3 : msg[4] !== null ? 2 : 1)
                     }
 
