@@ -17,8 +17,10 @@ const ObtenerElementoMensajeEnviado = mensaje => {
 };
 
 const ObtenerElementoImgContacto = (foto, nombre, url, fecha_envio) => {
-
-}
+const msg = $(ObtenerElementoMensajeContacto(foto, "", fecha_envio));
+msg.find('.cont-msj').addClass("contenedor-imagen-recibida").html('<img src="'+url+'" class="imagen-enviada"  title="nombre">');
+return msg;
+};
 
 const ObtenerElementoImgEnviada = (nombre, url_data) => {
     const msg = ObtenerElementoImg(nombre, url_data, null, null);

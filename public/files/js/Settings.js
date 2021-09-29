@@ -67,7 +67,7 @@ $(document).on("click", "#btn-opciones-perfil", function (e) {
 
 
 $(document).on("click", "#opc-ver-foto", function () {
-    MostrarModal("Mike Ross", '<img src="' + ObtenerUrlImagen($("#foto-perfil-cuenta")) + '" alt="" />', "", 'modal-fullscreen', "btn-close-white");
+    MostrarModal($("#foto-perfil-cuenta").attr("title"), '<img src="' + ObtenerUrlImagen($("#foto-perfil-cuenta")) + '" alt="" />', "", 'modal-fullscreen', "btn-close-white");
 });
 
 $(document).on('click', "#opc-subir-foto", function () {

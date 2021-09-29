@@ -556,6 +556,7 @@ function EnviarImagenEnChat(filename) {
             success: function (response) {
                 if (response[0]) {
                     mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
+                    mensaje.find('img').attr("title",response[1]);
                     progreso.remove();
                 } else {
                     swal({
@@ -578,21 +579,6 @@ function EnviarImagenEnChat(filename) {
     });
 }
 
-function BarradeCargaTemporal(progreso) {
-
-    var id = setInterval(frame, 10);
-    var width = 1;
-
-    function frame() {
-        if (width >= 100) {
-            clearInterval(id);
-            i = 0;
-        } else {
-            width++;
-            progreso.find(".barra").css("width", width + '%');
-        }
-    }
-}
 
 $(document).on("load", ".imagen-enviada", function () {
     $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));

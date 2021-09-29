@@ -8,7 +8,7 @@
 
 	$SESSION = new Session();
 	$USERNAME = $SESSION->user_name;
-
+$SHORT_NAME = $SESSION->user_shortname;
 	/** @var Collection $_VIEW */
 
 	//Obtener Fecha de nacimiento
@@ -44,6 +44,7 @@
                     <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
                         <div class="img-perfil-cuenta">
                             <img id="foto-perfil-cuenta" src="/files/profile/<?= $_VIEW->profile_img ?>?w=200&h=200"
+                                 title="<?=  $SHORT_NAME ?>"
                                  class="" alt=""/>
                             <div class="opciones" id="btn-opciones-perfil">
                                   <span class="material-icons">
