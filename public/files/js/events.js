@@ -527,8 +527,7 @@ function EnviarImagenEnChat(filename) {
 
         const progreso = $('<div class="barra-progreso"><div class="barra"></div></div>');
         const mensaje = ObtenerElementoImgEnviada(filename.split('\\').pop().split('/').pop(), URL.createObjectURL(blob));
-        mensaje.before(progreso);
-        BarradeCargaTemporal(progreso);
+
 
         $.ajax({
             url: '/action/users/chat/upload_img',
@@ -538,10 +537,24 @@ function EnviarImagenEnChat(filename) {
             processData: false,
             contentType: false,
             mimeType: 'application/json',
-            beforeSend: () => $("#lista-mensajes").append(mensaje),
+
+            xhr: function() {
+
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function(evt) {
+                    if (evt.lengthComputable) {
+                        var porcentaje = Math.trunc((evt.loaded / evt.total) *100);
+                        progreso.find('.barra').css("width",porcentaje+'%');
+                    }
+                }, false);
+
+                return xhr;
+            },
+            beforeSend: () =>{ $("#lista-mensajes").append(mensaje); mensaje.find(".contenedor-imagen-enviada").prepend(progreso);},
             success: function (response) {
                 if (response[0]) {
                     mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
+                    progreso.remove();
                 } else {
                     swal({
                         title: "¡Ha ocurrido un error!",
