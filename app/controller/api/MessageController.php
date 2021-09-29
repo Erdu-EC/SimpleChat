@@ -98,7 +98,6 @@
 				$data->messages[$i][7] = !empty($url_img) ? APP_URL::OfChatImage($data->messages[$i][7]) : null;
 			}
 
-
 			//Destruyendo variables.
 			unset($user_data);
 
