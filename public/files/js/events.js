@@ -525,15 +525,32 @@ $(document).on("input", "#archivo-imagen-enviar", function () {
       var tiempo = new Date();
 
        var nombre = 'img_' + tiempo.getDate() + tiempo.getMonth() + tiempo.getFullYear() + '_' + tiempo.getHours() + tiempo.getMinutes() + tiempo.getSeconds();
+
           var img = $('<li class="enviado"><div class="dir"></div><div class="cont-msj contenedor-imagen-enviada"><img class="imagen-enviada" id="' + nombre + '" title="' + nombre + '" tittle="' + nombre + '"></div></li>');
           $("#lista-mensajes").append(img);
+          var progreso = $('<div class="barra-progreso"><div class="barra"></div></div>');
 
-           var img = $('#' + nombre + '');
+          var img = $('#' + nombre + '');
+         img.before(progreso);
+         BarradeCargaTemporal(progreso);
        img.attr("src", URL.createObjectURL(blob));
      });
  }
 
+function BarradeCargaTemporal(progreso) {
 
+    var id = setInterval(frame, 10);
+    var width = 1;
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+            i = 0;
+        } else {
+            width++;
+            progreso.find(".barra").css("width",width+'%');
+        }
+    }
+}
 
 
 $(document).on("load", ".imagen-enviada", function () {

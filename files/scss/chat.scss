@@ -1752,7 +1752,7 @@ Fin de solicitud de chat
 
 }
 #frame .content .messages ul li.enviado .contenedor-imagen-enviada, #frame .content .messages ul li.recibido .contenedor-imagen-recibida {
-  display: flex;
+  display: block;
   padding: 3px;
 max-width: 340px;
 max-height: 340px;
@@ -1769,8 +1769,25 @@ max-width: 340px;
   border-radius: 0;
   margin: 0;
   cursor: pointer;
+}
+/*
+barra de progreso de envio de imagen
+*/
+.contenedor-imagen-enviada .barra-progreso{
+  width: 100%;
+  height: 5px;
+  background-color: #cccccc;
+  display: block;
+  border-radius: 2px;
 
 }
+.contenedor-imagen-enviada .barra-progreso .barra{
+  width: 1%;
+  height: 5px;
+  background-color: #3390ec;
+  border-radius: 2px;
+}
+
 
 
 #frame .content .messages ul li.enviado .cont-msj {
