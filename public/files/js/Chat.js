@@ -275,6 +275,8 @@ $(document).on('click', '.btn-agregar-contacto', function () {
     });
 });
 function SanearTexto(str) {
+    if (str === null) return null;
+
     var caracteres = {
         '&': '&amp;',
         '<': '&lt;',
