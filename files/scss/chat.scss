@@ -50,6 +50,7 @@ header.header-sitio {
 .page-loader {
 margin-left: auto;
   margin-right: auto;
+  margin-top: 10px;
   background-color: transparent;
   width: 80px;
   height: 80px;
@@ -2946,46 +2947,66 @@ Fin de estilos de botonera de edicion
 Carga de foto de perfil
 --------------------------------------------------------*/
 
-.ocultables {
+#ocultables {
   position: fixed;
   bottom: 15vh;
   right: 0;
   height: 60px;
   background-color: #FFFFFF;
-  z-index:1000;
+  z-index:10000;
   display: flex;
   flex-direction: row;
   align-items: center;
   border-radius: 3px 0 0 3px;
 }
-.ocultables:hover{
-  width: 100px;
-}
-.ocultables .barra-visible{
-height: 100%;
+
+
+#ocultables .barra-visible{
+height: 60px;
   width: 5px;
   background: #288795;
   margin-right: 5px;
 border-radius: 3px 0 0 3px;
 }
-.barra-progreso{
+
+#ocultables .indicador-carga{
   display: none;
 }
-.ocultables:hover .barra-progreso {
+#ocultables:hover .indicador-carga, #ocultables.visible .indicador-carga {
   display: block;
-  width: 85px;
-  background-color: #ddd;
-  height: 10px;
+}
+.indicador-carga .barra-progreso {
+  display: block;
+  width: 90px;
+  background-color: #8e8e8f;
+  height: 12px;
   border-radius: 5px;
+  font-size: 11px;
+  color: #FFFFFF;
+  text-align: center;
 }
 
-.ocultables:hover .barra-progreso .barra {
+.indicador-carga .barra-progreso .barra {
   width: 1%;
   height: 100%;
   background-color: #3390ec;
   border-radius: 5px;
 }
+.indicador-carga .porcentaje-progreso{
+  color: #FFFFFF;
+  position: absolute;
+  font-size: 10px;
+  text-align: center;
+  margin-top: -13px;
+  width: 100%;
+}
 
+.indicador-carga .barra-progreso-info {
+  margin-top: 5px;
+  color: #2B364F;
+  font-weight: 600;
+  font-size: 12px;
+}
 
 /*
 .ocultables .contenedor-loader{

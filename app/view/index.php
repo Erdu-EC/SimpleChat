@@ -293,19 +293,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
     </div>
 </div>
-<div class="ocultables">
-    <div class="barra-visible"></div>
-    <div class="barra-progreso">
-        <div class="barra"></div>
-    </div>
-    <!--
-    <div class="contenedor-loader">
-        <div class="circle-right"></div>
-        <div class="circle-left">
-            <div class="mask-left" style="transform: rotate(36deg);"></div>
-        </div>
-        <div class="text">60%</div>
-    </div> -->
+<div id="ocultables">
+<div class="barra-visible"></div>
 </div>
 <script type="application/javascript" src="/files/js/chat/MsgItems.js"></script>
 

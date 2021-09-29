@@ -378,7 +378,11 @@ function EnviarImagen() {
     my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,imageSmoothingQuality:"medium"}).toBlob(function (blob) {
         const formData = new FormData();
         formData.append('img', blob, archivo[0].name);
-console.log(blob);
+        var progreso = $('<div  id="" class="indicador-carga"><div class="barra-progreso"><div class="barra"></div></div><span class="porcentaje-progreso"></span><div  class="barra-progreso-info">Cargando foto</div></div>');
+        $("#ocultables").addClass("visible").append(progreso);
+        setTimeout(function () {
+            $("#ocultables").removeClass("visible");
+        },4000)
         $.ajax({
             url: '/action/users/profile/upload_img',
             type: 'post',
@@ -388,27 +392,21 @@ console.log(blob);
             contentType: false,
             mimeType: 'application/json',
             xhr: function() {
-                    var xhr = new window.XMLHttpRequest();
+
+                var xhr = new window.XMLHttpRequest();
                     xhr.upload.addEventListener("progress", function(evt) {
                         if (evt.lengthComputable) {
-                            var percentComplete = (evt.loaded / evt.total) *100;
-                            //Do something with upload progress here
-                            console.log(percentComplete);
-                        }
-                    }, false);
-
-                    xhr.addEventListener("progress", function(evt) {
-                        if (evt.lengthComputable) {
-                            var percentComplete = (evt.loaded / evt.total)*100;
-                            //Do something with download progress
-                            console.log(percentComplete);
+                            var porcentaje = Math.trunc((evt.loaded / evt.total) *100);
+                            console.log(porcentaje);
+                            progreso.find('.barra').css("width",porcentaje+'%');
+                            progreso.find('.porcentaje-progreso').text(porcentaje+'%');
                         }
                     }, false);
 
                     return xhr;
                 },
             success: function (response) {
-
+                progreso.remove();
                 if (response[0]) {
                     const reader = new FileReader();
                     reader.readAsDataURL(blob);
@@ -419,6 +417,15 @@ console.log(blob);
                         $('#profile-img').attr("src", reader.result);
                         $("#nueva-foto-perfil").val("");
                     };
+                    VanillaToasts.create({
+                        title: "SimpleChat",
+                        text: "Tu foto de perfil ha sido modificada",
+                        type: "success",
+                        icon: "/files/icon/icono.png",
+                        timeout: 2000,
+                        close: true
+                    });
+
                 } else {
                    swal({
                        title: "¡Ha ocurrido un error!",
