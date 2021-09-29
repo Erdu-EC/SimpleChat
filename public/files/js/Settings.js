@@ -49,8 +49,17 @@ $(document).on("click", "#btn-opciones-perfil", function (e) {
     $("#list-opciones").remove();
     var posX = (e.pageX - $(this).parent().offset().left) + 20;
     var posY = (e.pageY - $(this).parent().offset().top) + 80;
-    var caja = '<div class="contenedor-opciones" id="list-opciones"><ul> <li id="opc-ver-foto">Ver foto</li> <li id="opc-subir-foto">Subir foto</li></ul> </div>';
 
+    if(window.innerWidth <= 576) {
+        if((window.innerWidth - e.pageX) < 180 ){
+            posX= (e.pageX - 160);
+            }
+        else{
+            posX = (e.pageX );
+        }
+    }
+
+    var caja = '<div class="contenedor-opciones" id="list-opciones"><ul> <li id="opc-ver-foto">Ver foto</li> <li id="opc-subir-foto">Subir foto</li></ul> </div>';
     $(this).after(caja);
     $("#list-opciones").css("left", posX).css("top", posY);
 
@@ -366,10 +375,14 @@ $(document).on('input', "#nueva-foto-perfil", function () {
 function EnviarImagen() {
 
     const archivo = document.getElementById('nueva-foto-perfil').files;
-    my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,}).toBlob(function (blob) {
+    my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,imageSmoothingQuality:"medium"}).toBlob(function (blob) {
         const formData = new FormData();
         formData.append('img', blob, archivo[0].name);
-
+        var progreso = $('<div  id="" class="indicador-carga"><div class="barra-progreso"><div class="barra"></div></div><span class="porcentaje-progreso"></span><div  class="barra-progreso-info">Cargando foto</div></div>');
+        $("#ocultables").addClass("visible").append(progreso);
+        setTimeout(function () {
+            $("#ocultables").removeClass("visible");
+        },4000)
         $.ajax({
             url: '/action/users/profile/upload_img',
             type: 'post',
@@ -378,8 +391,22 @@ function EnviarImagen() {
             processData: false,
             contentType: false,
             mimeType: 'application/json',
-            success: function (response) {
+            xhr: function() {
 
+                var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function(evt) {
+                        if (evt.lengthComputable) {
+                            var porcentaje = Math.trunc((evt.loaded / evt.total) *100);
+                            console.log(porcentaje);
+                            progreso.find('.barra').css("width",porcentaje+'%');
+                            progreso.find('.porcentaje-progreso').text(porcentaje+'%');
+                        }
+                    }, false);
+
+                    return xhr;
+                },
+            success: function (response) {
+                progreso.remove();
                 if (response[0]) {
                     const reader = new FileReader();
                     reader.readAsDataURL(blob);
@@ -390,6 +417,15 @@ function EnviarImagen() {
                         $('#profile-img').attr("src", reader.result);
                         $("#nueva-foto-perfil").val("");
                     };
+                    VanillaToasts.create({
+                        title: "SimpleChat",
+                        text: "Tu foto de perfil ha sido modificada",
+                        type: "success",
+                        icon: "/files/icon/icono.png",
+                        timeout: 2000,
+                        close: true
+                    });
+
                 } else {
                    swal({
                        title: "¡Ha ocurrido un error!",

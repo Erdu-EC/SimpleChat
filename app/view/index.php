@@ -17,10 +17,30 @@
 
     <title><?= APP_NAME ?>: Inicio</title>
     <link rel="stylesheet" href="/files/scss/chat.scss">
+    <link rel="stylesheet" href="/files/scss/chat-movil.scss">
     <link rel="stylesheet" href="/files/vanillatoasts/vanillatoasts.css">
 </head>
 <body class=" sb-nav-fixed sb-sidenav-toggled">
-<audio src="/files/song/notification.mp3" id="audio-notificacion"></audio>
+<div id="preloader"><section id="espacio-temporal" class="no-visible-sm">
+        <div class="temporal">
+            <div class="cuerpo-temporal align-self-center">
+                <img src="/files/img/bg/fondo-tmp.svg" alt="" class="align-self-center">
+                <div class="page-loader"><span class="preloader-interior"></span></div>
+                <span class="bienvenida">Bienvenido(a) a <?= APP_NAME ?></span>
+                <p>Conéctate a SimpleChat desde cualquier dispositivo a través del navegador web de tu
+                    preferencia.</p>
+                <hr>
+                <div class="iconos-dispositivos">
+                    <span class="material-icons">desktop_windows</span>
+                    <span class="material-icons">laptop</span>
+                    <span class="material-icons">tablet_android</span>
+                    <span class="material-icons">tablet</span>
+                    <span class="material-icons">smartphone</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 <!-- Barra superior -->
 <header class="header-sitio"><?php require 'template/Header.php' ?></header>
 <!-- Fin de barra superior -->
@@ -43,14 +63,15 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
         </div>
         <div id="listaTodosContactos">
             <div id="sin-resultados">
+                <span>Mis contactos</span>
             </div>
-
-            <ul id="lista-contactos" class="no-seleccionable">
-
-            </ul>
             <ul id="lista-contactos-buscar" class="no-seleccionable">
 
             </ul>
+            <ul id="lista-contactos" class="no-seleccionable">
+
+            </ul>
+
 
         </div>
     </div>
@@ -118,7 +139,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     <div id="layoutSidenav_content">
 
                 <article id="frame">
-                    <section id="sidepanel" class="no-visible-sm">
+                    <section id="sidepanel" class="">
 
                         <div class="img-perfil no-seleccionable" id="mi-perfil-sidepanel">
                             <img src="<?= $SESSION_USER_PROFILE_IMG ?>?w=100&h=100" alt=""/>
@@ -144,7 +165,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                                          class="img-fluid"> <span>Nuevo chat</span></button>
                         </div>
                     </section>
-                    <section id="espacio-temporal">
+                  <!--  <section id="espacio-temporal">
                         <div class="temporal">
                             <div class="cuerpo-temporal align-self-center">
                                 <img src="/files/img/bg/fondo-tmp.svg" alt="" class="align-self-center">
@@ -162,6 +183,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             </div>
                         </div>
                     </section>
+                    -->
 
                     <section class="content" id="espacio-de-chat" style="display: none">
                         <section class="contact-profile no-seleccionable">
@@ -169,8 +191,8 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                 <img src="/files/profile/undefined-photo.png?w=40&h=40" alt="" class="img-contacto">
 
                             <div class="chat-conexion">
-                                <span class="nombre-chat">Desconocido</span>
-                                <span class="ult-conex">Desconocido</span>
+                                <div class="nombre-chat">Desconocido</div>
+                                <div class="ult-conex">Desconocido</div>
                             </div>
 
                             <div class="opciones-contacto">
@@ -193,19 +215,17 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </div>
 
                         <div class="message-input" id="espacio-de-escritura">
-                            <div class="utiles">
+                            <div class="utiles no-seleccionable">
                                 <div class="emojis">
                                     <span class="material-icons" id="btn-emojis">sentiment_satisfied_alt</span>
-
                                 </div>
-
                             </div>
                             <div class="wrap">
-                                <label for="contenido-mensaje" style="display: none"></label>
-                                <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..."/>
-
-                                <button class=" btn" id="btn-enviar-mensaje"><span class="material-icons me-2">send</span></button>
+                              <!--  <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..." size="2"/>
+-->                                    <div class="entrada-placeholder">Escribe un mensage aquí...</div>
+                                    <div id="contenido-mensaje" contenteditable="true" spellcheck="true"></div>
                             </div>
+                            <button class="btn" id="btn-enviar-mensaje"><i class="fas fa-paper-plane"></i></button>
                             <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" id="archivo-imagen-enviar">
                             <div id="icon-archivo-imagen">
                                 <i class="fas fa-camera"></i>
@@ -217,7 +237,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                     </section>
 
                     <section class="" id="panelInfoContacto">
-                        <button id="btn-cerrar-contacto"><span class="material-icons">chevron_right</span></button>
+                        <button id="btn-cerrar-contacto"><span class="material-icons">arrow_back</span></button>
                         <div class="contenedor-perfil">
                             <div class="card perfil">
                                 <img src="" alt="" class="img-fluid foto-perfil away">
@@ -273,7 +293,9 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
     </div>
 </div>
-
+<div id="ocultables">
+<div class="barra-visible"></div>
+</div>
 <script type="application/javascript" src="/files/js/chat/MsgItems.js"></script>
 
 <script type="application/javascript" src="/files/js/emojis.min.js"></script>

@@ -136,8 +136,8 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
                 } else if (json.length === 0) {
                     msg_error.html('<span >No se han encontrado coincidencias.</span>');
                 } else {
-                    msg_error.empty();
-                    lista_resultados.html('');
+                    msg_error.html('<span >Resultados</span>');
+                    lista_resultados.html();
 
                     json.forEach((registro) => {
                         var estado=Clase_Segun_Estado(registro[4]);
@@ -197,7 +197,7 @@ const ObtenerElementoContactoBuscado = (usuario, nombres, apellidos, foto_perfil
                                     <span class="nombre-contacto">${nombres} ${apellidos}</span>
 
                                     <div class="nombre-usuario">
-                                         ${(esContacto) ? '<span class="material-icons icon-usuario">person</span>': '<span class="material-icons icon-usuario">person</span>'}
+                                         ${(esContacto) ? '<i class="fas fa-user-check"></i>': '<i class="fas fa-user-plus"></i>'}
                                                             ${usuario}
                                     </div>
                                 </div>
@@ -215,7 +215,7 @@ const ObtenerElementoContacto = (usuario, nombres, apellidos, ultima_conexion, f
                                     <span class="nombre-contacto">${nombres} ${apellidos}</span>
 
                                     <div class="nombre-usuario">
-                                        <span class="material-icons icon-usuario">person</span>
+                                        <i class="fas fa-user"></i>
 ${usuario}
                                         </div>
                                         <di class="ult-conexion-contacto">

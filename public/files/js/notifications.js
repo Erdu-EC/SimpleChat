@@ -73,6 +73,8 @@ function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
 function ShowNotificationWithObject(titulo, opciones) {
     if (window.Notification) {
         const n = new Notification(titulo, opciones);
+        setTimeout(n.close.bind(n), 3500);
+
         n.onclick = () => {
             window.focus();
         }
@@ -84,10 +86,12 @@ function ShowNotificationWithObject(titulo, opciones) {
 
 function MensajeNuevo(origen, titulo, mensaje, imagen) {
     if (document.hasFocus()) {
+        mensaje = SanearTexto(mensaje);
+
         VanillaToasts.create({
             title: titulo,
             text: mensaje,
-            type: "info",
+            type: "success",
             icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",
             timeout: 2000,
             close: true
