@@ -231,7 +231,7 @@ BEGIN
 END $
 
 #Procedimientos para mensajes.
-CREATE OR REPLACE FUNCTION user_SendMessage(source int, dest int, msg text, img text) RETURNS INT
+CREATE FUNCTION user_SendMessage(source int, dest int, msg text, img text) RETURNS INT
     MODIFIES SQL DATA
 BEGIN
     #Si usuario no pertenece a los contactos del destinario

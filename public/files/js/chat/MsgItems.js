@@ -25,6 +25,7 @@ return msg;
 const ObtenerElementoImgEnviada = (nombre, url_data) => {
     const msg = ObtenerElementoImg(nombre, url_data, null, null);
     msg.find('.extra-mensaje').html('<div class="enviando"></div>');
+
     return msg;
 };
 

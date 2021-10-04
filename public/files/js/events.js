@@ -14,6 +14,9 @@ $("#icon-indicador-mensaje").on("click", function () {
 history.pushState(null, document.title, location.href);
 window.addEventListener('popstate', function (event) {
     history.pushState(null, document.title, location.href);
+    if($("#espacio-de-chat").length & (window.innerWidth < 576)){
+        $("#btn-chat-atras").trigger("click")
+    }
     console.log("Hacia atras");
 });
 
@@ -62,16 +65,11 @@ $(window).resize(function () {
 
 function VistaMovil() {
     if (window.innerWidth > 576) {
-        /* $('#LateralMenu li.active').removeClass('active');
-         if($("#espacio-de-chat .messages").length){
-             var usuario = $('#espacio-de-chat .messages').attr('data-nick')
-             $('#lista-conversaciones .contact .elemento-conversacion[data-usurio="'+usuario+'"]').addClass("active");
-             console.log(usuario);
-         }*/
+             var usuario = $('#espacio-de-chat .messages').attr('data-nick');
+             if(usuario){
+             $('#lista-conversaciones .contact .elemento-conversacion[data-usuario="'+usuario+'"]').parent().addClass("active");
+             }
     }
-    /*else{
-        $('#seccion-conversaciones').parent().addClass('active')
-    }*/
 }
 
 /*
@@ -505,8 +503,8 @@ $(document).on("input", "#archivo-imagen-enviar", function () {
             reader.onload = function () {
                 image.src = reader.result;
                 LanzarEditor(image, NaN);
+
             };
-            $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
             return;
         }
 
@@ -527,7 +525,7 @@ function EnviarImagenEnChat(filename) {
         const progreso = $('<div class="barra-progreso"><div class="barra"></div></div>');
         const mensaje = ObtenerElementoImgEnviada(filename.split('\\').pop().split('/').pop(), URL.createObjectURL(blob));
 
-
+var remitente= $('#espacio-de-chat > div').attr('data-nick');
         $.ajax({
             url: '/action/users/chat/upload_img',
             type: 'post',
@@ -551,13 +549,22 @@ function EnviarImagenEnChat(filename) {
             },
             beforeSend: () => {
                 $("#lista-mensajes").append(mensaje);
+                $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
                 mensaje.find(".contenedor-imagen-enviada").prepend(progreso);
+
             },
             success: function (response) {
                 if (response[0]) {
                     mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
                     mensaje.find('img').attr("title",response[1]);
                     progreso.remove();
+                    //Actualizar item de conversación.
+                    let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${remitente}]`).parent();
+                    console.log(remitente);
+                    elemento_conversacion.prependTo($('#lista-conversaciones'));
+                    elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span> <span class="material-icons icon-indicador">attach_file</span> Archivo de imagen');
+                    elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
+
                 } else {
                     swal({
                         title: "¡Ha ocurrido un error!",

@@ -43,7 +43,7 @@ $(document).on("click", "#btn-habilitar-notificaciones", function () {
 
 
 function NotificacionesEscritorio(origen, titulo, mensaje, imagen) {
-    if (!document.hasFocus()) {
+    if (! (document.hasFocus())) {
         const opciones = {
             body: mensaje,
             icon: imagen === null ? "/files/icon/icono.png" : imagen + "?w=50&h=50",

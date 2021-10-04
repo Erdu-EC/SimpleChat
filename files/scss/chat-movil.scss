@@ -143,8 +143,7 @@ Estilos version móvil
 
   /*estilos en imagenes enviadas*/
   #frame .content .messages ul li.enviado .contenedor-imagen-enviada, #frame .content .messages ul li.recibido .contenedor-imagen-recibida{
-width: calc(100vw - 100px);
-    min-width: calc(100vw - 100px);
+width: auto;
     max-width: calc(100vw - 100px);
 
   }

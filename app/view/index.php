@@ -293,7 +293,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
     </div>
 </div>
-<div id="ocultables">
+<div id="ocultables" style="display: none">
 <div class="barra-visible"></div>
 </div>
 <script type="application/javascript" src="/files/js/chat/MsgItems.js"></script>

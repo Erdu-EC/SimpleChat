@@ -1258,15 +1258,16 @@ border-radius: 50%;
   overflow: hidden;
   transition: 1s all ease;
 height: 21px;
+  display: flex;
+  align-items: center;
 
 }
 #frame #sidepanel #contacts ul li.contact .wrap .meta .preview .icon-indicador {
-margin-top: auto;
-  font-size: 13px;
+
+  font-size: 15px;
   color: #a7a7a7;
   margin-right: 5px;
 height: 15px;
-vertical-align: bottom;
   }
 #frame #sidepanel #contacts ul li.contact .wrap .meta .preview i.icon-indicador{
 
@@ -2953,6 +2954,13 @@ Estilos de botonera de edicion
 @media screen  and (max-width: 576px ){
   #botonera-edicion .edicion-desplazamiento, #botonera-edicion .edicion-zoom , #botonera-edicion #edicion-encuadre{
     display: none;
+  }
+
+  #botonera-edicion{
+    position: fixed;
+  }
+  #contenedor-editor{
+    position: fixed;
   }
 }
 

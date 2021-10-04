@@ -162,7 +162,6 @@ function ValoresPorDefecto() {
     $("#genero option:selected").attr("selected", false);
     genero.val(genero.attr("data-src"));
 
-    console.log($("#genero option:selected").val());
     telefono.val(telefono.attr("data-src"));
     correo.val(correo.attr("data-src"));
 
@@ -379,7 +378,7 @@ function EnviarImagen() {
         const formData = new FormData();
         formData.append('img', blob, archivo[0].name);
         var progreso = $('<div  id="" class="indicador-carga"><div class="barra-progreso"><div class="barra"></div></div><span class="porcentaje-progreso"></span><div  class="barra-progreso-info">Cargando foto</div></div>');
-        $("#ocultables").addClass("visible").append(progreso);
+        $("#ocultables").show().addClass("visible").append(progreso);
         setTimeout(function () {
             $("#ocultables").removeClass("visible");
         },4000)
@@ -397,7 +396,6 @@ function EnviarImagen() {
                     xhr.upload.addEventListener("progress", function(evt) {
                         if (evt.lengthComputable) {
                             var porcentaje = Math.trunc((evt.loaded / evt.total) *100);
-                            console.log(porcentaje);
                             progreso.find('.barra').css("width",porcentaje+'%');
                             progreso.find('.porcentaje-progreso').text(porcentaje+'%');
                         }
@@ -434,6 +432,7 @@ function EnviarImagen() {
                        button:"Ok",
                    });
                 }
+                $("#ocultables").hide();
             },
             error: function (){
                 swal({

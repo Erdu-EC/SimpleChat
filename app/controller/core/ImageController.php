@@ -185,7 +185,7 @@
 							unset($user);
 
 							//Devolviendo respuesta.
-							die(json_encode([true, $img_name]));
+							die(json_encode([true,$img_name ]));
 						} else {
 							//Devolviendo respuesta negativa.
 							die(json_encode([false, 7]));
