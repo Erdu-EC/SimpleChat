@@ -132,6 +132,9 @@ Estilos version móvil
     height: auto;
     width: auto;
   }
+  #frame .content .contact-profile .chat-conexion .nombre-chat {
+    font-size: 1.1rem;
+  }
   #frame .content .messages #lista-mensajes{
     padding: 10px;
   }
@@ -145,7 +148,7 @@ Estilos version móvil
   #frame .content .messages ul li.enviado .contenedor-imagen-enviada, #frame .content .messages ul li.recibido .contenedor-imagen-recibida{
 width: auto;
     max-width: calc(100vw - 100px);
-
+    min-width: auto;
   }
   /*fin de estilos en imagenes enviadas*/
   #frame #panelInfoContacto.mostrar{
@@ -220,6 +223,20 @@ top: 10px;
     width: 100vw;
     height: auto;
   }
+
+  /* Vista de imagenes - Modal */
+
+  .modal-fullscreen .modal-content .modal-header h5{
+    width: calc(100% - 60px);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1rem;
+  }
+
+
+
+
 }
 
 

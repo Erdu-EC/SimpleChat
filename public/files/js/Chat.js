@@ -148,7 +148,7 @@ function CargarEspacioDeChat() {
 
                 //Estableciendo datos.
                 espacio_chat.find('.messages').attr('data-usuario', json.id).attr('data-nick', nombre_usuario);
-                contenedor_datos.find('img').attr('src', null).attr('src', json.profile_img + '?w=40&h=40');
+                contenedor_datos.find('img').attr('src', null).attr('src', json.profile_img + '?w=37&h=37');
                 contenedor_datos.find('.nombre-chat').text(json.full_name);
                 contenedor_datos.find('.ult-conex').text(json.state);
 

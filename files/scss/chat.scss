@@ -1464,6 +1464,7 @@ width: 100%;
 
 #frame .content .contact-profile .chat-conexion .nombre-chat {
 display: flex;
+  flex-grow: 1;
   height: 30px;
   max-height: 30px;
   font-size: 1.2rem;
@@ -1471,10 +1472,8 @@ display: flex;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  overflow: hidden;
   align-items: center;
-  padding: 0 5px 0 0;
-  box-sizing:content-box;
+  padding: 0;
 }
 #frame .content .contact-profile .chat-conexion .ult-conex{
   display: flex;
@@ -1491,6 +1490,7 @@ display: flex;
   color: black;
   font-family: Roboto, sans-serif;
   background-color: rgba(40, 135, 139, 0.55);
+  margin: 5px;
 }
 #frame .content .contact-profile .opciones-contacto div{
   width: 12vw;
@@ -2744,6 +2744,7 @@ padding: 0;
 }
 .modal-fullscreen .modal-content .modal-body {
   justify-content: center;
+  align-items: center;
   display: flex;
 }
   /*

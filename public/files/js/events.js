@@ -14,8 +14,16 @@ $("#icon-indicador-mensaje").on("click", function () {
 history.pushState(null, document.title, location.href);
 window.addEventListener('popstate', function (event) {
     history.pushState(null, document.title, location.href);
-    if($("#espacio-de-chat").length & (window.innerWidth < 576)){
-        $("#btn-chat-atras").trigger("click")
+    if(window.innerWidth < 576)
+    {
+        if($("#panelInfoContacto").length){
+
+            $("#btn-cerrar-contacto").trigger("click")
+    }
+        else if($("#espacio-de-chat").length ){
+            $("#btn-chat-atras").trigger("click")
+        }
+
     }
     console.log("Hacia atras");
 });
@@ -65,6 +73,7 @@ $(window).resize(function () {
 
 function VistaMovil() {
     if (window.innerWidth > 576) {
+
              var usuario = $('#espacio-de-chat .messages').attr('data-nick');
              if(usuario){
              $('#lista-conversaciones .contact .elemento-conversacion[data-usuario="'+usuario+'"]').parent().addClass("active");
