@@ -1,31 +1,17 @@
 //desactivar boton atras
-$("#icon-indicador-mensaje").on("click", function () {
-    /**/
-    VanillaToasts.create({
-        title: "Hola",
-        text: "este es un ejemplo de mensaje largo asi que no te preocupes por meter texto demsaiado largo en tus alertas, este es un ejemplo de mensaje largo asi que no te preocupes por meter texto demsaiado largo en tus alertas, este es un ejemplo de mensaje largo asi que no te preocupes por meter texto demsaiado largo en tus alertas, este es un ejemplo de mensaje largo asi que no te preocupes por meter texto demsaiado largo en tus alertas, este es un ejemplo de mensaje largo asi que no te preocupes por meter texto demsaiado largo en tus alertas",
-        type: "success",
-        icon: "/files/icon/icono.png",
-        timeout: 30000,
-        close: true
-    });
-});
-
 history.pushState(null, document.title, location.href);
 window.addEventListener('popstate', function (event) {
     history.pushState(null, document.title, location.href);
     if(window.innerWidth < 576)
     {
         if($("#panelInfoContacto").length){
-
             $("#btn-cerrar-contacto").trigger("click")
-    }
-        else if($("#espacio-de-chat").length ){
+        }
+        else if(! $("#espacio-de-chat").hasClass("no-visible-sm") ){
             $("#btn-chat-atras").trigger("click")
         }
 
     }
-    console.log("Hacia atras");
 });
 
 $(window).on("load", function () {

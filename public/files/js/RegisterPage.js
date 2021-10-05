@@ -241,7 +241,7 @@ var continuar = true;
                             IndicarError("Verifique que ambas contraseñas coinciden. 8 caracteres mín. y 60 caracteres máx.")
                             break;
                         case 10:
-                            IndicarError("No se ha podido registrar el usuario en SimpleChat. Intente nuevamente.");
+                            IndicarError("El nombre de usuario ya se encuentra en uso. Por favor introduzca otro nombre de usuario e intente nuevamente.");
                             break;
                         default:
                             $("#contenedor-mensajes").append('<div class="mensaje-error verificar"><span class="material-icons">error</span>Error desconocido, registro no completado.</div>');

@@ -198,7 +198,7 @@
 						die(json_encode([false, 11]));
 
 					//Insertando registro.
-					$img = $this->AsignarImagenPorDefecto($gender);
+					$img = $this->AsignarImagenPorDefecto($gender, $user);
 					$db->Execute('INSERT INTO users(user_name, pass, first_name, last_name,birth_date, gender,create_at, profile_img, phone,email ) VALUES (:user, :pass, :first, :last, :birth, :gender, NOW(), :profile_img, :phone, :email)', [
 						'user' => $user,
 						'pass' => $pass,
@@ -271,7 +271,6 @@
 			if (!$this->ValidarCorreo($email)) {
 				die(json_encode([false, 7]));
 			}
-			file_put_contents('../archivo_25_08_21.txt', "La validacion ha sido correcta", FILE_APPEND);
 
 			try {
 				//Estableciendo conexión con BD.
@@ -381,7 +380,7 @@
 			return true;
 		}
 
-		private function AsignarImagenPorDefecto($genero) {
+		private function AsignarImagenPorDefecto($genero, $usuario) {
 			$nombre_imagen = "";
 			if ($genero == 'M') {
 				$nombre_imagen = "photo-profile-ma-" . rand(1, 3) . ".png";
@@ -390,6 +389,8 @@
 			} else {
 				$nombre_imagen = "undefined-photo.png";
 			}
+           copy("../upload/profile/$nombre_imagen","../upload/profile/$usuario.png");
+            $nombre_imagen= "$usuario.png";
 			return $nombre_imagen;
 		}
 
