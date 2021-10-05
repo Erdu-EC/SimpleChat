@@ -162,38 +162,27 @@
 			$pass_rep = empty($_POST['p_rep']) ? null : (string)$_POST['p_rep'];
 
 			//Comprobaciones.
-			if (Session::IsLogin()) {
-				file_put_contents('../archivo_25_08_21.txt', "\nYa se ha registrado un usuario", FILE_APPEND);
+			if (Session::IsLogin())
 				die(json_encode([false, 0]));
-			} else if (!$this->Iniciar()) {
-				file_put_contents('../archivo_25_08_21.txt', "\nUn campos vacio", FILE_APPEND);
+			else if (!$this->Iniciar())
 				die(json_encode([false, 1]));
-			} else if (!$this->ValidarNombreApellido($first_name)) {
-				file_put_contents('../archivo_25_08_21.txt', "\nNOmbre Invalido", FILE_APPEND);
+			else if (!$this->ValidarNombreApellido($first_name))
 				die(json_encode([false, 2]));
-			} else if (!$this->ValidarNombreApellido($last_name)) {
-				file_put_contents('../archivo_25_08_21.txt', "\nApellido Invalido", FILE_APPEND);
+			else if (!$this->ValidarNombreApellido($last_name))
 				die(json_encode([false, 3]));
-			} else if (!$this->ValidarGenero($gender)) {
-				file_put_contents('../archivo_25_08_21.txt', "\nGenero no valido", FILE_APPEND);
+			else if (!$this->ValidarGenero($gender))
 				die(json_encode([false, 4]));
-			} else if (!$this->ValidarFechanacimiento($birthday)) {
-				file_put_contents('../archivo_25_08_21.txt', "\nFecha no valida", FILE_APPEND);
+			else if (!$this->ValidarFechanacimiento($birthday))
 				die(json_encode([false, 5]));
-			} else if (!$this->ValidarTelefono($phone)) {
-				file_put_contents('../archivo_25_08_21.txt', "\nTelefono no valido", FILE_APPEND);
+			else if (!$this->ValidarTelefono($phone))
 				die(json_encode([false, 6]));
-			} else if (!$this->ValidarCorreo($email)) {
-				file_put_contents('../archivo_25_08_21.txt', "\nCorreo no valido", FILE_APPEND);
+			else if (!$this->ValidarCorreo($email))
 				die(json_encode([false, 7]));
-			} else if (!UserModel::IsValidUserName($user)) {
-				file_put_contents('../archivo_25_08_21.txt', "\nNombre de usuario no valido", FILE_APPEND);
+			else if (!UserModel::IsValidUserName($user))
 				die(json_encode([false, 8]));
-			} else if (!$this->ValidarContrasena($pass, $pass_rep)) {
-				file_put_contents('../archivo_25_08_21.txt', "\nContrasena no valida", FILE_APPEND);
+			else if (!$this->ValidarContrasena($pass, $pass_rep))
 				die(json_encode([false, 9]));
-			}
-			file_put_contents('../archivo_25_08_21.txt', "Todo ha sido valido", FILE_APPEND);
+
 
 			try {
 				//Estableciendo conexión con BD.
