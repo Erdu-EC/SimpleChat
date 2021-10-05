@@ -98,10 +98,9 @@ function EnviarMensaje() {
 
                     //Si no existe conversacion, agregarla.
                     if (elemento_conversacion.length === 0) {
-                       let e_chat = $("#espacio-de-chat");
                         elemento_conversacion = $('<li>', {
                             class: 'contact',
-                            html: ObtenerElementoConversacion(usuario_nick, e_chat.find('.nombre-chat').text(), '', e_chat.find('.img-contacto').attr('src').split("?")[0], null, null, texto, new Date(), new Date(), null,null)
+                            html: ObtenerElementoConversacion(usuario_nick, espacio_chat.parent().find('.nombre-chat').text(), '', espacio_chat.parent().find('.img-contacto').attr('src').split("?")[0], null, null, texto, new Date(), new Date(), null,null)
 
                         });
                     }
