@@ -95,6 +95,15 @@ function EnviarMensaje() {
 
                     //Actualizar item de conversación.
                     let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${usuario_nick}]`).parent();
+
+                    //Si no existe conversacion, agregarla.
+                    if (elemento_conversacion.length === 0) {
+                        elemento_conversacion = $('<li>', {
+                            class: 'contact',
+                            html: ObtenerElementoConversacion(usuario_nick, espacio_chat.find('.nombre-chat').text(), '', espacio_chat.find('.img-contacto').attr('src'), null, null, texto, new Date(), new Date(), null,null)
+                        });
+                    }
+
                     elemento_conversacion.prependTo($('#lista-conversaciones'));
                     elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span>' + texto);
                     elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
