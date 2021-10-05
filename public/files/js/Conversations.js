@@ -50,7 +50,7 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
     `<div class="wrap elemento-conversacion" data-usuario="${usuario_id}">
 <div class="conversacion-perfil">
 <span class="contact-status ${estado}"></span>
-        <img src="${foto_perfil}?w=100&h=100" alt="" />
+        <img src="${foto_perfil}?w=40&h=40" alt="" />
 </div>
         
         <div class="meta">

@@ -45,8 +45,7 @@ function TratarMensajes(mensajes) {
 
 
         if (row.user_name === $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario")){
-            MostrarMensajeEnEspacioDeChat(nombre, row);
-        console.log("coinciden");}
+            MostrarMensajeEnEspacioDeChat(nombre, row);}
         else {
             MensajeNuevo(row.id, nombre, row.content, row.profile);
 
