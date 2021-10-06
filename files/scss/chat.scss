@@ -1195,7 +1195,7 @@ background: #f2f2f2;
   font-size: 0.9em;
   cursor: pointer;
   padding: 0;
-
+  border-bottom: 1px solid #32465a;
 }
 #frame #sidepanel #contacts ul li.contact:hover {
   background: #32465a;
@@ -1270,9 +1270,9 @@ height: 21px;
 height: 15px;
   }
 #frame #sidepanel #contacts ul li.contact .wrap .meta .preview i.icon-indicador{
-
-  font-size: 11px;
-  align-items: end;
+display: flex;
+  align-items: center;
+  font-size: 12px;
   padding: 0;
   margin-bottom: 0px;
 }

@@ -557,7 +557,7 @@ var remitente= $('#espacio-de-chat > div').attr('data-nick');
                     let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${remitente}]`).parent();
                     console.log(remitente);
                     elemento_conversacion.prependTo($('#lista-conversaciones'));
-                    elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span> <span class="material-icons icon-indicador">attach_file</span> Archivo de imagen');
+                    elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span> <span class="material-icons icon-indicador">image</span> Archivo de imagen');
                     elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
 
                 } else {
