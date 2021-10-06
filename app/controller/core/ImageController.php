@@ -170,9 +170,9 @@
 							}
 
 							//Devolviendo respuesta negativa.
-							die(json_encode([false, 5]));
-						} else
 							die(json_encode([false, 7]));
+						} else
+							die(json_encode([false, 8]));
 						break;
 					case 'chat':
 						//Obteniendo contacto y nombre con que se guardara el fichero.
@@ -188,7 +188,7 @@
 							die(json_encode([true,$img_name ]));
 						} else {
 							//Devolviendo respuesta negativa.
-							die(json_encode([false, 7]));
+							die(json_encode([false, 9]));
 						}
 					default:
 						break;
@@ -201,7 +201,7 @@
 				if (move_uploaded_file($file['tmp_name'], self::GetPathOfType($type, $img_name)) !== false) {
 					die(json_encode([true]));
 				} else
-					die(json_encode([false, 8]));
+					die(json_encode([false, 10]));
 			}
 		}
 
