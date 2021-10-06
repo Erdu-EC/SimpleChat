@@ -327,7 +327,7 @@ BEGIN
 
     UPDATE message set rcv_date = NOW() where id in (select id from unrcv_messages);
 
-    select u.id, u.user_name, u.first_name, u.last_name, u.profile_img as profile, mr.content, mr.send_date
+    select u.id, u.user_name, u.first_name, u.last_name, u.profile_img as profile, mr.content, mr.content_img, mr.send_date
     from message_readable mr
              inner join users u on id_source = u.id
     where id_dest = USER_ID

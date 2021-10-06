@@ -63,7 +63,7 @@ function TratarMensajes(mensajes) {
 
         //Mostrar vista previa del mensaje en lista de conversaciones.
         elemento_contacto.find('.hora-ult-mesj').text(Fecha_hora_ultima_Mensaje(row.send_date));
-        elemento_contacto.find('.preview').text(row.content);
+        elemento_contacto.find('.preview').text(row.content_img !== null ? 'Imagen' : row.content);
 
         //Actualizar total de conversaciones no leidas.
         ActualizarTotalDeConversacionesNoLeidas();
@@ -71,7 +71,13 @@ function TratarMensajes(mensajes) {
 }
 
 function MostrarMensajeEnEspacioDeChat(nombre, datos) {
-    const mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, ObtenerHora(datos.send_date)));
+    let mensaje;
+
+    if (datos.content_img !== null){
+        mensaje = ObtenerElementoImgContacto(datos.profile, datos.content_img.split('\\').pop().split('/').pop(), datos.content_img, ObtenerHora(datos.send_date));
+    }else
+        mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, ObtenerHora(datos.send_date)));
+
 
     AgregarMensajeEnEspacioDeChat(mensaje, datos.send_date);
     mensaje[0].scrollIntoView();

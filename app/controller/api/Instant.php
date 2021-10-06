@@ -44,8 +44,10 @@ class Instant
                 HttpResponse::SetContentType(MimeType::Json);
 
                 //Modificando datos.
-                for ($i = 0; $i < count($msg_data); $i++)
-                    $msg_data[$i]->profile = APP_URL::OfImageProfile($msg_data[$i]->profile);
+                for ($i = 0; $i < count($msg_data); $i++){
+					$msg_data[$i]->profile = APP_URL::OfImageProfile($msg_data[$i]->profile);
+					$msg_data[$i]->content_img = !empty($msg_data[$i]->content_img) ? APP_URL::OfChatImage($msg_data[$i]->content_img) : null;
+				}
 
 				//Modificando valores.
 				for($i = 0; $i < count($inv_data); $i++)
