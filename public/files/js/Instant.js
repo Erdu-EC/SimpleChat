@@ -52,6 +52,10 @@ function TratarMensajes(mensajes) {
             }
             MensajeNuevo(row.id, nombre, row.content, row.profile);
 
+            // Agregar mensaje a la lista de mensajes en buffer
+
+            AgregarMensajesABufferChat(row);
+
             //Contar mensajes no leidos.
             const msg_pendientes = elemento_contacto.find('.num-msj-pendientes.online span');
 
@@ -120,4 +124,28 @@ function TratarInvitaciones(inv_list) {
 
         NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, elemento.find('.preview').text(), row.profile);
     })
+}
+
+
+function AgregarMensajesABufferChat(datos){
+if (buffer_chat.has(datos.user_name)){
+    let mensaje;
+    if (datos.content_img !== null){
+        datos.content= nombre +" te ha enviado una imagen.";
+        mensaje = ObtenerElementoImgContacto(datos.profile, datos.content_img.split('\\').pop().split('/').pop(), datos.content_img, ObtenerHora(datos.send_date));
+    }else {
+
+        mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, ObtenerHora(datos.send_date)));
+
+    }
+
+
+
+    let espacio_chat = $(buffer_chat.get(datos.user_name));
+    espacio_chat.find("#lista-mensajes").append(mensaje);
+    buffer_chat.set(datos.user_name,espacio_chat  );
+    return;
+}
+
+    console.log("No se encuentra la conversacion en buffer");
 }
