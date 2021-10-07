@@ -134,7 +134,11 @@ function CargarEspacioDeChat() {
     li_contenedor.addClass("active");
     const nombre_usuario = $(this).attr('data-usuario');
     const espacio_chat = $('#espacio-de-chat');
+    //Buffer de borradores y de mensajes
     Buffer_Borradores(usr_ant, nombre_usuario, $('#contenido-mensaje').text());
+    if(Buffer_Conversaciones(usr_ant, nombre_usuario)){
+        return;
+    }
     espacio_chat.find('> *').hide();
     espacio_chat.append(`
         <div class="cargando d-flex h-100">
@@ -316,4 +320,17 @@ function Buffer_Borradores(contacto_ant, contacto_act, borrador) {
         $("#contenido-mensaje").text("");
     }
 
+}
+const buffer_chat = new Map();
+function Buffer_Conversaciones(contacto_ant,contacto_act){
+    if(! (contacto_ant)){return false;}
+
+    buffer_chat.set(contacto_ant, $("#espacio-de-chat").clone().html());
+    if (buffer_chat.has(contacto_act)) {
+        $("#espacio-de-chat").html(buffer_chat.get(contacto_act));
+        $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+        return true;
+    }
+
+    return false;
 }
