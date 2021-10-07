@@ -2,7 +2,7 @@ $(document).ready(function () {
     if (!Notification) {
         VanillaToasts.create({
             title: "SimpleChat",
-            text: "La version actual de tu navegador no soporta las notificaciones de escritorio",
+            text: "La versión actual de tu navegador no soporta las notificaciones de escritorio",
             type: "error",
             icon: "/files/icon/icono.png",
             timeout: 10000,

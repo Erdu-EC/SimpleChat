@@ -47,6 +47,9 @@ function TratarMensajes(mensajes) {
         if (row.user_name === $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario")){
             MostrarMensajeEnEspacioDeChat(nombre, row);}
         else {
+            if(row.content_img !== null){
+                row.content = nombre +" te ha enviado una imagen.";
+            }
             MensajeNuevo(row.id, nombre, row.content, row.profile);
 
             //Contar mensajes no leidos.
@@ -63,7 +66,7 @@ function TratarMensajes(mensajes) {
 
         //Mostrar vista previa del mensaje en lista de conversaciones.
         elemento_contacto.find('.hora-ult-mesj').text(Fecha_hora_ultima_Mensaje(row.send_date));
-        elemento_contacto.find('.preview').text(row.content_img !== null ? 'Imagen' : row.content);
+        elemento_contacto.find('.preview').html(row.content_img !== null ? '<span class="material-icons icon-indicador">image</span> Archivo de imagen' : row.content);
 
         //Actualizar total de conversaciones no leidas.
         ActualizarTotalDeConversacionesNoLeidas();
@@ -72,13 +75,14 @@ function TratarMensajes(mensajes) {
 
 function MostrarMensajeEnEspacioDeChat(nombre, datos) {
     let mensaje;
-
     if (datos.content_img !== null){
+        datos.content= nombre +" te ha enviado una imagen.";
         mensaje = ObtenerElementoImgContacto(datos.profile, datos.content_img.split('\\').pop().split('/').pop(), datos.content_img, ObtenerHora(datos.send_date));
-    }else
+    }else {
+
         mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, ObtenerHora(datos.send_date)));
 
-
+    }
     AgregarMensajeEnEspacioDeChat(mensaje, datos.send_date);
     mensaje[0].scrollIntoView();
 
