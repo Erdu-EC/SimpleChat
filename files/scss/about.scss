@@ -29,6 +29,11 @@ body .container-fluid{
   background: transparent;
 
 }
+@media screen and (max-width: 735px) {
+  body .container-fluid {
+    padding: 45px 0 0 0;
+  }
+}
 body .container-fluid::-webkit-scrollbar {
   width: 5px;
 }
@@ -674,24 +679,6 @@ article ul time {
   font-size: 12px;
 }
 
-.lista-desarrolladores li .item-desarrollador {
-  display: flex;
-  flex-direction: row;
-  border: 1px solid red;
-  margin-bottom: 20px;
-}
-.lista-desarrolladores li .item-desarrollador figure {
-  margin-right: 10px;
-  border: 1px solid orange;
-}
-.lista-desarrolladores li .item-desarrollador .descr-desarrollador p {
-  margin: 0px;
-  border: 1px solid green;
-}
-.lista-desarrolladores li .item-desarrollador .descr-desarrollador {
-  border: 1px solid blue;
-}
-
 
  .seccion-ultimo, .seccion-benvenida, .seccion-desarrolladores {
   font-family: 'Montserrat',sans-serif;
@@ -711,8 +698,7 @@ article ul time {
     padding: 0;
   }
 }
-#carrusel-desarrolladores {
-}
+
 #integrantes-acerca .carousel-item {
   align-items: center;
   justify-content: center;
@@ -817,6 +803,46 @@ Fin de estilos del carrusel
   display: block;
   font-size: 12px;
 }
-/* Fin de es stilos de footer
+/* Fin de estilos de footer
  */
 
+/*Vista móvil*/
+
+
+@media screen and (max-width: 576px){
+  .carousel .carousel-inner .carousel-item {
+
+    height: 250px;
+  }
+
+  .carousel-item .img-carousel{
+    width: 100%;
+    height: auto;
+    image-rendering: crisp-edges;
+  }
+  @supports(object-fit: cover){
+    .carousel-item .img-carousel{
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+  .presentacion-acerca {
+    padding: 10px;
+    min-height: 400px;
+  }
+
+  .bottom-acerca {
+    background:#FFFFFF ;
+    padding: 30px;
+    font-family: 'Montserrat',sans-serif;
+  }
+  .bottom-acerca  .hor-cont-caracteristicas {
+    padding: 50px 0;
+  }
+  #carrusel-desarrolladores .carousel-inner .carousel-item{
+    height: 450px;
+  }
+}
+
+/*Fin de Vista móvil*/

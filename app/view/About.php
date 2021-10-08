@@ -181,7 +181,7 @@ if (Session::IsLogin()){
                          <img src="/files/photos/about-caract-1.svg" alt="">
                      </div>
                      <span class="titulo-caract">Creatividad</span>
-                     <p class="descrip-caract">SimpleChat ha sido optimizado para dispositivos móviles de diferentes tamaños y resolcuiones de pantalla.</p>
+                     <p class="descrip-caract">SimpleChat ha sido optimizado para dispositivos móviles de diferentes tamaños y resoluciones de pantalla.</p>
                  </article>
              </div>
              <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas">
@@ -248,68 +248,6 @@ if (Session::IsLogin()){
              </button>
          </div>
 
-<!--
-       <div class="row">
-           <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12 seccion-ultimo">
-               <h3>Ultimas noticias</h3>
-               <ul class="lista-noticias">
-                   <li>
-                       <time datetime="20.09.2015">20.09.2015</time>
-                       <p class="subtitulo">Lorem ipsum dolor sit amet, consec teer adipiscing. Prsent vestibulum.</p>
-                       <p>Lorem ipsum dolor sit amet, consec tetuer adipi scing. Praesent vestibu.  lum molestie lacuiirhs. Aenean non ummy hendreriauris. Phasellllus.</p>
-                             </li>
-                   <li>
-                       <time datetime="09.09.2015">09.09.2015</time>
-                       <p class="subtitulo">Lorem ipsum dolor sit amet, consec teer adipiscing. Prsent vestibulum.</p>
-                       <p>Lorem ipsum dolor sit amet, consec tetuer adipi scing. Praesent vestibu.  lum molestie lacuiirhs. Aenean non ummy hendreriauris. Phasellllus.</p>
-                   </li>
-               </ul>
-               <hr class="separador-secciones">
-           </article>
-           <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12 seccion-benvenida">
-               <h3>Bienvenido(a)</h3>
-               <p class="subtitulo">Fusce suscipit varius mium sociis totdnatibus et magis dis parturient montes, nascetur ridiculus mus. </p>
-               <p class="descrip">Lorem ipsum dolor sit amet, consec teer adipiscing. Prsent vestibulum molestie lacuiirhs. Aeneon my . Phasellllus. porta. Fusce suscipit varius mium sociis.</p>
-               <p>Lorem ipsum dolor sit amet, consec tetuer adipiscing. Praesent vestibu lum molestie lacuiirhs. Aenean non ummy hendreriauris. Phasellllus. porta. Fusce suscipit varius mium sociis totdnatibus et magis dis parturient montes, nascetur ridiculus mus. Nulla dui.</p>
-
-               <hr class="separador-secciones">
-           </article>
-           <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12  seccion-desarrolladores">
-               <h3>Nuestros desarrolladores</h3>
-               <p class="subtitulo">Lorem ipsum dolor sit amet, consec teer adipiscing. Prsent vestibulum mo.</p>
-               <ul class="lista-desarrolladores">
-                   <li>
-                       <div class="item-desarrollador">
-                           <figure class="foto-desarrollador"><img src="/files/photos/home_pic1.jpg" alt=""></figure>
-                           <div class="descr-desarrollador">
-                               <span class="nombre-desarrollador">Lorem Ipsum</span>
-                               <p>Consec tetuer adipiscing. Praesent vestibu.</p>
-                           </div>
-                       </div>
-                   </li>
-                   <li>
-                       <div class="item-desarrollador">
-                           <figure class="foto-desarrollador"><img src="/files/photos/home_pic2.jpg" alt=""></figure>
-                           <div class="descr-desarrollador">
-                               <span class="nombre-desarrollador">Dolor set amet</span>
-                               <p>Aenean non ummy hendreria uris. Phasellllu porta. </p>
-                           </div>
-                       </div>
-                   </li>
-                   <li>
-                       <div class="item-desarrollador">
-                           <figure class="foto-desarrollador"><img src="/files/photos/home_pic3.jpg" alt=""></figure>
-                           <div class="descr-desarrollador">
-                               <span class="nombre-desarrollador"></span>
-                               <p>Praesent vestiblum molestie lacuiirhs. Aenean non ummy. </p>
-                           </div>
-                       </div>
-
-                   </li>
-               </ul>
-               <hr class="separador-secciones">
-           </article>
-       </div>-->
    </section>
     <footer class="footer-acerca">
 <div class="redes-sociales">
