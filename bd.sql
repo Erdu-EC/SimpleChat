@@ -327,12 +327,20 @@ BEGIN
 
     UPDATE message set rcv_date = NOW() where id in (select id from unrcv_messages);
 
-    select u.id, u.user_name, u.first_name, u.last_name, u.profile_img as profile, mr.content, mr.content_img, mr.send_date
+    select u.id, mr.id as id_msg, u.user_name, u.first_name, u.last_name, u.profile_img as profile, mr.content, mr.content_img, mr.send_date
     from message_readable mr
              inner join users u on id_source = u.id
     where id_dest = USER_ID
       and mr.id in (select id from unrcv_messages)
     order by mr.send_date, u.id;
+END $
+
+CREATE OR REPLACE FUNCTION user_SetStateReadInMessages(USER_ID int, MsgId int) RETURNS BOOLEAN MODIFIES SQL DATA
+BEGIN
+
+    UPDATE message SET read_date = now() WHERE id = MsgId and id_dest = USER_ID;
+
+    return ROW_COUNT()>0;
 END $
 
 DELIMITER ;
