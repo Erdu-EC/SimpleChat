@@ -104,7 +104,7 @@
 			die(json_encode($data->GetInnerArray(true)));
 		}
 
-		public function MarkAsRead(int $idMsg){
+		public function MarkAsRead(){
 			//Estableciendo tipo de respuesta.
 			HttpResponse::SetContentType(MimeType::Json);
 

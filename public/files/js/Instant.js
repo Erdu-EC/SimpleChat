@@ -83,6 +83,9 @@ function MostrarMensajeEnEspacioDeChat(nombre, datos) {
     mensaje[0].scrollIntoView();
 
     NotificacionesEscritorio(datos.id, nombre, datos.content, datos.profile);
+
+    //Enviar recibido al servidor.
+    MarcarComoLeido(datos.id_msg, null);
 }
 
 function ActualizarTotalDeConversacionesNoLeidas() {
