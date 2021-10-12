@@ -6,6 +6,7 @@
 
 	use HS\libs\collection\Collection;
 	use HS\libs\core\Model;
+	use PDOException;
 
 	class MessageModel extends Model
 	{
@@ -17,7 +18,7 @@
 					'text' => $text ?? '',
 					'img' => $img
 				]));
-			} catch (\PDOException $ex) {
+			} catch (PDOException $ex) {
 				return false;
 			}
 		}
@@ -27,7 +28,7 @@
 				return $this->SelectAll('CALL user_GetConversations(:user_id, NULL)', [
 					'user_id' => $user_id
 				]);
-			} catch (\PDOException $ex) {
+			} catch (PDOException $ex) {
 				return null;
 			}
 		}
@@ -38,7 +39,7 @@
 					'user_id' => $user_id,
 					'contact_id' => $contact_id
 				]);
-			} catch (\PDOException $ex) {
+			} catch (PDOException $ex) {
 				return null;
 			}
 		}
@@ -48,7 +49,17 @@
 				return $this->SelectAll('CALL user_GetUnreceiveMessages(:user)', [
 					'user' => $user_id
 				]);
-			} catch (\PDOException $ex) {
+			} catch (PDOException $ex) {
+				return null;
+			}
+		}
+
+		public function GetUnreceivedStatesChanged(int $user_id) : ?Collection {
+			try {
+				return $this->SelectAll('CALL msg_GetUnreceiveStatusChanges(:user)', [
+					'user' => $user_id
+				]);
+			} catch (PDOException $ex) {
 				return null;
 			}
 		}
@@ -59,18 +70,18 @@
 					'user' => $user_id,
 					'contact' => $contact_id
 				]);
-			} catch (\PDOException $ex) {
+			} catch (PDOException $ex) {
 				return null;
 			}
 		}
 
 		public function SetReadStateInMsg(int $user_id, int $idMsg) : bool {
 			try {
-				return $this->SelectOnly('select user_SetStateReadInMessages(:UID, :IDMsg)', [
+				return $this->SelectOnly('select msg_SetStateRead(:UID, :IDMsg)', [
 					'UID' => $user_id,
 					'IDMsg' => $idMsg
 				]);
-			} catch (\PDOException $ex) {
+			} catch (PDOException $ex) {
 				return false;
 			}
 		}

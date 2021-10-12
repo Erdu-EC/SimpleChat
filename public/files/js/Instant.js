@@ -19,6 +19,10 @@ $(document).ready(function () {
             //Si hay invitaciones no recibidas.
             if (ev.data['invitations'].length > 0)
                 TratarInvitaciones(ev.data['invitations']);
+
+            //Si hay cambios de estado no recibidos.
+            if (ev.data['msg_states'].length > 0)
+                TratarCambiosDeEstadosEnMensajes(ev.data['msg_states']);
         }
     }
 });
@@ -119,4 +123,10 @@ function TratarInvitaciones(inv_list) {
 
         NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, elemento.find('.preview').text(), row.profile);
     })
+}
+
+function TratarCambiosDeEstadosEnMensajes(datos){
+    datos.forEach(row => {
+        console.log(row);
+    });
 }

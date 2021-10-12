@@ -67,16 +67,16 @@ CREATE TABLE contacts
 
 CREATE TABLE message
 (
-    id        INT AUTO_INCREMENT,
-    id_source INT  NOT NULL,
-    id_dest   INT  NOT NULL,
-    send_date datetime,
-    rcv_date  datetime,
-    read_date datetime,
-    content   TEXT NOT NULL,
+    id          INT AUTO_INCREMENT,
+    id_source   INT  NOT NULL,
+    id_dest     INT  NOT NULL,
+    send_date   datetime,
+    rcv_date    datetime,
+    read_date   datetime,
+    content     TEXT NOT NULL,
     content_img TEXT NULL,
-    rcv_see   bool NOT NULL DEFAULT false,
-    read_see  bool not null default false,
+    rcv_see     bool NOT NULL DEFAULT false,
+    read_see    bool not null default false,
     PRIMARY KEY (id),
     FOREIGN KEY (id_source) REFERENCES users (id),
     FOREIGN KEY (id_dest) REFERENCES users (id)
@@ -327,7 +327,15 @@ BEGIN
 
     UPDATE message set rcv_date = NOW() where id in (select id from unrcv_messages);
 
-    select u.id, mr.id as id_msg, u.user_name, u.first_name, u.last_name, u.profile_img as profile, mr.content, mr.content_img, mr.send_date
+    select u.id,
+           mr.id         as id_msg,
+           u.user_name,
+           u.first_name,
+           u.last_name,
+           u.profile_img as profile,
+           mr.content,
+           mr.content_img,
+           mr.send_date
     from message_readable mr
              inner join users u on id_source = u.id
     where id_dest = USER_ID
@@ -335,12 +343,41 @@ BEGIN
     order by mr.send_date, u.id;
 END $
 
-CREATE OR REPLACE FUNCTION user_SetStateReadInMessages(USER_ID int, MsgId int) RETURNS BOOLEAN MODIFIES SQL DATA
+CREATE FUNCTION msg_SetStateRead(USER_ID int, MsgId int) RETURNS BOOLEAN
+    MODIFIES SQL DATA
 BEGIN
 
     UPDATE message SET read_date = now() WHERE id = MsgId and id_dest = USER_ID;
 
-    return ROW_COUNT()>0;
+    return ROW_COUNT() > 0;
+END $
+
+CREATE PROCEDURE msg_GetUnreceiveStatusChanges(in USER_ID int)
+BEGIN
+    CREATE TEMPORARY TABLE unrcv_states
+    (
+        id int
+    ) ENGINE = MEMORY;
+
+    INSERT INTO unrcv_states
+    SELECT id
+    from message_readable
+    where id_source = USER_ID
+      and (rcv_date is not null or read_date is not null)
+      and (rcv_see is false or read_see is false);
+
+    UPDATE message
+    set rcv_see  = IF(rcv_date is null, false, true),
+        read_see = IF(read_date is null, false, true)
+    where id in (select id from unrcv_states);
+
+    select id       as id_msg,
+           rcv_date as receive_date,
+           read_date
+    from message_readable
+    where id_source = USER_ID
+      and id in (select id from unrcv_states)
+    order by rcv_date, read_date, id;
 END $
 
 DELIMITER ;
@@ -377,7 +414,8 @@ INSERT INTO message(id_source, id_dest, send_date, rcv_date, read_date, content,
 VALUES (4, 6, now(), now(), now(), 'Acabas de levantar a LITT, Mike.', null),
        (5, 6, now(), now(), now(), 'Estaba pensando que podríamos comer pollo esta noche, ¿suena bien?', null),
        (6, 7, now(), now(), now(),
-        '¡¿Cómo diablos se supone que voy a hacer que un jurado te crea cuando ni siquiera estoy seguro de que lo crea ?!', null),
+        '¡¿Cómo diablos se supone que voy a hacer que un jurado te crea cuando ni siquiera estoy seguro de que lo crea ?!',
+        null),
        (7, 6, now(), now(), now(),
         'Cuando estés contra la pared, derriba esa maldita cosa.', null),
        (7, 6, now(), now(), now(),
@@ -391,4 +429,5 @@ VALUES (4, 6, now(), now(), now(), 'Acabas de levantar a LITT, Mike.', null),
        (6, 7, now(), now(), now(),
         '¿De qué estás hablando? Haz lo que te dicen o te disparan.', null),
        (7, 6, now(), now(), now(),
-        'Equivocado. Coges el arma o sacas una más grande. O llama a su farol. O haces una de las ciento cuarenta y seis cosas más.', null);
+        'Equivocado. Coges el arma o sacas una más grande. O llama a su farol. O haces una de las ciento cuarenta y seis cosas más.',
+        null);
