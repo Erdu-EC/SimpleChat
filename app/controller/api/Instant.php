@@ -32,16 +32,21 @@ class Instant
 
             $msg_data = $message_model->GetUnreceivedMessages($user_id);
             $inv_data = $invitation_model->GetUnreceive($user_id);
+			$state_data = $message_model->GetUnreceivedStatesChanged($user_id);
 
             unset($invitation_model);
             unset($message_model);
 
-            if ((!is_null($msg_data) && $msg_data->count() > 0) || (!is_null($inv_data) && $inv_data->count() > 0)) {
+            if ((!empty($msg_data) && $msg_data->count() > 0) || (!empty($inv_data) && $inv_data->count() > 0) ||
+				(!empty($state_data) && $state_data->count() > 0)) {
 				//Desactivando cache del navegador.
 				HttpResponse::Set('Cache-Control: no-store');
 
                 //Estableciendo tipo de respuesta.
                 HttpResponse::SetContentType(MimeType::Json);
+
+				//Habilitando buffer de salida.
+				ob_start();
 
                 //Modificando datos.
                 for ($i = 0; $i < count($msg_data); $i++){
@@ -55,11 +60,13 @@ class Instant
 
                 //Regresando datos.
                 echo json_encode([
-                    'messages' => !is_null($msg_data) ? $msg_data->GetInnerArray(true) : [],
-                    'invitations' => !is_null($inv_data) ? $inv_data->GetInnerArray(true) : []
+                    'messages' => !empty($msg_data) ? $msg_data->GetInnerArray(true) : [],
+                    'invitations' => !empty($inv_data) ? $inv_data->GetInnerArray(true) : [],
+					'msg_states' => !empty($state_data) ? $state_data->GetInnerArray(true) : []
                 ]);
 
-                //ob_flush();
+				//Enviando buffer de salida.
+                ob_flush();
                 break;
             }
 

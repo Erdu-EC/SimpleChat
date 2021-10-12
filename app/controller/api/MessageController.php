@@ -17,7 +17,6 @@
 
 	class MessageController extends Controller
     {
-
         public function Send()
         {
             //Estableciendo tipo de respuesta.
@@ -103,5 +102,20 @@
 
 			//Devolviendo respuesta.
 			die(json_encode($data->GetInnerArray(true)));
+		}
+
+		public function MarkAsRead(){
+			//Estableciendo tipo de respuesta.
+			HttpResponse::SetContentType(MimeType::Json);
+
+			//Obteniendo parametros post.
+			$_POST = ArrayUtils::Trim($_POST, false);
+			$idMsg = !empty($_POST['id']) ? (int)$_POST['id'] : die(json_encode(false));
+
+			//Obteniendo ID de usuario actual.
+			$user_id = (new Session())->user_id;
+
+			//Devolviendo respuesta.
+			return json_encode((new MessageModel(DBAccount::Root))->SetReadStateInMsg($user_id, $idMsg));
 		}
     }

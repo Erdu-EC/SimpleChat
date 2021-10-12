@@ -71,3 +71,14 @@ const ObtenerElementoExtraMensaje = (fecha_envio, estado) => {
             return html;
     }
 }
+
+
+function MarcarComoLeido(idMsg, callback){
+    $.ajax('/action/messages/markAsRead', {
+        method: 'post', dataType: 'json', mimeType: 'application/json',
+        data: {
+            id: idMsg
+        },
+        success: callback
+    });
+}

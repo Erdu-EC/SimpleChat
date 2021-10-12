@@ -19,6 +19,7 @@
 
 	#Conversations and Messages.
 	Route::Post('/action/messages/send', 'MessageController#Send');
+	Route::Post('/action/messages/markAsRead', 'MessageController#MarkAsRead');
 	Route::Get('/action/conversations', 'MessageController#GetConversations');
 
 	Route::Get('/Chats/{contact_name}/', 'MessageController#GetConversationsWithContact', [
