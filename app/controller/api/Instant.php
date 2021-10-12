@@ -43,6 +43,9 @@ class Instant
                 //Estableciendo tipo de respuesta.
                 HttpResponse::SetContentType(MimeType::Json);
 
+				//Habilitando buffer de salida.
+				ob_start();
+
                 //Modificando datos.
                 for ($i = 0; $i < count($msg_data); $i++){
 					$msg_data[$i]->profile = APP_URL::OfImageProfile($msg_data[$i]->profile);
@@ -55,11 +58,12 @@ class Instant
 
                 //Regresando datos.
                 echo json_encode([
-                    'messages' => !is_null($msg_data) ? $msg_data->GetInnerArray(true) : [],
-                    'invitations' => !is_null($inv_data) ? $inv_data->GetInnerArray(true) : []
+                    'messages' => !empty($msg_data) ? $msg_data->GetInnerArray(true) : [],
+                    'invitations' => !empty($inv_data) ? $inv_data->GetInnerArray(true) : []
                 ]);
 
-                //ob_flush();
+				//Enviando buffer de salida.
+                ob_flush();
                 break;
             }
 
