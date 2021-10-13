@@ -12,7 +12,9 @@
 	{
 		public function Add(int $user_id, int $contact_id, ?string $text, ?string $img): bool {
 			try {
-				return !is_null($this->Execute('SELECT user_SendMessage(:uid, :cid, :text, :img)', [
+				$idFake = md5(uniqid(dechex($user_id), true));
+				return !is_null($this->Execute('SELECT msg_Send(:idf, :uid, :cid, :text, :img)', [
+					'idf' => $idFake,
 					'uid' => $user_id,
 					'cid' => $contact_id,
 					'text' => $text ?? '',
@@ -54,7 +56,7 @@
 			}
 		}
 
-		public function GetUnreceivedStatesChanged(int $user_id) : ?Collection {
+		public function GetUnreceivedStatesChanged(int $user_id): ?Collection {
 			try {
 				return $this->SelectAll('CALL msg_GetUnreceiveStatusChanges(:user)', [
 					'user' => $user_id
@@ -66,7 +68,7 @@
 
 		public function GetMessagesWithContact(int $user_id, int $contact_id): ?Collection {
 			try {
-				return $this->SelectAll('CALL user_GetConversationWithContact(:user, :contact)', [
+				return $this->SelectAll('CALL msg_GetConversationWithContact(:user, :contact)', [
 					'user' => $user_id,
 					'contact' => $contact_id
 				]);
@@ -75,7 +77,7 @@
 			}
 		}
 
-		public function SetReadStateInMsg(int $user_id, int $idMsg) : bool {
+		public function SetReadStateInMsg(int $user_id, int $idMsg): bool {
 			try {
 				return $this->SelectOnly('select msg_SetStateRead(:UID, :IDMsg)', [
 					'UID' => $user_id,

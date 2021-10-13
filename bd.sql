@@ -68,6 +68,7 @@ CREATE TABLE contacts
 CREATE TABLE message
 (
     id          INT AUTO_INCREMENT,
+    id_temp     VARCHAR(50) NULL,
     id_source   INT  NOT NULL,
     id_dest     INT  NOT NULL,
     send_date   datetime,
@@ -79,7 +80,8 @@ CREATE TABLE message
     read_see    bool not null default false,
     PRIMARY KEY (id),
     FOREIGN KEY (id_source) REFERENCES users (id),
-    FOREIGN KEY (id_dest) REFERENCES users (id)
+    FOREIGN KEY (id_dest) REFERENCES users (id),
+    KEY idx_msg_fakeid (id_temp)
 );
 
 create table permissions
@@ -231,7 +233,7 @@ BEGIN
 END $
 
 #Procedimientos para mensajes.
-CREATE FUNCTION user_SendMessage(source int, dest int, msg text, img text) RETURNS INT
+CREATE FUNCTION msg_Send(idFake varchar(50), source int, dest int, msg text, img text) RETURNS INT
     MODIFIES SQL DATA
 BEGIN
     #Si usuario no pertenece a los contactos del destinario
@@ -247,7 +249,7 @@ BEGIN
     END IF;
 
     #Insertar mensaje en cualquier caso.
-    INSERT INTO message(id_source, id_dest, send_date, content, content_img) VALUES (source, dest, NOW(), msg, img);
+    INSERT INTO message(id_temp, id_source, id_dest, send_date, content, content_img) VALUES (idFake, source, dest, NOW(), msg, img);
 
     #Devolver ID del mensaje.
     RETURN LAST_INSERT_ID();
@@ -285,7 +287,7 @@ BEGIN
 END $
 
 #Obtener una conversación completa.
-CREATE PROCEDURE user_GetConversationWithContact(in USER_ID int, in CONTACT_ID int)
+CREATE PROCEDURE msg_GetConversationWithContact(in USER_ID int, in CONTACT_ID int)
 BEGIN
     #Marcando mensajes a obtener como leidos.
     UPDATE message msg inner join message_readable mr on mr.id = msg.id
@@ -295,7 +297,12 @@ BEGIN
       and msg.id_dest = USER_ID
       and (msg.rcv_date IS NULL or msg.read_date IS NULL);
 
-    select *
+    select id_source as origin,
+           content as text,
+           content_img as img,
+           send_date as date_send,
+           rcv_date as date_reception,
+           read_date as date_read
     from (
              select *
              from message

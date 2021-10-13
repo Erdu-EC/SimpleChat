@@ -176,8 +176,9 @@ function CargarEspacioDeChat() {
                 let fecha_anterior = '';
                 json.messages.forEach(msg => {
                     //Estableciendo fecha del mensaje.
-                    const fecha_envio = ObtenerFecha(msg[3]);
-                    msg[6] = SanearTexto(msg[6]);
+                    const fecha_envio = ObtenerFecha(msg.date_send);
+
+                    msg.text = SanearTexto(msg.text);
                     if (fecha_anterior === '' || fecha_anterior !== fecha_envio) {
                         fecha_anterior = fecha_envio;
                         lista_mensajes.append(ObtenerSeparadorDeFechasEnChat(fecha_envio))
@@ -185,18 +186,18 @@ function CargarEspacioDeChat() {
 
                     //Agregando mensaje.
                     let mensaje;
-                    if (msg[1] === json.id) {
-                        if (msg[7] === null)
-                            mensaje = ObtenerElementoMensajeContacto(json.profile_img, msg[6], ObtenerHora(msg[4]));
+                    if (msg.origin === json.id) {
+                        if (msg.img === null)
+                            mensaje = ObtenerElementoMensajeContacto(json.profile_img, msg.text, ObtenerHora(msg.date_send));
                         else
-                            mensaje = ObtenerElementoImgContacto(json.profile_img, msg[7].split('\\').pop().split('/').pop(), msg[7], ObtenerHora(msg[4]))
+                            mensaje = ObtenerElementoImgContacto(json.profile_img, msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send))
                     } else {
-                        if (msg[7] === null)
-                            mensaje = ObtenerElementoMensaje(msg[6], ObtenerHora(msg[3]),
-                                msg[5] !== null ? 3 : msg[4] !== null ? 2 : 1);
+                        if (msg.img === null)
+                            mensaje = ObtenerElementoMensaje(msg.text, ObtenerHora(msg.date_send),
+                                msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
                         else
-                            mensaje = ObtenerElementoImg(msg[7].split('\\').pop().split('/').pop(), msg[7], ObtenerHora(msg[3]),
-                                msg[5] !== null ? 3 : msg[4] !== null ? 2 : 1)
+                            mensaje = ObtenerElementoImg(msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send),
+                                msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
                     }
 
                     lista_mensajes.append(mensaje);

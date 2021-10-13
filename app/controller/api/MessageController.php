@@ -88,13 +88,13 @@
 			$data->state = UserModel::GetStringUserState($user_data->state ?? '');
 			$data->is_contact = $user_data->is_contact;
 			$data->has_invitation = $user_data->has_invitation;
-			$data->messages = ArrayUtils::GetIndexedValues($user_data->messages->GetInnerArray());
+			$data->messages = $user_data->messages->GetInnerArray();
 			$data->profile_img = APP_URL::OfImageProfile($user_data->profile_img);
 
 			//Tratando mensajes con imagenes.
 			for($i = 0; $i < count($data->messages); $i++){
-				$url_img = $data->messages[$i][7];
-				$data->messages[$i][7] = !empty($url_img) ? APP_URL::OfChatImage($data->messages[$i][7]) : null;
+				$url_img = $data->messages[$i]->img;
+				$data->messages[$i]->img = !empty($url_img) ? APP_URL::OfChatImage($url_img) : null;
 			}
 
 			//Destruyendo variables.
