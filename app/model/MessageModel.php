@@ -5,6 +5,7 @@
 
 
 	use HS\libs\collection\Collection;
+	use HS\libs\core\Logger;
 	use HS\libs\core\Model;
 	use PDOException;
 
@@ -20,6 +21,7 @@
 					'img' => $img
 				]));
 			} catch (PDOException $ex) {
+				Logger::Log('sql', 'msg_send', $ex->getMessage());
 				return false;
 			}
 		}
@@ -30,6 +32,7 @@
 					'user_id' => $user_id
 				]);
 			} catch (PDOException $ex) {
+				Logger::Log('sql', 'msg_conversations', $ex->getMessage());
 				return null;
 			}
 		}
@@ -41,6 +44,7 @@
 					'contact_id' => $contact_id
 				]);
 			} catch (PDOException $ex) {
+				Logger::Log('sql', 'msg_oneconversations', $ex->getMessage());
 				return null;
 			}
 		}
@@ -51,6 +55,7 @@
 					'user' => $user_id
 				]);
 			} catch (PDOException $ex) {
+				Logger::Log('sql', 'msg_unreceives', $ex->getMessage());
 				return null;
 			}
 		}
@@ -61,6 +66,7 @@
 					'user' => $user_id
 				]);
 			} catch (PDOException $ex) {
+				Logger::Log('sql', 'msg_statuschanges', $ex->getMessage());
 				return null;
 			}
 		}
@@ -72,6 +78,7 @@
 					'contact' => $contact_id
 				]);
 			} catch (PDOException $ex) {
+				Logger::Log('sql', 'msg_getallwithcontact', $ex->getMessage());
 				return null;
 			}
 		}
@@ -83,6 +90,7 @@
 					'IDMsg' => $idMsg
 				]);
 			} catch (PDOException $ex) {
+				Logger::Log('sql', 'msg_setstatus', $ex->getMessage());
 				return false;
 			}
 		}

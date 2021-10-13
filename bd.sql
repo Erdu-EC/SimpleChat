@@ -381,7 +381,8 @@ BEGIN
         read_see = IF(read_date is null, false, true)
     where id in (select id from unrcv_states);
 
-    select unrcv.id_temp as id_msg,
+    select mr.id_source  as origin,
+           unrcv.id_temp as id_msg,
            rcv_date      as receive_date,
            read_date
     from message_readable mr

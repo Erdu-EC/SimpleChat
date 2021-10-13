@@ -9,6 +9,7 @@
 	use HS\config\APP_URL;
 	use HS\config\DBAccount;
 	use HS\libs\core\http\HttpResponse;
+	use HS\libs\core\Logger;
 	use HS\libs\core\Session;
 	use HS\libs\helper\MimeType;
 	use const HS\APP_DEBUG;
@@ -18,6 +19,12 @@
 		public function GetUnreceivedMessagesAndInvitations() {
 			//Deshabilitando siempre log de errores.
 			ini_set('display_errors', 0);
+
+			//Desactivando cache del navegador.
+			HttpResponse::Set('Cache-Control: no-store');
+
+			//Estableciendo tipo de respuesta.
+			HttpResponse::SetContentType(MimeType::Json);
 
 			//Obteniendo id del usuario actual.
 			$session = new Session();
@@ -38,14 +45,11 @@
 
 				if ((!empty($msg_data) && $msg_data->count() > 0) || (!empty($inv_data) && $inv_data->count() > 0) ||
 					(!empty($state_data) && $state_data->count() > 0)) {
+					//Desactivando limpiado del buffer implicito.
+					ob_implicit_flush(false);
+
 					//Habilitando buffer de salida.
 					ob_start();
-
-					//Desactivando cache del navegador.
-					HttpResponse::Set('Cache-Control: no-store');
-
-					//Estableciendo tipo de respuesta.
-					HttpResponse::SetContentType(MimeType::Json);
 
 					//Modificando datos.
 					for ($i = 0; $i < count($msg_data); $i++) {
@@ -66,6 +70,10 @@
 
 					//Enviando buffer de salida.
 					ob_flush();
+					flush();
+
+					Logger::Log('instant', 'data', $msg_data->count() . ' - ' . $inv_data->count() . ' - ' . $state_data->count());
+
 					break;
 				}
 

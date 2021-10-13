@@ -1,6 +1,6 @@
 // noinspection InfiniteLoopJS
 while (true){
-    const ajax = new XMLHttpRequest();
+    let ajax = new XMLHttpRequest();
     ajax.open('GET', '/action/users/MIInstant', false);
     ajax.setRequestHeader("Content-type", "application/json");
     ajax.send();
@@ -13,4 +13,5 @@ while (true){
             console.log('Sin respuesta.')
             break;*/
     }
+    //ajax.abort();
 }
