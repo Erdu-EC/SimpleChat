@@ -1,9 +1,9 @@
 $(document).ready(function () {
     //Lanzar un service worker.
     if (navigator.serviceWorker) {
-        navigator.serviceWorker.register("/ServiceWorker.js").then(function (reg){
+        navigator.serviceWorker.register("/ServiceWorker.js").then(function (reg) {
             //console.log('ServiceWorker registration successful with scope: ', reg.scope);
-        }, function (){
+        }, function () {
             console.log('Error al registrar el service worker.');
         });
     }
@@ -32,7 +32,7 @@ function TratarMensajes(mensajes) {
         const lista_conversaciones = $('#lista-conversaciones');
         let elemento_contacto = lista_conversaciones.find(`.contact > div[data-usuario=${row.user_name}]`);
         const nombre = row.first_name + " " + row.last_name;
-        var texto_saneado =SanearTexto(row.content);
+        var texto_saneado = SanearTexto(row.content);
 
         //Si no existe conversacion, agregarla.
         if (elemento_contacto.length === 0) {
@@ -45,12 +45,12 @@ function TratarMensajes(mensajes) {
 
         //Si el mensaje es para el contacto de la actual conversación abierta en el chat.
         //
-       // if (row.id.toString() === $('#espacio-de-chat .messages').attr('data-usuario'))
+        // if (row.id.toString() === $('#espacio-de-chat .messages').attr('data-usuario'))
 
 
-        if (row.user_name === $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario")){
-            MostrarMensajeEnEspacioDeChat(nombre, row);}
-        else {
+        if (row.user_name === $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario")) {
+            MostrarMensajeEnEspacioDeChat(nombre, row);
+        } else {
             MensajeNuevo(row.id, nombre, row.content, row.profile);
 
             //Contar mensajes no leidos.
@@ -77,9 +77,9 @@ function TratarMensajes(mensajes) {
 function MostrarMensajeEnEspacioDeChat(nombre, datos) {
     let mensaje;
 
-    if (datos.content_img !== null){
+    if (datos.content_img !== null) {
         mensaje = ObtenerElementoImgContacto(datos.profile, datos.content_img.split('\\').pop().split('/').pop(), datos.content_img, ObtenerHora(datos.send_date));
-    }else
+    } else
         mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, ObtenerHora(datos.send_date)));
 
 
@@ -88,7 +88,7 @@ function MostrarMensajeEnEspacioDeChat(nombre, datos) {
 
     NotificacionesEscritorio(datos.id, nombre, datos.content, datos.profile);
 
-    //Enviar recibido al servidor.
+    //Enviar leido al servidor.
     MarcarComoLeido(datos.id_msg, null);
 }
 
@@ -125,8 +125,16 @@ function TratarInvitaciones(inv_list) {
     })
 }
 
-function TratarCambiosDeEstadosEnMensajes(datos){
+function TratarCambiosDeEstadosEnMensajes(datos) {
+    const lista = $('#lista-mensajes');
+
     datos.forEach(row => {
-        console.log(row);
+        const extra_mensaje = lista.find(`.enviado[data-id=${row.id_msg}] .extra-mensaje`);
+        const estado = row.read_date != null ? 3 : 2;
+
+        extra_mensaje.html(ObtenerElementoExtraMensaje(extra_mensaje.find('> .extra > span:first-child').text(), estado));
+
+        //Si el mensaje ya ha sido leido eliminar id.
+        if (estado === 3) extra_mensaje.parent().attr('data-id', null);
     });
 }

@@ -103,8 +103,8 @@
 		}
 
 		//Metodos para mensajes.
-		public function SendMessage(int $user_id, int $contact_id, string $text): bool {
-			return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $text, null);
+		public function SendMessage(int $user_id, int $contact_id, string $idFake, string $text): bool {
+			return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $idFake, $text, null);
 		}
 
 		public function SendMessageImg(int $user_id, int $contact_id, string $img, callable $action){

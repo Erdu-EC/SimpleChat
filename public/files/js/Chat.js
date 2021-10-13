@@ -88,9 +88,11 @@ function EnviarMensaje() {
                 }, 150)
             },
             success: function (json) {
-                if (json) {
+                if (json[0]) {
                     const usuario_nick = espacio_chat.attr('data-nick').trim();
 
+                    //Agregando id y estado al mensaje enviado.
+                    mensaje.attr('data-id', json[1]);
                     mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
 
                     //Actualizar item de conversación.
@@ -100,7 +102,7 @@ function EnviarMensaje() {
                     if (elemento_conversacion.length === 0) {
                         elemento_conversacion = $('<li>', {
                             class: 'contact',
-                            html: ObtenerElementoConversacion(usuario_nick, espacio_chat.parent().find('.nombre-chat').text(), '', espacio_chat.parent().find('.img-contacto').attr('src').split("?")[0], null, null, texto, new Date(), new Date(), null,null)
+                            html: ObtenerElementoConversacion(usuario_nick, espacio_chat.parent().find('.nombre-chat').text(), '', espacio_chat.parent().find('.img-contacto').attr('src').split("?")[0], null, null, texto, new Date(), new Date(), null, null)
 
                         });
                     }
@@ -285,6 +287,7 @@ $(document).on('click', '.btn-agregar-contacto', function () {
         }
     });
 });
+
 function SanearTexto(str) {
     if (str === null) return null;
 
@@ -306,10 +309,13 @@ function SanearTexto(str) {
 
 //Buffer de entradas en el contenido de mensaje de cada chat
 const buffer = new Map();
+
 function Buffer_Borradores(contacto_ant, contacto_act, borrador) {
-    if(! (contacto_ant)){return;}
+    if (!(contacto_ant)) {
+        return;
+    }
     buffer.set(contacto_ant, borrador);
-    if (buffer.has(contacto_act) && (buffer.get(contacto_act)!="")) {
+    if (buffer.has(contacto_act) && (buffer.get(contacto_act) != "")) {
         $("#contenido-mensaje").text(buffer.get(contacto_act));
         $("#frame .content .message-input .wrap .entrada-placeholder").hide();
     } else {

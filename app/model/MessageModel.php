@@ -10,9 +10,8 @@
 
 	class MessageModel extends Model
 	{
-		public function Add(int $user_id, int $contact_id, ?string $text, ?string $img): bool {
+		public function Add(int $user_id, int $contact_id, string $idFake, ?string $text, ?string $img): bool {
 			try {
-				$idFake = md5(uniqid(dechex($user_id), true));
 				return !is_null($this->Execute('SELECT msg_Send(:idf, :uid, :cid, :text, :img)', [
 					'idf' => $idFake,
 					'uid' => $user_id,

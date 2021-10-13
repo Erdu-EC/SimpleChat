@@ -69,15 +69,15 @@ CREATE TABLE message
 (
     id          INT AUTO_INCREMENT,
     id_temp     VARCHAR(50) NULL,
-    id_source   INT  NOT NULL,
-    id_dest     INT  NOT NULL,
+    id_source   INT         NOT NULL,
+    id_dest     INT         NOT NULL,
     send_date   datetime,
     rcv_date    datetime,
     read_date   datetime,
-    content     TEXT NOT NULL,
-    content_img TEXT NULL,
-    rcv_see     bool NOT NULL DEFAULT false,
-    read_see    bool not null default false,
+    content     TEXT        NOT NULL,
+    content_img TEXT        NULL,
+    rcv_see     bool        NOT NULL DEFAULT FALSE,
+    read_see    bool        NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id),
     FOREIGN KEY (id_source) REFERENCES users (id),
     FOREIGN KEY (id_dest) REFERENCES users (id),
@@ -249,7 +249,8 @@ BEGIN
     END IF;
 
     #Insertar mensaje en cualquier caso.
-    INSERT INTO message(id_temp, id_source, id_dest, send_date, content, content_img) VALUES (idFake, source, dest, NOW(), msg, img);
+    INSERT INTO message(id_temp, id_source, id_dest, send_date, content, content_img)
+    VALUES (idFake, source, dest, NOW(), msg, img);
 
     #Devolver ID del mensaje.
     RETURN LAST_INSERT_ID();
@@ -287,7 +288,7 @@ BEGIN
 END $
 
 #Obtener una conversación completa.
-CREATE OR REPLACE PROCEDURE msg_GetConversationWithContact(in USER_ID int, in CONTACT_ID int)
+CREATE PROCEDURE msg_GetConversationWithContact(in USER_ID int, in CONTACT_ID int)
 BEGIN
     #Marcando mensajes a obtener como leidos.
     UPDATE message msg inner join message_readable mr on mr.id = msg.id
@@ -297,13 +298,13 @@ BEGIN
       and msg.id_dest = USER_ID
       and (msg.rcv_date IS NULL or msg.read_date IS NULL);
 
-    select id_temp as id,
-           id_source as origin,
-           content as text,
+    select id_temp     as id,
+           id_source   as origin,
+           content     as text,
            content_img as img,
-           send_date as date_send,
-           rcv_date as date_reception,
-           read_date as date_read
+           send_date   as date_send,
+           rcv_date    as date_reception,
+           read_date   as date_read
     from (
              select *
              from message
@@ -360,32 +361,34 @@ BEGIN
     return ROW_COUNT() > 0;
 END $
 
-CREATE PROCEDURE msg_GetUnreceiveStatusChanges(in USER_ID int)
+CREATE OR REPLACE PROCEDURE msg_GetUnreceiveStatusChanges(in USER_ID int)
 BEGIN
     CREATE TEMPORARY TABLE unrcv_states
     (
-        id int
+        id      int,
+        id_temp varchar(50)
     ) ENGINE = MEMORY;
 
     INSERT INTO unrcv_states
-    SELECT id
+    SELECT id, id_temp
     from message_readable
     where id_source = USER_ID
-      and (rcv_date is not null or read_date is not null)
-      and (rcv_see is false or read_see is false);
+      and ((rcv_see is false and rcv_date is not null) or (read_see is false and read_date is not null));
 
     UPDATE message
-    set rcv_see  = IF(rcv_date is null, false, true),
+    set id_temp  = IF(rcv_date is not null and read_date is not null, null, id_temp),
+        rcv_see  = IF(rcv_date is null, false, true),
         read_see = IF(read_date is null, false, true)
     where id in (select id from unrcv_states);
 
-    select id       as id_msg,
-           rcv_date as receive_date,
+    select unrcv.id_temp as id_msg,
+           rcv_date      as receive_date,
            read_date
-    from message_readable
+    from message_readable mr
+             inner join unrcv_states unrcv on mr.id = unrcv.id
     where id_source = USER_ID
-      and id in (select id from unrcv_states)
-    order by rcv_date, read_date, id;
+        /*and id in (select id from unrcv_states)*/
+    order by rcv_date, read_date, mr.id;
 END $
 
 DELIMITER ;
