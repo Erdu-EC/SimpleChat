@@ -134,6 +134,11 @@ function TratarCambiosDeEstadosEnMensajes(datos) {
 
         extra_mensaje.html(ObtenerElementoExtraMensaje(extra_mensaje.find('> .extra > span:first-child').text(), estado));
 
+        //Actualizar conversación.
+        let elemento_contacto = $(`#lista-conversaciones .contact > div[data-usuario=${row.destination}] .preview`);
+        elemento_contacto.find(' > :first-child').remove();
+        $(IndicadorEstadoMensaje(row.receive_date, row.read_date)).prependTo(elemento_contacto);
+
         //Si el mensaje ya ha sido leido eliminar id.
         if (estado === 3) extra_mensaje.parent().attr('data-id', null);
     });

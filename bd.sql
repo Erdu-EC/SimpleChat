@@ -381,12 +381,13 @@ BEGIN
         read_see = IF(read_date is null, false, true)
     where id in (select id from unrcv_states);
 
-    select mr.id_source  as origin,
+    select u.user_name   as destination,
            unrcv.id_temp as id_msg,
            rcv_date      as receive_date,
            read_date
     from message_readable mr
              inner join unrcv_states unrcv on mr.id = unrcv.id
+             inner join users u on u.id = mr.id_dest
     where id_source = USER_ID
         /*and id in (select id from unrcv_states)*/
     order by rcv_date, read_date, mr.id;
