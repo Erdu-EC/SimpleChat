@@ -88,9 +88,11 @@ function EnviarMensaje() {
                 }, 150)
             },
             success: function (json) {
-                if (json) {
+                if (json[0]) {
                     const usuario_nick = espacio_chat.attr('data-nick').trim();
 
+                    //Agregando id y estado al mensaje enviado.
+                    mensaje.attr('data-id', json[1]);
                     mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
 
                     //Actualizar item de conversación.
@@ -100,7 +102,7 @@ function EnviarMensaje() {
                     if (elemento_conversacion.length === 0) {
                         elemento_conversacion = $('<li>', {
                             class: 'contact',
-                            html: ObtenerElementoConversacion(usuario_nick, espacio_chat.parent().find('.nombre-chat').text(), '', espacio_chat.parent().find('.img-contacto').attr('src').split("?")[0], null, null, texto, new Date(), new Date(), null,null)
+                            html: ObtenerElementoConversacion(usuario_nick, espacio_chat.parent().find('.nombre-chat').text(), '', espacio_chat.parent().find('.img-contacto').attr('src').split("?")[0], null, null, texto, new Date(), new Date(), null, null)
 
                         });
                     }
@@ -180,8 +182,9 @@ function CargarEspacioDeChat() {
                 let fecha_anterior = '';
                 json.messages.forEach(msg => {
                     //Estableciendo fecha del mensaje.
-                    const fecha_envio = ObtenerFecha(msg[3]);
-                    msg[6] = SanearTexto(msg[6]);
+                    const fecha_envio = ObtenerFecha(msg.date_send);
+
+                    msg.text = SanearTexto(msg.text);
                     if (fecha_anterior === '' || fecha_anterior !== fecha_envio) {
                         fecha_anterior = fecha_envio;
                         lista_mensajes.append(ObtenerSeparadorDeFechasEnChat(fecha_envio))
@@ -189,21 +192,21 @@ function CargarEspacioDeChat() {
 
                     //Agregando mensaje.
                     let mensaje;
-                    if (msg[1] === json.id) {
-                        if (msg[7] === null)
-                            mensaje = ObtenerElementoMensajeContacto(json.profile_img, msg[6], ObtenerHora(msg[4]));
+                    if (msg.origin === json.id) {
+                        if (msg.img === null)
+                            mensaje = ObtenerElementoMensajeContacto(json.profile_img, msg.text, ObtenerHora(msg.date_send));
                         else
-                            mensaje = ObtenerElementoImgContacto(json.profile_img, msg[7].split('\\').pop().split('/').pop(), msg[7], ObtenerHora(msg[4]))
+                            mensaje = ObtenerElementoImgContacto(json.profile_img, msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send))
                     } else {
-                        if (msg[7] === null)
-                            mensaje = ObtenerElementoMensaje(msg[6], ObtenerHora(msg[3]),
-                                msg[5] !== null ? 3 : msg[4] !== null ? 2 : 1);
+                        if (msg.img === null)
+                            mensaje = ObtenerElementoMensaje(msg.text, ObtenerHora(msg.date_send),
+                                msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
                         else
-                            mensaje = ObtenerElementoImg(msg[7].split('\\').pop().split('/').pop(), msg[7], ObtenerHora(msg[3]),
-                                msg[5] !== null ? 3 : msg[4] !== null ? 2 : 1)
+                            mensaje = ObtenerElementoImg(msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send),
+                                msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
                     }
 
-                    lista_mensajes.append(mensaje);
+                    lista_mensajes.append($(mensaje).attr('data-id', msg.id));
                 });
 
                 //Mostrar contenedor.
@@ -288,6 +291,7 @@ $(document).on('click', '.btn-agregar-contacto', function () {
         }
     });
 });
+
 function SanearTexto(str) {
     if (str === null) return null;
 
@@ -309,10 +313,13 @@ function SanearTexto(str) {
 
 //Buffer de entradas en el contenido de mensaje de cada chat
 const buffer = new Map();
+
 function Buffer_Borradores(contacto_ant, contacto_act, borrador) {
-    if(! (contacto_ant)){return;}
+    if (!(contacto_ant)) {
+        return;
+    }
     buffer.set(contacto_ant, borrador);
-    if (buffer.has(contacto_act) && (buffer.get(contacto_act)!="")) {
+    if (buffer.has(contacto_act) && (buffer.get(contacto_act) != "")) {
         $("#contenido-mensaje").text(buffer.get(contacto_act));
         $("#frame .content .message-input .wrap .entrada-placeholder").hide();
     } else {

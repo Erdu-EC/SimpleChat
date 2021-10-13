@@ -1,56 +1,56 @@
 <?php
 
-    namespace HS\app\controller\api;
+	namespace HS\app\controller\api;
 
-    use HS\app\model\InvitationModel;
+	use HS\app\model\InvitationModel;
 	use HS\app\model\MessageModel;
-    use HS\app\model\UserModel;
-    use HS\config\APP_URL;
-    use HS\config\DBAccount;
-    use HS\libs\collection\ArrayUtils;
+	use HS\app\model\UserModel;
+	use HS\config\APP_URL;
+	use HS\config\DBAccount;
+	use HS\libs\collection\ArrayUtils;
 	use HS\libs\collection\Collection;
 	use HS\libs\core\Controller;
-    use HS\libs\core\http\HttpResponse;
-    use HS\libs\core\Session;
-    use HS\libs\helper\MimeType;
+	use HS\libs\core\http\HttpResponse;
+	use HS\libs\core\Session;
+	use HS\libs\helper\MimeType;
 	use PDOException;
 
 	class MessageController extends Controller
-    {
-        public function Send()
-        {
-            //Estableciendo tipo de respuesta.
-            HttpResponse::SetContentType(MimeType::Json);
+	{
+		public function Send() {
+			//Estableciendo tipo de respuesta.
+			HttpResponse::SetContentType(MimeType::Json);
 
-            //Obteniendo parametros post.
-            $_POST = ArrayUtils::Trim($_POST, false);
-            $contact_id = !empty($_POST['contact']) ? (int)$_POST['contact'] : die(json_encode(null));
-            $msg = !empty($_POST['text']) ? trim($_POST['text']) : die(json_encode(null));
+			//Obteniendo parametros post.
+			$_POST = ArrayUtils::Trim($_POST, false);
+			$contact_id = !empty($_POST['contact']) ? (int)$_POST['contact'] : die(json_encode(null));
+			$msg = !empty($_POST['text']) ? trim($_POST['text']) : die(json_encode(null));
 
-            //Insertando mensaje en BD.
-            if ((new UserModel(DBAccount::Root))->SendMessage((new Session())->user_id, $contact_id, $msg))
-                die(json_encode(true));
-            else
-                die(json_encode(false));
-        }
+			//Insertando mensaje en BD.
+			$user_id = (new Session())->user_id;
+			$idFake = md5(uniqid(dechex($user_id), true));
+			if ((new UserModel(DBAccount::Root))->SendMessage($user_id, $contact_id, $idFake, $msg))
+				die(json_encode([true, $idFake]));
+			else
+				die(json_encode([false]));
+		}
 
-        public function GetConversations()
-        {
-            //Estableciendo tipo de respuesta.
-            HttpResponse::SetContentType(MimeType::Json);
+		public function GetConversations() {
+			//Estableciendo tipo de respuesta.
+			HttpResponse::SetContentType(MimeType::Json);
 
-            //Obteniendo conversaciónes desde BD.
-            $data = (new MessageModel(DBAccount::Root))->GetConversations((new Session())->user_id);
+			//Obteniendo conversaciónes desde BD.
+			$data = (new MessageModel(DBAccount::Root))->GetConversations((new Session())->user_id);
 
-            //Modificando valores.
-            for($i = 0; $i < count($data); $i++)
-                $data[$i]->profile_img = APP_URL::OfImageProfile($data[$i]->profile_img);
+			//Modificando valores.
+			for ($i = 0; $i < count($data); $i++)
+				$data[$i]->profile_img = APP_URL::OfImageProfile($data[$i]->profile_img);
 
-            //Devolviendo datos.
-            return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));
-        }
+			//Devolviendo datos.
+			return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));
+		}
 
-		public function GetConversationsWithContact(string $user_name){
+		public function GetConversationsWithContact(string $user_name) {
 			try {
 				//Obteniendo ID de usuario actual.
 				$user_id = (new Session())->user_id;
@@ -88,13 +88,13 @@
 			$data->state = UserModel::GetStringUserState($user_data->state ?? '');
 			$data->is_contact = $user_data->is_contact;
 			$data->has_invitation = $user_data->has_invitation;
-			$data->messages = ArrayUtils::GetIndexedValues($user_data->messages->GetInnerArray());
+			$data->messages = $user_data->messages->GetInnerArray();
 			$data->profile_img = APP_URL::OfImageProfile($user_data->profile_img);
 
 			//Tratando mensajes con imagenes.
-			for($i = 0; $i < count($data->messages); $i++){
-				$url_img = $data->messages[$i][7];
-				$data->messages[$i][7] = !empty($url_img) ? APP_URL::OfChatImage($data->messages[$i][7]) : null;
+			for ($i = 0; $i < count($data->messages); $i++) {
+				$url_img = $data->messages[$i]->img;
+				$data->messages[$i]->img = !empty($url_img) ? APP_URL::OfChatImage($url_img) : null;
 			}
 
 			//Destruyendo variables.
@@ -104,7 +104,7 @@
 			die(json_encode($data->GetInnerArray(true)));
 		}
 
-		public function MarkAsRead(){
+		public function MarkAsRead() {
 			//Estableciendo tipo de respuesta.
 			HttpResponse::SetContentType(MimeType::Json);
 
@@ -118,4 +118,4 @@
 			//Devolviendo respuesta.
 			return json_encode((new MessageModel(DBAccount::Root))->SetReadStateInMsg($user_id, $idMsg));
 		}
-    }
+	}
