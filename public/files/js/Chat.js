@@ -200,7 +200,7 @@ function CargarEspacioDeChat() {
                                 msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
                     }
 
-                    lista_mensajes.append(mensaje);
+                    lista_mensajes.append($(mensaje).attr('data-id', msg.id));
                 });
 
                 //Mostrar contenedor.

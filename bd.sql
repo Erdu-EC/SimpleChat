@@ -287,7 +287,7 @@ BEGIN
 END $
 
 #Obtener una conversación completa.
-CREATE PROCEDURE msg_GetConversationWithContact(in USER_ID int, in CONTACT_ID int)
+CREATE OR REPLACE PROCEDURE msg_GetConversationWithContact(in USER_ID int, in CONTACT_ID int)
 BEGIN
     #Marcando mensajes a obtener como leidos.
     UPDATE message msg inner join message_readable mr on mr.id = msg.id
@@ -297,7 +297,8 @@ BEGIN
       and msg.id_dest = USER_ID
       and (msg.rcv_date IS NULL or msg.read_date IS NULL);
 
-    select id_source as origin,
+    select id_temp as id,
+           id_source as origin,
            content as text,
            content_img as img,
            send_date as date_send,
@@ -316,7 +317,7 @@ BEGIN
              where id_source = CONTACT_ID
                AND id_dest = USER_ID
          ) as A
-    order by send_date, id;
+    order by A.send_date, A.id;
 END $
 
 CREATE PROCEDURE user_GetUnreceiveMessages(in USER_ID int)
