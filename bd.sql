@@ -337,7 +337,7 @@ BEGIN
     UPDATE message set rcv_date = NOW() where id in (select id from unrcv_messages);
 
     select u.id,
-           mr.id         as id_msg,
+           mr.id_temp         as id_msg,
            u.user_name,
            u.first_name,
            u.last_name,
