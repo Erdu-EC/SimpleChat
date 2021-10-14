@@ -336,6 +336,8 @@ function Buffer_Conversaciones(contacto_ant,contacto_act){
     if (buffer_chat.has(contacto_act)) {
         $("#espacio-de-chat").html(buffer_chat.get(contacto_act));
         $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+        $(`#lista-conversaciones .contact > div[data-usuario=${contacto_act}] .num-msj-pendientes.online`).remove();
+        TratarCambiosDeEstadosEnMensajesRecibidos();
         return true;
     }
 

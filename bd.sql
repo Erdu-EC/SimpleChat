@@ -361,7 +361,7 @@ BEGIN
     return ROW_COUNT() > 0;
 END $
 
-CREATE OR REPLACE PROCEDURE msg_GetUnreceiveStatusChanges(in USER_ID int)
+CREATE PROCEDURE msg_GetUnreceiveStatusChanges(in USER_ID int)
 BEGIN
     CREATE TEMPORARY TABLE unrcv_states
     (

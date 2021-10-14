@@ -44,10 +44,6 @@ function TratarMensajes(mensajes) {
         }
 
         //Si el mensaje es para el contacto de la actual conversación abierta en el chat.
-        //
-        // if (row.id.toString() === $('#espacio-de-chat .messages').attr('data-usuario'))
-
-
         if (row.user_name === $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario")) {
             MostrarMensajeEnEspacioDeChat(nombre, row);
         } else {
@@ -145,4 +141,30 @@ function TratarCambiosDeEstadosEnMensajes(datos) {
         //Si el mensaje ya ha sido leido eliminar id.
         if (estado === 3) extra_mensaje.parent().attr('data-id', null);
     });
+}
+
+
+function AgregarMensajesABufferChat(datos){
+    if (buffer_chat.has(datos.user_name)){
+        let mensaje;
+        if (datos.content_img !== null){
+            datos.content= nombre +" te ha enviado una imagen.";
+            mensaje = ObtenerElementoImgContacto(datos.profile, datos.content_img.split('\\').pop().split('/').pop(), datos.content_img, ObtenerHora(datos.send_date));
+        }else {
+            mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, ObtenerHora(datos.send_date)));
+        }
+        mensaje.attr("data-id", datos.id_msg);
+        let espacio_chat = $(buffer_chat.get(datos.user_name));
+        espacio_chat.find("#lista-mensajes").append(mensaje);
+        buffer_chat.set(datos.user_name,espacio_chat  );
+        return;
+    }
+}
+function TratarCambiosDeEstadosEnMensajesRecibidos(){
+    const lista = $('#lista-mensajes');
+    lista.find(`.recibido[data-id]`).each(function(){
+        MarcarComoLeido($(this).attr('data-id'));
+        ($(this).removeAttr('data-id'));
+    });
+
 }

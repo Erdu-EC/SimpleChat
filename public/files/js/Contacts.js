@@ -131,13 +131,14 @@ $(document).on('input', '#cuadro-busqueda-usuario', function () {
 
                  },
             success: function (json) {
+                lista_resultados.empty();
                 if (json === null) {
                     msg_error.html('<span >No fue posible realizar la búsqueda.</span>');
                 } else if (json.length === 0) {
                     msg_error.html('<span >No se han encontrado coincidencias.</span>');
                 } else {
                     msg_error.html('<span >Resultados</span>');
-                    lista_resultados.html();
+
 
                     json.forEach((registro) => {
                         var estado=Clase_Segun_Estado(registro[4]);
