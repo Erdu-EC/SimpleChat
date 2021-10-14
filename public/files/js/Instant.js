@@ -53,6 +53,9 @@ function TratarMensajes(mensajes) {
         } else {
             MensajeNuevo(row.id, nombre, row.content, row.profile);
 
+            // Agregar mensaje a la lista de mensajes en buffer
+            AgregarMensajesABufferChat(row);
+
             //Contar mensajes no leidos.
             const msg_pendientes = elemento_contacto.find('.num-msj-pendientes.online span');
 
