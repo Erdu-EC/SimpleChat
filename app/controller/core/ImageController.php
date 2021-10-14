@@ -178,14 +178,15 @@
 						//Obteniendo contacto y nombre con que se guardara el fichero.
 						$contact_id = !empty($_POST['contact']) ? $_POST['contact'] : die(json_encode([false, 6]));
 						$img_name = dechex($user_id) . md5(uniqid('', true)) . Path::GetExtension($img_name);
+						$fakeId =  md5(uniqid(dechex($user_id), true));
 
 						//Insertando en base de datos el mensaje que contendra el fichero.
-						if (($user = new UserModel(DBAccount::Root))->SendMessageImg($user_id, $contact_id, $img_name, fn() => $accion_optimizacion($img_name))) {
+						if (($user = new UserModel(DBAccount::Root))->SendMessageImg($user_id, $contact_id, $fakeId, $img_name, fn() => $accion_optimizacion($img_name))) {
 							//Desconectando base de datos.
 							unset($user);
 
 							//Devolviendo respuesta.
-							die(json_encode([true,$img_name ]));
+							die(json_encode([true, $img_name, $fakeId]));
 						} else {
 							//Devolviendo respuesta negativa.
 							die(json_encode([false, 9]));

@@ -107,12 +107,12 @@
 			return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $idFake, $text, null);
 		}
 
-		public function SendMessageImg(int $user_id, int $contact_id, string $img, callable $action){
-			return $this->ExecuteTransaction(function () use ($user_id, $contact_id, $img, $action) {
+		public function SendMessageImg(int $user_id, int $contact_id, string $idFake, string $img, callable $action){
+			return $this->ExecuteTransaction(function () use ($idFake, $user_id, $contact_id, $img, $action) {
 				if ($action() === false)
 					return false;
 
-				return (new MessageModel($this->PDO))->Add($user_id, $contact_id, null, $img);
+				return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $idFake, null, $img);
 			});
 		}
 

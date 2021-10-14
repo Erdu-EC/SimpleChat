@@ -550,6 +550,7 @@ var remitente= $('#espacio-de-chat > div').attr('data-nick');
             },
             success: function (response) {
                 if (response[0]) {
+                    mensaje.attr('data-id', response[2]);
                     mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
                     mensaje.find('img').attr("title",response[1]);
                     progreso.remove();
