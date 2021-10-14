@@ -82,7 +82,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     <div id="layoutSidenav_nav" class="no-seleccionable">
         <div id="profile">
             <div class="wrap">
-                <img id="profile-img" src="<?= $SESSION_USER_PROFILE_IMG ?>?w=100&h=100" class="online" alt=""/>
+                <img id="profile-img" src="<?= $SESSION_USER_PROFILE_IMG ?>?w=80&h=80" class="online" alt=""/>
                 <div class="usuario-perfil" id="btn-sesion">
                     <span class="material-icons izquierda">account_circle</span>
                     <?= $SESSION_USER_SHORTNAME ?>
@@ -142,7 +142,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                     <section id="sidepanel" class="">
 
                         <div class="img-perfil no-seleccionable" id="mi-perfil-sidepanel">
-                            <img src="<?= $SESSION_USER_PROFILE_IMG ?>?w=100&h=100" alt=""/>
+                            <img src="<?= $SESSION_USER_PROFILE_IMG ?>?w=50&h=50" alt=""/>
                             <div class="usuario-perfil">
 								<?= $SESSION_USER_SHORTNAME ?>
                             </div>
