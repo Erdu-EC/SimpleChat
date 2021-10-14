@@ -472,26 +472,47 @@ var texto= $(this).val().toLowerCase();
 if(texto === "") {
     $("#lista-conversaciones").show();
     $("#lista-conversaciones-buscar").hide();
+    $("#cerrar-busqueda-conversacion").removeClass("visible");
 }
 else{
+    $("#lista-conversaciones").hide();
+    $("#cerrar-busqueda-conversacion").addClass("visible");
     $("#lista-conversaciones li").each(function () {
         let li = $(this).clone();
         let nombre = li.find(".name");
-        var indice = nombre.text().toLowerCase().search(texto);
-
+        let indice = nombre.text().toLowerCase().search(texto);
+        li.find(".preview i").remove();
+        li.find(".preview span").remove();
+        let preview = li.find(".preview");
+        var indice_prev = preview.text().toLowerCase().search(texto);
         if (indice !== -1) {
-            elemento = nombre.html(nombre.text().substr(0,indice)+ '<span class="resaltar">'+nombre.text().substr(indice,texto.length)+'</span>'+ nombre.text().substr(indice+texto.length));
-            console.log(indice);
-            $("#lista-conversaciones").hide();
-            $("#lista-conversaciones-buscar").show().append(li);
-
+            let contenido =nombre.text();
+            nombre.html(contenido.substr(0,indice)+ '<span class="resaltar">'+ contenido.substr(indice,texto.length )+'</span>'+ contenido.substr(indice+texto.length));
         }
+        if(indice_prev !== -1){
+            let contenido = preview.text();
+            preview.html('<p>'+contenido.substr(0,indice_prev)+ '<span class="resaltar">'+ contenido.substr(indice_prev, texto.length )+ '</span>'+contenido.substr(indice_prev + texto.length) + '</p>');
+        }
+        if((indice !== -1) || (indice_prev !== -1) ){
+            $("#lista-conversaciones-buscar").show().append(li);
+        }
+
 
     });
 }
 
-//console.log($("#lista-conversaciones").closest(".name").text().search(texto));
-
+});
+$(document).on("click", "#lista-conversaciones-buscar li", function () {
+   let elemento=  $(this).children(".elemento-conversacion");
+   $("#lista-conversaciones li.active").removeClass("active")
+   $('#lista-conversaciones li .elemento-conversacion[data-usuario="'+elemento.attr("data-usuario")+'"]').parent().addClass("active")
+    console.log(elemento.attr("data-usuario"));
+});
+$(document).on("click", "#cerrar-busqueda-conversacion", function () {
+    $(this).removeClass("visible");
+    $("#lista-conversaciones").show();
+    $("#lista-conversaciones-buscar").empty().hide();
+    $("#inputBuscarConversacion").val("");
 });
 
 /*Busqueda en conversaciones*/

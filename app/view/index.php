@@ -154,6 +154,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         <div id="search">
                             <label for="inputBuscarConversacion" class="material-icons">search</i></label>
                             <input name="inputBuscarConversacion" type="text" placeholder="Buscar conversación..." id="inputBuscarConversacion"/>
+                            <div id="cerrar-busqueda-conversacion"><span class="material-icons">close</span></div>
                         </div>
                         <div id="contacts">
                             <ul class="no-seleccionable" id="lista-conversaciones">
