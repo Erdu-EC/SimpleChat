@@ -465,6 +465,37 @@ $(document).on("click", "#btn-cerrar-configuraciones", function () {
 
 });
 
+/*Busqueda en conversaciones*/
+$(document).on("input", "#inputBuscarConversacion",function () {
+var texto= $(this).val().toLowerCase();
+    $("#lista-conversaciones-buscar").empty();
+if(texto === "") {
+    $("#lista-conversaciones").show();
+    $("#lista-conversaciones-buscar").hide();
+}
+else{
+    $("#lista-conversaciones li").each(function () {
+        let li = $(this).clone();
+        let nombre = li.find(".name");
+        var indice = nombre.text().toLowerCase().search(texto);
+
+        if (indice !== -1) {
+            elemento = nombre.html(nombre.text().substr(0,indice)+ '<span class="resaltar">'+nombre.text().substr(indice,texto.length)+'</span>'+ nombre.text().substr(indice+texto.length));
+            console.log(indice);
+            $("#lista-conversaciones").hide();
+            $("#lista-conversaciones-buscar").show().append(li);
+
+        }
+
+    });
+}
+
+//console.log($("#lista-conversaciones").closest(".name").text().search(texto));
+
+});
+
+/*Busqueda en conversaciones*/
+
 
 function CargarEspacioConfiguraciones() {
     $("body").addClass("sb-sidenav-toggled");

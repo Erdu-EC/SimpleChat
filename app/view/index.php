@@ -153,10 +153,13 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         </div>
                         <div id="search">
                             <label for="inputBuscarConversacion" class="material-icons">search</i></label>
-                            <input name="inputBuscarConversacion" type="text" placeholder="Buscar Conversación..."/>
+                            <input name="inputBuscarConversacion" type="text" placeholder="Buscar conversación..." id="inputBuscarConversacion"/>
                         </div>
                         <div id="contacts">
                             <ul class="no-seleccionable" id="lista-conversaciones">
+
+                            </ul>
+                            <ul class="no-seleccionable" id="lista-conversaciones-buscar">
 
                             </ul>
                         </div>
@@ -165,25 +168,6 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                                          class="img-fluid"> <span>Nuevo chat</span></button>
                         </div>
                     </section>
-                  <!--  <section id="espacio-temporal">
-                        <div class="temporal">
-                            <div class="cuerpo-temporal align-self-center">
-                                <img src="/files/img/bg/fondo-tmp.svg" alt="" class="align-self-center">
-                                <span class="bienvenida">Bienvenido(a) a <?= APP_NAME ?></span>
-                                <p>Conéctate a SimpleChat desde cualquier dispositivo a través del navegador web de tu
-                                    preferencia.</p>
-                                <hr>
-                                <div class="iconos-dispositivos">
-                                    <span class="material-icons">desktop_windows</span>
-                                    <span class="material-icons">laptop</span>
-                                    <span class="material-icons">tablet_android</span>
-                                    <span class="material-icons">tablet</span>
-                                    <span class="material-icons">smartphone</span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    -->
 
                     <section class="content" id="espacio-de-chat" style="display: none">
                         <section class="contact-profile no-seleccionable">
