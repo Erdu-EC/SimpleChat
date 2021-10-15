@@ -505,7 +505,7 @@ else{
 $(document).on("click", "#lista-conversaciones-buscar li", function () {
    let elemento=  $(this).children(".elemento-conversacion");
    $("#lista-conversaciones li.active").removeClass("active")
-   $('#lista-conversaciones li .elemento-conversacion[data-usuario="'+elemento.attr("data-usuario")+'"]').parent().addClass("active")
+   $('#lista-conversaciones li .elemento-conversacion[data-usuario="'+elemento.attr("data-usuario")+'"]').parent().addClass("active");
     console.log(elemento.attr("data-usuario"));
 });
 $(document).on("click", "#cerrar-busqueda-conversacion", function () {

@@ -132,15 +132,18 @@ function CargarEspacioDeChat() {
 
     var usr_ant = $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario");
     $('#lista-conversaciones li.active').removeClass('active');
-
-    li_contenedor.addClass("active");
     const nombre_usuario = $(this).attr('data-usuario');
     const espacio_chat = $('#espacio-de-chat');
+
+    let m= $('#lista-conversaciones li .elemento-conversacion[data-usuario="'+nombre_usuario+'"]').parent().addClass("active");
     //Buffer de borradores y de mensajes
     Buffer_Borradores(usr_ant, nombre_usuario, $('#contenido-mensaje').text());
-    if(Buffer_Conversaciones(usr_ant, nombre_usuario)){
-        return;
+    if( m !== undefined){
+        if(Buffer_Conversaciones(usr_ant, nombre_usuario) ){
+            return;
+        }
     }
+
     espacio_chat.find('> *').hide();
     espacio_chat.append(`
         <div class="cargando d-flex h-100">
@@ -279,7 +282,7 @@ $(document).on('click', '.btn-agregar-contacto', function () {
         success: function (json) {
             if (json === true) {
                 boton.remove();
-                $('.opciones-contacto').remove();
+                $('#espacio-de-chat').find(".btn-agregar-contacto").remove();
 
                 if (typeof actualizar_lista_contactos === 'function')
                     actualizar_lista_contactos();
@@ -330,14 +333,18 @@ function Buffer_Borradores(contacto_ant, contacto_act, borrador) {
 }
 const buffer_chat = new Map();
 function Buffer_Conversaciones(contacto_ant,contacto_act){
-    if(! (contacto_ant)){return false;}
+    if(contacto_ant !== undefined){
+        buffer_chat.set(contacto_ant, $("#espacio-de-chat").clone().html());
+    }
 
-    buffer_chat.set(contacto_ant, $("#espacio-de-chat").clone().html());
+
     if (buffer_chat.has(contacto_act)) {
+        $("#espacio-de-chat").empty();
         $("#espacio-de-chat").html(buffer_chat.get(contacto_act));
         $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
         $(`#lista-conversaciones .contact > div[data-usuario=${contacto_act}] .num-msj-pendientes.online`).remove();
         TratarCambiosDeEstadosEnMensajesRecibidos();
+        ActualizarInfoContacto();
         return true;
     }
 
