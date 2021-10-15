@@ -167,8 +167,14 @@ function AgregarMensajesABufferChat(datos){
 function TratarCambiosDeEstadosEnMensajesRecibidos(){
     const lista = $('#lista-mensajes');
     lista.find(`.recibido[data-id]`).each(function(){
-        MarcarComoLeido($(this).attr('data-id'));
-        ($(this).removeAttr('data-id'));
+        if(MarcarComoLeido($(this).attr('data-id'), function () {
+            return true;
+        })){
+
+            console.log( $(this).removeAttr('data-id'));
+            $(this).removeAttr('data-id');
+        }
+
     });
 
 }

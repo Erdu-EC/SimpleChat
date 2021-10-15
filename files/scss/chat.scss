@@ -1027,6 +1027,12 @@ background: #f2f2f2;
   vertical-align: center;
 
 }
+#frame #sidepanel #search {
+  border-top: 1px solid #32465a;
+  border-bottom: 1px solid #32465a;
+  font-weight: 300;
+  display: flex;flex-direction: row;
+}
 
 
 @media screen and (max-width: 735px) and (min-width: 576px){
@@ -1141,12 +1147,6 @@ background: #f2f2f2;
 
 
 
-#frame #sidepanel #search {
-  border-top: 1px solid #32465a;
-  border-bottom: 1px solid #32465a;
-  font-weight: 300;
-  display: flex;flex-direction: row;
-}
 
 #frame #sidepanel #search label {
   position: absolute;
