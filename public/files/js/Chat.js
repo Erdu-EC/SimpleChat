@@ -101,7 +101,7 @@ function EnviarMensaje() {
                     //Si no existe conversacion, agregarla.
                     if (elemento_conversacion.length === 0) {
                         elemento_conversacion = $('<li>', {
-                            class: 'contact',
+                            class: 'contact active',
                             html: ObtenerElementoConversacion(usuario_nick, espacio_chat.parent().find('.nombre-chat').text(), '', espacio_chat.parent().find('.img-contacto').attr('src').split("?")[0], null, null, texto, new Date(), new Date(), null, null)
 
                         });

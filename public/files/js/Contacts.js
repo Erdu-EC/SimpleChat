@@ -88,6 +88,7 @@ $(document).on("keyup change", "#cuadro-busqueda-usuario", function () {
     if ($.trim(cuadro_busqueda.val()) === '') {
         $("#buscar-contacto .borrar").remove();
         $('#lista-contactos').show();
+        $("#listaTodosContactos #sin-resultados").html('<span>Mis contactos</span>');
     } else {
         if (!$("#buscar-contacto .borrar").length)
             cuadro_busqueda.after(' <div class="borrar"><span class="material-icons">close</span></div>');
@@ -99,7 +100,7 @@ $(document).on("click", '#buscar-contacto .borrar', function () {
     $('#lista-contactos-buscar').empty();
     $('#lista-contactos').show();
     $("#buscar-contacto .borrar").remove();
-    $("#listaTodosContactos #sin-resultados").empty();
+    $("#listaTodosContactos #sin-resultados").html('<span>Mis contactos</span>');
 });
 
 ///////
