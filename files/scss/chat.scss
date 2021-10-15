@@ -773,6 +773,13 @@ Lista de contactos
   border: none;
 }
 
+ #lista-contactos-buscar .inicial-lista-contactos, #lista-contactos .inicial-lista-contactos{
+  background: #ffffff;
+  color: #288795;
+  font-size: 0.9rem;
+   padding: 15px 0 15px 30px;
+}
+
 .elemento-contacto {
   display: flex;
   flex-direction: row;

@@ -173,9 +173,19 @@ function actualizar_lista_contactos() {
                 lista_contactos.html('');
                 //alerta.html('Tu lista de contactos esta vacia.<br/><br/>¡Busca nuevos contactos y agregalos!');
             } else {
-                lista_contactos.html('')
+                let inicial = '';
+                let inicialdeRegistro ='';
 
+                sortJSON(json);
+                lista_contactos.empty();
                 json.forEach((registro) => {
+                    inicialdeRegistro =registro[1].substr(0,1).toUpperCase(); ;
+                    if (inicial === '' || inicial !== inicialdeRegistro) {
+                        inicial = inicialdeRegistro;
+                        lista_contactos.append(`<li class="inicial-lista-contactos">${inicial}</li>`)
+                    }
+
+                   console.log(inicialdeRegistro);
                     var estado=Clase_Segun_Estado(registro[3]);
                     $('<li>', {
                         class: 'item-contacto',
@@ -289,4 +299,14 @@ function Clase_Segun_Estado(est){
     }
 
     return estado;
+}
+
+function sortJSON(data) {
+    return data.sort(function (a, b) {
+        var x = a[1].toLowerCase();
+        var y = b[1].toLowerCase();
+
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+
+    });
 }
