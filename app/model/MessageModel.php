@@ -83,7 +83,7 @@
 			}
 		}
 
-		public function SetReadStateInMsg(int $user_id, int $idMsg): bool {
+		public function SetReadStateInMsg(int $user_id, string $idMsg): bool {
 			try {
 				return $this->SelectOnly('select msg_SetStateRead(:UID, :IDMsg)', [
 					'UID' => $user_id,

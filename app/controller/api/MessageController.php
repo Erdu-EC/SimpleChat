@@ -110,7 +110,7 @@
 
 			//Obteniendo parametros post.
 			$_POST = ArrayUtils::Trim($_POST, false);
-			$idMsg = !empty($_POST['id']) ? (int)$_POST['id'] : die(json_encode(false));
+			$idMsg = !empty($_POST['id']) ? $_POST['id'] : die(json_encode(false));
 
 			//Obteniendo ID de usuario actual.
 			$user_id = (new Session())->user_id;
