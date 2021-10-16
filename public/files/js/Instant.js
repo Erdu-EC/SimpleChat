@@ -109,6 +109,7 @@ function ActualizarTotalDeConversacionesNoLeidas() {
 
 function TratarInvitaciones(inv_list) {
     const lista_conversaciones = $('#lista-conversaciones');
+    const espacio_chat = $('#espacio-de-chat .messages');
 
     inv_list.forEach(row => {
         const elemento = lista_conversaciones.find(`.contact > div[data-usuario=${row.nick}]`);
@@ -124,6 +125,10 @@ function TratarInvitaciones(inv_list) {
             // y Modificar html existente.
             elemento.parent().html(elemento_html).prependTo(lista_conversaciones);
         }
+
+        //Si la conversacion esta abierta, mostrar modal de invitacion.
+        if (espacio_chat.attr('data-nick') === row.nick)
+            $(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)).prependTo(espacio_chat);
 
         NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);
     })

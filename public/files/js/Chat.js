@@ -50,7 +50,7 @@ $(document).on('click', '#mensaje-invitacion button', function () {
                 } else
                     elemento.find('.preview').html('<i>Invitación rechazada</i>');
 
-                $('#mensaje-invitacion').remove();
+                $('#mensaje-invitacion').parent().remove();
             } else {
                 boton_si.attr('disabled', null);
                 boton_no.attr('disabled', null);
