@@ -186,7 +186,6 @@ function actualizar_lista_contactos() {
                         lista_contactos.append(`<li class="inicial-lista-contactos">${inicial}</li>`)
                     }
 
-                   console.log(inicialdeRegistro);
                     var estado=Clase_Segun_Estado(registro[3]);
                     $('<li>', {
                         class: 'item-contacto',

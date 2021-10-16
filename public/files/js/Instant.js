@@ -112,7 +112,7 @@ function TratarInvitaciones(inv_list) {
     const espacio_chat = $('#espacio-de-chat .messages');
 
     inv_list.forEach(row => {
-        const elemento = lista_conversaciones.find(`.contact > div[data-usuario=${row.nick}]`);
+               const elemento = lista_conversaciones.find(`.contact > div[data-usuario=${row.nick}]`);
         const elemento_html = ObtenerElementoConversacion(row.nick, row.first_name, row.last_name, row.profile, null, true, null, row.send_date, row.send_date, row.rcv_date, null);
 
         if (elemento.length === 0) {
@@ -129,6 +129,9 @@ function TratarInvitaciones(inv_list) {
         //Si la conversacion esta abierta, mostrar modal de invitacion.
         if (espacio_chat.attr('data-nick') === row.nick)
             $(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)).prependTo(espacio_chat);
+        else{
+            AgregarInvitacionABufferChat( row.nick, $(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)));
+        }
 
         NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);
     })
@@ -169,6 +172,13 @@ function AgregarMensajesABufferChat(datos){
         return;
     }
 }
+function AgregarInvitacionABufferChat( usuario ,datos){
+    if (buffer_chat.has(usuario)){
+        let espacio_chat = $(buffer_chat.get(usuario));
+        espacio_chat.find(".messages").prepend(datos);
+    }
+}
+
 function TratarCambiosDeEstadosEnMensajesRecibidos(){
     const lista = $('#lista-mensajes');
     lista.find(`.recibido[data-id]`).each(function(){
@@ -176,7 +186,6 @@ function TratarCambiosDeEstadosEnMensajesRecibidos(){
             return true;
         })){
 
-            console.log( $(this).removeAttr('data-id'));
             $(this).removeAttr('data-id');
         }
 
