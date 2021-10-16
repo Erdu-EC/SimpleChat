@@ -125,7 +125,7 @@ function TratarInvitaciones(inv_list) {
             elemento.parent().html(elemento_html).prependTo(lista_conversaciones);
         }
 
-        NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, elemento.find('.preview').text(), row.profile);
+        NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);
     })
 }
 
