@@ -4,6 +4,9 @@
 	namespace HS\app\controller\api;
 
 
+	use DateInterval;
+	use DateTime;
+	use HS\app\model\ContactModel;
 	use HS\app\model\InvitationModel;
 	use HS\app\model\MessageModel;
 	use HS\config\APP_URL;
@@ -12,7 +15,6 @@
 	use HS\libs\core\Logger;
 	use HS\libs\core\Session;
 	use HS\libs\helper\MimeType;
-	use const HS\APP_DEBUG;
 
 	class Instant
 	{
@@ -29,6 +31,13 @@
 			//Obteniendo id del usuario actual.
 			$session = new Session();
 			$user_id = $session->user_id;
+
+			if (empty($session->last_contact_active_data))
+				$session->last_contact_active_data = (new DateTime())->format('Y-m-d H:i:s');
+
+			$last_send_ca = new DateTime($session->last_contact_active_data);
+			$last_send_ca->Add(new DateInterval('PT2M'));
+
 			unset($session);
 
 			while (true) {
@@ -40,11 +49,25 @@
 				$inv_data = $invitation_model->GetUnreceive($user_id);
 				$state_data = $message_model->GetUnreceivedStatesChanged($user_id);
 
+				//Revisando si es necesario enviar información sobre los contactos activos.
+				if ($last_send_ca < new DateTime()) {
+					$contacts_model = new ContactModel($message_model->GetPDO());
+					$contact_data = $contacts_model->GetActiveContacts($user_id);
+
+					//Logger::Log('instant', 'data++', ($last_send_ca)->format('Y-m-d H:i:s') . " < " . (new DateTime())->format('Y-m-d H:i:s'));
+
+					if (!empty($contact_data) && $contact_data->count() > 0) {
+						$session = new Session();
+						$session->last_contact_active_data = (new DateTime())->format('Y-m-d H:i:s');
+						unset($session);
+					}
+				}
+
 				unset($invitation_model);
 				unset($message_model);
 
-				if ((!empty($msg_data) && $msg_data->count() > 0) || (!empty($inv_data) && $inv_data->count() > 0) ||
-					(!empty($state_data) && $state_data->count() > 0)) {
+				if ((!empty($msg_data) & $msg_data->count() > 0) || (!empty($inv_data) && $inv_data->count() > 0) ||
+					(!empty($state_data) && $state_data->count() > 0) || (!empty($contact_data) && $contact_data->count() > 0)) {
 					//Desactivando limpiado del buffer implicito.
 					ob_implicit_flush(false);
 
@@ -65,14 +88,13 @@
 					echo json_encode([
 						'messages' => !empty($msg_data) ? $msg_data->GetInnerArray(true) : [],
 						'invitations' => !empty($inv_data) ? $inv_data->GetInnerArray(true) : [],
-						'msg_states' => !empty($state_data) ? $state_data->GetInnerArray(true) : []
+						'msg_states' => !empty($state_data) ? $state_data->GetInnerArray(true) : [],
+						'contact_active' => !empty($contact_data) ? $contact_data->GetInnerArray(true) : []
 					]);
 
 					//Enviando buffer de salida.
 					ob_flush();
 					flush();
-
-					Logger::Log('instant', 'data', $msg_data->count() . ' - ' . $inv_data->count() . ' - ' . $state_data->count());
 
 					break;
 				}

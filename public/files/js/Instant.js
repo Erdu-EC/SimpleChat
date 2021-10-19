@@ -23,6 +23,14 @@ $(document).ready(function () {
             //Si hay cambios de estado no recibidos.
             if (ev.data['msg_states'].length > 0)
                 TratarCambiosDeEstadosEnMensajes(ev.data['msg_states']);
+
+            //Si hay cambios en contactos activos.
+            if (ev.data['contact_active'].length > 0){
+                console.log(new Date());
+                console.log(ev.data['contact_active']);
+
+            }
+
         }
     }
 });

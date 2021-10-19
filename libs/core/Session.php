@@ -4,6 +4,7 @@
 	namespace HS\libs\core;
 
 
+	use DateTime;
 	use HS\libs\collection\Collection;
 	use const HS\config\APP_SESSION_NAME;
 
@@ -13,6 +14,7 @@
 	 * @property string user_name
 	 * @property string user_shortname
 	 * @property string|null user_profile_img
+	 * @property int | null $last_contact_active_data
 	 */
 	class Session extends Collection
 	{
