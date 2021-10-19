@@ -3,7 +3,6 @@
 
 	namespace HS\libs\core;
 
-
 	use HS\libs\collection\Collection;
 	use const HS\config\APP_SESSION_NAME;
 
@@ -12,7 +11,8 @@
 	 * @property int user_cid
 	 * @property string user_name
 	 * @property string user_shortname
-	 * @property string|null user_profile_img
+	 * @property string| null user_profile_img
+	 * @property string | null $last_contact_active_data
 	 */
 	class Session extends Collection
 	{

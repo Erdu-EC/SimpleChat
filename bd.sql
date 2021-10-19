@@ -143,8 +143,7 @@ BEGIN
     INSERT INTO connections(id_user, device, login_date) VALUES (USER_ID, device_desc, NOW());
 
     RETURN LAST_INSERT_ID();
-END
-$
+END $
 
 CREATE PROCEDURE user_set_logout(in USER_ID int, in CONNECTION_ID int)
 BEGIN
@@ -154,16 +153,18 @@ BEGIN
     IF NOT EXISTS(SELECT id FROM connections WHERE logout_date IS NULL) THEN
         UPDATE users SET state = 'I' WHERE id = USER_ID;
     END IF;
-END
-$
+END $
 
+CREATE PROCEDURE user_getActiveContacts(in USER_ID int)
+BEGIN
+    SELECT user_name FROM users u inner join contacts c on u.id = c.contact_id WHERE c.user_id = USER_ID and u.state = 'A';
+END $
 
 CREATE FUNCTION user_is_contact(USERID int, CONTACTID int) RETURNS BOOLEAN
     READS SQL DATA
 BEGIN
     RETURN EXISTS(SELECT * FROM contacts WHERE user_id = USERID and contact_id = CONTACTID);
-END
-$
+END $
 
 #Procedimientos para contactos.
 CREATE FUNCTION user_AddContact(own int, contact int) RETURNS INT
@@ -337,7 +338,7 @@ BEGIN
     UPDATE message set rcv_date = NOW() where id in (select id from unrcv_messages);
 
     select u.id,
-           mr.id_temp         as id_msg,
+           mr.id_temp    as id_msg,
            u.user_name,
            u.first_name,
            u.last_name,
