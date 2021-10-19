@@ -25,12 +25,10 @@ $(document).ready(function () {
                 TratarCambiosDeEstadosEnMensajes(ev.data['msg_states']);
 
             //Si hay cambios en contactos activos.
-            if (ev.data['contact_active'].length > 0){
+            if (ev.data['contact_active'].length > 0) {
                 console.log(new Date());
                 console.log(ev.data['contact_active']);
-
             }
-
         }
     }
 });
@@ -55,8 +53,8 @@ function TratarMensajes(mensajes) {
         if (row.user_name === $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario")) {
             MostrarMensajeEnEspacioDeChat(nombre, row);
         } else {
-            if(row.content_img !== null){
-                row.content = nombre +" te ha enviado una imagen.";
+            if (row.content_img !== null) {
+                row.content = nombre + " te ha enviado una imagen.";
             }
             MensajeNuevo(row.id, nombre, row.content, row.profile);
 
@@ -88,7 +86,7 @@ function MostrarMensajeEnEspacioDeChat(nombre, datos) {
     let mensaje;
 
     if (datos.content_img !== null) {
-        datos.content= nombre +" te ha enviado una imagen.";
+        datos.content = nombre + " te ha enviado una imagen.";
         mensaje = ObtenerElementoImgContacto(datos.profile, datos.content_img.split('\\').pop().split('/').pop(), datos.content_img, ObtenerHora(datos.send_date));
     } else
 
@@ -120,7 +118,7 @@ function TratarInvitaciones(inv_list) {
     const espacio_chat = $('#espacio-de-chat .messages');
 
     inv_list.forEach(row => {
-               const elemento = lista_conversaciones.find(`.contact > div[data-usuario=${row.nick}]`);
+        const elemento = lista_conversaciones.find(`.contact > div[data-usuario=${row.nick}]`);
         const elemento_html = ObtenerElementoConversacion(row.nick, row.first_name, row.last_name, row.profile, null, true, null, row.send_date, row.send_date, row.rcv_date, null);
 
         if (elemento.length === 0) {
@@ -137,9 +135,6 @@ function TratarInvitaciones(inv_list) {
         //Si la conversacion esta abierta, mostrar modal de invitacion.
         if (espacio_chat.attr('data-nick') === row.nick)
             $(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)).prependTo(espacio_chat);
-        else{
-            AgregarInvitacionABufferChat( row.nick, $(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)));
-        }
 
         NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);
     })
@@ -165,35 +160,30 @@ function TratarCambiosDeEstadosEnMensajes(datos) {
 }
 
 
-function AgregarMensajesABufferChat(datos){
-    if (buffer_chat.has(datos.user_name)){
+function AgregarMensajesABufferChat(datos) {
+    if (buffer_chat.has(datos.user_name)) {
         let mensaje;
-        if (datos.content_img !== null){
+        if (datos.content_img !== null) {
             mensaje = ObtenerElementoImgContacto(datos.profile, datos.content_img.split('\\').pop().split('/').pop(), datos.content_img, ObtenerHora(datos.send_date));
-        }else {
+        } else {
             mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, ObtenerHora(datos.send_date)));
         }
         mensaje.attr("data-id", datos.id_msg);
         let espacio_chat = $(buffer_chat.get(datos.user_name));
         espacio_chat.find("#lista-mensajes").append(mensaje);
-        buffer_chat.set(datos.user_name,espacio_chat  );
+        buffer_chat.set(datos.user_name, espacio_chat);
         return;
     }
 }
-function AgregarInvitacionABufferChat( usuario ,datos){
-    if (buffer_chat.has(usuario)){
-        let espacio_chat = $(buffer_chat.get(usuario));
-        espacio_chat.find(".messages").prepend(datos);
-    }
-}
 
-function TratarCambiosDeEstadosEnMensajesRecibidos(){
+function TratarCambiosDeEstadosEnMensajesRecibidos() {
     const lista = $('#lista-mensajes');
-    lista.find(`.recibido[data-id]`).each(function(){
-        if(MarcarComoLeido($(this).attr('data-id'), function () {
+    lista.find(`.recibido[data-id]`).each(function () {
+        if (MarcarComoLeido($(this).attr('data-id'), function () {
             return true;
-        })){
+        })) {
 
+            console.log($(this).removeAttr('data-id'));
             $(this).removeAttr('data-id');
         }
 
