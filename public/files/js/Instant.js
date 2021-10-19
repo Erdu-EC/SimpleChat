@@ -25,12 +25,10 @@ $(document).ready(function () {
                 TratarCambiosDeEstadosEnMensajes(ev.data['msg_states']);
 
             //Si hay cambios en contactos activos.
-            if (ev.data['contact_active'].length > 0){
+            if (ev.data['contact_active'].length > 0) {
                 console.log(new Date());
                 console.log(ev.data['contact_active']);
-
             }
-
         }
     }
 });
@@ -55,8 +53,8 @@ function TratarMensajes(mensajes) {
         if (row.user_name === $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario")) {
             MostrarMensajeEnEspacioDeChat(nombre, row);
         } else {
-            if(row.content_img !== null){
-                row.content = nombre +" te ha enviado una imagen.";
+            if (row.content_img !== null) {
+                row.content = nombre + " te ha enviado una imagen.";
             }
             MensajeNuevo(row.id, nombre, row.content, row.profile);
 
@@ -88,7 +86,7 @@ function MostrarMensajeEnEspacioDeChat(nombre, datos) {
     let mensaje;
 
     if (datos.content_img !== null) {
-        datos.content= nombre +" te ha enviado una imagen.";
+        datos.content = nombre + " te ha enviado una imagen.";
         mensaje = ObtenerElementoImgContacto(datos.profile, datos.content_img.split('\\').pop().split('/').pop(), datos.content_img, ObtenerHora(datos.send_date));
     } else
 
@@ -162,29 +160,30 @@ function TratarCambiosDeEstadosEnMensajes(datos) {
 }
 
 
-function AgregarMensajesABufferChat(datos){
-    if (buffer_chat.has(datos.user_name)){
+function AgregarMensajesABufferChat(datos) {
+    if (buffer_chat.has(datos.user_name)) {
         let mensaje;
-        if (datos.content_img !== null){
+        if (datos.content_img !== null) {
             mensaje = ObtenerElementoImgContacto(datos.profile, datos.content_img.split('\\').pop().split('/').pop(), datos.content_img, ObtenerHora(datos.send_date));
-        }else {
+        } else {
             mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, ObtenerHora(datos.send_date)));
         }
         mensaje.attr("data-id", datos.id_msg);
         let espacio_chat = $(buffer_chat.get(datos.user_name));
         espacio_chat.find("#lista-mensajes").append(mensaje);
-        buffer_chat.set(datos.user_name,espacio_chat  );
+        buffer_chat.set(datos.user_name, espacio_chat);
         return;
     }
 }
-function TratarCambiosDeEstadosEnMensajesRecibidos(){
-    const lista = $('#lista-mensajes');
-    lista.find(`.recibido[data-id]`).each(function(){
-        if(MarcarComoLeido($(this).attr('data-id'), function () {
-            return true;
-        })){
 
-            console.log( $(this).removeAttr('data-id'));
+function TratarCambiosDeEstadosEnMensajesRecibidos() {
+    const lista = $('#lista-mensajes');
+    lista.find(`.recibido[data-id]`).each(function () {
+        if (MarcarComoLeido($(this).attr('data-id'), function () {
+            return true;
+        })) {
+
+            console.log($(this).removeAttr('data-id'));
             $(this).removeAttr('data-id');
         }
 
