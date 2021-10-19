@@ -100,9 +100,22 @@ function EnviarMensaje() {
 
                     //Si no existe conversacion, agregarla.
                     if (elemento_conversacion.length === 0) {
+                        let estado = $("#espacio-de-chat").find(".ult-conex").text();
+                        console.log(estado);
+                        switch (estado){
+                            case 'Activo':
+                                estado= "online";
+                                break;
+                            case 'Inactivo':
+                                estado= "inactivo";
+                                break;
+                            case 'Ocupado':
+                                estado= "ocupado";
+                                break;
+                        }
                         elemento_conversacion = $('<li>', {
                             class: 'contact active',
-                            html: ObtenerElementoConversacion(usuario_nick, espacio_chat.parent().find('.nombre-chat').text(), '', espacio_chat.parent().find('.img-contacto').attr('src').split("?")[0], null, null, texto, new Date(), new Date(), null, null)
+                            html: ObtenerElementoConversacion(usuario_nick, espacio_chat.parent().find('.nombre-chat').text(), '', espacio_chat.parent().find('.img-contacto').attr('src').split("?")[0], estado, null, texto, new Date(), new Date(), null, null)
 
                         });
                     }

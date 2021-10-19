@@ -26,8 +26,7 @@ $(document).ready(function () {
 
             //Si hay cambios en contactos activos.
             if (ev.data['contact_active'].length > 0) {
-                console.log(new Date());
-                console.log(ev.data['contact_active']);
+                TratarCambiosDeEstadosEnContactos(ev.data['contact_active']);
             }
         }
     }
@@ -182,11 +181,39 @@ function TratarCambiosDeEstadosEnMensajesRecibidos() {
         if (MarcarComoLeido($(this).attr('data-id'), function () {
             return true;
         })) {
-
-            console.log($(this).removeAttr('data-id'));
             $(this).removeAttr('data-id');
         }
-
     });
 
+}
+
+let temporizador;
+
+function TratarCambiosDeEstadosEnContactos(contactos){
+    clearTimeout(timer);
+    ContactosInactivos();
+    let usuario_chat = $("#espacio-de-chat .messages");
+
+contactos.forEach(item => {
+var elemento_conversacion = $('#lista-conversaciones .contact .elemento-conversacion[data-usuario='+item.user_name+']');
+if(elemento_conversacion.length !== 0){
+    elemento_conversacion.find(".contact-status").removeClass("inactivo").addClass("online");
+}
+if(item.user_name === usuario_chat.attr("data-nick")){
+usuario_chat.siblings(".contact-profile").find(".ult-conex").text("Activo");
+}
+
+});
+temporizador = window.setTimeout(
+            () => {ContactosInactivos();
+            }, 3000);
+
+}
+
+function ContactosInactivos(){
+    let usuario_chat = $("#espacio-de-chat .messages");
+    usuario_chat.siblings(".contact-profile").find(".ult-conex").text("Inactivo");
+    $("#lista-conversaciones .contact .elemento-conversacion").each(function () {
+        $(this).find(".contact-status").removeClass("online").removeClass("ocupado").addClass("inactivo");
+    })
 }
