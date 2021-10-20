@@ -43,7 +43,7 @@ function TratarMensajes(mensajes) {
         if (elemento_contacto.length === 0) {
             elemento_contacto = $('<li>', {
                 class: 'contact',
-                html: ObtenerElementoConversacion(row.user_name, row.first_name, row.last_name, row.profile, null, null, texto_saneado, row.send_date, row.send_date, row.rcv_date, row.read_date)
+                html: ObtenerElementoConversacion(row.user_name, row.first_name, row.last_name, row.profile, "online", null, texto_saneado, row.send_date, row.send_date, row.rcv_date, row.read_date)
             });
             elemento_contacto.prependTo(lista_conversaciones);
         }
@@ -215,7 +215,7 @@ usuario_chat.siblings(".contact-profile").find(".ult-conex").text("Activo");
 });
 temporizador = window.setTimeout(
             () => {ContactosInactivos();
-            }, 3000);
+            }, 150000);
 
 }
 
@@ -223,6 +223,31 @@ function ContactosInactivos(){
     let usuario_chat = $("#espacio-de-chat .messages");
     usuario_chat.siblings(".contact-profile").find(".ult-conex").text("Inactivo");
     $("#lista-conversaciones .contact .elemento-conversacion").each(function () {
-        $(this).find(".contact-status").removeClass("online").removeClass("ocupado").addClass("inactivo");
+        $(this).find(".contact-status").removeClass("online ocupado").addClass("inactivo");
     })
+}
+function ActualizarEstadoContacto(nombre_usuario, estado){
+    let estado_usuario="";
+    let ult_conexion = "";
+switch (estado) {
+    case "A":
+        estado_usuario="online";
+        ult_conexion = "Activo";
+        break;
+    case "I":
+        estado_usuario="inactivo";
+        ult_conexion = "Inactivo";
+        break;
+    case "O":
+        estado_usuario="ocupado";
+        ult_conexion = "Ocupado";
+        break;
+}
+$("#espacio-de-chat").find("ult-conex").text(ult_conexion);
+let contacto = $('#lista-conversaciones .contact .elemento-conversacion[data-usuario='+nombre_usuario+']');
+if(contacto.length > 0){
+    contacto.find(".contact-status").removeClass("inactivo online ocupado").addClass(estado_usuario);
+}
+console.log(contacto);
+
 }

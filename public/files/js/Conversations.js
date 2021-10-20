@@ -48,10 +48,10 @@ function cargar_conversaciones() {
             }
         }
     });
-    //se inicia el temporizador a la espera de actualizaciones de contactos
+    //se inicia el temporizador a la espera de actualizaciones de estados de contactos
     temporizador = window.setTimeout(
         () => {ContactosInactivos();
-        }, 5000);
+        }, 180000);
 }
 
 const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, estado,hay_invitacion, contenido, enviado, ult_msj,hora_recibido, hora_leido) =>

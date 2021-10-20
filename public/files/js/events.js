@@ -506,7 +506,7 @@ $(document).on("click", "#lista-conversaciones-buscar li", function () {
    let elemento=  $(this).children(".elemento-conversacion");
    $("#lista-conversaciones li.active").removeClass("active")
    $('#lista-conversaciones li .elemento-conversacion[data-usuario="'+elemento.attr("data-usuario")+'"]').parent().addClass("active");
-    console.log(elemento.attr("data-usuario"));
+
 });
 $(document).on("click", "#cerrar-busqueda-conversacion", function () {
     $(this).removeClass("visible");
@@ -608,7 +608,6 @@ var remitente= $('#espacio-de-chat > div').attr('data-nick');
                     progreso.remove();
                     //Actualizar item de conversación.
                     let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${remitente}]`).parent();
-                    console.log(remitente);
                     elemento_conversacion.prependTo($('#lista-conversaciones'));
                     elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span> <span class="material-icons icon-indicador">image</span> Archivo de imagen');
                     elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));

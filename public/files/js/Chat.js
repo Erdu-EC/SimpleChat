@@ -101,7 +101,6 @@ function EnviarMensaje() {
                     //Si no existe conversacion, agregarla.
                     if (elemento_conversacion.length === 0) {
                         let estado = $("#espacio-de-chat").find(".ult-conex").text();
-                        console.log(estado);
                         switch (estado){
                             case 'Activo':
                                 estado= "online";

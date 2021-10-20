@@ -61,10 +61,14 @@ function ActualizarInfoContacto() {
 
                 extra.find('.sexo span').text(sexo)
                 contenedor.show();
+                //Actualizando estado del contacto
+                ActualizarEstadoContacto(json[2], json[3]);
             }
 
             //Quitando contenedor de animación de carga.
             $('#panelInfoContacto > div:last-child').remove();
+
+
         }
     });
 }
@@ -171,7 +175,8 @@ function actualizar_lista_contactos() {
             if (json === null) {
                 //alerta.text('No fue posible cargar la lista de contactos.');
             } else if (json.length === 0) {
-                lista_contactos.html('');
+                $("#listaTodosContactos #sin-resultados").text("Lista de contactos vacía");
+                lista_contactos.empty();
                 //alerta.html('Tu lista de contactos esta vacia.<br/><br/>¡Busca nuevos contactos y agregalos!');
             } else {
                 let inicial = '';
