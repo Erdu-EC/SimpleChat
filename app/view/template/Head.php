@@ -12,11 +12,6 @@ namespace HS\app\view\template;
 <meta name="Apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<?php
-header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
-header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
-
-?>
 <meta http-equiv="Cache-control" content="no-cache">
 
 <meta name="mobile-web-app-capable" content="yes">

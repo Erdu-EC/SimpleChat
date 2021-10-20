@@ -65,7 +65,7 @@ if (Session::IsLogin()){
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active align-content-center">
-                 <!-- la resolcion de las imagenes es de 4950 px X 2175 para mantener la proporcio a 330x145 px -->
+                    <!-- la resolcion de las imagenes es de 4950 px X 2175 para mantener la proporcio a 330x145 px -->
                     <img src="/files/photos/photo-1.jpg" class="d-block img-carousel" alt="">
                     <div class="filtro-img-carrusel">
                         <div class="mensaje-carrousel">
@@ -133,195 +133,133 @@ if (Session::IsLogin()){
     <section class="foto-panoramica">
     </section>
     <section class="contenido-acerca">
-<div class="acciones">
-    <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="acciones">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12">
 
-            <div class="objetivos" >
-                <figure><img src="/files/photos/mini-1.svg" alt=""></figure>
-                <div class="cuerpo-objetivos">
-                    <p class="title">Desarrollo e innovación</p>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="objetivos" >
-                <figure><img src="/files/photos/mini-2.svg" alt=""></figure>
-                <div class="cuerpo-objetivos">
-                    <p class="title">Actualizaciones periódicas</p>
-
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="objetivos" >
-                <figure><img src="/files/photos/mini-3.svg" alt=""></figure>
-                <div class="cuerpo-objetivos">
-                    <p class="title">Protección de datos</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="objetivos" >
-                <figure><img src="/files/photos/mini-4.svg" alt=""></figure>
-                <div class="cuerpo-objetivos">
-                    <p class="title">Diseño adaptativo</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-     <section class="bottom-acerca">
-         <div class="row hor-cont-caracteristicas">
-             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas">
-                 <article class="caracteristicas">
-                     <div class="icon-caract">
-                         <img src="/files/photos/about-caract-1.svg" alt="">
-                     </div>
-                     <span class="titulo-caract">Creatividad</span>
-                     <p class="descrip-caract">SimpleChat ha sido optimizado para dispositivos móviles de diferentes tamaños y resolcuiones de pantalla.</p>
-                 </article>
-             </div>
-             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas">
-                 <article class="caracteristicas">
-                     <div class="icon-caract">
-                         <img src="/files/photos/about-caract-2.svg" alt="">
-                     </div>
-                     <span class="titulo-caract">Adaptabilidad</span>
-                     <p class="descrip-caract" >Es la capacidad de pensar fuera de la caja. Generamos muchas ideas, tomamos decisiones y creamos algo nuevo.</p>
-                 </article>
-             </div>
-             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas">
-                 <article class="caracteristicas">
-                     <div class="icon-caract">
-                         <img src="/files/photos/about-caract-3.svg" alt="">
-                     </div>
-                     <span class="titulo-caract">Estilo</span>
-                     <p class="descrip-caract">Diseños flexibles con colores elegantes ajustados a las tendencias actuales.</p>
-                 </article>
-             </div>
-
-         </div>
-
-
-         <div id="carrusel-desarrolladores" class="carousel slide" data-bs-ride="carousel">
-             <div class="carousel-inner " id="integrantes-acerca">
-                 <div class="carousel-item active" data-bs-interval="4000">
-                     <img class="" src="/files/photos/home_pic1.jpg" alt="">
-
-                        <div class="item-integrante">
-                          <p class="palabras-integrante">Esperamos que queden muy satisfechos con nuestro trabajo, representamos a una maravillosa empresa.</p>
-                            <span class="nombre-integrante">Emily Saens</span>
-                            <span class="puesto-integrante">Diseñadora</span>
+                    <div class="objetivos" >
+                        <figure><img src="/files/photos/mini-1.svg" alt=""></figure>
+                        <div class="cuerpo-objetivos">
+                            <p class="title">Desarrollo e innovación</p>
                         </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="objetivos" >
+                        <figure><img src="/files/photos/mini-2.svg" alt=""></figure>
+                        <div class="cuerpo-objetivos">
+                            <p class="title">Actualizaciones periódicas</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="objetivos" >
+                        <figure><img src="/files/photos/mini-3.svg" alt=""></figure>
+                        <div class="cuerpo-objetivos">
+                            <p class="title">Protección de datos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="objetivos" >
+                        <figure><img src="/files/photos/mini-4.svg" alt=""></figure>
+                        <div class="cuerpo-objetivos">
+                            <p class="title">Diseño adaptativo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bottom-acerca">
+        <div class="row hor-cont-caracteristicas">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas">
+                <article class="caracteristicas">
+                    <div class="icon-caract">
+                        <img src="/files/photos/about-caract-1.svg" alt="">
+                    </div>
+                    <span class="titulo-caract">Creatividad</span>
+                    <p class="descrip-caract">SimpleChat ha sido optimizado para dispositivos móviles de diferentes tamaños y resoluciones de pantalla.</p>
+                </article>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas">
+                <article class="caracteristicas">
+                    <div class="icon-caract">
+                        <img src="/files/photos/about-caract-2.svg" alt="">
+                    </div>
+                    <span class="titulo-caract">Adaptabilidad</span>
+                    <p class="descrip-caract" >Es la capacidad de pensar fuera de la caja. Generamos muchas ideas, tomamos decisiones y creamos algo nuevo.</p>
+                </article>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 cont-caracteristicas">
+                <article class="caracteristicas">
+                    <div class="icon-caract">
+                        <img src="/files/photos/about-caract-3.svg" alt="">
+                    </div>
+                    <span class="titulo-caract">Estilo</span>
+                    <p class="descrip-caract">Diseños flexibles con colores elegantes ajustados a las tendencias actuales.</p>
+                </article>
+            </div>
+
+        </div>
+
+
+        <div id="carrusel-desarrolladores" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner " id="integrantes-acerca">
+                <div class="carousel-item active" data-bs-interval="4000">
+                    <img class="" src="/files/photos/home_pic1.jpg" alt="">
+
+                    <div class="item-integrante">
+                        <p class="palabras-integrante">Esperamos que queden muy satisfechos con nuestro trabajo, representamos a una maravillosa empresa.</p>
+                        <span class="nombre-integrante">Emily Saens</span>
+                        <span class="puesto-integrante">Diseñadora</span>
+                    </div>
 
 
 
-                 </div>
-                 <div class="carousel-item" data-bs-interval="2500">
-                     <img class="" src="/files/photos/home_pic2.jpg" alt="">
-                     <div class="item-integrante">
-                         <p class="palabras-integrante"> Tratamos de  ser precisos, todas las promesas se cumplen, todas las preguntas obtienen respuestas, la empresa presenta un enfoque muy atento y positivo.</p>
-                         <span class="nombre-integrante">Dan Fonda</span>
-                         <span class="puesto-integrante">Desarrollador</span>
-                     </div>
-                 </div>
-                 <div class="carousel-item" data-bs-interval="2500">
-                     <img class="" src="/files/photos/home_pic3.jpg" alt="">
-                     <div class="item-integrante">
-                         <p class="palabras-integrante">Tratamos de resolver los problemas con prontitud.
-                             En comunicación, tratando de ser agradables y serviciales para usted.
-                             Ofrecer siempre nuevas ideas, nuevas formas de desarrollar, mejorar nuestro proyecto son nuestras principales directrices.</p>
-                         <span class="nombre-integrante">Matt Dot</span>
-                         <span class="puesto-integrante">Desarrollador</span>
-                     </div>
-                 </div>
-             </div>
-             <button class="carousel-control-prev" type="button" data-bs-target="#carrusel-desarrolladores" data-bs-slide="prev">
-                 <i class="fas fa-chevron-left"></i>
-             </button>
-             <button class="carousel-control-next" type="button" data-bs-target="#carrusel-desarrolladores" data-bs-slide="next">
+                </div>
+                <div class="carousel-item" data-bs-interval="2500">
+                    <img class="" src="/files/photos/home_pic2.jpg" alt="">
+                    <div class="item-integrante">
+                        <p class="palabras-integrante"> Tratamos de  ser precisos, todas las promesas se cumplen, todas las preguntas obtienen respuestas, la empresa presenta un enfoque muy atento y positivo.</p>
+                        <span class="nombre-integrante">Dan Fonda</span>
+                        <span class="puesto-integrante">Desarrollador</span>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2500">
+                    <img class="" src="/files/photos/home_pic3.jpg" alt="">
+                    <div class="item-integrante">
+                        <p class="palabras-integrante">Tratamos de resolver los problemas con prontitud.
+                            En comunicación, tratando de ser agradables y serviciales para usted.
+                            Ofrecer siempre nuevas ideas, nuevas formas de desarrollar, mejorar nuestro proyecto son nuestras principales directrices.</p>
+                        <span class="nombre-integrante">Matt Dot</span>
+                        <span class="puesto-integrante">Desarrollador</span>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carrusel-desarrolladores" data-bs-slide="prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carrusel-desarrolladores" data-bs-slide="next">
 
-                 <i class="fas fa-chevron-right"></i>
-             </button>
-         </div>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
 
-<!--
-       <div class="row">
-           <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12 seccion-ultimo">
-               <h3>Ultimas noticias</h3>
-               <ul class="lista-noticias">
-                   <li>
-                       <time datetime="20.09.2015">20.09.2015</time>
-                       <p class="subtitulo">Lorem ipsum dolor sit amet, consec teer adipiscing. Prsent vestibulum.</p>
-                       <p>Lorem ipsum dolor sit amet, consec tetuer adipi scing. Praesent vestibu.  lum molestie lacuiirhs. Aenean non ummy hendreriauris. Phasellllus.</p>
-                             </li>
-                   <li>
-                       <time datetime="09.09.2015">09.09.2015</time>
-                       <p class="subtitulo">Lorem ipsum dolor sit amet, consec teer adipiscing. Prsent vestibulum.</p>
-                       <p>Lorem ipsum dolor sit amet, consec tetuer adipi scing. Praesent vestibu.  lum molestie lacuiirhs. Aenean non ummy hendreriauris. Phasellllus.</p>
-                   </li>
-               </ul>
-               <hr class="separador-secciones">
-           </article>
-           <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12 seccion-benvenida">
-               <h3>Bienvenido(a)</h3>
-               <p class="subtitulo">Fusce suscipit varius mium sociis totdnatibus et magis dis parturient montes, nascetur ridiculus mus. </p>
-               <p class="descrip">Lorem ipsum dolor sit amet, consec teer adipiscing. Prsent vestibulum molestie lacuiirhs. Aeneon my . Phasellllus. porta. Fusce suscipit varius mium sociis.</p>
-               <p>Lorem ipsum dolor sit amet, consec tetuer adipiscing. Praesent vestibu lum molestie lacuiirhs. Aenean non ummy hendreriauris. Phasellllus. porta. Fusce suscipit varius mium sociis totdnatibus et magis dis parturient montes, nascetur ridiculus mus. Nulla dui.</p>
-
-               <hr class="separador-secciones">
-           </article>
-           <article class="col-xl-4 col-lg-4 col-md-6 col-sm-12  seccion-desarrolladores">
-               <h3>Nuestros desarrolladores</h3>
-               <p class="subtitulo">Lorem ipsum dolor sit amet, consec teer adipiscing. Prsent vestibulum mo.</p>
-               <ul class="lista-desarrolladores">
-                   <li>
-                       <div class="item-desarrollador">
-                           <figure class="foto-desarrollador"><img src="/files/photos/home_pic1.jpg" alt=""></figure>
-                           <div class="descr-desarrollador">
-                               <span class="nombre-desarrollador">Lorem Ipsum</span>
-                               <p>Consec tetuer adipiscing. Praesent vestibu.</p>
-                           </div>
-                       </div>
-                   </li>
-                   <li>
-                       <div class="item-desarrollador">
-                           <figure class="foto-desarrollador"><img src="/files/photos/home_pic2.jpg" alt=""></figure>
-                           <div class="descr-desarrollador">
-                               <span class="nombre-desarrollador">Dolor set amet</span>
-                               <p>Aenean non ummy hendreria uris. Phasellllu porta. </p>
-                           </div>
-                       </div>
-                   </li>
-                   <li>
-                       <div class="item-desarrollador">
-                           <figure class="foto-desarrollador"><img src="/files/photos/home_pic3.jpg" alt=""></figure>
-                           <div class="descr-desarrollador">
-                               <span class="nombre-desarrollador"></span>
-                               <p>Praesent vestiblum molestie lacuiirhs. Aenean non ummy. </p>
-                           </div>
-                       </div>
-
-                   </li>
-               </ul>
-               <hr class="separador-secciones">
-           </article>
-       </div>-->
-   </section>
+    </section>
     <footer class="footer-acerca">
-<div class="redes-sociales">
-    <ul>
+        <div class="redes-sociales">
+            <ul>
 
-        <li><a href="http://facebook.com" class="item-red-social"><i class="fab fa-facebook-square"></i></a></li>
-        <li><a href="http://twitter.com" class="item-red-social"><i class="fab fa-twitter-square"></i></a></li>
-        <li><a href="http://linkedin.com" class="item-red-social"><i class="fab fa-linkedin"></i></a></li>
-    </ul>
-</div>
+                <li><a href="http://facebook.com" class="item-red-social"><i class="fab fa-facebook-square"></i></a></li>
+                <li><a href="http://twitter.com" class="item-red-social"><i class="fab fa-twitter-square"></i></a></li>
+                <li><a href="http://linkedin.com" class="item-red-social"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+        </div>
         <p>&copy; Copyright 2021 SimpleChat - Todos los derechos reservados</p>
-    </div>
+</div>
 </footer>
 <div id="hacia-arriba">
     <i class="fas fa-arrow-up"></i>

@@ -805,3 +805,8 @@ $(document).on("blur", "#espacio-de-chat", function () {
     Buffer_Conversaciones(usuario,"" );
 
 });
+
+//al cerrar la ventana tambien se cierra sesion
+window.onbeforeunload = function () {
+
+}
