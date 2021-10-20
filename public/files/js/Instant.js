@@ -134,6 +134,15 @@ function TratarInvitaciones(inv_list) {
         //Si la conversacion esta abierta, mostrar modal de invitacion.
         if (espacio_chat.attr('data-nick') === row.nick)
             $(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)).prependTo(espacio_chat);
+        else{
+            if (buffer_chat.has(row.nick)){
+                let chat_en_buffer = $(buffer_chat.get(row.nick));
+                chat_en_buffer.find("#lista-mensajes").before(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name));
+                buffer_chat.get(row.nick,chat_en_buffer );
+            }
+        }
+
+
 
         NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);
     })
@@ -190,7 +199,7 @@ function TratarCambiosDeEstadosEnMensajesRecibidos() {
 let temporizador;
 
 function TratarCambiosDeEstadosEnContactos(contactos){
-    clearTimeout(timer);
+    clearTimeout(temporizador);
     ContactosInactivos();
     let usuario_chat = $("#espacio-de-chat .messages");
 

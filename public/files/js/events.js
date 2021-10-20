@@ -801,15 +801,8 @@ function CancelarEdicion() {
     delete my_cropper;
 }
 
-//eventos mobile
-/*
-$(document).on("mousedown",function(e){
-    var a= e.pageX;
-    console.log("voy hacia la izquierda "+ a);
-});
-$(document).on("mouseup",function(e){
-    var a= e.pageX;
-    console.log("voy hacia la izquierda "+ a);
-});
+$(document).on("blur", "#espacio-de-chat", function () {
+   let usuario=  $("#espacio-de-chat").find(".messages").attr("data-nick");
+    Buffer_Conversaciones(usuario,"" );
 
- */
+});

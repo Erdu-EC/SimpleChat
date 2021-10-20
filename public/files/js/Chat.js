@@ -346,11 +346,11 @@ function Buffer_Borradores(contacto_ant, contacto_act, borrador) {
 }
 const buffer_chat = new Map();
 function Buffer_Conversaciones(contacto_ant,contacto_act){
-    if(contacto_ant !== undefined){
+    if(contacto_ant !== undefined && contacto_ant !== "" ){
         buffer_chat.set(contacto_ant, $("#espacio-de-chat").clone().html());
     }
 
-
+if(contacto_ant !== undefined && contacto_ant !== "" ) {
     if (buffer_chat.has(contacto_act)) {
         $("#espacio-de-chat").empty();
         $("#espacio-de-chat").html(buffer_chat.get(contacto_act));
@@ -360,6 +360,7 @@ function Buffer_Conversaciones(contacto_ant,contacto_act){
         ActualizarInfoContacto();
         return true;
     }
+}
 
     return false;
 }
