@@ -353,7 +353,7 @@ if(contacto_ant !== undefined && contacto_ant !== "" ) {
     if (buffer_chat.has(contacto_act)) {
         $("#espacio-de-chat").empty();
         $("#espacio-de-chat").html(buffer_chat.get(contacto_act));
-        $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+        $("#espacio-de-chat .messages").scrollTop($("#espacio-de-chat .messages").prop("scrollHeight"));
         $(`#lista-conversaciones .contact > div[data-usuario=${contacto_act}] .num-msj-pendientes.online`).remove();
         TratarCambiosDeEstadosEnMensajesRecibidos();
         ActualizarInfoContacto();

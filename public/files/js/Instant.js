@@ -248,6 +248,4 @@ let contacto = $('#lista-conversaciones .contact .elemento-conversacion[data-usu
 if(contacto.length > 0){
     contacto.find(".contact-status").removeClass("inactivo online ocupado").addClass(estado_usuario);
 }
-console.log(contacto);
-
 }
