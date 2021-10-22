@@ -31,9 +31,6 @@ function cargar_conversaciones() {
                         case 'A':
                             estado= 'online'
                             break;
-                        case 'O':
-                            estado ='ocupado';
-                            break;
                     }
 
                     var msg = $('<li>', {

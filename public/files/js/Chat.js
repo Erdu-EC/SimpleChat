@@ -108,9 +108,6 @@ function EnviarMensaje() {
                             case 'Inactivo':
                                 estado= "inactivo";
                                 break;
-                            case 'Ocupado':
-                                estado= "ocupado";
-                                break;
                         }
                         elemento_conversacion = $('<li>', {
                             class: 'contact active',

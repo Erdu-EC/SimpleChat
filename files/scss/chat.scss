@@ -32,9 +32,7 @@ header.header-sitio {
 .user-activo {
   border: 2px solid #2ecc71;
 }
-.user-ocupado{
-  border: 2px solid #f1c40f;
-}
+
  .user-inactivo{
    border: 2px solid #e74c3c;
  }
@@ -766,7 +764,9 @@ Lista de contactos
 #listaTodosContactos #lista-contactos, #lista-contactos-buscar {
   padding: 0;
   list-style: none;
+
 }
+
 
 #listaTodosContactos #lista-contactos li , #lista-contactos-buscar li{
   margin: 0px;
@@ -814,9 +814,7 @@ Lista de contactos
 .elemento-contacto .img-perfil-contacto img.online{
   border: 2px solid  #0ac630;
 }
-.elemento-contacto .img-perfil-contacto img.ocupado{
-  border: 2px solid #f1c40f;
-}
+
 .elemento-contacto .img-perfil-contacto img.inactivo{
   border: 2px solid  #a9a9a9;
 }
@@ -1371,9 +1369,7 @@ width: 100%;
 #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil span.online {
   background: #0ac630;
 }
-#frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil span.ocupado {
-  background: #f1c40f;
-}
+
 #frame #sidepanel #contacts ul li.contact .wrap .conversacion-perfil span.inactivo {
   background: #a9a9a9;
 }

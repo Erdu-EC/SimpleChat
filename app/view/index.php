@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="/files/vanillatoasts/vanillatoasts.css">
 </head>
 <body class=" sb-nav-fixed sb-sidenav-toggled">
-<div id="preloader"><section id="espacio-temporal" class="no-visible-sm">
+<div id="preloader">
+    <div id="espacio-temporal" class="no-visible-sm">
         <div class="temporal">
             <div class="cuerpo-temporal align-self-center">
                 <img src="/files/img/bg/fondo-tmp.svg" alt="" class="align-self-center">
@@ -39,7 +40,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>
 <!-- Barra superior -->
 <header class="header-sitio"><?php require 'template/Header.php' ?></header>
@@ -139,7 +140,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     <div id="layoutSidenav_content">
 
                 <article id="frame">
-                    <section id="sidepanel" class="">
+                    <div id="sidepanel" class="">
 
                         <div class="img-perfil no-seleccionable" id="mi-perfil-sidepanel">
                             <img src="<?= $SESSION_USER_PROFILE_IMG ?>?w=50&h=50" alt=""/>
@@ -168,10 +169,10 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <button id="nuevo-chat"><img src="/files/icon/nuevo-chat.svg" alt="" id="icon-nuevo-chat"
                                                          class="img-fluid"> <span>Nuevo chat</span></button>
                         </div>
-                    </section>
+                    </div>
 
-                    <section class="content" id="espacio-de-chat" style="display: none">
-                        <section class="contact-profile no-seleccionable">
+                    <div class="content" id="espacio-de-chat" style="display: none">
+                        <div class="contact-profile no-seleccionable">
                             <div class="chat-atras" id="btn-chat-atras"><span class="material-icons">arrow_back</span></div>
                                 <img src="/files/profile/undefined-photo.png?w=40&h=40" alt="" class="img-contacto">
 
@@ -191,7 +192,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             <div class="icon-info-contacto" title="Información del contacto" id="btn-info-contacto">
                                 <span class="material-icons">info</span>
                             </div>
-                        </section>
+                        </div>
 
                         <div class="messages">
 
@@ -216,12 +217,12 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                 <i class="fas fa-camera"></i>
                             </div>
                         </div>
-                    </section>
+                    </div>
 
-                    <section class="no-visible-sm" id="espacio-de-configuracion" style="display: none">
-                    </section>
+                    <div class="no-visible-sm" id="espacio-de-configuracion" style="display: none">
+                    </div>
 
-                    <section class="" id="panelInfoContacto">
+                    <div class="" id="panelInfoContacto">
                         <button id="btn-cerrar-contacto"><span class="material-icons">arrow_back</span></button>
                         <div class="contenedor-perfil">
                             <div class="card perfil">
@@ -272,7 +273,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             </div>
                         </div>
 
-                    </section>
+                    </div>
                 </article>
 
 

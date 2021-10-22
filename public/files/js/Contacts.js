@@ -250,9 +250,6 @@ function ObtenerInformacionEstado(estado, ultimaConexion){
         case 'I':
             info_estado= ObtenerTiempoUltimaConexion(ultimaConexion);
             break;
-        case 'O':
-            info_estado = "Ocupado";
-            break;
     }
 
     return info_estado;
@@ -297,9 +294,6 @@ function Clase_Segun_Estado(est){
             break;
         case 'A':
             estado= 'online'
-            break;
-        case 'O':
-            estado ='ocupado';
             break;
     }
 
