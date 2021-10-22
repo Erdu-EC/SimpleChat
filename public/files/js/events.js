@@ -567,12 +567,12 @@ function EnviarImagenEnChat(filename) {
     }).toBlob(function (blob) {
         const formData = new FormData();
         formData.append('img', blob, filename);
-        formData.append('contact', $('#espacio-de-chat > div').attr('data-usuario'))
+        formData.append('contact', $('#espacio-de-chat > .messages').attr('data-usuario'))
 
         const progreso = $('<div class="barra-progreso"><div class="barra"></div></div>');
         const mensaje = ObtenerElementoImgEnviada(filename.split('\\').pop().split('/').pop(), URL.createObjectURL(blob));
 
-var remitente= $('#espacio-de-chat > div').attr('data-nick');
+var remitente= $('#espacio-de-chat > .messages').attr('data-nick');
         $.ajax({
             url: '/action/users/chat/upload_img',
             type: 'post',

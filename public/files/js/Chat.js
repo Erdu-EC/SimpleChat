@@ -26,7 +26,7 @@ $(document).on('click', '#mensaje-invitacion button', function () {
     $.ajax('/action/invitation/accept', {
         method: 'post', dataType: 'json', mimeType: 'application/json',
         data: {
-            contact: $('#espacio-de-chat > div').attr('data-usuario'),
+            contact: $('#espacio-de-chat > .messages').attr('data-usuario'),
             accept: es_boton_si
         },
         beforeSend: () => {
@@ -73,7 +73,7 @@ function EnviarMensaje() {
     $("#btn-enviar-mensaje").removeClass("activar");
     if (texto !== '') {
         const mensaje = $(ObtenerElementoMensajeEnviado(texto));
-        const espacio_chat = $('#espacio-de-chat > div');
+        const espacio_chat = $('#espacio-de-chat > .messages');
 
         $.ajax('/action/messages/send', {
             method: 'post', dataType: 'json', mimeType: 'application/json',
@@ -278,7 +278,7 @@ $(document).on('click', '.btn-agregar-contacto', function () {
     $.ajax('/action/contacts/add', {
         method: 'post', dataType: 'json', mimeType: 'application/json',
         data: {
-            contact: $('#espacio-de-chat > div').attr('data-usuario')
+            contact: $('#espacio-de-chat > .messages').attr('data-usuario')
         },
         beforeSend: () => {
             boton.attr('disabled', '').text('Agregando...');
