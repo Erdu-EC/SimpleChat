@@ -67,16 +67,6 @@ function VistaMovil() {
     }
 }
 
-/*
-$("#seccion-conversaciones").on("click", function () {
-
-    if (window.innerWidth < 576) {
-        $("#sidebarToggle").trigger('click');
-        $("#sidepanel").removeClass('no-visible-sm');
-        $("#espacio-temporal").remove();
-    }
-});*/
-
 $(document).on("click", "#lista-conversaciones .contact", function () {
     $("#sidepanel").addClass('no-visible-sm');
     $("body").addClass("sb-sidenav-toggled");
@@ -95,7 +85,8 @@ $(document).on("click", "#btn-chat-atras", function () {
 $(".messages").on("swiperight", function () {
     alert("You swiped right!");
 });
-//Fin de codigo para vista movil
+
+//Fin de código para vista movil
 
 
 $(document).on("click", function (e) {
@@ -296,17 +287,11 @@ $(document).on("click", "#btn-cerrar-contacto", function () {
 });
 
 $(document).on("click", ".contenedor-perfil .perfil .foto-perfil", function () {
-    MostrarModal("Mike Ross", '<img src="' + ObtenerUrlImagen($(this)) + '" alt="" />', "", 'modal-fullscreen', "btn-close-white");
+    MostrarModal($(this).attr("title"), '<img src="' + ObtenerUrlImagen($(this)) + '" alt="" />', "", 'modal-fullscreen', "btn-close-white");
 });
 
 //detectar tamanos de pantalla y las acciones
-/*
-$("div#contacts ul#lista-conversaciones").on("click", "li.contact", function () {
 
-    $('div#contacts ul#lista-conversaciones li.active').removeClass('active');
-    $(this).addClass("active");
-
-});*/
 
 var picker;
 $(document).on("click", "#btn-emojis", function () {
@@ -319,6 +304,7 @@ $(document).on("click", "#btn-emojis", function () {
     /*if(obj_sele= document.getSelection().focusNode.parentNode){
       if( obj_sele!== msj){
             obj = window.getSelection();
+            obj.removeAllRanges();
             obj.removeAllRanges();
            // msj.focus();
         }}*/

@@ -281,12 +281,15 @@ $(document).on('click', '.btn-agregar-contacto', function () {
             contact: $('#espacio-de-chat > div').attr('data-usuario')
         },
         beforeSend: () => {
-            boton.attr('disabled', '').text('Agregando...');
+            boton.text('Agregando...');
         },
         error: () => {
-            MostrarModal('Error', 'Ha ocurrido un error al intentar agregar al contacto, intentelo de nuevo.', function () {
-                boton.attr('disabled', null).text('Agregar contacto');
-            })
+            swal({
+                icon: "error",
+                text: "Ha ocurrido un error al intentar agregar al contacto. Por favor, verifique su conexión a Internet.",
+                button: "Ok"
+            });
+            boton.html('<span class="material-icons">person_add</span> Agregar contacto');
         },
         success: function (json) {
             if (json === true) {
@@ -296,9 +299,12 @@ $(document).on('click', '.btn-agregar-contacto', function () {
                 if (typeof actualizar_lista_contactos === 'function')
                     actualizar_lista_contactos();
             } else {
-                MostrarModal('Error', 'Ha ocurrido un error al intentar agregar al contacto, intentelo de nuevo.', function () {
-                    boton.attr('disabled', null).text('Agregar contacto');
-                })
+                swal({
+                    icon: "error",
+                    text: "Ha ocurrido un error al intentar agregar al contacto, intentelo de nuevo.",
+                    button: "Ok"
+                });
+                boton.html('<span class="material-icons">person_add</span> Agregar contacto');
             }
         }
     });
