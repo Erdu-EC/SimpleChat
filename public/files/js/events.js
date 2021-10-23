@@ -90,9 +90,11 @@ $(document).on("click", "#lista-conversaciones .contact", function () {
 });
 
 $(document).on("click", "#btn-chat-atras", function () {
+    Buffer_Conversaciones($("#espacio-de-chat .messages").attr("data-nick"), "");
     $("#sidepanel").removeClass('no-visible-sm');
     $("#espacio-de-chat").addClass('no-visible-sm');
     $("#lista-conversaciones li.active").removeClass("active");
+
 })
 $(".messages").on("swiperight", function () {
     alert("You swiped right!");

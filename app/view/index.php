@@ -207,8 +207,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                 </div>
                             </div>
                             <div class="wrap">
-                              <!--  <input id="contenido-mensaje" type="text" placeholder="Escribe un mensage aquí..." size="2"/>
--->                                    <div class="entrada-placeholder">Escribe un mensage aquí...</div>
+                                    <div class="entrada-placeholder">Escribe un mensaje aquí...</div>
                                     <div id="contenido-mensaje" contenteditable="true" spellcheck="true"></div>
                             </div>
                             <button class="btn" id="btn-enviar-mensaje"><i class="fas fa-paper-plane"></i></button>
