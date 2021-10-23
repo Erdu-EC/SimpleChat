@@ -4,12 +4,24 @@ window.addEventListener('popstate', function (event) {
     history.pushState(null, document.title, location.href);
     if(window.innerWidth < 576)
     {
-        if($("#panelInfoContacto").length){
-            $("#btn-cerrar-contacto").trigger("click")
+
+     if($("#panelTodosContactos").hasClass("mostrar")){
+        $("#ocultar").trigger("click");
+    }
+        else if( !($("body").hasClass("sb-sidenav-toggled"))){
+            $("#sidebarToggle").trigger("click");
+        }
+
+        else if($("#panelInfoContacto").length && $("#panelInfoContacto").hasClass("mostrar")){
+            $("#btn-cerrar-contacto").trigger("click");
         }
         else if(! $("#espacio-de-chat").hasClass("no-visible-sm") ){
-            $("#btn-chat-atras").trigger("click")
+            $("#btn-chat-atras").trigger("click");
         }
+        else if($("#espacio-de-configuracion")){
+            $("#btn-cerrar-configuraciones").trigger("click");
+        }
+
 
     }
 });
@@ -273,11 +285,18 @@ $(document).on("click", "#btn-info-contacto", function () {
 
 });
 
-$(document).on("click", ".chat-conexion", function () {
+$(document).on("click", ".chat-conexion .nombre-chat", function () {
     $("#frame #espacio-de-chat").addClass("desp-der");
     $("#panelInfoContacto").addClass("mostrar");
     $("#frame #espacio-de-chat").addClass("no-visible-sm");
 });
+$(document).on("click", ".chat-conexion .ult-conex", function () {
+    $("#frame #espacio-de-chat").addClass("desp-der");
+    $("#panelInfoContacto").addClass("mostrar");
+    $("#frame #espacio-de-chat").addClass("no-visible-sm");
+});
+
+
 
 $(document).on("click", "#btn-cerrar-contacto", function () {
     $("#frame #espacio-de-chat").removeClass("desp-der").removeClass("no-visible-sm");
@@ -428,11 +447,15 @@ $("#seccion-contactanos").click(function () {
 });
 //configuraciones de cuenta
 $(document).on("click", "#btn-configuraciones", function () {
+    if(! Buffer_Conversaciones($('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario"),""))
+        CargarEspacioConfiguraciones();
     $('ul#lista-conversaciones li.active').removeClass('active');
-    CargarEspacioConfiguraciones();
+
 
 });
 $(document).on("click", "#btn-conf-sesion", function () {
+   if(! Buffer_Conversaciones($('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario"),""))
+       CargarEspacioConfiguraciones();
     $("#mi-perfil-sidepanel .usuario-perfil-opciones").removeClass("activo");
     $("#mi-perfil-sidepanel .opciones-sesion").addClass("inactivo");
     $("#sidepanel").addClass("no-visible-sm");
@@ -441,7 +464,7 @@ $(document).on("click", "#btn-conf-sesion", function () {
         $("#sidebarToggle").removeClass("activo");
         $("#sidebarToggle").html('<span class="material-icons">menu</span>');
     }
-    CargarEspacioConfiguraciones();
+
 
 });
 $(document).on("click", "#btn-cerrar-configuraciones", function () {
@@ -786,10 +809,9 @@ function CancelarEdicion() {
     delete my_cropper;
 }
 
-$(document).on("blur", "#espacio-de-chat", function () {
+$("#espacio-de-chat").blur( function () {
    let usuario=  $("#espacio-de-chat").find(".messages").attr("data-nick");
     Buffer_Conversaciones(usuario,"" );
-
 });
 
 //al cerrar la ventana tambien se cierra sesion

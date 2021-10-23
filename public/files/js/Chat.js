@@ -146,13 +146,14 @@ function CargarEspacioDeChat() {
 
     let m= $('#lista-conversaciones li .elemento-conversacion[data-usuario="'+nombre_usuario+'"]').parent().addClass("active");
     //Buffer de borradores y de mensajes
-    Buffer_Borradores(usr_ant, nombre_usuario, $('#contenido-mensaje').text());
+    //Buffer_Borradores(usr_ant, nombre_usuario, $('#contenido-mensaje').text());
     if( m !== undefined){
         if(Buffer_Conversaciones(usr_ant, nombre_usuario) ){
             return;
         }
     }
-
+    $("#contenido-mensaje").empty();
+    $("#frame .content .message-input .wrap .entrada-placeholder").show();
     espacio_chat.find('> *').hide();
     espacio_chat.append(`
         <div class="cargando d-flex h-100">
@@ -238,7 +239,7 @@ function CargarEspacioDeChat() {
                 //Actualizar panel de información de contacto, si este esta abierto.
 
                 ActualizarInfoContacto();
-                $("#contenido-mensaje").focus();
+                $("#espacio-de-escritura").focus();
             } else {
                 console.log('Error al obtener mensajes.');
             }
@@ -294,7 +295,7 @@ $(document).on('click', '.btn-agregar-contacto', function () {
         success: function (json) {
             if (json === true) {
                 boton.remove();
-                $('#espacio-de-chat').find(".btn-agregar-contacto").remove();
+                $('#espacio-de-chat').find(".opciones-contacto").remove();
 
                 if (typeof actualizar_lista_contactos === 'function')
                     actualizar_lista_contactos();
@@ -329,30 +330,13 @@ function SanearTexto(str) {
 }
 
 
-//Buffer de entradas en el contenido de mensaje de cada chat
-const buffer = new Map();
-
-function Buffer_Borradores(contacto_ant, contacto_act, borrador) {
-    if (!(contacto_ant)) {
-        return;
-    }
-    buffer.set(contacto_ant, borrador);
-    if (buffer.has(contacto_act) && (buffer.get(contacto_act) != "")) {
-        $("#contenido-mensaje").text(buffer.get(contacto_act));
-        $("#frame .content .message-input .wrap .entrada-placeholder").hide();
-    } else {
-        $("#frame .content .message-input .wrap .entrada-placeholder").show();
-        $("#contenido-mensaje").text("");
-    }
-
-}
 const buffer_chat = new Map();
 function Buffer_Conversaciones(contacto_ant,contacto_act){
-    if(contacto_ant !== undefined && contacto_ant !== "" ){
+        if(! (contacto_ant === undefined || contacto_ant === "" )){
         buffer_chat.set(contacto_ant, $("#espacio-de-chat").clone().html());
     }
 
-if(contacto_ant !== undefined && contacto_ant !== "" ) {
+if(! (contacto_act === undefined || contacto_act === "" )) {
     if (buffer_chat.has(contacto_act)) {
         $("#espacio-de-chat").empty();
         $("#espacio-de-chat").html(buffer_chat.get(contacto_act));
@@ -360,8 +344,11 @@ if(contacto_ant !== undefined && contacto_ant !== "" ) {
         $(`#lista-conversaciones .contact > div[data-usuario=${contacto_act}] .num-msj-pendientes.online`).remove();
         TratarCambiosDeEstadosEnMensajesRecibidos();
         ActualizarInfoContacto();
+        $('#espacio-de-chat').show();
+        $('#espacio-de-configuracion').hide();
         return true;
     }
+
 }
 
     return false;

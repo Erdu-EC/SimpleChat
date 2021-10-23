@@ -16,7 +16,7 @@ $(document).ready(function () {
         $(".msg-indicador-notificaciones").show();
         setTimeout(function () {
             $(".msg-indicador-notificaciones").hide();
-        }, 4000);
+        }, 2000);
     } else {
         $(".msg-indicador-notificaciones").remove();
     }
@@ -30,7 +30,7 @@ $(document).on("click", "#btn-habilitar-notificaciones", function () {
                 text: "No se han permitido las notificaciones de escritorio para SimpleChat",
                 type: "error",
                 icon: "/files/icon/icono.png",
-                timeout: 10000,
+                timeout: 3000,
                 close: true
             });
         } else {
