@@ -43,7 +43,7 @@ const ObtenerElementoImg = (nombre, url, fecha_envio, estado) => {
 * */
 const ObtenerElementoMensaje = (mensaje, fecha_envio, estado) => `
 <li class="enviado">
-            <img src="${ObtenerUrlImagen($('#profile-img'), 40, 40)}" alt="" class="no-seleccionable"/>
+            <img src="${ObtenerUrlImagen($('#profile-img'), 37, 37)}" alt="" class="no-seleccionable"/>
             <div class="dir"></div>
             <div class="cont-msj"><p> ${mensaje}</p> </div>
             <div class="extra-mensaje no-seleccionable">

@@ -183,7 +183,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
                             <div class="opciones-contacto">
                                 <div class="btn-agregar-contacto" title="Agregar a contactos">
-                                    <span class="material-icons">person_add</span>
+
                                     Agregar contacto
                                 </div>
 
@@ -194,12 +194,10 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                             </div>
                         </div>
 
-                        <div class="messages">
-
+                        <div class="messages" onscroll="CambiarUbicacion()">
                             <ul id="lista-mensajes"></ul>
-
                         </div>
-
+                        <div id="" class="hacia-abajo" style="display: none"><i class="fas fa-angle-double-down"></i> </div>
                         <div class="message-input" id="espacio-de-escritura">
                             <div class="utiles no-seleccionable">
                                 <div class="emojis">

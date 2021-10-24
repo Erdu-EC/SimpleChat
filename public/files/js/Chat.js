@@ -120,6 +120,7 @@ function EnviarMensaje() {
                     elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span>' + texto);
                     elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
                     textarea.focus();
+                    $("#frame .content .message-input .wrap .entrada-placeholder").show();
                 } else
                     mensaje.find('.popover-header').text("Error al enviar.");
             }
@@ -332,7 +333,8 @@ function SanearTexto(str) {
 
 const buffer_chat = new Map();
 function Buffer_Conversaciones(contacto_ant,contacto_act){
-        if(! (contacto_ant === undefined || contacto_ant === "" )){
+    $("#espacio-de-chat .hacia-abajo").removeClass("visible");
+    if(! (contacto_ant === undefined || contacto_ant === "" )){
         buffer_chat.set(contacto_ant, $("#espacio-de-chat").clone().html());
     }
 

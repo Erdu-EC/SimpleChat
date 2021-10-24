@@ -56,6 +56,20 @@ $(document).on("mouseover", ("#btn-habilitar-notificaciones"), function () {
 $(document).on("mouseleave", ("#btn-habilitar-notificaciones"), function () {
     $(".msg-indicador-notificaciones").hide();
 });
+//Función que se ejecuta al hacer scroll en los mensajes
+function CambiarUbicacion(e) {
+    let h = $("#lista-mensajes").innerHeight() - $("#espacio-de-chat .messages").innerHeight() - 100;
+    if($("#espacio-de-chat .messages").scrollTop() < h){
+        $("#espacio-de-chat .hacia-abajo").addClass("visible");
+    }else{
+        $("#espacio-de-chat .hacia-abajo").removeClass("visible");
+    }
+}
+
+$(document).on("click","#espacio-de-chat .hacia-abajo", function () {
+    $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+    $("#espacio-de-chat .hacia-abajo").removeClass("visible");
+} );
 
 
 $("#LateralMenu").ready(function () {
@@ -561,7 +575,6 @@ $(document).on("input", "#archivo-imagen-enviar", function () {
             reader.onload = function () {
                 image.src = reader.result;
                 LanzarEditor(image, NaN);
-
             };
             return;
         }
@@ -581,7 +594,7 @@ function EnviarImagenEnChat(filename) {
         formData.append('contact', $('#espacio-de-chat > .messages').attr('data-usuario'))
 
         const progreso = $('<div class="barra-progreso"><div class="barra"></div></div>');
-        const mensaje = ObtenerElementoImgEnviada(filename.split('\\').pop().split('/').pop(), URL.createObjectURL(blob));
+        let mensaje = ObtenerElementoImgEnviada(filename.split('\\').pop().split('/').pop(), URL.createObjectURL(blob));
 
 var remitente= $('#espacio-de-chat > .messages').attr('data-nick');
         $.ajax({
@@ -645,8 +658,9 @@ var remitente= $('#espacio-de-chat > .messages').attr('data-nick');
 }
 
 
-$(document).on("load", ".imagen-enviada", function () {
+$(document).on("load", "#lista-mensajes", function () {
     $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+    console.log("hola mundo")
 });
 $(document).on("click", ".imagen-enviada", function () {
     var imagen = $(this).attr("src");
@@ -691,9 +705,6 @@ $(document).on("click", "#edicion-cerrar-perfil", function () {
 
     CancelarEdicion();
     $("#nueva-foto-perfil").val("");
-    /*img_result.cropper('clear');
-    img_result.cropper('destroy');
-    img_result.attr('src','');*/
 });
 
 $(document).on("click", "#edicion-cerrar-mensaje", function () {
