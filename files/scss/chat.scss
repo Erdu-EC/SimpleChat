@@ -622,25 +622,30 @@ border-right: 1px solid #288795;
   height: 40px;
   cursor: pointer;
   text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
+
 #sidepanelTodosContactos .titulo-cab #ocultar span{
 
   order: 2;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   font-size: 1.7rem;
   justify-content: center;
 
   margin-left: auto;
   transition-duration: 1s;
-
 }
+
 #sidepanelTodosContactos .titulo-cab #ocultar span:hover{
-  transform: translateX(-20px);
+  transform: translateX(-15px);
 
 }
 #sidepanelTodosContactos .titulo-cab #ocultar span:after{
-  transform: translateX(20px);
+  transform: translateX(15px);
 }
 
 #sidepanelTodosContactos #buscar-contacto {
@@ -1397,7 +1402,7 @@ width: 100%;
   background: #32465a;
   color: #f5f5f5;
   cursor: pointer;
-  font-size: 0.85em;
+  font-size: 1rem;
   font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
 
 }
@@ -1638,12 +1643,11 @@ hr.separador-vertical{
   justify-content: center;
   font-size: 20px;
   color: rgba(0,0,0,0.4);
+  cursor: pointer;
+  color: #288795;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
-.hacia-abajo:hover, #hacia-abajo:active{
-  color: #288795;
-cursor: pointer;
-}
+
 .hacia-abajo:active {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
@@ -2657,7 +2661,6 @@ margin-right: auto;
 }
 #btn-cerrar-configuraciones {
   display: none;
-
 }
 
 

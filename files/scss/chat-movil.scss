@@ -112,14 +112,14 @@ Estilos version móvil
     margin-left: 5px;
     margin-top: auto;
     margin-bottom: auto;
-    color:#A9A9A9FF;
+    color:#8e8e8f;
   }
   #espacio-de-chat .contact-profile .chat-atras .material-icons{
     font-size: 26px;
   }
-  #espacio-de-chat .contact-profile .chat-atras:active{
-    color: #f2f2f2;
-    background: #D3D3D3FF;
+  #espacio-de-chat .contact-profile .chat-atras:active, #espacio-de-chat .contact-profile .chat-atras:hover{
+    color: #ffffff;
+    background: #8e8e8f;
   }
   #espacio-de-chat .contact-profile img.img-contacto{
     margin: auto 5px auto 0;
@@ -177,6 +177,7 @@ width: auto;
     display: flex;
     position: absolute;
     z-index: 1002;
+    background-color: rgba(0,0,0,0.45);
   }
   #panelInfoContacto #btn-cerrar-contacto .material-icons{
 font-size: 26px;
@@ -209,17 +210,15 @@ top: 10px;
     font-size: 35px;
     border-radius: 50%;
     position: absolute;
-  }
-  #btn-cerrar-configuraciones.sm-visible:active span {
     color: #8e8e8f;
   }
-  #btn-cerrar-configuraciones.sm-visible:active{
+
+  #btn-cerrar-configuraciones.sm-visible:active,#btn-cerrar-configuraciones.sm-visible:hover {
 
     background: #8e8e8f;
+    color: #FFFFFF;
   }
-  #btn-cerrar-configuraciones.sm-visible:active span {
-    color: #f2f2f2;
-  }
+
 
   /* Contenedor de emojis*/
   body .wrapper {
