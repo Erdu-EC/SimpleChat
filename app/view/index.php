@@ -8,6 +8,7 @@
 	$SESSION = new Session();
 	$SESSION_USER_SHORTNAME = $SESSION->user_shortname;
 	$SESSION_USER_PROFILE_IMG = $SESSION->user_profile_img;
+$SESSION_USER_NAME = $SESSION->user_name;
 	unset($SESSION);
 ?>
 <!doctype html>
@@ -83,7 +84,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
     <div id="layoutSidenav_nav" class="no-seleccionable">
         <div id="profile">
             <div class="wrap">
-                <img id="profile-img" src="<?= $SESSION_USER_PROFILE_IMG ?>?w=80&h=80" class="online" alt=""/>
+                <img id="profile-img" src="<?= $SESSION_USER_PROFILE_IMG ?>?w=80&h=80" class="online" title="<?=$SESSION_USER_NAME?>" alt=""/>
                 <div class="usuario-perfil" id="btn-sesion">
                     <span class="material-icons izquierda">account_circle</span>
                     <?= $SESSION_USER_SHORTNAME ?>
@@ -143,7 +144,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                     <div id="sidepanel" class="">
 
                         <div class="img-perfil no-seleccionable" id="mi-perfil-sidepanel">
-                            <img src="<?= $SESSION_USER_PROFILE_IMG ?>?w=50&h=50" alt=""/>
+                            <img src="<?= $SESSION_USER_PROFILE_IMG ?>?w=50&h=50" title="<?=$SESSION_USER_NAME?>" alt=""/>
                             <div class="usuario-perfil">
 								<?= $SESSION_USER_SHORTNAME ?>
                             </div>

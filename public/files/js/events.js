@@ -569,6 +569,7 @@ $(document).on("input", "#archivo-imagen-enviar", function () {
         return;
     } else {
         AgregarBotonesEdicion("mensaje");
+        $("#botonera-edicion").hide();
         if (archivos.length != 0) {
 
             let reader = new FileReader();
@@ -586,7 +587,7 @@ $(document).on("input", "#archivo-imagen-enviar", function () {
 });
 
 function EnviarImagenEnChat(filename) {
-
+    try {
     my_cropper.getCroppedCanvas({
         maxWidth: 2048,
         maxHeight: 2048,
@@ -598,8 +599,6 @@ function EnviarImagenEnChat(filename) {
 
         const progreso = $('<div class="barra-progreso"><div class="barra"></div></div>');
         let mensaje = ObtenerElementoImgEnviada(filename.split('\\').pop().split('/').pop(), URL.createObjectURL(blob));
-
-
 var remitente= $('#espacio-de-chat > .messages').attr('data-nick');
         $.ajax({
             url: '/action/users/chat/upload_img',
@@ -659,6 +658,12 @@ var remitente= $('#espacio-de-chat > .messages').attr('data-nick');
             }
         });
     });
+    }
+    catch (e) {
+        console.log("Error al abrir el editor de imagen");
+    }finally {
+        CancelarEdicion();
+    }
 }
 
 $(document).on("click", ".imagen-enviada", function () {
