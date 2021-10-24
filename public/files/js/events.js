@@ -584,6 +584,7 @@ $(document).on("input", "#archivo-imagen-enviar", function () {
 });
 
 function EnviarImagenEnChat(filename) {
+
     my_cropper.getCroppedCanvas({
         maxWidth: 2048,
         maxHeight: 2048,
@@ -595,6 +596,7 @@ function EnviarImagenEnChat(filename) {
 
         const progreso = $('<div class="barra-progreso"><div class="barra"></div></div>');
         let mensaje = ObtenerElementoImgEnviada(filename.split('\\').pop().split('/').pop(), URL.createObjectURL(blob));
+
 
 var remitente= $('#espacio-de-chat > .messages').attr('data-nick');
         $.ajax({
@@ -620,9 +622,9 @@ var remitente= $('#espacio-de-chat > .messages').attr('data-nick');
             },
             beforeSend: () => {
                 $("#lista-mensajes").append(mensaje);
+
                 $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
                 mensaje.find(".contenedor-imagen-enviada").prepend(progreso);
-
             },
             success: function (response) {
                 if (response[0]) {
@@ -657,11 +659,6 @@ var remitente= $('#espacio-de-chat > .messages').attr('data-nick');
     });
 }
 
-
-$(document).on("load", "#lista-mensajes", function () {
-    $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
-    console.log("hola mundo")
-});
 $(document).on("click", ".imagen-enviada", function () {
     var imagen = $(this).attr("src");
     MostrarModal($(this).attr("title"), '<img src="' + imagen + '" alt="" />', "", 'modal-fullscreen', "btn-close-white");
