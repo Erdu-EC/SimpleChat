@@ -43,6 +43,7 @@ function cargar_conversaciones() {
                     }
                 });
             }
+            $("#sidepanel").focus();
         }
     });
     //se inicia el temporizador a la espera de actualizaciones de estados de contactos

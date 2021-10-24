@@ -156,11 +156,13 @@ $(document).on("click", function (e) {
 $("#sidebarToggle").on("click", function (e) {
     e.preventDefault();
     $("body").toggleClass("sb-sidenav-toggled");
-    $("#mi-perfil-sidepanel").toggleClass("no-visible");
+
     $(this).toggleClass("activo");
     if ($(this).hasClass("activo")) {
         $(this).html('<span class="material-icons">close</span>');
+        $("#mi-perfil-sidepanel").addClass("no-visible");
     } else {
+        $("#mi-perfil-sidepanel").removeClass("no-visible");
         $(this).html('<span class="material-icons">menu</span>');
     }
 });
