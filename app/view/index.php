@@ -183,7 +183,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
 
                             <div class="opciones-contacto">
                                 <div class="btn-agregar-contacto" title="Agregar a contactos">
-
+                                    <span class="material-icons">person_add</span>
                                     Agregar contacto
                                 </div>
 

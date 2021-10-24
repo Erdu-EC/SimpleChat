@@ -186,6 +186,7 @@ function AgregarMensajesABufferChat(datos) {
 
 function TratarCambiosDeEstadosEnMensajesRecibidos() {
     const lista = $('#lista-mensajes');
+
     lista.find(`.recibido[data-id]`).each(function () {
         if (MarcarComoLeido($(this).attr('data-id'), function () {
             return true;
@@ -193,7 +194,6 @@ function TratarCambiosDeEstadosEnMensajesRecibidos() {
             $(this).removeAttr('data-id');
         }
     });
-
 }
 
 let temporizador;
@@ -239,7 +239,7 @@ switch (estado) {
         ult_conexion = "Inactivo";
         break;
 }
-$("#espacio-de-chat").find("ult-conex").text(ult_conexion);
+$("#espacio-de-chat").find(".ult-conex").text(ult_conexion);
 let contacto = $('#lista-conversaciones .contact .elemento-conversacion[data-usuario='+nombre_usuario+']');
 if(contacto.length > 0){
     contacto.find(".contact-status").removeClass("inactivo online").addClass(estado_usuario);

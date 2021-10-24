@@ -342,11 +342,13 @@ if(! (contacto_act === undefined || contacto_act === "" )) {
     if (buffer_chat.has(contacto_act)) {
         $("#espacio-de-chat").empty();
         $("#espacio-de-chat").html(buffer_chat.get(contacto_act));
-        $("#espacio-de-chat .messages").scrollTop($("#espacio-de-chat .messages").prop("scrollHeight"));
+
         $(`#lista-conversaciones .contact > div[data-usuario=${contacto_act}] .num-msj-pendientes.online`).remove();
         TratarCambiosDeEstadosEnMensajesRecibidos();
         ActualizarInfoContacto();
+        ActualizarTotalDeConversacionesNoLeidas();
         $('#espacio-de-chat').show();
+        $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
         $('#espacio-de-configuracion').hide();
         return true;
     }
