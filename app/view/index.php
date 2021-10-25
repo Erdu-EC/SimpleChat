@@ -212,11 +212,11 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                 <div class="tiempo-transcurrido">1:00</div>
 
                             </div>
-                                <div class="cancelar-grabacion">
+                                <div class="cancelar-grabacion" title="Cancelar">
                                     <i class="fas fa-trash"></i>
                                 </div>
-                                <div class="fin-grabacion">
-                                    <i class="fas fa-paper-plane"></i>
+                                <div class="fin-grabacion" title="Enviar audio">
+                                    <div class="cont-icon-fin-grabacion"><i class="fas fa-paper-plane"></i></div>
                                 </div>
                             </div>
                             <div class="wrap">
