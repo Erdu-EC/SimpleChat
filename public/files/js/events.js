@@ -833,3 +833,18 @@ $("#espacio-de-chat").blur( function () {
 window.onbeforeunload = function () {
 
 }
+//Eventos para audios
+$(document).on("click",".boton-play-pause",function () {
+    let audio = new Audio( $(this).siblings(".mensaje-audio").attr('src'));
+    $(this).toggleClass("reproduciendo");
+   let boton = $(this);
+    if($(this).hasClass("reproduciendo")){
+        $(this).html('<i class="far fa-pause-circle"></i>');
+        audio.play();
+        audio.addEventListener("ended", ()=>{
+            boton.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo");
+        });
+    }else{
+        $(this).html('<i class="far fa-play-circle"></i>');
+    }
+});

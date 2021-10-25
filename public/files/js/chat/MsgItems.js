@@ -43,13 +43,30 @@ const ObtenerElementoImg = (nombre, url, fecha_envio, estado) => {
 * */
 const ObtenerElementoMensaje = (mensaje, fecha_envio, estado) => `
 <li class="enviado">
-            <img src="${ObtenerUrlImagen($('#profile-img'), 37, 37)}" alt="" class="no-seleccionable"/>
+            <img src="${ObtenerUrlImagen($('#profile-img'), 37, 37)}" alt="" class="no-seleccionable remitente"/>
             <div class="dir"></div>
             <div class="cont-msj"><p> ${mensaje}</p> </div>
             <div class="extra-mensaje no-seleccionable">
                 ${fecha_envio !== undefined || estado !== undefined? ObtenerElementoExtraMensaje(fecha_envio, estado) : ''}
             </div>
     </li>`;
+const ObtenerElementoMensajeAudio = (blob) => {
+    const msg = $(ObtenerElementoMensajeEnviado(""));
+    let audio =$('<audio>',{
+        src: blob,
+        type: "audio/mpeg",
+        class: "mensaje-audio"}
+        );
+    let cont = $("<div>",  {
+        class: "audio-enviado"
+    }).append(ObtenerControlesAudio()).append(audio);
+    msg.find(".cont-msj").removeClass("cont-msj").addClass("contenedor-audio-enviado").html(cont);
+return msg;
+}
+function ObtenerControlesAudio(){
+    const msg = $('<div class="boton-play-pause"><i class="far fa-play-circle"></i></div><div class="control-indicador"><div class="control-indicador-total"></div><div class="bola"></div></div><div class="control-tiempo-total">0:00</div>');
+    return msg;
+}
 
 /*
 * Estados:

@@ -1843,6 +1843,7 @@ max-width: 340px;
   cursor: pointer;
   border-radius: 10px;
 }
+
 /*
 barra de progreso de envio de imagen
 */
@@ -1860,8 +1861,6 @@ barra de progreso de envio de imagen
   background-color: #3390ec;
   border-radius: 2px;
 }
-
-
 
 #frame .content .messages ul li.enviado .cont-msj {
   float: right;
@@ -1991,6 +1990,79 @@ color: #8e8e8f;
 }
 .messages ul li.enviado .extra-mensaje .icon i.fas{
   color:#288795;
+}
+
+/*
+Estilos para audio
+*/
+#frame .content .messages ul li.enviado .contenedor-audio-enviado{
+
+  display: inline-block;
+  float: right;
+  background: #435f7a;
+  border-radius: 22px;
+  padding: 3px;
+}
+#frame .content .messages ul li.enviado .contenedor-audio-enviado .audio-enviado{
+  width: 230px;
+  height: 50px;
+  border-radius: 20px;
+  background: #f2f2f2;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.boton-play-pause{
+  background-color: transparent;
+  display: flex;
+  width: 42px;
+  border-radius: 50%;
+  color: #00a293;
+  font-size: 30px;
+  justify-content: left;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.control-tiempo-total{
+  display: flex;
+  float: right;
+  color: #000000;
+  font-size: 12px;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  width: 30px;
+}
+.control-indicador{
+  width: 130px;
+  height: 4px;
+  justify-content: left;
+
+  align-items: center;
+  background: #ffffff;
+}
+.control-indicador .control-indicador-total{
+  height: 6px;
+  margin-top: -1px;
+  width: 60%;
+  background: #00a293;
+  border-radius: 2px;
+  z-index: 10;
+  text-align: left;
+  float: left;
+  display: block;
+}
+.control-indicador .bola {
+  height: 12px;
+  width: 10px;
+  background:#00a293 ;
+  border-radius: 50%;
+  margin-top: -4px;
+  margin-left: -10px;
+  display: inline;
+  float: left;
 }
 
 

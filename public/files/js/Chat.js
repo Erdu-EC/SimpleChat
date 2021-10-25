@@ -8,12 +8,12 @@ $(document).on("keydown", "#contenido-mensaje", function (e) {
 $(document).on("keyup change", "#contenido-mensaje", function () {
     var message = $("#contenido-mensaje").text();
     if ($.trim(message) === '') {
-        $("#btn-enviar-mensaje").removeClass("activar");
+        $("#btn-enviar-mensaje").removeClass("activar").html('<i className="fas fa-microphone">').attr("title","Grabar audio");
         $("#buscar-contacto .borrar").remove();
         $("#frame .content .message-input .wrap .entrada-placeholder").show();
 
     } else {
-        $("#btn-enviar-mensaje").addClass("activar");
+        $("#btn-enviar-mensaje").addClass("activar").html('<i class="fas fa-paper-plane"></i>').attr("title","Enviar mensaje");
         $("#cuadro-busqueda-usuario").after(' <div class="borrar"><span class="material-icons"> close</span></div>');
     }
 });
@@ -60,8 +60,55 @@ $(document).on('click', '#mensaje-invitacion button', function () {
 });
 
 $(document).on('click', '#btn-enviar-mensaje', function () {
-    EnviarMensaje()
+    if($(this).hasClass("modo-microfono")){
+        GrabarAudio();
+    }
+    //EnviarMensaje()
 });
+
+let grabacion = null;
+
+function GrabarAudio() {
+    //evento listen
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+        // store streaming data chunks in array
+        const chunks = [];
+        // create media recorder instance to initialize recording
+        recorder = new MediaRecorder(stream);
+        // function to be called when data is received
+        recorder.ondataavailable = e => {
+            // add stream data to chunks
+            chunks.push(e.data);
+            console.log(recorder.state)
+            // if recorder is 'inactive' then recording has finished
+            if (recorder.state == 'inactive') {
+                // convert stream data chunks to a 'webm or mpeg-3' audio format as a blob
+                const blob = new Blob(chunks, { type: 'audio/mpeg-3' });
+                // convert blob to URL so it can be assigned to a audio src attribute
+                //createAudioElement(URL.createObjectURL(blob), recorder);
+                const r = new Audio();
+                r.src= URL.createObjectURL(blob);
+                r.play();
+                const mensaje = ObtenerElementoMensajeAudio(URL.createObjectURL(blob));
+                mensaje.find(".control-tiempo-total").text(r.duration);
+                $("#lista-mensajes").append(mensaje);
+
+                recorder = null;
+            }
+        };// start recording with 1 second time between receiving 'ondataavailable' events
+        recorder.start(1000);
+    }).catch(console.error);
+    console.log("Clic sostenido, habla...");
+    setTimeout(function () {
+        recorder.stop();
+
+    }, 3000);
+};
+
+
+
+
+
 
 function EnviarMensaje() {
     const textarea = $('#contenido-mensaje');
@@ -135,19 +182,23 @@ function EnviarMensaje() {
 function CargarEspacioDeChat() {
     var li_contenedor = $(this).parent();
     $("#sidepanel").addClass('no-visible-sm');
+    if($(this).hasClass("elemento-conversacion")){
+        $("#mi-perfil-sidepanel").removeClass("no-visible");
+    }
     if (li_contenedor.hasClass("active"))
         return; //evitamos recargar el espacio de chat en caso de que el elemento seleccionado sea el que está en uso
 
-    $("#btn-cerrar-contacto").trigger("click");//provocamos el evento click en el boton de cerrar info de contacto (en caso de que se encuentre en pantalla)
+    //provocamos el evento click en el boton de cerrar info de contacto (en caso de que se encuentre en pantalla)
+    $("#btn-cerrar-contacto").trigger("click");
 
     var usr_ant = $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario");
+
     $('#lista-conversaciones li.active').removeClass('active');
     const nombre_usuario = $(this).attr('data-usuario');
     const espacio_chat = $('#espacio-de-chat');
 
     let m= $('#lista-conversaciones li .elemento-conversacion[data-usuario="'+nombre_usuario+'"]').parent().addClass("active");
-    //Buffer de borradores y de mensajes
-    //Buffer_Borradores(usr_ant, nombre_usuario, $('#contenido-mensaje').text());
+    //Buffer de conversaciones
     if( m !== undefined){
         if(Buffer_Conversaciones(usr_ant, nombre_usuario) ){
             return;
@@ -164,6 +215,7 @@ function CargarEspacioDeChat() {
 
     $('#espacio-de-configuracion').hide();
     $('#espacio-temporal').remove();
+    $("#espacio-de-chat").focus();
 
     $.ajax(`/Chats/${nombre_usuario}`, {
         method: 'get', dataType: 'json', mimeType: 'application/json',
@@ -240,7 +292,7 @@ function CargarEspacioDeChat() {
                 //Actualizar panel de información de contacto, si este esta abierto.
 
                 ActualizarInfoContacto();
-                $("#espacio-de-escritura").focus();
+
             } else {
                 console.log('Error al obtener mensajes.');
             }
@@ -333,7 +385,7 @@ function SanearTexto(str) {
 
 const buffer_chat = new Map();
 function Buffer_Conversaciones(contacto_ant,contacto_act){
-    $("#espacio-de-chat .hacia-abajo").removeClass("visible");
+/*
     if(! (contacto_ant === undefined || contacto_ant === "" )){
         buffer_chat.set(contacto_ant, $("#espacio-de-chat").clone().html());
     }
@@ -342,18 +394,24 @@ if(! (contacto_act === undefined || contacto_act === "" )) {
     if (buffer_chat.has(contacto_act)) {
         $("#espacio-de-chat").empty();
         $("#espacio-de-chat").html(buffer_chat.get(contacto_act));
-
         $(`#lista-conversaciones .contact > div[data-usuario=${contacto_act}] .num-msj-pendientes.online`).remove();
-        TratarCambiosDeEstadosEnMensajesRecibidos();
-        ActualizarInfoContacto();
-        ActualizarTotalDeConversacionesNoLeidas();
-        $('#espacio-de-chat').show();
-        $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
-        $('#espacio-de-configuracion').hide();
+        ActualizarConversacion();
         return true;
     }
 
 }
-
+*/
     return false;
+}
+
+function ActualizarConversacion(){
+    $("#espacio-de-chat .hacia-abajo").removeClass("visible");
+
+    TratarCambiosDeEstadosEnMensajesRecibidos();
+    ActualizarInfoContacto();
+    ActualizarTotalDeConversacionesNoLeidas();
+    $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+    $('#espacio-de-chat').show();
+    $('#espacio-de-configuracion').hide();
+
 }
