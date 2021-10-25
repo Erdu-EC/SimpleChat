@@ -2954,7 +2954,7 @@ Fin de estilos para las configuraciones del perfil
 Estilos de botonera de edicion
 ------------------------------------------------------*/
 #botonera-edicion{
-  display: flex;
+  display: none;
   flex-direction: row;
   width: 100%;
   height: 50px;
@@ -2965,6 +2965,9 @@ Estilos de botonera de edicion
   top: 0;
   align-content: center;
   align-items: center;
+}
+#botonera-edicion.visible{
+  display:flex;
 }
 #botonera-edicion button{
   margin: 10px 5px;
