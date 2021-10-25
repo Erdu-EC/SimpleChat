@@ -357,13 +357,12 @@ $(document).on('input', "#nueva-foto-perfil", function () {
     }
     else {
         AgregarBotonesEdicion("perfil");
-
+        $("#botonera-edicion").hide();
         if (archivos.length !== 0) {
             const reader = new FileReader();
             reader.readAsDataURL(archivos[0]);
             const image = document.getElementById("img-tmp");
             reader.onload = function () {
-
                 image.src = reader.result;
                 LanzarEditor(image, 1/1);
             };
@@ -374,6 +373,7 @@ $(document).on('input', "#nueva-foto-perfil", function () {
 function EnviarImagen() {
 
     const archivo = document.getElementById('nueva-foto-perfil').files;
+    try {
     my_cropper.getCroppedCanvas({maxWidth: 2048, maxHeight: 2048,imageSmoothingQuality:"medium"}).toBlob(function (blob) {
         const formData = new FormData();
         formData.append('img', blob, archivo[0].name);
@@ -406,15 +406,11 @@ function EnviarImagen() {
             success: function (response) {
                 progreso.remove();
                 if (response[0]) {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(blob);
-
-                    reader.onload = function () {
-                        $("#foto-perfil-cuenta").attr("src", reader.result);
-                        $('#mi-perfil-sidepanel img').attr("src", reader.result);
-                        $('#profile-img').attr("src", reader.result);
-                        $("#nueva-foto-perfil").val("");
-                    };
+                    //Se asigna la nueva imagen a los contenedores de la foto de perfil
+                    let src = "\\files\\profile\\"+ $("#profile-img").attr("title")+"."+ archivo[0].name.split(".").reverse()[0];
+                    console.log(src);
+                    AsignarNuevaFotoPerfil(src);
+                    buffer_chat.clear();
                     VanillaToasts.create({
                         title: "SimpleChat",
                         text: "Tu foto de perfil ha sido modificada",
@@ -444,6 +440,20 @@ function EnviarImagen() {
             }
         });
     });
+    }
+    catch (e) {
+   console.log("Error al abrir el editor de imagen");
+    }finally {
+        CancelarEdicion();
+    }
+}
+function AsignarNuevaFotoPerfil(src) {
+let img = $('<img/>').attr("src",src);
+      $("#foto-perfil-cuenta").attr("src",ObtenerUrlImagen(img));
+    $('#mi-perfil-sidepanel img').attr("src",ObtenerUrlImagen(img,50,50));
+    $('#profile-img').attr("src",ObtenerUrlImagen(img,80,80));
+    $("#nueva-foto-perfil").val("");
+
 }
 
 function LanzarEditor(imagenPrevisualizacion, apecto) {
@@ -454,10 +464,12 @@ autoCropArea: 1,
         minCropBoxWidth: 100,
         minCropBoxHeight: 100,
         cropBoxResizable: true,
+        ready() {
+            $("#botonera-edicion").show();
+        }
     });
 
 }
-
 function EnviarInformacionPerfil() {
     $.ajax({
         url: "/action/user/Setting",
