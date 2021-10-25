@@ -464,9 +464,7 @@ autoCropArea: 1,
         minCropBoxWidth: 100,
         minCropBoxHeight: 100,
         cropBoxResizable: true,
-        ready() {
-            $("#botonera-edicion").show();
-        }
+
     });
 
 }

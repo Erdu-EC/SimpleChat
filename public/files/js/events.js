@@ -569,9 +569,7 @@ $(document).on("input", "#archivo-imagen-enviar", function () {
         return;
     } else {
         AgregarBotonesEdicion("mensaje");
-        $("#botonera-edicion").hide();
         if (archivos.length != 0) {
-
             let reader = new FileReader();
             reader.readAsDataURL(archivos[0]);
             const image = document.getElementById("img-tmp");
