@@ -204,6 +204,20 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                 <div class="emojis">
                                     <span class="material-icons" id="btn-emojis">sentiment_satisfied_alt</span>
                                 </div>
+
+                            </div>
+                            <div class="panel-grabando">
+                            <div class="indicador-tiempo">
+                                <div class="led-recording"></div>
+                                <div class="tiempo-transcurrido">1:00</div>
+
+                            </div>
+                                <div class="cancelar-grabacion">
+                                    <i class="fas fa-trash"></i>
+                                </div>
+                                <div class="fin-grabacion">
+                                    <i class="fas fa-paper-plane"></i>
+                                </div>
                             </div>
                             <div class="wrap">
                                     <div class="entrada-placeholder">Escribe un mensaje aquí...</div>
