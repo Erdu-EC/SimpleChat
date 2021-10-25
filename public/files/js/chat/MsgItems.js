@@ -54,7 +54,7 @@ const ObtenerElementoMensajeAudio = (blob) => {
     const msg = $(ObtenerElementoMensajeEnviado(""));
     let audio =$('<audio>',{
         src: blob,
-        type: "audio/mpeg",
+        type: "audio/mp3",
         class: "mensaje-audio"}
         );
     let cont = $("<div>",  {
@@ -64,10 +64,22 @@ const ObtenerElementoMensajeAudio = (blob) => {
 return msg;
 }
 function ObtenerControlesAudio(){
-    const msg = $('<div class="boton-play-pause"><i class="far fa-play-circle"></i></div><div class="control-indicador"><div class="control-indicador-total"></div><div class="bola"></div></div><div class="control-tiempo-total">0:00</div>');
+    const msg = $('<div class="boton-play-pause"><i class="far fa-play-circle"></i></div><div class="control-indicador"><div class="control-indicador-total"></div><div class="bola"></div></div><div class="control-tiempo-total">00:00</div>');
     return msg;
 }
-
+const ObtenerElementoMensajeAudioRecibido = (blob) => {
+    const msg = $(ObtenerElementoMensajeContacto(""));
+    let audio =$('<audio>',{
+        src: blob,
+        type: "audio/mp3",
+        class: "mensaje-audio"}
+    );
+    let cont = $("<div>",  {
+        class: "audio-recibido"
+    }).append(ObtenerControlesAudio()).append(audio);
+    msg.find(".cont-msj").removeClass("cont-msj").addClass("contenedor-audio-recibido").html(cont);
+   return msg;
+}
 /*
 * Estados:
 * 1- Enviado

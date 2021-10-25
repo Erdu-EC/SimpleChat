@@ -853,16 +853,57 @@ $(document).on("click",".boton-play-pause",function () {
 //Cancelar grabacion
 $(document).on("click", "#panel-grabando .cancelar-grabacion",function () {
     $("#panel-grabando").remove();
+    if (!grabacion) return;
+    grabacion.stop();
+    DetenerContador();
 });
 $(document).on("click", "#panel-grabando .fin-grabacion",function () {
     $("#panel-grabando").remove();
+    if (!grabacion) return;
+    grabacion.onstop = function (){
+        const mensaje = ObtenerElementoMensajeAudio(track);//ObtenerElementoMensajeAudioRecibido(track);
+        $("#lista-mensajes").append(mensaje);
+        DetenerContador();
+        mensaje.find(".control-tiempo-total").text(segundosATiempo( tiempoFin / 1000));
+    }
+    grabacion.stop();
+
 });
+
+let idIntervalo, tiempoInicio, tiempoFin = 0;
+
+const segundosATiempo = numeroDeSegundos => {
+    let horas = Math.floor(numeroDeSegundos / 60 / 60);
+    numeroDeSegundos -= horas * 60 * 60;
+    let minutos = Math.floor(numeroDeSegundos / 60);
+    numeroDeSegundos -= minutos * 60;
+    numeroDeSegundos = parseInt(numeroDeSegundos);
+    if (horas < 10) horas = "0" + horas;
+    if (minutos < 10) minutos = "0" + minutos;
+    if (numeroDeSegundos < 10) numeroDeSegundos = "0" + numeroDeSegundos;
+    return `${(horas == 0) ? '': horas +':'}${minutos}:${numeroDeSegundos}`;
+};
+const Contador = () => {
+    tiempoInicio = Date.now();
+    idIntervalo = setInterval(ActualizarReloj, 500);
+};
+const DetenerContador = () => {
+    clearInterval(idIntervalo);
+    tiempoFin = parseInt(Date.now() - tiempoInicio);
+      grabacion = null;
+    tiempoInicio = null;
+}
+const ActualizarReloj = () => {
+    $("#panel-grabando").find(".tiempo-transcurrido").text( segundosATiempo((Date.now() - tiempoInicio) / 1000));
+}
+
+
 function AgregarControlesGrabando(){
     if($("#panel-grabando").length === 0 ){
         $("#espacio-de-escritura").append(`<div id="panel-grabando">
                             <div class="indicador-tiempo">
                                 <div class="led-recording"></div>
-                                <div class="tiempo-transcurrido">1:00</div>
+                                <div class="tiempo-transcurrido">00:00</div>
 
                             </div>
                                 <div class="cancelar-grabacion" title="Cancelar">

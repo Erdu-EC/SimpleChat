@@ -61,52 +61,50 @@ $(document).on('click', '#mensaje-invitacion button', function () {
 
 $(document).on('click', '#btn-enviar-mensaje', function () {
     if($(this).hasClass("modo-microfono")){
-      //  GrabarAudio();
+      GrabarAudio();
         AgregarControlesGrabando();
     }
     //EnviarMensaje()
 });
 
 let grabacion = null;
+let track;
 
 function GrabarAudio() {
-    //evento listen
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-        // store streaming data chunks in array
-        const chunks = [];
-        // create media recorder instance to initialize recording
-        recorder = new MediaRecorder(stream);
-        // function to be called when data is received
-        recorder.ondataavailable = e => {
-            // add stream data to chunks
-            chunks.push(e.data);
-            console.log(recorder.state)
-            // if recorder is 'inactive' then recording has finished
-            if (recorder.state == 'inactive') {
-                // convert stream data chunks to a 'webm or mpeg-3' audio format as a blob
-                const blob = new Blob(chunks, { type: 'audio/mpeg-3' });
-                // convert blob to URL so it can be assigned to a audio src attribute
-                //createAudioElement(URL.createObjectURL(blob), recorder);
-                const r = new Audio();
-                r.src= URL.createObjectURL(blob);
-                r.play();
-                const mensaje = ObtenerElementoMensajeAudio(URL.createObjectURL(blob));
-                mensaje.find(".control-tiempo-total").text(r.duration);
-                $("#lista-mensajes").append(mensaje);
 
-                recorder = null;
-            }
-        };// start recording with 1 second time between receiving 'ondataavailable' events
-        recorder.start(1000);
-    }).catch(console.error);
-    console.log("Clic sostenido, habla...");
-    setTimeout(function () {
-        recorder.stop();
+    const soporte = navigator.mediaDevices.getUserMedia;
 
-    }, 3000);
+    if(!soporte){
+        swal({text:"La versión de tu navegador no soporta acceso al micrófono.", button:"Ok", icon:"/files/icon/not-microphone.png?w=50",  dangerMode: true,});
+    }else {
+//Iniciamos la grabacion
+        navigator.mediaDevices.getUserMedia({audio: { audioBitsPerSecond : 128000,audioBitrateMode:'constant' } })
+            .then(  stream => {
+                const fragmentosDeAudio = [];
+                    // Comenzar a grabar con el stream
+                    grabacion = new MediaRecorder(stream);
+                    grabacion.start(1000);
+                    Contador();
+                    //Agregar fragmentos al arreglo cuando haya datos
+                    grabacion.addEventListener("dataavailable", e => {
+                        fragmentosDeAudio.push(e.data);
+                    });
+
+                    // Evento que se ejecuta al detener grabacion
+                    grabacion.addEventListener("stop", () => {
+                        stream.getTracks().forEach(track => track.stop());
+                        const binarios =  new Blob(fragmentosDeAudio.slice());
+                        const objeto_URL_Audio=  URL.createObjectURL(binarios,{ type: 'audio/mp3' });
+                        track = objeto_URL_Audio;
+                    });
+                }
+            )
+            .catch(e => {
+                swal({text:"Error al intentar acceder al micrófono. Verifique si se ha concedido el permiso.", button:"Ok", icon:"/files/icon/not-microphone.png?w=50",  dangerMode: true,});
+            });
+    }
+
 };
-
-
 
 
 
