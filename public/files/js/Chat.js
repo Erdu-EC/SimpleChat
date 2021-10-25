@@ -62,6 +62,7 @@ $(document).on('click', '#mensaje-invitacion button', function () {
 $(document).on('click', '#btn-enviar-mensaje', function () {
     if($(this).hasClass("modo-microfono")){
       //  GrabarAudio();
+        AgregarControlesGrabando();
     }
     //EnviarMensaje()
 });

@@ -848,3 +848,30 @@ $(document).on("click",".boton-play-pause",function () {
         $(this).html('<i class="far fa-play-circle"></i>');
     }
 });
+
+
+//Cancelar grabacion
+$(document).on("click", "#panel-grabando .cancelar-grabacion",function () {
+    $("#panel-grabando").remove();
+});
+$(document).on("click", "#panel-grabando .fin-grabacion",function () {
+    $("#panel-grabando").remove();
+});
+function AgregarControlesGrabando(){
+    if($("#panel-grabando").length === 0 ){
+        $("#espacio-de-escritura").append(`<div id="panel-grabando">
+                            <div class="indicador-tiempo">
+                                <div class="led-recording"></div>
+                                <div class="tiempo-transcurrido">1:00</div>
+
+                            </div>
+                                <div class="cancelar-grabacion" title="Cancelar">
+                                    <i class="fas fa-trash"></i>
+                                </div>
+                                <div class="fin-grabacion" title="Enviar audio">
+                                    <div class="cont-icon-fin-grabacion"><i class="fas fa-paper-plane"></i></div>
+                                </div>
+                            </div>`);
+    }
+
+}

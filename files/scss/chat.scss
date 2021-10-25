@@ -2195,7 +2195,7 @@ body .wrapper .emoji-picker .emoji-picker__preview {
   ***  Estilos del panel de grabacion
   *** */
 
-#espacio-de-escritura .panel-grabando{
+#espacio-de-escritura #panel-grabando{
   position: absolute;
   height: 62px;
   width: 100%;
@@ -2208,7 +2208,7 @@ body .wrapper .emoji-picker .emoji-picker__preview {
   left: 0;
   padding: 8px 10px;
 }
-.panel-grabando .indicador-tiempo {
+#panel-grabando .indicador-tiempo {
   width: 100px;
   height: 100%;
   color: #435f7a;
@@ -2217,10 +2217,10 @@ body .wrapper .emoji-picker .emoji-picker__preview {
   align-items: center;
   justify-content: center;
 }
-.panel-grabando .indicador-tiempo .tiempo-transcurrido{
+#panel-grabando .indicador-tiempo .tiempo-transcurrido{
   margin-left: 10px;
 }
-.panel-grabando .indicador-tiempo .led-recording{
+#panel-grabando .indicador-tiempo .led-recording{
   background : #e53935;
   border-radius: 50%;
     height: 13px;
@@ -2262,7 +2262,7 @@ body .wrapper .emoji-picker .emoji-picker__preview {
   }
 }
 
-.panel-grabando .cancelar-grabacion,.panel-grabando .fin-grabacion {
+#panel-grabando .cancelar-grabacion,#panel-grabando .fin-grabacion {
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -2271,7 +2271,7 @@ body .wrapper .emoji-picker .emoji-picker__preview {
   margin-right: 20px;
 
 }
-.panel-grabando .cancelar-grabacion,.panel-grabando .fin-grabacion .cont-icon-fin-grabacion{
+#panel-grabando .cancelar-grabacion,#panel-grabando .fin-grabacion .cont-icon-fin-grabacion{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2282,23 +2282,23 @@ body .wrapper .emoji-picker .emoji-picker__preview {
 }
 
 
-.panel-grabando .cancelar-grabacion{
+#panel-grabando .cancelar-grabacion{
  color : #e53935;
   background: #FFFFFF;
   margin-left: auto;
 }
-.panel-grabando .cancelar-grabacion:hover{
+#panel-grabando .cancelar-grabacion:hover{
   background : #e53935;
   color: #FFFFFF;
 
 }
-.panel-grabando .fin-grabacion{
+#panel-grabando .fin-grabacion{
   color: #288795;
   background: #FFFFFF;
   animation: pulsasiones-azul 2s infinite;
 
 }
-.panel-grabando .fin-grabacion:hover{
+#panel-grabando .fin-grabacion:hover{
   background: #288795;
   color: #FFFFFF;
 }
