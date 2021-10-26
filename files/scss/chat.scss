@@ -2036,6 +2036,7 @@ Estilos para audio
   justify-content: left;
   margin-right: 0;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .control-tiempo-total{
@@ -2055,6 +2056,7 @@ Estilos para audio
 margin-right: 10px;
   align-items: center;
   background: #ffffff;
+  display: flex;
 }
 .audio-recibido .control-indicador{
   background: #8e8e8f;
@@ -2063,7 +2065,7 @@ margin-right: 10px;
 .control-indicador .control-indicador-total{
   height: 6px;
   margin-top: -1px;
-  width: 60%;
+  width: 1%;
   background: #00a293;
   border-radius: 2px;
   z-index: 10;
@@ -2076,7 +2078,6 @@ margin-right: 10px;
   width: 12px;
   background:#00a293 ;
   border-radius: 50%;
-  margin-top: -4px;
   margin-left: -10px;
   display: inline;
   float: left;

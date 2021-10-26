@@ -8,12 +8,12 @@ $(document).on("keydown", "#contenido-mensaje", function (e) {
 $(document).on("keyup change", "#contenido-mensaje", function () {
     var message = $("#contenido-mensaje").text();
     if ($.trim(message) === '') {
-        $("#btn-enviar-mensaje").removeClass("activar").html('<i className="fas fa-microphone">').attr("title","Grabar audio");
+        $("#btn-enviar-mensaje").removeClass("activar").addClass("modo-microfono").html('<i class="fas fa-microphone"></i>').attr("title","Grabar audio");
         $("#buscar-contacto .borrar").remove();
         $("#frame .content .message-input .wrap .entrada-placeholder").show();
 
     } else {
-        $("#btn-enviar-mensaje").addClass("activar").html('<i class="fas fa-paper-plane"></i>').attr("title","Enviar mensaje");
+        $("#btn-enviar-mensaje").removeClass("modo-microfono").addClass("activar").html(`<i class="fas fa-paper-plane"></i>`).attr("title","Enviar mensaje");
         $("#cuadro-busqueda-usuario").after(' <div class="borrar"><span class="material-icons"> close</span></div>');
     }
 });
@@ -63,8 +63,10 @@ $(document).on('click', '#btn-enviar-mensaje', function () {
     if($(this).hasClass("modo-microfono")){
       GrabarAudio();
         AgregarControlesGrabando();
+    }else{
+        EnviarMensaje();
     }
-    //EnviarMensaje()
+
 });
 
 let grabacion = null;
@@ -77,8 +79,9 @@ function GrabarAudio() {
     if(!soporte){
         swal({text:"La versión de tu navegador no soporta acceso al micrófono.", button:"Ok", icon:"/files/icon/not-microphone.png?w=50",  dangerMode: true,});
     }else {
+        if (grabacion) return;
 //Iniciamos la grabacion
-        navigator.mediaDevices.getUserMedia({audio: { audioBitsPerSecond : 128000,audioBitrateMode:'constant' } })
+        navigator.mediaDevices.getUserMedia({audio: { audioBitsPerSecond : 192000 ,audioBitrateMode:'constant' } })
             .then(  stream => {
                 const fragmentosDeAudio = [];
                     // Comenzar a grabar con el stream
@@ -116,7 +119,8 @@ function EnviarMensaje() {
     texto = SanearTexto(texto);
     textarea.html('');
 
-    $("#btn-enviar-mensaje").removeClass("activar");
+    $("#btn-enviar-mensaje").removeClass("activar").addClass("modo-microfono").html('<i class="fas fa-microphone"></i>').attr("title","Grabar audio");
+
     if (texto !== '') {
         const mensaje = $(ObtenerElementoMensajeEnviado(texto));
         const espacio_chat = $('#espacio-de-chat > .messages');

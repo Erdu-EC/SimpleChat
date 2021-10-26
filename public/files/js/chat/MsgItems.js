@@ -50,24 +50,25 @@ const ObtenerElementoMensaje = (mensaje, fecha_envio, estado) => `
                 ${fecha_envio !== undefined || estado !== undefined? ObtenerElementoExtraMensaje(fecha_envio, estado) : ''}
             </div>
     </li>`;
-const ObtenerElementoMensajeAudio = (blob) => {
+const ObtenerElementoMensajeAudio = (blob, duracion) => {
     const msg = $(ObtenerElementoMensajeEnviado(""));
     let audio =$('<audio>',{
         src: blob,
         type: "audio/mp3",
         class: "mensaje-audio"}
-        );
+        ).attr('data-duration', duracion);
+
     let cont = $("<div>",  {
         class: "audio-enviado"
     }).append(ObtenerControlesAudio()).append(audio);
-    msg.find(".cont-msj").removeClass("cont-msj").addClass("contenedor-audio-enviado").html(cont);
+    msg.find(".cont-msj").removeClass("cont-msj").addClass("contenedor-audio-enviado no-seleccionable").html(cont);
 return msg;
 }
 function ObtenerControlesAudio(){
-    const msg = $('<div class="boton-play-pause"><i class="far fa-play-circle"></i></div><div class="control-indicador"><div class="control-indicador-total"></div><div class="bola"></div></div><div class="control-tiempo-total">00:00</div>');
+    const msg = $('<div class="boton-play-pause" id="'+ Date.now()+'"><i class="far fa-play-circle"></i></div><div class="control-indicador"><div class="control-indicador-total"></div><div class="bola"></div></div><div class="control-tiempo-total">00:00</div>');
     return msg;
 }
-const ObtenerElementoMensajeAudioRecibido = (blob) => {
+const ObtenerElementoMensajeAudioRecibido = (blob ) => {
     const msg = $(ObtenerElementoMensajeContacto(""));
     let audio =$('<audio>',{
         src: blob,
@@ -77,7 +78,7 @@ const ObtenerElementoMensajeAudioRecibido = (blob) => {
     let cont = $("<div>",  {
         class: "audio-recibido"
     }).append(ObtenerControlesAudio()).append(audio);
-    msg.find(".cont-msj").removeClass("cont-msj").addClass("contenedor-audio-recibido").html(cont);
+    msg.find(".cont-msj").removeClass("cont-msj").addClass("contenedor-audio-recibido no-seleccionable").html(cont);
    return msg;
 }
 /*

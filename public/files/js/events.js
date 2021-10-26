@@ -834,18 +834,59 @@ window.onbeforeunload = function () {
 
 }
 //Eventos para audios
-$(document).on("click",".boton-play-pause",function () {
-    let audio = new Audio( $(this).siblings(".mensaje-audio").attr('src'));
-    $(this).toggleClass("reproduciendo");
-   let boton = $(this);
-    if($(this).hasClass("reproduciendo")){
-        $(this).html('<i class="far fa-pause-circle"></i>');
-        audio.play();
-        audio.addEventListener("ended", ()=>{
+let audio = null,   aux = null;
+$(document).on("click",".boton-play-pause", function () {
+let objeto_actual =$(this);
+    if(audio){
+        audio.pause();
+    }
+    if(!$(this).hasClass("reproduciendo") && !$(this).hasClass("pausado")){
+
+        const elemento_audio =objeto_actual.siblings(".mensaje-audio")
+        const barra_progreso = $(this).parent().find(".control-indicador-total");
+
+        audio=null;
+        audio = new Audio( elemento_audio.attr('src'));
+
+        let boton = $(this);
+
+        const duracion_audio = elemento_audio.attr("data-duration");
+
+        let cronometro = null;
+        let t_inicio = Date.now();
+        let t_transcurrido = 0;
+        audio.onplay =  (e) => {
+           cronometro = setInterval(function (){
+               t_transcurrido += 50;
+                let porcentaje = Math.trunc((  t_transcurrido / duracion_audio ) * 100);
+               barra_progreso.css("width",porcentaje +'%');
+            },50);
+            $(this).addClass("reproduciendo").removeClass("pausado").html('<i class="far fa-pause-circle"></i>');
+        };
+
+        audio.onended =  (e)=>  {
+            clearInterval(cronometro);
+            barra_progreso.css("width",'1%')
+            boton.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado");
+            audio = null;
+        };
+
+        audio.onpause=  (e) => {
+            clearInterval(cronometro);
             boton.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo");
-        });
-    }else{
-        $(this).html('<i class="far fa-play-circle"></i>');
+            barra_progreso.css("width",'1%');
+            audio=null;
+        }
+
+        audio.play();
+    }
+    else if(objeto_actual.hasClass("reproduciendo")){
+        if(!audio){ return;}
+        audio.pause();
+    }
+    else if(objeto_actual.hasClass("pausado")){
+        if(!audio){ return;}
+        audio.play();
     }
 });
 
@@ -861,11 +902,12 @@ $(document).on("click", "#panel-grabando .fin-grabacion",function () {
     $("#panel-grabando").remove();
     if (!grabacion) return;
     grabacion.onstop = function (){
-        const mensaje = ObtenerElementoMensajeAudio(track);//ObtenerElementoMensajeAudioRecibido(track);
-        $("#lista-mensajes").append(mensaje);
         DetenerContador();
+        const mensaje = ObtenerElementoMensajeAudio(track, tiempoFin);//ObtenerElementoMensajeAudioRecibido(track);
+        $("#lista-mensajes").append(mensaje);
         mensaje.find(".control-tiempo-total").text(segundosATiempo( tiempoFin / 1000));
-    }
+        $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+         }
     grabacion.stop();
 
 });

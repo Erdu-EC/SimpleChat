@@ -211,7 +211,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                                     <div class="entrada-placeholder">Escribe un mensaje aquí...</div>
                                     <div id="contenido-mensaje" contenteditable="true" spellcheck="true"></div>
                             </div>
-                            <button class="btn modo-microfono" id="btn-enviar-mensaje" title="Grabar audio"><!-- <i class="fas fa-paper-plane"></i> --> <i class="fas fa-microphone"></i></button>
+                            <button class="btn modo-microfono" id="btn-enviar-mensaje" title="Grabar audio"> <i class="fas fa-microphone"></i></button>
                             <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" id="archivo-imagen-enviar">
                             <div id="icon-archivo-imagen">
                                 <i class="fas fa-camera"></i>
