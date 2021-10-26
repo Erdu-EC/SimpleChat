@@ -99,6 +99,7 @@ function GrabarAudio() {
                         const binarios =  new Blob(fragmentosDeAudio.slice());
                         const objeto_URL_Audio=  URL.createObjectURL(binarios,{ type: 'audio/mp3' });
                         track = objeto_URL_Audio;
+                        grabacion = null;
                     });
                 }
             )

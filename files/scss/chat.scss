@@ -2026,17 +2026,22 @@ Estilos para audio
 
 
 .boton-play-pause{
-  background-color: transparent;
+  background-color: #FFFFFF;
   display: flex;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   color: #00a293;
   font-size: 30px;
-  justify-content: left;
-  margin-right: 0;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 15px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.boton-play-pause i{
+  width: 30px;
+  height: 30px;
 }
 
 .control-tiempo-total{

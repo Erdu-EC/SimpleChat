@@ -150,6 +150,16 @@ $(document).on("click", function (e) {
             button.text("sentiment_satisfied_alt");
         }
     }
+
+    let espacio_chat = $('#espacio-de-chat');
+    if(espacio_chat.length)
+    {
+        //Si el click se ha dado fuera del espacio de chat, finalizamos grabacion o reproduccion de audio en caso de que una de las dos se ejecute
+        if ((!espacio_chat.is(e.target) && espacio_chat.has(e.target).length === 0) ) {
+            Finalizar_Grabacion_Reproduccion();
+        }
+
+    }
 });
 
 
@@ -834,7 +844,7 @@ window.onbeforeunload = function () {
 
 }
 //Eventos para audios
-let audio = null,   aux = null, aux_2= null;
+let audio = null,   aux = null, aux_2= null, audio_aux = null;
 $(document).on("click",".boton-play-pause", function () {
     const objeto_actual = $(this);
     const elemento_audio =objeto_actual.siblings(".mensaje-audio")
@@ -842,12 +852,13 @@ $(document).on("click",".boton-play-pause", function () {
     if(audio){
         if(audio_actual.src !== audio.src){
             aux_2 = aux;
-                    DetenerAudio (audio);
-                    console.log("Son distintos");
+            audio_aux = audio;
+                    DetenerAudio (audio_aux);
         }
     }
     if(!$(this).hasClass("reproduciendo") && !$(this).hasClass("pausado")){
-        const barra_progreso = $(this).parent().find(".control-indicador-total");
+        const barra_progreso = objeto_actual.parent().find(".control-indicador-total");
+        const etiqueta_tiempo = objeto_actual.parent().find(".control-tiempo-total");
         audio=null;
         audio = audio_actual;
         const duracion_audio = elemento_audio.attr("data-duration");
@@ -859,24 +870,25 @@ $(document).on("click",".boton-play-pause", function () {
                t_transcurrido += 50;
                 let porcentaje = Math.trunc((  t_transcurrido / duracion_audio ) * 100);
                barra_progreso.css("width",porcentaje +'%');
+               etiqueta_tiempo.text(segundosATiempo (t_transcurrido / 1000));
             },50);
             objeto_actual.addClass("reproduciendo").removeClass("pausado").html('<i class="far fa-pause-circle"></i>');
             aux = objeto_actual;
         };
 
         audio.onended =  (e)=>  {
+            //Se finaliza el cronómetro y se reinician los valores del indicador de tiempo y del icono
             clearInterval(cronometro);
             barra_progreso.css("width",'1%')
             objeto_actual.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado");
+            objeto_actual.siblings(".control-tiempo-total").text(segundosATiempo (objeto_actual.siblings(".mensaje-audio").attr('data-duration')/1000));
             audio = null;
         };
 
         audio.onpause=  (e) => {
             clearInterval(cronometro);
             objeto_actual.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").addClass("pausado");
-            //barra_progreso.css("width",'1%');
-            //audio=null;
-            Reiniciar();
+            Reiniciar(aux_2);
         }
 
         audio.play();
@@ -890,22 +902,23 @@ $(document).on("click",".boton-play-pause", function () {
         audio.play();
     }
 });
-function DetenerAudio (pista, elemento){
+function DetenerAudio (pista){
     if(pista.paused){
+        //Se reinician los contadores e icono de reproducción del elemento audio anterior (si estaba en estado pause)
         aux_2.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado").parent().find(".control-indicador-total").css("width",'1%')
-
+        aux_2.siblings(".control-tiempo-total").text(segundosATiempo (aux_2.siblings(".mensaje-audio").attr('data-duration')/1000));
     }else{
         pista.pause();
     }
     pista.currentTime =0;
     pista = null;
 }
-function Reiniciar(){
-
-    console.log(aux_2);
-     if(aux_2){
-         aux_2.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado").parent().find(".control-indicador-total").css("width",'1%')
-         aux_2 = null;
+function Reiniciar(elemento){
+//Se reinician los contadores e icono de reproducción del elemento audio anterior
+     if(elemento){
+         elemento.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado").parent().find(".control-indicador-total").css("width",'1%')
+         elemento.siblings(".control-tiempo-total").text(segundosATiempo (aux_2.siblings(".mensaje-audio").attr('data-duration')/1000));
+         elemento = null;
      }
 }
 
@@ -925,6 +938,7 @@ $(document).on("click", "#panel-grabando .fin-grabacion",function () {
         $("#lista-mensajes").append(mensaje);
         mensaje.find(".control-tiempo-total").text(segundosATiempo( tiempoFin / 1000));
         $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+        grabacion = null;
          }
     grabacion.stop();
 
@@ -975,4 +989,17 @@ function AgregarControlesGrabando(){
                             </div>`);
     }
 
+}
+
+function Finalizar_Grabacion_Reproduccion(){
+    if (grabacion) {
+      if(grabacion.state === 'recording'){
+          grabacion.stop();
+      }
+    }
+    if(audio){
+        aux_2 = aux;
+        DetenerAudio(audio);
+    }
+    $("#panel-grabando").remove();
 }
