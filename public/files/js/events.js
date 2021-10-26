@@ -834,48 +834,49 @@ window.onbeforeunload = function () {
 
 }
 //Eventos para audios
-let audio = null,   aux = null;
+let audio = null,   aux = null, aux_2= null;
 $(document).on("click",".boton-play-pause", function () {
-let objeto_actual =$(this);
+    const objeto_actual = $(this);
+    const elemento_audio =objeto_actual.siblings(".mensaje-audio")
+    let audio_actual = new Audio( elemento_audio.attr('src'));
     if(audio){
-        audio.pause();
+        if(audio_actual.src !== audio.src){
+            aux_2 = aux;
+                    DetenerAudio (audio);
+                    console.log("Son distintos");
+        }
     }
     if(!$(this).hasClass("reproduciendo") && !$(this).hasClass("pausado")){
-
-        const elemento_audio =objeto_actual.siblings(".mensaje-audio")
         const barra_progreso = $(this).parent().find(".control-indicador-total");
-
         audio=null;
-        audio = new Audio( elemento_audio.attr('src'));
-
-        let boton = $(this);
-
+        audio = audio_actual;
         const duracion_audio = elemento_audio.attr("data-duration");
-
         let cronometro = null;
-        let t_inicio = Date.now();
         let t_transcurrido = 0;
+
         audio.onplay =  (e) => {
            cronometro = setInterval(function (){
                t_transcurrido += 50;
                 let porcentaje = Math.trunc((  t_transcurrido / duracion_audio ) * 100);
                barra_progreso.css("width",porcentaje +'%');
             },50);
-            $(this).addClass("reproduciendo").removeClass("pausado").html('<i class="far fa-pause-circle"></i>');
+            objeto_actual.addClass("reproduciendo").removeClass("pausado").html('<i class="far fa-pause-circle"></i>');
+            aux = objeto_actual;
         };
 
         audio.onended =  (e)=>  {
             clearInterval(cronometro);
             barra_progreso.css("width",'1%')
-            boton.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado");
+            objeto_actual.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado");
             audio = null;
         };
 
         audio.onpause=  (e) => {
             clearInterval(cronometro);
-            boton.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo");
-            barra_progreso.css("width",'1%');
-            audio=null;
+            objeto_actual.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").addClass("pausado");
+            //barra_progreso.css("width",'1%');
+            //audio=null;
+            Reiniciar();
         }
 
         audio.play();
@@ -889,7 +890,24 @@ let objeto_actual =$(this);
         audio.play();
     }
 });
+function DetenerAudio (pista, elemento){
+    if(pista.paused){
+        aux_2.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado").parent().find(".control-indicador-total").css("width",'1%')
 
+    }else{
+        pista.pause();
+    }
+    pista.currentTime =0;
+    pista = null;
+}
+function Reiniciar(){
+
+    console.log(aux_2);
+     if(aux_2){
+         aux_2.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado").parent().find(".control-indicador-total").css("width",'1%')
+         aux_2 = null;
+     }
+}
 
 //Cancelar grabacion
 $(document).on("click", "#panel-grabando .cancelar-grabacion",function () {
