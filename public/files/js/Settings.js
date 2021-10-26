@@ -357,7 +357,6 @@ $(document).on('input', "#nueva-foto-perfil", function () {
     }
     else {
         AgregarBotonesEdicion("perfil");
-        $("#botonera-edicion").hide();
         if (archivos.length !== 0) {
             const reader = new FileReader();
             reader.readAsDataURL(archivos[0]);
