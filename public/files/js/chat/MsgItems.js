@@ -54,7 +54,7 @@ const ObtenerElementoMensajeAudio = (blob, duracion) => {
     const msg = $(ObtenerElementoMensajeEnviado(""));
     let audio =$('<audio>',{
         src: blob,
-        type: "audio/mp3",
+        type: "audio/webm",
         class: "mensaje-audio"}
         ).attr('data-duration', duracion);
 

@@ -96,9 +96,7 @@ function GrabarAudio() {
                     // Evento que se ejecuta al detener grabacion
                     grabacion.addEventListener("stop", () => {
                         stream.getTracks().forEach(track => track.stop());
-                        const binarios =  new Blob(fragmentosDeAudio.slice(), { type: 'audio/webm' });
-                        const objeto_URL_Audio=  URL.createObjectURL(binarios,{ type: 'audio/webm' });
-                        track = objeto_URL_Audio;
+                        track = new Blob(fragmentosDeAudio.slice(), { type: 'audio/webm' });
                         grabacion = null;
                     });
                 }

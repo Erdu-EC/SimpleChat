@@ -67,17 +67,18 @@ CREATE TABLE contacts
 
 CREATE TABLE message
 (
-    id          INT AUTO_INCREMENT,
-    id_temp     VARCHAR(50) NULL,
-    id_source   INT         NOT NULL,
-    id_dest     INT         NOT NULL,
-    send_date   datetime,
-    rcv_date    datetime,
-    read_date   datetime,
-    content     TEXT        NOT NULL,
-    content_img TEXT        NULL,
-    rcv_see     bool        NOT NULL DEFAULT FALSE,
-    read_see    bool        NOT NULL DEFAULT FALSE,
+    id            INT AUTO_INCREMENT,
+    id_temp       VARCHAR(50) NULL,
+    id_source     INT         NOT NULL,
+    id_dest       INT         NOT NULL,
+    send_date     datetime,
+    rcv_date      datetime,
+    read_date     datetime,
+    content       TEXT        NOT NULL,
+    content_img   TEXT        NULL,
+    content_audio TEXT        NULL,
+    rcv_see       bool        NOT NULL DEFAULT FALSE,
+    read_see      bool        NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id),
     FOREIGN KEY (id_source) REFERENCES users (id),
     FOREIGN KEY (id_dest) REFERENCES users (id),
@@ -157,7 +158,11 @@ END $
 
 CREATE PROCEDURE user_getActiveContacts(in USER_ID int)
 BEGIN
-    SELECT user_name FROM users u inner join contacts c on u.id = c.contact_id WHERE c.user_id = USER_ID and u.state = 'A';
+    SELECT user_name
+    FROM users u
+             inner join contacts c on u.id = c.contact_id
+    WHERE c.user_id = USER_ID
+      and u.state = 'A';
 END $
 
 CREATE FUNCTION user_is_contact(USERID int, CONTACTID int) RETURNS BOOLEAN
@@ -234,7 +239,7 @@ BEGIN
 END $
 
 #Procedimientos para mensajes.
-CREATE FUNCTION msg_Send(idFake varchar(50), source int, dest int, msg text, img text) RETURNS INT
+CREATE FUNCTION msg_Send(idFake varchar(50), source int, dest int, msg text, img text, audio text) RETURNS INT
     MODIFIES SQL DATA
 BEGIN
     #Si usuario no pertenece a los contactos del destinario
@@ -250,8 +255,8 @@ BEGIN
     END IF;
 
     #Insertar mensaje en cualquier caso.
-    INSERT INTO message(id_temp, id_source, id_dest, send_date, content, content_img)
-    VALUES (idFake, source, dest, NOW(), msg, img);
+    INSERT INTO message(id_temp, id_source, id_dest, send_date, content, content_img, content_audio)
+    VALUES (idFake, source, dest, NOW(), msg, img, audio);
 
     #Devolver ID del mensaje.
     RETURN LAST_INSERT_ID();
@@ -303,6 +308,7 @@ BEGIN
            id_source   as origin,
            content     as text,
            content_img as img,
+           content_audio as audio,
            send_date   as date_send,
            rcv_date    as date_reception,
            read_date   as date_read

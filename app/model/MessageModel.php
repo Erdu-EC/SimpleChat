@@ -11,14 +11,15 @@
 
 	class MessageModel extends Model
 	{
-		public function Add(int $user_id, int $contact_id, string $idFake, ?string $text, ?string $img): bool {
+		public function Add(int $user_id, int $contact_id, string $idFake, ?string $text, ?string $img, ?string $audio): bool {
 			try {
-				return !is_null($this->Execute('SELECT msg_Send(:idf, :uid, :cid, :text, :img)', [
+				return !is_null($this->Execute('SELECT msg_Send(:idf, :uid, :cid, :text, :img, :audio)', [
 					'idf' => $idFake,
 					'uid' => $user_id,
 					'cid' => $contact_id,
 					'text' => $text ?? '',
-					'img' => $img
+					'img' => $img,
+					'audio' => $audio
 				]));
 			} catch (PDOException $ex) {
 				Logger::Log('sql', 'msg_send', $ex->getMessage());

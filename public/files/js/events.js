@@ -2,23 +2,17 @@
 history.pushState(null, document.title, location.href);
 window.addEventListener('popstate', function (event) {
     history.pushState(null, document.title, location.href);
-    if(window.innerWidth < 576)
-    {
+    if (window.innerWidth < 576) {
 
-     if($("#panelTodosContactos").hasClass("mostrar")){
-        $("#ocultar").trigger("click");
-    }
-        else if( !($("body").hasClass("sb-sidenav-toggled"))){
+        if ($("#panelTodosContactos").hasClass("mostrar")) {
+            $("#ocultar").trigger("click");
+        } else if (!($("body").hasClass("sb-sidenav-toggled"))) {
             $("#sidebarToggle").trigger("click");
-        }
-
-        else if($("#panelInfoContacto").length && $("#panelInfoContacto").hasClass("mostrar")){
+        } else if ($("#panelInfoContacto").length && $("#panelInfoContacto").hasClass("mostrar")) {
             $("#btn-cerrar-contacto").trigger("click");
-        }
-        else if(! $("#espacio-de-chat").hasClass("no-visible-sm") ){
+        } else if (!$("#espacio-de-chat").hasClass("no-visible-sm")) {
             $("#btn-chat-atras").trigger("click");
-        }
-        else if($("#espacio-de-configuracion")){
+        } else if ($("#espacio-de-configuracion")) {
             $("#btn-cerrar-configuraciones").trigger("click");
         }
 
@@ -56,20 +50,21 @@ $(document).on("mouseover", ("#btn-habilitar-notificaciones"), function () {
 $(document).on("mouseleave", ("#btn-habilitar-notificaciones"), function () {
     $(".msg-indicador-notificaciones").hide();
 });
+
 //Función que se ejecuta al hacer scroll en los mensajes
 function CambiarUbicacion(e) {
     let h = $("#lista-mensajes").innerHeight() - $("#espacio-de-chat .messages").innerHeight() - 100;
-    if($("#espacio-de-chat .messages").scrollTop() < h){
+    if ($("#espacio-de-chat .messages").scrollTop() < h) {
         $("#espacio-de-chat .hacia-abajo").addClass("visible");
-    }else{
+    } else {
         $("#espacio-de-chat .hacia-abajo").removeClass("visible");
     }
 }
 
-$(document).on("click","#espacio-de-chat .hacia-abajo", function () {
+$(document).on("click", "#espacio-de-chat .hacia-abajo", function () {
     $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
     $("#espacio-de-chat .hacia-abajo").removeClass("visible");
-} );
+});
 
 
 $("#LateralMenu").ready(function () {
@@ -86,10 +81,10 @@ $(window).resize(function () {
 function VistaMovil() {
     if (window.innerWidth > 576) {
 
-             var usuario = $('#espacio-de-chat .messages').attr('data-nick');
-             if(usuario){
-             $('#lista-conversaciones .contact .elemento-conversacion[data-usuario="'+usuario+'"]').parent().addClass("active");
-             }
+        var usuario = $('#espacio-de-chat .messages').attr('data-nick');
+        if (usuario) {
+            $('#lista-conversaciones .contact .elemento-conversacion[data-usuario="' + usuario + '"]').parent().addClass("active");
+        }
     }
 }
 
@@ -152,10 +147,9 @@ $(document).on("click", function (e) {
     }
 
     let espacio_chat = $('#espacio-de-chat');
-    if(espacio_chat.length)
-    {
+    if (espacio_chat.length) {
         //Si el click se ha dado fuera del espacio de chat, finalizamos grabacion o reproduccion de audio en caso de que una de las dos se ejecute
-        if ((!espacio_chat.is(e.target) && espacio_chat.has(e.target).length === 0) ) {
+        if ((!espacio_chat.is(e.target) && espacio_chat.has(e.target).length === 0)) {
             Finalizar_Grabacion_Reproduccion();
         }
 
@@ -325,7 +319,6 @@ $(document).on("click", ".chat-conexion .ult-conex", function () {
 });
 
 
-
 $(document).on("click", "#btn-cerrar-contacto", function () {
     $("#frame #espacio-de-chat").removeClass("desp-der").removeClass("no-visible-sm");
     $("#panelInfoContacto").removeClass("mostrar");
@@ -475,15 +468,15 @@ $("#seccion-contactanos").click(function () {
 });
 //configuraciones de cuenta
 $(document).on("click", "#btn-configuraciones", function () {
-    if(! Buffer_Conversaciones($('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario"),""))
+    if (!Buffer_Conversaciones($('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario"), ""))
         CargarEspacioConfiguraciones();
     $('ul#lista-conversaciones li.active').removeClass('active');
 
 
 });
 $(document).on("click", "#btn-conf-sesion", function () {
-   if(! Buffer_Conversaciones($('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario"),""))
-       CargarEspacioConfiguraciones();
+    if (!Buffer_Conversaciones($('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario"), ""))
+        CargarEspacioConfiguraciones();
     $("#mi-perfil-sidepanel .usuario-perfil-opciones").removeClass("activo");
     $("#mi-perfil-sidepanel .opciones-sesion").addClass("inactivo");
     $("#sidepanel").addClass("no-visible-sm");
@@ -503,46 +496,45 @@ $(document).on("click", "#btn-cerrar-configuraciones", function () {
 });
 
 /*Busqueda en conversaciones*/
-$(document).on("input", "#inputBuscarConversacion",function () {
-var texto= $(this).val().toLowerCase();
+$(document).on("input", "#inputBuscarConversacion", function () {
+    var texto = $(this).val().toLowerCase();
     $("#lista-conversaciones-buscar").empty();
-if(texto === "") {
-    $("#lista-conversaciones").show();
-    $("#lista-conversaciones-buscar").hide();
-    $("#cerrar-busqueda-conversacion").removeClass("visible");
-}
-else{
-    $("#lista-conversaciones").hide();
-    $("#cerrar-busqueda-conversacion").addClass("visible");
-    $("#lista-conversaciones li").each(function () {
-        let li = $(this).clone();
-        let nombre = li.find(".name");
-        let indice = nombre.text().toLowerCase().search(texto);
-        li.find(".preview i").remove();
-        li.find(".preview span").remove();
-        let preview = li.find(".preview");
-        var indice_prev = preview.text().toLowerCase().search(texto);
-        if (indice !== -1) {
-            let contenido =nombre.text();
-            nombre.html(contenido.substr(0,indice)+ '<span class="resaltar">'+ contenido.substr(indice,texto.length )+'</span>'+ contenido.substr(indice+texto.length));
-        }
-        if(indice_prev !== -1){
-            let contenido = preview.text();
-            preview.html('<p>'+contenido.substr(0,indice_prev)+ '<span class="resaltar">'+ contenido.substr(indice_prev, texto.length )+ '</span>'+contenido.substr(indice_prev + texto.length) + '</p>');
-        }
-        if((indice !== -1) || (indice_prev !== -1) ){
-            $("#lista-conversaciones-buscar").show().append(li);
-        }
+    if (texto === "") {
+        $("#lista-conversaciones").show();
+        $("#lista-conversaciones-buscar").hide();
+        $("#cerrar-busqueda-conversacion").removeClass("visible");
+    } else {
+        $("#lista-conversaciones").hide();
+        $("#cerrar-busqueda-conversacion").addClass("visible");
+        $("#lista-conversaciones li").each(function () {
+            let li = $(this).clone();
+            let nombre = li.find(".name");
+            let indice = nombre.text().toLowerCase().search(texto);
+            li.find(".preview i").remove();
+            li.find(".preview span").remove();
+            let preview = li.find(".preview");
+            var indice_prev = preview.text().toLowerCase().search(texto);
+            if (indice !== -1) {
+                let contenido = nombre.text();
+                nombre.html(contenido.substr(0, indice) + '<span class="resaltar">' + contenido.substr(indice, texto.length) + '</span>' + contenido.substr(indice + texto.length));
+            }
+            if (indice_prev !== -1) {
+                let contenido = preview.text();
+                preview.html('<p>' + contenido.substr(0, indice_prev) + '<span class="resaltar">' + contenido.substr(indice_prev, texto.length) + '</span>' + contenido.substr(indice_prev + texto.length) + '</p>');
+            }
+            if ((indice !== -1) || (indice_prev !== -1)) {
+                $("#lista-conversaciones-buscar").show().append(li);
+            }
 
 
-    });
-}
+        });
+    }
 
 });
 $(document).on("click", "#lista-conversaciones-buscar li", function () {
-   let elemento=  $(this).children(".elemento-conversacion");
-   $("#lista-conversaciones li.active").removeClass("active")
-   $('#lista-conversaciones li .elemento-conversacion[data-usuario="'+elemento.attr("data-usuario")+'"]').parent().addClass("active");
+    let elemento = $(this).children(".elemento-conversacion");
+    $("#lista-conversaciones li.active").removeClass("active")
+    $('#lista-conversaciones li .elemento-conversacion[data-usuario="' + elemento.attr("data-usuario") + '"]').parent().addClass("active");
 
 });
 $(document).on("click", "#cerrar-busqueda-conversacion", function () {
@@ -596,80 +588,79 @@ $(document).on("input", "#archivo-imagen-enviar", function () {
 
 function EnviarImagenEnChat(filename) {
     try {
-    my_cropper.getCroppedCanvas({
-        maxWidth: 2048,
-        maxHeight: 2048,
-        imageSmoothingQuality: "medium"
-    }).toBlob(function (blob) {
-        const formData = new FormData();
-        formData.append('img', blob, filename);
-        formData.append('contact', $('#espacio-de-chat > .messages').attr('data-usuario'))
+        my_cropper.getCroppedCanvas({
+            maxWidth: 2048,
+            maxHeight: 2048,
+            imageSmoothingQuality: "medium"
+        }).toBlob(function (blob) {
+            const formData = new FormData();
+            formData.append('img', blob, filename);
+            formData.append('contact', $('#espacio-de-chat > .messages').attr('data-usuario'))
 
-        const progreso = $('<div class="barra-progreso"><div class="barra"></div></div>');
-        let mensaje = ObtenerElementoImgEnviada(filename.split('\\').pop().split('/').pop(), URL.createObjectURL(blob));
-var remitente= $('#espacio-de-chat > .messages').attr('data-nick');
-        $.ajax({
-            url: '/action/users/chat/upload_img',
-            type: 'post',
-            method: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            mimeType: 'application/json',
+            const progreso = $('<div class="barra-progreso"><div class="barra"></div></div>');
+            let mensaje = ObtenerElementoImgEnviada(filename.split('\\').pop().split('/').pop(), URL.createObjectURL(blob));
+            var remitente = $('#espacio-de-chat > .messages').attr('data-nick');
+            $.ajax({
+                url: '/action/users/chat/upload_img',
+                type: 'post',
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                mimeType: 'application/json',
 
-            xhr: function () {
+                xhr: function () {
 
-                var xhr = new window.XMLHttpRequest();
-                xhr.upload.addEventListener("progress", function (evt) {
-                    if (evt.lengthComputable) {
-                        var porcentaje = Math.trunc((evt.loaded / evt.total) * 100);
-                        progreso.find('.barra').css("width", porcentaje + '%');
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function (evt) {
+                        if (evt.lengthComputable) {
+                            var porcentaje = Math.trunc((evt.loaded / evt.total) * 100);
+                            progreso.find('.barra').css("width", porcentaje + '%');
+                        }
+                    }, false);
+
+                    return xhr;
+                },
+                beforeSend: () => {
+                    $("#lista-mensajes").append(mensaje);
+
+                    $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+                    mensaje.find(".contenedor-imagen-enviada").prepend(progreso);
+                },
+                success: function (response) {
+                    if (response[0]) {
+                        mensaje.attr('data-id', response[2]);
+                        mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
+                        mensaje.find('img').attr("title", response[1]);
+                        progreso.remove();
+                        //Actualizar item de conversación.
+                        let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${remitente}]`).parent();
+                        elemento_conversacion.prependTo($('#lista-conversaciones'));
+                        elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span> <span class="material-icons icon-indicador">image</span> Archivo de imagen');
+                        elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
+
+                    } else {
+                        swal({
+                            title: "¡Ha ocurrido un error!",
+                            text: "No se ha podido subir la imagen. Por favor, asegúrese de seleccionar un archivo de imagen válido.",
+                            icon: "error",
+                            button: "Ok",
+                        });
                     }
-                }, false);
-
-                return xhr;
-            },
-            beforeSend: () => {
-                $("#lista-mensajes").append(mensaje);
-
-                $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
-                mensaje.find(".contenedor-imagen-enviada").prepend(progreso);
-            },
-            success: function (response) {
-                if (response[0]) {
-                    mensaje.attr('data-id', response[2]);
-                    mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
-                    mensaje.find('img').attr("title",response[1]);
-                    progreso.remove();
-                    //Actualizar item de conversación.
-                    let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${remitente}]`).parent();
-                    elemento_conversacion.prependTo($('#lista-conversaciones'));
-                    elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span> <span class="material-icons icon-indicador">image</span> Archivo de imagen');
-                    elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
-
-                } else {
+                },
+                error: function () {
                     swal({
                         title: "¡Ha ocurrido un error!",
-                        text: "No se ha podido subir la imagen. Por favor, asegúrese de seleccionar un archivo de imagen válido.",
+                        text: "No se ha subir la imagen. Por favor, verifique su conexión a Internet.",
                         icon: "error",
                         button: "Ok",
                     });
                 }
-            },
-            error: function () {
-                swal({
-                    title: "¡Ha ocurrido un error!",
-                    text: "No se ha subir la imagen. Por favor, verifique su conexión a Internet.",
-                    icon: "error",
-                    button: "Ok",
-                });
-            }
+            });
         });
-    });
-    }
-    catch (e) {
+    } catch (e) {
         console.log("Error al abrir el editor de imagen");
-    }finally {
+    } finally {
         CancelarEdicion();
     }
 }
@@ -834,9 +825,9 @@ function CancelarEdicion() {
     delete my_cropper;
 }
 
-$("#espacio-de-chat").blur( function () {
-   let usuario=  $("#espacio-de-chat").find(".messages").attr("data-nick");
-    Buffer_Conversaciones(usuario,"" );
+$("#espacio-de-chat").blur(function () {
+    let usuario = $("#espacio-de-chat").find(".messages").attr("data-nick");
+    Buffer_Conversaciones(usuario, "");
 });
 
 //al cerrar la ventana tambien se cierra sesion
@@ -844,105 +835,172 @@ window.onbeforeunload = function () {
 
 }
 //Eventos para audios
-let audio = null,   aux = null, aux_2= null, audio_aux = null;
-$(document).on("click",".boton-play-pause", function () {
+let audio = null, aux = null, aux_2 = null, audio_aux = null;
+$(document).on("click", ".boton-play-pause", function () {
     const objeto_actual = $(this);
-    const elemento_audio =objeto_actual.siblings(".mensaje-audio")
-    let audio_actual = new Audio( elemento_audio.attr('src'));
-    if(audio){
-        if(audio_actual.src !== audio.src){
+    const elemento_audio = objeto_actual.siblings(".mensaje-audio")
+    let audio_actual = new Audio(elemento_audio.attr('src'));
+    if (audio) {
+        if (audio_actual.src !== audio.src) {
             aux_2 = aux;
             audio_aux = audio;
-                    DetenerAudio (audio_aux);
+            DetenerAudio(audio_aux);
         }
     }
-    if(!$(this).hasClass("reproduciendo") && !$(this).hasClass("pausado")){
+    if (!$(this).hasClass("reproduciendo") && !$(this).hasClass("pausado")) {
         const barra_progreso = objeto_actual.parent().find(".control-indicador-total");
         const etiqueta_tiempo = objeto_actual.parent().find(".control-tiempo-total");
-        audio=null;
+        audio = null;
         audio = audio_actual;
         const duracion_audio = elemento_audio.attr("data-duration");
         let cronometro = null;
         let t_transcurrido = 0;
 
-        audio.onplay =  (e) => {
-           cronometro = setInterval(function (){
-               t_transcurrido += 50;
-                let porcentaje = Math.trunc((  t_transcurrido / duracion_audio ) * 100);
-               barra_progreso.css("width",porcentaje +'%');
-               etiqueta_tiempo.text(segundosATiempo (t_transcurrido / 1000));
-            },50);
+        audio.onplay = (e) => {
+            cronometro = setInterval(function () {
+                t_transcurrido += 50;
+                let porcentaje = Math.trunc((t_transcurrido / duracion_audio) * 100);
+                barra_progreso.css("width", porcentaje + '%');
+                etiqueta_tiempo.text(segundosATiempo(t_transcurrido / 1000));
+            }, 50);
             objeto_actual.addClass("reproduciendo").removeClass("pausado").html('<i class="far fa-pause-circle"></i>');
             aux = objeto_actual;
         };
 
-        audio.onended =  (e)=>  {
+        audio.onended = (e) => {
             //Se finaliza el cronómetro y se reinician los valores del indicador de tiempo y del icono
             clearInterval(cronometro);
-            barra_progreso.css("width",'1%')
+            barra_progreso.css("width", '1%')
             objeto_actual.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado");
-            objeto_actual.siblings(".control-tiempo-total").text(segundosATiempo (objeto_actual.siblings(".mensaje-audio").attr('data-duration')/1000));
+            objeto_actual.siblings(".control-tiempo-total").text(segundosATiempo(objeto_actual.siblings(".mensaje-audio").attr('data-duration') / 1000));
             audio = null;
         };
 
-        audio.onpause=  (e) => {
+        audio.onpause = (e) => {
             clearInterval(cronometro);
             objeto_actual.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").addClass("pausado");
             Reiniciar(aux_2);
         }
 
         audio.play();
-    }
-    else if(objeto_actual.hasClass("reproduciendo")){
-        if(!audio){ return;}
+    } else if (objeto_actual.hasClass("reproduciendo")) {
+        if (!audio) {
+            return;
+        }
         audio.pause();
-    }
-    else if(objeto_actual.hasClass("pausado")){
-        if(!audio){ return;}
+    } else if (objeto_actual.hasClass("pausado")) {
+        if (!audio) {
+            return;
+        }
         audio.play();
     }
 });
-function DetenerAudio (pista){
-    if(pista.paused){
+
+function DetenerAudio(pista) {
+    if (pista.paused) {
         //Se reinician los contadores e icono de reproducción del elemento audio anterior (si estaba en estado pause)
-        aux_2.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado").parent().find(".control-indicador-total").css("width",'1%')
-        aux_2.siblings(".control-tiempo-total").text(segundosATiempo (aux_2.siblings(".mensaje-audio").attr('data-duration')/1000));
-    }else{
+        aux_2.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado").parent().find(".control-indicador-total").css("width", '1%')
+        aux_2.siblings(".control-tiempo-total").text(segundosATiempo(aux_2.siblings(".mensaje-audio").attr('data-duration') / 1000));
+    } else {
         pista.pause();
     }
-    pista.currentTime =0;
+    pista.currentTime = 0;
     pista = null;
 }
-function Reiniciar(elemento){
+
+function Reiniciar(elemento) {
 //Se reinician los contadores e icono de reproducción del elemento audio anterior
-     if(elemento){
-         elemento.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado").parent().find(".control-indicador-total").css("width",'1%')
-         elemento.siblings(".control-tiempo-total").text(segundosATiempo (aux_2.siblings(".mensaje-audio").attr('data-duration')/1000));
-         elemento = null;
-     }
+    if (elemento) {
+        elemento.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado").parent().find(".control-indicador-total").css("width", '1%')
+        elemento.siblings(".control-tiempo-total").text(segundosATiempo(aux_2.siblings(".mensaje-audio").attr('data-duration') / 1000));
+        elemento = null;
+    }
 }
 
 //Cancelar grabacion
-$(document).on("click", "#panel-grabando .cancelar-grabacion",function () {
+$(document).on("click", "#panel-grabando .cancelar-grabacion", function () {
     $("#panel-grabando").remove();
     if (!grabacion) return;
     grabacion.stop();
     DetenerContador();
 });
-$(document).on("click", "#panel-grabando .fin-grabacion",function () {
+$(document).on("click", "#panel-grabando .fin-grabacion", function () {
     $("#panel-grabando").remove();
     if (!grabacion) return;
-    grabacion.onstop = function (){
+    grabacion.onstop = function () {
         DetenerContador();
-        const mensaje = ObtenerElementoMensajeAudio(track, tiempoFin);//ObtenerElementoMensajeAudioRecibido(track);
-        $("#lista-mensajes").append(mensaje);
-        mensaje.find(".control-tiempo-total").text(segundosATiempo( tiempoFin / 1000));
-        $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+        const contacto = $('#espacio-de-chat > .messages');
+        let mensaje = ObtenerElementoMensajeAudio(URL.createObjectURL(track/*, { type: 'audio/webm' }*/), tiempoFin);//ObtenerElementoMensajeAudioRecibido(track);
+        mensaje.find(".control-tiempo-total").text(segundosATiempo(tiempoFin / 1000));
         grabacion = null;
 
-         }
-    grabacion.stop();
+        //Agregando a formulario.
+        const formData = new FormData();
+        formData.append('audio', track, 'audio.webm');
+        formData.append('contact', contacto.attr('data-usuario'))
 
+        const progreso = $('<div class="barra-progreso"><div class="barra"></div></div>');
+        var remitente = contacto.attr('data-nick');
+
+        $.ajax({
+            url: '/action/users/audio/upload',
+            type: 'post',
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            mimeType: 'application/json',
+
+            xhr: function () {
+                const xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function (evt) {
+                    if (evt.lengthComputable) {
+                        var porcentaje = Math.trunc((evt.loaded / evt.total) * 100);
+                        progreso.find('.barra').css("width", porcentaje + '%');
+                    }
+                }, false);
+
+                return xhr;
+            },
+            beforeSend: () => {
+                $("#lista-mensajes").append(mensaje);
+
+                $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+                mensaje.find(".contenedor-audio-enviado").prepend(progreso);
+            },
+            success: function (response) {
+                if (response[0]) {
+                    mensaje.attr('data-id', response[2]);
+                    mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
+                    mensaje.find('audio').attr("title", response[1]);
+                    progreso.remove();
+
+                    //Actualizar item de conversación.
+                    let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${remitente}]`).parent();
+                    elemento_conversacion.prependTo($('#lista-conversaciones'));
+                    elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span> <span class="material-icons icon-indicador">image</span> Grabacion');
+                    elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
+
+                } else {
+                    swal({
+                        title: "¡Ha ocurrido un error!",
+                        text: "No se ha podido subir el audio.",
+                        icon: "error",
+                        button: "Ok",
+                    });
+                }
+            },
+            error: function () {
+                swal({
+                    title: "¡Ha ocurrido un error!",
+                    text: "No se ha podido subir el audio. Por favor, verifique su conexión a Internet.",
+                    icon: "error",
+                    button: "Ok",
+                });
+            }
+        });
+    }
+    grabacion.stop();
 });
 
 let idIntervalo, tiempoInicio, tiempoFin = 0;
@@ -956,7 +1014,7 @@ const segundosATiempo = numeroDeSegundos => {
     if (horas < 10) horas = "0" + horas;
     if (minutos < 10) minutos = "0" + minutos;
     if (numeroDeSegundos < 10) numeroDeSegundos = "0" + numeroDeSegundos;
-    return `${(horas == 0) ? '': horas +':'}${minutos}:${numeroDeSegundos}`;
+    return `${(horas == 0) ? '' : horas + ':'}${minutos}:${numeroDeSegundos}`;
 };
 const Contador = () => {
     tiempoInicio = Date.now();
@@ -965,16 +1023,16 @@ const Contador = () => {
 const DetenerContador = () => {
     clearInterval(idIntervalo);
     tiempoFin = parseInt(Date.now() - tiempoInicio);
-      grabacion = null;
+    grabacion = null;
     tiempoInicio = null;
 }
 const ActualizarReloj = () => {
-    $("#panel-grabando").find(".tiempo-transcurrido").text( segundosATiempo((Date.now() - tiempoInicio) / 1000));
+    $("#panel-grabando").find(".tiempo-transcurrido").text(segundosATiempo((Date.now() - tiempoInicio) / 1000));
 }
 
 
-function AgregarControlesGrabando(){
-    if($("#panel-grabando").length === 0 ){
+function AgregarControlesGrabando() {
+    if ($("#panel-grabando").length === 0) {
         $("#espacio-de-escritura").append(`<div id="panel-grabando">
                             <div class="indicador-tiempo">
                                 <div class="led-recording"></div>
@@ -992,13 +1050,13 @@ function AgregarControlesGrabando(){
 
 }
 
-function Finalizar_Grabacion_Reproduccion(){
+function Finalizar_Grabacion_Reproduccion() {
     if (grabacion) {
-      if(grabacion.state === 'recording'){
-          grabacion.stop();
-      }
+        if (grabacion.state === 'recording') {
+            grabacion.stop();
+        }
     }
-    if(audio){
+    if (audio) {
         aux_2 = aux;
         DetenerAudio(audio);
     }

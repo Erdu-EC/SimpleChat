@@ -32,9 +32,8 @@
 	#Messages and Invitations Instants.
 	Route::Get('/action/users/MIInstant', 'Instant#GetUnreceivedMessagesAndInvitations');
 
-	#Upload Image Route
+	#Upload Image and Audio Route
 	Route::Post('/action/users/{type}/upload_img', 'ImageController#Upload', [
 		'type' => Regex::InList('profile', 'chat')
 	]);
-
-	///action/users/profile/upload_img
+	Route::Post('/action/users/audio/upload', 'AudioController#Upload');

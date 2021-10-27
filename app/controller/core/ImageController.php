@@ -206,8 +206,7 @@
 			}
 		}
 
-		private
-		static function GetPathOfType(string $type, string $filename): ?string {
+		private static function GetPathOfType(string $type, string $filename): ?string {
 			//Si no es un tipo de imagen valido...
 			if (!isset(APP_DIR::IMAGE[$type])) {
 				HttpResponse::Set(HttpResponse::_404_NOTFOUND);

@@ -20,6 +20,7 @@ class APP_DIR
         'photos' => '/files/photos',
 		'chat' => '/upload/message'
     ];
+	const AUDIO = '/upload/audio';
 
     const F_PREPROCESSED_JS = '/files/js';
 }
