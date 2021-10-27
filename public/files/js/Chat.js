@@ -261,16 +261,20 @@ function CargarEspacioDeChat() {
                     //Agregando mensaje.
                     let mensaje;
                     if (msg.origin === json.id) {
-                        if (msg.img === null)
-                            mensaje = ObtenerElementoMensajeContacto(json.profile_img, msg.text, ObtenerHora(msg.date_send));
-                        else
+                        if (msg.img !== null)
                             mensaje = ObtenerElementoImgContacto(json.profile_img, msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send))
-                    } else {
-                        if (msg.img === null)
-                            mensaje = ObtenerElementoMensaje(msg.text, ObtenerHora(msg.date_send),
-                                msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
+                        else if (msg.audio !== null)
+                            mensaje = ObtenerElementoMensajeAudioRecibido(msg.audio);
                         else
+                            mensaje = ObtenerElementoMensajeContacto(json.profile_img, msg.text, ObtenerHora(msg.date_send));
+                    } else {
+                        if (msg.img !== null)
                             mensaje = ObtenerElementoImg(msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send),
+                                msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
+                        else if (msg.audio !== null)
+                            mensaje = ObtenerElementoMensajeAudio(msg.audio, 0);
+                        else
+                            mensaje = ObtenerElementoMensaje(msg.text, ObtenerHora(msg.date_send),
                                 msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
                     }
 
