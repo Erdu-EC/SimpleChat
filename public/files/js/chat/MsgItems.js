@@ -72,7 +72,7 @@ const ObtenerElementoMensajeAudioRecibido = (blob ) => {
     const msg = $(ObtenerElementoMensajeContacto(""));
     let audio =$('<audio>',{
         src: blob,
-        type: "audio/mp3",
+        type: "audio/webm",
         class: "mensaje-audio"}
     );
     let cont = $("<div>",  {

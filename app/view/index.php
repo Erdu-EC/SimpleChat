@@ -198,7 +198,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         <div class="messages" onscroll="CambiarUbicacion()">
                             <ul id="lista-mensajes"></ul>
                         </div>
-                        <div id="" class="hacia-abajo" style="display: none"><i class="fas fa-angle-double-down"></i> </div>
+                        <div class="hacia-abajo"><i class="fas fa-angle-double-down"></i> </div>
                         <div class="message-input" id="espacio-de-escritura">
                             <div class="utiles no-seleccionable">
                                 <div class="emojis">

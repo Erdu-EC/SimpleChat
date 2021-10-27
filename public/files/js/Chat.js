@@ -96,8 +96,8 @@ function GrabarAudio() {
                     // Evento que se ejecuta al detener grabacion
                     grabacion.addEventListener("stop", () => {
                         stream.getTracks().forEach(track => track.stop());
-                        const binarios =  new Blob(fragmentosDeAudio.slice());
-                        const objeto_URL_Audio=  URL.createObjectURL(binarios,{ type: 'audio/mp3' });
+                        const binarios =  new Blob(fragmentosDeAudio.slice(), { type: 'audio/webm' });
+                        const objeto_URL_Audio=  URL.createObjectURL(binarios,{ type: 'audio/webm' });
                         track = objeto_URL_Audio;
                         grabacion = null;
                     });
@@ -389,7 +389,7 @@ function SanearTexto(str) {
 
 const buffer_chat = new Map();
 function Buffer_Conversaciones(contacto_ant,contacto_act){
-/*
+
     if(! (contacto_ant === undefined || contacto_ant === "" )){
         buffer_chat.set(contacto_ant, $("#espacio-de-chat").clone().html());
     }
@@ -397,14 +397,14 @@ function Buffer_Conversaciones(contacto_ant,contacto_act){
 if(! (contacto_act === undefined || contacto_act === "" )) {
     if (buffer_chat.has(contacto_act)) {
         $("#espacio-de-chat").empty();
-        $("#espacio-de-chat").html(buffer_chat.get(contacto_act));
+        let chat = $(buffer_chat.get(contacto_act));
+        $("#espacio-de-chat").html(chat);
         $(`#lista-conversaciones .contact > div[data-usuario=${contacto_act}] .num-msj-pendientes.online`).remove();
         ActualizarConversacion();
         return true;
     }
-
 }
-*/
+
     return false;
 }
 

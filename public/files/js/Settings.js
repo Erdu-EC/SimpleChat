@@ -407,8 +407,7 @@ function EnviarImagen() {
                 if (response[0]) {
                     //Se asigna la nueva imagen a los contenedores de la foto de perfil
                     let src = "\\files\\profile\\"+ $("#profile-img").attr("title")+"."+ archivo[0].name.split(".").reverse()[0];
-                    console.log(src);
-                    AsignarNuevaFotoPerfil(src);
+                    AsignarNuevaFotoPerfil(blob,src);
                     buffer_chat.clear();
                     VanillaToasts.create({
                         title: "SimpleChat",
@@ -446,11 +445,11 @@ function EnviarImagen() {
         CancelarEdicion();
     }
 }
-function AsignarNuevaFotoPerfil(src) {
-let img = $('<img/>').attr("src",src);
-      $("#foto-perfil-cuenta").attr("src",ObtenerUrlImagen(img));
-    $('#mi-perfil-sidepanel img').attr("src",ObtenerUrlImagen(img,50,50));
-    $('#profile-img').attr("src",ObtenerUrlImagen(img,80,80));
+function AsignarNuevaFotoPerfil(blob, src) {
+let img = URL.createObjectURL(blob);
+      $("#foto-perfil-cuenta").attr("src",ObtenerUrlImagen($("#foto-perfil-cuenta").attr("src",src)));
+    $('#mi-perfil-sidepanel img').attr("src",ObtenerUrlImagen($('#mi-perfil-sidepanel img').attr("src",src)));
+    $('#profile-img').attr("src",ObtenerUrlImagen($('#profile-img').attr("src",src)));
     $("#nueva-foto-perfil").val("");
 
 }

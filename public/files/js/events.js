@@ -939,6 +939,7 @@ $(document).on("click", "#panel-grabando .fin-grabacion",function () {
         mensaje.find(".control-tiempo-total").text(segundosATiempo( tiempoFin / 1000));
         $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
         grabacion = null;
+
          }
     grabacion.stop();
 
