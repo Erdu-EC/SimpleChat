@@ -930,7 +930,7 @@ $(document).on("click", "#panel-grabando .fin-grabacion", function () {
     grabacion.onstop = function () {
         DetenerContador();
         const contacto = $('#espacio-de-chat > .messages');
-        let mensaje = ObtenerElementoMensajeAudio(URL.createObjectURL(track/*, { type: 'audio/webm' }*/), tiempoFin);//ObtenerElementoMensajeAudioRecibido(track);
+        let mensaje = ObtenerElementoMensajeAudioEnviado(URL.createObjectURL(track), tiempoFin);
         mensaje.find(".control-tiempo-total").text(segundosATiempo(tiempoFin / 1000));
         grabacion = null;
 

@@ -272,7 +272,8 @@ function CargarEspacioDeChat() {
                             mensaje = ObtenerElementoImg(msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send),
                                 msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
                         else if (msg.audio !== null)
-                            mensaje = ObtenerElementoMensajeAudio(msg.audio, 0);
+                            mensaje = ObtenerElementoMensajeAudio(msg.audio, null,  ObtenerHora(msg.date_send),
+                                msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
                         else
                             mensaje = ObtenerElementoMensaje(msg.text, ObtenerHora(msg.date_send),
                                 msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
@@ -296,7 +297,6 @@ function CargarEspacioDeChat() {
                 ActualizarTotalDeConversacionesNoLeidas();
 
                 //Actualizar panel de información de contacto, si este esta abierto.
-
                 ActualizarInfoContacto();
 
             } else {

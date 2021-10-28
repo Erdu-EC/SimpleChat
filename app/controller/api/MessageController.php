@@ -94,7 +94,9 @@
 			//Tratando mensajes con imagenes.
 			for ($i = 0; $i < count($data->messages); $i++) {
 				$url_img = $data->messages[$i]->img;
+				$url_audio = $data->messages[$i]->audio;
 				$data->messages[$i]->img = !empty($url_img) ? APP_URL::OfChatImage($url_img) : null;
+				$data->messages[$i]->audio = !empty($url_audio) ? APP_URL::OfChatAudio($url_audio) : null;
 			}
 
 			//Destruyendo variables.

@@ -26,6 +26,11 @@
 	]);
 	unset($cond_image);
 
+	#Audio Routes.
+	Route::Get('/files/audio/{filename}', 'FileAccessController#GetAudio', [
+		'filename' => Regex::EndWith('.webm')
+	]);
+
 	#Preprocessed JS Routes
 	Route::Get('/files/js/{filename*}.js', 'JSController#Get');
 

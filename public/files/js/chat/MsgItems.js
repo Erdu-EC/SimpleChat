@@ -17,9 +17,9 @@ const ObtenerElementoMensajeEnviado = mensaje => {
 };
 
 const ObtenerElementoImgContacto = (foto, nombre, url, fecha_envio) => {
-const msg = $(ObtenerElementoMensajeContacto(foto, "", fecha_envio));
-msg.find('.cont-msj').addClass("contenedor-imagen-recibida").html(`<img src="${url}" class="imagen-enviada"  title="${nombre}">`);
-return msg;
+    const msg = $(ObtenerElementoMensajeContacto(foto, "", fecha_envio));
+    msg.find('.cont-msj').addClass("contenedor-imagen-recibida").html(`<img src="${url}" class="imagen-enviada"  title="${nombre}">`);
+    return msg;
 };
 
 const ObtenerElementoImgEnviada = (nombre, url_data) => {
@@ -47,39 +47,56 @@ const ObtenerElementoMensaje = (mensaje, fecha_envio, estado) => `
             <div class="dir"></div>
             <div class="cont-msj"><p> ${mensaje}</p> </div>
             <div class="extra-mensaje no-seleccionable">
-                ${fecha_envio !== undefined || estado !== undefined? ObtenerElementoExtraMensaje(fecha_envio, estado) : ''}
+                ${fecha_envio !== undefined || estado !== undefined ? ObtenerElementoExtraMensaje(fecha_envio, estado) : ''}
             </div>
     </li>`;
-const ObtenerElementoMensajeAudio = (blob, duracion) => {
-    const msg = $(ObtenerElementoMensajeEnviado(""));
-    let audio =$('<audio>',{
-        src: blob,
-        type: "audio/webm",
-        class: "mensaje-audio"}
-        ).attr('data-duration', duracion);
 
-    let cont = $("<div>",  {
+function ObtenerControlesAudio() {
+    return $('<div class="boton-play-pause" id="' + Date.now() + '"><i class="far fa-play-circle"></i></div><div class="control-indicador"><div class="control-indicador-total"></div><div class="bola"></div></div><div class="control-tiempo-total">00:00</div>');
+}
+
+const ObtenerElementoMensajeAudio = (blob, duracion, fecha_envio, estado) => {
+    const msg = $(ObtenerElementoMensaje("", fecha_envio, estado));
+
+    const metadata = document.createElement("audio");
+    metadata.preload = "metadata";
+    metadata.onloadend = ()=> URL.revokeObjectURL(metadata.src);
+    metadata.src = blob;
+
+    let audio = $('<audio>', {
+            src: blob,
+            type: "audio/webm",
+            class: "mensaje-audio"
+        }
+    ).attr('data-duration', duracion ?? metadata.duration);
+
+    let cont = $("<div>", {
         class: "audio-enviado"
     }).append(ObtenerControlesAudio()).append(audio);
     msg.find(".cont-msj").removeClass("cont-msj").addClass("contenedor-audio-enviado no-seleccionable").html(cont);
-return msg;
-}
-function ObtenerControlesAudio(){
-    const msg = $('<div class="boton-play-pause" id="'+ Date.now()+'"><i class="far fa-play-circle"></i></div><div class="control-indicador"><div class="control-indicador-total"></div><div class="bola"></div></div><div class="control-tiempo-total">00:00</div>');
+
     return msg;
 }
-const ObtenerElementoMensajeAudioRecibido = (blob ) => {
+
+const ObtenerElementoMensajeAudioEnviado = (blob, duracion) => {
+    const msg = $(ObtenerElementoMensajeAudio(""));
+    msg.find('.extra-mensaje').html('<div class="enviando"></div>');
+    return msg;
+}
+
+const ObtenerElementoMensajeAudioRecibido = (blob) => {
     const msg = $(ObtenerElementoMensajeContacto(""));
-    let audio =$('<audio>',{
-        src: blob,
-        type: "audio/webm",
-        class: "mensaje-audio"}
+    let audio = $('<audio>', {
+            src: blob,
+            type: "audio/webm",
+            class: "mensaje-audio"
+        }
     );
-    let cont = $("<div>",  {
+    let cont = $("<div>", {
         class: "audio-recibido"
     }).append(ObtenerControlesAudio()).append(audio);
     msg.find(".cont-msj").removeClass("cont-msj").addClass("contenedor-audio-recibido no-seleccionable").html(cont);
-   return msg;
+    return msg;
 }
 /*
 * Estados:
@@ -103,7 +120,7 @@ const ObtenerElementoExtraMensaje = (fecha_envio, estado) => {
 }
 
 
-function MarcarComoLeido(idMsg, callback){
+function MarcarComoLeido(idMsg, callback) {
     $.ajax('/action/messages/markAsRead', {
         method: 'post', dataType: 'json', mimeType: 'application/json',
         data: {

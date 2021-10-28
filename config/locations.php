@@ -28,6 +28,7 @@ class APP_DIR
 class APP_URL {
     const IMG_PROFILE = '/files/profile';
 	const IMG_CHAT = '/files/chat/';
+	const AUDIO_CHAT = '/files/audio';
 
     public static function OfImageProfile(?string $file_img): string
     {
@@ -37,5 +38,10 @@ class APP_URL {
 	public static function OfChatImage(?string $file_img): string
 	{
 		return !is_null($file_img) ? Path::Combine(self::IMG_CHAT, $file_img) : '';
+	}
+
+	public static function OfChatAudio(?string $file_audio): string
+	{
+		return !is_null($file_audio) ? Path::Combine(self::AUDIO_CHAT, $file_audio) : '';
 	}
 }
