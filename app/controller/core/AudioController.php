@@ -44,7 +44,7 @@
 				unset($user);
 
 				//Devolviendo respuesta.
-				die(json_encode([true, APP_URL::OfChatAudio($file_name), $fakeId]));
+				die(json_encode([true, /*APP_URL::OfChatAudio($file_name)*/ $file_name, $fakeId]));
 			} else {
 				//Devolviendo respuesta negativa.
 				die(json_encode([false, 9]));
