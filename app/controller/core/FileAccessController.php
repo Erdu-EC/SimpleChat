@@ -13,7 +13,7 @@
 
 	class FileAccessController extends Controller
 	{
-		public function GetAudio(string $filename){
+		public function GetAudio(string $filename) {
 			//Obteniendo ruta.
 			$path = Path::CombineALL(APP_PATH, APP_DIR::AUDIO, $filename);
 
@@ -21,6 +21,9 @@
 			HttpResponse::SetContentType(MimeType::OfFile($path));
 
 			//Escribiendo en buffer de salida.
-			die(file_get_contents($path, false));
+			if (file_exists($path))
+				die(file_get_contents($path, false));
+			else
+				HttpResponse::Set(HttpResponse::_404_NOTFOUND);
 		}
 	}
