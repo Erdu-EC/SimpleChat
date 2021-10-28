@@ -58,17 +58,20 @@ function ObtenerControlesAudio() {
 const ObtenerElementoMensajeAudio = (blob, duracion, fecha_envio, estado) => {
     const msg = $(ObtenerElementoMensaje("", fecha_envio, estado));
 
-    const metadata = document.createElement("audio");
-    metadata.preload = "metadata";
-    metadata.onloadend = ()=> URL.revokeObjectURL(metadata.src);
-    metadata.src = blob;
-
     let audio = $('<audio>', {
             src: blob,
             type: "audio/webm",
             class: "mensaje-audio"
         }
-    ).attr('data-duration', duracion ?? metadata.duration);
+    ).attr('data-duration', duracion ?? 0);
+
+    const metadata = document.createElement("audio");
+    metadata.preload = "metadata";
+    metadata.onloadend = ()=> URL.revokeObjectURL(metadata.src);
+    metadata.onloadedmetadata = () => {
+        audio.attr('data-duration', metadata.duration);
+    }
+    metadata.src = blob;
 
     let cont = $("<div>", {
         class: "audio-enviado"

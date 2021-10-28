@@ -972,7 +972,7 @@ $(document).on("click", "#panel-grabando .fin-grabacion", function () {
                 if (response[0]) {
                     mensaje.attr('data-id', response[2]);
                     mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
-                    mensaje.find('audio').attr("title", response[1]);
+                    //mensaje.find('audio').attr('src', response[1]);
                     progreso.remove();
 
                     //Actualizar item de conversación.

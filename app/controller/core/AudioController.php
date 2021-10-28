@@ -4,6 +4,7 @@
 
 	use HS\app\model\UserModel;
 	use HS\config\APP_DIR;
+	use HS\config\APP_URL;
 	use HS\config\DBAccount;
 	use HS\libs\core\http\HttpResponse;
 	use HS\libs\core\Session;
@@ -43,7 +44,7 @@
 				unset($user);
 
 				//Devolviendo respuesta.
-				die(json_encode([true, $file_name, $fakeId]));
+				die(json_encode([true, APP_URL::OfChatAudio($file_name), $fakeId]));
 			} else {
 				//Devolviendo respuesta negativa.
 				die(json_encode([false, 9]));
