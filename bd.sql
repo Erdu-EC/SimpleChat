@@ -274,7 +274,7 @@ BEGIN
            c.id_source = USER_ID                                                           as isMyMessage,
            user_HasInvitation(USER_ID, if(c.id_source != USER_ID, c.id_source, c.id_dest)) as hasInvitation,
            if(c.id_source = USER_ID, m.id, mr.id)                                          as msg_id,
-           if(c.id_source = USER_ID, m.content, mr.content)                                as msg_content,
+           if(c.id_source = USER_ID, m.content, mr.content)                                as msg_text,
            if(c.id_source = USER_ID, m.send_date, mr.send_date)                            as msg_send,
            if(c.id_source = USER_ID, m.rcv_date, mr.rcv_date)                              as msg_rcv,
            if(c.id_source = USER_ID, m.read_date, mr.read_date)                            as msg_read

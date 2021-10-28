@@ -37,6 +37,7 @@ function cargar_conversaciones() {
                         class: 'contact',
                         html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[3],estado, registro[6], SanearTexto(registro[8]), registro[5], registro[9], registro[10], registro[11]),
                     }).appendTo(lista_conversaciones);
+
                     if(registro[8]==="" && !(registro[6])){
                         msg.find(".preview").append('<span class="material-icons icon-indicador">image</span> Archivo de imagen');
 
