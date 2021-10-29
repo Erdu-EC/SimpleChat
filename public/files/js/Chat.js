@@ -81,7 +81,7 @@ function GrabarAudio() {
     }else {
         if (grabacion) return;
 //Iniciamos la grabacion
-        navigator.mediaDevices.getUserMedia({audio: { audioBitsPerSecond : 192000 ,audioBitrateMode:'constant' } })
+        navigator.mediaDevices.getUserMedia({audio: { audioBitsPerSecond : 256000 ,audioBitrateMode:'constant' } })
             .then(  stream => {
                 const fragmentosDeAudio = [];
                     // Comenzar a grabar con el stream
