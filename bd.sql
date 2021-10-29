@@ -328,7 +328,7 @@ BEGIN
     order by A.send_date, A.id;
 END $
 
-CREATE PROCEDURE user_GetUnreceiveMessages(in USER_ID int)
+CREATE OR REPLACE PROCEDURE user_GetUnreceiveMessages(in USER_ID int)
 BEGIN
     CREATE TEMPORARY TABLE unrcv_messages
     (
@@ -349,8 +349,9 @@ BEGIN
            u.first_name,
            u.last_name,
            u.profile_img as profile,
-           mr.content,
-           mr.content_img,
+           mr.content as text,
+           mr.content_img as img,
+           mr.content_audio as audio,
            mr.send_date
     from message_readable mr
              inner join users u on id_source = u.id
