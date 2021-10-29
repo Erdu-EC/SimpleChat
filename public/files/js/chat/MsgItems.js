@@ -57,7 +57,6 @@ function ObtenerControlesAudio() {
 
 const ObtenerElementoMensajeAudio = (blob, duracion, fecha_envio, estado) => {
     const msg = $(ObtenerElementoMensaje("", fecha_envio, estado));
-
     let audio = $('<audio>', {
             src: blob,
             type: "audio/webm",
@@ -65,30 +64,21 @@ const ObtenerElementoMensajeAudio = (blob, duracion, fecha_envio, estado) => {
         }
     ).attr('data-duration', duracion ?? 0);
 
-    const metadata = document.createElement("audio");
-    metadata.preload = "metadata";
-    metadata.onloadend = ()=> URL.revokeObjectURL(metadata.src);
-    metadata.onloadedmetadata = () => {
-        audio.attr('data-duration', metadata.duration);
-    }
-    metadata.src = blob;
-
     let cont = $("<div>", {
         class: "audio-enviado"
     }).append(ObtenerControlesAudio()).append(audio);
     msg.find(".cont-msj").removeClass("cont-msj").addClass("contenedor-audio-enviado no-seleccionable").html(cont);
-
     return msg;
 }
 
 const ObtenerElementoMensajeAudioEnviado = (blob, duracion) => {
-    const msg = $(ObtenerElementoMensajeAudio(""));
+    const msg = $(ObtenerElementoMensajeAudio(blob,duracion,Date.now(),null));
     msg.find('.extra-mensaje').html('<div class="enviando"></div>');
     return msg;
 }
 
-const ObtenerElementoMensajeAudioRecibido = (blob) => {
-    const msg = $(ObtenerElementoMensajeContacto(""));
+const ObtenerElementoMensajeAudioRecibido = (blob, foto, fecha) => {
+    const msg = $(ObtenerElementoMensajeContacto(foto,"",fecha));
     let audio = $('<audio>', {
             src: blob,
             type: "audio/webm",

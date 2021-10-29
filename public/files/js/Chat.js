@@ -264,7 +264,7 @@ function CargarEspacioDeChat() {
                         if (msg.img !== null)
                             mensaje = ObtenerElementoImgContacto(json.profile_img, msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send))
                         else if (msg.audio !== null)
-                            mensaje = ObtenerElementoMensajeAudioRecibido(msg.audio);
+                            mensaje = ObtenerElementoMensajeAudioRecibido(msg.audio, json.profile_img,ObtenerHora(msg.date_send));
                         else
                             mensaje = ObtenerElementoMensajeContacto(json.profile_img, msg.text, ObtenerHora(msg.date_send));
                     } else {

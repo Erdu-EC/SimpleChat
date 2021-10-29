@@ -929,79 +929,83 @@ $(document).on("click", "#panel-grabando .fin-grabacion", function () {
     if (!grabacion) return;
     grabacion.onstop = function () {
         DetenerContador();
-        const contacto = $('#espacio-de-chat > .messages');
         let mensaje = ObtenerElementoMensajeAudioEnviado(URL.createObjectURL(track), tiempoFin);
         mensaje.find(".control-tiempo-total").text(segundosATiempo(tiempoFin / 1000));
         grabacion = null;
+        EnviarGrabacion(mensaje);
+    }
+    grabacion.stop();
+});
 
-        //Agregando a formulario.
-        const formData = new FormData();
-        formData.append('audio', track, 'audio.webm');
-        formData.append('contact', contacto.attr('data-usuario'))
+function EnviarGrabacion(mensaje){
+    const contacto = $('#espacio-de-chat > .messages');
+//Agregando a formulario.
+    const formData = new FormData();
+    formData.append('audio', track, 'audio.webm');
+    formData.append('contact', contacto.attr('data-usuario'))
 
-        const progreso = $('<div class="barra-progreso"><div class="barra"></div></div>');
-        var remitente = contacto.attr('data-nick');
+    const progreso = $('<div class="barra-progreso"><div class="barra"></div></div>');
+    var remitente = contacto.attr('data-nick');
 
-        $.ajax({
-            url: '/action/users/audio/upload',
-            type: 'post',
-            method: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            mimeType: 'application/json',
+    $.ajax({
+        url: '/action/users/audio/upload',
+        type: 'post',
+        method: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        mimeType: 'application/json',
 
-            xhr: function () {
-                const xhr = new window.XMLHttpRequest();
-                xhr.upload.addEventListener("progress", function (evt) {
-                    if (evt.lengthComputable) {
-                        var porcentaje = Math.trunc((evt.loaded / evt.total) * 100);
-                        progreso.find('.barra').css("width", porcentaje + '%');
-                    }
-                }, false);
-
-                return xhr;
-            },
-            beforeSend: () => {
-                $("#lista-mensajes").append(mensaje);
-
-                $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
-                mensaje.find(".contenedor-audio-enviado").prepend(progreso);
-            },
-            success: function (response) {
-                if (response[0]) {
-                    mensaje.attr('data-id', response[2]);
-                    mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
-                    //mensaje.find('audio').attr('src', response[1]);
-                    progreso.remove();
-
-                    //Actualizar item de conversación.
-                    let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${remitente}]`).parent();
-                    elemento_conversacion.prependTo($('#lista-conversaciones'));
-                    elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span> <span class="material-icons icon-indicador">image</span> Grabacion');
-                    elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
-
-                } else {
-                    swal({
-                        title: "¡Ha ocurrido un error!",
-                        text: "No se ha podido subir el audio.",
-                        icon: "error",
-                        button: "Ok",
-                    });
+        xhr: function () {
+            const xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", function (evt) {
+                if (evt.lengthComputable) {
+                    var porcentaje = Math.trunc((evt.loaded / evt.total) * 100);
+                    progreso.find('.barra').css("width", porcentaje + '%');
                 }
-            },
-            error: function () {
+            }, false);
+
+            return xhr;
+        },
+        beforeSend: () => {
+            $("#lista-mensajes").append(mensaje);
+
+            $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+            mensaje.find(".contenedor-audio-enviado").prepend(progreso);
+        },
+        success: function (response) {
+            if (response[0]) {
+                mensaje.attr('data-id', response[2]);
+                mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
+                //mensaje.find('audio').attr('src', response[1]);
+                progreso.remove();
+
+                //Actualizar item de conversación.
+                let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${remitente}]`).parent();
+                elemento_conversacion.prependTo($('#lista-conversaciones'));
+                elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span> <span class="material-icons icon-indicador">image</span> Grabacion');
+                elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
+
+            } else {
                 swal({
                     title: "¡Ha ocurrido un error!",
-                    text: "No se ha podido subir el audio. Por favor, verifique su conexión a Internet.",
+                    text: "No se ha podido subir el audio.",
                     icon: "error",
                     button: "Ok",
                 });
             }
-        });
-    }
-    grabacion.stop();
-});
+        },
+        error: function () {
+            swal({
+                title: "¡Ha ocurrido un error!",
+                text: "No se ha podido subir el audio. Por favor, verifique su conexión a Internet.",
+                icon: "error",
+                button: "Ok",
+            });
+        }
+    });
+}
+
 
 let idIntervalo, tiempoInicio, tiempoFin = 0;
 
