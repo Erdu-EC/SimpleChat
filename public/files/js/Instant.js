@@ -13,8 +13,9 @@ $(document).ready(function () {
         const chatWorker = new Worker('/files/js/Chat-bg.js');
         chatWorker.onmessage = function (ev) {
             //Si hay mensajes no leidos.
-            if (ev.data['messages'].length > 0)
+            if (ev.data['messages'].length > 0){
                 TratarMensajes(ev.data['messages']);
+            }
 
             //Si hay invitaciones no recibidas.
             if (ev.data['invitations'].length > 0)
@@ -37,7 +38,7 @@ function TratarMensajes(mensajes) {
         const lista_conversaciones = $('#lista-conversaciones');
         let elemento_contacto = lista_conversaciones.find(`.contact > div[data-usuario=${row.user_name}]`);
         const nombre = row.first_name + " " + row.last_name;
-        var texto_saneado = SanearTexto(row.content);
+        var texto_saneado = SanearTexto(row.text);
 
         //Si no existe conversacion, agregarla.
         if (elemento_contacto.length === 0) {
@@ -51,11 +52,15 @@ function TratarMensajes(mensajes) {
         //Si el mensaje es para el contacto de la actual conversación abierta en el chat.
         if (row.user_name === $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario")) {
             MostrarMensajeEnEspacioDeChat(nombre, row);
-        } else {
-            if (row.content_img !== null) {
-                row.content = nombre + " te ha enviado una imagen.";
-            }
-            MensajeNuevo(row.id, nombre, row.content, row.profile);
+        }
+        else {
+
+            if (row.img !== null) {
+                row.text = nombre + " te ha enviado una imagen.";
+            } else if (row.audio !== null) {
+                row.text = nombre + " te ha enviado un audio.";
+             }
+            MensajeNuevo(row.id, nombre, row.text, row.profile);
 
             // Agregar mensaje a la lista de mensajes en buffer
             AgregarMensajesABufferChat(row);
@@ -74,8 +79,14 @@ function TratarMensajes(mensajes) {
 
         //Mostrar vista previa del mensaje en lista de conversaciones.
         elemento_contacto.find('.hora-ult-mesj').text(Fecha_hora_ultima_Mensaje(row.send_date));
-        elemento_contacto.find('.preview').html(row.content_img !== null ? '<span class="material-icons icon-indicador">image</span> Archivo de imagen' : row.content);
-
+        console.log(row);
+        if (row.img !== null) {
+            elemento_contacto.find('.preview').html(`<span class="material-icons icon-indicador">image</span> Archivo de imagen`);
+        } else if (row.audio !== null) {
+            elemento_contacto.find('.preview').html(`<span class="material-icons icon-indicador">mic</span> Archivo de audio`);
+        } else {
+            elemento_contacto.find('.preview').html(row.text);
+        }
         //Actualizar total de conversaciones no leidas.
         ActualizarTotalDeConversacionesNoLeidas();
     })
@@ -84,18 +95,23 @@ function TratarMensajes(mensajes) {
 function MostrarMensajeEnEspacioDeChat(nombre, datos) {
     let mensaje;
 
-    if (datos.content_img !== null) {
-        datos.content = nombre + " te ha enviado una imagen.";
-        mensaje = ObtenerElementoImgContacto(datos.profile, datos.content_img.split('\\').pop().split('/').pop(), datos.content_img, ObtenerHora(datos.send_date));
-    } else
-
-        mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, ObtenerHora(datos.send_date)));
-
+    if (datos.img !== null) {
+        datos.text = nombre + " te ha enviado una imagen.";
+        mensaje = ObtenerElementoImgContacto(datos.profile, datos.img.split('\\').pop().split('/').pop(), datos.img, ObtenerHora(datos.send_date));
+    }
+   else if (datos.audio !== null)
+   {
+       datos.text = nombre + " te ha enviado un audio.";
+       mensaje = ObtenerElementoMensajeAudioRecibido('/files/audio/'+datos.audio, datos.profile,  ObtenerHora(datos.send_date));
+    }
+   else {
+        mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.text, ObtenerHora(datos.send_date)));
+    }
 
     AgregarMensajeEnEspacioDeChat(mensaje, datos.send_date);
     mensaje[0].scrollIntoView();
 
-    NotificacionesEscritorio(datos.id, nombre, datos.content, datos.profile);
+    NotificacionesEscritorio(datos.id, nombre, datos.text, datos.profile);
 
     //Enviar leido al servidor.
     MarcarComoLeido(datos.id_msg, null);
@@ -171,10 +187,14 @@ function TratarCambiosDeEstadosEnMensajes(datos) {
 function AgregarMensajesABufferChat(datos) {
     if (buffer_chat.has(datos.user_name)) {
         let mensaje;
-        if (datos.content_img !== null) {
-            mensaje = ObtenerElementoImgContacto(datos.profile, datos.content_img.split('\\').pop().split('/').pop(), datos.content_img, ObtenerHora(datos.send_date));
-        } else {
-            mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, ObtenerHora(datos.send_date)));
+        if (datos.img !== null) {
+            mensaje = ObtenerElementoImgContacto(datos.profile, datos.img.split('\\').pop().split('/').pop(), datos.img, ObtenerHora(datos.send_date));
+        }
+        else if(datos.audio !== null){
+            mensaje = ObtenerElementoMensajeAudioRecibido('/files/audio/'+datos.audio, datos.profile,  ObtenerHora(datos.send_date));
+        }
+        else {
+            mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.text, ObtenerHora(datos.send_date)));
         }
         mensaje.attr("data-id", datos.id_msg);
         let espacio_chat = $(buffer_chat.get(datos.user_name));

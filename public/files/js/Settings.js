@@ -407,6 +407,7 @@ function EnviarImagen() {
                 if (response[0]) {
                     //Se asigna la nueva imagen a los contenedores de la foto de perfil
                     let src = "\\files\\profile\\"+ $("#profile-img").attr("title")+"."+ archivo[0].name.split(".").reverse()[0];
+                    console.log(src);
                     AsignarNuevaFotoPerfil(blob,src);
                     buffer_chat.clear();
                     VanillaToasts.create({
