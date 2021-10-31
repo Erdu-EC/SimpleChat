@@ -361,8 +361,10 @@ $(document).on("click", "#btn-emojis", function () {
         picker.on('emoji', emoji => {
 
             $("#frame .content .message-input .wrap .entrada-placeholder").hide();
-
             $('#contenido-mensaje').text($("#contenido-mensaje").text() + emoji);
+            $("#btn-enviar-mensaje").removeClass("modo-microfono").addClass("activar").html(`<i class="fas fa-paper-plane"></i>`).attr("title","Enviar mensaje");
+            $("#cuadro-busqueda-usuario").after(' <div class="borrar"><span class="material-icons"> close</span></div>');
+
             //InsertarenContenedorMensaje(emoji);
 
         });

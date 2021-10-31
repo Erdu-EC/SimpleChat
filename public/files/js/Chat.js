@@ -18,6 +18,7 @@ $(document).on("keyup change", "#contenido-mensaje", function () {
     }
 });
 
+
 $(document).on('click', '#mensaje-invitacion button', function () {
     const boton_si = $('#mensaje-invitacion #mensaje-invitacion-si');
     const boton_no = $('#mensaje-invitacion #mensaje-invitacion-no');
