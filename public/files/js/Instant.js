@@ -79,7 +79,7 @@ function TratarMensajes(mensajes) {
 
         //Mostrar vista previa del mensaje en lista de conversaciones.
         elemento_contacto.find('.hora-ult-mesj').text(Fecha_hora_ultima_Mensaje(row.send_date));
-        console.log(row);
+
         if (row.img !== null) {
             elemento_contacto.find('.preview').html(`<span class="material-icons icon-indicador">image</span> Archivo de imagen`);
         } else if (row.audio !== null) {
@@ -97,7 +97,7 @@ function MostrarMensajeEnEspacioDeChat(nombre, datos) {
 
     if (datos.img !== null) {
         datos.text = nombre + " te ha enviado una imagen.";
-        mensaje = ObtenerElementoImgContacto(datos.profile, datos.img.split('\\').pop().split('/').pop(), datos.img, ObtenerHora(datos.send_date));
+        mensaje = ObtenerElementoImgContacto(datos.profile, datos.img.split('\\').pop().split('/').pop(), '/files/chat/'+datos.img, ObtenerHora(datos.send_date));
     }
    else if (datos.audio !== null)
    {

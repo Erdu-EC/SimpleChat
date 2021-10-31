@@ -18,7 +18,7 @@ const ObtenerElementoMensajeEnviado = mensaje => {
 
 const ObtenerElementoImgContacto = (foto, nombre, url, fecha_envio) => {
     const msg = $(ObtenerElementoMensajeContacto(foto, "", fecha_envio));
-    msg.find('.cont-msj').addClass("contenedor-imagen-recibida").html(`<img src="/files/${url}" class="imagen-enviada"  title="${nombre}">`);
+    msg.find('.cont-msj').addClass("contenedor-imagen-recibida").html(`<img src="${url}" class="imagen-enviada"  title="${nombre}">`);
     return msg;
 };
 
@@ -80,8 +80,7 @@ const ObtenerElementoMensajeAudioEnviado = (blob, duracion) => {
 const ObtenerElementoMensajeAudioRecibido = (src, foto, fecha) => {
     const msg = $(ObtenerElementoMensajeContacto(foto,"",fecha));
     let audio = $(`<audio type='audio/webm'  class="mensaje-audio" src='${src}' ></audio>`);
-
-    let cont = $("<div>", {
+  let cont = $("<div>", {
         class: "audio-recibido"
     }).append(ObtenerControlesAudio()).append(audio);
     msg.find(".cont-msj").removeClass("cont-msj").addClass("contenedor-audio-recibido no-seleccionable").html(cont);
