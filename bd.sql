@@ -275,6 +275,8 @@ BEGIN
            user_HasInvitation(USER_ID, if(c.id_source != USER_ID, c.id_source, c.id_dest)) as hasInvitation,
            if(c.id_source = USER_ID, m.id, mr.id)                                          as msg_id,
            if(c.id_source = USER_ID, m.content, mr.content)                                as msg_text,
+           if(c.id_source = USER_ID, m.content_img, mr.content_img)                        as msg_img,
+           if(c.id_source = USER_ID, m.content_audio, mr.content_audio)                    as msg_audio,
            if(c.id_source = USER_ID, m.send_date, mr.send_date)                            as msg_send,
            if(c.id_source = USER_ID, m.rcv_date, mr.rcv_date)                              as msg_rcv,
            if(c.id_source = USER_ID, m.read_date, mr.read_date)                            as msg_read
@@ -304,14 +306,14 @@ BEGIN
       and msg.id_dest = USER_ID
       and (msg.rcv_date IS NULL or msg.read_date IS NULL);
 
-    select id_temp     as id,
-           id_source   as origin,
-           content     as text,
-           content_img as img,
+    select id_temp       as id,
+           id_source     as origin,
+           content       as text,
+           content_img   as img,
            content_audio as audio,
-           send_date   as date_send,
-           rcv_date    as date_reception,
-           read_date   as date_read
+           send_date     as date_send,
+           rcv_date      as date_reception,
+           read_date     as date_read
     from (
              select *
              from message
@@ -344,13 +346,13 @@ BEGIN
     UPDATE message set rcv_date = NOW() where id in (select id from unrcv_messages);
 
     select u.id,
-           mr.id_temp    as id_msg,
+           mr.id_temp       as id_msg,
            u.user_name,
            u.first_name,
            u.last_name,
-           u.profile_img as profile,
-           mr.content as text,
-           mr.content_img as img,
+           u.profile_img    as profile,
+           mr.content       as text,
+           mr.content_img   as img,
            mr.content_audio as audio,
            mr.send_date
     from message_readable mr
