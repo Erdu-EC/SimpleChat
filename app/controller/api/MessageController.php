@@ -47,7 +47,7 @@
 				$data[$i]->profile_img = APP_URL::OfImageProfile($data[$i]->profile_img);
 
 			//Devolviendo datos.
-			return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));
+			return json_encode($data->GetInnerArray());
 		}
 
 		public function GetConversationsWithContact(string $user_name) {

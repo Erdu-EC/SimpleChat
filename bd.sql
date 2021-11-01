@@ -266,10 +266,10 @@ END $
 CREATE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
 BEGIN
     #TODO Mensaje mostrado en conversación recibido marcarlos todos.
-    SELECT if(c.id_source != USER_ID, s_nick, d_nick)                                      as contact_id,
-           if(c.id_source != USER_ID, s_first_name, d_first_name)                          as first_name,
-           if(c.id_source != USER_ID, s_last_name, d_last_name)                            as last_name,
-           if(c.id_source != USER_ID, s_profile_img, d_profile_img)                        as profile_img,
+    SELECT if(c.id_source != USER_ID, s_nick, d_nick)                                      as contact,
+           if(c.id_source != USER_ID, s_first_name, d_first_name)                          as firstname,
+           if(c.id_source != USER_ID, s_last_name, d_last_name)                            as lastname,
+           if(c.id_source != USER_ID, s_profile_img, d_profile_img)                        as profile,
            if(c.id_source != USER_ID, s_state, d_state)                                    as state,
            c.id_source = USER_ID                                                           as isMyMessage,
            user_HasInvitation(USER_ID, if(c.id_source != USER_ID, c.id_source, c.id_dest)) as hasInvitation,
