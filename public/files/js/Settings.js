@@ -449,8 +449,8 @@ function EnviarImagen() {
 function AsignarNuevaFotoPerfil( src) {
 
       $("#foto-perfil-cuenta").attr("src",ObtenerUrlImagen($("#foto-perfil-cuenta").attr("src",src))+`?w=200`/*&t=${Date.now()}`*/);
-    $('#mi-perfil-sidepanel img').attr("src",ObtenerUrlImagen($('#mi-perfil-sidepanel img').attr("src",src))/*+`?t=${Date.now()}`*/);
-    $('#profile-img').attr("src",ObtenerUrlImagen($('#profile-img').attr("src",src))/*+`?t=${Date.now()}`*/);
+    $('#mi-perfil-sidepanel img').attr("src",ObtenerUrlImagen($('#mi-perfil-sidepanel img').attr("src",src)) + '?w=50&h=50' /*+`?t=${Date.now()}`*/);
+    $('#profile-img').attr("src",ObtenerUrlImagen($('#profile-img').attr("src",src)) + '?w=80&h=80'/*+`?t=${Date.now()}`*/);
     $("#nueva-foto-perfil").val("");
 
 }
