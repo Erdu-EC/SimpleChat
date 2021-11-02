@@ -44,10 +44,10 @@
 
 			//Modificando valores.
 			for ($i = 0; $i < count($data); $i++)
-				$data[$i]->profile_img = APP_URL::OfImageProfile($data[$i]->profile_img);
+				$data[$i]->profile = APP_URL::OfImageProfile($data[$i]->profile);
 
 			//Devolviendo datos.
-			return json_encode($data->GetInnerArray());
+			return json_encode($data->GetInnerArray(true));
 		}
 
 		public function GetConversationsWithContact(string $user_name) {
