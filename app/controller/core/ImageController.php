@@ -48,6 +48,9 @@
 
 			//Obteniendo miniatura e imprimiendola
 			try {
+				if (($time = filemtime($path)) !== false)
+					HttpResponse::Set('Last-Modified: ' . gmdate('D, d M Y H:i:s', $time).' GMT');
+
 				$thumb = $image->GetThumbnail($THUMB_WIDTH, $THUMB_HEIGHT, Path::Combine(APP_DIR::IMAGE_CACHE, $type));
 				$thumb->Print();
 			} catch (ImageException $ex) {
