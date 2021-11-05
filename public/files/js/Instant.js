@@ -66,7 +66,7 @@ function TratarMensajes(mensajes) {
             AgregarMensajesABufferChat(row);
 
             //Contar mensajes no leidos.
-            const msg_pendientes = elemento_contacto.find('.num-msj-pendientes.online span');
+            const msg_pendientes = elemento_contacto.find('.num-msj-pendientes').removeClass('anterior').addClass('online').find('span');
 
             if (msg_pendientes.length === 0) {
                 elemento_contacto.find('.msj-pendientes').append(obtener_elemento_msg_pendientes(1));
@@ -118,7 +118,7 @@ function MostrarMensajeEnEspacioDeChat(nombre, datos) {
 }
 
 function ActualizarTotalDeConversacionesNoLeidas() {
-    const elementos_msg_pendientes = $(`#lista-conversaciones .contact .num-msj-pendientes.online`);
+    const elementos_msg_pendientes = $(`#lista-conversaciones .contact .num-msj-pendientes`);
     const icono_contador = $('#icon-indicador-mensaje span');
 
     if (elementos_msg_pendientes.length === 0)

@@ -32,7 +32,7 @@ function cargar_conversaciones() {
                             break;
                     }
                     if(registro.msg_img !== null){
-                        registro.msg_text= '<span class="material-icons icon-indicador">image</span> Archivo de imagen';
+                        registro.msg_text = '<span class="material-icons icon-indicador">image</span> Archivo de imagen';
 
                     }
                     else if(registro.msg_audio !== null){
@@ -83,8 +83,23 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
             <div class="hora-ult-mesj">
                 ${Fecha_hora_ultima_Mensaje(ult_msj)}
             </div>
+            ${(enviado) ? '': EstadosMensajesPendientes(hora_leido, hora_recibido)}
         </div>
     </div>`;
+
+function EstadosMensajesPendientes(hora_leido, hora_recibido){
+
+    if(hora_leido === null)
+    {
+        let hora_actual = new Date();
+        let hora_recepcion = new Date(hora_recibido);
+        if( (Math.floor((hora_actual- hora_recepcion)/3600000)) > 1 ){
+            return '<div class="num-msj-pendientes anterior"><span>1</span></div>';
+        }
+        return '<div class="num-msj-pendientes online"><span>1</span></div>';
+    }
+    return '';
+}
 
 //<div class="num-msj-pendientes anterior"><span>n</span></div> -> para notificaciones vistas
 
