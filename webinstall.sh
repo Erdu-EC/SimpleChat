@@ -7,6 +7,7 @@ sudo rm mysql-apt-config_0.8.17-1_all.deb
 #Instalando software importante.
 sudo apt-get update
 sudo apt-get install apache2 php7.4 mysql-server -y
+sudo apt-get install ffmpeg
 
 #Configurando base de datos.
 sudo mysql -u root -e "update mysql.user set plugin = 'mysql_native_password' where User = 'root'"

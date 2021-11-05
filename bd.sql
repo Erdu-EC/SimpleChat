@@ -263,7 +263,7 @@ BEGIN
 END $
 
 #Obtener las conversaciones.
-CREATE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
+CREATE OR REPLACE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
 BEGIN
     #TODO Mensaje mostrado en conversación recibido marcarlos todos.
     SELECT if(c.id_source != USER_ID, s_nick, d_nick)                                      as contact,
@@ -279,7 +279,12 @@ BEGIN
            if(c.id_source = USER_ID, m.content_audio, mr.content_audio)                    as msg_audio,
            if(c.id_source = USER_ID, m.send_date, mr.send_date)                            as msg_send,
            if(c.id_source = USER_ID, m.rcv_date, mr.rcv_date)                              as msg_rcv,
-           if(c.id_source = USER_ID, m.read_date, mr.read_date)                            as msg_read
+           if(c.id_source = USER_ID, m.read_date, mr.read_date)                            as msg_read,
+           (select count(*)
+            from message_readable mrci
+            where mrci.id_dest = USER_ID
+              and mrci.id_source = if(c.id_source = USER_ID, c.id_dest, c.id_source)
+              and mrci.read_date is null)                                                  as unread_count
     FROM conversations c
              left outer join message_readable mr on mr.id = msg_id
              left outer join message m on m.id = msg_id and c.id_source = USER_ID
