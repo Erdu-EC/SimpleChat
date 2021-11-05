@@ -45,7 +45,7 @@
 
 				//Añadiendo metadatos.
 				$output = [];
-				$code = 0;
+				$code = null;
 				$program = Path::Combine(APP_PATH, '/vendor/ffmpeg/ffmpeg.exe');
 				$audio = Path::CombineAll(APP_PATH, APP_DIR::AUDIO, $file_name);
 				$audio_output = Path::CombineAll(APP_PATH, APP_DIR::AUDIO, Path::GetFileName($file_name) . "-2.webm");
@@ -53,8 +53,11 @@
 				//Ejecutando comando.
 				exec(escapeshellcmd("$program -i $audio -acodec copy $audio_output"), $output, $code);
 
+				if ($code !== 0)
+					die(json_encode([false, 10]));
+
 				//Devolviendo respuesta.
-				die(json_encode([true, /*APP_URL::OfChatAudio($file_name)*/ $file_name, $fakeId, escapeshellcmd("$program -i $audio -acodec copy $audio.1")]));
+				die(json_encode([true, /*APP_URL::OfChatAudio($file_name)*/ $file_name, $fakeId]));
 			} else {
 				//Devolviendo respuesta negativa.
 				die(json_encode([false, 9]));
