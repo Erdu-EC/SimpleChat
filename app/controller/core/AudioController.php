@@ -9,6 +9,7 @@ use HS\config\DBAccount;
 use HS\libs\core\http\HttpResponse;
 use HS\libs\core\Session;
 use HS\libs\helper\MimeType;
+use HS\libs\helper\System;
 use HS\libs\io\Path;
 use const HS\APP_PATH;
 
@@ -44,7 +45,10 @@ class AudioController
                 //Ejecutando comando.
                 $audio = $file['tmp_name'];
                 $audio_output = Path::CombineAll(APP_PATH, APP_DIR::AUDIO, $file_name);
-                $program = Path::Combine(APP_PATH, '/vendor/ffmpeg/ffmpeg.exe');
+                if (System::GetOS() == System::OS_WIN)
+                    $program = Path::Combine(APP_PATH, '/vendor/ffmpeg/ffmpeg.exe');
+                else
+                    $program = 'ffmpeg';
                 exec(escapeshellcmd("$program -i $audio -acodec copy $audio_output"), $output, $code);
 
                 //Devolviendo resultado.
