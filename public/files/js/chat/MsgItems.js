@@ -72,7 +72,7 @@ const ObtenerElementoMensajeAudio = (blob, duracion, fecha_envio, estado) => {
             metadata.preload = 'none';
         }
         metadata.onloadedmetadata = () => {
-            audio.attr('data-duration', metadata.duration); //Duracion en segundos.
+            audio.attr('data-duration', metadata.duration*1000); //Duracion en segundos.
             msg.find('.control-tiempo-total').text(ObtenerSegundosComoTiempo(metadata.duration));
         }
         metadata.src = blob;
@@ -93,7 +93,12 @@ const ObtenerElementoMensajeAudioEnviado = (blob, duracion) => {
 
 const ObtenerElementoMensajeAudioRecibido = (src, foto, fecha) => {
     const msg = $(ObtenerElementoMensajeContacto(foto,"",fecha));
-    let audio = $(`<audio type='audio/webm'  class="mensaje-audio" src='${src}' ></audio>`);
+    let audio = $(`<audio type='audio/webm' class="mensaje-audio" src='${src}' ></audio>`);
+
+    audio[0].onloadedmetadata = function (){
+        audio.attr('data-duration',audio[0].duration*1000 );
+        msg.find(".control-tiempo-total").text(ObtenerSegundosComoTiempo(audio[0].duration));
+    }
   let cont = $("<div>", {
         class: "audio-recibido"
     }).append(ObtenerControlesAudio()).append(audio);

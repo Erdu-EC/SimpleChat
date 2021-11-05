@@ -121,5 +121,5 @@ function ObtenerSegundosComoTiempo(seconds) {
     minute = (minute < 10)? '0' + minute : minute;
     var second = seconds % 60;
     second = (second < 10)? '0' + second : second;
-    return (hour !== '00' ? hour + ':' : '') + minute + ':' + second.split(".")[0];
+    return (hour !== '00' ? hour + ':' : '') + minute + ':' + second.toString().split(".")[0];
 }
