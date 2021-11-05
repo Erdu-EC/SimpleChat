@@ -850,6 +850,7 @@ $(document).on("click", ".boton-play-pause", function () {
         }
     }
     if (!$(this).hasClass("reproduciendo") && !$(this).hasClass("pausado")) {
+        objeto_actual.parent().removeClass("no-escuchado");
         const barra_progreso = objeto_actual.parent().find(".control-indicador-total");
         const etiqueta_tiempo = objeto_actual.parent().find(".control-tiempo-total");
         audio = null;

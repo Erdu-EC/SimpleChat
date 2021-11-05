@@ -2021,9 +2021,6 @@ Estilos para audio
   background: #FFFFFF;
 }
 
-
-
-
 .boton-play-pause{
   background-color: #FFFFFF;
   display: flex;
@@ -2037,6 +2034,9 @@ Estilos para audio
   cursor: pointer;
   margin-right: 15px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.no-escuchado .boton-play-pause{
+  color: #2ecc71;
 }
 .boton-play-pause i{
   width: 30px;
@@ -2077,6 +2077,10 @@ margin-right: 10px;
   float: left;
   display: block;
 }
+.no-escuchado .control-indicador .control-indicador-total {
+  background: #2ecc71;
+}
+
 .control-indicador .bola {
   height: 12px;
   width: 12px;
@@ -2085,6 +2089,9 @@ margin-right: 10px;
   margin-left: -10px;
   display: inline;
   float: left;
+}
+.no-escuchado .control-indicador .bola{
+  background: #2ecc71;
 }
 
 

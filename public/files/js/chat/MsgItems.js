@@ -91,7 +91,7 @@ const ObtenerElementoMensajeAudioEnviado = (blob, duracion) => {
     return msg;
 }
 
-const ObtenerElementoMensajeAudioRecibido = (src, foto, fecha) => {
+const ObtenerElementoMensajeAudioRecibido = (src, foto, fecha, id) => {
     const msg = $(ObtenerElementoMensajeContacto(foto,"",fecha));
     let audio = $(`<audio type='audio/webm' class="mensaje-audio" src='${src}' ></audio>`);
 
@@ -102,6 +102,11 @@ const ObtenerElementoMensajeAudioRecibido = (src, foto, fecha) => {
   let cont = $("<div>", {
         class: "audio-recibido"
     }).append(ObtenerControlesAudio()).append(audio);
+
+    if(id){
+        cont.addClass("no-escuchado");
+    }
+
     msg.find(".cont-msj").removeClass("cont-msj").addClass("contenedor-audio-recibido no-seleccionable").html(cont);
     return msg;
 }

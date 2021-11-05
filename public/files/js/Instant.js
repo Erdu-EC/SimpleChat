@@ -102,7 +102,7 @@ function MostrarMensajeEnEspacioDeChat(nombre, datos) {
    else if (datos.audio !== null)
    {
        datos.text = nombre + " te ha enviado un audio.";
-       mensaje = ObtenerElementoMensajeAudioRecibido('/files/audio/'+datos.audio, datos.profile,  ObtenerHora(datos.send_date));
+       mensaje = ObtenerElementoMensajeAudioRecibido('/files/audio/'+datos.audio, datos.profile,  ObtenerHora(datos.send_date),datos.id_msg);
     }
    else {
         mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.text, ObtenerHora(datos.send_date)));
@@ -191,7 +191,7 @@ function AgregarMensajesABufferChat(datos) {
             mensaje = ObtenerElementoImgContacto(datos.profile, datos.img.split('\\').pop().split('/').pop(), datos.img, ObtenerHora(datos.send_date));
         }
         else if(datos.audio !== null){
-            mensaje = ObtenerElementoMensajeAudioRecibido('/files/audio/'+datos.audio, datos.profile,  ObtenerHora(datos.send_date));
+            mensaje = ObtenerElementoMensajeAudioRecibido('/files/audio/'+datos.audio, datos.profile,  ObtenerHora(datos.send_date),datos.id_msg);
         }
         else {
             mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.text, ObtenerHora(datos.send_date)));
@@ -206,12 +206,12 @@ function AgregarMensajesABufferChat(datos) {
 
 function TratarCambiosDeEstadosEnMensajesRecibidos() {
     const lista = $('#lista-mensajes');
-
     lista.find(`.recibido[data-id]`).each(function () {
         if (MarcarComoLeido($(this).attr('data-id'), function () {
+            $(this).removeAttr('data-id');
             return true;
         })) {
-            $(this).removeAttr('data-id');
+
         }
     });
 }
