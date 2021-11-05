@@ -124,7 +124,6 @@ function EnviarMensaje() {
     if (texto !== '') {
         const mensaje = $(ObtenerElementoMensajeEnviado(texto));
         const espacio_chat = $('#espacio-de-chat > .messages');
-
         $.ajax('/action/messages/send', {
             method: 'post', dataType: 'json', mimeType: 'application/json',
             data: {
@@ -261,8 +260,7 @@ function CargarEspacioDeChat() {
 
                     //Agregando mensaje.
                     let mensaje;
-
-                    if (msg.origin !== json.id) {
+                    if (msg.origin === json.id) {
                         if (msg.img !== null)
                             mensaje = ObtenerElementoImgContacto(json.profile_img, msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send))
                         else if (msg.audio !== null)
