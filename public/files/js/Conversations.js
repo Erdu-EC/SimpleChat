@@ -44,7 +44,7 @@ function cargar_conversaciones() {
 
                     var msg = $('<li>', {
                         class: 'contact',
-                        html: ObtenerElementoConversacion(registro.contact, registro.firstname, registro.lastname, registro.profile,estado, registro.hasInvitation, registro.msg_text, registro.isMyMessage, registro.msg_rcv, registro.msg_send, registro.msg_read),
+                        html: ObtenerElementoConversacion(registro.contact, registro.firstname, registro.lastname, registro.profile,estado, registro.hasInvitation, registro.msg_text, registro.isMyMessage, registro.msg_send,registro.msg_rcv, registro.msg_read),
                     }).appendTo(lista_conversaciones);
 
 

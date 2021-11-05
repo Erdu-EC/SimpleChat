@@ -863,7 +863,7 @@ $(document).on("click", ".boton-play-pause", function () {
                 t_transcurrido += 50;
                 let porcentaje = Math.trunc((t_transcurrido / duracion_audio) * 100);
                 barra_progreso.css("width", porcentaje + '%');
-                etiqueta_tiempo.text(segundosATiempo(t_transcurrido / 1000));
+                etiqueta_tiempo.text(ObtenerSegundosComoTiempo(t_transcurrido / 1000));
             }, 50);
             objeto_actual.addClass("reproduciendo").removeClass("pausado").html('<i class="far fa-pause-circle"></i>');
             aux = objeto_actual;
@@ -874,7 +874,7 @@ $(document).on("click", ".boton-play-pause", function () {
             clearInterval(cronometro);
             barra_progreso.css("width", '1%')
             objeto_actual.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado");
-            objeto_actual.siblings(".control-tiempo-total").text(segundosATiempo(objeto_actual.siblings(".mensaje-audio").attr('data-duration') / 1000));
+            objeto_actual.siblings(".control-tiempo-total").text(ObtenerSegundosComoTiempo(objeto_actual.siblings(".mensaje-audio").attr('data-duration') / 1000));
             audio = null;
         };
 
@@ -902,7 +902,7 @@ function DetenerAudio(pista) {
     if (pista.paused) {
         //Se reinician los contadores e icono de reproducción del elemento audio anterior (si estaba en estado pause)
         aux_2.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado").parent().find(".control-indicador-total").css("width", '1%')
-        aux_2.siblings(".control-tiempo-total").text(segundosATiempo(aux_2.siblings(".mensaje-audio").attr('data-duration') / 1000));
+        aux_2.siblings(".control-tiempo-total").text(ObtenerSegundosComoTiempo(aux_2.siblings(".mensaje-audio").attr('data-duration') / 1000));
     } else {
         pista.pause();
     }
@@ -914,7 +914,7 @@ function Reiniciar(elemento) {
 //Se reinician los contadores e icono de reproducción del elemento audio anterior
     if (elemento) {
         elemento.html('<i class="far fa-play-circle"></i>').removeClass("reproduciendo").removeClass("pausado").parent().find(".control-indicador-total").css("width", '1%')
-        elemento.siblings(".control-tiempo-total").text(segundosATiempo(aux_2.siblings(".mensaje-audio").attr('data-duration') / 1000));
+        elemento.siblings(".control-tiempo-total").text(ObtenerSegundosComoTiempo(aux_2.siblings(".mensaje-audio").attr('data-duration') / 1000));
         elemento = null;
     }
 }
@@ -932,7 +932,7 @@ $(document).on("click", "#panel-grabando .fin-grabacion", function () {
     grabacion.onstop = function () {
         DetenerContador();
         let mensaje = ObtenerElementoMensajeAudioEnviado(URL.createObjectURL(track), tiempoFin);
-        mensaje.find(".control-tiempo-total").text(segundosATiempo(tiempoFin / 1000));
+        mensaje.find(".control-tiempo-total").text(ObtenerSegundosComoTiempo(tiempoFin / 1000));
         grabacion = null;
         EnviarGrabacion(mensaje);
     }
@@ -1011,17 +1011,6 @@ function EnviarGrabacion(mensaje){
 
 let idIntervalo, tiempoInicio, tiempoFin = 0;
 
-const segundosATiempo = numeroDeSegundos => {
-    let horas = Math.floor(numeroDeSegundos / 60 / 60);
-    numeroDeSegundos -= horas * 60 * 60;
-    let minutos = Math.floor(numeroDeSegundos / 60);
-    numeroDeSegundos -= minutos * 60;
-    numeroDeSegundos = parseInt(numeroDeSegundos);
-    if (horas < 10) horas = "0" + horas;
-    if (minutos < 10) minutos = "0" + minutos;
-    if (numeroDeSegundos < 10) numeroDeSegundos = "0" + numeroDeSegundos;
-    return `${(horas == 0) ? '' : horas + ':'}${minutos}:${numeroDeSegundos}`;
-};
 const Contador = () => {
     tiempoInicio = Date.now();
     idIntervalo = setInterval(ActualizarReloj, 500);
@@ -1033,7 +1022,7 @@ const DetenerContador = () => {
     tiempoInicio = null;
 }
 const ActualizarReloj = () => {
-    $("#panel-grabando").find(".tiempo-transcurrido").text(segundosATiempo((Date.now() - tiempoInicio) / 1000));
+    $("#panel-grabando").find(".tiempo-transcurrido").text(ObtenerSegundosComoTiempo((Date.now() - tiempoInicio) / 1000));
 }
 
 
