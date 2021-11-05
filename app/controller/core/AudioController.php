@@ -43,6 +43,19 @@
 				//Desconectando base de datos.
 				unset($user);
 
+				//Añadiendo metadatos.
+				$output = [];
+				$code = null;
+				$program = Path::Combine(APP_PATH, '/vendor/ffmpeg/ffmpeg.exe');
+				$audio = Path::CombineAll(APP_PATH, APP_DIR::AUDIO, $file_name);
+				$audio_output = Path::CombineAll(APP_PATH, APP_DIR::AUDIO, Path::GetFileName($file_name) . "-2.webm");
+
+				//Ejecutando comando.
+				exec(escapeshellcmd("$program -i $audio -acodec copy $audio_output"), $output, $code);
+
+				if ($code !== 0)
+					die(json_encode([false, 10]));
+
 				//Devolviendo respuesta.
 				die(json_encode([true, /*APP_URL::OfChatAudio($file_name)*/ $file_name, $fakeId]));
 			} else {
