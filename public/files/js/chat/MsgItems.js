@@ -64,6 +64,20 @@ const ObtenerElementoMensajeAudio = (blob, duracion, fecha_envio, estado) => {
         }
     ).attr('data-duration', duracion ?? 0);
 
+    if (duracion === null){
+        const metadata = document.createElement("audio");
+        metadata.preload = "metadata";
+        metadata.onloadend = ()=> {
+            URL.revokeObjectURL(metadata.src);
+            metadata.preload = 'none';
+        }
+        metadata.onloadedmetadata = () => {
+            audio.attr('data-duration', metadata.duration); //Duracion en segundos.
+            msg.find('.control-tiempo-total').text(ObtenerSegundosComoTiempo(metadata.duration));
+        }
+        metadata.src = blob;
+    }
+
     let cont = $("<div>", {
         class: "audio-enviado"
     }).append(ObtenerControlesAudio()).append(audio);
