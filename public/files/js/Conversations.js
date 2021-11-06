@@ -44,11 +44,12 @@ function cargar_conversaciones() {
 
                     var msg = $('<li>', {
                         class: 'contact',
-                        html: ObtenerElementoConversacion(registro.contact, registro.firstname, registro.lastname, registro.profile,estado, registro.hasInvitation, registro.msg_text, registro.isMyMessage, registro.msg_send,registro.msg_rcv, registro.msg_read),
+                        html: ObtenerElementoConversacion(registro.contact, registro.firstname, registro.lastname, registro.profile,estado, registro.hasInvitation, registro.msg_text, registro.isMyMessage, registro.msg_send,registro.msg_rcv, registro.msg_read, registro.unread_count),
                     }).appendTo(lista_conversaciones);
 
 
                 });
+                ActualizarTotalDeConversacionesNoLeidas();
             }
             $("#sidepanel").focus();
         }
@@ -59,7 +60,7 @@ function cargar_conversaciones() {
         }, 180000);
 }
 
-const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, estado,hay_invitacion, contenido, enviado, ult_msj, hora_recibido, hora_leido) =>
+const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, estado,hay_invitacion, contenido, enviado, ult_msj, hora_recibido, hora_leido, pendientes) =>
 
     `<div class="wrap elemento-conversacion" data-usuario="${usuario_id}">
 <div class="conversacion-perfil">
@@ -83,20 +84,20 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
             <div class="hora-ult-mesj">
                 ${Fecha_hora_ultima_Mensaje(ult_msj)}
             </div>
-            ${(enviado) ? '': EstadosMensajesPendientes(hora_leido, hora_recibido)}
+            ${(enviado) ? '': EstadosMensajesPendientes(hora_leido, hora_recibido, pendientes)}
         </div>
     </div>`;
 
-function EstadosMensajesPendientes(hora_leido, hora_recibido){
+function EstadosMensajesPendientes(hora_leido, hora_recibido, mensajes_pendientes){
 
-    if(hora_leido === null)
+    if(mensajes_pendientes > 0)
     {
         let hora_actual = new Date();
         let hora_recepcion = new Date(hora_recibido);
         if( (Math.floor((hora_actual- hora_recepcion)/3600000)) > 1 ){
-            return '<div class="num-msj-pendientes anterior"><span>1</span></div>';
+            return `<div class="num-msj-pendientes anterior"><span>${mensajes_pendientes}</span></div>`;
         }
-        return '<div class="num-msj-pendientes online"><span>1</span></div>';
+        return `<div class="num-msj-pendientes online"><span>${mensajes_pendientes}</span></div>`;
     }
     return '';
 }

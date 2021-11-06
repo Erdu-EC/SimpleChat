@@ -121,10 +121,14 @@ function ActualizarTotalDeConversacionesNoLeidas() {
     const elementos_msg_pendientes = $(`#lista-conversaciones .contact .num-msj-pendientes`);
     const icono_contador = $('#icon-indicador-mensaje span');
 
-    if (elementos_msg_pendientes.length === 0)
+    if (elementos_msg_pendientes.length === 0){
         icono_contador.parent().hide();
-    else
+        document.title = `SimpleChat: Inicio`;
+    }
+    else{
         icono_contador.text(elementos_msg_pendientes.length).parent().show();
+        document.title = `(${elementos_msg_pendientes.length}) SimpleChat: Inicio`;
+    }
 }
 
 
