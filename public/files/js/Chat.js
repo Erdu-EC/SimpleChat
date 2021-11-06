@@ -143,31 +143,7 @@ $("#lista-mensajes").find("li.marcador .marcador-pendientes").remove();
                     //Agregando id y estado al mensaje enviado.
                     mensaje.attr('data-id', json[1]);
                     mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
-
-                    //Actualizar item de conversación.
-                    let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${usuario_nick}]`).parent();
-
-                    //Si no existe conversacion, agregarla.
-                    if (elemento_conversacion.length === 0) {
-                        let estado = $("#espacio-de-chat").find(".ult-conex").text();
-                        switch (estado){
-                            case 'Activo':
-                                estado= "online";
-                                break;
-                            case 'Inactivo':
-                                estado= "inactivo";
-                                break;
-                        }
-                        elemento_conversacion = $('<li>', {
-                            class: 'contact active',
-                            html: ObtenerElementoConversacion(usuario_nick, espacio_chat.parent().find('.nombre-chat').text(), '', espacio_chat.parent().find('.img-contacto').attr('src').split("?")[0], estado, null, texto, new Date(), new Date(), null, null)
-
-                        });
-                    }
-
-                    elemento_conversacion.prependTo($('#lista-conversaciones'));
-                    elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span>' + texto);
-                    elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
+                    AgregarElementoConversacion(usuario_nick,texto );
                     textarea.focus();
                     $("#frame .content .message-input .wrap .entrada-placeholder").show();
                 } else
@@ -225,11 +201,7 @@ function EnviarGrabacion(mensaje){
                 progreso.remove();
 
                 //Actualizar item de conversación.
-                let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${remitente}]`).parent();
-                elemento_conversacion.prependTo($('#lista-conversaciones'));
-                elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span> <span class="material-icons icon-indicador">mic</span> Archivo de audio');
-                elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
-
+                AgregarElementoConversacion(remitente, '<span class="material-icons icon-indicador">mic</span> Archivo de audio');
             } else {
                 swal({
                     title: "¡Ha ocurrido un error!",
@@ -394,6 +366,36 @@ function AgregarMensajeEnEspacioDeChat(item_msg, fecha_msg) {
     }
 
     lista_msg.append(item_msg);
+}
+
+//Actualizar item de contacto o agregar nuevo
+function AgregarElementoConversacion(usuario_nick, texto){
+    const espacio_chat = $('#espacio-de-chat > .messages');
+                    //Actualizar item de conversación.
+                    let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${usuario_nick}]`).parent();
+
+                    //Si no existe conversacion, agregarla.
+                    if (elemento_conversacion.length === 0) {
+                        let estado = $("#espacio-de-chat").find(".ult-conex").text();
+                        switch (estado){
+                            case 'Activo':
+                                estado= "online";
+                                break;
+                            case 'Inactivo':
+                                estado= "inactivo";
+                                break;
+                        }
+                        elemento_conversacion = $('<li>', {
+                            class: 'contact active',
+                            html: ObtenerElementoConversacion(usuario_nick, espacio_chat.parent().find('.nombre-chat').text(), '', espacio_chat.parent().find('.img-contacto').attr('src').split("?")[0], estado, null, texto, new Date(), new Date(), null, null)
+
+                        });
+                    }
+
+                    elemento_conversacion.prependTo($('#lista-conversaciones'));
+                    elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span>' + texto);
+                    elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
+
 }
 
 const ObtenerSeparadorDeFechasEnChat = fecha_envio => `<li class="marcador"><div class="marcador-fecha no-seleccionable">${fecha_envio}</div></li>`;

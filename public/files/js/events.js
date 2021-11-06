@@ -635,11 +635,9 @@ function EnviarImagenEnChat(filename) {
                         mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
                         mensaje.find('img').attr("title", response[1]);
                         progreso.remove();
+
                         //Actualizar item de conversación.
-                        let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${remitente}]`).parent();
-                        elemento_conversacion.prependTo($('#lista-conversaciones'));
-                        elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span> <span class="material-icons icon-indicador">image</span> Archivo de imagen');
-                        elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
+                        AgregarElementoConversacion(remitente, '<span class="material-icons icon-indicador">image</span> Archivo de imagen')
 
                     } else {
                         swal({
