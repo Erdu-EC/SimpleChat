@@ -118,7 +118,7 @@ function EnviarMensaje() {
     var texto_org = texto;
     texto = SanearTexto(texto);
     textarea.html('');
-
+$("#lista-mensajes").find("li.marcador .marcador-pendientes").remove();
     $("#btn-enviar-mensaje").removeClass("activar").addClass("modo-microfono").html('<i class="fas fa-microphone"></i>').attr("title","Grabar audio");
 
     if (texto !== '') {
@@ -330,6 +330,10 @@ function CargarEspacioDeChat() {
                     //Agregando mensaje.
                     let mensaje;
                     if (msg.origin === json.id) {
+                        if(msg.id !== null){
+                            if(lista_mensajes.find("li.marcador .marcador-pendientes").length === 0)
+                                lista_mensajes.append(ObtenerSeparadorMensajesPendientes);
+                        }
                         if (msg.img !== null)
                             mensaje = ObtenerElementoImgContacto(json.profile_img, msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send))
                         else if (msg.audio !== null)
@@ -377,16 +381,23 @@ function CargarEspacioDeChat() {
 }
 
 function AgregarMensajeEnEspacioDeChat(item_msg, fecha_msg) {
+
     const lista_msg = $('#lista-mensajes');
     const fecha = ObtenerFecha(fecha_msg);
 
     if (lista_msg.find(`.marcador-fecha:contains(${fecha})`).length === 0)
         lista_msg.append(ObtenerSeparadorDeFechasEnChat(fecha));
+    //Se verifica que no existe la etiqueta que separa los mensajes nuevos
+    if(item_msg.hasClass("recibido")) {
+        if (lista_msg.find("li.marcador .marcador-pendientes").length === 0 && !document.hasFocus())
+            lista_msg.append(ObtenerSeparadorMensajesPendientes);
+    }
 
     lista_msg.append(item_msg);
 }
 
 const ObtenerSeparadorDeFechasEnChat = fecha_envio => `<li class="marcador"><div class="marcador-fecha no-seleccionable">${fecha_envio}</div></li>`;
+const ObtenerSeparadorMensajesPendientes = () => `<li class="marcador"><div class="marcador-pendientes no-seleccionable">Nuevos mensajes</div></li>`;
 
 const ObtenerModalDeInvitacion = (nombre) => `
                             <div class="notificacion">
@@ -462,6 +473,7 @@ const buffer_chat = new Map();
 function Buffer_Conversaciones(contacto_ant,contacto_act){
 
     if(! (contacto_ant === undefined || contacto_ant === "" )){
+        $("#lista-mensajes li.marcador .marcador-pendientes").remove();
         buffer_chat.set(contacto_ant, $("#espacio-de-chat").clone().html());
     }
 
@@ -485,8 +497,8 @@ function ActualizarConversacion(){
     TratarCambiosDeEstadosEnMensajesRecibidos();
     ActualizarInfoContacto();
     ActualizarTotalDeConversacionesNoLeidas();
-    $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
     $('#espacio-de-chat').show();
     $('#espacio-de-configuracion').hide();
+    $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
 
 }

@@ -1778,7 +1778,7 @@ Fin de solicitud de chat
   display: flex;
 }
 
-#frame .content .messages ul li .marcador-fecha {
+#frame .content .messages ul li .marcador-fecha, #frame .content .messages ul li .marcador-pendientes {
 
   display: flex;
   margin-top: 15px;
@@ -1797,6 +1797,16 @@ Fin de solicitud de chat
   font-size: 12px;
 }
 
+#frame .content .messages ul li .marcador-pendientes{
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 20px;
+  background-color: rgba(40, 135, 139, 0.75);
+  color: #FFFFFF;
+  width: auto;
+  font-size: 13px;
+}
 #frame .content .messages ul li img {
   width: 37px;
   height: 37px;

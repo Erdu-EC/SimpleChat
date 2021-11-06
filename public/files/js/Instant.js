@@ -202,7 +202,14 @@ function AgregarMensajesABufferChat(datos) {
         }
         mensaje.attr("data-id", datos.id_msg);
         let espacio_chat = $(buffer_chat.get(datos.user_name));
-        espacio_chat.find("#lista-mensajes").append(mensaje);
+        let lista = espacio_chat.find("#lista-mensajes");
+        //Se busca la etiqueta que separa los mensajes nuevos, si no existe se agrega
+        let marcador= lista.find("li.marcador > .marcador-pendientes");
+        if(marcador.length === 0 ){
+            lista.append(ObtenerSeparadorMensajesPendientes);
+        }
+        //Al final se agregan los mensajes al objeto en buffer, y se guardan los  cambios
+        lista.append(mensaje);
         buffer_chat.set(datos.user_name, espacio_chat);
         return;
     }

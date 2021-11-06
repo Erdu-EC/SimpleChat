@@ -494,7 +494,7 @@ $(document).on("click", "#btn-cerrar-configuraciones", function () {
     $("#espacio-de-configuracion").addClass("no-visible-sm");
     $("#sidepanel").removeClass("no-visible-sm");
     $('#seccion-conversaciones').parent().addClass('active')
-
+    ActualizarConversacion();
 });
 
 /*Busqueda en conversaciones*/
