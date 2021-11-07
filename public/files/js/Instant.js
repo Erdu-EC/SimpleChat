@@ -18,8 +18,10 @@ $(document).ready(function () {
             }
 
             //Si hay invitaciones no recibidas.
-            if (ev.data['invitations'].length > 0)
+            if (ev.data['invitations'].length > 0){
                 TratarInvitaciones(ev.data['invitations']);
+            }
+
 
             //Si hay cambios de estado no recibidos.
             if (ev.data['msg_states'].length > 0)
@@ -152,19 +154,29 @@ function TratarInvitaciones(inv_list) {
         }
 
         //Si la conversacion esta abierta, mostrar modal de invitacion.
-        if (espacio_chat.attr('data-nick') === row.nick)
-            $(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)).prependTo(espacio_chat);
+        if (espacio_chat.attr('data-nick') === row.nick && espacio_chat.is(':visible') )
+        {
+            if(espacio_chat.find("#mensaje-invitacion").length === 0){$(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)).prependTo(espacio_chat);}
+        NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);}
         else{
+
             if (buffer_chat.has(row.nick)){
-                let chat_en_buffer = $(buffer_chat.get(row.nick));
-                chat_en_buffer.find("#lista-mensajes").before(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name));
-                buffer_chat.get(row.nick,chat_en_buffer );
+
+                let chat_en_buffer = $("<div></div>").html(buffer_chat.get(row.nick));
+                if(chat_en_buffer.find("#mensaje-invitacion").length === 0){
+                    chat_en_buffer.find(".messages").before($(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)));
+                    buffer_chat.set(row.nick,chat_en_buffer.html() );
+
+                    //Si no existe notificación en espacio-de-chat, se crea una notificacion de escritorio
+                    NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);
+                }
+
             }
         }
 
 
 
-        NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);
+
     })
 }
 
