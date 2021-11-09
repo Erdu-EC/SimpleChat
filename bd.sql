@@ -158,10 +158,28 @@ END $
 
 CREATE PROCEDURE user_getActiveContacts(in USER_ID int)
 BEGIN
-    SELECT user_name
+    #Actualizando mi estado.
+    UPDATE users SET last_connection = now(), state = 'A' where id = USER_ID;
+
+    #Actualizando los contactos que tengan mas de 5 minutos inactivos.
+    UPDATE users su
+        left join invitations i on USER_ID in (i.id_source, i.id_dest) and su.id in (i.id_source, i.id_dest) and
+                                   i.accepted
+        left join contacts c on c.user_id = USER_ID and c.contact_id = su.id
+    SET su.state = 'I'
+    WHERE su.id != USER_ID
+      and (i.id is not null or c.user_id is not null)
+      and su.state = 'A'
+      and (su.last_connection is null or date_add(su.last_connection, interval 5 minute) < now());
+
+    #Contactos o chat con invitacion aceptada activos
+    SELECT u.user_name
     FROM users u
-             inner join contacts c on u.id = c.contact_id
-    WHERE c.user_id = USER_ID
+             left join invitations i
+                       on USER_ID in (i.id_source, i.id_dest) and u.id in (i.id_source, i.id_dest) and i.accepted
+             left join contacts c on c.user_id = USER_ID and u.id = c.contact_id
+    WHERE u.id != USER_ID
+      and (i.id is not null or c.user_id is not null)
       and u.state = 'A';
 END $
 
@@ -263,7 +281,7 @@ BEGIN
 END $
 
 #Obtener las conversaciones.
-CREATE  PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
+CREATE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
 BEGIN
     #TODO Mensaje mostrado en conversación recibido marcarlos todos.
     SELECT if(c.id_source != USER_ID, s_nick, d_nick)                                      as contact,
