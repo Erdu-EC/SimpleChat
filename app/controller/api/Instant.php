@@ -1,8 +1,6 @@
 <?php
 
-
 	namespace HS\app\controller\api;
-
 
 	use DateInterval;
 	use DateTime;
