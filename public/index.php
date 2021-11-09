@@ -2,7 +2,7 @@
 
 	namespace HS {
 		#Depuración.
-		const APP_DEBUG = false;
+		const APP_DEBUG = true;
 
 		#Aplicación.
 		/**Espacio de nombres base de la aplicación.*/

@@ -70,7 +70,7 @@
 
 		public function GetSCSS(string $filename) {
 			$filename = Path::Combine(SCSS_PATH_ROOT, "$filename.scss");
-			$this->PrintFileIfExist($filename, MimeType::CSS);
+			$this->PrintFileIfDebugAndExist($filename, MimeType::CSS);
 		}
 
 		private function PrintFileIfExist($filename, $mimetype) {

@@ -17,8 +17,8 @@ $SESSION_USER_NAME = $SESSION->user_name;
 	<?php require 'template/Head.php' ?>
 
     <title><?= APP_NAME ?>: Inicio</title>
-    <link rel="stylesheet" href="/files/scss/chat.scss">
-    <link rel="stylesheet" href="/files/scss/chat-movil.scss">
+    <link rel="stylesheet" href="/files/css/chat.css">
+    <link rel="stylesheet" href="/files/css/chat-movil.css">
     <link rel="stylesheet" href="/files/vanillatoasts/vanillatoasts.css">
 </head>
 <body class=" sb-nav-fixed sb-sidenav-toggled">
