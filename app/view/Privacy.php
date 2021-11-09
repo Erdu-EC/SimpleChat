@@ -21,7 +21,7 @@ if (Session::IsLogin()){
     <?php require 'template/Head.php' ?>
 
     <title><?= APP_NAME ?>: Politicas de privacidad</title>
-    <link rel="stylesheet" href="/files/scss/privacy.css">
+    <link rel="stylesheet" href="/files/css/privacy.css">
 </head>
 <body>
 <header class="">

@@ -15,7 +15,7 @@ if (Session::IsLogin()) HttpResponse::Redirect('/');
     <?php require 'template/Head.php' ?>
 
     <title><?= APP_NAME ?>: Registro</title>
-    <link rel="stylesheet" href="/files/scss/register.css">
+    <link rel="stylesheet" href="/files/css/register.css">
 </head>
 <body>
 
