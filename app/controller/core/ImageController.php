@@ -154,7 +154,9 @@
 									$current_profile_img = Path::GetFileName($session->user_profile_img);
 
 									//Eliminando imagen de perfil anterior.
-									unlink(self::GetPathOfType($type, $current_profile_img));
+                                    $oldpath = self::GetPathOfType($type, $current_profile_img);
+                                    if (file_exists($oldpath))
+									    unlink($oldpath);
 
 									//Actualizando datos de sesion.
 									$session->user_profile_img = $new_profile_img;
