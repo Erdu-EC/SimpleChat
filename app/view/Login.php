@@ -19,7 +19,7 @@ if (Session::IsLogin())
 
         <title><?= APP_NAME ?>: Inició de sesión</title>
 
-        <link rel="stylesheet" href="/files/scss/login.scss">
+        <link rel="stylesheet" href="/files/scss/login.css">
 
     </head>
     <body>
