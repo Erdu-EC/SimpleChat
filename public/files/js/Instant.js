@@ -13,12 +13,15 @@ $(document).ready(function () {
         const chatWorker = new Worker('/files/js/Chat-bg.js');
         chatWorker.onmessage = function (ev) {
             //Si hay mensajes no leidos.
-            if (ev.data['messages'].length > 0)
+            if (ev.data['messages'].length > 0){
                 TratarMensajes(ev.data['messages']);
+            }
 
             //Si hay invitaciones no recibidas.
-            if (ev.data['invitations'].length > 0)
+            if (ev.data['invitations'].length > 0){
                 TratarInvitaciones(ev.data['invitations']);
+            }
+
 
             //Si hay cambios de estado no recibidos.
             if (ev.data['msg_states'].length > 0)
@@ -37,7 +40,7 @@ function TratarMensajes(mensajes) {
         const lista_conversaciones = $('#lista-conversaciones');
         let elemento_contacto = lista_conversaciones.find(`.contact > div[data-usuario=${row.user_name}]`);
         const nombre = row.first_name + " " + row.last_name;
-        var texto_saneado = SanearTexto(row.content);
+        var texto_saneado = SanearTexto(row.text);
 
         //Si no existe conversacion, agregarla.
         if (elemento_contacto.length === 0) {
@@ -51,17 +54,21 @@ function TratarMensajes(mensajes) {
         //Si el mensaje es para el contacto de la actual conversación abierta en el chat.
         if (row.user_name === $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario")) {
             MostrarMensajeEnEspacioDeChat(nombre, row);
-        } else {
-            if (row.content_img !== null) {
-                row.content = nombre + " te ha enviado una imagen.";
-            }
-            MensajeNuevo(row.id, nombre, row.content, row.profile);
+        }
+        else {
+
+            if (row.img !== null) {
+                row.text = nombre + " te ha enviado una imagen.";
+            } else if (row.audio !== null) {
+                row.text = nombre + " te ha enviado un audio.";
+             }
+            MensajeNuevo(row.id, nombre, row.text, row.profile);
 
             // Agregar mensaje a la lista de mensajes en buffer
             AgregarMensajesABufferChat(row);
 
             //Contar mensajes no leidos.
-            const msg_pendientes = elemento_contacto.find('.num-msj-pendientes.online span');
+            const msg_pendientes = elemento_contacto.find('.num-msj-pendientes').removeClass('anterior').addClass('online').find('span');
 
             if (msg_pendientes.length === 0) {
                 elemento_contacto.find('.msj-pendientes').append(obtener_elemento_msg_pendientes(1));
@@ -74,8 +81,14 @@ function TratarMensajes(mensajes) {
 
         //Mostrar vista previa del mensaje en lista de conversaciones.
         elemento_contacto.find('.hora-ult-mesj').text(Fecha_hora_ultima_Mensaje(row.send_date));
-        elemento_contacto.find('.preview').html(row.content_img !== null ? '<span class="material-icons icon-indicador">image</span> Archivo de imagen' : row.content);
 
+        if (row.img !== null) {
+            elemento_contacto.find('.preview').html(`<span class="material-icons icon-indicador">image</span> Archivo de imagen`);
+        } else if (row.audio !== null) {
+            elemento_contacto.find('.preview').html(`<span class="material-icons icon-indicador">mic</span> Archivo de audio`);
+        } else {
+            elemento_contacto.find('.preview').html(row.text);
+        }
         //Actualizar total de conversaciones no leidas.
         ActualizarTotalDeConversacionesNoLeidas();
     })
@@ -84,31 +97,40 @@ function TratarMensajes(mensajes) {
 function MostrarMensajeEnEspacioDeChat(nombre, datos) {
     let mensaje;
 
-    if (datos.content_img !== null) {
-        datos.content = nombre + " te ha enviado una imagen.";
-        mensaje = ObtenerElementoImgContacto(datos.profile, datos.content_img.split('\\').pop().split('/').pop(), datos.content_img, ObtenerHora(datos.send_date));
-    } else
-
-        mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, ObtenerHora(datos.send_date)));
-
+    if (datos.img !== null) {
+        datos.text = nombre + " te ha enviado una imagen.";
+        mensaje = ObtenerElementoImgContacto(datos.profile, datos.img.split('\\').pop().split('/').pop(), '/files/chat/'+datos.img, ObtenerHora(datos.send_date));
+    }
+   else if (datos.audio !== null)
+   {
+       datos.text = nombre + " te ha enviado un audio.";
+       mensaje = ObtenerElementoMensajeAudioRecibido('/files/audio/'+datos.audio, datos.profile,  ObtenerHora(datos.send_date),datos.id_msg);
+    }
+   else {
+        mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.text, ObtenerHora(datos.send_date)));
+    }
 
     AgregarMensajeEnEspacioDeChat(mensaje, datos.send_date);
     mensaje[0].scrollIntoView();
 
-    NotificacionesEscritorio(datos.id, nombre, datos.content, datos.profile);
+    NotificacionesEscritorio(datos.id, nombre, datos.text, datos.profile);
 
     //Enviar leido al servidor.
     MarcarComoLeido(datos.id_msg, null);
 }
 
 function ActualizarTotalDeConversacionesNoLeidas() {
-    const elementos_msg_pendientes = $(`#lista-conversaciones .contact .num-msj-pendientes.online`);
+    const elementos_msg_pendientes = $(`#lista-conversaciones .contact .num-msj-pendientes`);
     const icono_contador = $('#icon-indicador-mensaje span');
 
-    if (elementos_msg_pendientes.length === 0)
+    if (elementos_msg_pendientes.length === 0){
         icono_contador.parent().hide();
-    else
+        document.title = `SimpleChat: Inicio`;
+    }
+    else{
         icono_contador.text(elementos_msg_pendientes.length).parent().show();
+        document.title = `(${elementos_msg_pendientes.length}) SimpleChat: Inicio`;
+    }
 }
 
 
@@ -132,19 +154,29 @@ function TratarInvitaciones(inv_list) {
         }
 
         //Si la conversacion esta abierta, mostrar modal de invitacion.
-        if (espacio_chat.attr('data-nick') === row.nick)
-            $(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)).prependTo(espacio_chat);
+        if (espacio_chat.attr('data-nick') === row.nick && espacio_chat.is(':visible') )
+        {
+            if(espacio_chat.find("#mensaje-invitacion").length === 0){$(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)).prependTo(espacio_chat);}
+        NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);}
         else{
+
             if (buffer_chat.has(row.nick)){
-                let chat_en_buffer = $(buffer_chat.get(row.nick));
-                chat_en_buffer.find("#lista-mensajes").before(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name));
-                buffer_chat.get(row.nick,chat_en_buffer );
+
+                let chat_en_buffer = $("<div></div>").html(buffer_chat.get(row.nick));
+                if(chat_en_buffer.find("#mensaje-invitacion").length === 0){
+                    chat_en_buffer.find(".messages").before($(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)));
+                    buffer_chat.set(row.nick,chat_en_buffer.html() );
+
+                    //Si no existe notificación en espacio-de-chat, se crea una notificacion de escritorio
+                    NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);
+                }
+
             }
         }
 
 
 
-        NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);
+
     })
 }
 
@@ -171,14 +203,25 @@ function TratarCambiosDeEstadosEnMensajes(datos) {
 function AgregarMensajesABufferChat(datos) {
     if (buffer_chat.has(datos.user_name)) {
         let mensaje;
-        if (datos.content_img !== null) {
-            mensaje = ObtenerElementoImgContacto(datos.profile, datos.content_img.split('\\').pop().split('/').pop(), datos.content_img, ObtenerHora(datos.send_date));
-        } else {
-            mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.content, ObtenerHora(datos.send_date)));
+        if (datos.img !== null) {
+            mensaje = ObtenerElementoImgContacto(datos.profile, datos.img.split('\\').pop().split('/').pop(), datos.img, ObtenerHora(datos.send_date));
+        }
+        else if(datos.audio !== null){
+            mensaje = ObtenerElementoMensajeAudioRecibido('/files/audio/'+datos.audio, datos.profile,  ObtenerHora(datos.send_date),datos.id_msg);
+        }
+        else {
+            mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.text, ObtenerHora(datos.send_date)));
         }
         mensaje.attr("data-id", datos.id_msg);
         let espacio_chat = $(buffer_chat.get(datos.user_name));
-        espacio_chat.find("#lista-mensajes").append(mensaje);
+        let lista = espacio_chat.find("#lista-mensajes");
+        //Se busca la etiqueta que separa los mensajes nuevos, si no existe se agrega
+        let marcador= lista.find("li.marcador > .marcador-pendientes");
+        if(marcador.length === 0 ){
+            lista.append(ObtenerSeparadorMensajesPendientes);
+        }
+        //Al final se agregan los mensajes al objeto en buffer, y se guardan los  cambios
+        lista.append(mensaje);
         buffer_chat.set(datos.user_name, espacio_chat);
         return;
     }
@@ -186,12 +229,12 @@ function AgregarMensajesABufferChat(datos) {
 
 function TratarCambiosDeEstadosEnMensajesRecibidos() {
     const lista = $('#lista-mensajes');
-
     lista.find(`.recibido[data-id]`).each(function () {
         if (MarcarComoLeido($(this).attr('data-id'), function () {
+            $(this).removeAttr('data-id');
             return true;
         })) {
-            $(this).removeAttr('data-id');
+
         }
     });
 }

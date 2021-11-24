@@ -22,8 +22,7 @@ sudo chmod -R 770 ${SERVER_DIR}/upload
 sudo chown -R ${USER} ${SERVER_DIR}
 
 #Instalando modulos.
-sudo apt-get install php7.4-gd -y
-sudo apt-get install php7.4-mysql -y
+sudo apt-get install php7.4-gd php7.4-mysql -y
 
 #Habilitando modulos.
 sudo a2enmod rewrite

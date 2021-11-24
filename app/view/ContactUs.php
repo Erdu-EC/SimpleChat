@@ -19,7 +19,7 @@ if (Session::IsLogin()){
     <?php require 'template/Head.php' ?>
 
     <title><?= APP_NAME ?>: Acerca de nosotros</title>
-    <link rel="stylesheet" href="/files/scss/contact.scss">
+    <link rel="stylesheet" href="/files/css/contact.css">
 </head>
 <body>
 <header class="">

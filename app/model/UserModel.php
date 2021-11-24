@@ -104,7 +104,7 @@
 
 		//Metodos para mensajes.
 		public function SendMessage(int $user_id, int $contact_id, string $idFake, string $text): bool {
-			return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $idFake, $text, null);
+			return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $idFake, $text, null, null);
 		}
 
 		public function SendMessageImg(int $user_id, int $contact_id, string $idFake, string $img, callable $action){
@@ -112,7 +112,16 @@
 				if ($action() === false)
 					return false;
 
-				return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $idFake, null, $img);
+				return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $idFake, null, $img, null);
+			});
+		}
+
+		public function SendMessageAudio(int $user_id, int $contact_id, string $idFake, string $audio, callable $action){
+			return $this->ExecuteTransaction(function () use ($idFake, $user_id, $contact_id, $audio, $action) {
+				if ($action() === false)
+					return false;
+
+				return (new MessageModel($this->PDO))->Add($user_id, $contact_id, $idFake, null, null, $audio);
 			});
 		}
 

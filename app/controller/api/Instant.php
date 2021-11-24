@@ -1,8 +1,6 @@
 <?php
 
-
 	namespace HS\app\controller\api;
-
 
 	use DateInterval;
 	use DateTime;
@@ -54,13 +52,12 @@
 					$contacts_model = new ContactModel($message_model->GetPDO());
 					$contact_data = $contacts_model->GetActiveContacts($user_id);
 
-					//Logger::Log('instant', 'data++', ($last_send_ca)->format('Y-m-d H:i:s') . " < " . (new DateTime())->format('Y-m-d H:i:s'));
-
 					if (!empty($contact_data) && $contact_data->count() > 0) {
 						$session = new Session();
 						$session->last_contact_active_data = (new DateTime())->format('Y-m-d H:i:s');
 						unset($session);
 					}
+                    unset($contacts_model);
 				}
 
 				unset($invitation_model);

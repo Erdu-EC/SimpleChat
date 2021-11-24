@@ -48,6 +48,9 @@
 
 			//Obteniendo miniatura e imprimiendola
 			try {
+				if (($time = filemtime($path)) !== false)
+					HttpResponse::Set('Last-Modified: ' . gmdate('D, d M Y H:i:s', $time).' GMT');
+
 				$thumb = $image->GetThumbnail($THUMB_WIDTH, $THUMB_HEIGHT, Path::Combine(APP_DIR::IMAGE_CACHE, $type));
 				$thumb->Print();
 			} catch (ImageException $ex) {
@@ -151,7 +154,9 @@
 									$current_profile_img = Path::GetFileName($session->user_profile_img);
 
 									//Eliminando imagen de perfil anterior.
-									unlink(self::GetPathOfType($type, $current_profile_img));
+                                    $oldpath = self::GetPathOfType($type, $current_profile_img);
+                                    if (file_exists($oldpath))
+									    unlink($oldpath);
 
 									//Actualizando datos de sesion.
 									$session->user_profile_img = $new_profile_img;
@@ -178,7 +183,7 @@
 						//Obteniendo contacto y nombre con que se guardara el fichero.
 						$contact_id = !empty($_POST['contact']) ? $_POST['contact'] : die(json_encode([false, 6]));
 						$img_name = dechex($user_id) . md5(uniqid('', true)) . Path::GetExtension($img_name);
-						$fakeId =  md5(uniqid(dechex($user_id), true));
+						$fakeId = md5(uniqid(dechex($user_id), true));
 
 						//Insertando en base de datos el mensaje que contendra el fichero.
 						if (($user = new UserModel(DBAccount::Root))->SendMessageImg($user_id, $contact_id, $fakeId, $img_name, fn() => $accion_optimizacion($img_name))) {
@@ -206,8 +211,7 @@
 			}
 		}
 
-		private
-		static function GetPathOfType(string $type, string $filename): ?string {
+		private static function GetPathOfType(string $type, string $filename): ?string {
 			//Si no es un tipo de imagen valido...
 			if (!isset(APP_DIR::IMAGE[$type])) {
 				HttpResponse::Set(HttpResponse::_404_NOTFOUND);

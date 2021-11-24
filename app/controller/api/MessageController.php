@@ -44,10 +44,10 @@
 
 			//Modificando valores.
 			for ($i = 0; $i < count($data); $i++)
-				$data[$i]->profile_img = APP_URL::OfImageProfile($data[$i]->profile_img);
+				$data[$i]->profile = APP_URL::OfImageProfile($data[$i]->profile);
 
 			//Devolviendo datos.
-			return json_encode(ArrayUtils::GetIndexedValues($data->GetInnerArray()));
+			return json_encode($data->GetInnerArray(true));
 		}
 
 		public function GetConversationsWithContact(string $user_name) {
@@ -94,7 +94,9 @@
 			//Tratando mensajes con imagenes.
 			for ($i = 0; $i < count($data->messages); $i++) {
 				$url_img = $data->messages[$i]->img;
+				$url_audio = $data->messages[$i]->audio;
 				$data->messages[$i]->img = !empty($url_img) ? APP_URL::OfChatImage($url_img) : null;
+				$data->messages[$i]->audio = !empty($url_audio) ? APP_URL::OfChatAudio($url_audio) : null;
 			}
 
 			//Destruyendo variables.

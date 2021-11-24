@@ -67,17 +67,18 @@ CREATE TABLE contacts
 
 CREATE TABLE message
 (
-    id          INT AUTO_INCREMENT,
-    id_temp     VARCHAR(50) NULL,
-    id_source   INT         NOT NULL,
-    id_dest     INT         NOT NULL,
-    send_date   datetime,
-    rcv_date    datetime,
-    read_date   datetime,
-    content     TEXT        NOT NULL,
-    content_img TEXT        NULL,
-    rcv_see     bool        NOT NULL DEFAULT FALSE,
-    read_see    bool        NOT NULL DEFAULT FALSE,
+    id            INT AUTO_INCREMENT,
+    id_temp       VARCHAR(50) NULL,
+    id_source     INT         NOT NULL,
+    id_dest       INT         NOT NULL,
+    send_date     datetime,
+    rcv_date      datetime,
+    read_date     datetime,
+    content       TEXT        NOT NULL,
+    content_img   TEXT        NULL,
+    content_audio TEXT        NULL,
+    rcv_see       bool        NOT NULL DEFAULT FALSE,
+    read_see      bool        NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id),
     FOREIGN KEY (id_source) REFERENCES users (id),
     FOREIGN KEY (id_dest) REFERENCES users (id),
@@ -157,7 +158,29 @@ END $
 
 CREATE PROCEDURE user_getActiveContacts(in USER_ID int)
 BEGIN
-    SELECT user_name FROM users u inner join contacts c on u.id = c.contact_id WHERE c.user_id = USER_ID and u.state = 'A';
+    #Actualizando mi estado.
+    UPDATE users SET last_connection = now(), state = 'A' where id = USER_ID;
+
+    #Actualizando los contactos que tengan mas de 5 minutos inactivos.
+    UPDATE users su
+        left join invitations i on USER_ID in (i.id_source, i.id_dest) and su.id in (i.id_source, i.id_dest) and
+                                   i.accepted
+        left join contacts c on c.user_id = USER_ID and c.contact_id = su.id
+    SET su.state = 'I'
+    WHERE su.id != USER_ID
+      and (i.id is not null or c.user_id is not null)
+      and su.state = 'A'
+      and (su.last_connection is null or date_add(su.last_connection, interval 5 minute) < now());
+
+    #Contactos o chat con invitacion aceptada activos
+    SELECT u.user_name
+    FROM users u
+             left join invitations i
+                       on USER_ID in (i.id_source, i.id_dest) and u.id in (i.id_source, i.id_dest) and i.accepted
+             left join contacts c on c.user_id = USER_ID and u.id = c.contact_id
+    WHERE u.id != USER_ID
+      and (i.id is not null or c.user_id is not null)
+      and u.state = 'A';
 END $
 
 CREATE FUNCTION user_is_contact(USERID int, CONTACTID int) RETURNS BOOLEAN
@@ -234,7 +257,7 @@ BEGIN
 END $
 
 #Procedimientos para mensajes.
-CREATE FUNCTION msg_Send(idFake varchar(50), source int, dest int, msg text, img text) RETURNS INT
+CREATE FUNCTION msg_Send(idFake varchar(50), source int, dest int, msg text, img text, audio text) RETURNS INT
     MODIFIES SQL DATA
 BEGIN
     #Si usuario no pertenece a los contactos del destinario
@@ -250,8 +273,8 @@ BEGIN
     END IF;
 
     #Insertar mensaje en cualquier caso.
-    INSERT INTO message(id_temp, id_source, id_dest, send_date, content, content_img)
-    VALUES (idFake, source, dest, NOW(), msg, img);
+    INSERT INTO message(id_temp, id_source, id_dest, send_date, content, content_img, content_audio)
+    VALUES (idFake, source, dest, NOW(), msg, img, audio);
 
     #Devolver ID del mensaje.
     RETURN LAST_INSERT_ID();
@@ -261,18 +284,25 @@ END $
 CREATE PROCEDURE user_GetConversations(IN USER_ID int, IN CONTACT_ID int)
 BEGIN
     #TODO Mensaje mostrado en conversación recibido marcarlos todos.
-    SELECT if(c.id_source != USER_ID, s_nick, d_nick)                                      as contact_id,
-           if(c.id_source != USER_ID, s_first_name, d_first_name)                          as first_name,
-           if(c.id_source != USER_ID, s_last_name, d_last_name)                            as last_name,
-           if(c.id_source != USER_ID, s_profile_img, d_profile_img)                        as profile_img,
+    SELECT if(c.id_source != USER_ID, s_nick, d_nick)                                      as contact,
+           if(c.id_source != USER_ID, s_first_name, d_first_name)                          as firstname,
+           if(c.id_source != USER_ID, s_last_name, d_last_name)                            as lastname,
+           if(c.id_source != USER_ID, s_profile_img, d_profile_img)                        as profile,
            if(c.id_source != USER_ID, s_state, d_state)                                    as state,
            c.id_source = USER_ID                                                           as isMyMessage,
            user_HasInvitation(USER_ID, if(c.id_source != USER_ID, c.id_source, c.id_dest)) as hasInvitation,
            if(c.id_source = USER_ID, m.id, mr.id)                                          as msg_id,
-           if(c.id_source = USER_ID, m.content, mr.content)                                as msg_content,
+           if(c.id_source = USER_ID, m.content, mr.content)                                as msg_text,
+           if(c.id_source = USER_ID, m.content_img, mr.content_img)                        as msg_img,
+           if(c.id_source = USER_ID, m.content_audio, mr.content_audio)                    as msg_audio,
            if(c.id_source = USER_ID, m.send_date, mr.send_date)                            as msg_send,
            if(c.id_source = USER_ID, m.rcv_date, mr.rcv_date)                              as msg_rcv,
-           if(c.id_source = USER_ID, m.read_date, mr.read_date)                            as msg_read
+           if(c.id_source = USER_ID, m.read_date, mr.read_date)                            as msg_read,
+           (select count(*)
+            from message_readable mrci
+            where mrci.id_dest = USER_ID
+              and mrci.id_source = if(c.id_source = USER_ID, c.id_dest, c.id_source)
+              and mrci.read_date is null)                                                  as unread_count
     FROM conversations c
              left outer join message_readable mr on mr.id = msg_id
              left outer join message m on m.id = msg_id and c.id_source = USER_ID
@@ -299,13 +329,14 @@ BEGIN
       and msg.id_dest = USER_ID
       and (msg.rcv_date IS NULL or msg.read_date IS NULL);
 
-    select id_temp     as id,
-           id_source   as origin,
-           content     as text,
-           content_img as img,
-           send_date   as date_send,
-           rcv_date    as date_reception,
-           read_date   as date_read
+    select id_temp       as id,
+           id_source     as origin,
+           content       as text,
+           content_img   as img,
+           content_audio as audio,
+           send_date     as date_send,
+           rcv_date      as date_reception,
+           read_date     as date_read
     from (
              select *
              from message
@@ -338,13 +369,14 @@ BEGIN
     UPDATE message set rcv_date = NOW() where id in (select id from unrcv_messages);
 
     select u.id,
-           mr.id_temp    as id_msg,
+           mr.id_temp       as id_msg,
            u.user_name,
            u.first_name,
            u.last_name,
-           u.profile_img as profile,
-           mr.content,
-           mr.content_img,
+           u.profile_img    as profile,
+           mr.content       as text,
+           mr.content_img   as img,
+           mr.content_audio as audio,
            mr.send_date
     from message_readable mr
              inner join users u on id_source = u.id
@@ -400,7 +432,7 @@ DELIMITER ;
 insert into users (id, user_name, pass, first_name, last_name, birth_date, gender, email, state, create_at,
                    last_connection, profile_img)
 values (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa', 'E', 'C', now(), 'M', null, 'I',
-        now(), null, '0_erdu.png'),
+        now(), null, 'erdu.png'),
        (2, 'test', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', now(), 'M', null,
         'I', now(), null, 'photo-profile-ma-1.png'),
        (3, 'test2', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Prueba', 'TEST', now(), 'M', null,

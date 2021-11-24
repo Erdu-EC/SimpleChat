@@ -8,15 +8,16 @@ $(document).on("keydown", "#contenido-mensaje", function (e) {
 $(document).on("keyup change", "#contenido-mensaje", function () {
     var message = $("#contenido-mensaje").text();
     if ($.trim(message) === '') {
-        $("#btn-enviar-mensaje").removeClass("activar");
+        $("#btn-enviar-mensaje").removeClass("activar").addClass("modo-microfono").html('<i class="fas fa-microphone"></i>').attr("title","Grabar audio");
         $("#buscar-contacto .borrar").remove();
         $("#frame .content .message-input .wrap .entrada-placeholder").show();
 
     } else {
-        $("#btn-enviar-mensaje").addClass("activar");
+        $("#btn-enviar-mensaje").removeClass("modo-microfono").addClass("activar").html(`<i class="fas fa-paper-plane"></i>`).attr("title","Enviar mensaje");
         $("#cuadro-busqueda-usuario").after(' <div class="borrar"><span class="material-icons"> close</span></div>');
     }
 });
+
 
 $(document).on('click', '#mensaje-invitacion button', function () {
     const boton_si = $('#mensaje-invitacion #mensaje-invitacion-si');
@@ -60,8 +61,56 @@ $(document).on('click', '#mensaje-invitacion button', function () {
 });
 
 $(document).on('click', '#btn-enviar-mensaje', function () {
-    EnviarMensaje()
+    if($(this).hasClass("modo-microfono")){
+      GrabarAudio();
+        AgregarControlesGrabando();
+    }else{
+        EnviarMensaje();
+    }
+
 });
+
+let grabacion = null;
+let track;
+
+function GrabarAudio() {
+
+    const soporte = navigator.mediaDevices.getUserMedia;
+
+    if(!soporte){
+        swal({text:"La versión de tu navegador no soporta acceso al micrófono.", button:"Ok", icon:"/files/icon/not-microphone.png?w=50",  dangerMode: true,});
+    }else {
+        if (grabacion) return;
+//Iniciamos la grabacion
+        navigator.mediaDevices.getUserMedia({audio: { audioBitsPerSecond : 256000 ,audioBitrateMode:'variable' } })
+            .then(  stream => {
+                const fragmentosDeAudio = [];
+                    // Comenzar a grabar con el stream
+                    grabacion = new MediaRecorder(stream);
+                    grabacion.start(1000);
+                    Contador();
+                    //Agregar fragmentos al arreglo cuando haya datos
+                    grabacion.addEventListener("dataavailable", e => {
+                        fragmentosDeAudio.push(e.data);
+                    });
+
+                    // Evento que se ejecuta al detener grabacion
+                    grabacion.addEventListener("stop", () => {
+                        stream.getTracks().forEach(track => track.stop());
+                        track = new Blob(fragmentosDeAudio.slice(), { type: 'audio/webm' });
+                        grabacion = null;
+                    });
+                }
+            )
+            .catch(e => {
+                swal({text:"Error al intentar acceder al micrófono. Verifique si se ha concedido el permiso.", button:"Ok", icon:"/files/icon/not-microphone.png?w=50",  dangerMode: true,});
+            });
+    }
+
+};
+
+
+
 
 function EnviarMensaje() {
     const textarea = $('#contenido-mensaje');
@@ -69,12 +118,12 @@ function EnviarMensaje() {
     var texto_org = texto;
     texto = SanearTexto(texto);
     textarea.html('');
+$("#lista-mensajes").find("li.marcador .marcador-pendientes").remove();
+    $("#btn-enviar-mensaje").removeClass("activar").addClass("modo-microfono").html('<i class="fas fa-microphone"></i>').attr("title","Grabar audio");
 
-    $("#btn-enviar-mensaje").removeClass("activar");
     if (texto !== '') {
         const mensaje = $(ObtenerElementoMensajeEnviado(texto));
         const espacio_chat = $('#espacio-de-chat > .messages');
-
         $.ajax('/action/messages/send', {
             method: 'post', dataType: 'json', mimeType: 'application/json',
             data: {
@@ -94,31 +143,7 @@ function EnviarMensaje() {
                     //Agregando id y estado al mensaje enviado.
                     mensaje.attr('data-id', json[1]);
                     mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
-
-                    //Actualizar item de conversación.
-                    let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${usuario_nick}]`).parent();
-
-                    //Si no existe conversacion, agregarla.
-                    if (elemento_conversacion.length === 0) {
-                        let estado = $("#espacio-de-chat").find(".ult-conex").text();
-                        switch (estado){
-                            case 'Activo':
-                                estado= "online";
-                                break;
-                            case 'Inactivo':
-                                estado= "inactivo";
-                                break;
-                        }
-                        elemento_conversacion = $('<li>', {
-                            class: 'contact active',
-                            html: ObtenerElementoConversacion(usuario_nick, espacio_chat.parent().find('.nombre-chat').text(), '', espacio_chat.parent().find('.img-contacto').attr('src').split("?")[0], estado, null, texto, new Date(), new Date(), null, null)
-
-                        });
-                    }
-
-                    elemento_conversacion.prependTo($('#lista-conversaciones'));
-                    elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span>' + texto);
-                    elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
+                    AgregarElementoConversacion(usuario_nick,texto );
                     textarea.focus();
                     $("#frame .content .message-input .wrap .entrada-placeholder").show();
                 } else
@@ -131,23 +156,92 @@ function EnviarMensaje() {
     $("#contenido-mensaje").focus();
 }
 
+//Enviar archivo de audio
+function EnviarGrabacion(mensaje){
+    const contacto = $('#espacio-de-chat > .messages');
+//Agregando a formulario.
+    const formData = new FormData();
+    formData.append('audio', track, 'audio.webm');
+    formData.append('contact', contacto.attr('data-usuario'))
+
+    const progreso = $('<div class="barra-progreso"><div class="barra"></div></div>');
+    var remitente = contacto.attr('data-nick');
+
+    $.ajax({
+        url: '/action/users/audio/upload',
+        type: 'post',
+        method: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        mimeType: 'application/json',
+
+        xhr: function () {
+            const xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", function (evt) {
+                if (evt.lengthComputable) {
+                    var porcentaje = Math.trunc((evt.loaded / evt.total) * 100);
+                    progreso.find('.barra').css("width", porcentaje + '%');
+                }
+            }, false);
+
+            return xhr;
+        },
+        beforeSend: () => {
+            $("#lista-mensajes").append(mensaje);
+
+            $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+            mensaje.find(".contenedor-audio-enviado").prepend(progreso);
+        },
+        success: function (response) {
+            if (response[0]) {
+                mensaje.attr('data-id', response[2]);
+                mensaje.find('.extra-mensaje').html(ObtenerElementoExtraMensaje(ObtenerHora(new Date()), 1));
+                //mensaje.find('audio').attr('src', response[1]);
+                progreso.remove();
+
+                //Actualizar item de conversación.
+                AgregarElementoConversacion(remitente, '<span class="material-icons icon-indicador">mic</span> Archivo de audio');
+            } else {
+                swal({
+                    title: "¡Ha ocurrido un error!",
+                    text: "No se ha podido subir el audio.",
+                    icon: "error",
+                    button: "Ok",
+                });
+            }
+        },
+        error: function () {
+            swal({
+                title: "¡Ha ocurrido un error!",
+                text: "No se ha podido subir el audio. Por favor, verifique su conexión a Internet.",
+                icon: "error",
+                button: "Ok",
+            });
+        }
+    });
+}
 //Agregar contacto
 function CargarEspacioDeChat() {
     var li_contenedor = $(this).parent();
     $("#sidepanel").addClass('no-visible-sm');
+    if($(this).hasClass("elemento-conversacion")){
+        $("#mi-perfil-sidepanel").removeClass("no-visible");
+    }
     if (li_contenedor.hasClass("active"))
         return; //evitamos recargar el espacio de chat en caso de que el elemento seleccionado sea el que está en uso
 
-    $("#btn-cerrar-contacto").trigger("click");//provocamos el evento click en el boton de cerrar info de contacto (en caso de que se encuentre en pantalla)
+    //provocamos el evento click en el boton de cerrar info de contacto (en caso de que se encuentre en pantalla)
+    $("#btn-cerrar-contacto").trigger("click");
 
     var usr_ant = $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario");
+
     $('#lista-conversaciones li.active').removeClass('active');
     const nombre_usuario = $(this).attr('data-usuario');
     const espacio_chat = $('#espacio-de-chat');
 
     let m= $('#lista-conversaciones li .elemento-conversacion[data-usuario="'+nombre_usuario+'"]').parent().addClass("active");
-    //Buffer de borradores y de mensajes
-    //Buffer_Borradores(usr_ant, nombre_usuario, $('#contenido-mensaje').text());
+    //Buffer de conversaciones
     if( m !== undefined){
         if(Buffer_Conversaciones(usr_ant, nombre_usuario) ){
             return;
@@ -164,6 +258,7 @@ function CargarEspacioDeChat() {
 
     $('#espacio-de-configuracion').hide();
     $('#espacio-temporal').remove();
+    $("#espacio-de-chat").focus();
 
     $.ajax(`/Chats/${nombre_usuario}`, {
         method: 'get', dataType: 'json', mimeType: 'application/json',
@@ -207,16 +302,25 @@ function CargarEspacioDeChat() {
                     //Agregando mensaje.
                     let mensaje;
                     if (msg.origin === json.id) {
-                        if (msg.img === null)
-                            mensaje = ObtenerElementoMensajeContacto(json.profile_img, msg.text, ObtenerHora(msg.date_send));
-                        else
+                        if(msg.id !== null){
+                            if(lista_mensajes.find("li.marcador .marcador-pendientes").length === 0)
+                                lista_mensajes.append(ObtenerSeparadorMensajesPendientes);
+                        }
+                        if (msg.img !== null)
                             mensaje = ObtenerElementoImgContacto(json.profile_img, msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send))
+                        else if (msg.audio !== null)
+                            mensaje = ObtenerElementoMensajeAudioRecibido(msg.audio, json.profile_img,ObtenerHora(msg.date_send), msg.id);
+                        else
+                            mensaje = ObtenerElementoMensajeContacto(json.profile_img, msg.text, ObtenerHora(msg.date_send));
                     } else {
-                        if (msg.img === null)
-                            mensaje = ObtenerElementoMensaje(msg.text, ObtenerHora(msg.date_send),
+                        if (msg.img !== null)
+                            mensaje = ObtenerElementoImg(msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send),
+                                msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
+                        else if (msg.audio !== null)
+                            mensaje = ObtenerElementoMensajeAudio(msg.audio, null,  ObtenerHora(msg.date_send),
                                 msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
                         else
-                            mensaje = ObtenerElementoImg(msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send),
+                            mensaje = ObtenerElementoMensaje(msg.text, ObtenerHora(msg.date_send),
                                 msg.date_read !== null ? 3 : msg.date_reception !== null ? 2 : 1);
                     }
 
@@ -232,15 +336,14 @@ function CargarEspacioDeChat() {
                 espacio_chat.find('.messages').scrollTop(espacio_chat.find('.messages').prop("scrollHeight"));
 
                 //Eliminar globo contador de mensajes no leidos.
-                $(`#lista-conversaciones .contact > div[data-usuario=${nombre_usuario}] .num-msj-pendientes.online`).remove();
+                $(`#lista-conversaciones .contact > div[data-usuario=${nombre_usuario}] .num-msj-pendientes`).remove();
 
                 //Actualizar total de conversaciones no leidas.
                 ActualizarTotalDeConversacionesNoLeidas();
 
                 //Actualizar panel de información de contacto, si este esta abierto.
-
                 ActualizarInfoContacto();
-                $("#espacio-de-escritura").focus();
+
             } else {
                 console.log('Error al obtener mensajes.');
             }
@@ -250,16 +353,53 @@ function CargarEspacioDeChat() {
 }
 
 function AgregarMensajeEnEspacioDeChat(item_msg, fecha_msg) {
+
     const lista_msg = $('#lista-mensajes');
     const fecha = ObtenerFecha(fecha_msg);
 
     if (lista_msg.find(`.marcador-fecha:contains(${fecha})`).length === 0)
         lista_msg.append(ObtenerSeparadorDeFechasEnChat(fecha));
+    //Se verifica que no existe la etiqueta que separa los mensajes nuevos
+    if(item_msg.hasClass("recibido")) {
+        if (lista_msg.find("li.marcador .marcador-pendientes").length === 0 && !document.hasFocus())
+            lista_msg.append(ObtenerSeparadorMensajesPendientes);
+    }
 
     lista_msg.append(item_msg);
 }
 
+//Actualizar item de contacto o agregar nuevo
+function AgregarElementoConversacion(usuario_nick, texto){
+    const espacio_chat = $('#espacio-de-chat > .messages');
+                    //Actualizar item de conversación.
+                    let elemento_conversacion = $(`#lista-conversaciones .elemento-conversacion[data-usuario=${usuario_nick}]`).parent();
+
+                    //Si no existe conversacion, agregarla.
+                    if (elemento_conversacion.length === 0) {
+                        let estado = $("#espacio-de-chat").find(".ult-conex").text();
+                        switch (estado){
+                            case 'Activo':
+                                estado= "online";
+                                break;
+                            case 'Inactivo':
+                                estado= "inactivo";
+                                break;
+                        }
+                        elemento_conversacion = $('<li>', {
+                            class: 'contact active',
+                            html: ObtenerElementoConversacion(usuario_nick, espacio_chat.parent().find('.nombre-chat').text(), '', espacio_chat.parent().find('.img-contacto').attr('src').split("?")[0], estado, null, texto, new Date(), new Date(), null, null)
+
+                        });
+                    }
+
+                    elemento_conversacion.prependTo($('#lista-conversaciones'));
+                    elemento_conversacion.find('.preview').html('<span class="material-icons icon-indicador">done</span>' + texto);
+                    elemento_conversacion.find('.hora-ult-mesj').text(ObtenerHora(new Date(Date.now())));
+
+}
+
 const ObtenerSeparadorDeFechasEnChat = fecha_envio => `<li class="marcador"><div class="marcador-fecha no-seleccionable">${fecha_envio}</div></li>`;
+const ObtenerSeparadorMensajesPendientes = () => `<li class="marcador"><div class="marcador-pendientes no-seleccionable">Nuevos mensajes</div></li>`;
 
 const ObtenerModalDeInvitacion = (nombre) => `
                             <div class="notificacion">
@@ -333,27 +473,34 @@ function SanearTexto(str) {
 
 const buffer_chat = new Map();
 function Buffer_Conversaciones(contacto_ant,contacto_act){
-    $("#espacio-de-chat .hacia-abajo").removeClass("visible");
+
     if(! (contacto_ant === undefined || contacto_ant === "" )){
+        $("#lista-mensajes li.marcador .marcador-pendientes").remove();
         buffer_chat.set(contacto_ant, $("#espacio-de-chat").clone().html());
     }
 
 if(! (contacto_act === undefined || contacto_act === "" )) {
     if (buffer_chat.has(contacto_act)) {
         $("#espacio-de-chat").empty();
-        $("#espacio-de-chat").html(buffer_chat.get(contacto_act));
-
-        $(`#lista-conversaciones .contact > div[data-usuario=${contacto_act}] .num-msj-pendientes.online`).remove();
-        TratarCambiosDeEstadosEnMensajesRecibidos();
-        ActualizarInfoContacto();
-        ActualizarTotalDeConversacionesNoLeidas();
-        $('#espacio-de-chat').show();
-        $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
-        $('#espacio-de-configuracion').hide();
+        let chat = $(buffer_chat.get(contacto_act));
+        $("#espacio-de-chat").html(chat);
+        $(`#lista-conversaciones .contact > div[data-usuario=${contacto_act}] .num-msj-pendientes`).remove();
+        ActualizarConversacion();
         return true;
     }
-
 }
 
     return false;
+}
+
+function ActualizarConversacion(){
+    $("#espacio-de-chat .hacia-abajo").removeClass("visible");
+
+    TratarCambiosDeEstadosEnMensajesRecibidos();
+    ActualizarInfoContacto();
+    ActualizarTotalDeConversacionesNoLeidas();
+    $('#espacio-de-chat').show();
+    $('#espacio-de-configuracion').hide();
+    $("#espacio-de-chat .messages").scrollTop($(".messages").prop("scrollHeight"));
+
 }

@@ -33,7 +33,7 @@ function ActualizarInfoContacto() {
 
                 //Rellenando datos.
                 const perfil = contenedor.find('.card.perfil');
-                perfil.find('img').attr('src', null).attr('src', ObtenerUrlImagen($('.contact-profile img'), 361)).attr('title',json[2]);
+                perfil.find('img').attr('src', null).attr('src', ObtenerUrlImagen($('.contact-profile img'))).attr('title',json[2]);
                 perfil.find('h5').text(json[0] + " " + json[1]);
                 perfil.find('h6').html('<i class="fas fa-user"></i>'+ json[2]);
                 perfil.find('small').text(ObtenerInformacionEstado(json[3],json[4]));

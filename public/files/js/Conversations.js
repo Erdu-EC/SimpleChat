@@ -21,10 +21,9 @@ function cargar_conversaciones() {
                 alerta.html('Tienes ' + json.length + ' conversacion(es)<br/><br/><small class="text-secondary">¡Busca un contacto y haz más!</small>')
 
                 lista_conversaciones.html('');
-
                 json.forEach((registro) => {
                     var estado='';
-                    switch(registro[4]){
+                    switch(registro.state){
                         case 'I':
                             estado='inactivo';
                             break;
@@ -32,16 +31,25 @@ function cargar_conversaciones() {
                             estado= 'online'
                             break;
                     }
+                    if(registro.msg_img !== null){
+                        registro.msg_text = '<span class="material-icons icon-indicador">image</span> Archivo de imagen';
+
+                    }
+                    else if(registro.msg_audio !== null){
+                        registro.msg_text= '<span class="material-icons icon-indicador">mic</span> Archivo de audio';
+                    }
+                    else{
+                        registro.msg_text =  SanearTexto(registro.msg_text);
+                    }
 
                     var msg = $('<li>', {
                         class: 'contact',
-                        html: ObtenerElementoConversacion(registro[0], registro[1], registro[2], registro[3],estado, registro[6], SanearTexto(registro[8]), registro[5], registro[9], registro[10], registro[11]),
+                        html: ObtenerElementoConversacion(registro.contact, registro.firstname, registro.lastname, registro.profile,estado, registro.hasInvitation, registro.msg_text, registro.isMyMessage, registro.msg_send,registro.msg_rcv, registro.msg_read, registro.unread_count),
                     }).appendTo(lista_conversaciones);
-                    if(registro[8]==="" && !(registro[6])){
-                        msg.find(".preview").append('<span class="material-icons icon-indicador">image</span> Archivo de imagen');
 
-                    }
+
                 });
+                ActualizarTotalDeConversacionesNoLeidas();
             }
             $("#sidepanel").focus();
         }
@@ -52,7 +60,7 @@ function cargar_conversaciones() {
         }, 180000);
 }
 
-const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, estado,hay_invitacion, contenido, enviado, ult_msj,hora_recibido, hora_leido) =>
+const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil, estado,hay_invitacion, contenido, enviado, ult_msj, hora_recibido, hora_leido, pendientes) =>
 
     `<div class="wrap elemento-conversacion" data-usuario="${usuario_id}">
 <div class="conversacion-perfil">
@@ -76,8 +84,23 @@ const ObtenerElementoConversacion = (usuario_id, nombres, apellidos, foto_perfil
             <div class="hora-ult-mesj">
                 ${Fecha_hora_ultima_Mensaje(ult_msj)}
             </div>
+            ${(enviado) ? '': EstadosMensajesPendientes(hora_leido, hora_recibido, pendientes)}
         </div>
     </div>`;
+
+function EstadosMensajesPendientes(hora_leido, hora_recibido, mensajes_pendientes){
+
+    if(mensajes_pendientes > 0)
+    {
+        let hora_actual = new Date();
+        let hora_recepcion = new Date(hora_recibido);
+        if( (Math.floor((hora_actual- hora_recepcion)/3600000)) > 1 ){
+            return `<div class="num-msj-pendientes anterior"><span>${mensajes_pendientes}</span></div>`;
+        }
+        return `<div class="num-msj-pendientes online"><span>${mensajes_pendientes}</span></div>`;
+    }
+    return '';
+}
 
 //<div class="num-msj-pendientes anterior"><span>n</span></div> -> para notificaciones vistas
 

@@ -16,7 +16,7 @@
 	$cond_image = [
 		'type' => call_user_func_array([Regex::class, 'InList'], array_keys(APP_DIR::IMAGE)),
 		'filename' => call_user_func_array([Regex::class, 'EndWith'], Image::SUPPORTED_FORMATS),
-		'get' => '#^(?:[w|h]=\d+(?:\.\d+)?)(?:&[w|h]=\d+(?:\.\d+)?)?$#'
+		'get' => '#^(?:[wht]=\d+(?:\.\d+)?)(?:&[wht]=\d+(?:\.\d+)?)?(?:&[wht]=\d+(?:\.\d+)?)?$#'
 	];
 	Route::Get('/files/{type*}/{filename}', 'ImageController#Get', $cond_image);
 	Route::Get('/files/{type*}/{filename}?{get}', 'ImageController#Get', $cond_image);
@@ -25,6 +25,11 @@
 		'filename' => Regex::EndWith('.svg')
 	]);
 	unset($cond_image);
+
+	#Audio Routes.
+	Route::Get('/files/audio/{filename}', 'FileAccessController#GetAudio', [
+		'filename' => Regex::EndWith('.webm')
+	]);
 
 	#Preprocessed JS Routes
 	Route::Get('/files/js/{filename*}.js', 'JSController#Get');
