@@ -106,18 +106,32 @@
 			die(json_encode($data->GetInnerArray(true)));
 		}
 
-		public function MarkAsRead() {
+		public function MarkState() {
 			//Estableciendo tipo de respuesta.
 			HttpResponse::SetContentType(MimeType::Json);
 
 			//Obteniendo parametros post.
 			$_POST = ArrayUtils::Trim($_POST, false);
 			$idMsg = !empty($_POST['id']) ? $_POST['id'] : die(json_encode(false));
+			$markRcv = !empty($_POST['rcv']) && $_POST['rcv'];
+			$markRead = !empty($_POST['read']) && (bool)$_POST['read'];
 
 			//Obteniendo ID de usuario actual.
 			$user_id = (new Session())->user_id;
 
+			//Marcando estados.
+			$model = new MessageModel(DBAccount::Root);
+
+			if (!$markRcv && !$markRead)
+				die(json_encode(false));
+			if ($markRcv && $markRead)
+				$result = $model->SetBothStateInMsg($user_id, $idMsg);
+			else if ($markRead)
+				$result = $model->SetReadStateInMsg($user_id, $idMsg);
+			else
+				$result = $model->SetReceivedStateInMsg($user_id, $idMsg);
+
 			//Devolviendo respuesta.
-			return json_encode((new MessageModel(DBAccount::Root))->SetReadStateInMsg($user_id, $idMsg));
+			return json_encode($result);
 		}
 	}

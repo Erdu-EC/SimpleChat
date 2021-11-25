@@ -91,7 +91,31 @@
 					'IDMsg' => $idMsg
 				]);
 			} catch (PDOException $ex) {
-				Logger::Log('sql', 'msg_setstatus', $ex->getMessage());
+				Logger::Log('sql', 'msg_setstatus_read', $ex->getMessage());
+				return false;
+			}
+		}
+
+		public function SetReceivedStateInMsg(int $user_id, string $idMsg): bool {
+			try {
+				return $this->SelectOnly('select msg_SetStateReceived(:UID, :IDMsg)', [
+					'UID' => $user_id,
+					'IDMsg' => $idMsg
+				]);
+			} catch (PDOException $ex) {
+				Logger::Log('sql', 'msg_setstatus_rcv', $ex->getMessage());
+				return false;
+			}
+		}
+
+		public function SetBothStateInMsg(int $user_id, string $idMsg): bool {
+			try {
+				return $this->SelectOnly('select msg_SetStateAll(:UID, :IDMsg)', [
+					'UID' => $user_id,
+					'IDMsg' => $idMsg
+				]);
+			} catch (PDOException $ex) {
+				Logger::Log('sql', 'msg_setstatus_both', $ex->getMessage());
 				return false;
 			}
 		}

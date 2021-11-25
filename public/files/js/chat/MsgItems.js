@@ -64,15 +64,15 @@ const ObtenerElementoMensajeAudio = (blob, duracion, fecha_envio, estado) => {
         }
     ).attr('data-duration', duracion ?? 0);
 
-    if (duracion === null){
+    if (duracion === null) {
         const metadata = document.createElement("audio");
         metadata.preload = "metadata";
-        metadata.onloadend = ()=> {
+        metadata.onloadend = () => {
             URL.revokeObjectURL(metadata.src);
             metadata.preload = 'none';
         }
         metadata.onloadedmetadata = () => {
-            audio.attr('data-duration', metadata.duration*1000); //Duracion en segundos.
+            audio.attr('data-duration', metadata.duration * 1000); //Duracion en segundos.
             msg.find('.control-tiempo-total').text(ObtenerSegundosComoTiempo(metadata.duration));
         }
         metadata.src = blob;
@@ -86,24 +86,24 @@ const ObtenerElementoMensajeAudio = (blob, duracion, fecha_envio, estado) => {
 }
 
 const ObtenerElementoMensajeAudioEnviado = (blob, duracion) => {
-    const msg = $(ObtenerElementoMensajeAudio(blob,duracion,Date.now(),null));
+    const msg = $(ObtenerElementoMensajeAudio(blob, duracion, Date.now(), null));
     msg.find('.extra-mensaje').html('<div class="enviando"></div>');
     return msg;
 }
 
 const ObtenerElementoMensajeAudioRecibido = (src, foto, fecha, id) => {
-    const msg = $(ObtenerElementoMensajeContacto(foto,"",fecha));
+    const msg = $(ObtenerElementoMensajeContacto(foto, "", fecha));
     let audio = $(`<audio type='audio/webm' class="mensaje-audio" src='${src}' ></audio>`);
 
-    audio[0].onloadedmetadata = function (){
-        audio.attr('data-duration',audio[0].duration*1000 );
+    audio[0].onloadedmetadata = function () {
+        audio.attr('data-duration', audio[0].duration * 1000);
         msg.find(".control-tiempo-total").text(ObtenerSegundosComoTiempo(audio[0].duration));
     }
-  let cont = $("<div>", {
+    let cont = $("<div>", {
         class: "audio-recibido"
     }).append(ObtenerControlesAudio()).append(audio);
 
-    if(id){
+    if (id) {
         cont.addClass("no-escuchado");
     }
 
@@ -136,7 +136,31 @@ function MarcarComoLeido(idMsg, callback) {
     $.ajax('/action/messages/markAsRead', {
         method: 'post', dataType: 'json', mimeType: 'application/json',
         data: {
-            id: idMsg
+            id: idMsg,
+            read: true
+        },
+        success: callback
+    });
+}
+
+function MarcarComoRecibido(idMsg, callback) {
+    $.ajax('/action/messages/markAsRead', {
+        method: 'post', dataType: 'json', mimeType: 'application/json',
+        data: {
+            id: idMsg,
+            rcv: true
+        },
+        success: callback
+    });
+}
+
+function MarcarComoAmbos(idMsg, callback) {
+    $.ajax('/action/messages/markAsRead', {
+        method: 'post', dataType: 'json', mimeType: 'application/json',
+        data: {
+            id: idMsg,
+            rcv: true,
+            read: true
         },
         success: callback
     });

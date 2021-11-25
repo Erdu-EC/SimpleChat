@@ -13,12 +13,12 @@ $(document).ready(function () {
         const chatWorker = new Worker('/files/js/Chat-bg.js');
         chatWorker.onmessage = function (ev) {
             //Si hay mensajes no leidos.
-            if (ev.data['messages'].length > 0){
+            if (ev.data['messages'].length > 0) {
                 TratarMensajes(ev.data['messages']);
             }
 
             //Si hay invitaciones no recibidas.
-            if (ev.data['invitations'].length > 0){
+            if (ev.data['invitations'].length > 0) {
                 TratarInvitaciones(ev.data['invitations']);
             }
 
@@ -37,6 +37,10 @@ $(document).ready(function () {
 
 function TratarMensajes(mensajes) {
     mensajes.forEach(row => {
+        //Marcar mensaje como recibido.
+        MarcarComoRecibido(row.id_msg, null);
+
+        //Obteniendo elementos.
         const lista_conversaciones = $('#lista-conversaciones');
         let elemento_contacto = lista_conversaciones.find(`.contact > div[data-usuario=${row.user_name}]`);
         const nombre = row.first_name + " " + row.last_name;
@@ -54,14 +58,12 @@ function TratarMensajes(mensajes) {
         //Si el mensaje es para el contacto de la actual conversación abierta en el chat.
         if (row.user_name === $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario")) {
             MostrarMensajeEnEspacioDeChat(nombre, row);
-        }
-        else {
-
+        } else {
             if (row.img !== null) {
                 row.text = nombre + " te ha enviado una imagen.";
             } else if (row.audio !== null) {
                 row.text = nombre + " te ha enviado un audio.";
-             }
+            }
             MensajeNuevo(row.id, nombre, row.text, row.profile);
 
             // Agregar mensaje a la lista de mensajes en buffer
@@ -97,37 +99,42 @@ function TratarMensajes(mensajes) {
 function MostrarMensajeEnEspacioDeChat(nombre, datos) {
     let mensaje;
 
+    //Verificando que el mensaje no exista ya, si existe no hacer nada.
+    if ($(`#lista-mensajes li.recibido[data-id=${datos.id_msg}]`).length > 0)
+        return;
+
     if (datos.img !== null) {
         datos.text = nombre + " te ha enviado una imagen.";
-        mensaje = ObtenerElementoImgContacto(datos.profile, datos.img.split('\\').pop().split('/').pop(), '/files/chat/'+datos.img, ObtenerHora(datos.send_date));
-    }
-   else if (datos.audio !== null)
-   {
-       datos.text = nombre + " te ha enviado un audio.";
-       mensaje = ObtenerElementoMensajeAudioRecibido('/files/audio/'+datos.audio, datos.profile,  ObtenerHora(datos.send_date),datos.id_msg);
-    }
-   else {
+        mensaje = ObtenerElementoImgContacto(datos.profile, datos.img.split('\\').pop().split('/').pop(), '/files/chat/' + datos.img, ObtenerHora(datos.send_date));
+    } else if (datos.audio !== null) {
+        datos.text = nombre + " te ha enviado un audio.";
+        mensaje = ObtenerElementoMensajeAudioRecibido('/files/audio/' + datos.audio, datos.profile, ObtenerHora(datos.send_date), datos.id_msg);
+    } else {
         mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.text, ObtenerHora(datos.send_date)));
     }
+
+    //Poniendo id al mensaje.
+    mensaje.attr("data-id", datos.id_msg);
+
+    //Enviar leido al servidor.
+    MarcarComoLeido(datos.id_msg, function (){
+        //mensaje.attr("data-id", null);
+    });
 
     AgregarMensajeEnEspacioDeChat(mensaje, datos.send_date);
     mensaje[0].scrollIntoView();
 
     NotificacionesEscritorio(datos.id, nombre, datos.text, datos.profile);
-
-    //Enviar leido al servidor.
-    MarcarComoLeido(datos.id_msg, null);
 }
 
 function ActualizarTotalDeConversacionesNoLeidas() {
     const elementos_msg_pendientes = $(`#lista-conversaciones .contact .num-msj-pendientes`);
     const icono_contador = $('#icon-indicador-mensaje span');
 
-    if (elementos_msg_pendientes.length === 0){
+    if (elementos_msg_pendientes.length === 0) {
         icono_contador.parent().hide();
         document.title = `SimpleChat: Inicio`;
-    }
-    else{
+    } else {
         icono_contador.text(elementos_msg_pendientes.length).parent().show();
         document.title = `(${elementos_msg_pendientes.length}) SimpleChat: Inicio`;
     }
@@ -154,18 +161,19 @@ function TratarInvitaciones(inv_list) {
         }
 
         //Si la conversacion esta abierta, mostrar modal de invitacion.
-        if (espacio_chat.attr('data-nick') === row.nick && espacio_chat.is(':visible') )
-        {
-            if(espacio_chat.find("#mensaje-invitacion").length === 0){$(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)).prependTo(espacio_chat);}
-        NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);}
-        else{
+        if (espacio_chat.attr('data-nick') === row.nick && espacio_chat.is(':visible')) {
+            if (espacio_chat.find("#mensaje-invitacion").length === 0) {
+                $(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)).prependTo(espacio_chat);
+            }
+            NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);
+        } else {
 
-            if (buffer_chat.has(row.nick)){
+            if (buffer_chat.has(row.nick)) {
 
                 let chat_en_buffer = $("<div></div>").html(buffer_chat.get(row.nick));
-                if(chat_en_buffer.find("#mensaje-invitacion").length === 0){
+                if (chat_en_buffer.find("#mensaje-invitacion").length === 0) {
                     chat_en_buffer.find(".messages").before($(ObtenerModalDeInvitacion(row.first_name + " " + row.last_name)));
-                    buffer_chat.set(row.nick,chat_en_buffer.html() );
+                    buffer_chat.set(row.nick, chat_en_buffer.html());
 
                     //Si no existe notificación en espacio-de-chat, se crea una notificacion de escritorio
                     NotificacionesEscritorio(row.nick, row.first_name + " " + row.last_name, $(elemento_html).find('.preview').text(), row.profile);
@@ -173,8 +181,6 @@ function TratarInvitaciones(inv_list) {
 
             }
         }
-
-
 
 
     })
@@ -205,19 +211,17 @@ function AgregarMensajesABufferChat(datos) {
         let mensaje;
         if (datos.img !== null) {
             mensaje = ObtenerElementoImgContacto(datos.profile, datos.img.split('\\').pop().split('/').pop(), datos.img, ObtenerHora(datos.send_date));
-        }
-        else if(datos.audio !== null){
-            mensaje = ObtenerElementoMensajeAudioRecibido('/files/audio/'+datos.audio, datos.profile,  ObtenerHora(datos.send_date),datos.id_msg);
-        }
-        else {
+        } else if (datos.audio !== null) {
+            mensaje = ObtenerElementoMensajeAudioRecibido('/files/audio/' + datos.audio, datos.profile, ObtenerHora(datos.send_date), datos.id_msg);
+        } else {
             mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.text, ObtenerHora(datos.send_date)));
         }
-        mensaje.attr("data-id", datos.id_msg);
+
         let espacio_chat = $(buffer_chat.get(datos.user_name));
         let lista = espacio_chat.find("#lista-mensajes");
         //Se busca la etiqueta que separa los mensajes nuevos, si no existe se agrega
-        let marcador= lista.find("li.marcador > .marcador-pendientes");
-        if(marcador.length === 0 ){
+        let marcador = lista.find("li.marcador > .marcador-pendientes");
+        if (marcador.length === 0) {
             lista.append(ObtenerSeparadorMensajesPendientes);
         }
         //Al final se agregan los mensajes al objeto en buffer, y se guardan los  cambios
@@ -230,61 +234,61 @@ function AgregarMensajesABufferChat(datos) {
 function TratarCambiosDeEstadosEnMensajesRecibidos() {
     const lista = $('#lista-mensajes');
     lista.find(`.recibido[data-id]`).each(function () {
-        if (MarcarComoLeido($(this).attr('data-id'), function () {
+        MarcarComoLeido($(this).attr('data-id'), function () {
             $(this).removeAttr('data-id');
             return true;
-        })) {
-
-        }
+        });
     });
 }
 
 let temporizador;
 
-function TratarCambiosDeEstadosEnContactos(contactos){
+function TratarCambiosDeEstadosEnContactos(contactos) {
     clearTimeout(temporizador);
     ContactosInactivos();
     let usuario_chat = $("#espacio-de-chat .messages");
 
-contactos.forEach(item => {
-var elemento_conversacion = $('#lista-conversaciones .contact .elemento-conversacion[data-usuario='+item.user_name+']');
-if(elemento_conversacion.length !== 0){
-    elemento_conversacion.find(".contact-status").removeClass("inactivo").addClass("online");
-}
-if(item.user_name === usuario_chat.attr("data-nick")){
-usuario_chat.siblings(".contact-profile").find(".ult-conex").text("Activo");
+    contactos.forEach(item => {
+        var elemento_conversacion = $('#lista-conversaciones .contact .elemento-conversacion[data-usuario=' + item.user_name + ']');
+        if (elemento_conversacion.length !== 0) {
+            elemento_conversacion.find(".contact-status").removeClass("inactivo").addClass("online");
+        }
+        if (item.user_name === usuario_chat.attr("data-nick")) {
+            usuario_chat.siblings(".contact-profile").find(".ult-conex").text("Activo");
+        }
+
+    });
+    temporizador = window.setTimeout(
+        () => {
+            ContactosInactivos();
+        }, 150000);
+
 }
 
-});
-temporizador = window.setTimeout(
-            () => {ContactosInactivos();
-            }, 150000);
-
-}
-
-function ContactosInactivos(){
+function ContactosInactivos() {
     let usuario_chat = $("#espacio-de-chat .messages");
     usuario_chat.siblings(".contact-profile").find(".ult-conex").text("Inactivo");
     $("#lista-conversaciones .contact .elemento-conversacion").each(function () {
         $(this).find(".contact-status").removeClass("online").addClass("inactivo");
     })
 }
-function ActualizarEstadoContacto(nombre_usuario, estado){
-    let estado_usuario="";
+
+function ActualizarEstadoContacto(nombre_usuario, estado) {
+    let estado_usuario = "";
     let ult_conexion = "";
-switch (estado) {
-    case "A":
-        estado_usuario="online";
-        ult_conexion = "Activo";
-        break;
-    case "I":
-        estado_usuario="inactivo";
-        ult_conexion = "Inactivo";
-        break;
-}
-$("#espacio-de-chat").find(".ult-conex").text(ult_conexion);
-let contacto = $('#lista-conversaciones .contact .elemento-conversacion[data-usuario='+nombre_usuario+']');
-if(contacto.length > 0){
-    contacto.find(".contact-status").removeClass("inactivo online").addClass(estado_usuario);
-}
+    switch (estado) {
+        case "A":
+            estado_usuario = "online";
+            ult_conexion = "Activo";
+            break;
+        case "I":
+            estado_usuario = "inactivo";
+            ult_conexion = "Inactivo";
+            break;
+    }
+    $("#espacio-de-chat").find(".ult-conex").text(ult_conexion);
+    let contacto = $('#lista-conversaciones .contact .elemento-conversacion[data-usuario=' + nombre_usuario + ']');
+    if (contacto.length > 0) {
+        contacto.find(".contact-status").removeClass("inactivo online").addClass(estado_usuario);
+    }
 }

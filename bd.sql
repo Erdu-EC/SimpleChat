@@ -389,7 +389,29 @@ CREATE FUNCTION msg_SetStateRead(USER_ID int, MsgId varchar(50)) RETURNS BOOLEAN
     MODIFIES SQL DATA
 BEGIN
 
-    UPDATE message SET read_date = now() WHERE id_temp = MsgId and id_dest = USER_ID;
+    UPDATE message SET read_date = if(read_date is null, now(), read_date) WHERE id_temp = MsgId and id_dest = USER_ID;
+
+    return ROW_COUNT() > 0;
+END $
+
+CREATE FUNCTION msg_SetStateReceived(USER_ID int, MsgId varchar(50)) RETURNS BOOLEAN
+    MODIFIES SQL DATA
+BEGIN
+
+    UPDATE message SET rcv_date = if(rcv_date is null, now(), rcv_date) WHERE id_temp = MsgId and id_dest = USER_ID;
+
+    return ROW_COUNT() > 0;
+END $
+
+CREATE FUNCTION msg_SetStateAll(USER_ID int, MsgId varchar(50)) RETURNS BOOLEAN
+    MODIFIES SQL DATA
+BEGIN
+
+    UPDATE message
+    SET rcv_date  = if(rcv_date is null, now(), rcv_date),
+        read_date = if(read_date is null, now(), read_date)
+    WHERE id_temp = MsgId
+      and id_dest = USER_ID;
 
     return ROW_COUNT() > 0;
 END $
