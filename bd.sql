@@ -79,6 +79,7 @@ CREATE TABLE message
     content_audio TEXT        NULL,
     rcv_see       bool        NOT NULL DEFAULT FALSE,
     read_see      bool        NOT NULL DEFAULT FALSE,
+    rcv_get       datetime,
     PRIMARY KEY (id),
     FOREIGN KEY (id_source) REFERENCES users (id),
     FOREIGN KEY (id_dest) REFERENCES users (id),
@@ -364,9 +365,9 @@ BEGIN
     SELECT id
     from message_readable
     where id_dest = USER_ID
-      and rcv_date is null;
+      and rcv_date is null and (rcv_get is null or now() > date_add(rcv_get, interval 20 second));
 
-    #UPDATE message set rcv_date = NOW() where id in (select id from unrcv_messages);
+    UPDATE message set rcv_get = NOW() where id in (select id from unrcv_messages);
 
     select u.id,
            mr.id_temp       as id_msg,
