@@ -116,7 +116,7 @@ function MostrarMensajeEnEspacioDeChat(nombre, datos) {
    else {
         mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.text, ObtenerHora(datos.send_date)));
     }
-
+    mensaje.attr("data-timestamp", ObtenerTimeStamp(datos.send_date) );
     AgregarMensajeEnEspacioDeChat(mensaje, datos.send_date);
     mensaje[0].scrollIntoView();
 
@@ -144,7 +144,7 @@ function TratarInvitaciones(inv_list) {
 
     inv_list.forEach(row => {
         const elemento = lista_conversaciones.find(`.contact > div[data-usuario=${row.nick}]`);
-        const elemento_html = ObtenerElementoConversacion(row.nick, row.first_name, row.last_name, row.profile, null, true, null, row.send_date, row.send_date, row.rcv_date, null);
+        const elemento_html = ObtenerElementoConversacion(row.nick, row.first_name, row.last_name, row.profile, "online", true, null, row.send_date, row.send_date, row.rcv_date, null);
 
         if (elemento.length === 0) {
             $('<li>', {
@@ -216,7 +216,7 @@ function AgregarMensajesABufferChat(datos) {
         else {
             mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.text, ObtenerHora(datos.send_date)));
         }
-        mensaje.attr("data-id", datos.id_msg);
+        mensaje.attr("data-id", datos.id_msg).attr("data-timestamp", ObtenerTimeStamp(datos.send_date) );
         let espacio_chat = $(buffer_chat.get(datos.user_name));
         let lista = espacio_chat.find("#lista-mensajes");
         //Se busca la etiqueta que separa los mensajes nuevos, si no existe se agrega
@@ -235,10 +235,9 @@ function TratarCambiosDeEstadosEnMensajesRecibidos() {
     const lista = $('#lista-mensajes');
     lista.find(`.recibido[data-id]`).each(function () {
         if (MarcarComoLeido($(this).attr('data-id'), function () {
-            $(this).removeAttr('data-id');
-            return true;
+                       return true;
         })) {
-
+            $(this).removeAttr('data-id');
         }
     });
 }

@@ -465,7 +465,7 @@ values (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa
        (5, 'rachelzane', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Rachel Elizabeth', 'Zane',
         '1985-04-30', 'F', 'rachelzane@email.com', 'I', now(), null, 'rachelzane.png'),
        (6, 'mikeross', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Michael James', 'Ross',
-        '1981-04-04', 'M', 'mikeross@email.com', 'I', now(), null, 'mikeross.png'),
+        '1981-04-04', 'M', 'mikeross@email.com', 'I', now(), null, 'mikeross.jpg'),
        (7, 'harveyspecter', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Harvey Reginald',
         'Specter', '1970-06-12', 'M', 'harveyspecter@email.com', 'I', now(), null, 'harveyspecter.png');
 

@@ -123,3 +123,20 @@ function ObtenerSegundosComoTiempo(seconds) {
     second = (second < 10)? '0' + second : second;
     return (hour !== '00' ? hour + ':' : '') + minute + ':' + second.toString().split(".")[0];
 }
+function ObtenerTimeStamp(fecha){
+    let t = new Date(fecha);
+    return t.getTime();
+}
+
+function OrdenarMensaje(listaMensajes, item_msg){
+let recibidos = listaMensajes.children("li.recibido");
+let i = recibidos.length - 1;
+while(i>0){
+    if($(recibidos[i]).attr('data-timestamp') < item_msg.attr('data-timestamp') ){
+       $(recibidos[i]).after(item_msg);
+        break;
+    }
+    i-=1;
+}
+
+}

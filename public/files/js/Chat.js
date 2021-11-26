@@ -311,7 +311,8 @@ function CargarEspacioDeChat() {
                         else if (msg.audio !== null)
                             mensaje = ObtenerElementoMensajeAudioRecibido(msg.audio, json.profile_img,ObtenerHora(msg.date_send), msg.id);
                         else
-                            mensaje = ObtenerElementoMensajeContacto(json.profile_img, msg.text, ObtenerHora(msg.date_send));
+                            mensaje = $(ObtenerElementoMensajeContacto(json.profile_img, msg.text, ObtenerHora(msg.date_send)));
+                        mensaje.attr('data-timestamp',ObtenerTimeStamp(msg.date_send) );
                     } else {
                         if (msg.img !== null)
                             mensaje = ObtenerElementoImg(msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send),
@@ -363,6 +364,12 @@ function AgregarMensajeEnEspacioDeChat(item_msg, fecha_msg) {
     if(item_msg.hasClass("recibido")) {
         if (lista_msg.find("li.marcador .marcador-pendientes").length === 0 && !document.hasFocus())
             lista_msg.append(ObtenerSeparadorMensajesPendientes);
+       if(item_msg.attr('data-timestamp') >= $('#lista-mensajes li.recibido:last').attr('data-timestamp')){
+           lista_msg.append(item_msg);
+       }else{
+           OrdenarMensaje($('#lista-mensajes'), item_msg);
+       }
+       return;
     }
 
     lista_msg.append(item_msg);
