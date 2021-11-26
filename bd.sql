@@ -275,7 +275,7 @@ BEGIN
 
     #Insertar mensaje en cualquier caso.
     INSERT INTO message(id_temp, id_source, id_dest, send_date, content, content_img, content_audio)
-    VALUES (idFake, source, dest, NOW(), msg, img, audio);
+    VALUES (idFake, source, dest, NOW(3), msg, img, audio);
 
     #Devolver ID del mensaje.
     RETURN LAST_INSERT_ID();
@@ -399,7 +399,7 @@ CREATE FUNCTION msg_SetStateReceived(USER_ID int, MsgId varchar(50)) RETURNS BOO
     MODIFIES SQL DATA
 BEGIN
 
-    UPDATE message SET rcv_date = if(rcv_date is null, now(), rcv_date) WHERE id_temp = MsgId and id_dest = USER_ID;
+    UPDATE message SET rcv_date = if(rcv_date is null, now(), rcv_date), rcv_get = null WHERE id_temp = MsgId and id_dest = USER_ID;
 
     return ROW_COUNT() > 0;
 END $
@@ -410,7 +410,8 @@ BEGIN
 
     UPDATE message
     SET rcv_date  = if(rcv_date is null, now(), rcv_date),
-        read_date = if(read_date is null, now(), read_date)
+        read_date = if(read_date is null, now(), read_date),
+        rcv_get = null
     WHERE id_temp = MsgId
       and id_dest = USER_ID;
 
