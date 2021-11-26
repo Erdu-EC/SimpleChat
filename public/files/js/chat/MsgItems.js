@@ -141,3 +141,7 @@ function MarcarComoLeido(idMsg, callback) {
         success: callback
     });
 }
+function ObtenerTimeStamp(fecha){
+let t = new Date(fecha);
+return t.getTime();
+}

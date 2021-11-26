@@ -29,14 +29,15 @@ $(document).ready(function () {
 
             //Si hay cambios en contactos activos.
             if (ev.data['contact_active'].length > 0) {
-                TratarCambiosDeEstadosEnContactos(ev.data['contact_active']);
-            }
+                TratarCambiosDeEstadosEnContactos(ev.data['contact_active'])
+                }
         }
     }
 });
 
 function TratarMensajes(mensajes) {
     mensajes.forEach(row => {
+        console.log(row);
         const lista_conversaciones = $('#lista-conversaciones');
         let elemento_contacto = lista_conversaciones.find(`.contact > div[data-usuario=${row.user_name}]`);
         const nombre = row.first_name + " " + row.last_name;
@@ -109,7 +110,7 @@ function MostrarMensajeEnEspacioDeChat(nombre, datos) {
    else {
         mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.text, ObtenerHora(datos.send_date)));
     }
-
+    mensaje.attr("data-timestamp", ObtenerTimeStamp(datos.send_date) );
     AgregarMensajeEnEspacioDeChat(mensaje, datos.send_date);
     mensaje[0].scrollIntoView();
 
@@ -140,7 +141,7 @@ function TratarInvitaciones(inv_list) {
 
     inv_list.forEach(row => {
         const elemento = lista_conversaciones.find(`.contact > div[data-usuario=${row.nick}]`);
-        const elemento_html = ObtenerElementoConversacion(row.nick, row.first_name, row.last_name, row.profile, null, true, null, row.send_date, row.send_date, row.rcv_date, null);
+        const elemento_html = ObtenerElementoConversacion(row.nick, row.first_name, row.last_name, row.profile, "online", true, null, row.send_date, row.send_date, row.rcv_date, null);
 
         if (elemento.length === 0) {
             $('<li>', {
@@ -212,7 +213,7 @@ function AgregarMensajesABufferChat(datos) {
         else {
             mensaje = $(ObtenerElementoMensajeContacto(datos.profile, datos.text, ObtenerHora(datos.send_date)));
         }
-        mensaje.attr("data-id", datos.id_msg);
+        mensaje.attr("data-id", datos.id_msg).attr("data-timestamp", ObtenerTimeStamp(datos.send_date) );
         let espacio_chat = $(buffer_chat.get(datos.user_name));
         let lista = espacio_chat.find("#lista-mensajes");
         //Se busca la etiqueta que separa los mensajes nuevos, si no existe se agrega

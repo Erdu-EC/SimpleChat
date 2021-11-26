@@ -306,12 +306,15 @@ function CargarEspacioDeChat() {
                             if(lista_mensajes.find("li.marcador .marcador-pendientes").length === 0)
                                 lista_mensajes.append(ObtenerSeparadorMensajesPendientes);
                         }
+                        //se distinguen tres tipos de mensajes: mensaje de imagen, mensaje de audio o texto
                         if (msg.img !== null)
                             mensaje = ObtenerElementoImgContacto(json.profile_img, msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send))
                         else if (msg.audio !== null)
                             mensaje = ObtenerElementoMensajeAudioRecibido(msg.audio, json.profile_img,ObtenerHora(msg.date_send), msg.id);
                         else
-                            mensaje = ObtenerElementoMensajeContacto(json.profile_img, msg.text, ObtenerHora(msg.date_send));
+                            mensaje = $(ObtenerElementoMensajeContacto(json.profile_img, msg.text, ObtenerHora(msg.date_send)));
+
+                        mensaje.attr('data-timestamp',ObtenerTimeStamp(msg.date_send) );
                     } else {
                         if (msg.img !== null)
                             mensaje = ObtenerElementoImg(msg.img.split('\\').pop().split('/').pop(), msg.img, ObtenerHora(msg.date_send),
