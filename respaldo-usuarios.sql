@@ -1,4 +1,4 @@
-
+USE simplechat;
 insert into users (id, user_name, pass, first_name, last_name, birth_date, gender, email, state, create_at,
                    last_connection, profile_img)
 values (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa', 'E', 'C', now(), 'M', null, 'I',
@@ -15,6 +15,8 @@ values (1, 'erdu', '$2y$10$P3DtjrJE7JU6Sbm8Vb4ISuE44j/0phdXSPXFD/QFmnS/qmf3fW.Qa
         '1981-04-04', 'M', 'mikeross@email.com', 'I', now(), null, 'mikeross.jpg'),
        (7, 'harveyspecter', '$2y$10$S/qP2dbOjk3f3NMUWXrm4u0rgP8/oQECx.lNdBKsx9j6oT5a9qtXS', 'Harvey Reginald',
         'Specter', '1970-06-12', 'M', 'harveyspecter@email.com', 'I', now(), null, 'harveyspecter.png');
+
+
 
 INSERT INTO contacts(user_id, contact_id, register_date)
 VALUES (6, 4, now()),
