@@ -76,7 +76,6 @@
 		}
 
 		public static function Upload(string $type) {
-			//TODO: INGRESAR EN BASE DE DATOS RUTA DE LA IMAGEN.
 			HttpResponse::SetContentType(MimeType::Json);
 
 			$type = !empty($type) ? $type : die(json_encode([false, 0]));

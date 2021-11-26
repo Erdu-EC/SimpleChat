@@ -99,7 +99,7 @@
 				//TODO: Establecer cuenta con permisos restringidos en BD.
 				$db = new DB(DBAccount::Root);
 				$db->ExecuteTransaction(function () use ($db, $session) {
-					$db->Execute('CALL user_set_logout(:user_id, :conn_id)', ['user_id' => $session->user_id, 'conn_id' => $session->user_cid]);
+					$db->Execute('CALL user_logout(:user_id, :conn_id)', ['user_id' => $session->user_id, 'conn_id' => $session->user_cid]);
 				});
 			} catch (PDOException $ex) {
 				die(json_encode(false));

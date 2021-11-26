@@ -147,14 +147,10 @@ BEGIN
     RETURN LAST_INSERT_ID();
 END $
 
-CREATE PROCEDURE user_set_logout(in USER_ID int, in CONNECTION_ID int)
+CREATE PROCEDURE user_logout(in USER_ID int, in CONNECTION_ID int)
 BEGIN
     UPDATE connections SET logout_date = NOW() WHERE id = CONNECTION_ID and id_user = USER_ID;
-    UPDATE users SET last_connection = NOW() WHERE id = USER_ID;
-
-    IF NOT EXISTS(SELECT id FROM connections WHERE logout_date IS NULL) THEN
-        UPDATE users SET state = 'I' WHERE id = USER_ID;
-    END IF;
+    UPDATE users SET state = 'I', last_connection = NOW() WHERE id = USER_ID;
 END $
 
 CREATE PROCEDURE user_getActiveContacts(in USER_ID int)
@@ -356,6 +352,10 @@ END $
 
 CREATE PROCEDURE user_GetUnreceiveMessages(in USER_ID int)
 BEGIN
+    IF (SELECT state from users where id = USER_ID and state = 'I') THEN
+        UPDATE users SET state = 'A' where id = USER_ID;
+    END IF;
+
     CREATE TEMPORARY TABLE unrcv_messages
     (
         id int
