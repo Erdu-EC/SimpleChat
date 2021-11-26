@@ -58,7 +58,6 @@ function TratarMensajes(mensajes) {
         //Si el mensaje es para el contacto de la actual conversación abierta en el chat.
         if (row.user_name === $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario")) {
             MostrarMensajeEnEspacioDeChat(nombre, row);
-            console.log(row);
         }
         else {
 

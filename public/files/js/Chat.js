@@ -364,7 +364,7 @@ function AgregarMensajeEnEspacioDeChat(item_msg, fecha_msg) {
     if(item_msg.hasClass("recibido")) {
         if (lista_msg.find("li.marcador .marcador-pendientes").length === 0 && !document.hasFocus())
             lista_msg.append(ObtenerSeparadorMensajesPendientes);
-       if(item_msg.attr('data-timestamp') >= $('#lista-mensajes li.recibido:last').attr('data-timestamp')){
+       if(item_msg.attr('data-timestamp') > $('#lista-mensajes li.recibido:last').attr('data-timestamp')){
            lista_msg.append(item_msg);
        }else{
            OrdenarMensaje($('#lista-mensajes'), item_msg);
