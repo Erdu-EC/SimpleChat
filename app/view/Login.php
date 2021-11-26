@@ -85,9 +85,6 @@ if (Session::IsLogin())
                             <label for="clave-usuario"><span class="material-icons">lock</span></label>
                             <input type="password" id="user_pass"  placeholder="Introduzca su contraseña" maxlength="60" required>
                         </div>
-                        <div class="recuperar-clave">
-                            <a href="">¿Has olvidado tu contraseña?</a>
-                        </div>
                         <div class="crear-cuenta">
                             <a href="/Register">Regístrate en SimpleChat</a>
                         </div>

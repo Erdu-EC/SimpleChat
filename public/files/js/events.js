@@ -365,7 +365,6 @@ $(document).on("click", "#btn-emojis", function () {
         if (picker.isPickerVisible)
             picker.hidePicker();
     }
-
 });
 
 //redireccion a otras paginas del sitio
