@@ -58,6 +58,7 @@ function TratarMensajes(mensajes) {
         //Si el mensaje es para el contacto de la actual conversación abierta en el chat.
         if (row.user_name === $('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario")) {
             MostrarMensajeEnEspacioDeChat(nombre, row);
+            console.log(row);
         }
         else {
 
@@ -227,7 +228,7 @@ function AgregarMensajesABufferChat(datos) {
         //Al final se agregan los mensajes al objeto en buffer, y se guardan los  cambios
         lista.append(mensaje);
         buffer_chat.set(datos.user_name, espacio_chat);
-        return;
+
     }
 }
 
