@@ -365,7 +365,7 @@ BEGIN
     SELECT id
     from message_readable
     where id_dest = USER_ID
-      and rcv_date is null and (rcv_get is null or now() > date_add(rcv_get, interval 20 second));
+      and rcv_date is null and (rcv_get is null or now() > date_add(rcv_get, interval 10 second));
 
     UPDATE message set rcv_get = NOW() where id in (select id from unrcv_messages);
 
