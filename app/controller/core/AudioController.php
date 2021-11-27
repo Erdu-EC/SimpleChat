@@ -2,12 +2,14 @@
 
 namespace HS\app\controller\core;
 
+use Exception;
 use HS\app\model\UserModel;
 use HS\config\APP_DIR;
 use HS\config\APP_URL;
 use HS\config\DBAccount;
 use HS\libs\core\http\HttpResponse;
 use HS\libs\core\Session;
+use HS\libs\helper\IOUtil;
 use HS\libs\helper\MimeType;
 use HS\libs\helper\System;
 use HS\libs\io\Path;
@@ -42,9 +44,20 @@ class AudioController
         //Insertando en base de datos el mensaje que contendra el fichero.
         if (($user = new UserModel(DBAccount::Root))->SendMessageAudio($user_id, $contact_id, $fakeId, $file_name,
             function () use ($file_name, $file) {
+				try{
+					//Obteniendo ruta de directorio de audio.
+					$path = Path::Combine(APP_PATH, APP_DIR::AUDIO);
+
+					//Creando directorio si no existe.
+					IOUtil::CreateDir($path, true);
+				}catch (Exception $ex){
+					//Error al crear el directorio para almacenar audios.
+					die(json_encode([false, 3]));
+				}
+
                 //Ejecutando comando.
                 $audio = $file['tmp_name'];
-                $audio_output = Path::CombineAll(APP_PATH, APP_DIR::AUDIO, $file_name);
+                $audio_output = Path::CombineAll($path, $file_name);
                 if (System::GetOS() == System::OS_WIN)
                     $program = Path::Combine(APP_PATH, '/vendor/ffmpeg/ffmpeg.exe');
                 else
@@ -61,7 +74,7 @@ class AudioController
             die(json_encode([true, $file_name, $fakeId]));
         } else {
             //Devolviendo respuesta negativa.
-            die(json_encode([false, 9]));
+            die(json_encode([false, 4]));
         }
 
 
