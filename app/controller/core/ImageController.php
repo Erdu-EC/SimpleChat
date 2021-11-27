@@ -121,13 +121,24 @@
 
 				//Accion de creación de imagen optimizada.
 				$accion_optimizacion = function ($img_name) use ($type, $image) {
+					try{
+						//Obteniendo ruta de directorio.
+						$path = self::GetPathOfType($type, '');
+
+						//Creando directorio si no existe.
+						IOUtil::CreateDir($path, true);
+					}catch (\Exception $ex){
+						//Error al crear el directorio para almacenar imagenes.
+						die(json_encode([false, 11]));
+					}
+
 					try {
 						$thumb = $image->GetThumbnail(2048, 2048, null);
-						$thumb->Save(self::GetPathOfType($type, $img_name));
+						$thumb->Save(Path::Combine($path, $img_name));
 						return true;
 					} catch (ImageException $ex) {
 						if ($ex->getCode() == ImageException::THUMB_NOTNEEDED) {
-							$image->Save(self::GetPathOfType($type, $img_name));
+							$image->Save(Path::Combine($path, $img_name));
 							return true;
 						} else
 							return false;
