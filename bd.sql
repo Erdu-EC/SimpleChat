@@ -352,10 +352,6 @@ END $
 
 CREATE PROCEDURE user_GetUnreceiveMessages(in USER_ID int)
 BEGIN
-    IF (SELECT state from users where id = USER_ID and state = 'I') THEN
-        UPDATE users SET state = 'A' where id = USER_ID;
-    END IF;
-
     CREATE TEMPORARY TABLE unrcv_messages
     (
         id int
