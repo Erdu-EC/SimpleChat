@@ -16,6 +16,7 @@ class APP_DIR
     const IMAGE = [
         'icon' => '/files/icon',
         'bg' => '/files/bg',
+        'error' => '/files/error',
         'profile' => '/upload/profile',
         'photos' => '/files/photos',
 		'chat' => '/upload/message'

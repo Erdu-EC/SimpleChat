@@ -53,4 +53,5 @@
 	#rutas temporales
 	Route::Get("/500", '/error/500.php');
 	Route::Get("/400", '/error/400.php');
+	Route::Get("/401", '/error/401.php');
 	Route::Get("/404", '/error/404.php');

@@ -48,5 +48,6 @@
 		require '../app/init.php';
 
 		#Si no se encontro una ruta valida.
-		header('HTTP/1.0 404 Not Found');
+        //http_response_code(404);
+        header("Location: /404");
 	}

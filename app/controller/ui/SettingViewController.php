@@ -33,6 +33,7 @@ class SettingViewController extends Controller
             unset($user);
         } catch (PDOException $ex) {
             //TODO: Devolver una vista que muestre un error.
+            header("Location: /500");
             return;
         }
 

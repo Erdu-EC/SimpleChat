@@ -4,7 +4,7 @@ namespace HS\app\view;
 
 use const HS\config\APP_NAME;
 use HS\libs\collection\Collection;
-
+http_response_code(500);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ use HS\libs\collection\Collection;
     <div class="container">
         <img src="/files/icon/logo-bk.png?h=40" alt="Aquí va el logo de la aplicación web SimpleChat" class="logo">
                 <div class="text-center" id="mensaje">
-                    <img src="/files/bg/error-500.svg" alt="" class="img-error">
+                    <img src="/files/error/error-500.svg" alt="" class="img-error">
                     <span class="titulo">¡Vaya! Algo salió mal en Simplechat</span>
                     <p> <br/><br/>
                         Trata de volver a cargar esta página o no dudes en contactar con nosotros si el problema persiste.
