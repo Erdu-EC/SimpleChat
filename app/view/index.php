@@ -244,21 +244,9 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                     </div>
                     <div class="card cont-imagenes-conversacion">
                         <span class="titulo-seccion">Imágenes</span>
-                        <span class="icon-ver-todo" id="btn-ver-todo"><i class="fas fa-th-large"></i>Ver todo</span>
+                        <span class="icon-ver-todo inhabilitado" id="btn-ver-todo"><i class="fas fa-th-large"></i>Ver todo</span>
                             <div id="lista-img-conversacion" class="imagenes-conversacion">
-                                <!-- No hay archivos de imágen.
-                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
-                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
-                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
-                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
-                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
-                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
-                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
-                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
-                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
-                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
-                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
-                           --> </div>
+                              </div>
 
                     </div>
                     <div class=" card contacto-extra">

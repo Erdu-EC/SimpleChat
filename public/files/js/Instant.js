@@ -22,7 +22,6 @@ $(document).ready(function () {
                 TratarInvitaciones(ev.data['invitations']);
             }
 
-
             //Si hay cambios de estado no recibidos.
             if (ev.data['msg_states'].length > 0)
                 TratarCambiosDeEstadosEnMensajes(ev.data['msg_states']);
@@ -107,6 +106,7 @@ function MostrarMensajeEnEspacioDeChat(nombre, datos) {
     if (datos.img !== null) {
         datos.text = nombre + " te ha enviado una imagen.";
         mensaje = ObtenerElementoImgContacto(datos.profile, datos.img.split('\\').pop().split('/').pop(), '/files/chat/'+datos.img, ObtenerHora(datos.send_date));
+        AgregarImagenAGaleria(datos.img);
     }
    else if (datos.audio !== null)
    {

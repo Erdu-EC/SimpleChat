@@ -15,8 +15,6 @@ window.addEventListener('popstate', function (e) {
         } else if ($("#espacio-de-configuracion")) {
             $("#btn-cerrar-configuraciones").trigger("click");
         }
-
-
     }
 });
 
@@ -321,14 +319,37 @@ $(document).on("click", "#btn-ver-todo", function () {
 function BuscarImagenesEnConversacion() {
     let imagenes = $("#lista-mensajes li .cont-msj img");
     if(imagenes.length < 1){
-        $("#lista-img-conversacion").html("No hay archivos de imágen");
+        $("#lista-img-conversacion").html(`<span>No hay archivos de imágen</span>`);
+        $("#btn-ver-todo").addClass("inhabilitado");
     }
     else{
         $("#lista-img-conversacion").empty();
+        if(imagenes.length < 4){
+            $("#btn-ver-todo").addClass("inhabilitado");
+        }
+        else{
+            $("#btn-ver-todo").removeClass("inhabilitado");
+        }
         imagenes.each(function () {
             $("#lista-img-conversacion").prepend(`<div class="item-img-conv"><img class="" src="${$(this).attr("src")}" title="${$(this).attr("title")}" alt=""></div>`);
         })
+        }
+    const a = $("#btn-ver-todo");
+    if(a.hasClass("activo")){
+        $("#btn-ver-todo").removeClass("activo").html('<i class="fas fa-th-large"></i>Ver todo');
+        $("#lista-img-conversacion").removeClass("vista-completa");
+    }
 }
+function AgregarImagenAGaleria(url) {
+    let imagenes = $("#lista-img-conversacion .item-img-conv img");
+    if (imagenes.length == 0){
+        $("#lista-img-conversacion").empty();
+    }
+    if(imagenes.length > 2 && $("#btn-ver-todo").hasClass("inhabilitado")){
+        $("#btn-ver-todo").removeClass("inhabilitado");
+    }
+    $("#lista-img-conversacion").prepend(`<div class="item-img-conv"><img class="" src="/files/chat/${url}" title="${url}" alt=""></div>`);
+
 }
 $(document).on("click", ".item-img-conv img", function () {
     var imagen = $(this).attr("src");
@@ -414,6 +435,7 @@ $(document).on("click", "#btn-configuraciones", function () {
 
 });
 $(document).on("click", "#btn-conf-sesion", function () {
+    $("#btn-cerrar-contacto").trigger("click");
     if (!Buffer_Conversaciones($('#lista-conversaciones li.active .elemento-conversacion').attr("data-usuario"), ""))
         CargarEspacioConfiguraciones();
     $("#mi-perfil-sidepanel .usuario-perfil-opciones").removeClass("activo");
@@ -423,6 +445,7 @@ $(document).on("click", "#btn-conf-sesion", function () {
     if (($("#sidebarToggle").hasClass("activo"))) {
         $("#sidebarToggle").removeClass("activo");
         $("#sidebarToggle").html('<span class="material-icons">menu</span>');
+
     }
 });
 $(document).on("click", "#btn-cerrar-configuraciones", function () {
@@ -572,7 +595,9 @@ function EnviarImagenEnChat(filename) {
                         progreso.remove();
 
                         //Actualizar item de conversación.
-                        AgregarElementoConversacion(remitente, '<span class="material-icons icon-indicador">image</span> Archivo de imagen')
+                        AgregarElementoConversacion(remitente, '<span class="material-icons icon-indicador">image</span> Archivo de imagen');
+                        //Actualizar Galería
+                        AgregarImagenAGaleria(response[1]);
 
                     } else {
                         swal({
