@@ -2746,7 +2746,9 @@ padding: 5px 5px 5px 0;
   flex-wrap: wrap;
   align-items: normal;
   padding-right: 0;
+  scrollbar-width: none;
 }
+
 .cont-imagenes-conversacion .imagenes-conversacion::-webkit-scrollbar {
   width: 3px;
   height: 5px;
@@ -2765,14 +2767,16 @@ padding: 5px 5px 5px 0;
   height: 115px ;
   border-radius: 5px;
   margin-left: 5px;
-  margin-right: auto;
   margin-top: 5px;
+  display: block;
 }
 .cont-imagenes-conversacion .imagenes-conversacion .item-img-conv img {
   object-fit: cover !important;
   border-radius: 5px !important;
   width: 115px;
   height: 115px ;
+  max-width: 115px;
+  max-height: 115px;
 }
 
 #panelInfoContacto .contenedor-perfil .contacto-extra {
