@@ -224,7 +224,7 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
             <div class="no-visible-sm" id="espacio-de-configuracion" style="display: none">
             </div>
 
-            <div class="" id="panelInfoContacto">
+            <div class="no-seleccionable" id="panelInfoContacto">
                 <button id="btn-cerrar-contacto"><span class="material-icons">arrow_back</span></button>
                 <div class="contenedor-perfil">
                     <div class="card perfil">
@@ -240,6 +240,25 @@ Contactos cada vez que se vaya a iniciar una nueva conversación
                         <div class="contacto-redes">
 
                         </div>
+
+                    </div>
+                    <div class="card cont-imagenes-conversacion">
+                        <span class="titulo-seccion">Imágenes</span>
+                        <span class="icon-ver-todo" id="btn-ver-todo"><i class="fas fa-th-large"></i>Ver todo</span>
+                            <div id="lista-img-conversacion" class="imagenes-conversacion">
+                                <!-- No hay archivos de imágen.
+                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
+                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
+                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
+                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
+                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
+                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
+                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
+                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
+                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
+                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
+                                <div class="item-img-conv"><img class="" src="/files/photos/home_pic3.jpg" alt=""></div>
+                           --> </div>
 
                     </div>
                     <div class=" card contacto-extra">

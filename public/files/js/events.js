@@ -307,6 +307,33 @@ $(document).on("click", "#btn-info-contacto", function () {
 
 });
 
+$(document).on("click", "#btn-ver-todo", function () {
+    const a = $(this);
+    if(a.hasClass("activo")){
+        $(this).removeClass("activo").html('<i class="fas fa-th-large"></i>Ver todo');
+        $("#lista-img-conversacion").removeClass("vista-completa");
+    }
+    else{
+        $(this).addClass("activo").html('<i class="fas fa-caret-square-up"></i>Colapsar');
+        $("#lista-img-conversacion").addClass("vista-completa");
+    }
+});
+function BuscarImagenesEnConversacion() {
+    let imagenes = $("#lista-mensajes li .cont-msj img");
+    if(imagenes.length < 1){
+        $("#lista-img-conversacion").html("No hay archivos de imágen");
+    }
+    else{
+        $("#lista-img-conversacion").empty();
+        imagenes.each(function () {
+            $("#lista-img-conversacion").prepend(`<div class="item-img-conv"><img class="" src="${$(this).attr("src")}" title="${$(this).attr("title")}" alt=""></div>`);
+        })
+}
+}
+$(document).on("click", ".item-img-conv img", function () {
+    var imagen = $(this).attr("src");
+    MostrarModal($(this).attr("title"), '<img src="' + imagen + '" alt="" />', "", 'modal-fullscreen', "btn-close-white");
+});
 $(document).on("click", ".chat-conexion .nombre-chat", function () {
     $("#frame #espacio-de-chat").addClass("desp-der");
     $("#panelInfoContacto").addClass("mostrar");
@@ -329,6 +356,7 @@ $(document).on("click", "#btn-cerrar-contacto", function () {
 $(document).on("click", ".contenedor-perfil .perfil .foto-perfil", function () {
     MostrarModal($(this).attr("title"), '<img src="' + ObtenerUrlImagen($(this)) + '" alt="" />', "", 'modal-fullscreen', "btn-close-white");
 });
+
 
 //detectar tamanos de pantalla y las acciones
 

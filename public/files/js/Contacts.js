@@ -71,6 +71,7 @@ function ActualizarInfoContacto() {
 
         }
     });
+    BuscarImagenesEnConversacion();
 }
 
 $("#seccion-contactos").on("click", function () {
