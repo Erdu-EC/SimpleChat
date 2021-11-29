@@ -182,11 +182,22 @@ width: auto;
   #panelInfoContacto #btn-cerrar-contacto .material-icons{
 font-size: 26px;
   }
-
+  .cont-imagenes-conversacion .imagenes-conversacion {
+    justify-content: space-evenly;
+  }
+  .cont-imagenes-conversacion .imagenes-conversacion .item-img-conv {
+    min-width: 110px;
+    width: 110px;
+    min-height: 110px;
+    height: 110px ;
+  }
+  .cont-imagenes-conversacion .imagenes-conversacion .item-img-conv img {
+    width: 110px;
+    height: 110px ;
+  }
   #espacio-de-configuracion{
     height: 100vh;
     width: 100vw;
-
   }
   #espacio-de-configuracion.no-visible-sm{
     display: none;

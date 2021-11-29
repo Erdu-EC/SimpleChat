@@ -2746,7 +2746,6 @@ padding: 5px 5px 5px 0;
   flex-wrap: wrap;
   align-items: normal;
   padding-right: 0;
-  justify-content: normal;
 }
 .cont-imagenes-conversacion .imagenes-conversacion::-webkit-scrollbar {
   width: 3px;
@@ -2758,6 +2757,7 @@ padding: 5px 5px 5px 0;
   height: 3px;
   border-radius: 3px;
 }
+
 .cont-imagenes-conversacion .imagenes-conversacion .item-img-conv {
   min-width: 115px;
   width: 115px;
@@ -2765,6 +2765,7 @@ padding: 5px 5px 5px 0;
   height: 115px ;
   border-radius: 5px;
   margin-left: 5px;
+  margin-right: auto;
   margin-top: 5px;
 }
 .cont-imagenes-conversacion .imagenes-conversacion .item-img-conv img {
