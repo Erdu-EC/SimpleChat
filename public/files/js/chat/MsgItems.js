@@ -62,7 +62,7 @@ const ObtenerElementoMensajeAudio = (blob, duracion, fecha_envio, estado) => {
             type: "audio/webm",
             class: "mensaje-audio"
         }
-    ).attr('data-duration', duracion ?? 0);
+    ).attr('data-duration', duracion === undefined || duracion === null ? 0 : duracion);
 
     if (duracion === null) {
         const metadata = document.createElement("audio");

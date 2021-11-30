@@ -39,8 +39,8 @@ function ActualizarInfoContacto() {
                 perfil.find('small').text(ObtenerInformacionEstado(json[3],json[4]));
 
                 const extra = contenedor.find('.card.contacto-extra');
-                extra.find('.tel span').text(json[8] ?? ' - ');
-                extra.find('.email span').text(json[5] ?? ' - ');
+                extra.find('.tel span').text(json[8] === undefined ? ' - ' : json[8]);
+                extra.find('.email span').text(json[5] === undefined ? ' - ' : json[5]);
                 extra.find('.fn span').text(ObtenerFecha(json[6]));
 
                 let sexo = '';
