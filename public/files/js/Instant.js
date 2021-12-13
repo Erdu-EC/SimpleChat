@@ -193,6 +193,10 @@ function TratarCambiosDeEstadosEnMensajes(datos) {
 
         extra_mensaje.html(ObtenerElementoExtraMensaje(extra_mensaje.find('> .extra > span:first-child').text(), estado));
 
+        //Actualizar estado de mensajes anteriores
+        let elemento = extra_mensaje.parent();
+            elemento.prevAll(".enviado[data-id]").find(".extra-mensaje").html(ObtenerElementoExtraMensaje(extra_mensaje.find('> .extra > span:first-child').text(), estado));
+
         //Actualizar conversación.
         let elemento_contacto = $(`#lista-conversaciones .contact > div[data-usuario=${row.destination}] .preview`);
         elemento_contacto.find(' > :first-child').remove();

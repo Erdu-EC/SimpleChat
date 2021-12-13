@@ -126,6 +126,7 @@ $("#lista-mensajes").find("li.marcador .marcador-pendientes").remove();
         const espacio_chat = $('#espacio-de-chat > .messages');
         $.ajax('/action/messages/send', {
             method: 'post', dataType: 'json', mimeType: 'application/json',
+            retryLimit : 3,
             data: {
                 contact: espacio_chat.attr('data-usuario'),
                 text: texto_org
@@ -489,8 +490,13 @@ function Buffer_Conversaciones(contacto_ant,contacto_act){
 if(! (contacto_act === undefined || contacto_act === "" )) {
     if (buffer_chat.has(contacto_act)) {
         $("#espacio-de-chat").empty();
-        let chat = $(buffer_chat.get(contacto_act));
-        $("#espacio-de-chat").html(chat);
+        let chat =$(`<div></div>`).html(buffer_chat.get(contacto_act));
+        let nick = chat.find(".messages").data("nick");
+        let nick_conversacion = $("#lista-conversaciones li.active .elemento-conversacion").data("usuario");
+        if(nick !== nick_conversacion){
+            return false;
+        }
+        $("#espacio-de-chat").html(chat.html());
         $(`#lista-conversaciones .contact > div[data-usuario=${contacto_act}] .num-msj-pendientes`).remove();
         ActualizarConversacion();
         return true;

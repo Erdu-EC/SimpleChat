@@ -388,6 +388,7 @@ function EnviarImagen() {
             data: formData,
             processData: false,
             contentType: false,
+            retryLimit : 3,
             mimeType: 'application/json',
             xhr: function() {
 
