@@ -132,6 +132,12 @@ Estilos version móvil
     height: auto;
     width: auto;
   }
+  #frame .content .contact-profile .opciones-contacto .btn-agregar-contacto {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    border: none;
+  }
   #frame .content .contact-profile .chat-conexion .nombre-chat {
     font-size: 1.1rem;
   }

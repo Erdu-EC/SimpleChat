@@ -1526,12 +1526,15 @@ display: flex;
   justify-content: space-between;
   color: black;
   font-family: Roboto, sans-serif;
-  background-color: rgba(40, 135, 139, 0.55);
+ /* background-color: rgba(40, 135, 139, 0.55);*/
   margin: 0 5px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 #frame .content .contact-profile .opciones-contacto div{
   width: 12vw;
-  height: 100%;
+
   text-align: justify;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -1542,18 +1545,26 @@ display: flex;
   justify-content: center;
   align-content: center;
   align-items: center;
+  border: 1px solid rgba(40, 135, 139, 0.75);
+  color: rgba(40, 135, 139, 0.75);
+
 }
 #frame .content .contact-profile .opciones-contacto div:active,#frame .content .contact-profile .opciones-contacto div:hover{
   background-color: rgba(40, 135, 139, 0.75);
+  color: #FFFFFF;
 }
 #frame .content .contact-profile .opciones-contacto .btn-agregar-contacto{
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 50px;
+  font-weight: 600;
+  border-radius: 30px;
 }
 #frame .content .contact-profile .opciones-contacto .btn-agregar-contacto .material-icons{
   margin-right: 5px;
   text-align: center;
+
 }
 
 hr.separador-vertical{
@@ -1562,6 +1573,7 @@ hr.separador-vertical{
   height: auto;
   position: relative;
   margin: 10px 5px 10px 5px;
+
 
 }
 @media screen and (max-width: 992px){
