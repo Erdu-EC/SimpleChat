@@ -13,10 +13,12 @@ sudo apt-get install ffmpeg
 sudo mysql -u root -e "update mysql.user set plugin = 'mysql_native_password' where User = 'root'"
 sudo service mysql restart
 mysql -u root < bd.sql
+mysql -u root < respaldo-usuarios.sql
 
 #Copiando los ficheros de la aplicación al servidor.
 sudo rm -r /var/www/SimpleChat
 sudo cp -r $(pwd) /var/www/SimpleChat
+
 
 #Configurando host virtual.
 sudo rm /etc/apache2/sites-available/SimpleChat.com.conf
@@ -24,6 +26,7 @@ sudo cp SimpleChat.com.conf /etc/apache2/sites-available/SimpleChat.com.conf
 sudo cp -r ssl /etc/apache2
 
 #Habilitando host virtual.
+sudo a2enmod ssl
 sudo a2ensite SimpleChat.com.conf
 sudo service apache2 restart
 
