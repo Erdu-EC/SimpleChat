@@ -250,46 +250,42 @@ var continuar = true;
 Funciones de validacion de campos
 -----------------------------------------------*/
 
-$(document).on('input', '#user_pass', null, function () {
-
-    var info_nivel = $("#indicador-nivel-seguridad");
-    var nivel=0;
+$(document).on('input', '#user_pass', function () {
+    const info_nivel = $("#indicador-nivel-seguridad");
+    let nivel = 0;
     info_nivel.removeClass();
+
     if ($(this).val().length > 7){
         nivel += 1;
-        if (Coincidencia($(this).val(),"0123456789" )){
+        if (/[\d]/.test($(this).val())){
             nivel += 1;
         }
-        if (Coincidencia($(this).val(),"ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" )){
+        if (/[A-ZÑ]/.test($(this).val())){
             nivel += 1;
         }
-        if (CoincidenciaCaracteresEspeciales($(this).val(),"ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789abcdefghijklmnñopqrstuvwxyz")){
+        if (/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test($(this).val())){
             nivel += 1;
         }
-
-
     }
+
     switch (nivel){
         case 0:
-            info_nivel.addClass("debil");
-            $("#indicador-nivel-seguridad span").text("Débil");
+            info_nivel.addClass("debil").find("span").text("Débil");
             break;
         case 1:
-            info_nivel.addClass("regular");
-            $("#indicador-nivel-seguridad span").text("Regular");
+            info_nivel.addClass("regular").find("span").text("Regular");
             break;
         case 2:
-            info_nivel.addClass("media");
-            $("#indicador-nivel-seguridad span").text("Media");
+            info_nivel.addClass("media").find("span").text("Media");
             break;
-        case 3:
-        case 4:
-            info_nivel.addClass("fuerte");
-            $("#indicador-nivel-seguridad span").text("Fuerte");
+        default:
+            info_nivel.addClass("fuerte").find("span").text("Fuerte");
             break;
     }
+
     ValidarContrasenas();
 });
+
 function Coincidencia(cadena, cadena_referencia){
     for(i=0; i<cadena.length; i++){
         if (cadena_referencia.indexOf(cadena.charAt(i),0)!=-1){
