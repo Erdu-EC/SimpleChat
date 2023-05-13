@@ -1,120 +1,107 @@
 /*-----------------------------------------------
-Accione para estilos de la página
+Acciones para estilos de la página
 -----------------------------------------------*/
-$(document).on("ready",function () {
+
+$(document).ready(() => {
     $("input[type=date]").val("");
 
-    if ($("#first_name").val()!="") {
-        var elemento =  $("#first_name").parent().parent();
-        elemento.addClass("activo");
-        elemento.removeClass("error");
-        $(this).removeClass("error");
+    const firstName = $("#first_name");
+    if (firstName.val() !== "") {
+        const elemento = firstName.parent().parent();
+        elemento.addClass("activo").removeClass("error");
+        firstName.removeClass("error");
     }
-
-
-
 });
-$(".input-group input#birth_date").focus(function (){
-    $(this).css("color","#868580");
-    var elemento =  $(this).parent().parent();
-    elemento.addClass("activo");
-    elemento.removeClass("error");
+
+const handleInputFocus = function () {
+    const elemento = $(this).parent().parent();
+    elemento.addClass("activo").removeClass("error");
     $(this).removeClass("error");
-});
-$(".input-group input#birth_date").blur(function () {
-    var elemento =  $(this).parent().parent();
+};
 
-    if($(this).val()==""){
-        elemento.removeClass("activo");
-        elemento.addClass("error");
-        $(this).addClass("error");
-        $(this).css("color","transparent");
-    }else
-    {
+const handleInputBlur = function () {
+    const elemento = $(this).parent().parent();
+
+    if ($(this).val() === "") {
+        elemento.removeClass("activo").addClass("error");
+        $(this).addClass("error").css("color", "transparent");
+    } else {
         $(this).addClass("valorado");
-        $(".input-group input#birth_date").css("color","#171a1d");
+        $(this).css("color", "#171a1d");
     }
+};
 
-});
-
-$(".item-form .input-group input").focus(function () {
-    var elemento =  $(this).parent().parent();
-    elemento.addClass("activo");
-    elemento.removeClass("error");
-    $(this).removeClass("error");
-});
-
-$(".item-form .input-group input").blur(function () {
-    var elemento =  $(this).parent().parent();
-
-    if($(this).val()==""){
-        elemento.removeClass("activo");
-        elemento.addClass("error");
-        $(this).addClass("error");
-    }else
-    {
-        $(this).addClass("valorado");
+const handleGenderBlur = function () {
+    const elemento = $(this).parent().parent();
+    if ($("#gender option:selected").text() === "") {
+        elemento.removeClass("activo").addClass("error");
+        $("#gender").addClass("error");
     }
+};
 
-});
-$(".item-form .input-group select#gender").click(function () {
-    var elemento =  $(this).parent().parent();
-    elemento.addClass("activo");
-    elemento.removeClass("error");
-    $(this).removeClass("error");
-});
-$(".item-form .input-group select#gender").blur(function () {
-    var elemento =  $(this).parent().parent();
-if($("select#gender option:selected").text() == ""){
-
-    elemento.removeClass("activo");
-    elemento.addClass("error");
-    $("select#gender").addClass("error");
-}
-
-});
-$("#user_pass").focus(function () {
+const handlePasswordFocus = function () {
     $(".desplegable-recomendaciones-clave").addClass("visible");
-});
-$("#user_pass").blur(function () {
+};
+
+const handlePasswordBlur = function () {
     $(".desplegable-recomendaciones-clave").removeClass("visible");
-});
-$("#user_phone").keydown( function (e) {
-    var key = e.key.charCodeAt();
-    if ((e.key == "Backspace") ||(e.key == "ArrowRight")|| (e.key == "ArrowLeft")|| (e.key == "Tab")|| (e.key == "Enter")||
-        (key >= 48 && key <= 57)) {
+};
+
+const handlePhoneKeyDown = function (e) {
+    const key = e.key.charCodeAt();
+    if (
+        e.key === "Backspace" ||
+        e.key === "ArrowRight" ||
+        e.key === "ArrowLeft" ||
+        e.key === "Tab" ||
+        e.key === "Enter" ||
+        (key >= 48 && key <= 57)
+    ) {
         return key;
     } else {
         e.preventDefault();
     }
-});
-$("#first_name").on("input", function () {
-    ValidarNombreApellido($(this), "nombre");
-});
-$("#last_name").on("input", function () {
-    ValidarNombreApellido($(this), "apellido");
-});
-$("#gender").change(function () {
-    ValidarGenero();
-});
+};
+
 $("#birth_date").on("change", function () {
     ValidarFechaNacimiento();
 });
-$("#user_phone").on("input", function () {
-    ValidarTelefono();
-});
+
 $("#user_email").on("input", function () {
     ValidarEmail();
 });
+
 $("#user_name").on("input", function () {
     ValidarUsuario($(this), "apellido");
 });
-$(document).on('input', '#user_pass_repeat', null, function () {
+
+$("#user_pass_repeat").on("input", function () {
     ValidarContrasenas();
 });
 
+$(".item-form .input-group input, #gender").on("blur", handleInputBlur);
 
+$(".item-form .input-group input, #gender").on("focus", handleInputFocus);
 
+$(".item-form .input-group select#gender").on("blur", handleGenderBlur);
+
+$("#user_pass").on("focus", handlePasswordFocus);
+
+$("#user_pass").on("blur", handlePasswordBlur);
+
+$("#user_phone").on("keydown", handlePhoneKeyDown);
+
+$("#first_name").on("input", () => {
+    ValidarNombreApellido($("#first_name"), "nombre");
+});
+
+$("#last_name").on("input", () => {
+    ValidarNombreApellido($("#last_name"), "apellido");
+});
+
+$("#gender").on("change", () => {
+    ValidarGenero();
+});
 /*-----------------------------------------------
 Fin accione para estilos de la página
 -----------------------------------------------*/
